@@ -15,7 +15,7 @@ public final class UiLayout {
     private static UiLayout instance;
 
     public final int canvasW, canvasH;
-    public final int sortW, sortH, pitch, lineSlots;
+    public final int sortW, sortH, pitch, lineSlots, rows, rowPitch;
     public final int slotsX, slotsY, platenTravel;
     public final int caseCols, cellW, cellH, caseX, caseY, sortOffX, sortOffY, countOffY;
     public final char[] letters;
@@ -38,6 +38,8 @@ public final class UiLayout {
         sortH = sort.get("h").getAsInt();
         pitch = sort.get("pitch").getAsInt();
         lineSlots = l.get("line_slots").getAsInt();
+        rows = l.get("forme_rows").getAsInt();
+        rowPitch = l.get("row_pitch").getAsInt();
         slotsX = l.getAsJsonArray("forme_slots_origin").get(0).getAsInt();
         slotsY = l.getAsJsonArray("forme_slots_origin").get(1).getAsInt();
         platenTravel = l.get("platen_travel").getAsInt();

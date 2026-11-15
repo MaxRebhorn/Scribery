@@ -22,27 +22,32 @@ Die Zahlen stehen nur an einer Stelle: [art/layout.json](../art/layout.json) und
 | Glyphe auf der Letter | 5 × 7, plus 2 Reihen für den Längenstrich (Ē, Ō) | eigene Textur, nicht die Minecraft-Schrift |
 | Slot-Abstand in der Setzform | 11 | Letter 10 + 1 Fuge |
 | **Zeilenlänge** | **16 Slots** | inklusive Leerstellen zwischen Wörtern |
-| Setzform | 184 × 22 | 16 Slots ab (110, 65) |
-| Tiegel (senkt sich) | 184 × 26 | Hub 6 Pixel |
-| Papierstreifen / Abzug | 184 × 20 | eine Zeile, kein Blatt |
+| **Zeilen der Setzform** | **4**, Abstand 13 | feste Größe, siehe Abschnitt 3 |
+| Setzform | 184 × 61 | 4 × 16 Slots ab (110, 51) |
+| Tiegel (senkt sich) | 184 × 16 | Hub 6 Pixel |
+| Papierablage | 184 × 59 | Bogen für vier Zeilen; der Abzug kommt hierher zurück |
 | Zelle der Buchstabenbox | 14 × 21 | Letter oben, Vorrat (Vanilla-Ziffern) darunter |
 | Buchstabenbox | 74 × 109 | 5 × 5 Zellen, 22 belegt |
 | Fass | 44 × 42 | Füllstand über vier Farben, siehe Palette |
-| Walze (Ruhelage) | 28 × 10 | am Cursor doppelt so groß gezeichnet (eigene Textur) |
+| Walze (Ruhelage) | 28 × 10 | am Cursor 8 × 42, erreicht mittig geführt alle vier Zeilen |
 | Kerze | 12 × 24 | 4 Flammenbilder |
 | Fragment auf dem Pult | 66 × 62 | Schmuck, aktuelle Zeile hervorgehoben |
 | Titelleiste, Pfeile | 336 × 16, 16 × 16 | Ink und Iron rechts in der Leiste |
 | Hotbar | 182 × 22 | Vanilla-Textur |
 
-Aufteilung: links Kerze, Pult mit Fragment und Stapel der Abzüge. Mitte Kurbel, Tiegel, Setzform, Hebel, Papierstreifen, Abzug, Zeilenzähler, aktuelle griechische Zeile. Rechts Fass mit Walze, Papiervorrat, Buchstabenbox.
+Aufteilung: links Kerze, Pult mit Fragment und Stapel der Abzüge. Mitte Kurbel, Tiegel, Setzform, Hebel, Papierablage (dort liegt danach der Abzug), Hinweiszeile. Rechts Fass mit Walze, Papiervorrat, Buchstabenbox.
 
 Abweichung von der Bildvorlage: Der Stapel der Abzüge liegt links unter dem Pult statt rechts außen. Rechts fehlt dafür der Platz, weil die Buchstabenbox mit Vorratszahlen 109 Pixel hoch ist.
 
 ## 3. Zeilenregel
 
-Ein Fragment wird in Zeilen gedruckt. Die Zeilen werden nicht gespeichert, sondern in `core` berechnet: Wörter in Textreihenfolge auffüllen, solange Wörter plus je eine Leerstelle höchstens 16 Slots brauchen.
+Die Zeilen eines Fragments werden nicht gespeichert, sondern in `core` berechnet: Wörter in Textreihenfolge auffüllen, solange Wörter plus je eine Leerstelle höchstens 16 Slots brauchen.
 
-Beispiel `P1`: `EN ARCHĒ ĒN HO` (14 Slots), dann `LOGOS`.
+Die Setzform hat immer vier Zeilen und ändert ihre Größe nie. Alle Slots sind immer sichtbar und nutzbar, auch wenn der Text weniger braucht. Gesperrt sind nur die Leerstellen zwischen den Wörtern einer Zeile. Eine Letter, die an einer Stelle ohne Wort sitzt, wird mitgedruckt und verwischt. Alle Zeilen eines Bogens werden zusammen eingefärbt und mit einem Hebelzug gedruckt. Hat ein Fragment mehr als vier Zeilen, folgen weitere Bögen.
+
+Beispiel `P1`: ein Bogen mit `EN ARCHĒ ĒN HO` (14 Slots) und `LOGOS`, die dritte und vierte Zeile bleiben leer.
+
+Den griechischen Text zeigt nur das Fragment auf dem Pult. Ein eigenes Feld mit den Zeilen des Bogens gab es kurz; es ist gestrichen, weil es den Text doppelt zeigte und die Setzform dadurch eine Zeile weniger hatte.
 
 Vorgedruckte Wörter (`"set": false`) stehen schon als feste Lettern in der Setzform. Der Spieler setzt nur die Lücken.
 

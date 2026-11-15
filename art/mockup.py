@@ -43,7 +43,8 @@ def check(layout):
     s, (ox, oy) = layout["sort"], layout["forme_slots_origin"]
     fx, fy, fw, fh = rects["forme"]
     right = ox + (layout["line_slots"] - 1) * s["pitch"] + s["w"]
-    if ox < fx or right > fx + fw or oy < fy or oy + s["h"] > fy + fh:
+    bottom = oy + (layout["forme_rows"] - 1) * layout["row_pitch"] + s["h"]
+    if ox < fx or right > fx + fw or oy < fy or bottom > fy + fh:
         errors.append("Slots passen nicht in die Setzform")
     # Buchstabenbox: alle Zellen muessen in den Kasten passen
     c = layout["case"]
@@ -85,13 +86,15 @@ def main():
 
     # Setzform-Slots mit Beispielzeile
     s, (ox, oy) = layout["sort"], layout["forme_slots_origin"]
-    sample = "EN ARCHĒ ĒN HO"
-    for i in range(layout["line_slots"]):
-        r = [ox + i * s["pitch"], oy, s["w"], s["h"]]
-        ch_ = sample[i] if i < len(sample) else ""
-        box(r, pal["lead_3"] if ch_.strip() else pal["wood_0"])
-        if ch_.strip():
-            d.text(((r[0] + 2) * SCALE, (r[1] + 3) * SCALE), ch_, fill=pal["ink_0"], font=font)
+    samples = ["EN ARCHĒ ĒN HO", "LOGOS", "", ""]
+    for row in range(layout["forme_rows"]):
+        sample = samples[row] if row < len(samples) else ""
+        for i in range(layout["line_slots"]):
+            r = [ox + i * s["pitch"], oy + row * layout["row_pitch"], s["w"], s["h"]]
+            ch_ = sample[i] if i < len(sample) else ""
+            box(r, pal["lead_3"] if ch_.strip() else pal["wood_0"])
+            if ch_.strip():
+                d.text(((r[0] + 2) * SCALE, (r[1] + 3) * SCALE), ch_, fill=pal["ink_0"], font=font)
 
     # Buchstabenbox
     c = layout["case"]

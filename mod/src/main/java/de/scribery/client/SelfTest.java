@@ -68,8 +68,8 @@ final class SelfTest {
     private static void setWord(int firstSlot, String letters) {
         then(0, () -> {
             for (int i = 0; i < letters.length(); i++) {
-                screen.debugClickLetter(letters.charAt(i));
-                screen.debugClickSlot(firstSlot + i);
+                screen.debugClickLetter(letters.charAt(i));   // druecken ...
+                screen.debugReleaseOnSlot(firstSlot + i);     // ... ziehen und loslassen
             }
         });
     }
@@ -91,8 +91,9 @@ final class SelfTest {
     private static void script(Minecraft mc) {
         shot(mc, "01-start");
 
-        // Zeile 1 richtig
+        // Beide Zeilen auf einem Bogen, die zweite zuerst falsch (Z statt S)
         setWord(3, "ARCHĒ");
+        setWord(16, "LOGOZ");
         shot(mc, "02-set");
         inkPaperCrank(mc, "03-inked-once");
         shot(mc, "04-inked-paper");
@@ -102,28 +103,24 @@ final class SelfTest {
         then(10, () -> screen.debugClick("lever"));
         then(4, () -> { });
         shot(mc, "06-platen-down");
-        shot(mc, "07-proof-ok");
-        then(40, () -> { });
+        then(8, () -> { });
+        shot(mc, "07-smudged");
 
-        // Zeile 2 zuerst falsch (Z statt S), dann nachgebessert
-        setWord(0, "LOGOZ");
-        inkPaperCrank(mc, null);
-        then(0, () -> screen.debugClick("crank"));
-        then(16, () -> screen.debugClick("lever"));
-        then(16, () -> { });
-        shot(mc, "08-smudged");
+        // Nachbessern
         then(0, () -> {
-            screen.debugClickSlot(4);        // Z herausnehmen
-            screen.debugClickLetter('Z');    // zurueck in die Box
+            screen.debugClickSlot(20);       // Z greifen
+            screen.debugReleaseOnCase();     // ueber der Box loslassen
             screen.debugClickLetter('S');
-            screen.debugClickSlot(4);
+            screen.debugReleaseOnSlot(20);
             screen.debugClick("lever");      // ohne Papier: Hinweis
         });
-        shot(mc, "09-refusal-hint");
+        shot(mc, "08-refusal-hint");
         inkPaperCrank(mc, null);
         then(0, () -> screen.debugClick("crank"));
         then(16, () -> screen.debugClick("lever"));
-        then(50, () -> { });
+        then(12, () -> { });
+        shot(mc, "09-proof-ok");
+        then(40, () -> { });
         shot(mc, "10-complete");
 
         then(10, () -> {

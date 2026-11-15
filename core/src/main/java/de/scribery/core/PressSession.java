@@ -9,8 +9,13 @@ import java.util.Random;
 /**
  * Zustand und Regeln der Presse fuer ein Fragment. Kennt weder Maus noch Minecraft.
  *
- * Ablauf pro Zeile: Lettern setzen, einfaerben, Papier auflegen, kurbeln, Hebel ziehen.
- * Ist der Abzug fehlerfrei, schliesst {@link #finishLine()} die Zeile ab.
+ * Die Setzform hat eine feste Zahl von Zeilen, und alle Slots sind immer da. Ein Bogen fuellt so viele,
+ * wie der Text braucht. Gesperrt sind nur die Leerstellen zwischen den Woertern einer Zeile; in alle
+ * anderen freien Slots kann man setzen, aber eine Letter, die dort nicht hingehoert, verwischt im Abzug. Hat ein Fragment mehr Zeilen als die Setzform, folgen weitere Boegen.
+ *
+ * Ablauf pro Bogen: Lettern setzen, einfaerben, Papier auflegen, kurbeln, Hebel ziehen.
+ * Ist der Abzug fehlerfrei, schliesst {@link #finishPage()} den Bogen ab.
+ * Slots sind durchnummeriert: Zeile * lineSlots + Spalte.
  */
 public final class PressSession {
     /** So oft muss die Walze ueber eine Letter laufen. */
@@ -30,7 +35,7 @@ public final class PressSession {
      * @param refusal  Grund, warum nicht gedruckt wurde, sonst null
      * @param printed  gedrucktes Zeichen pro Slot, 0 = nichts
      * @param smudged  pro Slot: gehoert zu einem falschen Wort
-     * @param allCorrect alle Woerter der Zeile stimmen
+     * @param allCorrect alle Woerter des Bogens stimmen
      */
     public record PullResult(Refusal refusal, char[] printed, boolean[] smudged, boolean allCorrect) {
         static PullResult refused(Refusal r) {
@@ -39,67 +44,86 @@ public final class PressSession {
     }
 
     private final List<PressWord> words;
-    private final List<List<Integer>> lines;
+    /** Bogen -> Zeilen -> Wortindizes. */
+    private final List<List<List<Integer>>> pages = new ArrayList<>();
     private final int lineSlots;
+    private final int rows;
+    private final int slotCount;
     private final Map<Character, Integer> stock = new LinkedHashMap<>();
     private final Random rng;
     private final List<String> finishedLines = new ArrayList<>();
 
     private int ink;
     private int iron;
-    private int lineIndex;
+    private int pageIndex;
 
-    // Zustand der aktuellen Zeile
+    // Zustand des aktuellen Bogens
     private char[] slots;
     private boolean[] fixed;
     private int[] slotWord;
+    private boolean[] spacer;
     private int[] inkLevel;
     private boolean rollerCharged;
     private Paper paper = Paper.NONE;
     private boolean awaitingFinish;
     private int lastWorn;
 
-    public PressSession(List<PressWord> words, int lineSlots, int stockPerLetter, int ink, int iron, Random rng) {
+    public PressSession(List<PressWord> words, int lineSlots, int rows, int stockPerLetter, int ink, int iron,
+            Random rng) {
         this.words = List.copyOf(words);
         this.lineSlots = lineSlots;
+        this.rows = rows;
+        this.slotCount = rows * lineSlots;
         this.ink = ink;
         this.iron = iron;
         this.rng = rng;
         for (char c : Translit.ALPHABET.toCharArray()) stock.put(c, stockPerLetter);
-        this.lines = LineBreaker.breakLines(this.words.stream().map(PressWord::latin).toList(), lineSlots);
-        loadLine();
+        List<List<Integer>> lines =
+                LineBreaker.breakLines(this.words.stream().map(PressWord::latin).toList(), lineSlots);
+        for (int i = 0; i < lines.size(); i += rows) {
+            pages.add(lines.subList(i, Math.min(lines.size(), i + rows)));
+        }
+        loadPage();
     }
 
-    private void loadLine() {
-        slots = new char[lineSlots];
-        fixed = new boolean[lineSlots];
-        slotWord = new int[lineSlots];
-        inkLevel = new int[lineSlots];
+    private void loadPage() {
+        slots = new char[slotCount];
+        fixed = new boolean[slotCount];
+        slotWord = new int[slotCount];
+        spacer = new boolean[slotCount];
+        inkLevel = new int[slotCount];
         java.util.Arrays.fill(slotWord, -1);
         paper = Paper.NONE;
         awaitingFinish = false;
         if (isComplete()) return;
-        int pos = 0;
-        for (int wi : lines.get(lineIndex)) {
-            PressWord w = words.get(wi);
-            for (int k = 0; k < w.latin().length(); k++) {
-                slotWord[pos] = wi;
-                if (w.preset()) {
-                    slots[pos] = w.latin().charAt(k);
-                    fixed[pos] = true;
+        List<List<Integer>> page = pages.get(pageIndex);
+        for (int row = 0; row < page.size(); row++) {
+            int pos = row * lineSlots;
+            for (int wi : page.get(row)) {
+                PressWord w = words.get(wi);
+                for (int k = 0; k < w.latin().length(); k++) {
+                    slotWord[pos] = wi;
+                    if (w.preset()) {
+                        slots[pos] = w.latin().charAt(k);
+                        fixed[pos] = true;
+                    }
+                    pos++;
                 }
+                List<Integer> line = page.get(row);
+                if (wi != line.get(line.size() - 1)) spacer[pos] = true; // Leerstelle zwischen zwei Woertern
                 pos++;
             }
-            pos++; // Leerstelle
         }
     }
 
     // ---- Abfragen ----
 
     public int lineSlots() { return lineSlots; }
-    public int lineCount() { return lines.size(); }
-    public int lineIndex() { return lineIndex; }
-    public boolean isComplete() { return lineIndex >= lines.size(); }
+    public int rows() { return rows; }
+    public int slotCount() { return slotCount; }
+    public int pageCount() { return pages.size(); }
+    public int pageIndex() { return pageIndex; }
+    public boolean isComplete() { return pageIndex >= pages.size(); }
     public int ink() { return ink; }
     public int iron() { return iron; }
     public int stock(char letter) { return stock.getOrDefault(letter, 0); }
@@ -107,30 +131,36 @@ public final class PressSession {
     public boolean rollerCharged() { return rollerCharged; }
     public boolean awaitingFinish() { return awaitingFinish; }
     public List<String> finishedLines() { return List.copyOf(finishedLines); }
-    /** Anzahl der Lettern, die beim letzten Zeilenabschluss verschlissen sind. */
+    /** Anzahl der Lettern, die beim letzten Abschluss eines Bogens verschlissen sind. */
     public int lastWorn() { return lastWorn; }
 
     public char slot(int i) { return slots[i]; }
     public boolean isFixed(int i) { return fixed[i]; }
-    /** Slot gehoert zu einem Wort (sonst Leerstelle oder Zeilenrest). */
+    /** Slot gehoert zu einem Wort des Bogens. */
     public boolean isWordSlot(int i) { return slotWord[i] >= 0; }
+    /** Gesperrte Leerstelle zwischen zwei Woertern einer Zeile. */
+    public boolean isSpacer(int i) { return spacer[i]; }
     public int inkLevel(int i) { return inkLevel[i]; }
 
-    /** Griechischer Text der aktuellen Zeile. */
-    public String currentGreekLine() {
-        if (isComplete()) return "";
-        StringBuilder sb = new StringBuilder();
-        for (int wi : lines.get(lineIndex)) {
-            if (sb.length() > 0) sb.append(' ');
-            sb.append(words.get(wi).greek());
+    /** Griechischer Text des aktuellen Bogens, eine Zeile pro Eintrag. */
+    public List<String> currentGreekLines() {
+        List<String> out = new ArrayList<>();
+        if (isComplete()) return out;
+        for (List<Integer> line : pages.get(pageIndex)) {
+            StringBuilder sb = new StringBuilder();
+            for (int wi : line) {
+                if (sb.length() > 0) sb.append(' ');
+                sb.append(words.get(wi).greek());
+            }
+            out.add(sb.toString());
         }
-        return sb.toString();
+        return out;
     }
 
     /** Alle belegten Slots sind fertig eingefaerbt, und es gibt mindestens einen. */
     public boolean isInked() {
         boolean any = false;
-        for (int i = 0; i < lineSlots; i++) {
+        for (int i = 0; i < slotCount; i++) {
             if (slots[i] == 0) continue;
             any = true;
             if (inkLevel[i] < INK_PASSES) return false;
@@ -139,7 +169,7 @@ public final class PressSession {
     }
 
     private boolean hasEmptyGap() {
-        for (int i = 0; i < lineSlots; i++) {
+        for (int i = 0; i < slotCount; i++) {
             if (slotWord[i] >= 0 && slots[i] == 0) return true;
         }
         return false;
@@ -183,9 +213,9 @@ public final class PressSession {
 
     // ---- Setzform ----
 
-    /** Setzt eine Letter in einen leeren Luecken-Slot. */
+    /** Setzt eine Letter in einen leeren Slot. Nur die Leerstellen zwischen Woertern sind gesperrt. */
     public boolean place(int slot, char letter) {
-        if (!formeOpen() || slotWord[slot] < 0 || fixed[slot] || slots[slot] != 0) return false;
+        if (!formeOpen() || spacer[slot] || fixed[slot] || slots[slot] != 0) return false;
         slots[slot] = letter;
         inkLevel[slot] = 0;
         return true;
@@ -246,20 +276,30 @@ public final class PressSession {
         if (paper == Paper.ON_TRAY) return PullResult.refused(Refusal.NOT_FED);
 
         char[] printed = slots.clone();
-        boolean[] smudged = new boolean[lineSlots];
+        boolean[] smudged = new boolean[slotCount];
         boolean allCorrect = true;
-        int pos = 0;
-        for (int wi : lines.get(lineIndex)) {
-            String target = words.get(wi).latin();
-            boolean ok = true;
-            for (int k = 0; k < target.length(); k++) {
-                if (slots[pos + k] != target.charAt(k)) ok = false;
+        List<List<Integer>> page = pages.get(pageIndex);
+        for (int row = 0; row < page.size(); row++) {
+            int pos = row * lineSlots;
+            for (int wi : page.get(row)) {
+                String target = words.get(wi).latin();
+                boolean ok = true;
+                for (int k = 0; k < target.length(); k++) {
+                    if (slots[pos + k] != target.charAt(k)) ok = false;
+                }
+                if (!ok) {
+                    allCorrect = false;
+                    for (int k = 0; k < target.length(); k++) smudged[pos + k] = true;
+                }
+                pos += target.length() + 1;
             }
-            if (!ok) {
+        }
+        // Eine Letter, wo kein Wort hingehoert, wird mitgedruckt und ist falsch.
+        for (int i = 0; i < slotCount; i++) {
+            if (slotWord[i] < 0 && slots[i] != 0) {
+                smudged[i] = true;
                 allCorrect = false;
-                for (int k = 0; k < target.length(); k++) smudged[pos + k] = true;
             }
-            pos += target.length() + 1;
         }
         paper = Paper.NONE;
         java.util.Arrays.fill(inkLevel, 0);
@@ -268,25 +308,27 @@ public final class PressSession {
     }
 
     /**
-     * Schliesst eine fehlerfrei gedruckte Zeile ab: Lettern gehen zurueck in die Box
-     * (abzueglich Verschleiss), die naechste Zeile wird geladen.
+     * Schliesst einen fehlerfrei gedruckten Bogen ab: Lettern gehen zurueck in die Box
+     * (abzueglich Verschleiss), der naechste Bogen wird geladen.
      */
-    public boolean finishLine() {
+    public boolean finishPage() {
         if (!awaitingFinish) return false;
-        StringBuilder text = new StringBuilder();
-        for (int wi : lines.get(lineIndex)) {
-            if (text.length() > 0) text.append(' ');
-            text.append(words.get(wi).latin());
+        for (List<Integer> line : pages.get(pageIndex)) {
+            StringBuilder text = new StringBuilder();
+            for (int wi : line) {
+                if (text.length() > 0) text.append(' ');
+                text.append(words.get(wi).latin());
+            }
+            finishedLines.add(text.toString());
         }
-        finishedLines.add(text.toString());
         lastWorn = 0;
-        for (int i = 0; i < lineSlots; i++) {
+        for (int i = 0; i < slotCount; i++) {
             if (slots[i] == 0 || fixed[i]) continue;
             if (rng.nextInt(WEAR_ODDS) == 0) lastWorn++;
             else returnToCase(slots[i]);
         }
-        lineIndex++;
-        loadLine();
+        pageIndex++;
+        loadPage();
         return true;
     }
 }

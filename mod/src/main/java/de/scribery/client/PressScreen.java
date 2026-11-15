@@ -38,6 +38,8 @@ public class PressScreen extends Screen {
     private static final int LEVER_PROOF_AT = 5; // Rest-Ticks, ab denen der Abzug sichtbar ist
     private static final int FINISH_TICKS = 25;
     private static final int FLASH_TICKS = 50;
+    /** Halbe Laenge der Walze in GUI-Pixeln. */
+    private static final int ROLLER_REACH = 21;
 
     private enum Hand { NONE, SORT, ROLLER, PAPER }
 
@@ -49,6 +51,7 @@ public class PressScreen extends Screen {
     private Hand hand = Hand.NONE;
     private char handSort;
     private double lastRollerX = Double.NaN;
+    private RollerSound rollerSound;
 
     private int ticks;
     private int crankAnim, leverAnim, finishDelay, flashTicks;
@@ -66,7 +69,7 @@ public class PressScreen extends Screen {
 
     private void loadFragment(int index) {
         fragmentIndex = Math.floorMod(index, fragments.size());
-        session = new PressSession(fragments.get(fragmentIndex).words(), ui.lineSlots,
+        session = new PressSession(fragments.get(fragmentIndex).words(), ui.lineSlots, ui.rows,
                 START_STOCK, START_INK, START_IRON, new Random());
         hand = Hand.NONE;
         proof = null;
@@ -93,7 +96,7 @@ public class PressScreen extends Screen {
             }
             if (leverAnim == 0 && proof != null && proof.allCorrect()) finishDelay = FINISH_TICKS;
         } else if (finishDelay > 0 && --finishDelay == 0) {
-            session.finishLine();
+            session.finishPage();
             proof = null;
             sound(SoundEvents.BOOK_PAGE_TURN, 1f, 0.6f);
             if (session.lastWorn() > 0) {
@@ -157,11 +160,21 @@ public class PressScreen extends Screen {
         return x >= r[0] - pad && x < r[0] + r[2] + pad && y >= r[1] - pad && y < r[1] + r[3] + pad;
     }
 
+    private int slotX(int slot) {
+        return ui.slotsX + (slot % ui.lineSlots) * ui.pitch;
+    }
+
+    private int slotY(int slot) {
+        return ui.slotsY + (slot / ui.lineSlots) * ui.rowPitch;
+    }
+
     private int slotAt(double x, double y) {
-        if (y < ui.slotsY || y >= ui.slotsY + ui.sortH || x < ui.slotsX) return -1;
-        int i = (int) ((x - ui.slotsX) / ui.pitch);
-        if (i >= ui.lineSlots || x - ui.slotsX - i * ui.pitch >= ui.sortW) return -1;
-        return i;
+        if (y < ui.slotsY || x < ui.slotsX) return -1;
+        int col = (int) ((x - ui.slotsX) / ui.pitch);
+        int row = (int) ((y - ui.slotsY) / ui.rowPitch);
+        if (col >= ui.lineSlots || row >= ui.rows) return -1;
+        if (x - ui.slotsX - col * ui.pitch >= ui.sortW || y - ui.slotsY - row * ui.rowPitch >= ui.sortH) return -1;
+        return row * ui.lineSlots + col;
     }
 
     private int caseCellAt(double x, double y) {
@@ -191,31 +204,14 @@ public class PressScreen extends Screen {
                 } else {
                     flash("No " + c + " left. Right-click to cast");
                 }
-            } else if (hand == Hand.SORT) {
-                dropSort();
             }
             return;
         }
-        if (hand == Hand.SORT && in(ui.rect("letter_case"), x, y, 0)) {
-            dropSort();
-            return;
-        }
 
+        // Eine gesetzte Letter wieder greifen. Abgelegt wird beim Loslassen, siehe releaseCanvas.
         int slot = slotAt(x, y);
         if (slot >= 0) {
-            if (hand == Hand.SORT) {
-                if (session.place(slot, handSort)) {
-                    hand = Hand.NONE;
-                    sound(SoundEvents.STONE_BUTTON_CLICK_ON, 1.3f, 0.6f);
-                } else {
-                    char old = session.pickUp(slot);
-                    if (old != 0) {
-                        session.place(slot, handSort);
-                        handSort = old;
-                        sound(SoundEvents.STONE_BUTTON_CLICK_ON, 1.3f, 0.6f);
-                    }
-                }
-            } else if (hand == Hand.NONE) {
+            if (hand == Hand.NONE) {
                 char c = session.pickUp(slot);
                 if (c != 0) {
                     hand = Hand.SORT;
@@ -256,6 +252,7 @@ public class PressScreen extends Screen {
         if (in(ui.rect("paper_tray"), x, y, 0)) {
             if (hand == Hand.PAPER && session.layPaper()) {
                 hand = Hand.NONE;
+                proof = null; // ein alter, verwischter Abzug macht Platz
                 sound(SoundEvents.BOOK_PAGE_TURN, 0.9f, 0.6f);
             }
             return;
@@ -284,10 +281,52 @@ public class PressScreen extends Screen {
         }
     }
 
-    private void dropSort() {
-        session.returnToCase(handSort);
+    /** Slot unter dem Cursor, grosszuegig: irgendwo in der Setzform zaehlt der naechste Slot. */
+    private int slotNear(double x, double y) {
+        if (!in(ui.rect("forme"), x, y, 3)) return -1;
+        int col = (int) Math.floor((x - ui.slotsX + 0.5) / ui.pitch);
+        int row = (int) Math.floor((y - ui.slotsY + 0.5) / ui.rowPitch);
+        col = Math.max(0, Math.min(ui.lineSlots - 1, col));
+        row = Math.max(0, Math.min(ui.rows - 1, row));
+        return row * ui.lineSlots + col;
+    }
+
+    /**
+     * Maustaste losgelassen: Eine gezogene Letter wird in den Slot unter dem Cursor gedrueckt.
+     * Liegt dort schon eine gesetzte, tauscht sie den Platz und die alte geht in die Box.
+     * Ueberall sonst faellt die Letter zurueck in die Box. Oeffentlich fuer den Selbsttest.
+     */
+    public void releaseCanvas(double x, double y, int button) {
+        if (hand != Hand.SORT) return;
         hand = Hand.NONE;
+        int slot = slotNear(x, y);
+        if (slot >= 0) {
+            if (session.place(slot, handSort)) {
+                sound(SoundEvents.STONE_BUTTON_CLICK_ON, 1.3f, 0.6f);
+                return;
+            }
+            char old = session.pickUp(slot);
+            if (old != 0 && session.place(slot, handSort)) {
+                session.returnToCase(old);
+                sound(SoundEvents.STONE_BUTTON_CLICK_ON, 1.3f, 0.6f);
+                return;
+            }
+        }
+        session.returnToCase(handSort);
         sound(SoundEvents.ITEM_PICKUP, 0.9f, 0.3f);
+    }
+
+    @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        updateTransform();
+        releaseCanvas((mouseX - originX) / scale, (mouseY - originY) / scale, button);
+        return true;
+    }
+
+    @Override
+    public void removed() {
+        if (rollerSound != null) rollerSound.end();
+        super.removed();
     }
 
     /** Mausbewegung in Leinwand-Koordinaten. Oeffentlich fuer den Selbsttest. */
@@ -299,13 +338,21 @@ public class PressScreen extends Screen {
             return;
         }
         if (!Double.isNaN(lastRollerX)) {
-            boolean inked = false;
-            for (int i = 0; i < ui.lineSlots; i++) {
-                double center = ui.slotsX + i * ui.pitch + ui.sortW / 2.0;
+            // Die Walze ist so lang, dass sie in der Mitte gefuehrt alle Zeilen erreicht.
+            for (int i = 0; i < session.slotCount(); i++) {
+                if (Math.abs(slotY(i) + ui.sortH / 2.0 - y) > ROLLER_REACH) continue;
+                double center = slotX(i) + ui.sortW / 2.0;
                 boolean crossed = (lastRollerX < center && x >= center) || (lastRollerX > center && x <= center);
-                if (crossed && session.inkSlot(i)) inked = true;
+                if (crossed) session.inkSlot(i);
             }
-            if (inked) sound(SoundEvents.SLIME_BLOCK_STEP, 1.4f, 0.25f);
+            // Rollgeraeusch, solange sich die Walze ueber der Setzform bewegt
+            if (x != lastRollerX && in(ui.rect("forme"), x, y, 8)) {
+                if (rollerSound == null || rollerSound.isStopped()) {
+                    rollerSound = new RollerSound();
+                    if (minecraft != null) minecraft.getSoundManager().play(rollerSound);
+                }
+                rollerSound.keepRolling();
+            }
         }
         lastRollerX = x;
     }
@@ -313,7 +360,7 @@ public class PressScreen extends Screen {
     private static String refusalText(Refusal r) {
         return switch (r) {
             case NOT_INKED -> "Ink the type first";
-            case NO_PAPER -> "Lay a paper strip first";
+            case NO_PAPER -> "Lay a sheet of paper first";
             case NOT_FED -> "Turn the crank first";
             case BUSY -> "";
         };
@@ -324,7 +371,7 @@ public class PressScreen extends Screen {
             case SET_TYPE -> "Set the type";
             case DIP_ROLLER -> "Take the ink roller";
             case ROLL_INK -> "Roll over the type";
-            case LAY_PAPER -> "Lay a paper strip";
+            case LAY_PAPER -> "Lay a sheet of paper";
             case TURN_CRANK -> "Turn the crank";
             case PULL_LEVER -> "Pull the lever";
             case DONE -> "Done. N: next, R: again";
@@ -474,15 +521,16 @@ public class PressScreen extends Screen {
         // Setzform
         panel(g, forme, col("wood_3"), col("wood_4"), col("wood_0"));
         fill(g, forme[0] + 2, forme[1] + 2, forme[2] - 4, forme[3] - 4, col("wood_0"));
-        for (int i = 0; i < ui.lineSlots; i++) {
-            int x = ui.slotsX + i * ui.pitch, y = ui.slotsY;
+        // Die Setzform zeigt immer alle Slots. Was der Text nicht braucht, bleibt einfach frei.
+        for (int i = 0; i < session.slotCount(); i++) {
+            int x = slotX(i), y = slotY(i);
             char c = session.slot(i);
             if (c != 0) {
                 drawSort(g, x, y, c, session.inkLevel(i), session.isFixed(i));
-            } else if (session.isWordSlot(i)) {
-                fill(g, x, y + ui.sortH - 1, ui.sortW, 1, col("lead_3"));
-            } else {
+            } else if (session.isSpacer(i)) {
                 fill(g, x, y + 1, ui.sortW, ui.sortH - 2, col("wood_2"));
+            } else {
+                fill(g, x, y + ui.sortH - 1, ui.sortW, 1, col("lead_3"));
             }
         }
 
@@ -518,15 +566,13 @@ public class PressScreen extends Screen {
         fill(g, lv[0] + 2, topY, 2, lv[1] + lv[3] - 6 - topY, col("wood_4"));
         fill(g, lv[0], topY, lv[2], 5, col("rubric"));
 
-        // Abzug
-        int[] ps = ui.rect("proof_slot");
-        fill(g, ps[0], ps[1], ps[2], ps[3], col("wood_0"));
-        if (proof != null && leverAnim <= LEVER_PROOF_AT) drawProof(g, ps);
+        // Abzug: kommt auf die Ablage zurueck, von der das Papier kam
+        if (proof != null && leverAnim <= LEVER_PROOF_AT && session.paper() == Paper.NONE) drawProof(g, tray);
 
         // Hinweiszeile
         int[] lc = ui.rect("line_counter");
         if (!session.isComplete()) {
-            String line = "Line " + (session.lineIndex() + 1) + "/" + session.lineCount();
+            String line = "Sheet " + (session.pageIndex() + 1) + "/" + session.pageCount();
             g.drawString(font, line, lc[0] + 1, lc[1], col("parchment_1"), false);
         }
         boolean flashing = flashTicks > 0 && !flash.isEmpty();
@@ -534,12 +580,6 @@ public class PressScreen extends Screen {
         g.drawString(font, hint, lc[0] + lc[2] - font.width(hint) - 1, lc[1],
                 flashing ? col("flame_1") : col("gui_light"), false);
 
-        // aktuelle griechische Zeile
-        int[] gl = ui.rect("greek_line");
-        fill(g, gl[0], gl[1], gl[2], gl[3], col("parchment_1"));
-        fill(g, gl[0], gl[1] + gl[3] - 1, gl[2], 1, col("parchment_0"));
-        String greek = session.currentGreekLine();
-        g.drawString(font, greek, gl[0] + (gl[2] - font.width(greek)) / 2, gl[1] + 4, col("ink_0"), false);
     }
 
     private void drawStrip(GuiGraphics g, int x, int y) {
@@ -550,20 +590,23 @@ public class PressScreen extends Screen {
 
     private void drawProof(GuiGraphics g, int[] ps) {
         drawStrip(g, ps[0] + 2, ps[1] + 2);
+        // Das Druckbild liegt auf dem Bogen genau so wie die Lettern in der Setzform.
         int dx = ps[0] - ui.rect("forme")[0];
-        int y = ps[1] + 5;
-        for (int i = 0; i < ui.lineSlots; i++) {
+        int dy = ps[1] + 2 - (ui.rect("forme")[1] + 3);
+        for (int i = 0; i < session.slotCount(); i++) {
             char c = proof.printed()[i];
-            if (c != 0) SortGlyphs.draw(g, c, ui.slotsX + dx + i * ui.pitch + 2, y, col("ink_0"));
+            if (c != 0) SortGlyphs.draw(g, c, slotX(i) + dx + 2, slotY(i) + dy + 1, col("ink_0"));
         }
         // Falsche Woerter sind als Ganzes verwischt: man sieht nicht, welcher Buchstabe falsch war.
         int i = 0;
-        while (i < ui.lineSlots) {
+        while (i < session.slotCount()) {
             if (!proof.smudged()[i]) { i++; continue; }
             int start = i;
-            while (i < ui.lineSlots && proof.smudged()[i]) i++;
-            int x0 = ui.slotsX + dx + start * ui.pitch - 1;
-            int x1 = ui.slotsX + dx + (i - 1) * ui.pitch + ui.sortW + 1;
+            int rowEnd = (i / ui.lineSlots + 1) * ui.lineSlots;
+            while (i < rowEnd && proof.smudged()[i]) i++;
+            int x0 = slotX(start) + dx - 1;
+            int x1 = slotX(i - 1) + dx + ui.sortW + 1;
+            int y = slotY(start) + dy + 1;
             for (int row = 0; row < SortGlyphs.HEIGHT + 1; row++) {
                 if (row % 3 == 2) continue;
                 g.fill(x0 + (row * 5) % 3, y - 1 + row, x1 - (row * 7) % 4, y + row, col("smear"));
@@ -631,10 +674,10 @@ public class PressScreen extends Screen {
             case SORT -> drawSort(g, mouseCX - ui.sortW / 2, mouseCY - ui.sortH / 2, handSort, 0, false);
             case ROLLER -> {
                 // am Cursor groesser gezeichnet: Walze stehend, Griff nach unten
-                fill(g, mouseCX - 4, mouseCY - 12, 8, 24, col("ink_1"));
-                fill(g, mouseCX - 4, mouseCY - 12, 2, 24, col("lead_2"));
-                fill(g, mouseCX - 1, mouseCY + 12, 2, 4, col("lead_3"));
-                fill(g, mouseCX - 2, mouseCY + 16, 4, 10, col("wood_4"));
+                fill(g, mouseCX - 4, mouseCY - ROLLER_REACH, 8, 2 * ROLLER_REACH, col("ink_1"));
+                fill(g, mouseCX - 4, mouseCY - ROLLER_REACH, 2, 2 * ROLLER_REACH, col("lead_2"));
+                fill(g, mouseCX - 1, mouseCY + ROLLER_REACH, 2, 4, col("lead_3"));
+                fill(g, mouseCX - 2, mouseCY + ROLLER_REACH + 4, 4, 10, col("wood_4"));
             }
             case PAPER -> {
                 fill(g, mouseCX - 20, mouseCY - 4, 40, 8, col("parchment_3"));
@@ -652,7 +695,16 @@ public class PressScreen extends Screen {
     }
 
     public void debugClickSlot(int slot) {
-        clickCanvas(ui.slotsX + slot * ui.pitch + ui.sortW / 2.0, ui.slotsY + ui.sortH / 2.0, 0);
+        clickCanvas(slotX(slot) + ui.sortW / 2.0, slotY(slot) + ui.sortH / 2.0, 0);
+    }
+
+    public void debugReleaseOnSlot(int slot) {
+        releaseCanvas(slotX(slot) + ui.sortW / 2.0, slotY(slot) + ui.sortH / 2.0, 0);
+    }
+
+    public void debugReleaseOnCase() {
+        int[] r = ui.rect("letter_case");
+        releaseCanvas(r[0] + r[2] / 2.0, r[1] + r[3] / 2.0, 0);
     }
 
     public void debugClickLetter(char letter) {

@@ -15,8 +15,9 @@ class CoreTest {
             PressWord.of("Ἐν", false), PressWord.of("ἀρχῇ", null), PressWord.of("ἦν", null),
             PressWord.of("ὁ", false), PressWord.of("λόγος", null));
 
+    /** Setzform mit nur einer Zeile: P1 braucht zwei Boegen. */
     private static PressSession session() {
-        return new PressSession(P1, 16, 4, 8, 24, new Random(1));
+        return new PressSession(P1, 16, 1, 4, 8, 24, new Random(1));
     }
 
     /** Setzt ein Wort ab Slot {@code start}. */
@@ -30,7 +31,7 @@ class CoreTest {
     private static void inkAll(PressSession s) {
         assertTrue(s.dipRoller());
         for (int pass = 0; pass < PressSession.INK_PASSES; pass++) {
-            for (int i = 0; i < s.lineSlots(); i++) s.inkSlot(i);
+            for (int i = 0; i < s.slotCount(); i++) s.inkSlot(i);
         }
         s.returnRoller();
     }
@@ -76,14 +77,14 @@ class CoreTest {
     @Test
     void firstLineHasPresetWordsAndGaps() {
         PressSession s = session();
-        assertEquals(2, s.lineCount());
+        assertEquals(2, s.pageCount());
         assertEquals('E', s.slot(0));
         assertTrue(s.isFixed(0));
         assertFalse(s.isWordSlot(2));
         assertTrue(s.isWordSlot(3));
         assertEquals(0, s.slot(3));
         assertEquals('Ē', s.slot(9));
-        assertEquals("Ἐν ἀρχῇ ἦν ὁ", s.currentGreekLine());
+        assertEquals(List.of("Ἐν ἀρχῇ ἦν ὁ"), s.currentGreekLines());
         assertEquals(PressSession.Hint.SET_TYPE, s.hint());
     }
 
@@ -115,7 +116,7 @@ class CoreTest {
         var r = s.pull();
         assertNull(r.refusal());
         assertTrue(r.allCorrect());
-        assertTrue(s.finishLine());
+        assertTrue(s.finishPage());
         assertEquals(List.of("EN ARCHĒ ĒN HO"), s.finishedLines());
 
         set(s, 0, "LOGOS");
@@ -123,9 +124,50 @@ class CoreTest {
         s.layPaper();
         assertNull(s.crank());
         assertTrue(s.pull().allCorrect());
-        assertTrue(s.finishLine());
+        assertTrue(s.finishPage());
         assertTrue(s.isComplete());
         assertEquals(PressSession.Hint.DONE, s.hint());
+    }
+
+    @Test
+    void threeRowFormeHoldsWholeFragmentOnOneSheet() {
+        PressSession s = new PressSession(P1, 16, 3, 4, 8, 24, new Random(1));
+        assertEquals(1, s.pageCount());
+        assertEquals(48, s.slotCount());
+        assertEquals(List.of("Ἐν ἀρχῇ ἦν ὁ", "λόγος"), s.currentGreekLines());
+        assertTrue(s.isWordSlot(16), "LOGOS beginnt in der zweiten Zeile");
+        for (int i = 32; i < 48; i++) assertFalse(s.isWordSlot(i), "dritte Zeile traegt keinen Text");
+        assertFalse(s.place(2, 'A'), "Leerstelle zwischen Woertern ist gesperrt");
+        assertTrue(s.place(14, 'A'), "Zeilenrest ist frei");
+        assertEquals('A', s.pickUp(14));
+        set(s, 32, "A"); // freie Zeile: setzen geht, gehoert aber nicht in den Text
+
+        set(s, 3, "ARCHĒ");
+        set(s, 16, "LOGOZ");
+        inkAll(s);
+        s.layPaper();
+        assertNull(s.crank());
+        var r = s.pull();
+        assertFalse(r.allCorrect());
+        for (int i = 0; i < 48; i++) assertEquals((i >= 16 && i <= 20) || i == 32, r.smudged()[i], "Slot " + i);
+
+        assertEquals('Z', s.pickUp(20));
+        s.returnToCase('Z');
+        set(s, 20, "S");
+        inkAll(s);
+        s.layPaper();
+        assertNull(s.crank());
+        assertFalse(s.pull().allCorrect(), "die ueberzaehlige Letter verwischt weiter");
+
+        assertEquals('A', s.pickUp(32));
+        s.returnToCase('A');
+        inkAll(s);
+        s.layPaper();
+        assertNull(s.crank());
+        assertTrue(s.pull().allCorrect());
+        assertTrue(s.finishPage());
+        assertTrue(s.isComplete());
+        assertEquals(List.of("EN ARCHĒ ĒN HO", "LOGOS"), s.finishedLines());
     }
 
     @Test
@@ -138,8 +180,8 @@ class CoreTest {
         var r = s.pull();
         assertFalse(r.allCorrect());
         for (int i = 0; i < 16; i++) assertEquals(i >= 3 && i <= 7, r.smudged()[i], "Slot " + i);
-        assertFalse(s.finishLine());
-        assertEquals(0, s.lineIndex());
+        assertFalse(s.finishPage());
+        assertEquals(0, s.pageIndex());
         // Nachbessern: Farbe ist weg, Lettern liegen noch.
         assertEquals('E', s.slot(7));
         assertFalse(s.isInked());
@@ -164,7 +206,7 @@ class CoreTest {
         s.layPaper();
         s.crank();
         s.pull();
-        s.finishLine();
+        s.finishPage();
         int total = 0;
         for (char c : Translit.ALPHABET.toCharArray()) total += s.stock(c);
         assertEquals(22 * 4 - s.lastWorn(), total);
@@ -180,7 +222,7 @@ class CoreTest {
 
     @Test
     void rollerNeedsInk() {
-        PressSession s = new PressSession(P1, 16, 4, 0, 0, new Random(1));
+        PressSession s = new PressSession(P1, 16, 1, 4, 0, 0, new Random(1));
         assertFalse(s.dipRoller());
         assertFalse(s.cast('A'));
     }
