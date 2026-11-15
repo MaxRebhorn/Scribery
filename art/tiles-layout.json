@@ -1,0 +1,25 @@
+{
+  "_comment": "UI-Raster der Plaettchen-Station. Einheit: GUI-Pixel der Leinwand. rect = [x, y, w, h]. Titelleiste, Pfeile, Kerze, Pult, Fragment und Hotbar stehen wie in layout.json.",
+  "canvas": { "w": 384, "h": 216 },
+  "tile": { "h": 10, "pad": 2, "max_w": 56, "row_pitch": 10, "gap": 1, "box_rows": 4, "box_inset": 3 },
+  "sheet_cells": { "origin": [106, 26], "cols": 2, "rows": 6, "col_w": 72, "row_h": 24,
+                   "head_dy": 1, "slot_dy": 11, "slot_w": 70 },
+  "rects": {
+    "arrow_left":  { "rect": [4, 4, 16, 16],     "fill": "gui_face",    "label": "<" },
+    "title_bar":   { "rect": [24, 4, 336, 16],   "fill": "gui_face",    "label": "SCRIBERY & CRAFTS      Ink 8" },
+    "arrow_right": { "rect": [364, 4, 16, 16],   "fill": "gui_face",    "label": ">" },
+    "candle":      { "rect": [8, 24, 12, 24],    "fill": "flame_1",     "label": "" },
+    "lectern":     { "rect": [6, 50, 78, 74],    "fill": "wood_2",      "label": "" },
+    "fragment":    { "rect": [12, 56, 66, 62],   "fill": "parchment_1", "label": "Fragment" },
+
+    "t_latin":     { "rect": [4, 128, 94, 60],   "fill": "parchment_3", "label": "gedruckter Bogen" },
+    "t_sheet":     { "rect": [102, 24, 152, 146],"fill": "parchment_3", "label": "" },
+    "t_box_0":     { "rect": [258, 24, 120, 46], "fill": "wood_2",      "label": "Kasten: Verben" },
+    "t_box_1":     { "rect": [258, 73, 120, 46], "fill": "wood_2",      "label": "Kasten: Nomen" },
+    "t_box_2":     { "rect": [258, 122, 120, 46],"fill": "wood_2",      "label": "Kasten: kleine Woerter" },
+    "t_quill":     { "rect": [350, 170, 28, 20], "fill": "lead_1",      "label": "" },
+    "t_hint":      { "rect": [102, 174, 244, 8], "fill": "wood_0",      "label": "" },
+
+    "hotbar":      { "rect": [101, 192, 182, 22],"fill": "gui_shadow",  "label": "Hotbar" }
+  }
+}

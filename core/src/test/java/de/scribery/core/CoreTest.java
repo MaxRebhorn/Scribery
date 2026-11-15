@@ -17,7 +17,7 @@ class CoreTest {
 
     /** Setzform mit nur einer Zeile: P1 braucht zwei Boegen. */
     private static PressSession session() {
-        return new PressSession(P1, 16, 1, 4, 8, 24, new Random(1));
+        return new PressSession(P1, 16, 1, 4, 4, 8, 24, new Random(1));
     }
 
     /** Setzt ein Wort ab Slot {@code start}. */
@@ -58,12 +58,12 @@ class CoreTest {
     }
 
     @Test
-    void linesFillUpToSlotCount() {
-        var lines = LineBreaker.breakLines(List.of("EN", "ARCHĒ", "ĒN", "HO", "LOGOS"), 16);
-        assertEquals(List.of(List.of(0, 1, 2, 3), List.of(4)), lines);
-        assertEquals(1, LineBreaker.breakLines(List.of("ABCDEFGH", "ABCDEFG"), 16).size());
-        assertEquals(2, LineBreaker.breakLines(List.of("ABCDEFGH", "ABCDEFGH"), 16).size());
-        assertThrows(IllegalArgumentException.class, () -> LineBreaker.breakLines(List.of("ABCDE"), 4));
+    void linesFillUpToSlotCountAndWordLimit() {
+        assertEquals(List.of(List.of(0, 1, 2, 3), List.of(4)), LineBreaker.breakLines(List.of(2, 5, 2, 2, 5), 16, 4));
+        assertEquals(1, LineBreaker.breakLines(List.of(8, 7), 16, 4).size());
+        assertEquals(2, LineBreaker.breakLines(List.of(8, 8), 16, 4).size());
+        assertEquals(List.of(List.of(0, 1), List.of(2)), LineBreaker.breakLines(List.of(1, 1, 1), 16, 2));
+        assertThrows(IllegalArgumentException.class, () -> LineBreaker.breakLines(List.of(5), 4, 4));
     }
 
     @Test
@@ -131,7 +131,7 @@ class CoreTest {
 
     @Test
     void threeRowFormeHoldsWholeFragmentOnOneSheet() {
-        PressSession s = new PressSession(P1, 16, 3, 4, 8, 24, new Random(1));
+        PressSession s = new PressSession(P1, 16, 3, 4, 4, 8, 24, new Random(1));
         assertEquals(1, s.pageCount());
         assertEquals(48, s.slotCount());
         assertEquals(List.of("Ἐν ἀρχῇ ἦν ὁ", "λόγος"), s.currentGreekLines());
@@ -168,6 +168,9 @@ class CoreTest {
         assertTrue(s.finishPage());
         assertTrue(s.isComplete());
         assertEquals(List.of("EN ARCHĒ ĒN HO", "LOGOS"), s.finishedLines());
+        assertEquals(List.of(List.of(0, 1, 2, 3, 4)), s.sheets());
+        assertEquals(1, s.printedCount());
+        assertEquals('S', s.printedSheet(0)[20]);
     }
 
     @Test
@@ -222,7 +225,7 @@ class CoreTest {
 
     @Test
     void rollerNeedsInk() {
-        PressSession s = new PressSession(P1, 16, 1, 4, 0, 0, new Random(1));
+        PressSession s = new PressSession(P1, 16, 1, 4, 4, 0, 0, new Random(1));
         assertFalse(s.dipRoller());
         assertFalse(s.cast('A'));
     }

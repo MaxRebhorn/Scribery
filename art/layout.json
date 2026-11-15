@@ -3,6 +3,7 @@
   "canvas": { "w": 384, "h": 216 },
   "sort": { "w": 10, "h": 12, "pitch": 11, "glyph_w": 5, "glyph_h": 7, "macron_rows": 2 },
   "line_slots": 16,
+  "max_words_per_line": 3,
   "forme_rows": 4,
   "row_pitch": 13,
   "case": { "cols": 5, "rows": 5, "cell_w": 14, "cell_h": 21, "origin": [306, 74], "sort_offset": [2, 0], "count_offset_y": 13,

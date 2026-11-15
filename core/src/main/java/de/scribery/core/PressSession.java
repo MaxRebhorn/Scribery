@@ -52,6 +52,7 @@ public final class PressSession {
     private final Map<Character, Integer> stock = new LinkedHashMap<>();
     private final Random rng;
     private final List<String> finishedLines = new ArrayList<>();
+    private final List<char[]> printedSheets = new ArrayList<>();
 
     private int ink;
     private int iron;
@@ -68,8 +69,9 @@ public final class PressSession {
     private boolean awaitingFinish;
     private int lastWorn;
 
-    public PressSession(List<PressWord> words, int lineSlots, int rows, int stockPerLetter, int ink, int iron,
-            Random rng) {
+    /** @param maxWordsPerLine hoechstens so viele Woerter in einer Zeile */
+    public PressSession(List<PressWord> words, int lineSlots, int rows, int maxWordsPerLine, int stockPerLetter,
+            int ink, int iron, Random rng) {
         this.words = List.copyOf(words);
         this.lineSlots = lineSlots;
         this.rows = rows;
@@ -78,8 +80,8 @@ public final class PressSession {
         this.iron = iron;
         this.rng = rng;
         for (char c : Translit.ALPHABET.toCharArray()) stock.put(c, stockPerLetter);
-        List<List<Integer>> lines =
-                LineBreaker.breakLines(this.words.stream().map(PressWord::latin).toList(), lineSlots);
+        List<List<Integer>> lines = LineBreaker.breakLines(
+                this.words.stream().map(w -> w.latin().length()).toList(), lineSlots, maxWordsPerLine);
         for (int i = 0; i < lines.size(); i += rows) {
             pages.add(lines.subList(i, Math.min(lines.size(), i + rows)));
         }
@@ -133,6 +135,23 @@ public final class PressSession {
     public List<String> finishedLines() { return List.copyOf(finishedLines); }
     /** Anzahl der Lettern, die beim letzten Abschluss eines Bogens verschlissen sind. */
     public int lastWorn() { return lastWorn; }
+
+    /** Pro Bogen die Indizes seiner Woerter, in Textreihenfolge. */
+    public List<List<Integer>> sheets() {
+        List<List<Integer>> out = new ArrayList<>();
+        for (List<List<Integer>> page : pages) {
+            List<Integer> flat = new ArrayList<>();
+            page.forEach(flat::addAll);
+            out.add(flat);
+        }
+        return out;
+    }
+
+    /** Anzahl der fertig gedruckten Boegen. */
+    public int printedCount() { return printedSheets.size(); }
+
+    /** Das Druckbild eines fertigen Bogens: ein Zeichen pro Slot, 0 = nichts. */
+    public char[] printedSheet(int page) { return printedSheets.get(page).clone(); }
 
     public char slot(int i) { return slots[i]; }
     public boolean isFixed(int i) { return fixed[i]; }
@@ -313,6 +332,7 @@ public final class PressSession {
      */
     public boolean finishPage() {
         if (!awaitingFinish) return false;
+        printedSheets.add(slots.clone());
         for (List<Integer> line : pages.get(pageIndex)) {
             StringBuilder text = new StringBuilder();
             for (int wi : line) {

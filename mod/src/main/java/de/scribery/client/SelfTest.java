@@ -91,37 +91,67 @@ final class SelfTest {
     private static void script(Minecraft mc) {
         shot(mc, "01-start");
 
-        // Beide Zeilen auf einem Bogen, die zweite zuerst falsch (Z statt S)
+        // Presse. Ein Bogen: Zeile 1 EN ARCHĒ ĒN, Zeile 2 HO LOGOS. LOGOS zuerst falsch (Z statt S).
         setWord(3, "ARCHĒ");
-        setWord(16, "LOGOZ");
+        setWord(19, "LOGOZ");
         shot(mc, "02-set");
         inkPaperCrank(mc, "03-inked-once");
         shot(mc, "04-inked-paper");
         then(0, () -> screen.debugClick("crank"));
-        then(8, () -> { });
-        shot(mc, "05-crank-moving");
-        then(10, () -> screen.debugClick("lever"));
+        then(16, () -> screen.debugClick("lever"));
         then(4, () -> { });
-        shot(mc, "06-platen-down");
+        shot(mc, "05-platen-down");
         then(8, () -> { });
-        shot(mc, "07-smudged");
-
-        // Nachbessern
+        shot(mc, "06-smudged");
         then(0, () -> {
-            screen.debugClickSlot(20);       // Z greifen
+            screen.debugClickSlot(23);       // Z greifen
             screen.debugReleaseOnCase();     // ueber der Box loslassen
             screen.debugClickLetter('S');
-            screen.debugReleaseOnSlot(20);
-            screen.debugClick("lever");      // ohne Papier: Hinweis
+            screen.debugReleaseOnSlot(23);
         });
-        shot(mc, "08-refusal-hint");
         inkPaperCrank(mc, null);
         then(0, () -> screen.debugClick("crank"));
         then(16, () -> screen.debugClick("lever"));
         then(12, () -> { });
-        shot(mc, "09-proof-ok");
+        shot(mc, "07-proof-ok");
         then(40, () -> { });
-        shot(mc, "10-complete");
+        shot(mc, "08-press-complete");
+
+        // Uebersetzen. Das Blatt ist leer; ein Klick auf ein Wort schreibt es hin und sein Slot entsteht.
+        then(0, () -> screen.switchStation(1));
+        shot(mc, "09-tiles-start");
+        then(0, () -> {
+            TileScreen t = (TileScreen) mc.screen;
+            t.debugPick(0, true);    // im Manuskript angeklickt
+            t.debugPick(1, true);
+            t.debugPick(2, false);   // auf dem gedruckten Bogen angeklickt
+        });
+        shot(mc, "10-tiles-three-picked");
+        then(0, () -> {
+            TileScreen t = (TileScreen) mc.screen;
+            t.debugPick(3, false);
+            t.debugPick(4, true);
+            t.debugPlace("in", 0);
+            t.debugPlace("beginning", 1);
+            t.debugPlace("was", 2);
+            t.debugPlace("the", 3);
+            t.debugPlace("words", 4);    // falsch: words statt word
+        });
+        shot(mc, "11-tiles-placed");
+        then(0, () -> ((TileScreen) mc.screen).debugClickQuill());
+        then(12, () -> { });
+        shot(mc, "12-tiles-writing");
+        then(24, () -> { });
+        shot(mc, "13-tiles-smudged");
+        then(0, () -> {
+            TileScreen t = (TileScreen) mc.screen;
+            t.debugPlace("word", 4);
+            t.debugClickQuill();
+        });
+        then(14, () -> { });
+        shot(mc, "14-tiles-fair-copy");
+        then(40, () -> { });
+        shot(mc, "15-tiles-complete");
 
         then(10, () -> {
             LOG.info("[selftest] fertig");

@@ -19,6 +19,11 @@ public final class UiLayout {
     public final int slotsX, slotsY, platenTravel;
     public final int caseCols, cellW, cellH, caseX, caseY, sortOffX, sortOffY, countOffY;
     public final char[] letters;
+    public final int caseRows, maxWordsPerLine;
+
+    // Plaettchen-Station (art/tiles-layout.json)
+    public final int tileH, tilePad, tileMaxW, tileRowPitch, tileGap, boxRows, boxInset;
+    public final int cellsX, cellsY, cellCols, cellRows, sheetCellW, cellRowH, headDy, slotDy, slotW;
 
     private final Map<String, int[]> rects = new HashMap<>();
     private final Map<String, Integer> colors = new HashMap<>();
@@ -56,8 +61,37 @@ public final class UiLayout {
         JsonArray ls = c.getAsJsonArray("letters");
         letters = new char[ls.size()];
         for (int i = 0; i < letters.length; i++) letters[i] = ls.get(i).getAsString().charAt(0);
+        caseRows = c.get("rows").getAsInt();
+        maxWordsPerLine = l.get("max_words_per_line").getAsInt();
 
         for (var e : l.getAsJsonObject("rects").entrySet()) {
+            JsonArray r = e.getValue().getAsJsonObject().getAsJsonArray("rect");
+            rects.put(e.getKey(), new int[] {
+                    r.get(0).getAsInt(), r.get(1).getAsInt(), r.get(2).getAsInt(), r.get(3).getAsInt() });
+        }
+
+        JsonObject t = read("/assets/scribery/ui/tiles-layout.json");
+        JsonObject tile = t.getAsJsonObject("tile");
+        tileH = tile.get("h").getAsInt();
+        tilePad = tile.get("pad").getAsInt();
+        tileMaxW = tile.get("max_w").getAsInt();
+        tileRowPitch = tile.get("row_pitch").getAsInt();
+        tileGap = tile.get("gap").getAsInt();
+        boxRows = tile.get("box_rows").getAsInt();
+        boxInset = tile.get("box_inset").getAsInt();
+        JsonObject cells = t.getAsJsonObject("sheet_cells");
+        cellsX = cells.getAsJsonArray("origin").get(0).getAsInt();
+        cellsY = cells.getAsJsonArray("origin").get(1).getAsInt();
+        cellCols = cells.get("cols").getAsInt();
+        cellRows = cells.get("rows").getAsInt();
+        sheetCellW = cells.get("col_w").getAsInt();
+        cellRowH = cells.get("row_h").getAsInt();
+        headDy = cells.get("head_dy").getAsInt();
+        slotDy = cells.get("slot_dy").getAsInt();
+        slotW = cells.get("slot_w").getAsInt();
+        // Nur die eigenen Rechtecke der Station; Titelleiste, Pfeile, Kerze und Hotbar gelten aus layout.json.
+        for (var e : t.getAsJsonObject("rects").entrySet()) {
+            if (!e.getKey().startsWith("t_")) continue;
             JsonArray r = e.getValue().getAsJsonObject().getAsJsonArray("rect");
             rects.put(e.getKey(), new int[] {
                     r.get(0).getAsInt(), r.get(1).getAsInt(), r.get(2).getAsInt(), r.get(3).getAsInt() });

@@ -56,7 +56,7 @@ processResources {
 
     // Raster und Palette haben genau eine Quelle: art/.
     from(rootProject.file('art')) {
-        include 'layout.json', 'palette.json'
+        include 'layout.json', 'tiles-layout.json', 'palette.json'
         into 'assets/scribery/ui'
     }
     // Platzhalter-Fragmente fuer /scribery debug.
