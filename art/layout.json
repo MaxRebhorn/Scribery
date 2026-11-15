@@ -1,0 +1,36 @@
+{
+  "_comment": "Einzige Quelle fuer das UI-Raster der Presse. Einheit: GUI-Pixel, Ursprung oben links der Leinwand. rect = [x, y, w, h].",
+  "canvas": { "w": 384, "h": 216 },
+  "sort": { "w": 10, "h": 12, "pitch": 11, "glyph_w": 5, "glyph_h": 7, "macron_rows": 2 },
+  "line_slots": 16,
+  "case": { "cols": 5, "rows": 5, "cell_w": 14, "cell_h": 21, "origin": [306, 74], "sort_offset": [2, 0], "count_offset_y": 13,
+            "letters": ["A","B","C","D","E","Ē","G","H","I","K","L","M","N","O","Ō","P","R","S","T","U","X","Z"] },
+  "forme_slots_origin": [110, 65],
+  "platen_travel": 6,
+  "rects": {
+    "arrow_left":   { "rect": [4, 4, 16, 16],     "fill": "gui_face",    "label": "<" },
+    "title_bar":    { "rect": [24, 4, 336, 16],   "fill": "gui_face",    "label": "SCRIBERY & CRAFTS      Ink 8  Iron 24" },
+    "arrow_right":  { "rect": [364, 4, 16, 16],   "fill": "gui_face",    "label": ">" },
+
+    "candle":       { "rect": [8, 24, 12, 24],    "fill": "flame_1",     "label": "" },
+    "lectern":      { "rect": [6, 50, 78, 74],    "fill": "wood_2",      "label": "" },
+    "fragment":     { "rect": [12, 56, 66, 62],   "fill": "parchment_1", "label": "Fragment" },
+    "proof_stack":  { "rect": [14, 130, 62, 56],  "fill": "parchment_3", "label": "Abzuege" },
+
+    "platen":       { "rect": [106, 28, 184, 26], "fill": "lead_1",      "label": "Tiegel" },
+    "forme":        { "rect": [106, 60, 184, 22], "fill": "wood_1",      "label": "" },
+    "crank":        { "rect": [90, 84, 14, 30],   "fill": "lead_2",      "label": "" },
+    "lever":        { "rect": [292, 40, 6, 44],   "fill": "wood_4",      "label": "" },
+    "paper_tray":   { "rect": [106, 88, 184, 20], "fill": "parchment_2", "label": "Papierstreifen" },
+    "proof_slot":   { "rect": [106, 112, 184, 20],"fill": "parchment_3", "label": "Abzug" },
+    "line_counter": { "rect": [106, 136, 184, 8], "fill": "wood_0",      "label": "" },
+    "greek_line":   { "rect": [106, 148, 184, 16],"fill": "parchment_1", "label": "aktuelle griechische Zeile" },
+
+    "barrel":       { "rect": [304, 24, 44, 42],  "fill": "barrel_full", "label": "" },
+    "roller_rest":  { "rect": [312, 28, 28, 10],  "fill": "lead_3",      "label": "" },
+    "paper_stock":  { "rect": [352, 26, 24, 40],  "fill": "parchment_3", "label": "" },
+    "letter_case":  { "rect": [304, 72, 74, 109], "fill": "lead_0",      "label": "" },
+
+    "hotbar":       { "rect": [101, 192, 182, 22],"fill": "gui_shadow",  "label": "Hotbar" }
+  }
+}

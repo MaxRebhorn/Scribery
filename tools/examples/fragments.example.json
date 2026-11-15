@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "placeholder": true,
+  "source": { "text": "PLATZHALTER, von Hand getippt. Echte Daten kommen aus der Pipeline (Phase 4).", "license": "offen" },
+  "fragments": [
+    {
+      "id": "P1",
+      "ref": "John 1:1a",
+      "chapter": 1,
+      "tier": 1,
+      "origin": { "biome": "#minecraft:is_desert", "container": "suspicious_sand" },
+      "reference_en": "In the beginning was the Word",
+      "notes": [],
+      "words": [
+        { "i": 0, "greek": "Ἐν",    "lemma": "ἐν",    "morph": "PREP",     "set": false,
+          "gloss": { "ok": ["in"],        "wrong": ["into", "through", "under"],      "status": "draft" } },
+        { "i": 1, "greek": "ἀρχῇ",  "lemma": "ἀρχή",  "morph": "N-DSF",
+          "gloss": { "ok": ["beginning"], "wrong": ["beginnings", "ruler", "end"],    "status": "draft" } },
+        { "i": 2, "greek": "ἦν",    "lemma": "εἰμί",  "morph": "V-IAI-3S",
+          "gloss": { "ok": ["was"],       "wrong": ["is", "were", "being"],           "status": "draft" } },
+        { "i": 3, "greek": "ὁ",     "lemma": "ὁ",     "morph": "T-NSM",    "set": false,
+          "gloss": { "ok": ["the"],       "wrong": ["a", "this", "of the"],           "status": "draft" } },
+        { "i": 4, "greek": "λόγος", "lemma": "λόγος", "morph": "N-NSM",
+          "gloss": { "ok": ["word"],      "wrong": ["words", "of word", "light"],     "status": "draft" } }
+      ]
+    },
+    {
+      "id": "P2",
+      "ref": "John 1:1b",
+      "chapter": 1,
+      "tier": 1,
+      "origin": { "biome": "#minecraft:is_desert", "container": "suspicious_sand" },
+      "reference_en": "and the Word was with God",
+      "notes": [
+        { "word": 3, "text": "πρός with accusative: literally 'toward'; interlinears usually gloss 'with'. Both are accepted." }
+      ],
+      "words": [
+        { "i": 0, "greek": "καὶ",   "lemma": "καί",   "morph": "CONJ",     "set": false,
+          "gloss": { "ok": ["and"],            "wrong": ["but", "or", "for"],          "status": "draft" } },
+        { "i": 1, "greek": "ὁ",     "lemma": "ὁ",     "morph": "T-NSM",    "set": false,
+          "gloss": { "ok": ["the"],            "wrong": ["a", "this", "of the"],       "status": "draft" } },
+        { "i": 2, "greek": "λόγος", "lemma": "λόγος", "morph": "N-NSM",
+          "gloss": { "ok": ["word"],           "wrong": ["words", "of word", "life"],  "status": "draft" } },
+        { "i": 3, "greek": "ἦν",    "lemma": "εἰμί",  "morph": "V-IAI-3S",
+          "gloss": { "ok": ["was"],            "wrong": ["is", "were", "will be"],     "status": "draft" } },
+        { "i": 4, "greek": "πρὸς",  "lemma": "πρός",  "morph": "PREP",
+          "gloss": { "ok": ["with", "toward"], "wrong": ["from", "in", "under"],       "status": "draft" } },
+        { "i": 5, "greek": "τὸν",   "lemma": "ὁ",     "morph": "T-ASM",    "set": false,
+          "gloss": { "ok": ["the"],            "wrong": ["a", "of the", "to the"],     "status": "draft" } },
+        { "i": 6, "greek": "θεόν",  "lemma": "θεός",  "morph": "N-ASM",
+          "gloss": { "ok": ["god"],            "wrong": ["gods", "of god", "world"],   "status": "draft" } }
+      ]
+    },
+    {
+      "id": "P3",
+      "ref": "John 1:1c",
+      "chapter": 1,
+      "tier": 1,
+      "origin": { "biome": "#minecraft:is_desert", "container": "suspicious_sand" },
+      "reference_en": "and the Word was God",
+      "notes": [
+        { "word": 1, "text": "θεός has no article here. The gloss keeps it bare ('god', no 'the'); how to read that is debated and not decided by the game." }
+      ],
+      "words": [
+        { "i": 0, "greek": "καὶ",   "lemma": "καί",   "morph": "CONJ",     "set": false,
+          "gloss": { "ok": ["and"],  "wrong": ["but", "or", "for"],            "status": "draft" } },
+        { "i": 1, "greek": "θεὸς",  "lemma": "θεός",  "morph": "N-NSM",
+          "gloss": { "ok": ["god"],  "wrong": ["gods", "of god", "the god"],   "status": "draft" } },
+        { "i": 2, "greek": "ἦν",    "lemma": "εἰμί",  "morph": "V-IAI-3S",
+          "gloss": { "ok": ["was"],  "wrong": ["is", "were", "being"],         "status": "draft" } },
+        { "i": 3, "greek": "ὁ",     "lemma": "ὁ",     "morph": "T-NSM",    "set": false,
+          "gloss": { "ok": ["the"],  "wrong": ["a", "this", "of the"],         "status": "draft" } },
+        { "i": 4, "greek": "λόγος", "lemma": "λόγος", "morph": "N-NSM",
+          "gloss": { "ok": ["word"], "wrong": ["words", "of word", "light"],   "status": "draft" } }
+      ]
+    }
+  ]
+}

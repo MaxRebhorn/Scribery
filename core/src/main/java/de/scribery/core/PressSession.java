@@ -1,0 +1,292 @@
+package de.scribery.core;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * Zustand und Regeln der Presse fuer ein Fragment. Kennt weder Maus noch Minecraft.
+ *
+ * Ablauf pro Zeile: Lettern setzen, einfaerben, Papier auflegen, kurbeln, Hebel ziehen.
+ * Ist der Abzug fehlerfrei, schliesst {@link #finishLine()} die Zeile ab.
+ */
+public final class PressSession {
+    /** So oft muss die Walze ueber eine Letter laufen. */
+    public static final int INK_PASSES = 2;
+    /** Eine gesetzte Letter nutzt sich beim Ablegen mit Wahrscheinlichkeit 1/WEAR_ODDS ab. */
+    public static final int WEAR_ODDS = 25;
+
+    public enum Paper { NONE, ON_TRAY, FED }
+
+    public enum Refusal { NOT_INKED, NO_PAPER, NOT_FED, BUSY }
+
+    public enum Hint { SET_TYPE, DIP_ROLLER, ROLL_INK, LAY_PAPER, TURN_CRANK, PULL_LEVER, DONE }
+
+    /**
+     * Ergebnis eines Hebelzugs.
+     *
+     * @param refusal  Grund, warum nicht gedruckt wurde, sonst null
+     * @param printed  gedrucktes Zeichen pro Slot, 0 = nichts
+     * @param smudged  pro Slot: gehoert zu einem falschen Wort
+     * @param allCorrect alle Woerter der Zeile stimmen
+     */
+    public record PullResult(Refusal refusal, char[] printed, boolean[] smudged, boolean allCorrect) {
+        static PullResult refused(Refusal r) {
+            return new PullResult(r, null, null, false);
+        }
+    }
+
+    private final List<PressWord> words;
+    private final List<List<Integer>> lines;
+    private final int lineSlots;
+    private final Map<Character, Integer> stock = new LinkedHashMap<>();
+    private final Random rng;
+    private final List<String> finishedLines = new ArrayList<>();
+
+    private int ink;
+    private int iron;
+    private int lineIndex;
+
+    // Zustand der aktuellen Zeile
+    private char[] slots;
+    private boolean[] fixed;
+    private int[] slotWord;
+    private int[] inkLevel;
+    private boolean rollerCharged;
+    private Paper paper = Paper.NONE;
+    private boolean awaitingFinish;
+    private int lastWorn;
+
+    public PressSession(List<PressWord> words, int lineSlots, int stockPerLetter, int ink, int iron, Random rng) {
+        this.words = List.copyOf(words);
+        this.lineSlots = lineSlots;
+        this.ink = ink;
+        this.iron = iron;
+        this.rng = rng;
+        for (char c : Translit.ALPHABET.toCharArray()) stock.put(c, stockPerLetter);
+        this.lines = LineBreaker.breakLines(this.words.stream().map(PressWord::latin).toList(), lineSlots);
+        loadLine();
+    }
+
+    private void loadLine() {
+        slots = new char[lineSlots];
+        fixed = new boolean[lineSlots];
+        slotWord = new int[lineSlots];
+        inkLevel = new int[lineSlots];
+        java.util.Arrays.fill(slotWord, -1);
+        paper = Paper.NONE;
+        awaitingFinish = false;
+        if (isComplete()) return;
+        int pos = 0;
+        for (int wi : lines.get(lineIndex)) {
+            PressWord w = words.get(wi);
+            for (int k = 0; k < w.latin().length(); k++) {
+                slotWord[pos] = wi;
+                if (w.preset()) {
+                    slots[pos] = w.latin().charAt(k);
+                    fixed[pos] = true;
+                }
+                pos++;
+            }
+            pos++; // Leerstelle
+        }
+    }
+
+    // ---- Abfragen ----
+
+    public int lineSlots() { return lineSlots; }
+    public int lineCount() { return lines.size(); }
+    public int lineIndex() { return lineIndex; }
+    public boolean isComplete() { return lineIndex >= lines.size(); }
+    public int ink() { return ink; }
+    public int iron() { return iron; }
+    public int stock(char letter) { return stock.getOrDefault(letter, 0); }
+    public Paper paper() { return paper; }
+    public boolean rollerCharged() { return rollerCharged; }
+    public boolean awaitingFinish() { return awaitingFinish; }
+    public List<String> finishedLines() { return List.copyOf(finishedLines); }
+    /** Anzahl der Lettern, die beim letzten Zeilenabschluss verschlissen sind. */
+    public int lastWorn() { return lastWorn; }
+
+    public char slot(int i) { return slots[i]; }
+    public boolean isFixed(int i) { return fixed[i]; }
+    /** Slot gehoert zu einem Wort (sonst Leerstelle oder Zeilenrest). */
+    public boolean isWordSlot(int i) { return slotWord[i] >= 0; }
+    public int inkLevel(int i) { return inkLevel[i]; }
+
+    /** Griechischer Text der aktuellen Zeile. */
+    public String currentGreekLine() {
+        if (isComplete()) return "";
+        StringBuilder sb = new StringBuilder();
+        for (int wi : lines.get(lineIndex)) {
+            if (sb.length() > 0) sb.append(' ');
+            sb.append(words.get(wi).greek());
+        }
+        return sb.toString();
+    }
+
+    /** Alle belegten Slots sind fertig eingefaerbt, und es gibt mindestens einen. */
+    public boolean isInked() {
+        boolean any = false;
+        for (int i = 0; i < lineSlots; i++) {
+            if (slots[i] == 0) continue;
+            any = true;
+            if (inkLevel[i] < INK_PASSES) return false;
+        }
+        return any;
+    }
+
+    private boolean hasEmptyGap() {
+        for (int i = 0; i < lineSlots; i++) {
+            if (slotWord[i] >= 0 && slots[i] == 0) return true;
+        }
+        return false;
+    }
+
+    /** Der naechste sinnvolle Schritt, fuer die Hinweiszeile. */
+    public Hint hint() {
+        if (isComplete()) return Hint.DONE;
+        if (paper == Paper.FED) return Hint.PULL_LEVER;
+        if (hasEmptyGap()) return Hint.SET_TYPE;
+        if (!isInked()) return rollerCharged ? Hint.ROLL_INK : Hint.DIP_ROLLER;
+        if (paper == Paper.NONE) return Hint.LAY_PAPER;
+        return Hint.TURN_CRANK;
+    }
+
+    /** Die Setzform ist frei zugaenglich (nicht von Papier bedeckt, kein Abschluss offen). */
+    private boolean formeOpen() {
+        return !isComplete() && paper != Paper.FED && !awaitingFinish;
+    }
+
+    // ---- Buchstabenbox ----
+
+    public boolean takeFromCase(char letter) {
+        int n = stock(letter);
+        if (n <= 0) return false;
+        stock.put(letter, n - 1);
+        return true;
+    }
+
+    public void returnToCase(char letter) {
+        stock.merge(letter, 1, Integer::sum);
+    }
+
+    /** Giesst eine neue Letter aus einem Eisen-Nugget. */
+    public boolean cast(char letter) {
+        if (iron <= 0 || !stock.containsKey(letter)) return false;
+        iron--;
+        returnToCase(letter);
+        return true;
+    }
+
+    // ---- Setzform ----
+
+    /** Setzt eine Letter in einen leeren Luecken-Slot. */
+    public boolean place(int slot, char letter) {
+        if (!formeOpen() || slotWord[slot] < 0 || fixed[slot] || slots[slot] != 0) return false;
+        slots[slot] = letter;
+        inkLevel[slot] = 0;
+        return true;
+    }
+
+    /** Nimmt eine gesetzte Letter wieder heraus. Liefert 0, wenn dort keine vom Spieler gesetzte liegt. */
+    public char pickUp(int slot) {
+        if (!formeOpen() || fixed[slot] || slots[slot] == 0) return 0;
+        char c = slots[slot];
+        slots[slot] = 0;
+        inkLevel[slot] = 0;
+        return c;
+    }
+
+    // ---- Einfaerben ----
+
+    /** Taucht die Walze ein. Verbraucht eine Einheit Tinte. */
+    public boolean dipRoller() {
+        if (rollerCharged || ink <= 0) return false;
+        ink--;
+        rollerCharged = true;
+        return true;
+    }
+
+    public void returnRoller() {
+        rollerCharged = false;
+    }
+
+    /** Die Walze laeuft einmal ueber einen Slot. */
+    public boolean inkSlot(int slot) {
+        if (!formeOpen() || !rollerCharged || slots[slot] == 0 || inkLevel[slot] >= INK_PASSES) return false;
+        inkLevel[slot]++;
+        return true;
+    }
+
+    // ---- Papier, Kurbel, Hebel ----
+
+    public boolean layPaper() {
+        if (isComplete() || awaitingFinish || paper != Paper.NONE) return false;
+        paper = Paper.ON_TRAY;
+        return true;
+    }
+
+    /** Zieht das Papier in die Presse. Liefert null bei Erfolg. */
+    public Refusal crank() {
+        if (isComplete() || awaitingFinish) return Refusal.BUSY;
+        if (paper == Paper.NONE) return Refusal.NO_PAPER;
+        if (paper == Paper.FED) return Refusal.BUSY;
+        if (!isInked()) return Refusal.NOT_INKED;
+        paper = Paper.FED;
+        return null;
+    }
+
+    /** Zieht den Hebel. Gedruckt wird nur, wenn Papier in der Presse liegt. */
+    public PullResult pull() {
+        if (isComplete() || awaitingFinish) return PullResult.refused(Refusal.BUSY);
+        if (paper == Paper.NONE) return PullResult.refused(Refusal.NO_PAPER);
+        if (paper == Paper.ON_TRAY) return PullResult.refused(Refusal.NOT_FED);
+
+        char[] printed = slots.clone();
+        boolean[] smudged = new boolean[lineSlots];
+        boolean allCorrect = true;
+        int pos = 0;
+        for (int wi : lines.get(lineIndex)) {
+            String target = words.get(wi).latin();
+            boolean ok = true;
+            for (int k = 0; k < target.length(); k++) {
+                if (slots[pos + k] != target.charAt(k)) ok = false;
+            }
+            if (!ok) {
+                allCorrect = false;
+                for (int k = 0; k < target.length(); k++) smudged[pos + k] = true;
+            }
+            pos += target.length() + 1;
+        }
+        paper = Paper.NONE;
+        java.util.Arrays.fill(inkLevel, 0);
+        awaitingFinish = allCorrect;
+        return new PullResult(null, printed, smudged, allCorrect);
+    }
+
+    /**
+     * Schliesst eine fehlerfrei gedruckte Zeile ab: Lettern gehen zurueck in die Box
+     * (abzueglich Verschleiss), die naechste Zeile wird geladen.
+     */
+    public boolean finishLine() {
+        if (!awaitingFinish) return false;
+        StringBuilder text = new StringBuilder();
+        for (int wi : lines.get(lineIndex)) {
+            if (text.length() > 0) text.append(' ');
+            text.append(words.get(wi).latin());
+        }
+        finishedLines.add(text.toString());
+        lastWorn = 0;
+        for (int i = 0; i < lineSlots; i++) {
+            if (slots[i] == 0 || fixed[i]) continue;
+            if (rng.nextInt(WEAR_ODDS) == 0) lastWorn++;
+            else returnToCase(slots[i]);
+        }
+        lineIndex++;
+        loadLine();
+        return true;
+    }
+}

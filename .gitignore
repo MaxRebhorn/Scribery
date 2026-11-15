@@ -1,0 +1,11 @@
+.gradle/
+build/
+run/
+out/
+!art/out/
+.idea/
+*.iml
+.vscode/
+__pycache__/
+*.pyc
+.venv/
