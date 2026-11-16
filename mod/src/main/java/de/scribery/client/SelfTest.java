@@ -145,7 +145,7 @@ final class SelfTest {
         shot(mc, "13-tiles-smudged");
         then(0, () -> {
             TileScreen t = (TileScreen) mc.screen;
-            t.debugPlace("word", 4);
+            t.debugType(4, "Word");   // von Hand getippt, Gross-/Kleinschreibung egal
             t.debugClickQuill();
         });
         then(14, () -> { });

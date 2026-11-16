@@ -187,4 +187,23 @@ class TileSessionTest {
         assertNull(s.write().refusal());
         assertTrue(s.pageDone());
     }
+
+    @Test
+    void typedWordsWorkLikeTilesAndCostTablets() {
+        TileSession s = session(12);
+        s.setTablets(10);
+        for (int i = 0; i < 5; i++) s.reveal(i);
+        assertTrue(s.setTyped(0, "In"));        // Gross-/Kleinschreibung egal
+        assertTrue(s.setTyped(1, "beginings")); // Tippfehler
+        put(s, "was", 2);
+        put(s, "the", 3);
+        assertTrue(s.setTyped(4, "word"));
+        var r = s.write();
+        assertNull(r.refusal());
+        assertEquals(5, 10 - s.tablets());
+        assertTrue(s.isDone(0));
+        assertFalse(s.isDone(1));
+        assertEquals("beginings", s.smudged(1));
+        assertNull(s.typed(1), "ein verwischtes Wort muss neu getippt werden");
+    }
 }

@@ -39,6 +39,10 @@ public class TileScreen extends StationScreen {
 
     private int handTile = -1;
 
+    /** Slot, in den gerade von Hand getippt wird, oder -1. */
+    private int typingSlot = -1;
+    private static final int MAX_TYPED = 22;
+
     // Die Feder schreibt gerade ein angeklicktes Wort aufs Blatt.
     private int penSlot = -1, penTicks;
 
@@ -166,6 +170,24 @@ public class TileScreen extends StationScreen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (typingSlot >= 0 && !busy()) {
+            if (keyCode == GLFW.GLFW_KEY_BACKSPACE) {
+                String cur = session.typed(typingSlot);
+                if (cur != null) session.setTyped(typingSlot, cur.substring(0, cur.length() - 1));
+                return true;
+            }
+            if (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER) {
+                typingSlot = -1;
+                return true;
+            }
+            if (keyCode == GLFW.GLFW_KEY_TAB) {
+                for (int k = 1; k <= session.slotCount(); k++) {
+                    int next = (typingSlot + k) % session.slotCount();
+                    if (session.isRevealed(next) && !session.isDone(next)) { typingSlot = next; break; }
+                }
+                return true;
+            }
+        }
         if (bench.deskPos != null) return super.keyPressed(keyCode, scanCode, modifiers);
         if (keyCode == GLFW.GLFW_KEY_N && session.isComplete()) {
             restart(fragmentIndex + 1);
@@ -265,8 +287,19 @@ public class TileScreen extends StationScreen {
         syncPage();
 
         if (in(ui.rect("t_quill"), x, y, 2)) {
+            typingSlot = -1;
             startWriting();
             return;
+        }
+
+        // Taste fuer ein Sonderzeichen beim Tippen
+        if (typingSlot >= 0) {
+            for (int i = 0; i < SPECIAL.length; i++) {
+                if (in(specialRect(i), x, y, 0)) {
+                    type(SPECIAL[i]);
+                    return;
+                }
+            }
         }
 
         // Ein Wort im Manuskript oder auf dem gedruckten Bogen anklicken
@@ -285,10 +318,46 @@ public class TileScreen extends StationScreen {
 
         Tile t = tileAt(x, y);
         if (t != null) {
+            typingSlot = -1;
             session.unplace(t.id());
             handTile = t.id();
             sound(SoundEvents.ITEM_PICKUP, 1.2f, 0.4f);
+            return;
         }
+
+        // In eine leere Luecke klicken: dort das Wort von Hand tippen
+        int slot = slotAt(x, y);
+        typingSlot = -1;
+        if (slot >= 0 && session.isRevealed(slot) && !session.isDone(slot)
+                && y >= cellY(slot) + ui.slotDy && y < cellY(slot) + ui.slotDy + ui.tileH + 2) {
+            typingSlot = slot;
+        }
+    }
+
+    // ------------------------------------------------------------------ Tippen
+
+    private static final char[] SPECIAL = { '\u0112', '\u014C' }; // Ē Ō
+
+    private int[] specialRect(int i) {
+        int[] q = ui.rect("t_quill");
+        return new int[] { q[0] - 40 + i * 16, 192, 14, 12 };
+    }
+
+    private void type(char c) {
+        if (typingSlot < 0 || busy() || session.isComplete()) return;
+        String cur = session.typed(typingSlot) == null ? "" : session.typed(typingSlot);
+        if (cur.length() >= MAX_TYPED) return;
+        session.setTyped(typingSlot, cur + c);
+        sound(SoundEvents.STONE_BUTTON_CLICK_ON, 1.4f, 0.3f);
+    }
+
+    @Override
+    public boolean charTyped(char c, int modifiers) {
+        if (typingSlot >= 0 && (Character.isLetter(c) || c == ' ' || c == '\'' || c == '-')) {
+            type(c);
+            return true;
+        }
+        return super.charTyped(c, modifiers);
     }
 
     /** Die Feder schreibt das angeklickte Wort an seinen Platz, darunter entsteht der Slot. */
@@ -326,7 +395,7 @@ public class TileScreen extends StationScreen {
         int[] ids = new int[n];
         for (int i = 0; i < n; i++) {
             Tile t = session.tileInSlot(i);
-            faces[i] = t == null ? null : t.face();
+            faces[i] = t == null ? session.typed(i) : t.face();
             ids[i] = t == null ? -1 : t.id();
         }
         WriteResult r = session.write();
@@ -352,7 +421,7 @@ public class TileScreen extends StationScreen {
 
     private static String refusalText(Refusal r) {
         return switch (r) {
-            case EMPTY_SLOTS -> "Every word needs a tile first";
+            case EMPTY_SLOTS -> "Every word needs a tile or a typed word first";
             case NO_INK -> "The inkwell is empty";
             case NO_TABLETS -> "Not enough wooden word tablets";
             case BUSY -> "";
@@ -362,7 +431,7 @@ public class TileScreen extends StationScreen {
     private static String hintText(Hint h) {
         return switch (h) {
             case PICK_WORDS -> "Click a word on the manuscript";
-            case PLACE_TILES -> "Drag tiles under the words";
+            case PLACE_TILES -> "Drag tiles or click a gap and type";
             case WRITE -> "Click the inkwell";
             case DONE -> "Done. N: next, R: again";
         };
@@ -373,11 +442,20 @@ public class TileScreen extends StationScreen {
     @Override
     protected void drawStation(GuiGraphics g) {
         syncPage();
-        drawLectern(g, pageWords(true), session::isRevealed);
+        if (session.isComplete()) drawLecternBoard(g, ui.rect("lectern"));
+        else drawLectern(g, pageWords(true), session::isRevealed);
         drawPrintedSheet(g);
         drawSheet(g);
         drawBoxes(g);
         drawQuill(g);
+        if (typingSlot >= 0) {
+            for (int i = 0; i < SPECIAL.length; i++) {
+                int[] r = specialRect(i);
+                frame(g, r, 1, "iron_block", 0xFF23232B);
+                String s = String.valueOf(SPECIAL[i]);
+                g.drawString(font, s, r[0] + (r[2] - font.width(s)) / 2, r[1] + 2, 0xFFC9CCD1, false);
+            }
+        }
         String sheet = session.isComplete() ? "" : "Sheet " + (session.pageIndex() + 1) + "/" + session.pageCount();
         boolean waiting = !session.isComplete() && !printed();
         drawHintLine(g, ui.rect("t_hint"), sheet, waiting ? "Print this sheet at the press first" : hintText(session.hint()));
@@ -413,14 +491,32 @@ public class TileScreen extends StationScreen {
 
             if (pendingWrite(i)) {
                 // die Feder ist noch nicht hier: das gelegte Plaettchen liegt noch
-                int tw = homes[writeTileIds[i]][2];
-                drawTile(g, x + (ui.slotW - tw) / 2, sy, tw, writeFaces[i]);
+                if (writeTileIds[i] >= 0) {
+                    int tw = homes[writeTileIds[i]][2];
+                    drawTile(g, x + (ui.slotW - tw) / 2, sy, tw, writeFaces[i]);
+                } else {
+                    fill(g, x, sy, ui.slotW, ui.tileH, col("parchment_2"));
+                    drawCentered(g, writeFaces[i], x, sy + 1, ui.slotW, col("ink_1"));
+                }
             } else if (session.isDone(i)) {
                 drawCentered(g, session.written(i), x, sy + 1, ui.slotW, col("ink_0"));
                 fill(g, x, sy + ui.tileH - 1, ui.slotW, 1, col("parchment_1"));
             } else {
                 fill(g, x, sy, ui.slotW, ui.tileH, col("parchment_2"));
                 fill(g, x, sy + ui.tileH - 1, ui.slotW, 1, col("parchment_0"));
+                if (typingSlot == i) {
+                    fill(g, x, sy, ui.slotW, 1, col("parchment_0"));
+                    fill(g, x, sy, 1, ui.tileH, col("parchment_0"));
+                }
+                String typedText = session.typed(i);
+                if (typedText != null || typingSlot == i) {
+                    String shown = typedText == null ? "" : typedText;
+                    drawCentered(g, shown, x, sy + 1, ui.slotW, col("ink_1"));
+                    if (typingSlot == i && (ticks / 10) % 2 == 0) {
+                        int cx = x + (ui.slotW + font.width(shown)) / 2 + 1;
+                        fill(g, cx, sy + 1, 1, ui.tileH - 3, col("ink_0"));
+                    }
+                }
                 String smudged = session.smudged(i);
                 if (smudged != null) {
                     drawCentered(g, smudged, x, sy + 1, ui.slotW, col("ink_0"));
@@ -524,6 +620,12 @@ public class TileScreen extends StationScreen {
             return;
         }
         throw new IllegalArgumentException("Kein freies Plaettchen mit: " + face);
+    }
+
+    /** Tippt ein Wort in einen Slot, wie es der Spieler mit der Tastatur taete. */
+    public void debugType(int slot, String text) {
+        typingSlot = slot;
+        session.setTyped(slot, text);
     }
 
     public void debugClickQuill() {

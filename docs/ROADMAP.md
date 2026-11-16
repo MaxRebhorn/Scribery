@@ -27,6 +27,8 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher, Rezepte, die Texte
 
 ### 3. Freie Eingabe von Hand – erste Stufe erledigt
 - An der Presse kann man Buchstaben jetzt mit der Tastatur setzen: Cursor in der Setzform, Pfeiltasten, Rücktaste. Buchstaben ohne Taste (Ē, Ō) setzt man über zwei kleine Tasten unten links.
+- Auch in der Übersetzung: In eine Lücke klicken und das Wort tippen (Tab/Enter, Rücktaste); Tasten für Sonderzeichen erscheinen nur beim Tippen. Tippfehler verwischen wie ein falsches Plättchen.
+- Die Presse merkt sich die gesetzten Lettern (im Schrank gespeichert); Buttons füllen Letter Types bzw. Tinte und Papier aus dem Inventar nach.
 - Ausbau offen: Griechische Eingabe mit Akzenten und Spiritus (für Restaurierung und Formenübungen), Eingabe in der Übersetzung. Eingabeprüfung tolerant: Akzente ignorieren, Buchstaben und Endungen prüfen. Normalisierung (NFC/NFD) beim Vergleichen.
 
 ### 4. Echte Texte und Manuskript-IDs

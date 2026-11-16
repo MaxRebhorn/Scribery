@@ -92,6 +92,7 @@ public final class TileSession {
     private int[] slotTile = new int[0];
     private boolean[] done = new boolean[0];
     private boolean[] revealed = new boolean[0];
+    private String[] typed = new String[0];
     private String[] written = new String[0];
     private String[] smudged = new String[0];
 
@@ -161,6 +162,7 @@ public final class TileSession {
             done = new boolean[0];
             revealed = new boolean[0];
             written = new String[0];
+            typed = new String[0];
             smudged = new String[0];
             return;
         }
@@ -171,6 +173,7 @@ public final class TileSession {
         done = new boolean[page.size()];
         revealed = new boolean[page.size()];
         written = new String[page.size()];
+        typed = new String[page.size()];
         smudged = new String[page.size()];
     }
 
@@ -192,6 +195,24 @@ public final class TileSession {
     public boolean isRevealed(int slot) { return revealed[slot]; }
     /** Das Wort in diesem Slot ist richtig geschrieben. */
     public boolean isDone(int slot) { return done[slot]; }
+    /** Das von Hand eingetippte Wort in diesem Slot, oder null. */
+    public String typed(int slot) { return typed[slot]; }
+
+    /**
+     * Legt ein von Hand getipptes Wort in einen Slot, statt ein Plaettchen zu nehmen. Ein leeres Wort leert den
+     * Slot. Ein dort liegendes Plaettchen geht zurueck in den Kasten.
+     */
+    public boolean setTyped(int slot, String text) {
+        if (isComplete() || slot < 0 || slot >= typed.length || done[slot] || !revealed[slot]) return false;
+        if (slotTile[slot] >= 0) {
+            tiles.get(slotTile[slot]).slot = -1;
+            slotTile[slot] = -1;
+        }
+        typed[slot] = text == null || text.isBlank() ? null : text;
+        smudged[slot] = null;
+        return true;
+    }
+
     /** Der geschriebene Text, wenn der Slot fertig ist, sonst null. */
     public String written(int slot) { return written[slot]; }
     /** Der verwischte Text des letzten Fehlversuchs, sonst null. */
@@ -204,7 +225,7 @@ public final class TileSession {
     }
 
     private boolean hasEmptySlot() {
-        for (int i = 0; i < slotTile.length; i++) if (!done[i] && slotTile[i] < 0) return true;
+        for (int i = 0; i < slotTile.length; i++) if (!done[i] && slotTile[i] < 0 && typed[i] == null) return true;
         return false;
     }
 
@@ -233,6 +254,7 @@ public final class TileSession {
         if (slotTile[slot] >= 0) tiles.get(slotTile[slot]).slot = -1;
         slotTile[slot] = tileId;
         t.slot = slot;
+        typed[slot] = null;
         smudged[slot] = null;
         return true;
     }
@@ -263,17 +285,21 @@ public final class TileSession {
         for (int i = 0; i < slotTile.length; i++) {
             if (done[i]) continue;
             attempted[i] = true;
-            Tile t = tiles.get(slotTile[i]);
-            if (word(i).accepts(t.face())) {
+            Tile t = slotTile[i] < 0 ? null : tiles.get(slotTile[i]);
+            String face = t != null ? t.face() : typed[i];
+            if (word(i).accepts(face)) {
                 done[i] = true;
-                written[i] = t.face();
-                t.used = true;
+                written[i] = face;
+                if (t != null) t.used = true;
             } else {
                 wrong[i] = true;
-                smudged[i] = t.face();
+                smudged[i] = face;
             }
-            t.slot = -1;
-            slotTile[i] = -1;
+            typed[i] = null;
+            if (t != null) {
+                t.slot = -1;
+                slotTile[i] = -1;
+            }
         }
         return new WriteResult(null, attempted, wrong, pageDone());
     }
