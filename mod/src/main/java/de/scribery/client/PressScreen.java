@@ -383,7 +383,11 @@ public class PressScreen extends StationScreen {
         fill(g, platen[0] + platen[2] - 10, platen[1] + 4, 4, forme[1] - platen[1], col("lead_0"));
 
         // Setzform
-        frame(g, forme, 4, "oak_planks", 0xFF2A1A10);
+        frame(g, forme, 4, "iron_block", 0xFF23232B);
+        tile(g, block("iron_block"), forme[0] + 4, forme[1] + 4, forme[2] - 8, forme[3] - 8);
+        fill(g, forme[0] + 4, forme[1] + 4, forme[2] - 8, forme[3] - 8, 0xB0101014);
+        fill(g, forme[0] + 4, forme[1] + 4, forme[2] - 8, 1, 0xFF0E0E12);
+        fill(g, forme[0] + 4, forme[1] + 4, 1, forme[3] - 8, 0xFF0E0E12);
         // Die Setzform zeigt immer alle Slots. Was der Text nicht braucht, bleibt einfach frei.
         for (int i = 0; i < session.slotCount(); i++) {
             int x = slotX(i), y = slotY(i);
@@ -391,7 +395,7 @@ public class PressScreen extends StationScreen {
             if (c != 0) {
                 drawSort(g, x, y, c, session.inkLevel(i), session.isFixed(i));
             } else if (session.isSpacer(i)) {
-                fill(g, x, y + 1, ui.sortW, ui.sortH - 2, col("wood_2"));
+                fill(g, x, y + 1, ui.sortW, ui.sortH - 2, 0xFF4A4D54);
             } else {
                 fill(g, x, y + ui.sortH - 1, ui.sortW, 1, col("lead_3"));
             }
@@ -506,10 +510,22 @@ public class PressScreen extends StationScreen {
             fill(g, r[0] + r[2] - 8, r[1] + 4, 8, 2, col("wood_4"));
         }
 
-        // Papiervorrat
+        // Papiervorrat: ein schief gestapelter Stoss einzelner Boegen
         int[] p = ui.rect("paper_stock");
-        fill(g, p[0], p[1], p[2], p[3], col("parchment_3"));
-        for (int y = p[1] + 3; y < p[1] + p[3]; y += 4) fill(g, p[0], y, p[2], 1, col("parchment_0"));
+        fill(g, p[0] + 2, p[1] + p[3] - 5, p[2] - 2, 4, 0x66000000);
+        for (int i = 0; i < 8; i++) {
+            int dx = new int[] { 1, 0, 2, 1, 0, 2, 1, 0 }[i];
+            int y = p[1] + p[3] - 17 - i * 3;
+            int w = p[2] - 4;
+            fill(g, p[0] + dx, y, w, 14, col("parchment_0"));
+            fill(g, p[0] + dx + 1, y, w - 2, 13, col("parchment_3"));
+            fill(g, p[0] + dx + 1, y + 11, w - 2, 2, col("parchment_1"));
+            if (i % 3 == 0) fill(g, p[0] + dx + 1, y, 2, 13, col("parchment_2"));
+        }
+        int ty = p[1] + p[3] - 17 - 7 * 3;
+        fill(g, p[0] + 3, ty + 3, p[2] - 10, 1, col("parchment_1"));
+        fill(g, p[0] + 3, ty + 6, p[2] - 12, 1, col("parchment_1"));
+        fill(g, p[0] + 3, ty + 9, p[2] - 9, 1, col("parchment_1"));
 
         // Buchstabenbox
         int[] lc = ui.rect("letter_case");

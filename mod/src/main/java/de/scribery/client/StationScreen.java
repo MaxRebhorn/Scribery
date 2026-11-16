@@ -208,22 +208,9 @@ public abstract class StationScreen extends Screen {
         return n & 0x7fffffff;
     }
 
-    /** Dunkle Eichenbretter mit einem Rahmen aus entrindetem Stamm. */
+    /** Grosse, nicht kachelnde Bretterwand mit Rahmen (tools/gen_ui_textures.py). */
     private void drawBackdrop(GuiGraphics g) {
-        int w = ui.canvasW, h = ui.canvasH;
-        fill(g, 0, 0, w, h, 0xFF0E0E12);
-        tile(g, block("dark_oak_planks"), 1, 1, w - 2, h - 2);
-        ResourceLocation log = block("stripped_dark_oak_log");
-        tile(g, log, 1, 1, w - 2, 4);
-        tile(g, log, 1, h - 5, w - 2, 4);
-        tile(g, log, 1, 5, 4, h - 10);
-        tile(g, log, w - 5, 5, 4, h - 10);
-        fill(g, 1, 1, w - 2, 1, 0x55FFFFFF);
-        fill(g, 1, 1, 1, h - 2, 0x55FFFFFF);
-        fill(g, 4, 4, w - 8, 1, 0xAA000000);
-        fill(g, 4, 4, 1, h - 8, 0xAA000000);
-        fill(g, 4, h - 5, w - 8, 1, 0x44FFFFFF);
-        fill(g, w - 5, 4, 1, h - 8, 0x44FFFFFF);
+        tex(g, "backdrop", 0, 0, ui.canvasW, ui.canvasH);
     }
 
     private static final java.util.Map<String, ResourceLocation> TEXTURES = new java.util.HashMap<>();
@@ -335,8 +322,8 @@ public abstract class StationScreen extends Screen {
 
     /** Die Kerze aus dem Minecraft-Item, doppelt so gross, mit eigener Flamme. */
     private void drawCandle(GuiGraphics g) {
-        int x = 8, y = 28;
-        g.blit(item("candle"), x, y, 14, 24, 5f, 4f, 7, 12, 16, 16);
+        int x = 8, y = 32;
+        g.blit(item("candle"), x, y, 14, 20, 5f, 6f, 7, 10, 16, 16);
         fill(g, x + 6, y - 3, 2, 3, col("ink_0"));
         int frame = (ticks / 4) % 4;
         int fh = new int[] { 5, 5, 4, 5 }[frame];
@@ -402,9 +389,9 @@ public abstract class StationScreen extends Screen {
         String text = flashing ? flash : (busy() ? "" : hint);
         // Der Zaehler weicht, wenn der Text rechts die ganze Zeile braucht.
         if (font.width(left) + font.width(text) + 6 <= r[2]) {
-            g.drawString(font, left, r[0] + 1, r[1], col("parchment_1"), false);
+            g.drawString(font, left, r[0] + 1, r[1], col("parchment_3"), true);
         }
         g.drawString(font, text, r[0] + r[2] - font.width(text) - 1, r[1],
-                flashing ? col("flame_1") : col("gui_light"), false);
+                flashing ? col("flame_1") : col("gui_light"), true);
     }
 }
