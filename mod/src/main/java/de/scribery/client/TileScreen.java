@@ -388,9 +388,7 @@ public class TileScreen extends StationScreen {
     /** Das Blatt, das beschrieben wird. Ein Wort erscheint erst, wenn es angeklickt wurde. */
     private void drawSheet(GuiGraphics g) {
         int[] sh = ui.rect("t_sheet");
-        fill(g, sh[0], sh[1], sh[2], sh[3], col("parchment_3"));
-        fill(g, sh[0], sh[1] + sh[3] - 1, sh[2], 1, col("parchment_0"));
-        fill(g, sh[0] + sh[2] - 1, sh[1], 1, sh[3], col("parchment_0"));
+        tex(g, "sheet", sh);
 
         for (int i = 0; i < session.slotCount(); i++) {
             if (!session.isRevealed(i)) continue;
@@ -428,8 +426,7 @@ public class TileScreen extends StationScreen {
     private void drawBoxes(GuiGraphics g) {
         for (int b = 0; b < BOXES; b++) {
             int[] r = ui.rect("t_box_" + b);
-            panel(g, r, col("wood_2"), col("wood_3"), col("wood_0"));
-            fill(g, r[0] + 2, r[1] + 2, r[2] - 4, r[3] - 4, col("wood_0"));
+            tex(g, "box", r);
         }
         for (Tile t : session.tiles()) {
             if (t.used() || t.slot() >= 0 || t.id() == handTile) continue;

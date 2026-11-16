@@ -348,12 +348,6 @@ public class PressScreen extends StationScreen {
     private void drawLeft(GuiGraphics g) {
         drawLectern(g, bench.fragment.words().stream().map(w -> w.greek()).toList(), i -> false);
 
-        int[] lc = ui.rect("lectern");
-        nail(g, lc[0] + 2, lc[1] + 2);
-        nail(g, lc[0] + lc[2] - 5, lc[1] + 2);
-        nail(g, lc[0] + 2, lc[1] + lc[3] - 5);
-        nail(g, lc[0] + lc[2] - 5, lc[1] + lc[3] - 5);
-
         // Stapel der fertigen Zeilen
         int[] st = ui.rect("proof_stack");
         panel(g, st, col("wood_0"), col("wood_1"), col("ink_1"));
@@ -389,8 +383,7 @@ public class PressScreen extends StationScreen {
         fill(g, platen[0] + platen[2] - 10, platen[1] + 4, 4, forme[1] - platen[1], col("lead_0"));
 
         // Setzform
-        panel(g, forme, col("wood_3"), col("wood_4"), col("wood_0"));
-        fill(g, forme[0] + 2, forme[1] + 2, forme[2] - 4, forme[3] - 4, col("wood_0"));
+        tex(g, "forme", forme);
         // Die Setzform zeigt immer alle Slots. Was der Text nicht braucht, bleibt einfach frei.
         for (int i = 0; i < session.slotCount(); i++) {
             int x = slotX(i), y = slotY(i);
@@ -405,7 +398,7 @@ public class PressScreen extends StationScreen {
         }
 
         // Papier: auf der Ablage, auf dem Weg in die Presse oder unter dem Tiegel
-        fill(g, tray[0], tray[1], tray[2], tray[3], col("wood_0"));
+        tex(g, "paper_tray", tray);
         int restY = tray[1] + 2, fedY = forme[1] + 3;
         boolean pressing = leverAnim > LEVER_PROOF_AT;
         if (session.paper() == Paper.ON_TRAY) {
@@ -417,8 +410,7 @@ public class PressScreen extends StationScreen {
 
         // Tiegel
         int off = platenOffset();
-        panel(g, platen[0], platen[1] + off, platen[2], platen[3], col("lead_1"), col("lead_2"), col("lead_0"));
-        fill(g, platen[0] + 4, platen[1] + off + platen[3] - 5, platen[2] - 8, 3, col("lead_2"));
+        tex(g, "platen", platen[0], platen[1] + off, platen[2], platen[3]);
 
         // Kurbel
         int[] cr = ui.rect("crank");
@@ -475,9 +467,7 @@ public class PressScreen extends StationScreen {
     private void drawRight(GuiGraphics g) {
         // Fass: die Farbe der Oeffnung zeigt den Fuellstand
         int[] b = ui.rect("barrel");
-        panel(g, b, col("wood_2"), col("wood_3"), col("wood_0"));
-        fill(g, b[0], b[1] + 8, b[2], 2, col("lead_1"));
-        fill(g, b[0], b[1] + b[3] - 10, b[2], 2, col("lead_1"));
+        tex(g, "barrel", b);
         int ink = session.ink();
         String level = ink >= 6 ? "barrel_full" : ink >= 3 ? "barrel_two_thirds" : ink >= 1 ? "barrel_one_third" : "barrel_empty";
         fill(g, b[0] + 4, b[1] + 12, b[2] - 8, b[3] - 24, col(level));
@@ -494,7 +484,7 @@ public class PressScreen extends StationScreen {
         for (int y = p[1] + 3; y < p[1] + p[3]; y += 4) fill(g, p[0], y, p[2], 1, col("parchment_0"));
 
         // Buchstabenbox
-        panel(g, ui.rect("letter_case"), col("lead_0"), col("lead_1"), col("ink_0"));
+        tex(g, "letter_case", ui.rect("letter_case"));
         for (int i = 0; i < ui.letters.length; i++) {
             char c = ui.letters[i];
             int cx = ui.caseX + (i % ui.caseCols) * ui.cellW;

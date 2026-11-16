@@ -237,6 +237,19 @@ public abstract class StationScreen extends Screen {
         }
     }
 
+    private static final java.util.Map<String, ResourceLocation> TEXTURES = new java.util.HashMap<>();
+
+    /** Zeichnet eine statische GUI-Textur aus assets/scribery/textures/gui in Originalgroesse. */
+    protected static void tex(GuiGraphics g, String name, int x, int y, int w, int h) {
+        ResourceLocation rl = TEXTURES.computeIfAbsent(name,
+                n -> ResourceLocation.fromNamespaceAndPath(de.scribery.Scribery.MODID, "textures/gui/" + n + ".png"));
+        g.blit(rl, x, y, 0f, 0f, w, h, w, h);
+    }
+
+    protected static void tex(GuiGraphics g, String name, int[] r) {
+        tex(g, name, r[0], r[1], r[2], r[3]);
+    }
+
     protected void nail(GuiGraphics g, int x, int y) {
         fill(g, x, y, 3, 3, col("lead_1"));
         fill(g, x, y, 2, 2, col("lead_3"));
@@ -336,7 +349,7 @@ public abstract class StationScreen extends Screen {
      * @param dimmed Woerter, die blasser gezeichnet werden (z. B. schon uebertragene)
      */
     protected void drawLectern(GuiGraphics g, List<String> words, java.util.function.IntPredicate dimmed) {
-        panel(g, ui.rect("lectern"), col("wood_2"), col("wood_3"), col("wood_0"));
+        tex(g, "lectern", ui.rect("lectern"));
         int[] f = ui.rect("fragment");
         fill(g, f[0], f[1], f[2], f[3], col("parchment_1"));
         fill(g, f[0], f[1] + f[3] - 1, f[2], 1, col("parchment_0"));
