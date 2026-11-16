@@ -71,7 +71,7 @@ public class CabinetBlock extends FacingBlock implements EntityBlock {
     }
 
     private static void giveContents(Player player, CabinetBlockEntity be) {
-        int[] letters = be.letters();
+        int[] letters = be.totalLetters();
         for (int i = 0; i < letters.length; i++) {
             if (letters[i] > 0) Give.items(player, ModItems.LETTER_ITEMS.get(i).get(), letters[i]);
         }
@@ -88,7 +88,7 @@ public class CabinetBlock extends FacingBlock implements EntityBlock {
     }
 
     private static void giveContentsAt(Level level, BlockPos pos, CabinetBlockEntity be) {
-        int[] letters = be.letters();
+        int[] letters = be.totalLetters();
         for (int i = 0; i < letters.length; i++) {
             if (letters[i] > 0) drop(level, pos, ModItems.LETTER_ITEMS.get(i).get(), letters[i]);
         }

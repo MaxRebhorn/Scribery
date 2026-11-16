@@ -60,7 +60,27 @@ public class PressScreen extends StationScreen {
     protected void drawStation(GuiGraphics g) {
         if (bench.fragment != null) drawLeft(g);
         if (hasPress()) drawPress(g);
-        if (hasCabinet()) drawRight(g);
+        if (hasCabinet()) {
+            drawRight(g);
+            drawRefillButtons(g);
+        }
+    }
+
+    private static final String[] REFILL = { "Refill types from inventory", "Refill ink & paper from inventory" };
+
+    private int[] refillRect(int i) {
+        int w0 = font.width(REFILL[0]) + 12, w1 = font.width(REFILL[1]) + 12;
+        int x0 = (ui.canvasW - (w0 + 6 + w1)) / 2;
+        return i == 0 ? new int[] { x0, 4, w0, 14 } : new int[] { x0 + w0 + 6, 4, w1, 14 };
+    }
+
+    private void drawRefillButtons(GuiGraphics g) {
+        for (int i = 0; i < REFILL.length; i++) {
+            int[] r = refillRect(i);
+            boolean hover = in(r, mouseCX, mouseCY, 0);
+            panel(g, r, hover ? 0xFFD8D8D8 : col("gui_face"), col("gui_light"), col("gui_shadow"));
+            g.drawString(font, REFILL[i], r[0] + (r[2] - font.width(REFILL[i])) / 2, r[1] + 3, col("gui_shadow"), false);
+        }
     }
 
     /** Die Presse selbst: Setzform, Papierablage, Kurbel, Hebel. */
@@ -85,6 +105,11 @@ public class PressScreen extends StationScreen {
 
     @Override
     protected void stationTick() {
+        // Der Schrank kann sich von aussen aendern (Auffuellen, Entnehmen): Differenz in die Presse uebernehmen.
+        if (bench.cabinetPos != null && minecraft != null && minecraft.level != null
+                && minecraft.level.getBlockEntity(bench.cabinetPos) instanceof de.scribery.CabinetBlockEntity be) {
+            bench.syncFrom(be.letters(), be.ink(), be.paper());
+        }
         if (crankAnim > 0) crankAnim--;
         if (leverAnim > 0) {
             leverAnim--;
@@ -234,6 +259,17 @@ public class PressScreen extends StationScreen {
     public void clickCanvas(double x, double y, int button) {
         if (busy()) return;
 
+        if (hasCabinet()) {
+            for (int i = 0; i < REFILL.length; i++) {
+                if (!in(refillRect(i), x, y, 0)) continue;
+                if (bench.cabinetPos == null) flash("No cabinet to refill");
+                else net.neoforged.neoforge.network.PacketDistributor.sendToServer(
+                        new de.scribery.ModNetwork.Refill(bench.cabinetPos, i));
+                sound(SoundEvents.STONE_BUTTON_CLICK_ON, 1.0f, 0.5f);
+                return;
+            }
+        }
+
         int cell = hasCabinet() ? caseCellAt(x, y) : -1;
         if (cell >= 0) {
             char c = ui.letters[cell];
@@ -266,7 +302,7 @@ public class PressScreen extends StationScreen {
             return;
         }
 
-        if (hasCabinet() && hasPress()) {
+        if (showPalette()) {
             for (int i = 0; i < PALETTE.length; i++) {
                 if (in(paletteRect(i), x, y, 0)) {
                     typeLetter(PALETTE[i]);
@@ -387,11 +423,18 @@ public class PressScreen extends StationScreen {
         super.removed();
     }
 
-    /** Meldet dem Server den Stand des Schranks und neue fertige Boegen. Ohne Schrank (Debug) passiert nichts. */
+    /** Meldet dem Server, was verbraucht wurde, die gesetzten Lettern und neue Boegen. Ohne Schrank (Debug) passiert nichts. */
     private void commit() {
         if (bench.cabinetPos == null || !bench.stations.cabinet()) return;
-        java.util.List<Integer> letters = new java.util.ArrayList<>();
-        for (char ch : de.scribery.core.Translit.ALPHABET.toCharArray()) letters.add(session.stock(ch));
+        String forme = session.formeString();
+        java.util.List<Integer> lost = new java.util.ArrayList<>();
+        for (int i = 0; i < 22; i++) {
+            char ch = de.scribery.core.Translit.ALPHABET.charAt(i);
+            int inForme = (int) forme.chars().filter(c -> c == ch).count();
+            lost.add(Math.max(0, bench.baseTotal[i] - (session.stock(ch) + inForme)));
+        }
+        int inkUsed = Math.max(0, bench.baseInk - session.ink());
+        int paperUsed = Math.max(0, bench.basePaper - session.paperStock());
         java.util.List<de.scribery.ModNetwork.SheetOut> sheets = new java.util.ArrayList<>();
         var log = session.sheetLog();
         for (int i = bench.sheetsSent; i < log.size(); i++) {
@@ -400,7 +443,8 @@ public class PressScreen extends StationScreen {
         }
         bench.sheetsSent = log.size();
         net.neoforged.neoforge.network.PacketDistributor.sendToServer(new de.scribery.ModNetwork.CommitCabinet(
-                bench.cabinetPos, letters, session.ink(), session.paperStock(), sheets));
+                bench.cabinetPos, lost, inkUsed, paperUsed, forme, sheets));
+        bench.snapshot();
     }
 
     /** Mausbewegung in Leinwand-Koordinaten. Oeffentlich fuer den Selbsttest. */
@@ -572,8 +616,8 @@ public class PressScreen extends StationScreen {
             fill(g, caretX, caretY + ui.sortH, ui.sortW, 1, 0xFFFFB62E);
         }
 
-        // Tasten fuer Buchstaben, die es auf der Tastatur nicht gibt
-        if (hasCabinet()) {
+        // Beim freien Schreiben: Tasten fuer Buchstaben, die es auf der Tastatur nicht gibt
+        if (showPalette()) {
             int[] kr = paletteRect(0);
             g.drawString(font, "Type on the keyboard", kr[0] + 36, kr[1] + 2, 0xFFC9A66B, false);
             for (int i = 0; i < PALETTE.length; i++) {
@@ -586,6 +630,11 @@ public class PressScreen extends StationScreen {
         // Hinweiszeile
         String sheet = session.isComplete() || session.isFree() ? "" : "Sheet " + (session.pageIndex() + 1) + "/" + session.pageCount();
         drawHintLine(g, ui.rect("line_counter"), sheet, hintText(session.hint()));
+    }
+
+    /** Die Tasten erscheinen nur beim freien Druck, wo man von Hand schreibt. */
+    private boolean showPalette() {
+        return hasPress() && hasCabinet() && session.isFree();
     }
 
     private static final char[] PALETTE = { 'Ē', 'Ō' }; // Ē Ō

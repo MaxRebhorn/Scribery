@@ -250,8 +250,8 @@ public final class PressSession {
     }
 
     /**
-     * Raeumt die Presse auf, wenn der Spieler geht: ein offener Abzug wird abgeschlossen, alles Gesetzte
-     * geht zurueck in die Box, unbedrucktes Papier zurueck in den Vorrat, die Walze wird abgelegt.
+     * Raeumt die Presse auf, wenn der Spieler geht: ein offener Abzug wird abgeschlossen, unbedrucktes Papier
+     * geht zurueck in den Vorrat, die Walze wird abgelegt. Die gesetzten Lettern bleiben liegen.
      */
     public void closeOut() {
         if (awaitingFinish) finishPage();
@@ -259,13 +259,33 @@ public final class PressSession {
             paperStock++;
             paper = Paper.NONE;
         }
-        for (int i = 0; i < slotCount; i++) {
-            if (fixed[i] || slots[i] == 0) continue;
-            returnToCase(slots[i]);
-            slots[i] = 0;
-            inkLevel[i] = 0;
-        }
         rollerCharged = false;
+    }
+
+    /** Die vom Spieler gesetzten Lettern, ein Zeichen pro Slot, Leerzeichen = nichts oder vorgesetzt. */
+    public String formeString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < slotCount; i++) sb.append(slots[i] == 0 || fixed[i] ? ' ' : slots[i]);
+        return sb.toString();
+    }
+
+    /**
+     * Ersetzt die gesetzten Lettern durch den gespeicherten Stand der Presse. Was nicht mehr passt (Slot
+     * gesperrt, vorgesetzt oder belegt), geht in die Box.
+     */
+    public void replaceForme(String chars) {
+        for (int i = 0; i < slotCount; i++) {
+            if (!fixed[i] && slots[i] != 0) {
+                slots[i] = 0;
+                inkLevel[i] = 0;
+            }
+        }
+        for (int i = 0; i < Math.min(slotCount, chars.length()); i++) {
+            char c = chars.charAt(i);
+            if (c == ' ' || !stock.containsKey(c)) continue;
+            if (!fixed[i] && !spacer[i] && slots[i] == 0) slots[i] = c;
+            else returnToCase(c);
+        }
     }
 
     // ---- Buchstabenbox ----
@@ -422,6 +442,18 @@ public final class PressSession {
         }
         sheetLog.add(new PrintedSheet(donePage, List.copyOf(finishedLines.subList(firstLine, finishedLines.size()))));
         lastWorn = 0;
+        if (free) {
+            // Freier Druck: die Lettern bleiben in der Setzform, nur verschlissene brechen.
+            for (int i = 0; i < slotCount; i++) {
+                if (slots[i] != 0 && !fixed[i] && rng.nextInt(WEAR_ODDS) == 0) {
+                    slots[i] = 0;
+                    lastWorn++;
+                }
+            }
+            pageIndex++;
+            awaitingFinish = false;
+            return true;
+        }
         for (int i = 0; i < slotCount; i++) {
             if (slots[i] == 0 || fixed[i]) continue;
             if (rng.nextInt(WEAR_ODDS) == 0) lastWorn++;

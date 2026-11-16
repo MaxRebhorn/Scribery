@@ -97,7 +97,7 @@ public final class ClientHooks {
         BENCHES.put(anchor, bench);
         bench.cabinetPos = cabinetPos;
         if (cabinetPos != null && level.getBlockEntity(cabinetPos) instanceof CabinetBlockEntity cbe) {
-            bench.applyResources(cbe.letters(), cbe.ink(), cbe.paper());
+            bench.applyResources(cbe.letters(), cbe.ink(), cbe.paper(), cbe.forme());
         }
 
         mc.setScreen(start == Stations.Kind.LECTERN ? new LecternScreen(bench) : new PressScreen(bench));

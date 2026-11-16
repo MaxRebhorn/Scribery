@@ -33,16 +33,33 @@ public final class ModNetwork {
                 SheetOut::new);
     }
 
-    /** Stand des Schranks nach dem Druck: Letter-Vorrat, Tinte, Papier und neue Boegen. */
-    public record CommitCabinet(BlockPos pos, List<Integer> letters, int ink, int paper, List<SheetOut> sheets) implements CustomPacketPayload {
+    /**
+     * Was in der Presse verbraucht wurde: Verschleiss je Letter-Typ, Tinte, Papier, dazu die neue Setzform
+     * und die neu gedruckten Boegen.
+     */
+    public record CommitCabinet(BlockPos pos, List<Integer> lost, int inkUsed, int paperUsed, String forme,
+            List<SheetOut> sheets) implements CustomPacketPayload {
         public static final Type<CommitCabinet> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "commit_cabinet"));
         public static final StreamCodec<ByteBuf, CommitCabinet> CODEC = StreamCodec.composite(
                 BlockPos.STREAM_CODEC, CommitCabinet::pos,
-                ByteBufCodecs.VAR_INT.apply(ByteBufCodecs.list(64)), CommitCabinet::letters,
-                ByteBufCodecs.VAR_INT, CommitCabinet::ink,
-                ByteBufCodecs.VAR_INT, CommitCabinet::paper,
+                ByteBufCodecs.VAR_INT.apply(ByteBufCodecs.list(64)), CommitCabinet::lost,
+                ByteBufCodecs.VAR_INT, CommitCabinet::inkUsed,
+                ByteBufCodecs.VAR_INT, CommitCabinet::paperUsed,
+                ByteBufCodecs.STRING_UTF8, CommitCabinet::forme,
                 SheetOut.CODEC.apply(ByteBufCodecs.list(16)), CommitCabinet::sheets,
                 CommitCabinet::new);
+
+        @Override
+        public Type<? extends CustomPacketPayload> type() {
+            return TYPE;
+        }
+    }
+
+    /** Der Spieler will Vorraete aus seinem Inventar in den Schrank fuellen. mode 0 = Letter Types, 1 = Tinte und Papier. */
+    public record Refill(BlockPos pos, int mode) implements CustomPacketPayload {
+        public static final Type<Refill> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "refill"));
+        public static final StreamCodec<ByteBuf, Refill> CODEC = StreamCodec.composite(
+                BlockPos.STREAM_CODEC, Refill::pos, ByteBufCodecs.VAR_INT, Refill::mode, Refill::new);
 
         @Override
         public Type<? extends CustomPacketPayload> type() {
@@ -69,6 +86,7 @@ public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
         var r = event.registrar("1");
         r.playToServer(CommitCabinet.TYPE, CommitCabinet.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commit(p, ctx)));
+        r.playToServer(Refill.TYPE, Refill.CODEC, (p, ctx) -> ctx.enqueueWork(() -> refill(p, ctx)));
         r.playToServer(CommitDesk.TYPE, CommitDesk.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commitDesk(p, ctx)));
     }
 
@@ -86,14 +104,37 @@ public final class ModNetwork {
         player.level().playSound(null, p.pos(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1f, 1f);
     }
 
+    private static void refill(Refill p, IPayloadContext ctx) {
+        if (!(ctx.player() instanceof ServerPlayer player)) return;
+        if (player.distanceToSqr(p.pos().getCenter()) > REACH_SQR) return;
+        if (!(player.level().getBlockEntity(p.pos()) instanceof CabinetBlockEntity be)) return;
+        var inv = player.getInventory();
+        for (int i = 0; i < inv.items.size(); i++) {
+            var stack = inv.items.get(i);
+            if (stack.isEmpty()) continue;
+            if (p.mode() == 0) {
+                int letter = ModItems.letterIndex(stack.getItem());
+                if (letter < 0) continue;
+                be.addLetters(letter, stack.getCount());
+            } else if (stack.is(Items.INK_SAC)) {
+                be.addInk(stack.getCount() * CabinetBlockEntity.INK_PER_SAC);
+            } else if (stack.is(Items.PAPER)) {
+                be.addPaper(stack.getCount());
+            } else {
+                continue;
+            }
+            inv.items.set(i, net.minecraft.world.item.ItemStack.EMPTY);
+        }
+        player.level().playSound(null, p.pos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.6f, 1.2f);
+    }
+
     private static void commit(CommitCabinet p, IPayloadContext ctx) {
         if (!(ctx.player() instanceof ServerPlayer player)) return;
         if (player.distanceToSqr(p.pos().getCenter()) > REACH_SQR) return;
         if (!(player.level().getBlockEntity(p.pos()) instanceof CabinetBlockEntity be)) return;
-        int paperBefore = be.paper();
-        if (!be.commit(p.letters().stream().mapToInt(Integer::intValue).toArray(), p.ink(), p.paper())) return;
+        if (!be.commit(p.lost().stream().mapToInt(Integer::intValue).toArray(), p.inkUsed(), p.paperUsed(), p.forme())) return;
         // Jeder Bogen kostet ein Blatt Papier: nie mehr Boegen, als Papier verbraucht wurde.
-        int allowed = paperBefore - p.paper();
+        int allowed = p.paperUsed();
         for (SheetOut s : p.sheets()) {
             if (allowed-- <= 0) break;
             if (s.lines().size() > 16 || s.lines().stream().anyMatch(l -> l.length() > 64)) continue;

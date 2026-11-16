@@ -248,7 +248,7 @@ class CoreTest {
         assertEquals('K', r.printed()[5]);
         assertTrue(s.finishPage());
         assertEquals(1, s.printedCount());
-        assertEquals(0, s.slot(5)); // Forme ist wieder frei
+        assertTrue(s.slot(5) == 'K' || s.lastWorn() > 0, "die Letter bleibt liegen, wenn sie nicht verschleisst");
         assertFalse(s.isComplete());
     }
 
@@ -263,11 +263,45 @@ class CoreTest {
         assertTrue(s.place(3, 'K'));
         s.closeOut();
         assertEquals(1, s.paperStock()); // unbedrucktes Papier zurueck
-        assertEquals(0, s.slot(3));
-        assertEquals(4, s.stock('K'));
+        assertEquals('K', s.slot(3), "gesetzte Lettern bleiben liegen");
+        assertEquals(3, s.stock('K'));
         s.setStock('K', 0);
         assertEquals(0, s.stock('K'));
         s.setPaperStock(0);
         assertFalse(s.layPaper());
+    }
+
+    @Test
+    void formeIsSavedAndRestored() {
+        PressSession s = PressSession.free(16, 4, 4, 8, 24, new Random(1));
+        assertTrue(s.takeFromCase('K'));
+        assertTrue(s.place(2, 'K'));
+        assertTrue(s.takeFromCase('Z'));
+        assertTrue(s.place(20, 'Z'));
+        String saved = s.formeString();
+        assertEquals(64, saved.length());
+        assertEquals('K', saved.charAt(2));
+        PressSession t = PressSession.free(16, 4, 4, 8, 24, new Random(1));
+        t.replaceForme(saved);
+        assertEquals('K', t.slot(2));
+        assertEquals('Z', t.slot(20));
+        assertEquals(4, t.stock('K'), "wiederhergestellte Lettern kommen nicht aus dem Vorrat");
+    }
+
+    @Test
+    void freePrintKeepsLettersInTheForme() {
+        PressSession s = PressSession.free(16, 4, 4, 8, 24, new Random(7));
+        s.setStock('K', 100);
+        for (int i = 0; i < 10; i++) { assertTrue(s.takeFromCase('K')); assertTrue(s.place(i, 'K')); }
+        for (int i = 0; i < 10; i++) { /* einfaerben */ }
+        inkAll(s);
+        assertTrue(s.layPaper());
+        assertNull(s.crank());
+        assertTrue(s.pull().allCorrect());
+        assertTrue(s.finishPage());
+        long left = s.formeString().chars().filter(c -> c == 'K').count();
+        assertEquals(10 - s.lastWorn(), left, "was nicht verschlissen ist, bleibt liegen");
+        assertFalse(s.awaitingFinish());
+        assertEquals(1, s.printedCount());
     }
 }
