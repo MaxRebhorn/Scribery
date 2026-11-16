@@ -39,24 +39,15 @@ final class LecternScreen extends StationScreen {
     @Override
     protected void drawStation(GuiGraphics g) {
         if (bench.fragment == null) return;
-        int wood = col("wood_2");
-        panel(g, SHEET[0] - 6, SHEET[1] - 6, SHEET[2] + 12, SHEET[3] + 12, col("wood_2"), col("wood_3"), col("wood_0"));
-        fill(g, SHEET[0], SHEET[1], SHEET[2], SHEET[3], col("parchment_1"));
-        fill(g, SHEET[0], SHEET[1] + SHEET[3] - 1, SHEET[2], 1, col("parchment_0"));
-        // ausgerissene Kanten
-        fill(g, SHEET[0], SHEET[1], 4, 3, wood);
-        fill(g, SHEET[0] + SHEET[2] - 6, SHEET[1], 6, 4, wood);
-        fill(g, SHEET[0], SHEET[1] + SHEET[3] - 8, 5, 8, wood);
-        fill(g, SHEET[0] + SHEET[2] - 10, SHEET[1] + SHEET[3] - 6, 10, 6, wood);
-
         List<String> words = bench.fragment.words().stream().map(w -> w.greek()).toList();
-        int[][] rects = flowWords(words, SHEET[0] + 10, SHEET[1] + 12, SHEET[2] - 20, 14);
-        for (int i = 0; i < rects.length; i++) {
-            g.drawString(font, words.get(i), rects[i][0], rects[i][1], col("ink_1"), false);
+        Fit fit = fit(words, SHEET, 14, 12);
+        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
+        for (int i = 0; i < fit.words().length; i++) {
+            g.drawString(font, words.get(i), fit.words()[i][0], fit.words()[i][1], col("ink_1"), false);
         }
         String ref = bench.fragment.ref();
-        g.drawString(font, ref, SHEET[0] + (SHEET[2] - font.width(ref)) / 2, SHEET[1] + SHEET[3] - 14,
-                col("parchment_0"), false);
+        g.drawString(font, ref, fit.paper()[0] + (fit.paper()[2] - font.width(ref)) / 2,
+                fit.paper()[1] + fit.paper()[3] - 11, col("parchment_0"), false);
     }
 
     @Override

@@ -353,31 +353,62 @@ public abstract class StationScreen extends Screen {
         return out;
     }
 
+    /** Papier und Woerter, an die Textmenge angepasst: {papier x, y, w, h} und je Wort {x, y, breite}. */
+    protected record Fit(int[] paper, int[][] words) {}
+
+    /**
+     * Setzt die Woerter in die Flaeche und macht das Papier nicht groesser als der Text.
+     * Das Papier sitzt mittig in der Flaeche.
+     */
+    protected Fit fit(List<String> words, int[] area, int lineHeight, int pad) {
+        int[][] at0 = flowWords(words, 0, 0, area[2] - 2 * pad, lineHeight);
+        int bw = 0, bh = 0;
+        for (int[] r : at0) {
+            bw = Math.max(bw, r[0] + r[2]);
+            bh = Math.max(bh, r[1] + 9);
+        }
+        int pw = Math.min(area[2], Math.max(24, bw + 2 * pad));
+        int ph = Math.min(area[3], Math.max(16, bh + 2 * pad));
+        int px = area[0] + (area[2] - pw) / 2, py = area[1] + (area[3] - ph) / 2;
+        int[][] out = new int[at0.length][];
+        for (int i = 0; i < at0.length; i++) out[i] = new int[] { px + pad + at0[i][0], py + pad + at0[i][1], at0[i][2] };
+        return new Fit(new int[] { px, py, pw, ph }, out);
+    }
+
     /** Wo die Woerter des Fragments auf dem Pult stehen. */
     protected int[][] lecternWordRects(List<String> words) {
-        int[] f = ui.rect("fragment");
-        return flowWords(words, f[0] + 4, f[1] + 5, f[2] - 8, 10);
+        return fit(words, ui.rect("fragment"), 10, 5).words();
+    }
+
+    /** Ein sauberes kleines Lesepult aus glattem Holz: Lesebrett mit Ablageleiste, ohne Naegel. */
+    protected void drawLecternBoard(GuiGraphics g, int[] r) {
+        int x = r[0], y = r[1], w = r[2], h = r[3];
+        int ledge = 8;
+        fill(g, x + 2, y, w - 4, h, col("wood_0"));
+        fill(g, x, y + 2, w, h - 4, col("wood_0"));
+        fill(g, x + 2, y + 1, w - 4, h - ledge - 2, col("wood_3"));
+        fill(g, x + 1, y + 2, w - 2, h - ledge - 3, col("wood_3"));
+        fill(g, x + 2, y + 1, w - 4, 1, col("wood_4"));
+        fill(g, x + 1, y + 2, 1, h - ledge - 3, col("wood_4"));
+        fill(g, x + w - 2, y + 2, 1, h - ledge - 3, col("wood_2"));
+        fill(g, x + 1, y + h - ledge - 1, w - 2, 1, col("wood_1"));
+        fill(g, x + 1, y + h - ledge, w - 2, ledge - 3, col("wood_2"));
+        fill(g, x + 2, y + h - ledge, w - 4, 1, col("wood_3"));
+        fill(g, x + 2, y + h - 3, w - 4, 2, col("wood_1"));
     }
 
     /**
-     * Das Pult mit dem gefundenen Fragment, links in jeder Station.
+     * Das Pult mit dem gefundenen Fragment, links in jeder Station. Das Papier ist nur so gross wie sein Text.
      *
      * @param dimmed Woerter, die blasser gezeichnet werden (z. B. schon uebertragene)
      */
     protected void drawLectern(GuiGraphics g, List<String> words, java.util.function.IntPredicate dimmed) {
-        int[] lr = ui.rect("lectern");
-        frame(g, lr, 6, "oak_planks", 0xFF3B2618);
-        tile(g, block("spruce_planks"), lr[0] + 7, lr[1] + 7, lr[2] - 14, lr[3] - 14);
-        fill(g, lr[0] + 7, lr[1] + 7, lr[2] - 14, lr[3] - 14, 0x88000000);
-        nail(g, lr[0] + 2, lr[1] + 2);
-        nail(g, lr[0] + lr[2] - 5, lr[1] + 2);
-        nail(g, lr[0] + 2, lr[1] + lr[3] - 5);
-        nail(g, lr[0] + lr[2] - 5, lr[1] + lr[3] - 5);
+        drawLecternBoard(g, ui.rect("lectern"));
         int[] f = ui.rect("fragment");
-        tex(g, "fragment", f);
-        int[][] rects = lecternWordRects(words);
+        Fit fit = fit(words, f, 10, 5);
+        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
+        int[][] rects = fit.words();
         for (int i = 0; i < rects.length; i++) {
-            if (rects[i][1] + 9 > f[1] + f[3] - 6) break; // passt nicht mehr aufs Fragment
             g.drawString(font, words.get(i), rects[i][0], rects[i][1],
                     dimmed.test(i) ? col("parchment_0") : col("ink_1"), false);
         }

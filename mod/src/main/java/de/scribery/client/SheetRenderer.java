@@ -20,7 +20,7 @@ final class SheetRenderer {
     /** Leerer Bogen, linke obere Ecke bei (x, y). */
     static void paper(GuiGraphics g, UiLayout ui, int x, int y) {
         int w = width(ui), h = height(ui);
-        StationScreen.tex(g, "paper_strip", x, y, w, h);
+        RaggedPaper.draw(g, ui, x, y, w, h, 2);
     }
 
     /**

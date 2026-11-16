@@ -118,60 +118,38 @@ def ragged(w, h, seed, max_lr, max_tb, chips=6):
 
 
 def backdrop():
-    """Grosse Bretterwand ohne Wiederholung: lange Bohlen in zwei Brauntoenen, Maserung, Astloecher, Naegel, Rahmen."""
+    """Tischplatte: lange glatte Bretter in zwei nahen Holztoenen, feine Fugen, sparsame Maserung. Keine Naegel, kein Rahmen."""
     w, h = 384, 216
     rng = random.Random(21)
     im = new(w, h)
-    rect(im, 0, 0, w, h, "wood_1")
-    bh = 9
-    for row, y in enumerate(range(4, h - 4, bh)):
-        x = 4 - rng.randrange(0, 60)
-        while x < w - 4:
-            ln = rng.randrange(40, 110)
-            base = rng.choice(("wood_1", "wood_1", "wood_2"))
-            x0, x1 = max(x, 4), min(x + ln, w - 4)
-            if x1 > x0:
-                grain(im, x0, y, x1 - x0, bh - 1, base, "wood_2" if base == "wood_1" else "wood_3",
-                      "wood_0" if base == "wood_1" else "wood_1", rng.randrange(10 ** 6), density=1.1)
-                rect(im, x0, y + bh - 1, x1 - x0, 1, "wood_0")
-                rect(im, x0, y, x1 - x0, 1, "wood_2" if base == "wood_1" else "wood_3")
-                if x >= 4:
-                    rect(im, x0, y, 1, bh, "wood_0")
-                if rng.random() < 0.35 and x1 - x0 > 20:
-                    kx = rng.randrange(x0 + 6, x1 - 10)
-                    rect(im, kx, y + 3, 4, 3, "wood_0"); rect(im, kx + 1, y + 4, 2, 1, "wood_1")
-                if rng.random() < 0.6 and x >= 4 and x0 + 4 < x1:
-                    dot(im, x0 + 2, y + 3, "lead_2")
-            x += ln
-    # Rahmen aus Stamm
-    for (x0, y0, ww, hh) in ((0, 0, w, 4), (0, h - 4, w, 4), (0, 0, 4, h), (w - 4, 0, 4, h)):
-        grain(im, x0, y0, ww, hh, "wood_3", "wood_4", "wood_2", x0 + y0 + 7, horizontal=ww > hh)
-    rect(im, 0, 0, w, 1, "wood_0"); rect(im, 0, h - 1, w, 1, "wood_0")
-    rect(im, 0, 0, 1, h, "wood_0"); rect(im, w - 1, 0, 1, h, "wood_0")
-    rect(im, 1, 1, w - 2, 1, "wood_4"); rect(im, 1, 1, 1, h - 2, "wood_4")
-    rect(im, 4, 4, w - 8, 1, "wood_0"); rect(im, 4, 4, 1, h - 8, "wood_0")
-    rect(im, 4, h - 5, w - 8, 1, "wood_2"); rect(im, w - 5, 4, 1, h - 8, "wood_2")
-    for nx, ny in ((6, 6), (w - 9, 6), (6, h - 9), (w - 9, h - 9)):
-        nail(im, nx, ny)
+    lip = 6
+    bh = 30
+    tones = ["wood_2", "wood_3", "wood_2", "wood_3", "wood_2", "wood_3", "wood_2"]
+    y = 0
+    for i in range(7):
+        top = y
+        bot = min(y + bh, h - lip)
+        base = tones[i]
+        light = "wood_3" if base == "wood_2" else "wood_4"
+        dark = "wood_1" if base == "wood_2" else "wood_2"
+        grain(im, 0, top, w, bot - top, base, light, dark, 100 + i, density=0.35)
+        rect(im, 0, bot - 1, w, 1, "wood_1")
+        rect(im, 0, top, w, 1, light)
+        seam = rng.randrange(80, w - 80)
+        rect(im, seam, top + 1, 1, bot - top - 2, "wood_1")
+        y = bot
+    # Tischkante unten
+    rect(im, 0, h - lip, w, lip, "wood_1")
+    rect(im, 0, h - lip, w, 1, "wood_3")
+    rect(im, 0, h - lip + 1, w, 1, "wood_2")
+    rect(im, 0, h - 1, w, 1, "wood_0")
     return im
-
-
-def sheet():
-    return ragged(152, 146, 15, 3, 2)
-
-
-def fragment():
-    return ragged(66, 62, 16, 3, 3, chips=10)
-
-
-def paper_strip():
-    return ragged(180, 55, 17, 2, 2, chips=8)
 
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     allowed = {v for v in PAL.values()} | {(0, 0, 0, 0)}
-    for name, fn in [("backdrop", backdrop), ("sheet", sheet), ("fragment", fragment), ("paper_strip", paper_strip)]:
+    for name, fn in [("backdrop", backdrop)]:
         im = fn()
         bad = {p for p in im.getdata() if p not in allowed}
         assert not bad, (name, bad)

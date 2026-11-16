@@ -348,19 +348,19 @@ public class PressScreen extends StationScreen {
     private void drawLeft(GuiGraphics g) {
         drawLectern(g, bench.fragment.words().stream().map(w -> w.greek()).toList(), i -> false);
 
-        // Stapel der fertigen Zeilen
+        // Fertige Zeilen: kleine Zettel, jeder so breit wie sein Text, ohne Kasten drumherum
         int[] st = ui.rect("proof_stack");
-        panel(g, st, col("wood_0"), col("wood_1"), col("ink_1"));
         List<String> done = session.finishedLines();
-        int visible = st[3] / 8;
+        int visible = st[3] / 9;
         int first = Math.max(0, done.size() - visible);
         for (int j = first; j < done.size(); j++) {
-            int sy = st[1] + 1 + (j - first) * 8;
-            fill(g, st[0] + 2, sy, st[2] - 4, 6, col("parchment_3"));
-            fill(g, st[0] + 2, sy + 6, st[2] - 4, 1, col("parchment_0"));
+            int sy = st[1] + (j - first) * 9;
             String text = done.get(j);
+            int sw = Math.min(st[2], text.length() * 3 + 8);
+            int sx = st[0] + (st[2] - sw) / 2;
+            RaggedPaper.draw(g, ui, sx, sy, sw, 8, 1);
             for (int k = 0; k < text.length(); k++) {
-                if (text.charAt(k) != ' ') fill(g, st[0] + 5 + k * 3, sy + 2, 2, 3, col("ink_1"));
+                if (text.charAt(k) != ' ') fill(g, sx + 4 + k * 3, sy + 3, 2, 3, col("ink_1"));
             }
         }
     }

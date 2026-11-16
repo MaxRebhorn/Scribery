@@ -193,8 +193,7 @@ public class TileScreen extends StationScreen {
 
     /** Wo die Woerter auf dem gedruckten Bogen stehen. */
     private int[][] latinWordRects() {
-        int[] r = ui.rect("t_latin");
-        return flowWords(pageWords(false), r[0] + 5, r[1] + 5, r[2] - 10, LATIN_LINE);
+        return fit(pageWords(false), ui.rect("t_latin"), LATIN_LINE, 5).words();
     }
 
     private static int wordAt(int[][] rects, double x, double y) {
@@ -372,14 +371,12 @@ public class TileScreen extends StationScreen {
     /** Der gedruckte lateinische Bogen unter dem Pult. Leer, solange an der Presse nichts gedruckt ist. */
     private void drawPrintedSheet(GuiGraphics g) {
         int[] r = ui.rect("t_latin");
-        fill(g, r[0], r[1], r[2], r[3], col("wood_0"));
         if (!printed()) return;
-        fill(g, r[0] + 2, r[1] + 2, r[2] - 4, r[3] - 4, col("parchment_3"));
-        fill(g, r[0] + 2, r[1] + r[3] - 3, r[2] - 4, 1, col("parchment_0"));
+        Fit fit = fit(pageWords(false), r, LATIN_LINE, 5);
+        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
         List<String> words = pageWords(false);
         int[][] rects = latinWordRects();
         for (int i = 0; i < rects.length; i++) {
-            if (rects[i][1] + 9 > r[1] + r[3] - 3) break;
             g.drawString(font, words.get(i), rects[i][0], rects[i][1],
                     session.isRevealed(i) ? col("parchment_1") : col("ink_0"), false);
         }
@@ -388,7 +385,7 @@ public class TileScreen extends StationScreen {
     /** Das Blatt, das beschrieben wird. Ein Wort erscheint erst, wenn es angeklickt wurde. */
     private void drawSheet(GuiGraphics g) {
         int[] sh = ui.rect("t_sheet");
-        tex(g, "sheet", sh);
+        RaggedPaper.draw(g, ui, sh[0], sh[1], sh[2], sh[3], 2);
 
         for (int i = 0; i < session.slotCount(); i++) {
             if (!session.isRevealed(i)) continue;
