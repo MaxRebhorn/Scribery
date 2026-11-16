@@ -516,6 +516,8 @@ public class PressScreen extends StationScreen {
         int ink = session.ink();
         String level = ink >= 6 ? "barrel_full" : ink >= 3 ? "barrel_two_thirds" : ink >= 1 ? "barrel_one_third" : "barrel_empty";
         fill(g, b[0] + 4, b[1] + 12, b[2] - 8, b[3] - 24, col(level));
+        // Mit Tinte steht ein Tintenbeutel im Fass, leer sieht man nur den hellen Boden.
+        if (ink > 0) g.blit(item("ink_sac"), b[0] + (b[2] - 16) / 2, b[1] + 12 + (b[3] - 24 - 16) / 2, 0f, 0f, 16, 16, 16, 16);
         if (hand != Hand.ROLLER) {
             int[] r = ui.rect("roller_rest");
             fill(g, r[0], r[1] + 2, r[2] - 8, r[3] - 4, col("lead_3"));
@@ -523,22 +525,25 @@ public class PressScreen extends StationScreen {
             fill(g, r[0] + r[2] - 8, r[1] + 4, 8, 2, col("wood_4"));
         }
 
-        // Papiervorrat: ein schief gestapelter Stoss einzelner Boegen
+        // Papiervorrat: ein schief gestapelter Stoss einzelner Boegen, ohne Papier leer
         int[] p = ui.rect("paper_stock");
-        fill(g, p[0] + 2, p[1] + p[3] - 5, p[2] - 2, 4, 0x66000000);
-        for (int i = 0; i < 8; i++) {
+        int sheets = Math.min(8, (session.paperStock() + 1) / 2);
+        if (sheets > 0) fill(g, p[0] + 2, p[1] + p[3] - 5, p[2] - 2, 4, 0x66000000);
+        for (int i = 0; i < sheets; i++) {
             int dx = new int[] { 1, 0, 2, 1, 0, 2, 1, 0 }[i];
             int y = p[1] + p[3] - 17 - i * 3;
             int w = p[2] - 4;
             fill(g, p[0] + dx, y, w, 14, col("parchment_0"));
             fill(g, p[0] + dx + 1, y, w - 2, 13, col("parchment_3"));
             fill(g, p[0] + dx + 1, y + 11, w - 2, 2, col("parchment_1"));
-            if (i % 3 == 0) fill(g, p[0] + dx + 1, y, 2, 13, col("parchment_2"));
+            if (i % 3 == 0) fill(g, p[0] + dx + 1, y + 0, 2, 13, col("parchment_2"));
         }
-        int ty = p[1] + p[3] - 17 - 7 * 3;
-        fill(g, p[0] + 3, ty + 3, p[2] - 10, 1, col("parchment_1"));
-        fill(g, p[0] + 3, ty + 6, p[2] - 12, 1, col("parchment_1"));
-        fill(g, p[0] + 3, ty + 9, p[2] - 9, 1, col("parchment_1"));
+        if (sheets > 0) {
+            int ty = p[1] + p[3] - 17 - (sheets - 1) * 3;
+            fill(g, p[0] + 3, ty + 3, p[2] - 10, 1, col("parchment_1"));
+            fill(g, p[0] + 3, ty + 6, p[2] - 12, 1, col("parchment_1"));
+            fill(g, p[0] + 3, ty + 9, p[2] - 9, 1, col("parchment_1"));
+        }
 
         // Buchstabenbox
         int[] lc = ui.rect("letter_case");

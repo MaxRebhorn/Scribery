@@ -32,11 +32,6 @@ public final class ClientHooks {
         open(pos, Stations.Kind.PRESS);
     }
 
-    /** Minting Table angeklickt. */
-    public static void openMint(BlockPos pos) {
-        Minecraft.getInstance().setScreen(new MintScreen(pos));
-    }
-
     private static void open(BlockPos clicked, Stations.Kind start) {
         Minecraft mc = Minecraft.getInstance();
         Level level = mc.level;

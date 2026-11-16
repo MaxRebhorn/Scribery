@@ -24,18 +24,6 @@ public final class ModNetwork {
 
     private ModNetwork() {}
 
-    /** Ein Buchstabe soll am Minting Table gegossen werden. */
-    public record CastLetter(BlockPos pos, int letter) implements CustomPacketPayload {
-        public static final Type<CastLetter> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "cast_letter"));
-        public static final StreamCodec<ByteBuf, CastLetter> CODEC = StreamCodec.composite(
-                BlockPos.STREAM_CODEC, CastLetter::pos, ByteBufCodecs.VAR_INT, CastLetter::letter, CastLetter::new);
-
-        @Override
-        public Type<? extends CustomPacketPayload> type() {
-            return TYPE;
-        }
-    }
-
     /** Stand des Schranks nach dem Druck: Letter-Vorrat, Tinte, Papier. */
     public record CommitCabinet(BlockPos pos, List<Integer> letters, int ink, int paper) implements CustomPacketPayload {
         public static final Type<CommitCabinet> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "commit_cabinet"));
@@ -54,18 +42,7 @@ public final class ModNetwork {
 
     public static void register(RegisterPayloadHandlersEvent event) {
         var r = event.registrar("1");
-        r.playToServer(CastLetter.TYPE, CastLetter.CODEC, (p, ctx) -> ctx.enqueueWork(() -> cast(p, ctx)));
         r.playToServer(CommitCabinet.TYPE, CommitCabinet.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commit(p, ctx)));
-    }
-
-    private static void cast(CastLetter p, IPayloadContext ctx) {
-        if (!(ctx.player() instanceof ServerPlayer player)) return;
-        if (player.distanceToSqr(p.pos().getCenter()) > REACH_SQR) return;
-        if (p.letter() < 0 || p.letter() >= ModItems.LETTER_ITEMS.size()) return;
-        if (!(player.level().getBlockEntity(p.pos()) instanceof MintBlockEntity be)) return;
-        if (!be.use(1)) return;
-        Give.items(player, ModItems.LETTER_ITEMS.get(p.letter()).get(), MintBlockEntity.YIELD);
-        player.level().playSound(null, p.pos(), SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.5f, 1.5f);
     }
 
     private static void commit(CommitCabinet p, IPayloadContext ctx) {
