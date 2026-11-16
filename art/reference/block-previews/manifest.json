@@ -1,0 +1,197 @@
+{
+  "project": "Scribery & Crafts",
+  "version": "block-textures-v1",
+  "texture_size_px": [
+    16,
+    16
+  ],
+  "palette": {
+    "wood_0": "#3b2618",
+    "wood_1": "#5a3a22",
+    "wood_2": "#7a5230",
+    "wood_3": "#9c6b3f",
+    "wood_4": "#b98a56",
+    "lead_0": "#2b2d31",
+    "lead_1": "#4a4d54",
+    "lead_2": "#6f737b",
+    "lead_3": "#9a9ea6",
+    "lead_4": "#c9ccd1",
+    "parchment_0": "#8f7446",
+    "parchment_1": "#c9a66b",
+    "parchment_2": "#e3c88f",
+    "parchment_3": "#f1e2b8",
+    "ink_0": "#0e0e12",
+    "ink_1": "#23232b",
+    "barrel_full": "#101014",
+    "barrel_two_thirds": "#2e2c33",
+    "barrel_one_third": "#5a5560",
+    "barrel_empty": "#8a8279",
+    "flame_0": "#fff2a8",
+    "flame_1": "#ffb62e",
+    "flame_2": "#e8641a",
+    "smear": "#3a3640",
+    "rubric": "#9c2f25",
+    "gui_face": "#c6c6c6",
+    "gui_shadow": "#555555",
+    "gui_light": "#ffffff"
+  },
+  "textures": [
+    {
+      "file": "scribe_lectern_side.png",
+      "size": "16x16",
+      "group": "scribe_lectern",
+      "description": "Wooden side surface with chunky grain and dark edge trim."
+    },
+    {
+      "file": "scribe_lectern_top.png",
+      "size": "16x16",
+      "group": "scribe_lectern",
+      "description": "Sloped lectern top with a blank parchment inset; manuscript content remains a separate item."
+    },
+    {
+      "file": "scribe_lectern_front.png",
+      "size": "16x16",
+      "group": "scribe_lectern",
+      "description": "Front panel with a small dark support detail."
+    },
+    {
+      "file": "letter_cabinet_front.png",
+      "size": "16x16",
+      "group": "letter_cabinet",
+      "description": "Front with twelve empty type compartments and tiny metal drawer markers."
+    },
+    {
+      "file": "letter_cabinet_side.png",
+      "size": "16x16",
+      "group": "letter_cabinet",
+      "description": "Plain wooden cabinet side panel."
+    },
+    {
+      "file": "letter_cabinet_top.png",
+      "size": "16x16",
+      "group": "letter_cabinet",
+      "description": "Cabinet top with a small recessed metal tray area for accessories."
+    },
+    {
+      "file": "letter_cabinet_inkwell.png",
+      "size": "16x16",
+      "group": "letter_cabinet",
+      "description": "Angular dark ink bottle detail for the cabinet top."
+    },
+    {
+      "file": "letter_cabinet_roller.png",
+      "size": "16x16",
+      "group": "letter_cabinet",
+      "description": "Small wooden and metal roller detail stored with the cabinet."
+    },
+    {
+      "file": "printing_press_table_top.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Iron printing bed inset into a wooden press table."
+    },
+    {
+      "file": "printing_press_table_side.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Heavy wooden table side with dark reinforced edge."
+    },
+    {
+      "file": "printing_press_table_front.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Front fascia with simple iron reinforcement bands."
+    },
+    {
+      "file": "printing_press_upper_front.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Front of upper press assembly with two wooden uprights and a metal platen."
+    },
+    {
+      "file": "printing_press_upper_side.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Side surface of upper press frame and platen."
+    },
+    {
+      "file": "printing_press_roller.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Roller detail in the press mechanism."
+    },
+    {
+      "file": "printing_press_lever.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Angular metal-mounted wooden lever detail."
+    },
+    {
+      "file": "printing_press_metal_plate.png",
+      "size": "16x16",
+      "group": "printing_press",
+      "description": "Square metal plate texture for brackets and platen fittings."
+    },
+    {
+      "file": "translator_desk_top.png",
+      "size": "16x16",
+      "group": "translator_desk",
+      "description": "Wooden desk with a blank parchment writing inset."
+    },
+    {
+      "file": "translator_desk_side.png",
+      "size": "16x16",
+      "group": "translator_desk",
+      "description": "Wooden desk side."
+    },
+    {
+      "file": "translator_desk_front.png",
+      "size": "16x16",
+      "group": "translator_desk",
+      "description": "Desk front with a simple shallow drawer and wooden pull."
+    },
+    {
+      "file": "manuscript_archive_top.png",
+      "size": "16x16",
+      "group": "manuscript_archive",
+      "description": "Raised wooden archive surface with an empty arrangement grid for fragments."
+    },
+    {
+      "file": "manuscript_archive_side.png",
+      "size": "16x16",
+      "group": "manuscript_archive",
+      "description": "Thick wooden edge of the manuscript archive."
+    },
+    {
+      "file": "manuscript_archive_front.png",
+      "size": "16x16",
+      "group": "manuscript_archive",
+      "description": "Archive front with reinforced rails."
+    },
+    {
+      "file": "bookshelf_front.png",
+      "size": "16x16",
+      "group": "bookshelf",
+      "description": "Bookcase front with abstract book spines and no readable titles."
+    },
+    {
+      "file": "bookshelf_side.png",
+      "size": "16x16",
+      "group": "bookshelf",
+      "description": "Solid wooden side panel of bookshelf."
+    },
+    {
+      "file": "bookshelf_top.png",
+      "size": "16x16",
+      "group": "bookshelf",
+      "description": "Top wooden cap of bookshelf."
+    }
+  ],
+  "notes": [
+    "These are first-pass tile textures for future block models, not complete block models or blockstates.",
+    "All textures are 16x16 PNGs and use only the documented project palette plus transparency.",
+    "No dynamic text, manuscript content, item letters, quantities, UI slots, or animation frames are baked in.",
+    "The Printing Press uses separate table and upper-mechanism texture groups; the in-game model can assemble them vertically.",
+    "The Letter Cabinet is a separate block and includes optional ink-well and roller detail textures for model geometry."
+  ]
+}
