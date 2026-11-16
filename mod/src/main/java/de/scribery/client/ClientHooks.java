@@ -1,5 +1,6 @@
 package de.scribery.client;
 
+import de.scribery.Manuscripts;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,7 +25,7 @@ public final class ClientHooks {
 
     /** Fragment in der Hand angeschaut: gleiche Anordnung wie am Pult. */
     public static void openFragmentView(int debugIndex) {
-        var all = DebugFragments.load();
+        var all = Manuscripts.load();
         if (debugIndex < 0 || debugIndex >= all.size()) return;
         Minecraft.getInstance().setScreen(new SheetViewScreen(
                 all.get(debugIndex).words().stream().map(w -> w.greek()).toList()));
@@ -69,6 +70,7 @@ public final class ClientHooks {
                 : lecternFragment >= 0 ? new Workbench(lecternFragment, st) : Workbench.free(st);
         BENCHES.put(net.anchor(), bench);
         bench.cabinetPos = net.cabinet();
+        bench.lecternPos = net.lectern();
         if (net.cabinet() != null && level.getBlockEntity(net.cabinet()) instanceof CabinetBlockEntity cbe) {
             bench.applyResources(cbe.letters(), cbe.ink(), cbe.paper(), cbe.forme());
         }

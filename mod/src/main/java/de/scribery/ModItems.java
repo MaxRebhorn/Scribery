@@ -22,6 +22,8 @@ public final class ModItems {
     /** Die Letter Types in der Reihenfolge der Buchstabenbox (A B C D E Ē G H ...). */
     public static final List<Supplier<Item>> LETTER_ITEMS = new ArrayList<>();
 
+    public static final Supplier<Item> MANUSCRIPT_FRAGMENT = ITEMS.registerItem("manuscript_fragment", ManuscriptFragmentItem::new);
+
     private static Supplier<Item> simple(String id) {
         Supplier<Item> s = ITEMS.registerSimpleItem(id);
         ALL.add(s);
@@ -41,12 +43,7 @@ public final class ModItems {
     };
     static {
         for (String l : LETTERS) LETTER_ITEMS.add(simple("letter_type_" + l));
-        for (int i = 1; i <= 5; i++) {
-            final int n = i;
-            Supplier<Item> s = ITEMS.registerItem("manuscript_fragment_" + n,
-                    p -> new ManuscriptFragmentItem(p.stacksTo(1), n));
-            ALL.add(s);
-        }
+        ALL.add(MANUSCRIPT_FRAGMENT);
         for (String b : new String[] {
                 "greek_alphabet_primer", "greek_grammar_book", "greek_lexicon_a_c", "greek_lexicon_d_f",
                 "thematic_greek_lexicon", "greek_forms_grammar_lexicon", "complete_greek_lexicon"})
@@ -57,7 +54,11 @@ public final class ModItems {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.scribery"))
                     .icon(() -> LETTER_ITEMS.get(0).get().getDefaultInstance())
-                    .displayItems((params, out) -> { ModBlocks.ALL.forEach(b -> out.accept(b.get())); ALL.forEach(s -> out.accept(s.get())); })
+                    .displayItems((params, out) -> {
+                        ModBlocks.ALL.forEach(b -> out.accept(b.get()));
+                        ALL.forEach(s -> { if (s != MANUSCRIPT_FRAGMENT) out.accept(s.get()); });
+                        for (Manuscripts.Fragment f : Manuscripts.load()) out.accept(ManuscriptFragmentItem.of(f.id()));
+                    })
                     .build());
 
     /** Index des Buchstabens in der Box, oder -1 wenn das Item kein Letter Type ist. */

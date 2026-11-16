@@ -1,5 +1,6 @@
 package de.scribery.client;
 
+import de.scribery.Manuscripts;
 import java.util.List;
 import java.util.Random;
 
@@ -18,13 +19,15 @@ final class Workbench {
 
     final int fragmentIndex;
     /** Null, wenn kein Fragment gewaehlt ist (freier Druck). */
-    final DebugFragments.Fragment fragment;
+    final Manuscripts.Fragment fragment;
     final PressSession press;
     final Stations stations;
     /** Wird von der Plaettchen-Station angelegt, sobald sie zum ersten Mal offen ist. */
     TileSession tiles;
     /** Der Lettern-Schrank, aus dem diese Presse ihre Vorraete bezieht; null im Debug. */
     net.minecraft.core.BlockPos cabinetPos;
+    /** Das Pult, auf dem das Fragment liegt; null, wenn keins da ist. */
+    net.minecraft.core.BlockPos lecternPos;
     /** Wie viele fertige Boegen der Presse schon an den Server gemeldet sind. */
     int sheetsSent;
     /** Uebersetzungstisch, an dem dieser Stand arbeitet; null im Debug. */
@@ -40,7 +43,7 @@ final class Workbench {
     }
 
     Workbench(int index, Stations stations) {
-        List<DebugFragments.Fragment> all = DebugFragments.load();
+        List<Manuscripts.Fragment> all = Manuscripts.load();
         UiLayout ui = UiLayout.get();
         this.stations = stations;
         this.fragmentIndex = Math.floorMod(index, all.size());

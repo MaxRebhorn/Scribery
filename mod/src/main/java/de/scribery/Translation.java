@@ -3,7 +3,6 @@ package de.scribery;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.scribery.client.DebugFragments;
 import de.scribery.core.TileSession;
 
 /** Prueft auf dem Server, dass eine gemeldete Uebersetzung zu den Woertern des Bogens passt. */
@@ -15,7 +14,7 @@ final class Translation {
      * ueber die lateinische Form im Platzhalter-Fragment.
      */
     static boolean isCorrect(SheetData sheet, List<String> english) {
-        List<DebugFragments.Fragment> all = DebugFragments.load();
+        List<Manuscripts.Fragment> all = Manuscripts.load();
         if (sheet.fragment() < 0 || sheet.fragment() >= all.size()) return false;
         List<TileSession.Word> words = all.get(sheet.fragment()).tileWords();
         List<String> latin = new ArrayList<>();

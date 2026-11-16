@@ -153,6 +153,21 @@ final class SelfTest {
         then(40, () -> { });
         shot(mc, "15-tiles-complete");
 
+        // Die echten Manuskripte: laden, in Boegen aufteilen, Plaettchen bauen
+        then(0, () -> {
+            var real = de.scribery.Manuscripts.loadReal();
+            int sheets = 0;
+            for (var f : real) {
+                var press = new de.scribery.core.PressSession(f.words(), 16, 4, 3, 16, 8, 0, new java.util.Random(1));
+                sheets += press.pageCount();
+                for (var page : press.sheets()) {
+                    de.scribery.core.TileSession.tilesFor(f.tileWords(), page, 1L, 3);
+                }
+            }
+            LOG.info("[selftest] echte Manuskripte: {} mit {} Boegen", real.size(), sheets);
+            if (real.size() != 21) throw new IllegalStateException("erwartet 21 Manuskripte, geladen " + real.size());
+        });
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();

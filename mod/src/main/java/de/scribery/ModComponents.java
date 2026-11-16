@@ -12,6 +12,12 @@ public final class ModComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SheetData>> SHEET =
             COMPONENTS.registerComponentType("sheet", b -> b.persistent(SheetData.CODEC).networkSynchronized(SheetData.STREAM_CODEC));
 
+    /** Welches Manuskript ein Fragment-Item zeigt: die ID wie "P7". */
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> MANUSCRIPT =
+            COMPONENTS.registerComponentType("manuscript",
+                    b -> b.persistent(com.mojang.serialization.Codec.STRING)
+                            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.STRING_UTF8));
+
     public static void register(IEventBus bus) {
         COMPONENTS.register(bus);
     }

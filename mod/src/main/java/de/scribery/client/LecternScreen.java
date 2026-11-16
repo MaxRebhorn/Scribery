@@ -40,13 +40,26 @@ final class LecternScreen extends StationScreen {
         g.pose().scale(2f, 2f, 1f);
         drawFragmentPaper(g, words, new int[] { 0, 0, 66, 62 }, i -> false);
         g.pose().popPose();
+        if (bench.lecternPos != null) drawButton(g, takeRect(), TAKE);
+    }
+
+    private static final String TAKE = "Take manuscript";
+
+    private int[] takeRect() {
+        String t = TAKE;
+        return buttonRect(t, (ui.canvasW - (font.width(t) + 12)) / 2, 196);
     }
 
     @Override
     protected void drawHand(GuiGraphics g) {}
 
     @Override
-    public void clickCanvas(double x, double y, int button) {}
+    public void clickCanvas(double x, double y, int button) {
+        if (button == 0 && bench.lecternPos != null && bench.fragment != null && in(takeRect(), x, y, 0)) {
+            net.neoforged.neoforge.network.PacketDistributor.sendToServer(new de.scribery.ModNetwork.TakeItem(bench.lecternPos));
+            onClose();
+        }
+    }
 
     @Override
     public void releaseCanvas(double x, double y, int button) {}

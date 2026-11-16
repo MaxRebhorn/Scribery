@@ -6,11 +6,6 @@
   "item.scribery.thematic_greek_lexicon": "Thematic Greek Lexicon",
   "item.scribery.greek_forms_grammar_lexicon": "Greek Forms & Grammar Lexicon",
   "item.scribery.complete_greek_lexicon": "Complete Greek Lexicon",
-  "item.scribery.manuscript_fragment_1": "Manuscript Fragment 1",
-  "item.scribery.manuscript_fragment_2": "Manuscript Fragment 2",
-  "item.scribery.manuscript_fragment_3": "Manuscript Fragment 3",
-  "item.scribery.manuscript_fragment_4": "Manuscript Fragment 4",
-  "item.scribery.manuscript_fragment_5": "Manuscript Fragment 5",
   "item.scribery.letter_type_a": "Letter Type A",
   "item.scribery.letter_type_b": "Letter Type B",
   "item.scribery.letter_type_c": "Letter Type C",
@@ -43,5 +38,6 @@
   "block.scribery.minting_table": "Minting Table",
   "item.scribery.printed_sheet": "Printed Sheet",
   "item.scribery.translated_sheet": "Translated Sheet",
-  "item.scribery.wooden_word_tablet": "Wooden Word Tablet"
+  "item.scribery.wooden_word_tablet": "Wooden Word Tablet",
+  "item.scribery.manuscript_fragment": "Manuscript Fragment"
 }

@@ -286,6 +286,12 @@ public class TileScreen extends StationScreen {
         if (busy() || session.isComplete() || button != 0) return;
         syncPage();
 
+        if (bench.deskPos != null && in(takeRect(), x, y, 0)) {
+            net.neoforged.neoforge.network.PacketDistributor.sendToServer(new de.scribery.ModNetwork.TakeItem(bench.deskPos));
+            onClose();
+            return;
+        }
+
         if (in(ui.rect("t_quill"), x, y, 2)) {
             typingSlot = -1;
             startWriting();
@@ -335,6 +341,12 @@ public class TileScreen extends StationScreen {
     }
 
     // ------------------------------------------------------------------ Tippen
+
+    private static final String TAKE = "Take printed sheet";
+
+    private int[] takeRect() {
+        return buttonRect(TAKE, 8, 196);
+    }
 
     private static final char[] SPECIAL = { '\u0112', '\u014C' }; // Ē Ō
 
@@ -449,6 +461,7 @@ public class TileScreen extends StationScreen {
         drawPrintedSheet(g);
         drawSheet(g);
         drawBoxes(g);
+        if (bench.deskPos != null) drawButton(g, takeRect(), TAKE);
         drawQuill(g);
         if (typingSlot >= 0) {
             for (int i = 0; i < SPECIAL.length; i++) {

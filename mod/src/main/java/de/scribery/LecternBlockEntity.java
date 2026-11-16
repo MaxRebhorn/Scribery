@@ -30,7 +30,7 @@ public class LecternBlockEntity extends BlockEntity {
 
     /** Index des Platzhalter-Textes, oder -1 wenn nichts auf dem Pult liegt. */
     public int debugFragmentIndex() {
-        return fragment.getItem() instanceof ManuscriptFragmentItem f ? f.debugFragmentIndex() : -1;
+        return fragment.getItem() instanceof ManuscriptFragmentItem ? ManuscriptFragmentItem.indexOf(fragment) : -1;
     }
 
     @Override

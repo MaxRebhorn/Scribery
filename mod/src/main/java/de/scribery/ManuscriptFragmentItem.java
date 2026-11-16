@@ -1,27 +1,49 @@
 package de.scribery;
 
+import java.util.List;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 
-/** Platzhalter-Fragment. Fuer den Debug zeigt jedes Fragment einen Text aus Johannes 1. */
+/** Ein Manuskriptfragment. Welches, steht im Datenfeld {@link ModComponents#MANUSCRIPT} (die ID, z. B. "P7"). */
 public class ManuscriptFragmentItem extends Item {
-    private static final int DEBUG_TEXTS = 3; // P1 bis P3 in fragments.example.json
-    private final int number;
+    public ManuscriptFragmentItem(Properties props) {
+        super(props.stacksTo(1));
+    }
 
-    public ManuscriptFragmentItem(Properties props, int number) {
-        super(props);
-        this.number = number;
+    public static ItemStack of(String id) {
+        ItemStack s = new ItemStack(ModItems.MANUSCRIPT_FRAGMENT.get());
+        s.set(ModComponents.MANUSCRIPT.get(), id);
+        return s;
+    }
+
+    /** Index des Manuskripts in {@link Manuscripts}, oder -1, wenn das Item keins (mehr) kennt. */
+    public static int indexOf(ItemStack stack) {
+        String id = stack.get(ModComponents.MANUSCRIPT.get());
+        return id == null ? -1 : Manuscripts.indexOf(id);
     }
 
     @Override
-    public net.minecraft.world.InteractionResultHolder<net.minecraft.world.item.ItemStack> use(
-            net.minecraft.world.level.Level level, net.minecraft.world.entity.player.Player player,
-            net.minecraft.world.InteractionHand hand) {
-        net.minecraft.world.item.ItemStack stack = player.getItemInHand(hand);
-        if (level.isClientSide) de.scribery.client.ClientHooks.openFragmentView(debugFragmentIndex());
-        return net.minecraft.world.InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        int index = indexOf(stack);
+        if (index < 0) return InteractionResultHolder.pass(stack);
+        if (level.isClientSide) de.scribery.client.ClientHooks.openFragmentView(index);
+        return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
     }
 
-    public int debugFragmentIndex() {
-        return (number - 1) % DEBUG_TEXTS;
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tip, TooltipFlag flag) {
+        int index = indexOf(stack);
+        if (index < 0) return;
+        Manuscripts.Fragment f = Manuscripts.load().get(index);
+        tip.add(Component.literal(f.id() + "  " + f.ref()).withStyle(ChatFormatting.GRAY));
     }
 }

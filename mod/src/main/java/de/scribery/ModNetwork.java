@@ -55,6 +55,17 @@ public final class ModNetwork {
         }
     }
 
+    /** Der Spieler nimmt das aufgelegte Fragment vom Pult oder den Bogen vom Uebersetzungstisch zurueck. */
+    public record TakeItem(BlockPos pos) implements CustomPacketPayload {
+        public static final Type<TakeItem> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "take_item"));
+        public static final StreamCodec<ByteBuf, TakeItem> CODEC = StreamCodec.composite(BlockPos.STREAM_CODEC, TakeItem::pos, TakeItem::new);
+
+        @Override
+        public Type<? extends CustomPacketPayload> type() {
+            return TYPE;
+        }
+    }
+
     /** Der Spieler will Vorraete aus seinem Inventar in den Schrank fuellen. mode 0 = Letter Types, 1 = Tinte und Papier. */
     public record Refill(BlockPos pos, int mode) implements CustomPacketPayload {
         public static final Type<Refill> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "refill"));
@@ -86,6 +97,7 @@ public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
         var r = event.registrar("1");
         r.playToServer(CommitCabinet.TYPE, CommitCabinet.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commit(p, ctx)));
+        r.playToServer(TakeItem.TYPE, TakeItem.CODEC, (p, ctx) -> ctx.enqueueWork(() -> take(p, ctx)));
         r.playToServer(Refill.TYPE, Refill.CODEC, (p, ctx) -> ctx.enqueueWork(() -> refill(p, ctx)));
         r.playToServer(CommitDesk.TYPE, CommitDesk.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commitDesk(p, ctx)));
     }
@@ -102,6 +114,23 @@ public final class ModNetwork {
         var out = SheetItem.of(ModItems.TRANSLATED_SHEET.get(), new SheetData(sheet.fragment(), sheet.page(), sheet.lines(), p.english()));
         if (!player.getInventory().add(out)) player.drop(out, false);
         player.level().playSound(null, p.pos(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1f, 1f);
+    }
+
+    private static void take(TakeItem p, IPayloadContext ctx) {
+        if (!(ctx.player() instanceof ServerPlayer player)) return;
+        if (player.distanceToSqr(p.pos().getCenter()) > REACH_SQR) return;
+        var be = player.level().getBlockEntity(p.pos());
+        net.minecraft.world.item.ItemStack back = net.minecraft.world.item.ItemStack.EMPTY;
+        if (be instanceof LecternBlockEntity l) {
+            back = l.fragment();
+            l.setFragment(net.minecraft.world.item.ItemStack.EMPTY);
+        } else if (be instanceof DeskBlockEntity d) {
+            back = d.sheet();
+            d.setSheet(net.minecraft.world.item.ItemStack.EMPTY);
+        }
+        if (back.isEmpty()) return;
+        if (!player.getInventory().add(back)) player.drop(back, false);
+        player.level().playSound(null, p.pos(), SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1f, 1f);
     }
 
     private static void refill(Refill p, IPayloadContext ctx) {

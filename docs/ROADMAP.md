@@ -30,11 +30,10 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher, Rezepte, die Texte
 - Die Presse bleibt ausdrücklich manuell: Lettern werden gezogen, nicht getippt. Sie merkt sich die gesetzten Lettern (im Schrank gespeichert); Buttons füllen Letter Types bzw. Tinte und Papier aus dem Inventar nach.
 - Ausbau offen: Griechische Eingabe mit Akzenten und Spiritus (für Restaurierung und Formenübungen). Eingabeprüfung tolerant: Akzente ignorieren, Buchstaben und Endungen prüfen. Normalisierung (NFC/NFD) beim Vergleichen.
 
-### 4. Echte Texte und Manuskript-IDs
-- Ein Fragment-Item trägt eine Manuskript-ID (P1, P2, …) statt fünf fester Items.
-- Wörter, Glossen und Schwierigkeit kommen aus einer Datendatei; `manuscript_order` und `difficulty` sind getrennt.
-- Validator: jedes Wort muss in die Setzform passen (offener Punkt aus der UI-Spezifikation), Umschrift (`γγ` → `GG`, `υ` → `U`) prüfen.
-- Max liefert die Johannes-Texte und Glossen, das Werkzeug dafür baue ich.
+### 4. Echte Texte und Manuskript-IDs – Pilot eingebunden (Johannes 1,1-18)
+- `tools/build_manuscripts.py` erzeugt aus den Rohdaten (`tools/data/john-*.tsv`) die Manuskripte: Glossen, erlaubte Varianten, falsche Antworten (Kasus/Zahl bei Nomen, sonst gleiche Wortart), Schwierigkeit in 3 Stufen, zufälliges Biom. `ManuscriptDataTest` prüft, dass alles in die Setzform passt.
+- Im Spiel: ein Fragment-Item mit Datenfeld (ID wie P7); der Creative-Tab listet alle. Server und Client laden dieselben Daten (`Manuscripts`). Der Selbsttest nutzt weiter die Platzhalter (Systemeigenschaft `scribery.selftest`).
+- Offen: Das ganze Evangelium erzeugen, Glossen stichprobenartig prüfen, Lizenz/Namensnennung der Wortdaten klären, englischen Satz je Manuskript aus der BSB statt aus den Glossen. Die Manuskript-Nummer ist der Index in der Liste: Wird neu erzeugt, ändert sie sich (bestehende Bögen in der Welt würden falsch zugeordnet); dann auf IDs umstellen.
 
 ### 5. Rezepte und Fortschritt
 - Crafting-Rezepte für alle Blöcke und Hilfsmittel (bisher nur Wooden Word Tablets).

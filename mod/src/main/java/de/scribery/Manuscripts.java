@@ -1,4 +1,4 @@
-package de.scribery.client;
+package de.scribery;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -13,8 +13,13 @@ import com.google.gson.JsonParser;
 import de.scribery.core.PressWord;
 import de.scribery.core.TileSession;
 
-/** Platzhalter-Fragmente fuer /scribery debug, im echten Datenformat. */
-public final class DebugFragments {
+/**
+ * Die Manuskripte des Spiels. Geladen werden die erzeugten Johannes-Daten (tools/build_manuscripts.py).
+ * Der Index in der Liste ist die Nummer eines Manuskripts; die ID (P1, P2, ...) ist sein Name.
+ * Mit der Systemeigenschaft {@code scribery.selftest} werden stattdessen die Platzhalter geladen, auf die der
+ * Selbsttest zugeschnitten ist.
+ */
+public final class Manuscripts {
     public record Fragment(String id, String ref, List<PressWord> words, List<TileSession.Word> tileWords) {
         public String greekText() {
             StringBuilder sb = new StringBuilder();
@@ -26,7 +31,9 @@ public final class DebugFragments {
         }
     }
 
-    private DebugFragments() {}
+    private Manuscripts() {}
+
+    private static List<Fragment> cache;
 
     private static List<String> strings(JsonObject o, String key) {
         List<String> out = new ArrayList<>();
@@ -41,9 +48,31 @@ public final class DebugFragments {
         return 2;
     }
 
+    /** Index des Manuskripts mit dieser ID, oder -1. */
+    public static int indexOf(String id) {
+        List<Fragment> all = load();
+        for (int i = 0; i < all.size(); i++) if (all.get(i).id().equals(id)) return i;
+        return -1;
+    }
+
     public static List<Fragment> load() {
-        var in = DebugFragments.class.getResourceAsStream("/assets/scribery/debug/fragments.example.json");
-        if (in == null) throw new IllegalStateException("Platzhalter-Fragmente fehlen im Mod");
+        if (cache == null) cache = read();
+        return cache;
+    }
+
+    /** Immer die echten Manuskripte, auch im Selbsttest. */
+    public static List<Fragment> loadReal() {
+        return read("/assets/scribery/data/manuscripts.json");
+    }
+
+    private static List<Fragment> read() {
+        return read(Boolean.getBoolean("scribery.selftest")
+                ? "/assets/scribery/debug/fragments.example.json" : "/assets/scribery/data/manuscripts.json");
+    }
+
+    private static List<Fragment> read(String path) {
+        var in = Manuscripts.class.getResourceAsStream(path);
+        if (in == null) throw new IllegalStateException("Manuskripte fehlen im Mod: " + path);
         List<Fragment> out = new ArrayList<>();
         try (Reader r = new InputStreamReader(in, StandardCharsets.UTF_8)) {
             JsonObject root = JsonParser.parseReader(r).getAsJsonObject();

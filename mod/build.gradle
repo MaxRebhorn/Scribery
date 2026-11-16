@@ -59,6 +59,12 @@ processResources {
         include 'layout.json', 'tiles-layout.json', 'palette.json'
         into 'assets/scribery/ui'
     }
+    // Die Manuskripte des Spiels, erzeugt von tools/build_manuscripts.py.
+    from(rootProject.file('tools/data')) {
+        include 'manuscripts.john1.json'
+        rename 'manuscripts.john1.json', 'manuscripts.json'
+        into 'assets/scribery/data'
+    }
     // Platzhalter-Fragmente fuer /scribery debug.
     from(rootProject.file('tools/examples')) {
         include 'fragments.example.json'

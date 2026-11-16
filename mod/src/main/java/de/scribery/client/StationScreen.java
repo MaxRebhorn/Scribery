@@ -1,5 +1,6 @@
 package de.scribery.client;
 
+import de.scribery.Manuscripts;
 import java.util.List;
 
 import com.mojang.blaze3d.platform.Window;
@@ -24,7 +25,7 @@ public abstract class StationScreen extends Screen {
     protected static final int FLASH_TICKS = 50;
 
     protected final UiLayout ui = UiLayout.get();
-    protected final List<DebugFragments.Fragment> fragments = DebugFragments.load();
+    protected final List<Manuscripts.Fragment> fragments = Manuscripts.load();
     protected int fragmentIndex;
 
     protected int ticks;
@@ -257,6 +258,17 @@ public abstract class StationScreen extends Screen {
 
     protected static void frame(GuiGraphics g, int[] r, int t, String material, int interior) {
         frame(g, r[0], r[1], r[2], r[3], t, material, interior);
+    }
+
+    /** Ein einfacher Knopf im Stil der Minecraft-Oberflaeche. Die Breite richtet sich nach dem Text. */
+    protected int[] buttonRect(String text, int x, int y) {
+        return new int[] { x, y, font.width(text) + 12, 14 };
+    }
+
+    protected void drawButton(GuiGraphics g, int[] r, String text) {
+        boolean hover = in(r, mouseCX, mouseCY, 0);
+        panel(g, r, hover ? 0xFFD8D8D8 : col("gui_face"), col("gui_light"), col("gui_shadow"));
+        g.drawString(font, text, r[0] + (r[2] - font.width(text)) / 2, r[1] + 3, col("gui_shadow"), false);
     }
 
     protected void nail(GuiGraphics g, int x, int y) {
