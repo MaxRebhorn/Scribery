@@ -63,8 +63,8 @@ final class SheetViewScreen extends Screen {
     }
 
     private void renderFragment(GuiGraphics g) {
-        // 3-fach: dieselbe Anordnung wie am Pult
-        int s = Math.max(1, Math.min(3, Math.min(width / 66, height / 62)));
+        // 2-fach: dieselbe Anordnung wie am Pult
+        int s = Math.max(1, Math.min(2, Math.min(width / 66, height / 62)));
         g.pose().pushPose();
         g.pose().translate((width - s * 66) / 2f, (height - s * 62) / 2f, 0);
         g.pose().scale(s, s, 1f);
@@ -80,17 +80,20 @@ final class SheetViewScreen extends Screen {
         boolean translated = !sheet.english().isEmpty();
         List<String> latin = new ArrayList<>();
         for (String line : sheet.lines()) for (String w : line.split(" ")) if (!w.isBlank()) latin.add(w);
-        int s = 2;
-        int pw = 150, rowH = translated ? 22 : 12;
+        int rowH = translated ? 22 : 12, wrap = 134;
         List<int[]> pos = new ArrayList<>();
-        int cx = 0, cy = 0;
+        int cx = 0, cy = 0, bw = 0;
         for (int i = 0; i < latin.size(); i++) {
             int w = Math.max(font.width(latin.get(i)), translated && i < sheet.english().size() ? font.width(sheet.english().get(i)) : 0);
-            if (cx > 0 && cx + w > pw - 16) { cx = 0; cy += rowH; }
+            if (cx > 0 && cx + w > wrap) { cx = 0; cy += rowH; }
             pos.add(new int[] { cx, cy, w });
+            bw = Math.max(bw, cx + w);
             cx += w + 6;
         }
-        int ph = Math.max(48, cy + rowH + 16);
+        // Das Blatt ist nur so gross wie sein Text und wird nur vergroessert, wenn es klein genug bleibt.
+        int pw = Math.max(64, bw + 16);
+        int ph = Math.max(40, cy + rowH + 14);
+        int s = (pw * 2 <= width / 2 && ph * 2 <= height * 3 / 5) ? 2 : 1;
         g.pose().pushPose();
         g.pose().translate((width - s * pw) / 2f, (height - s * ph) / 2f, 0);
         g.pose().scale(s, s, 1f);

@@ -25,11 +25,10 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher, Rezepte, die Texte
 - Item mit Rezept (6 Planks → 3 Tablets) und eigener Textur. Der Tisch lagert Tablets, Tinte und Papier; jedes geschriebene Wort verbraucht ein Tablet, auch ein falsches.
 - Eine Übersetzung kostet zusätzlich ein Blatt Papier. Der Server prüft sie gegen die Glossen des Fragments.
 
-### 3. Freie Eingabe von Hand – erste Stufe erledigt
-- An der Presse kann man Buchstaben jetzt mit der Tastatur setzen: Cursor in der Setzform, Pfeiltasten, Rücktaste. Buchstaben ohne Taste (Ē, Ō) setzt man über zwei kleine Tasten unten links.
-- Auch in der Übersetzung: In eine Lücke klicken und das Wort tippen (Tab/Enter, Rücktaste); Tasten für Sonderzeichen erscheinen nur beim Tippen. Tippfehler verwischen wie ein falsches Plättchen.
-- Die Presse merkt sich die gesetzten Lettern (im Schrank gespeichert); Buttons füllen Letter Types bzw. Tinte und Papier aus dem Inventar nach.
-- Ausbau offen: Griechische Eingabe mit Akzenten und Spiritus (für Restaurierung und Formenübungen), Eingabe in der Übersetzung. Eingabeprüfung tolerant: Akzente ignorieren, Buchstaben und Endungen prüfen. Normalisierung (NFC/NFD) beim Vergleichen.
+### 3. Freie Eingabe von Hand – erledigt (nur am Übersetzungstisch)
+- In der Übersetzung klickt man in eine Lücke unter einem Wort und tippt es selbst (Tab/Enter/Rücktaste). Tippfehler verwischen wie ein falsches Plättchen, jedes getippte Wort kostet ein Tablet. Tasten für Ē und Ō erscheinen nur beim Tippen, links neben dem Quill.
+- Die Presse bleibt ausdrücklich manuell: Lettern werden gezogen, nicht getippt. Sie merkt sich die gesetzten Lettern (im Schrank gespeichert); Buttons füllen Letter Types bzw. Tinte und Papier aus dem Inventar nach.
+- Ausbau offen: Griechische Eingabe mit Akzenten und Spiritus (für Restaurierung und Formenübungen). Eingabeprüfung tolerant: Akzente ignorieren, Buchstaben und Endungen prüfen. Normalisierung (NFC/NFD) beim Vergleichen.
 
 ### 4. Echte Texte und Manuskript-IDs
 - Ein Fragment-Item trägt eine Manuskript-ID (P1, P2, …) statt fünf fester Items.

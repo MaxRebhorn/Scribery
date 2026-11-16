@@ -33,11 +33,11 @@ final class LecternScreen extends StationScreen {
     @Override
     protected void drawStation(GuiGraphics g) {
         if (bench.fragment == null) return;
-        // Dieselbe Anordnung wie auf dem Pult in der Presse, nur dreifach vergroessert.
+        // Dieselbe Anordnung wie auf dem Pult in der Presse, nur doppelt vergroessert.
         List<String> words = bench.fragment.words().stream().map(w -> w.greek()).toList();
         g.pose().pushPose();
-        g.pose().translate((ui.canvasW - 3 * 66) / 2f, (ui.canvasH - 3 * 62) / 2f, 0);
-        g.pose().scale(3f, 3f, 1f);
+        g.pose().translate((ui.canvasW - 2 * 66) / 2f, (ui.canvasH - 2 * 62) / 2f, 0);
+        g.pose().scale(2f, 2f, 1f);
         drawFragmentPaper(g, words, new int[] { 0, 0, 66, 62 }, i -> false);
         g.pose().popPose();
     }
