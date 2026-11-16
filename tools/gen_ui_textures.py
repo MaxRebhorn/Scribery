@@ -1,4 +1,4 @@
-"""Erzeugt die statischen UI-Texturen (nur Farben aus art/palette.json) in Minecraft-Optik.
+"""Erzeugt die ausgefransten Papier-Texturen (nur Farben aus art/palette.json). Alles andere nutzt Minecraft-Texturen.
 
 Aufruf: python tools/gen_ui_textures.py
 Ausgabe: mod/src/main/resources/assets/scribery/textures/gui/*.png (Groesse = Rect im Layout, 1 px = 1 GUI-Pixel)
@@ -75,106 +75,64 @@ def wood_frame(w, h, t, inner, seed, nails=True):
     return im
 
 
-def forme():
-    return wood_frame(184, 61, 4, "wood_0", 11)
-
-
-def paper_tray():
-    return wood_frame(184, 59, 2, "wood_0", 12)
-
-
-def platen():
-    im = new(184, 16)
-    rect(im, 0, 0, 184, 16, "lead_1")
-    rect(im, 0, 0, 184, 1, "lead_0"); rect(im, 0, 15, 184, 1, "lead_0")
-    rect(im, 0, 0, 1, 16, "lead_0"); rect(im, 183, 0, 1, 16, "lead_0")
-    rect(im, 1, 1, 182, 2, "lead_3")
-    rect(im, 1, 3, 182, 1, "lead_2")
-    rect(im, 4, 11, 176, 3, "lead_2")
-    rect(im, 4, 13, 176, 1, "lead_0")
-    rect(im, 1, 14, 182, 1, "lead_0")
-    for x in (6, 90, 174):
-        nail(im, x, 5)
-    return im
-
-
-def letter_case():
-    im = new(74, 109)
-    rect(im, 0, 0, 74, 109, "lead_1")
-    bevel(im, 0, 0, 74, 109, "lead_3", "lead_0")
-    rect(im, 1, 1, 72, 107, "lead_0")
-    rect(im, 2, 2, 70, 105, "ink_0")
-    for c in range(5):
-        for r in range(5):
-            x, y = 2 + c * 14, 2 + r * 21
-            rect(im, x, y, 1, 21, "lead_1")
-            rect(im, x, y + 20, 14, 1, "lead_1")
-            rect(im, x + 1, y + 20, 13, 1, "lead_0")
-    rect(im, 72, 2, 1, 105, "lead_1")
-    return im
-
-
-def barrel():
-    w, h = 44, 42
-    im = new(w, h)
+def ragged(w, h, seed, max_lr, max_tb, chips=6):
+    """Pergament mit ausgefranstem Rand: pro Kante ein zufaelliger Verlauf der Tiefe, dazu ein paar Ausbrueche."""
+    rng = random.Random(seed)
+    def profile(n, mx):
+        d, out = rng.randrange(mx + 1), []
+        for _ in range(n):
+            if rng.random() < 0.45:
+                d = max(0, min(mx, d + rng.choice((-1, 1))))
+            out.append(d)
+        return out
+    top, bot = profile(w, max_tb), profile(w, max_tb)
+    left, right = profile(h, max_lr), profile(h, max_lr)
+    solid = [[True] * w for _ in range(h)]
     for x in range(w):
-        c = "wood_3" if (x // 4) % 2 == 0 else "wood_2"
-        rect(im, x, 0, 1, h, c)
-        if x % 4 == 0:
-            rect(im, x, 0, 1, h, "wood_1")
-    rect(im, 0, 0, w, 1, "wood_0"); rect(im, 0, h - 1, w, 1, "wood_0")
-    rect(im, 0, 0, 1, h, "wood_0"); rect(im, w - 1, 0, 1, h, "wood_0")
-    rect(im, 1, 1, w - 2, 1, "wood_4"); rect(im, 1, 1, 1, h - 2, "wood_4")
-    rect(im, 1, h - 2, w - 2, 1, "wood_1"); rect(im, w - 2, 1, 1, h - 2, "wood_1")
-    for y in (8, h - 10):
-        rect(im, 0, y, w, 2, "lead_2"); rect(im, 0, y, w, 1, "lead_3"); rect(im, 0, y + 1, w, 1, "lead_1")
-        nail(im, 3, y - 1 if False else y); nail(im, w - 6, y)
-    # Oeffnung: Rahmen um die Flaeche, die der Code mit dem Fuellstand fuellt
-    rect(im, 3, 11, 38, 20, "lead_0")
-    rect(im, 3, 11, 38, 1, "lead_0"); rect(im, 3, 30, 38, 1, "lead_3")
-    rect(im, 4, 12, 36, 18, "barrel_full")
-    # runde Ecken
-    for x, y in ((0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1), (1, 0), (w - 2, 0), (1, h - 1), (w - 2, h - 1),
-                 (0, 1), (w - 1, 1), (0, h - 2), (w - 1, h - 2)):
-        im.load()[x, y] = (0, 0, 0, 0)
-    return im
-
-
-def lectern():
-    return wood_frame(78, 74, 6, "wood_1", 13)
-
-
-def box():
-    im = wood_frame(120, 46, 3, "wood_0", 14, nails=False)
-    for y in (13, 23, 33):
-        rect(im, 4, y, 112, 1, "wood_1")
+        for y in range(h):
+            if y < top[x] or y >= h - bot[x] or x < left[y] or x >= w - right[y]:
+                solid[y][x] = False
+    for _ in range(chips):  # kleine Ausbrueche
+        cx, cy = rng.randrange(2, w - 2), rng.choice((rng.randrange(0, 3), rng.randrange(h - 3, h)))
+        for dx in range(rng.randrange(1, 4)):
+            for dy in range(rng.randrange(1, 3)):
+                if 0 <= cx + dx < w and 0 <= cy + dy < h:
+                    solid[cy + dy][cx + dx] = False
+    im = new(w, h)
+    px = im.load()
+    def at(x, y):
+        return 0 <= x < w and 0 <= y < h and solid[y][x]
+    for y in range(h):
+        for x in range(w):
+            if not solid[y][x]:
+                continue
+            edge = not (at(x - 1, y) and at(x + 1, y) and at(x, y - 1) and at(x, y + 1))
+            near = not (at(x - 2, y) and at(x + 2, y) and at(x, y - 2) and at(x, y + 2))
+            px[x, y] = PAL["parchment_0" if edge else "parchment_1" if near else "parchment_3"]
+    for _ in range(w * h // 40):  # Fasern
+        x, y = rng.randrange(w), rng.randrange(h)
+        for k in range(rng.randrange(2, 6)):
+            if at(x + k, y) and px[x + k, y] == PAL["parchment_3"]:
+                px[x + k, y] = PAL["parchment_2"]
     return im
 
 
 def sheet():
-    w, h = 152, 146
-    im = new(w, h)
-    rng = random.Random(15)
-    rect(im, 0, 0, w, h, "parchment_3")
-    for _ in range(260):
-        x, y = rng.randrange(2, w - 2), rng.randrange(2, h - 2)
-        for k in range(rng.randrange(2, 6)):
-            if x + k < w - 2:
-                dot(im, x + k, y, "parchment_2")
-    rect(im, 0, 0, w, 1, "parchment_0"); rect(im, 0, h - 1, w, 1, "parchment_0")
-    rect(im, 0, 0, 1, h, "parchment_0"); rect(im, w - 1, 0, 1, h, "parchment_0")
-    rect(im, 1, 1, w - 2, 1, "parchment_2"); rect(im, 1, 1, 1, h - 2, "parchment_2")
-    rect(im, 1, h - 2, w - 2, 1, "parchment_1"); rect(im, w - 2, 1, 1, h - 2, "parchment_1")
-    for x, y in ((0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)):
-        im.load()[x, y] = (0, 0, 0, 0)
-    return im
+    return ragged(152, 146, 15, 3, 2)
+
+
+def fragment():
+    return ragged(66, 62, 16, 3, 3, chips=10)
+
+
+def paper_strip():
+    return ragged(180, 55, 17, 2, 2, chips=8)
 
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     allowed = {v for v in PAL.values()} | {(0, 0, 0, 0)}
-    for name, fn in [("forme", forme), ("paper_tray", paper_tray), ("platen", platen), ("letter_case", letter_case),
-                     ("barrel", barrel), ("lectern", lectern), ("box", box), ("sheet", sheet)]:
+    for name, fn in [("sheet", sheet), ("fragment", fragment), ("paper_strip", paper_strip)]:
         im = fn()
         bad = {p for p in im.getdata() if p not in allowed}
         assert not bad, (name, bad)

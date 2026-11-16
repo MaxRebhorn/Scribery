@@ -208,33 +208,22 @@ public abstract class StationScreen extends Screen {
         return n & 0x7fffffff;
     }
 
-    /** Holzbretter mit Maserung und Naegeln, eingefasst von einem Rahmen. Nur Palettenfarben, feste Muster. */
+    /** Dunkle Eichenbretter mit einem Rahmen aus entrindetem Stamm. */
     private void drawBackdrop(GuiGraphics g) {
         int w = ui.canvasW, h = ui.canvasH;
-        fill(g, 0, 0, w, h, col("wood_0"));
-        fill(g, 1, 1, w - 2, h - 2, col("wood_3"));
-        fill(g, 2, 2, w - 4, h - 4, col("wood_1"));
-        int top = 22, plank = 27, row = 0;
-        for (int py = top; py < h - 2; py += plank, row++) {
-            int ph = Math.min(plank, h - 2 - py);
-            for (int k = 0; k < 16; k++) {
-                int r = hash(row * 97 + k);
-                int gx = 3 + (r & 0xff) * (w - 30) / 255;
-                int gy = py + 2 + ((r >> 8) & 0xff) * (ph - 4) / 255;
-                int len = 8 + ((r >> 16) & 15) * 3;
-                fill(g, gx, gy, Math.min(len, w - 3 - gx), 1, ((r >> 20) & 3) == 0 ? col("wood_0") : col("wood_2"));
-            }
-            if (row > 0) {
-                fill(g, 2, py, w - 4, 1, col("wood_0"));
-                fill(g, 2, py + 1, w - 4, 1, col("wood_2"));
-            }
-            int seam = 40 + hash(row * 13 + 5) % (w - 80);
-            fill(g, seam, py + 1, 1, ph - 1, col("wood_0"));
-            if (ph >= plank) {
-                nail(g, 5, py + 4);
-                nail(g, w - 8, py + 4);
-            }
-        }
+        fill(g, 0, 0, w, h, 0xFF0E0E12);
+        tile(g, block("dark_oak_planks"), 1, 1, w - 2, h - 2);
+        ResourceLocation log = block("stripped_dark_oak_log");
+        tile(g, log, 1, 1, w - 2, 4);
+        tile(g, log, 1, h - 5, w - 2, 4);
+        tile(g, log, 1, 5, 4, h - 10);
+        tile(g, log, w - 5, 5, 4, h - 10);
+        fill(g, 1, 1, w - 2, 1, 0x55FFFFFF);
+        fill(g, 1, 1, 1, h - 2, 0x55FFFFFF);
+        fill(g, 4, 4, w - 8, 1, 0xAA000000);
+        fill(g, 4, 4, 1, h - 8, 0xAA000000);
+        fill(g, 4, h - 5, w - 8, 1, 0x44FFFFFF);
+        fill(g, w - 5, 4, 1, h - 8, 0x44FFFFFF);
     }
 
     private static final java.util.Map<String, ResourceLocation> TEXTURES = new java.util.HashMap<>();
@@ -250,10 +239,51 @@ public abstract class StationScreen extends Screen {
         tex(g, name, r[0], r[1], r[2], r[3]);
     }
 
+    private static final java.util.Map<String, ResourceLocation> VANILLA = new java.util.HashMap<>();
+
+    /** Eine Minecraft-Blocktextur (16 x 16), direkt aus dem Spiel geladen, nicht kopiert. */
+    protected static ResourceLocation block(String name) {
+        return VANILLA.computeIfAbsent("block/" + name,
+                n -> ResourceLocation.withDefaultNamespace("textures/" + n + ".png"));
+    }
+
+    protected static ResourceLocation item(String name) {
+        return VANILLA.computeIfAbsent("item/" + name,
+                n -> ResourceLocation.withDefaultNamespace("textures/" + n + ".png"));
+    }
+
+    /** Fuellt eine Flaeche mit einer 16 x 16 grossen Textur, nebeneinander gelegt. */
+    protected static void tile(GuiGraphics g, ResourceLocation rl, int x, int y, int w, int h) {
+        for (int yy = 0; yy < h; yy += 16) {
+            for (int xx = 0; xx < w; xx += 16) {
+                g.blit(rl, x + xx, y + yy, 0f, 0f, Math.min(16, w - xx), Math.min(16, h - yy), 16, 16);
+            }
+        }
+    }
+
+    /** Rahmen der Staerke t aus einer Blocktextur um eine vertiefte Flaeche. */
+    protected static void frame(GuiGraphics g, int x, int y, int w, int h, int t, String material, int interior) {
+        fill(g, x, y, w, h, 0xFF0E0E12);
+        tile(g, block(material), x + 1, y + 1, w - 2, h - 2);
+        fill(g, x + 1, y + 1, w - 2, 1, 0x55FFFFFF);
+        fill(g, x + 1, y + 1, 1, h - 2, 0x55FFFFFF);
+        fill(g, x + 1, y + h - 2, w - 2, 1, 0x66000000);
+        fill(g, x + w - 2, y + 1, 1, h - 2, 0x66000000);
+        fill(g, x + t, y + t, w - 2 * t, h - 2 * t, interior);
+        fill(g, x + t, y + t, w - 2 * t, 1, 0xAA000000);
+        fill(g, x + t, y + t, 1, h - 2 * t, 0xAA000000);
+        fill(g, x + t, y + h - t - 1, w - 2 * t, 1, 0x33FFFFFF);
+        fill(g, x + w - t - 1, y + t, 1, h - 2 * t, 0x33FFFFFF);
+    }
+
+    protected static void frame(GuiGraphics g, int[] r, int t, String material, int interior) {
+        frame(g, r[0], r[1], r[2], r[3], t, material, interior);
+    }
+
     protected void nail(GuiGraphics g, int x, int y) {
-        fill(g, x, y, 3, 3, col("lead_1"));
-        fill(g, x, y, 2, 2, col("lead_3"));
-        fill(g, x + 2, y + 2, 1, 1, col("lead_0"));
+        fill(g, x, y, 3, 3, 0xFF4A4D54);
+        fill(g, x, y, 2, 2, 0xFF9A9EA6);
+        fill(g, x + 2, y + 2, 1, 1, 0xFF2B2D31);
     }
 
     private void drawTopBar(GuiGraphics g) {
@@ -303,19 +333,18 @@ public abstract class StationScreen extends Screen {
         };
     }
 
+    /** Die Kerze aus dem Minecraft-Item, doppelt so gross, mit eigener Flamme. */
     private void drawCandle(GuiGraphics g) {
-        int[] c = ui.rect("candle");
-        fill(g, c[0], c[1] + c[3] - 4, c[2], 4, col("lead_1"));
-        fill(g, c[0] + 3, c[1] + 10, 6, c[3] - 14, col("parchment_3"));
-        fill(g, c[0] + 8, c[1] + 10, 1, c[3] - 14, col("parchment_1"));
+        int x = 8, y = 28;
+        g.blit(item("candle"), x, y, 14, 24, 5f, 4f, 7, 12, 16, 16);
+        fill(g, x + 6, y - 3, 2, 3, col("ink_0"));
         int frame = (ticks / 4) % 4;
-        int fh = new int[] { 7, 8, 6, 8 }[frame];
+        int fh = new int[] { 5, 5, 4, 5 }[frame];
         int dx = new int[] { 0, 0, 1, -1 }[frame];
-        int top = c[1] + 9 - fh;
-        fill(g, c[0] + 4 + dx, top, 4, fh, col("flame_2"));
-        fill(g, c[0] + 5 + dx, top + 2, 2, fh - 2, col("flame_1"));
-        fill(g, c[0] + 5, c[1] + 6, 2, 2, col("flame_0"));
-        fill(g, c[0] + 5, c[1] + 9, 1, 1, col("ink_0"));
+        int top = y - 3 - fh;
+        fill(g, x + 5 + dx, top, 4, fh, col("flame_2"));
+        fill(g, x + 6 + dx, top + 1, 2, fh - 1, col("flame_1"));
+        fill(g, x + 6, y - 5, 2, 2, col("flame_0"));
     }
 
     /**
@@ -349,18 +378,16 @@ public abstract class StationScreen extends Screen {
      * @param dimmed Woerter, die blasser gezeichnet werden (z. B. schon uebertragene)
      */
     protected void drawLectern(GuiGraphics g, List<String> words, java.util.function.IntPredicate dimmed) {
-        tex(g, "lectern", ui.rect("lectern"));
+        int[] lr = ui.rect("lectern");
+        frame(g, lr, 6, "oak_planks", 0xFF3B2618);
+        tile(g, block("spruce_planks"), lr[0] + 7, lr[1] + 7, lr[2] - 14, lr[3] - 14);
+        fill(g, lr[0] + 7, lr[1] + 7, lr[2] - 14, lr[3] - 14, 0x88000000);
+        nail(g, lr[0] + 2, lr[1] + 2);
+        nail(g, lr[0] + lr[2] - 5, lr[1] + 2);
+        nail(g, lr[0] + 2, lr[1] + lr[3] - 5);
+        nail(g, lr[0] + lr[2] - 5, lr[1] + lr[3] - 5);
         int[] f = ui.rect("fragment");
-        fill(g, f[0], f[1], f[2], f[3], col("parchment_1"));
-        fill(g, f[0], f[1] + f[3] - 1, f[2], 1, col("parchment_0"));
-        // ausgerissene Kanten
-        int wood = col("wood_2");
-        fill(g, f[0], f[1], 3, 2, wood);
-        fill(g, f[0] + f[2] - 5, f[1], 5, 3, wood);
-        fill(g, f[0] + f[2] - 2, f[1] + 20, 2, 6, wood);
-        fill(g, f[0], f[1] + f[3] - 7, 4, 7, wood);
-        fill(g, f[0] + 30, f[1] + f[3] - 3, 9, 3, wood);
-        fill(g, f[0] + f[2] - 8, f[1] + f[3] - 5, 8, 5, wood);
+        tex(g, "fragment", f);
         int[][] rects = lecternWordRects(words);
         for (int i = 0; i < rects.length; i++) {
             if (rects[i][1] + 9 > f[1] + f[3] - 6) break; // passt nicht mehr aufs Fragment

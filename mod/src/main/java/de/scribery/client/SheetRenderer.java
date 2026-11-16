@@ -20,8 +20,7 @@ final class SheetRenderer {
     /** Leerer Bogen, linke obere Ecke bei (x, y). */
     static void paper(GuiGraphics g, UiLayout ui, int x, int y) {
         int w = width(ui), h = height(ui);
-        g.fill(x, y, x + w, y + h, ui.color("parchment_3"));
-        g.fill(x, y + h - 1, x + w, y + h, ui.color("parchment_0"));
+        StationScreen.tex(g, "paper_strip", x, y, w, h);
     }
 
     /**

@@ -426,7 +426,8 @@ public class TileScreen extends StationScreen {
     private void drawBoxes(GuiGraphics g) {
         for (int b = 0; b < BOXES; b++) {
             int[] r = ui.rect("t_box_" + b);
-            tex(g, "box", r);
+            frame(g, r, 3, "spruce_planks", 0xFF2A1A10);
+            for (int row = 1; row < 4; row++) fill(g, r[0] + 4, r[1] + 3 + row * 10, r[2] - 8, 1, 0xFF3B2618);
         }
         for (Tile t : session.tiles()) {
             if (t.used() || t.slot() >= 0 || t.id() == handTile) continue;

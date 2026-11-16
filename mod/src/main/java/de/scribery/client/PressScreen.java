@@ -383,7 +383,7 @@ public class PressScreen extends StationScreen {
         fill(g, platen[0] + platen[2] - 10, platen[1] + 4, 4, forme[1] - platen[1], col("lead_0"));
 
         // Setzform
-        tex(g, "forme", forme);
+        frame(g, forme, 4, "oak_planks", 0xFF2A1A10);
         // Die Setzform zeigt immer alle Slots. Was der Text nicht braucht, bleibt einfach frei.
         for (int i = 0; i < session.slotCount(); i++) {
             int x = slotX(i), y = slotY(i);
@@ -398,7 +398,7 @@ public class PressScreen extends StationScreen {
         }
 
         // Papier: auf der Ablage, auf dem Weg in die Presse oder unter dem Tiegel
-        tex(g, "paper_tray", tray);
+        frame(g, tray, 2, "oak_planks", 0xFF2A1A10);
         int restY = tray[1] + 2, fedY = forme[1] + 3;
         boolean pressing = leverAnim > LEVER_PROOF_AT;
         if (session.paper() == Paper.ON_TRAY) {
@@ -410,23 +410,44 @@ public class PressScreen extends StationScreen {
 
         // Tiegel
         int off = platenOffset();
-        tex(g, "platen", platen[0], platen[1] + off, platen[2], platen[3]);
+        int py = platen[1] + off;
+        frame(g, platen[0], py, platen[2], platen[3], 3, "iron_block", 0xFF6F737B);
+        fill(g, platen[0] + 3, py + platen[3] - 6, platen[2] - 6, 3, 0xFF4A4D54);
+        nail(g, platen[0] + 6, py + 5);
+        nail(g, platen[0] + platen[2] / 2 - 1, py + 5);
+        nail(g, platen[0] + platen[2] - 9, py + 5);
 
-        // Kurbel
+        // Kurbel: Eisengehaeuse mit Schwungrad, an dem der Griff laeuft
         int[] cr = ui.rect("crank");
-        panel(g, cr, col("lead_2"), col("lead_3"), col("lead_0"));
-        fill(g, cr[0] + 5, cr[1] + 13, 4, 4, col("lead_0"));
+        frame(g, cr, 2, "iron_block", 0xFF4A4D54);
+        int cx = cr[0] + 7, cy = cr[1] + 15;
+        for (int dy = -6; dy <= 6; dy++) {
+            for (int dx = -6; dx <= 6; dx++) {
+                int d = dx * dx + dy * dy;
+                if (d > 36) continue;
+                fill(g, cx + dx, cy + dy, 1, 1, d > 28 ? 0xFF2B2D31 : d > 8 ? 0xFF9A9EA6 : 0xFF6F737B);
+            }
+        }
+        fill(g, cx - 1, cy - 1, 3, 3, 0xFF2B2D31);
         int pos = crankAnim > 0 ? (crankAnim / 3) % 4 : 0;
         int[][] knob = { { 5, 2 }, { 9, 13 }, { 5, 24 }, { 1, 13 } };
-        fill(g, cr[0] + knob[pos][0], cr[1] + knob[pos][1], 4, 4, col("wood_4"));
+        int kx = cr[0] + knob[pos][0] + 2, ky = cr[1] + knob[pos][1] + 2;
+        for (int k = 0; k <= 8; k++) {
+            fill(g, cx + (kx - cx) * k / 8, cy + (ky - cy) * k / 8, 2, 2, 0xFF7A5230);
+        }
+        fill(g, kx - 2, ky - 2, 4, 4, 0xFFB98A56);
+        fill(g, kx - 2, ky + 1, 4, 1, 0xFF5A3A22);
 
-        // Hebel
+        // Hebel: Sockel aus Bruchstein, Holzgriff mit rotem Knauf
         int[] lv = ui.rect("lever");
         boolean pulled = leverAnim > 0 && LEVER_TICKS - leverAnim <= 8;
         int topY = lv[1] + (pulled ? 18 : 0);
-        fill(g, lv[0], lv[1] + lv[3] - 6, lv[2], 6, col("lead_1"));
-        fill(g, lv[0] + 2, topY, 2, lv[1] + lv[3] - 6 - topY, col("wood_4"));
-        fill(g, lv[0], topY, lv[2], 5, col("rubric"));
+        fill(g, lv[0] + 1, topY, 4, lv[1] + lv[3] - 8 - topY, 0xFF0E0E12);
+        fill(g, lv[0] + 2, topY, 2, lv[1] + lv[3] - 8 - topY, 0xFFB98A56);
+        frame(g, lv[0] - 1, lv[1] + lv[3] - 8, lv[2] + 2, 8, 1, "cobblestone", 0xFF6F737B);
+        fill(g, lv[0] - 1, topY - 1, lv[2] + 2, 7, 0xFF0E0E12);
+        fill(g, lv[0], topY, lv[2], 5, 0xFF9C2F25);
+        fill(g, lv[0], topY, lv[2], 1, 0xFFD2574B);
 
         // Abzug: kommt auf die Ablage zurueck, von der das Papier kam
         if (proof != null && leverAnim <= LEVER_PROOF_AT && session.paper() == Paper.NONE) drawProof(g, tray);
@@ -445,29 +466,36 @@ public class PressScreen extends StationScreen {
         SheetRenderer.print(g, ui, ps[0] + 2, ps[1] + 2, proof.printed(), proof.smudged());
     }
 
-    /** Eine Bleiletter. Die Farbe zeigt, wie oft die Walze schon darueber lief. */
+    private static final java.util.Map<Character, net.minecraft.resources.ResourceLocation> LETTER_TEXTURES =
+            new java.util.HashMap<>();
+
+    /** Die Letter-Textur aus unseren Items (letter_type_*.png). */
+    private static net.minecraft.resources.ResourceLocation letterTexture(char c) {
+        return LETTER_TEXTURES.computeIfAbsent(c, ch -> {
+            String n = ch == 'Ē' ? "e_long" : ch == 'Ō' ? "o_long" : String.valueOf(Character.toLowerCase(ch));
+            return net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(de.scribery.Scribery.MODID,
+                    "textures/item/letter_type_" + n + ".png");
+        });
+    }
+
+    /** Eine Bleiletter. Die dunkle Tinte darueber zeigt, wie oft die Walze schon darueber lief. */
     private void drawSort(GuiGraphics g, int x, int y, char c, int ink, boolean fixed) {
-        int face = fixed ? col("lead_2") : col("lead_3");
-        int glyph = col("lead_0");
-        if (ink == 1) { face = col("lead_1"); glyph = col("ink_0"); }
-        if (ink >= 2) { face = col("ink_1"); glyph = col("lead_4"); }
-        fill(g, x, y, ui.sortW, ui.sortH, face);
-        if (!fixed && ink == 0) {
-            fill(g, x, y, ui.sortW, 1, col("lead_4"));
-            fill(g, x, y, 1, ui.sortH, col("lead_4"));
-        }
-        int shade = ink >= 2 ? col("ink_0") : col("lead_1");
-        if (ink != 1) {
-            fill(g, x, y + ui.sortH - 1, ui.sortW, 1, shade);
-            fill(g, x + ui.sortW - 1, y, 1, ui.sortH, shade);
-        }
-        SortGlyphs.draw(g, c, x + 2, y + 1, glyph);
+        g.blit(letterTexture(c), x, y, ui.sortW, ui.sortH, 2f, 2f, 10, 12, 16, 16);
+        if (fixed) fill(g, x, y, ui.sortW, ui.sortH, 0x55000000);
+        if (ink == 1) fill(g, x, y, ui.sortW, ui.sortH, 0x66101014);
+        if (ink >= 2) fill(g, x, y, ui.sortW, ui.sortH, 0xA0101014);
     }
 
     private void drawRight(GuiGraphics g) {
         // Fass: die Farbe der Oeffnung zeigt den Fuellstand
         int[] b = ui.rect("barrel");
-        tex(g, "barrel", b);
+        tile(g, block("barrel_side"), b[0], b[1], b[2], b[3]);
+        fill(g, b[0], b[1], b[2], 1, 0xFF0E0E12);
+        fill(g, b[0], b[1] + b[3] - 1, b[2], 1, 0xFF0E0E12);
+        fill(g, b[0], b[1], 1, b[3], 0xFF0E0E12);
+        fill(g, b[0] + b[2] - 1, b[1], 1, b[3], 0xFF0E0E12);
+        fill(g, b[0] + 3, b[1] + 11, b[2] - 6, b[3] - 22, 0xFF0E0E12);
+        fill(g, b[0] + 3, b[1] + b[3] - 12, b[2] - 6, 1, 0xFF9A9EA6);
         int ink = session.ink();
         String level = ink >= 6 ? "barrel_full" : ink >= 3 ? "barrel_two_thirds" : ink >= 1 ? "barrel_one_third" : "barrel_empty";
         fill(g, b[0] + 4, b[1] + 12, b[2] - 8, b[3] - 24, col(level));
@@ -484,7 +512,15 @@ public class PressScreen extends StationScreen {
         for (int y = p[1] + 3; y < p[1] + p[3]; y += 4) fill(g, p[0], y, p[2], 1, col("parchment_0"));
 
         // Buchstabenbox
-        tex(g, "letter_case", ui.rect("letter_case"));
+        int[] lc = ui.rect("letter_case");
+        frame(g, lc, 2, "iron_block", 0xFF0E0E12);
+        for (int c = 0; c < ui.caseCols; c++) {
+            for (int r = 0; r < 5; r++) {
+                int x = ui.caseX + c * ui.cellW, y = ui.caseY + r * ui.cellH;
+                fill(g, x, y, 1, ui.cellH, 0xFF23232B);
+                fill(g, x, y + ui.cellH - 1, ui.cellW, 1, 0xFF23232B);
+            }
+        }
         for (int i = 0; i < ui.letters.length; i++) {
             char c = ui.letters[i];
             int cx = ui.caseX + (i % ui.caseCols) * ui.cellW;
