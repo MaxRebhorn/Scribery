@@ -22,6 +22,19 @@ public final class ClientHooks {
 
     private ClientHooks() {}
 
+    /** Fragment in der Hand angeschaut: gleiche Anordnung wie am Pult. */
+    public static void openFragmentView(int debugIndex) {
+        var all = DebugFragments.load();
+        if (debugIndex < 0 || debugIndex >= all.size()) return;
+        Minecraft.getInstance().setScreen(new SheetViewScreen(
+                all.get(debugIndex).words().stream().map(w -> w.greek()).toList()));
+    }
+
+    /** Bedruckten oder uebersetzten Bogen in der Hand angeschaut. */
+    public static void openSheetView(de.scribery.SheetData data) {
+        Minecraft.getInstance().setScreen(new SheetViewScreen(data));
+    }
+
     /** Pult angeklickt: zeigt nur das Pult. */
     public static void openLectern(BlockPos pos) {
         open(pos, Stations.Kind.LECTERN);

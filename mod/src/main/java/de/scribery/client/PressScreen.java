@@ -52,11 +52,6 @@ public class PressScreen extends StationScreen {
     }
 
     @Override
-    protected String resourceText() {
-        return "Ink " + session.ink() + "   Paper " + session.paperStock();
-    }
-
-    @Override
     protected Stations.Kind kind() {
         return Stations.Kind.PRESS;
     }
@@ -649,24 +644,22 @@ public class PressScreen extends StationScreen {
             fill(g, r[0] + r[2] - 8, r[1] + 4, 8, 2, col("wood_4"));
         }
 
-        // Papiervorrat: ein schief gestapelter Stoss einzelner Boegen, ohne Papier leer
+        // Papiervorrat: ein Bogen pro Blatt im Vorrat, bis 16; ohne Papier leer
         int[] p = ui.rect("paper_stock");
-        int sheets = Math.min(8, (session.paperStock() + 1) / 2);
-        if (sheets > 0) fill(g, p[0] + 2, p[1] + p[3] - 5, p[2] - 2, 4, 0x66000000);
+        int sheets = Math.min(16, session.paperStock());
+        if (sheets > 0) fill(g, p[0] + 2, p[1] + p[3] - 3, p[2] - 2, 3, 0x66000000);
         for (int i = 0; i < sheets; i++) {
-            int dx = new int[] { 1, 0, 2, 1, 0, 2, 1, 0 }[i];
-            int y = p[1] + p[3] - 17 - i * 3;
+            int dx = new int[] { 1, 0, 2, 1 }[i % 4];
+            int y = p[1] + p[3] - 12 - i * 2;
             int w = p[2] - 4;
-            fill(g, p[0] + dx, y, w, 14, col("parchment_0"));
-            fill(g, p[0] + dx + 1, y, w - 2, 13, col("parchment_3"));
-            fill(g, p[0] + dx + 1, y + 11, w - 2, 2, col("parchment_1"));
-            if (i % 3 == 0) fill(g, p[0] + dx + 1, y + 0, 2, 13, col("parchment_2"));
+            fill(g, p[0] + dx, y, w, 10, col("parchment_0"));
+            fill(g, p[0] + dx + 1, y, w - 2, 9, col("parchment_3"));
+            fill(g, p[0] + dx + 1, y + 7, w - 2, 2, col("parchment_1"));
         }
         if (sheets > 0) {
-            int ty = p[1] + p[3] - 17 - (sheets - 1) * 3;
-            fill(g, p[0] + 3, ty + 3, p[2] - 10, 1, col("parchment_1"));
-            fill(g, p[0] + 3, ty + 6, p[2] - 12, 1, col("parchment_1"));
-            fill(g, p[0] + 3, ty + 9, p[2] - 9, 1, col("parchment_1"));
+            int ty = p[1] + p[3] - 12 - (sheets - 1) * 2;
+            fill(g, p[0] + 3, ty + 2, p[2] - 10, 1, col("parchment_1"));
+            fill(g, p[0] + 3, ty + 5, p[2] - 12, 1, col("parchment_1"));
         }
 
         // Buchstabenbox

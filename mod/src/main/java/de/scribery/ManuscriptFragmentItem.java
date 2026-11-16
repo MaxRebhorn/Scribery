@@ -12,6 +12,15 @@ public class ManuscriptFragmentItem extends Item {
         this.number = number;
     }
 
+    @Override
+    public net.minecraft.world.InteractionResultHolder<net.minecraft.world.item.ItemStack> use(
+            net.minecraft.world.level.Level level, net.minecraft.world.entity.player.Player player,
+            net.minecraft.world.InteractionHand hand) {
+        net.minecraft.world.item.ItemStack stack = player.getItemInHand(hand);
+        if (level.isClientSide) de.scribery.client.ClientHooks.openFragmentView(debugFragmentIndex());
+        return net.minecraft.world.InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+    }
+
     public int debugFragmentIndex() {
         return (number - 1) % DEBUG_TEXTS;
     }

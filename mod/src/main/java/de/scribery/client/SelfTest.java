@@ -118,7 +118,7 @@ final class SelfTest {
         shot(mc, "08-press-complete");
 
         // Uebersetzen. Das Blatt ist leer; ein Klick auf ein Wort schreibt es hin und sein Slot entsteht.
-        then(0, () -> screen.switchStation(1));
+        then(0, () -> mc.setScreen(new TileScreen(screen.bench)));
         shot(mc, "09-tiles-start");
         then(0, () -> {
             TileScreen t = (TileScreen) mc.screen;

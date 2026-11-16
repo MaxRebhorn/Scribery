@@ -9,7 +9,6 @@ import net.minecraft.client.gui.GuiGraphics;
  * bleibt die Flaeche leer. Weitere Stationen erreicht man ueber die Pfeile, wenn sie angrenzen.
  */
 final class LecternScreen extends StationScreen {
-    private static final int[] SHEET = { 96, 44, 192, 122 };
 
     LecternScreen(Workbench bench) {
         super(bench);
@@ -32,22 +31,15 @@ final class LecternScreen extends StationScreen {
     }
 
     @Override
-    protected String resourceText() {
-        return "";
-    }
-
-    @Override
     protected void drawStation(GuiGraphics g) {
         if (bench.fragment == null) return;
+        // Dieselbe Anordnung wie auf dem Pult in der Presse, nur dreifach vergroessert.
         List<String> words = bench.fragment.words().stream().map(w -> w.greek()).toList();
-        Fit fit = fit(words, SHEET, 14, 12);
-        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
-        for (int i = 0; i < fit.words().length; i++) {
-            g.drawString(font, words.get(i), fit.words()[i][0], fit.words()[i][1], col("ink_1"), false);
-        }
-        String ref = bench.fragment.ref();
-        g.drawString(font, ref, fit.paper()[0] + (fit.paper()[2] - font.width(ref)) / 2,
-                fit.paper()[1] + fit.paper()[3] - 11, col("parchment_0"), false);
+        g.pose().pushPose();
+        g.pose().translate((ui.canvasW - 3 * 66) / 2f, (ui.canvasH - 3 * 62) / 2f, 0);
+        g.pose().scale(3f, 3f, 1f);
+        drawFragmentPaper(g, words, new int[] { 0, 0, 66, 62 }, i -> false);
+        g.pose().popPose();
     }
 
     @Override

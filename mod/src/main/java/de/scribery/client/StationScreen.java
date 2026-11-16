@@ -64,11 +64,18 @@ public abstract class StationScreen extends Screen {
     /** Eine Animation laeuft, Klicks werden ignoriert. */
     protected abstract boolean busy();
 
-    /** Text rechts in der Titelleiste, z. B. Vorraete. */
-    protected abstract String resourceText();
-
     /** Welche Station das ist. */
     protected abstract Stations.Kind kind();
+
+    /** Nur fuer /scribery debug: Tab wechselt zwischen Presse und Uebersetzung. */
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_TAB && bench.stations.equals(Stations.DEBUG) && minecraft != null) {
+            minecraft.setScreen(kind() == Stations.Kind.PRESS ? new TileScreen(bench) : new PressScreen(bench));
+            return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
+    }
 
     protected abstract void drawStation(GuiGraphics g);
 
@@ -107,12 +114,6 @@ public abstract class StationScreen extends Screen {
         if (minecraft != null) minecraft.getSoundManager().play(SimpleSoundInstance.forUI(event, pitch, volume));
     }
 
-    /** Wechselt zur Nachbarstation, wenn es eine gibt. Oeffentlich fuer den Selbsttest. */
-    public void switchStation(int direction) {
-        StationScreen next = neighbour(direction);
-        if (next != null && minecraft != null) minecraft.setScreen(next);
-    }
-
     private void updateTransform() {
         Window w = minecraft.getWindow();
         double gs = w.getGuiScale();
@@ -127,16 +128,6 @@ public abstract class StationScreen extends Screen {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         updateTransform();
         double x = (mouseX - originX) / scale, y = (mouseY - originY) / scale;
-        if (!busy() && button == 0) {
-            if (in(ui.rect("arrow_left"), x, y, 0)) {
-                switchStation(-1);
-                return true;
-            }
-            if (in(ui.rect("arrow_right"), x, y, 0)) {
-                switchStation(1);
-                return true;
-            }
-        }
         clickCanvas(x, y, button);
         return true;
     }
@@ -193,7 +184,6 @@ public abstract class StationScreen extends Screen {
         g.pose().scale(scale, scale, 1);
 
         drawBackdrop(g);
-        drawTopBar(g);
         drawCandle(g);
         drawStation(g);
         drawHand(g);
@@ -273,54 +263,6 @@ public abstract class StationScreen extends Screen {
         fill(g, x, y, 3, 3, 0xFF4A4D54);
         fill(g, x, y, 2, 2, 0xFF9A9EA6);
         fill(g, x + 2, y + 2, 1, 1, 0xFF2B2D31);
-    }
-
-    private void drawTopBar(GuiGraphics g) {
-        int face = col("gui_face"), light = col("gui_light"), dark = col("gui_shadow");
-        int[] bar = ui.rect("title_bar");
-        panel(g, bar, face, light, dark);
-        String title = "SCRIBERY & CRAFTS";
-        g.drawString(font, title, bar[0] + (bar[2] - font.width(title)) / 2, bar[1] + 4, dark, false);
-        String res = resourceText();
-        g.drawString(font, res, bar[0] + bar[2] - font.width(res) - 6, bar[1] + 4, dark, false);
-        if (bench.fragment != null) {
-            String id = fragments.get(fragmentIndex).id() + "  " + fragments.get(fragmentIndex).ref();
-            g.drawString(font, id, bar[0] + 6, bar[1] + 4, dark, false);
-        }
-
-        for (int dir = -1; dir <= 1; dir += 2) {
-            int[] r = ui.rect(dir < 0 ? "arrow_left" : "arrow_right");
-            panel(g, r, face, light, dark);
-            String s = dir < 0 ? "<" : ">";
-            boolean active = hasNeighbour(dir);
-            g.drawString(font, s, r[0] + (r[2] - font.width(s)) / 2 + 1, r[1] + 4, active ? dark : col("lead_3"), false);
-        }
-    }
-
-    /** Ob der Pfeil in diese Richtung etwas tut. */
-    protected final boolean hasNeighbour(int direction) {
-        return target(direction) != null;
-    }
-
-    /** Naechste erreichbare Station in Richtung -1 (links) oder +1 (rechts). Uebersetzt wird nur mit Fragment. */
-    private Stations.Kind target(int direction) {
-        Stations.Kind[] kinds = Stations.Kind.values();
-        for (int i = kind().ordinal() + direction; i >= 0 && i < kinds.length; i += direction) {
-            if (kinds[i] == Stations.Kind.DESK && bench.fragment == null) continue;
-            if (bench.stations.has(kinds[i])) return kinds[i];
-        }
-        return null;
-    }
-
-    private StationScreen neighbour(int direction) {
-        Stations.Kind k = target(direction);
-        if (k == null) return null;
-        return switch (k) {
-            case LECTERN -> new LecternScreen(bench);
-            case PRESS -> new PressScreen(bench);
-            case DESK -> new TileScreen(bench);
-            case MINT -> null;
-        };
     }
 
     /** Die Kerze aus dem Minecraft-Item, doppelt so gross, mit eigener Flamme. */
@@ -407,8 +349,12 @@ public abstract class StationScreen extends Screen {
      */
     protected void drawLectern(GuiGraphics g, List<String> words, java.util.function.IntPredicate dimmed) {
         drawLecternBoard(g, ui.rect("lectern"));
-        int[] f = ui.rect("fragment");
-        Fit fit = fit(words, f, 10, 5);
+        drawFragmentPaper(g, words, ui.rect("fragment"), dimmed);
+    }
+
+    /** Das Fragment als ausgefranster Zettel in der Flaeche. Pult und Vollansicht benutzen dieselbe Anordnung. */
+    protected void drawFragmentPaper(GuiGraphics g, List<String> words, int[] area, java.util.function.IntPredicate dimmed) {
+        Fit fit = fit(words, area, 10, 5);
         RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
         int[][] rects = fit.words();
         for (int i = 0; i < rects.length; i++) {

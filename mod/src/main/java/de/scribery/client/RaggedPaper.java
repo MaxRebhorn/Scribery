@@ -26,6 +26,15 @@ final class RaggedPaper {
         for (Run r : runs) g.fill(x + r.x, y + r.y, x + r.x + r.len, y + r.y + 1, ui.color(r.color));
     }
 
+    /** Sauberes, glatt geschnittenes Papier: hell, ohne Fransen, mit zarter Kante und Schatten. */
+    static void drawClean(GuiGraphics g, UiLayout ui, int x, int y, int w, int h) {
+        g.fill(x, y, x + w, y + h, ui.color("parchment_2"));
+        g.fill(x + 1, y + 1, x + w - 1, y + h - 1, ui.color("parchment_3"));
+        g.fill(x + 1, y + h - 2, x + w - 1, y + h - 1, ui.color("parchment_2"));
+        g.fill(x, y + h - 1, x + w, y + h, ui.color("parchment_1"));
+        g.fill(x + w - 1, y, x + w, y + h, ui.color("parchment_1"));
+    }
+
     private static int[] profile(Random rng, int n, int max) {
         int[] out = new int[n];
         int d = rng.nextInt(max + 1);
