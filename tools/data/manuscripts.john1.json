@@ -1,0 +1,4749 @@
+{
+ "schema": 1,
+ "placeholder": false,
+ "source": {
+  "text": "STEPBible-Wortanalyse mit BSB-Glossen, Johannes 1,1-18 (Pilot)",
+  "license": "Namensnennung vor Veroeffentlichung pruefen"
+ },
+ "fragments": [
+  {
+   "id": "P1",
+   "ref": "John 1:1a",
+   "chapter": 1,
+   "order": 1,
+   "tier": 1,
+   "difficulty": 32.0,
+   "origin": {
+    "biome": "#minecraft:is_taiga",
+    "container": "loot"
+   },
+   "reference_en": "in beginning was the word and the word was with the God",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "Ἐν",
+     "lemma": "GG1722",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "in the"
+      ],
+      "wrong": [
+       "of",
+       "into",
+       "to"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἀρχῇ",
+     "lemma": "GG0746",
+     "morph": "N-DSF",
+     "gloss": {
+      "ok": [
+       "beginning"
+      ],
+      "wrong": [
+       "of beginning",
+       "to beginning",
+       "beginnings"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "grasped",
+       "i was saying",
+       "saying"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "λόγος",
+     "lemma": "GG3056",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "word"
+      ],
+      "wrong": [
+       "of word",
+       "to word",
+       "words"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "nor",
+       "for",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "λόγος",
+     "lemma": "GG3056",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "word"
+      ],
+      "wrong": [
+       "of word",
+       "to word",
+       "words"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "grasped",
+       "may believe",
+       "there came"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "πρὸς",
+     "lemma": "GG4314",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "with"
+      ],
+      "wrong": [
+       "to",
+       "without",
+       "of"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "τὸν",
+     "lemma": "GG3588",
+     "morph": "T-ASM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "θεόν",
+     "lemma": "GG2316",
+     "morph": "N-ASM-T",
+     "gloss": {
+      "ok": [
+       "God"
+      ],
+      "wrong": [
+       "Father",
+       "Christ",
+       "Moses"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P2",
+   "ref": "John 1:1b",
+   "chapter": 1,
+   "order": 2,
+   "tier": 1,
+   "difficulty": 26.7,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "and God was the word",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "because",
+       "but",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "θεὸς",
+     "lemma": "GG2316",
+     "morph": "N-NSM-T",
+     "gloss": {
+      "ok": [
+       "God"
+      ],
+      "wrong": [
+       "John",
+       "Moses",
+       "Father"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "i was saying",
+       "received",
+       "coming"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "λόγος",
+     "lemma": "GG3056",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "word"
+      ],
+      "wrong": [
+       "of word",
+       "to word",
+       "words"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P3",
+   "ref": "John 1:2",
+   "chapter": 1,
+   "order": 3,
+   "tier": 1,
+   "difficulty": 35.3,
+   "origin": {
+    "biome": "#minecraft:is_jungle",
+    "container": "loot"
+   },
+   "reference_en": "he was in beginning with the God",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "οὗτος",
+     "lemma": "GG3778",
+     "morph": "D-NSM",
+     "gloss": {
+      "ok": [
+       "he"
+      ],
+      "wrong": [
+       "these",
+       "those",
+       "such a one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "there came",
+       "became",
+       "has"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἐν",
+     "lemma": "GG1722",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "in the"
+      ],
+      "wrong": [
+       "with",
+       "to",
+       "after"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἀρχῇ",
+     "lemma": "GG0746",
+     "morph": "N-DSF",
+     "gloss": {
+      "ok": [
+       "beginning"
+      ],
+      "wrong": [
+       "of beginning",
+       "to beginning",
+       "beginnings"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "πρὸς",
+     "lemma": "GG4314",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "with"
+      ],
+      "wrong": [
+       "without",
+       "through",
+       "among"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "τὸν",
+     "lemma": "GG3588",
+     "morph": "T-ASM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "θεόν",
+     "lemma": "GG2316",
+     "morph": "N-ASM-T",
+     "gloss": {
+      "ok": [
+       "God"
+      ],
+      "wrong": [
+       "Jesus",
+       "Christ",
+       "John"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P4",
+   "ref": "John 1:3",
+   "chapter": 1,
+   "order": 4,
+   "tier": 2,
+   "difficulty": 47.0,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "all things through him came into being and without him came into being not even one thing that has come into being",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "πάντα",
+     "lemma": "GG3956",
+     "morph": "A-NPN",
+     "gloss": {
+      "ok": [
+       "all things"
+      ],
+      "wrong": [
+       "only begotten",
+       "no one",
+       "true"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "δι᾽",
+     "lemma": "GG1223",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "through"
+      ],
+      "wrong": [
+       "in",
+       "with",
+       "precedence"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "we ourselves",
+       "me",
+       "us"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἐγένετο",
+     "lemma": "GG1096",
+     "morph": "V-2ADI-3S",
+     "gloss": {
+      "ok": [
+       "came into being",
+       "there came",
+       "became",
+       "came"
+      ],
+      "wrong": [
+       "has seen",
+       "witnesses",
+       "have received"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "because",
+       "for",
+       "that"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "χωρὶς",
+     "lemma": "GG5565",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "without"
+      ],
+      "wrong": [
+       "concerning",
+       "after",
+       "of"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "us",
+       "we ourselves",
+       "me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἐγένετο",
+     "lemma": "GG1096",
+     "morph": "V-2ADI-3S",
+     "gloss": {
+      "ok": [
+       "came into being",
+       "there came",
+       "became",
+       "came"
+      ],
+      "wrong": [
+       "is being",
+       "was given",
+       "he may witness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "οὐδὲ",
+     "lemma": "GG3761",
+     "morph": "CONJ-N",
+     "gloss": {
+      "ok": [
+       "not even"
+      ],
+      "wrong": [
+       "because",
+       "that",
+       "then"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἓν",
+     "lemma": "GG1520",
+     "morph": "A-NSN",
+     "gloss": {
+      "ok": [
+       "one thing",
+       "one"
+      ],
+      "wrong": [
+       "true",
+       "no one",
+       "his own"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ὃ",
+     "lemma": "GG3739",
+     "morph": "R-NSN",
+     "gloss": {
+      "ok": [
+       "that"
+      ],
+      "wrong": [
+       "which",
+       "whom",
+       "whose"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "γέγονεν",
+     "lemma": "GG1096",
+     "morph": "V-2RAI-3S",
+     "gloss": {
+      "ok": [
+       "has come into being",
+       "has"
+      ],
+      "wrong": [
+       "he has cried out",
+       "witnesses",
+       "were born"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P5",
+   "ref": "John 1:4",
+   "chapter": 1,
+   "order": 5,
+   "tier": 1,
+   "difficulty": 33.5,
+   "origin": {
+    "biome": "#minecraft:is_swamp",
+    "container": "loot"
+   },
+   "reference_en": "in him life was and the life was the light the of men",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "ἐν",
+     "lemma": "GG1722",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in"
+      ],
+      "wrong": [
+       "through",
+       "to",
+       "from"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "αὐτῷ",
+     "lemma": "GG0846",
+     "morph": "P-DSM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "we ourselves",
+       "us",
+       "me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ζωὴ",
+     "lemma": "GG2222",
+     "morph": "N-NSF",
+     "gloss": {
+      "ok": [
+       "life"
+      ],
+      "wrong": [
+       "of life",
+       "to life",
+       "flesh"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "sent",
+       "came",
+       "he may testify"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "for",
+       "but",
+       "because"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ἡ",
+     "lemma": "GG3588",
+     "morph": "T-NSF",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ζωὴ",
+     "lemma": "GG2222",
+     "morph": "N-NSF",
+     "gloss": {
+      "ok": [
+       "life"
+      ],
+      "wrong": [
+       "of life",
+       "to life",
+       "flesh"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "he gave",
+       "coming",
+       "believing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "τὸ",
+     "lemma": "GG3588",
+     "morph": "T-NSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "φῶς",
+     "lemma": "GG5457",
+     "morph": "N-NSN",
+     "gloss": {
+      "ok": [
+       "light"
+      ],
+      "wrong": [
+       "of light",
+       "to light",
+       "name"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "τῶν",
+     "lemma": "GG3588",
+     "morph": "T-GPM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἀνθρώπων",
+     "lemma": "GG0444",
+     "morph": "N-GPM",
+     "gloss": {
+      "ok": [
+       "of men"
+      ],
+      "wrong": [
+       "of man",
+       "to man",
+       "men"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P6",
+   "ref": "John 1:5",
+   "chapter": 1,
+   "order": 6,
+   "tier": 1,
+   "difficulty": 38.8,
+   "origin": {
+    "biome": "#minecraft:is_taiga",
+    "container": "loot"
+   },
+   "reference_en": "and the light in the darkness shines and the darkness it not grasped",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "that",
+       "not even",
+       "but"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τὸ",
+     "lemma": "GG3588",
+     "morph": "T-NSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "φῶς",
+     "lemma": "GG5457",
+     "morph": "N-NSN",
+     "gloss": {
+      "ok": [
+       "light"
+      ],
+      "wrong": [
+       "of light",
+       "to light",
+       "name"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἐν",
+     "lemma": "GG1722",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in"
+      ],
+      "wrong": [
+       "after",
+       "concerning",
+       "as"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "τῇ",
+     "lemma": "GG3588",
+     "morph": "T-DSF",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "σκοτίᾳ",
+     "lemma": "GG4653",
+     "morph": "N-DSF",
+     "gloss": {
+      "ok": [
+       "darkness"
+      ],
+      "wrong": [
+       "of darkness",
+       "to darkness",
+       "beginning"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "φαίνει",
+     "lemma": "GG5316",
+     "morph": "V-PAI-3S",
+     "gloss": {
+      "ok": [
+       "shines"
+      ],
+      "wrong": [
+       "enlightens",
+       "witnesses",
+       "believing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "however",
+       "but",
+       "not even"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἡ",
+     "lemma": "GG3588",
+     "morph": "T-NSF",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "σκοτία",
+     "lemma": "GG4653",
+     "morph": "N-NSF",
+     "gloss": {
+      "ok": [
+       "darkness"
+      ],
+      "wrong": [
+       "of darkness",
+       "to darkness",
+       "life"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "αὐτὸ",
+     "lemma": "GG0846",
+     "morph": "P-ASN",
+     "gloss": {
+      "ok": [
+       "it"
+      ],
+      "wrong": [
+       "us",
+       "we ourselves",
+       "me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "οὐ",
+     "lemma": "GG3756",
+     "morph": "PRT-N",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "as",
+       "never",
+       "no"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "κατέλαβεν",
+     "lemma": "GG2638",
+     "morph": "V-2AAI-3S",
+     "gloss": {
+      "ok": [
+       "grasped",
+       "grasped it"
+      ],
+      "wrong": [
+       "have received",
+       "received",
+       "came"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P7",
+   "ref": "John 1:6",
+   "chapter": 1,
+   "order": 7,
+   "tier": 3,
+   "difficulty": 55.0,
+   "origin": {
+    "biome": "#minecraft:is_taiga",
+    "container": "loot"
+   },
+   "reference_en": "there came a man sent from God name to him John",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "Ἐγένετο",
+     "lemma": "GG1096",
+     "morph": "V-2ADI-3S",
+     "gloss": {
+      "ok": [
+       "there came",
+       "came into being",
+       "became",
+       "came"
+      ],
+      "wrong": [
+       "received",
+       "shines",
+       "he dwelt"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἄνθρωπος",
+     "lemma": "GG0444",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "a man"
+      ],
+      "wrong": [
+       "of man",
+       "to man",
+       "men"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἀπεσταλμένος",
+     "lemma": "GG0649",
+     "morph": "V-RPP-NSM",
+     "gloss": {
+      "ok": [
+       "sent"
+      ],
+      "wrong": [
+       "coming",
+       "became",
+       "knew"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "παρὰ",
+     "lemma": "GG3844",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "from"
+      ],
+      "wrong": [
+       "through",
+       "concerning",
+       "into"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "θεοῦ",
+     "lemma": "GG2316",
+     "morph": "N-GSM-T",
+     "gloss": {
+      "ok": [
+       "God"
+      ],
+      "wrong": [
+       "Moses",
+       "Christ",
+       "Jesus"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὄνομα",
+     "lemma": "GG3686",
+     "morph": "N-NSN",
+     "gloss": {
+      "ok": [
+       "name",
+       "the name"
+      ],
+      "wrong": [
+       "of name",
+       "to name",
+       "names"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "αὐτῷ",
+     "lemma": "GG0846",
+     "morph": "P-DSM",
+     "gloss": {
+      "ok": [
+       "to him"
+      ],
+      "wrong": [
+       "over me",
+       "us",
+       "we ourselves"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "Ἰωάννης",
+     "lemma": "GG2491",
+     "morph": "N-NSM-P",
+     "gloss": {
+      "ok": [
+       "John"
+      ],
+      "wrong": [
+       "of John",
+       "of God",
+       "God"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P8",
+   "ref": "John 1:7",
+   "chapter": 1,
+   "order": 8,
+   "tier": 2,
+   "difficulty": 47.9,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "he came as a witness that he may testify concerning the light that all may believe through him",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "οὗτος",
+     "lemma": "GG3778",
+     "morph": "D-NSM",
+     "gloss": {
+      "ok": [
+       "he"
+      ],
+      "wrong": [
+       "these",
+       "those",
+       "such a one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἦλθεν",
+     "lemma": "GG2064",
+     "morph": "V-2AAI-3S",
+     "gloss": {
+      "ok": [
+       "came",
+       "he came"
+      ],
+      "wrong": [
+       "have received",
+       "knew",
+       "received"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "εἰς",
+     "lemma": "GG1519",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "as"
+      ],
+      "wrong": [
+       "from",
+       "of",
+       "precedence"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "μαρτυρίαν",
+     "lemma": "GG3141",
+     "morph": "N-ASF",
+     "gloss": {
+      "ok": [
+       "a witness"
+      ],
+      "wrong": [
+       "witness",
+       "of witness",
+       "to witness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἵνα",
+     "lemma": "GG2443",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that"
+      ],
+      "wrong": [
+       "but",
+       "for",
+       "and"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "μαρτυρήσῃ",
+     "lemma": "GG3140",
+     "morph": "V-AAS-3S",
+     "gloss": {
+      "ok": [
+       "he may testify",
+       "he may witness"
+      ],
+      "wrong": [
+       "may believe",
+       "shines",
+       "coming"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "περὶ",
+     "lemma": "GG4012",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "concerning"
+      ],
+      "wrong": [
+       "for",
+       "as",
+       "in"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "τοῦ",
+     "lemma": "GG3588",
+     "morph": "T-GSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "φωτός",
+     "lemma": "GG5457",
+     "morph": "N-GSN",
+     "gloss": {
+      "ok": [
+       "light"
+      ],
+      "wrong": [
+       "of light",
+       "to light",
+       "fullness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἵνα",
+     "lemma": "GG2443",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that"
+      ],
+      "wrong": [
+       "then",
+       "nor",
+       "and"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "πάντες",
+     "lemma": "GG3956",
+     "morph": "A-NPM",
+     "gloss": {
+      "ok": [
+       "all"
+      ],
+      "wrong": [
+       "only begotten",
+       "of an only begotten",
+       "no one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "πιστεύσωσιν",
+     "lemma": "GG4100",
+     "morph": "V-AAS-3P",
+     "gloss": {
+      "ok": [
+       "may believe"
+      ],
+      "wrong": [
+       "he may testify",
+       "he may witness",
+       "shines"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "δι᾽",
+     "lemma": "GG1223",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "through"
+      ],
+      "wrong": [
+       "with",
+       "from",
+       "into"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "us",
+       "we ourselves",
+       "me"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P9",
+   "ref": "John 1:8",
+   "chapter": 1,
+   "order": 9,
+   "tier": 1,
+   "difficulty": 37.8,
+   "origin": {
+    "biome": "#minecraft:is_forest",
+    "container": "loot"
+   },
+   "reference_en": "not was he the light but that he may witness concerning the light",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "οὐκ",
+     "lemma": "GG3756",
+     "morph": "PRT-N",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "as",
+       "never",
+       "no"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "coming",
+       "i was saying",
+       "witnesses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἐκεῖνος",
+     "lemma": "GG1565",
+     "morph": "D-NSM",
+     "gloss": {
+      "ok": [
+       "he"
+      ],
+      "wrong": [
+       "this",
+       "these",
+       "those"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "τὸ",
+     "lemma": "GG3588",
+     "morph": "T-NSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "φῶς",
+     "lemma": "GG5457",
+     "morph": "N-NSN",
+     "gloss": {
+      "ok": [
+       "light"
+      ],
+      "wrong": [
+       "of light",
+       "to light",
+       "name"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ἀλλ᾽",
+     "lemma": "GG0235",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "but"
+      ],
+      "wrong": [
+       "not even",
+       "then",
+       "nor"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἵνα",
+     "lemma": "GG2443",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that"
+      ],
+      "wrong": [
+       "nor",
+       "because",
+       "for"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "μαρτυρήσῃ",
+     "lemma": "GG3140",
+     "morph": "V-AAS-3S",
+     "gloss": {
+      "ok": [
+       "he may witness",
+       "he may testify"
+      ],
+      "wrong": [
+       "may believe",
+       "was given",
+       "there came"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "περὶ",
+     "lemma": "GG4012",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "concerning"
+      ],
+      "wrong": [
+       "of",
+       "without",
+       "among"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "τοῦ",
+     "lemma": "GG3588",
+     "morph": "T-GSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "φωτός",
+     "lemma": "GG5457",
+     "morph": "N-GSN",
+     "gloss": {
+      "ok": [
+       "light"
+      ],
+      "wrong": [
+       "of light",
+       "to light",
+       "fullness"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P10",
+   "ref": "John 1:9",
+   "chapter": 1,
+   "order": 10,
+   "tier": 2,
+   "difficulty": 42.6,
+   "origin": {
+    "biome": "#minecraft:is_plains",
+    "container": "loot"
+   },
+   "reference_en": "was the light the true who enlightens every man coming into the world",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was",
+       "was he"
+      ],
+      "wrong": [
+       "he may testify",
+       "coming",
+       "saying"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τὸ",
+     "lemma": "GG3588",
+     "morph": "T-NSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "φῶς",
+     "lemma": "GG5457",
+     "morph": "N-NSN",
+     "gloss": {
+      "ok": [
+       "light"
+      ],
+      "wrong": [
+       "of light",
+       "to light",
+       "name"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "τὸ",
+     "lemma": "GG3588",
+     "morph": "T-NSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἀληθινὸν",
+     "lemma": "GG0228",
+     "morph": "A-NSN",
+     "gloss": {
+      "ok": [
+       "true"
+      ],
+      "wrong": [
+       "one thing",
+       "no one",
+       "before"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὃ",
+     "lemma": "GG3739",
+     "morph": "R-NSN",
+     "gloss": {
+      "ok": [
+       "who"
+      ],
+      "wrong": [
+       "which",
+       "whom",
+       "whose"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "φωτίζει",
+     "lemma": "GG5461",
+     "morph": "V-PAI-3S",
+     "gloss": {
+      "ok": [
+       "enlightens"
+      ],
+      "wrong": [
+       "witnesses",
+       "shines",
+       "has seen"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "πάντα",
+     "lemma": "GG3956",
+     "morph": "A-ASM",
+     "gloss": {
+      "ok": [
+       "every"
+      ],
+      "wrong": [
+       "one thing",
+       "no one",
+       "before"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἄνθρωπον",
+     "lemma": "GG0444",
+     "morph": "N-ASM",
+     "gloss": {
+      "ok": [
+       "man"
+      ],
+      "wrong": [
+       "of man",
+       "to man",
+       "men"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἐρχόμενον",
+     "lemma": "GG2064",
+     "morph": "V-PNP-ASM",
+     "gloss": {
+      "ok": [
+       "coming"
+      ],
+      "wrong": [
+       "was he",
+       "received",
+       "have received"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "εἰς",
+     "lemma": "GG1519",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "into"
+      ],
+      "wrong": [
+       "concerning",
+       "for",
+       "through"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "τὸν",
+     "lemma": "GG3588",
+     "morph": "T-ASM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "κόσμον",
+     "lemma": "GG2889",
+     "morph": "N-ASM",
+     "gloss": {
+      "ok": [
+       "world"
+      ],
+      "wrong": [
+       "of world",
+       "to world",
+       "worlds"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P11",
+   "ref": "John 1:10",
+   "chapter": 1,
+   "order": 11,
+   "tier": 1,
+   "difficulty": 37.9,
+   "origin": {
+    "biome": "#minecraft:is_savanna",
+    "container": "loot"
+   },
+   "reference_en": "in the world he was and the world through him came into being and the world him not knew",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "ἐν",
+     "lemma": "GG1722",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in"
+      ],
+      "wrong": [
+       "from",
+       "to",
+       "concerning"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τῷ",
+     "lemma": "GG3588",
+     "morph": "T-DSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "κόσμῳ",
+     "lemma": "GG2889",
+     "morph": "N-DSM",
+     "gloss": {
+      "ok": [
+       "world"
+      ],
+      "wrong": [
+       "of world",
+       "to world",
+       "worlds"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "he was",
+       "was",
+       "was he"
+      ],
+      "wrong": [
+       "enlightens",
+       "came",
+       "became"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "but",
+       "however",
+       "for"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "κόσμος",
+     "lemma": "GG2889",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "world"
+      ],
+      "wrong": [
+       "of world",
+       "to world",
+       "worlds"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "δι᾽",
+     "lemma": "GG1223",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "through"
+      ],
+      "wrong": [
+       "in",
+       "of",
+       "among"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "we ourselves",
+       "us",
+       "me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἐγένετο",
+     "lemma": "GG1096",
+     "morph": "V-2ADI-3S",
+     "gloss": {
+      "ok": [
+       "came into being",
+       "there came",
+       "became",
+       "came"
+      ],
+      "wrong": [
+       "he has cried out",
+       "he gave",
+       "grasped"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "not even",
+       "because",
+       "nor"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "κόσμος",
+     "lemma": "GG2889",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "world"
+      ],
+      "wrong": [
+       "of world",
+       "to world",
+       "worlds"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "αὐτὸν",
+     "lemma": "GG0846",
+     "morph": "P-ASM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "us",
+       "we ourselves",
+       "over me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "οὐκ",
+     "lemma": "GG3756",
+     "morph": "PRT-N",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "as",
+       "never",
+       "no"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "ἔγνω",
+     "lemma": "GG1097",
+     "morph": "V-2AAI-3S",
+     "gloss": {
+      "ok": [
+       "knew"
+      ],
+      "wrong": [
+       "received",
+       "he came",
+       "i was saying"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P12",
+   "ref": "John 1:11",
+   "chapter": 1,
+   "order": 12,
+   "tier": 2,
+   "difficulty": 40.4,
+   "origin": {
+    "biome": "#minecraft:is_swamp",
+    "container": "loot"
+   },
+   "reference_en": "to the his own he came and the his own him not received",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "εἰς",
+     "lemma": "GG1519",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "to"
+      ],
+      "wrong": [
+       "with",
+       "precedence",
+       "after"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τὰ",
+     "lemma": "GG3588",
+     "morph": "T-APN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἴδια",
+     "lemma": "GG2398",
+     "morph": "A-APN",
+     "gloss": {
+      "ok": [
+       "his own",
+       "own"
+      ],
+      "wrong": [
+       "of an only begotten",
+       "all things",
+       "every"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἦλθεν",
+     "lemma": "GG2064",
+     "morph": "V-2AAI-3S",
+     "gloss": {
+      "ok": [
+       "he came",
+       "came"
+      ],
+      "wrong": [
+       "received",
+       "have received",
+       "knew"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "but",
+       "because",
+       "that"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "οἱ",
+     "lemma": "GG3588",
+     "morph": "T-NPM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἴδιοι",
+     "lemma": "GG2398",
+     "morph": "A-NPM",
+     "gloss": {
+      "ok": [
+       "his own",
+       "own"
+      ],
+      "wrong": [
+       "all",
+       "before",
+       "no one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "αὐτὸν",
+     "lemma": "GG0846",
+     "morph": "P-ASM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "we ourselves",
+       "over me",
+       "us"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "οὐ",
+     "lemma": "GG3756",
+     "morph": "PRT-N",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "as",
+       "never",
+       "no"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "παρέλαβον",
+     "lemma": "GG3880",
+     "morph": "V-2AAI-3P",
+     "gloss": {
+      "ok": [
+       "received"
+      ],
+      "wrong": [
+       "came",
+       "grasped",
+       "knew"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P13",
+   "ref": "John 1:12",
+   "chapter": 1,
+   "order": 13,
+   "tier": 3,
+   "difficulty": 54.7,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "as many as however received him he gave to them authority children of God to be to those believing in the name of him",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "ὅσοι",
+     "lemma": "GG3745",
+     "morph": "K-NPM",
+     "gloss": {
+      "ok": [
+       "as many as"
+      ],
+      "wrong": [
+       "whoever",
+       "all who",
+       "those who"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "δὲ",
+     "lemma": "GG1161",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "however"
+      ],
+      "wrong": [
+       "nor",
+       "because",
+       "and"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἔλαβον",
+     "lemma": "GG2983",
+     "morph": "V-2AAI-3P",
+     "gloss": {
+      "ok": [
+       "received"
+      ],
+      "wrong": [
+       "he came",
+       "grasped",
+       "knew"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "αὐτόν",
+     "lemma": "GG0846",
+     "morph": "P-ASM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "over me",
+       "me",
+       "us"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἔδωκεν",
+     "lemma": "GG1325",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "he gave"
+      ],
+      "wrong": [
+       "he dwelt",
+       "knew",
+       "came"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "αὐτοῖς",
+     "lemma": "GG0846",
+     "morph": "P-DPM",
+     "gloss": {
+      "ok": [
+       "to them"
+      ],
+      "wrong": [
+       "us",
+       "we ourselves",
+       "me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἐξουσίαν",
+     "lemma": "GG1849",
+     "morph": "N-ASF",
+     "gloss": {
+      "ok": [
+       "authority"
+      ],
+      "wrong": [
+       "of authority",
+       "to authority",
+       "a glory"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "τέκνα",
+     "lemma": "GG5043",
+     "morph": "N-APN",
+     "gloss": {
+      "ok": [
+       "children"
+      ],
+      "wrong": [
+       "child",
+       "of child",
+       "to child"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "θεοῦ",
+     "lemma": "GG2316",
+     "morph": "N-GSM-T",
+     "gloss": {
+      "ok": [
+       "of God"
+      ],
+      "wrong": [
+       "Christ",
+       "Moses",
+       "Jesus"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "γενέσθαι",
+     "lemma": "GG1096",
+     "morph": "V-2ADN",
+     "gloss": {
+      "ok": [
+       "to be"
+      ],
+      "wrong": [
+       "enlightens",
+       "he was",
+       "he may testify"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "τοῖς",
+     "lemma": "GG3588",
+     "morph": "T-DPM",
+     "gloss": {
+      "ok": [
+       "to those"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "πιστεύουσιν",
+     "lemma": "GG4100",
+     "morph": "V-PAP-DPM",
+     "gloss": {
+      "ok": [
+       "believing"
+      ],
+      "wrong": [
+       "is being",
+       "saying",
+       "sent"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "εἰς",
+     "lemma": "GG1519",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in"
+      ],
+      "wrong": [
+       "precedence",
+       "through",
+       "concerning"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "τὸ",
+     "lemma": "GG3588",
+     "morph": "T-ASN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ὄνομα",
+     "lemma": "GG3686",
+     "morph": "N-ASN",
+     "gloss": {
+      "ok": [
+       "name"
+      ],
+      "wrong": [
+       "of name",
+       "to name",
+       "names"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "of him"
+      ],
+      "wrong": [
+       "over me",
+       "we ourselves",
+       "us"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P14",
+   "ref": "John 1:13",
+   "chapter": 1,
+   "order": 14,
+   "tier": 3,
+   "difficulty": 50.2,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "who not of blood nor of will of flesh nor of will of man but of God were born",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "οἳ",
+     "lemma": "GG3739",
+     "morph": "R-NPM",
+     "gloss": {
+      "ok": [
+       "who"
+      ],
+      "wrong": [
+       "which",
+       "whom",
+       "whose"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "οὐκ",
+     "lemma": "GG3756",
+     "morph": "PRT-N",
+     "gloss": {
+      "ok": [
+       "not",
+       "not born"
+      ],
+      "wrong": [
+       "as",
+       "never",
+       "no"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἐξ",
+     "lemma": "GG1537",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "of"
+      ],
+      "wrong": [
+       "to",
+       "after",
+       "into"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "αἱμάτων",
+     "lemma": "GG0129",
+     "morph": "N-GPN",
+     "gloss": {
+      "ok": [
+       "blood"
+      ],
+      "wrong": [
+       "of blood",
+       "to blood",
+       "of men"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "οὐδὲ",
+     "lemma": "GG3761",
+     "morph": "CONJ-N",
+     "gloss": {
+      "ok": [
+       "nor",
+       "nor born"
+      ],
+      "wrong": [
+       "that",
+       "then",
+       "and"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ἐκ",
+     "lemma": "GG1537",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "of"
+      ],
+      "wrong": [
+       "concerning",
+       "among",
+       "into"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "θελήματος",
+     "lemma": "GG2307",
+     "morph": "N-GSN",
+     "gloss": {
+      "ok": [
+       "will"
+      ],
+      "wrong": [
+       "of will",
+       "to will",
+       "fullness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "σαρκὸς",
+     "lemma": "GG4561",
+     "morph": "N-GSF",
+     "gloss": {
+      "ok": [
+       "of flesh"
+      ],
+      "wrong": [
+       "to flesh",
+       "of grace",
+       "truth"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "οὐδὲ",
+     "lemma": "GG3761",
+     "morph": "CONJ-N",
+     "gloss": {
+      "ok": [
+       "nor",
+       "nor born"
+      ],
+      "wrong": [
+       "then",
+       "however",
+       "and"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἐκ",
+     "lemma": "GG1537",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "of"
+      ],
+      "wrong": [
+       "into",
+       "with",
+       "to"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "θελήματος",
+     "lemma": "GG2307",
+     "morph": "N-GSN",
+     "gloss": {
+      "ok": [
+       "will"
+      ],
+      "wrong": [
+       "of will",
+       "to will",
+       "fullness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἀνδρὸς",
+     "lemma": "GG0435",
+     "morph": "N-GSM",
+     "gloss": {
+      "ok": [
+       "of man"
+      ],
+      "wrong": [
+       "man",
+       "to man",
+       "men"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ἀλλ᾽",
+     "lemma": "GG0235",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "but"
+      ],
+      "wrong": [
+       "and",
+       "not even",
+       "for"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ἐκ",
+     "lemma": "GG1537",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "of"
+      ],
+      "wrong": [
+       "among",
+       "concerning",
+       "precedence"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "θεοῦ",
+     "lemma": "GG2316",
+     "morph": "N-GSM-T",
+     "gloss": {
+      "ok": [
+       "God"
+      ],
+      "wrong": [
+       "Moses",
+       "Christ",
+       "Jesus"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "ἐγεννήθησαν",
+     "lemma": "GG1080",
+     "morph": "V-API-3P",
+     "gloss": {
+      "ok": [
+       "were born"
+      ],
+      "wrong": [
+       "was given",
+       "he dwelt",
+       "has come into being"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P15",
+   "ref": "John 1:14a",
+   "chapter": 1,
+   "order": 15,
+   "tier": 2,
+   "difficulty": 43.3,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "and the word flesh became and he dwelt among us and we beheld the glory of him",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "but",
+       "not even",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "λόγος",
+     "lemma": "GG3056",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "word"
+      ],
+      "wrong": [
+       "of word",
+       "to word",
+       "words"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "σὰρξ",
+     "lemma": "GG4561",
+     "morph": "N-NSF",
+     "gloss": {
+      "ok": [
+       "flesh"
+      ],
+      "wrong": [
+       "to flesh",
+       "life",
+       "of man"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἐγένετο",
+     "lemma": "GG1096",
+     "morph": "V-2ADI-3S",
+     "gloss": {
+      "ok": [
+       "became",
+       "came into being",
+       "there came",
+       "came"
+      ],
+      "wrong": [
+       "is being",
+       "received",
+       "have received"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "not even",
+       "nor",
+       "but"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἐσκήνωσεν",
+     "lemma": "GG4637",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "he dwelt"
+      ],
+      "wrong": [
+       "he gave",
+       "he may testify",
+       "was given"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἐν",
+     "lemma": "GG1722",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "among"
+      ],
+      "wrong": [
+       "concerning",
+       "with",
+       "as"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἡμῖν",
+     "lemma": "GG3165",
+     "morph": "P-1DP",
+     "gloss": {
+      "ok": [
+       "us"
+      ],
+      "wrong": [
+       "it",
+       "to them",
+       "to him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "but",
+       "for",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἐθεασάμεθα",
+     "lemma": "GG2300",
+     "morph": "V-ADI-1P",
+     "gloss": {
+      "ok": [
+       "we beheld"
+      ],
+      "wrong": [
+       "has made known",
+       "came",
+       "he may witness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "τὴν",
+     "lemma": "GG3588",
+     "morph": "T-ASF",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "δόξαν",
+     "lemma": "GG1391",
+     "morph": "N-ASF",
+     "gloss": {
+      "ok": [
+       "glory"
+      ],
+      "wrong": [
+       "of glory",
+       "to glory",
+       "a witness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "of him"
+      ],
+      "wrong": [
+       "us",
+       "over me",
+       "me"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P16",
+   "ref": "John 1:14b",
+   "chapter": 1,
+   "order": 16,
+   "tier": 3,
+   "difficulty": 54.3,
+   "origin": {
+    "biome": "#minecraft:is_taiga",
+    "container": "loot"
+   },
+   "reference_en": "a glory as of an only begotten from Father full of grace and truth",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "δόξαν",
+     "lemma": "GG1391",
+     "morph": "N-ASF",
+     "gloss": {
+      "ok": [
+       "a glory"
+      ],
+      "wrong": [
+       "of glory",
+       "to glory",
+       "authority"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ὡς",
+     "lemma": "GG5613",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "as"
+      ],
+      "wrong": [
+       "not",
+       "never",
+       "no"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "μονογενοῦς",
+     "lemma": "GG3439",
+     "morph": "A-GSM",
+     "gloss": {
+      "ok": [
+       "of an only begotten"
+      ],
+      "wrong": [
+       "full",
+       "no one",
+       "every"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "παρὰ",
+     "lemma": "GG3844",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "from"
+      ],
+      "wrong": [
+       "among",
+       "after",
+       "to"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "πατρός",
+     "lemma": "GG3962",
+     "morph": "N-GSM-T",
+     "gloss": {
+      "ok": [
+       "Father",
+       "the Father"
+      ],
+      "wrong": [
+       "of Father",
+       "Jesus",
+       "Moses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "πλήρης",
+     "lemma": "GG4134",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "full"
+      ],
+      "wrong": [
+       "before",
+       "no one",
+       "only begotten"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "χάριτος",
+     "lemma": "GG5485",
+     "morph": "N-GSF",
+     "gloss": {
+      "ok": [
+       "of grace"
+      ],
+      "wrong": [
+       "to grace",
+       "truth",
+       "of flesh"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "that",
+       "for",
+       "nor"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἀληθείας",
+     "lemma": "GG0225",
+     "morph": "N-GSF",
+     "gloss": {
+      "ok": [
+       "truth"
+      ],
+      "wrong": [
+       "of truth",
+       "to truth",
+       "of flesh"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P17",
+   "ref": "John 1:15a",
+   "chapter": 1,
+   "order": 17,
+   "tier": 3,
+   "difficulty": 52.7,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "John witnesses concerning him and he has cried out saying",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "Ἰωάννης",
+     "lemma": "GG2491",
+     "morph": "N-NSM-P",
+     "gloss": {
+      "ok": [
+       "John"
+      ],
+      "wrong": [
+       "of John",
+       "of God",
+       "God"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "μαρτυρεῖ",
+     "lemma": "GG3140",
+     "morph": "V-PAI-3S",
+     "gloss": {
+      "ok": [
+       "witnesses"
+      ],
+      "wrong": [
+       "shines",
+       "enlightens",
+       "was he"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "περὶ",
+     "lemma": "GG4012",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "concerning"
+      ],
+      "wrong": [
+       "into",
+       "without",
+       "through"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "him"
+      ],
+      "wrong": [
+       "me",
+       "us",
+       "over me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "but",
+       "however",
+       "that"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "κέκραγεν",
+     "lemma": "GG2896",
+     "morph": "V-2RAI-3S",
+     "gloss": {
+      "ok": [
+       "he has cried out"
+      ],
+      "wrong": [
+       "has",
+       "has come into being",
+       "he may testify"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "λέγων",
+     "lemma": "GG3004",
+     "morph": "V-PAP-NSM",
+     "gloss": {
+      "ok": [
+       "saying"
+      ],
+      "wrong": [
+       "believing",
+       "is being",
+       "he was"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P18",
+   "ref": "John 1:15b",
+   "chapter": 1,
+   "order": 18,
+   "tier": 3,
+   "difficulty": 50.4,
+   "origin": {
+    "biome": "#minecraft:is_jungle",
+    "container": "loot"
+   },
+   "reference_en": "this was he of whom i was saying the one after me coming precedence over me has because before me he was",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "οὗτος",
+     "lemma": "GG3778",
+     "morph": "D-NSM",
+     "gloss": {
+      "ok": [
+       "this"
+      ],
+      "wrong": [
+       "these",
+       "those",
+       "such a one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "was he",
+       "was",
+       "he was"
+      ],
+      "wrong": [
+       "has made known",
+       "sent",
+       "there came"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ὃν",
+     "lemma": "GG3739",
+     "morph": "R-ASM",
+     "gloss": {
+      "ok": [
+       "of whom"
+      ],
+      "wrong": [
+       "which",
+       "whom",
+       "whose"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "εἶπον",
+     "lemma": "GG2036",
+     "morph": "V-2AAI-1S",
+     "gloss": {
+      "ok": [
+       "i was saying"
+      ],
+      "wrong": [
+       "came",
+       "have received",
+       "he came"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the one",
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὀπίσω",
+     "lemma": "GG3694",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "after"
+      ],
+      "wrong": [
+       "of",
+       "to",
+       "as"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "μου",
+     "lemma": "GG3165",
+     "morph": "P-1GS",
+     "gloss": {
+      "ok": [
+       "me"
+      ],
+      "wrong": [
+       "him",
+       "to them",
+       "to him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἐρχόμενος",
+     "lemma": "GG2064",
+     "morph": "V-PNP-NSM",
+     "gloss": {
+      "ok": [
+       "coming"
+      ],
+      "wrong": [
+       "i was saying",
+       "were born",
+       "to be"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἔμπροσθέν",
+     "lemma": "GG1715",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "precedence"
+      ],
+      "wrong": [
+       "after",
+       "in",
+       "with"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "μου",
+     "lemma": "GG3165",
+     "morph": "P-1GS",
+     "gloss": {
+      "ok": [
+       "over me"
+      ],
+      "wrong": [
+       "him",
+       "to them",
+       "to him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "γέγονεν",
+     "lemma": "GG1096",
+     "morph": "V-2RAI-3S",
+     "gloss": {
+      "ok": [
+       "has",
+       "has come into being"
+      ],
+      "wrong": [
+       "he has cried out",
+       "has made known",
+       "were born"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ὅτι",
+     "lemma": "GG3754",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "because"
+      ],
+      "wrong": [
+       "nor",
+       "not even",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "πρῶτός",
+     "lemma": "GG4413",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "before"
+      ],
+      "wrong": [
+       "only begotten",
+       "no one",
+       "full"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "μου",
+     "lemma": "GG3165",
+     "morph": "P-1GS",
+     "gloss": {
+      "ok": [
+       "me"
+      ],
+      "wrong": [
+       "to him",
+       "him",
+       "to them"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἦν",
+     "lemma": "GG1510",
+     "morph": "V-IAI-3S",
+     "gloss": {
+      "ok": [
+       "he was",
+       "was",
+       "was he"
+      ],
+      "wrong": [
+       "grasped",
+       "was given",
+       "we beheld"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P19",
+   "ref": "John 1:16",
+   "chapter": 1,
+   "order": 19,
+   "tier": 2,
+   "difficulty": 46.9,
+   "origin": {
+    "biome": "#minecraft:is_plains",
+    "container": "loot"
+   },
+   "reference_en": "for from the fullness of him we ourselves all have received then grace for grace",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "ὅτι",
+     "lemma": "GG3754",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "for"
+      ],
+      "wrong": [
+       "that",
+       "however",
+       "but"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἐκ",
+     "lemma": "GG1537",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "from"
+      ],
+      "wrong": [
+       "through",
+       "without",
+       "for"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "τοῦ",
+     "lemma": "GG3588",
+     "morph": "T-GSN",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "πληρώματος",
+     "lemma": "GG4138",
+     "morph": "N-GSN",
+     "gloss": {
+      "ok": [
+       "fullness"
+      ],
+      "wrong": [
+       "of fullness",
+       "to fullness",
+       "will"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "αὐτοῦ",
+     "lemma": "GG0846",
+     "morph": "P-GSM",
+     "gloss": {
+      "ok": [
+       "of him"
+      ],
+      "wrong": [
+       "over me",
+       "we ourselves",
+       "us"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ἡμεῖς",
+     "lemma": "GG3165",
+     "morph": "P-1NP",
+     "gloss": {
+      "ok": [
+       "we ourselves"
+      ],
+      "wrong": [
+       "to them",
+       "it",
+       "of him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "πάντες",
+     "lemma": "GG3956",
+     "morph": "A-NPM",
+     "gloss": {
+      "ok": [
+       "all"
+      ],
+      "wrong": [
+       "no one",
+       "one thing",
+       "true"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἐλάβομεν",
+     "lemma": "GG2983",
+     "morph": "V-2AAI-1P",
+     "gloss": {
+      "ok": [
+       "have received"
+      ],
+      "wrong": [
+       "he came",
+       "came",
+       "i was saying"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "then"
+      ],
+      "wrong": [
+       "not even",
+       "nor",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "χάριν",
+     "lemma": "GG5485",
+     "morph": "N-ASF",
+     "gloss": {
+      "ok": [
+       "grace"
+      ],
+      "wrong": [
+       "to grace",
+       "a glory",
+       "authority"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἀντὶ",
+     "lemma": "GG0473",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "for"
+      ],
+      "wrong": [
+       "concerning",
+       "precedence",
+       "with"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "χάριτος",
+     "lemma": "GG5485",
+     "morph": "N-GSF",
+     "gloss": {
+      "ok": [
+       "grace"
+      ],
+      "wrong": [
+       "to grace",
+       "of flesh",
+       "truth"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P20",
+   "ref": "John 1:17",
+   "chapter": 1,
+   "order": 20,
+   "tier": 2,
+   "difficulty": 46.6,
+   "origin": {
+    "biome": "#minecraft:is_swamp",
+    "container": "loot"
+   },
+   "reference_en": "for the law through Moses was given the grace and the truth through Jesus Christ came",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "ὅτι",
+     "lemma": "GG3754",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "for"
+      ],
+      "wrong": [
+       "and",
+       "that",
+       "not even"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "νόμος",
+     "lemma": "GG3551",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "law"
+      ],
+      "wrong": [
+       "of law",
+       "to law",
+       "laws"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "διὰ",
+     "lemma": "GG1223",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "through"
+      ],
+      "wrong": [
+       "among",
+       "of",
+       "with"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "Μωϋσέως",
+     "lemma": "GG3475",
+     "morph": "N-GSM-P",
+     "gloss": {
+      "ok": [
+       "Moses"
+      ],
+      "wrong": [
+       "of Moses",
+       "Christ",
+       "Jesus"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ἐδόθη",
+     "lemma": "GG1325",
+     "morph": "V-API-3S",
+     "gloss": {
+      "ok": [
+       "was given"
+      ],
+      "wrong": [
+       "were born",
+       "is being",
+       "has made known"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἡ",
+     "lemma": "GG3588",
+     "morph": "T-NSF",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "χάρις",
+     "lemma": "GG5485",
+     "morph": "N-NSF",
+     "gloss": {
+      "ok": [
+       "grace"
+      ],
+      "wrong": [
+       "to grace",
+       "flesh",
+       "life"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "καὶ",
+     "lemma": "GG2532",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and"
+      ],
+      "wrong": [
+       "not even",
+       "that",
+       "because"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἡ",
+     "lemma": "GG3588",
+     "morph": "T-NSF",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἀλήθεια",
+     "lemma": "GG0225",
+     "morph": "N-NSF",
+     "gloss": {
+      "ok": [
+       "truth"
+      ],
+      "wrong": [
+       "of truth",
+       "to truth",
+       "life"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "διὰ",
+     "lemma": "GG1223",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "through"
+      ],
+      "wrong": [
+       "for",
+       "in",
+       "precedence"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "Ἰησοῦ",
+     "lemma": "GG2424",
+     "morph": "N-GSM-P",
+     "gloss": {
+      "ok": [
+       "Jesus"
+      ],
+      "wrong": [
+       "of Jesus",
+       "Father",
+       "Moses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "Χριστοῦ",
+     "lemma": "GG5547",
+     "morph": "N-GSM-T",
+     "gloss": {
+      "ok": [
+       "Christ"
+      ],
+      "wrong": [
+       "of Christ",
+       "Jesus",
+       "Moses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἐγένετο",
+     "lemma": "GG1096",
+     "morph": "V-2ADI-3S",
+     "gloss": {
+      "ok": [
+       "came",
+       "came into being",
+       "there came",
+       "became"
+      ],
+      "wrong": [
+       "he was",
+       "he may witness",
+       "shines"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "P21",
+   "ref": "John 1:18",
+   "chapter": 1,
+   "order": 21,
+   "tier": 3,
+   "difficulty": 50.4,
+   "origin": {
+    "biome": "#minecraft:is_desert",
+    "container": "loot"
+   },
+   "reference_en": "God no one has seen ever yet the only begotten God who is being in the bosom of the Father he has made known",
+   "notes": [
+    "Glossen automatisch erzeugt, ungeprueft"
+   ],
+   "words": [
+    {
+     "i": 0,
+     "greek": "Θεὸν",
+     "lemma": "GG2316",
+     "morph": "N-ASM-T",
+     "gloss": {
+      "ok": [
+       "God"
+      ],
+      "wrong": [
+       "Moses",
+       "John",
+       "Jesus"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "οὐδεὶς",
+     "lemma": "GG3762",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "no one",
+       "no"
+      ],
+      "wrong": [
+       "only begotten",
+       "full",
+       "before"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἑώρακεν",
+     "lemma": "GG3708",
+     "morph": "V-RAI-3S",
+     "gloss": {
+      "ok": [
+       "has seen"
+      ],
+      "wrong": [
+       "may believe",
+       "he dwelt",
+       "came"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "πώποτε",
+     "lemma": "GG4455",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "ever yet"
+      ],
+      "wrong": [
+       "never",
+       "once",
+       "already"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "μονογενὴς",
+     "lemma": "GG3439",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "only begotten"
+      ],
+      "wrong": [
+       "full",
+       "before",
+       "no one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "θεὸς",
+     "lemma": "GG2316",
+     "morph": "N-NSM-T",
+     "gloss": {
+      "ok": [
+       "God"
+      ],
+      "wrong": [
+       "John",
+       "Father",
+       "Moses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ὁ",
+     "lemma": "GG3588",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "who"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ὢν",
+     "lemma": "GG1510",
+     "morph": "V-PAP-NSM",
+     "gloss": {
+      "ok": [
+       "is being"
+      ],
+      "wrong": [
+       "saying",
+       "believing",
+       "shines"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "εἰς",
+     "lemma": "GG1519",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in"
+      ],
+      "wrong": [
+       "among",
+       "without",
+       "through"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "τὸν",
+     "lemma": "GG3588",
+     "morph": "T-ASM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "κόλπον",
+     "lemma": "GG2859",
+     "morph": "N-ASM",
+     "gloss": {
+      "ok": [
+       "bosom"
+      ],
+      "wrong": [
+       "of bosom",
+       "to bosom",
+       "bosoms"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "τοῦ",
+     "lemma": "GG3588",
+     "morph": "T-GSM",
+     "gloss": {
+      "ok": [
+       "of the"
+      ],
+      "wrong": [
+       "this",
+       "that",
+       "a"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "πατρός",
+     "lemma": "GG3962",
+     "morph": "N-GSM-T",
+     "gloss": {
+      "ok": [
+       "Father"
+      ],
+      "wrong": [
+       "of Father",
+       "Jesus",
+       "of God"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἐκεῖνος",
+     "lemma": "GG1565",
+     "morph": "D-NSM",
+     "gloss": {
+      "ok": [
+       "he"
+      ],
+      "wrong": [
+       "this",
+       "these",
+       "those"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "ἐξηγήσατο",
+     "lemma": "GG1834",
+     "morph": "V-ADI-3S",
+     "gloss": {
+      "ok": [
+       "has made known",
+       "has made him known"
+      ],
+      "wrong": [
+       "we beheld",
+       "were born",
+       "he may witness"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  }
+ ]
+}
