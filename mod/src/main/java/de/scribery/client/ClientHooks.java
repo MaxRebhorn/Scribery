@@ -32,6 +32,15 @@ public final class ClientHooks {
         open(pos, Stations.Kind.PRESS);
     }
 
+    /** Uebersetzungstisch angeklickt: uebersetzt den aufgelegten Bogen mit den Vorraeten des Tisches. */
+    public static void openDesk(BlockPos pos) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.level == null || !(mc.level.getBlockEntity(pos) instanceof de.scribery.DeskBlockEntity be)) return;
+        de.scribery.SheetData d = be.sheetData();
+        if (d == null || !d.translatable()) return;
+        mc.setScreen(new TileScreen(Workbench.forSheet(d.fragment(), d.page(), pos, be.ink(), be.tablets())));
+    }
+
     private static void open(BlockPos clicked, Stations.Kind start) {
         Minecraft mc = Minecraft.getInstance();
         Level level = mc.level;
@@ -53,7 +62,6 @@ public final class ClientHooks {
                 cabinet = true;
                 if (cabinetPos == null || p.asLong() < cabinetPos.asLong()) cabinetPos = p;
             }
-            else if (b == ModBlocks.TRANSLATOR_DESK.get()) desk = true;
             else if (b == ModBlocks.SCRIBE_LECTERN.get()) {
                 int idx = level.getBlockEntity(p) instanceof LecternBlockEntity be ? be.debugFragmentIndex() : -1;
                 // Das angeklickte Pult gewinnt, sonst eines mit Fragment.

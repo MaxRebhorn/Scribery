@@ -146,6 +146,24 @@ def backdrop():
     return im
 
 
+def tablet():
+    """Wooden Word Tablet: kleines Holztaefelchen mit Schnurloch und eingeritzten Zeilen (16x16 Item)."""
+    im = new(16, 16)
+    rect(im, 2, 3, 12, 10, "wood_0")
+    grain(im, 3, 4, 10, 8, "wood_3", "wood_4", "wood_2", 5, density=1.2)
+    rect(im, 3, 4, 10, 1, "wood_4")
+    rect(im, 3, 11, 10, 1, "wood_2")
+    rect(im, 12, 4, 1, 8, "wood_2")
+    for x, y in ((2, 3), (13, 3), (2, 12), (13, 12)):
+        im.load()[x, y] = (0, 0, 0, 0)
+    rect(im, 4, 5, 2, 2, "wood_0")  # Schnurloch
+    rect(im, 4, 5, 1, 1, "wood_1")
+    rect(im, 7, 6, 4, 1, "wood_1")
+    rect(im, 5, 8, 6, 1, "wood_1")
+    rect(im, 5, 10, 4, 1, "wood_1")
+    return im
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     allowed = {v for v in PAL.values()} | {(0, 0, 0, 0)}
@@ -155,3 +173,7 @@ if __name__ == "__main__":
         assert not bad, (name, bad)
         im.save(os.path.join(OUT, name + ".png"))
         print(name, im.size)
+    item_dir = os.path.join(ROOT, "mod/src/main/resources/assets/scribery/textures/item")
+    t = tablet()
+    t.save(os.path.join(item_dir, "wooden_word_tablet.png"))
+    print("wooden_word_tablet", t.size)

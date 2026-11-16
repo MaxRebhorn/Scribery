@@ -19,6 +19,7 @@ public final class ClientModEvents {
 
     @SubscribeEvent
     static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.LECTERN.get(), ctx -> new LecternRenderer());
+        event.registerBlockEntityRenderer(ModBlockEntities.LECTERN.get(), ctx -> new LecternRenderer<>(de.scribery.LecternBlockEntity::fragment));
+        event.registerBlockEntityRenderer(ModBlockEntities.DESK.get(), ctx -> new LecternRenderer<>(de.scribery.DeskBlockEntity::sheet));
     }
 }

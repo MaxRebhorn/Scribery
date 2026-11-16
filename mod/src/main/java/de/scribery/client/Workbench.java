@@ -27,6 +27,11 @@ final class Workbench {
     net.minecraft.core.BlockPos cabinetPos;
     /** Wie viele fertige Boegen der Presse schon an den Server gemeldet sind. */
     int sheetsSent;
+    /** Uebersetzungstisch, an dem dieser Stand arbeitet; null im Debug. */
+    net.minecraft.core.BlockPos deskPos;
+    /** Beim Uebersetzungstisch: nur dieser Bogen des Fragments wird uebersetzt, sonst -1. */
+    int sheetPage = -1;
+    int deskInk, deskTablets;
 
     Workbench(int index) {
         this(index, Stations.DEBUG);
@@ -40,6 +45,16 @@ final class Workbench {
         this.fragment = all.get(fragmentIndex);
         this.press = new PressSession(fragment.words(), ui.lineSlots, ui.rows, ui.maxWordsPerLine,
                 START_STOCK, START_INK, START_IRON, new Random());
+    }
+
+    /** Fuer den Uebersetzungstisch: ein einzelner gedruckter Bogen mit den Vorraeten des Tisches. */
+    static Workbench forSheet(int fragment, int page, net.minecraft.core.BlockPos desk, int ink, int tablets) {
+        Workbench w = new Workbench(fragment, Stations.NONE);
+        w.sheetPage = page;
+        w.deskPos = desk;
+        w.deskInk = ink;
+        w.deskTablets = tablets;
+        return w;
     }
 
     /** Ohne Fragment: freier Druck, die Presse setzt beliebige Lettern. */

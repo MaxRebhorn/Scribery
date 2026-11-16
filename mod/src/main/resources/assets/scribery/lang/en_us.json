@@ -42,5 +42,6 @@
   "block.scribery.bookshelf": "Bookshelf",
   "block.scribery.minting_table": "Minting Table",
   "item.scribery.printed_sheet": "Printed Sheet",
-  "item.scribery.translated_sheet": "Translated Sheet"
+  "item.scribery.translated_sheet": "Translated Sheet",
+  "item.scribery.wooden_word_tablet": "Wooden Word Tablet"
 }

@@ -50,9 +50,40 @@ public final class ModNetwork {
         }
     }
 
+    /** Stand des Uebersetzungstisches: Tinte, Taefelchen und, wenn fertig, die Uebersetzung (ein Wort pro Eintrag). */
+    public record CommitDesk(BlockPos pos, int ink, int tablets, List<String> english) implements CustomPacketPayload {
+        public static final Type<CommitDesk> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "commit_desk"));
+        public static final StreamCodec<ByteBuf, CommitDesk> CODEC = StreamCodec.composite(
+                BlockPos.STREAM_CODEC, CommitDesk::pos,
+                ByteBufCodecs.VAR_INT, CommitDesk::ink,
+                ByteBufCodecs.VAR_INT, CommitDesk::tablets,
+                ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list(64)), CommitDesk::english,
+                CommitDesk::new);
+
+        @Override
+        public Type<? extends CustomPacketPayload> type() {
+            return TYPE;
+        }
+    }
+
     public static void register(RegisterPayloadHandlersEvent event) {
         var r = event.registrar("1");
         r.playToServer(CommitCabinet.TYPE, CommitCabinet.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commit(p, ctx)));
+        r.playToServer(CommitDesk.TYPE, CommitDesk.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commitDesk(p, ctx)));
+    }
+
+    private static void commitDesk(CommitDesk p, IPayloadContext ctx) {
+        if (!(ctx.player() instanceof ServerPlayer player)) return;
+        if (player.distanceToSqr(p.pos().getCenter()) > REACH_SQR) return;
+        if (!(player.level().getBlockEntity(p.pos()) instanceof DeskBlockEntity be)) return;
+        SheetData sheet = be.sheetData();
+        if (!be.commit(p.ink(), p.tablets())) return;
+        if (p.english().isEmpty() || sheet == null || !sheet.translatable()) return;
+        if (!Translation.isCorrect(sheet, p.english()) || !be.usePaper()) return;
+        be.setSheet(net.minecraft.world.item.ItemStack.EMPTY);
+        var out = SheetItem.of(ModItems.TRANSLATED_SHEET.get(), new SheetData(sheet.fragment(), sheet.page(), sheet.lines(), p.english()));
+        if (!player.getInventory().add(out)) player.drop(out, false);
+        player.level().playSound(null, p.pos(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1f, 1f);
     }
 
     private static void commit(CommitCabinet p, IPayloadContext ctx) {

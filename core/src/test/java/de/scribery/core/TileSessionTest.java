@@ -166,4 +166,25 @@ class TileSessionTest {
         put(s, "in", 0);
         assertEquals(TileSession.Refusal.NO_INK, s.write().refusal());
     }
+
+    @Test
+    void everyWrittenWordCostsATabletEvenWhenWrong() {
+        TileSession s = session(12);
+        s.setTablets(5);
+        put(s, "in", 0);
+        put(s, "ruler", 1); // falsch
+        put(s, "was", 2);
+        put(s, "the", 3);
+        put(s, "words", 4); // falsch
+        var r = s.write();
+        assertNull(r.refusal());
+        assertEquals(0, s.tablets(), "fuenf Woerter, fuenf Taefelchen, auch die falschen");
+        // zwei falsche Woerter muessen noch einmal geschrieben werden: das braucht zwei Taefelchen
+        put(s, "beginning", 1);
+        put(s, "word", 4);
+        assertEquals(TileSession.Refusal.NO_TABLETS, s.write().refusal());
+        s.setTablets(2);
+        assertNull(s.write().refusal());
+        assertTrue(s.pageDone());
+    }
 }

@@ -56,7 +56,7 @@ public final class ModItems {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("main",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.scribery"))
-                    .icon(() -> ModItems.ALL.get(ALL.size() - 7).get().getDefaultInstance())
+                    .icon(() -> LETTER_ITEMS.get(0).get().getDefaultInstance())
                     .displayItems((params, out) -> { ModBlocks.ALL.forEach(b -> out.accept(b.get())); ALL.forEach(s -> out.accept(s.get())); })
                     .build());
 
@@ -66,9 +66,11 @@ public final class ModItems {
         return -1;
     }
 
+    public static final Supplier<Item> WOODEN_WORD_TABLET = ITEMS.registerSimpleItem("wooden_word_tablet");
     public static final Supplier<Item> PRINTED_SHEET = ITEMS.registerItem("printed_sheet", SheetItem::new);
     public static final Supplier<Item> TRANSLATED_SHEET = ITEMS.registerItem("translated_sheet", SheetItem::new);
     static {
+        ALL.add(WOODEN_WORD_TABLET);
         ALL.add(PRINTED_SHEET);
         ALL.add(TRANSLATED_SHEET);
     }

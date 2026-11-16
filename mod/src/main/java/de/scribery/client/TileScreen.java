@@ -64,9 +64,12 @@ public class TileScreen extends StationScreen {
     protected void onBenchChanged() {
         if (bench.tiles == null) {
             long seed = bench.fragment.id().hashCode();
-            List<List<Integer>> sheets = bench.press.sheets();
+            List<List<Integer>> sheets = bench.sheetPage >= 0
+                    ? List.of(bench.press.sheets().get(bench.sheetPage)) : bench.press.sheets();
             bench.tiles = new TileSession(bench.fragment.tileWords(), sheets,
-                    wrongCounts(bench.fragment.tileWords(), sheets, seed), bench.startInk(), seed);
+                    wrongCounts(bench.fragment.tileWords(), sheets, seed),
+                    bench.deskPos != null ? bench.deskInk : bench.startInk(), seed);
+            if (bench.deskPos != null) bench.tiles.setTablets(bench.deskTablets);
         }
         session = bench.tiles;
         loadedPage = -1;
@@ -127,7 +130,7 @@ public class TileScreen extends StationScreen {
 
     @Override
     protected String resourceText() {
-        return "Ink " + session.ink();
+        return "Ink " + session.ink() + "   Tablets " + session.tablets();
     }
 
     @Override
@@ -158,13 +161,17 @@ public class TileScreen extends StationScreen {
                 }
             }
         } else if (finishDelay > 0 && --finishDelay == 0) {
+            java.util.List<String> english = new java.util.ArrayList<>();
+            if (bench.deskPos != null) for (int i = 0; i < session.slotCount(); i++) english.add(session.written(i));
             session.finishPage();
+            if (bench.deskPos != null) commit(english);
             sound(SoundEvents.BOOK_PAGE_TURN, 1f, 0.6f);
         }
     }
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (bench.deskPos != null) return super.keyPressed(keyCode, scanCode, modifiers);
         if (keyCode == GLFW.GLFW_KEY_N && session.isComplete()) {
             restart(fragmentIndex + 1);
             return true;
@@ -176,11 +183,26 @@ public class TileScreen extends StationScreen {
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
+    /** Meldet dem Server Tinte und Taefelchen, bei fertiger Uebersetzung auch den Text. Ohne Tisch (Debug) passiert nichts. */
+    private void commit(java.util.List<String> english) {
+        if (bench.deskPos == null) return;
+        net.neoforged.neoforge.network.PacketDistributor.sendToServer(
+                new de.scribery.ModNetwork.CommitDesk(bench.deskPos, session.ink(), session.tablets(), english));
+        bench.deskInk = session.ink();
+        bench.deskTablets = session.tablets();
+    }
+
+    @Override
+    public void removed() {
+        if (bench.deskPos != null && !session.isComplete()) commit(java.util.List.of());
+        super.removed();
+    }
+
     // ------------------------------------------------------------------ Geometrie
 
     /** Der Bogen dieses Blatts ist an der Presse schon gedruckt. */
     private boolean printed() {
-        return !session.isComplete() && bench.press.printedCount() > session.pageIndex();
+        return !session.isComplete() && (bench.sheetPage >= 0 || bench.press.printedCount() > session.pageIndex());
     }
 
     private List<String> pageWords(boolean greek) {
@@ -336,6 +358,7 @@ public class TileScreen extends StationScreen {
         return switch (r) {
             case EMPTY_SLOTS -> "Every word needs a tile first";
             case NO_INK -> "The inkwell is empty";
+            case NO_TABLETS -> "Not enough wooden word tablets";
             case BUSY -> "";
         };
     }

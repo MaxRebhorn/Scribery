@@ -18,6 +18,10 @@ public final class ModBlockEntities {
             TYPES.register("letter_cabinet", () -> BlockEntityType.Builder
                     .of(CabinetBlockEntity::new, ModBlocks.LETTER_CABINET.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DeskBlockEntity>> DESK =
+            TYPES.register("translator_desk", () -> BlockEntityType.Builder
+                    .of(DeskBlockEntity::new, ModBlocks.TRANSLATOR_DESK.get()).build(null));
+
     public static void register(IEventBus bus) {
         TYPES.register(bus);
     }

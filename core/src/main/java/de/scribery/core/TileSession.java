@@ -25,7 +25,7 @@ public final class TileSession {
      * @param box   Kasten, in dem die Plaettchen dieses Wortes liegen
      */
     public record Word(String greek, String latin, List<String> ok, List<String> wrong, int box) {
-        boolean accepts(String face) {
+        public boolean accepts(String face) {
             return ok.stream().anyMatch(o -> o.equalsIgnoreCase(face));
         }
     }
@@ -57,7 +57,10 @@ public final class TileSession {
     /** So viele falsche Plaettchen liegen pro Wort hoechstens im Kasten. */
     public static final int WRONG_PER_WORD = 3;
 
-    public enum Refusal { EMPTY_SLOTS, NO_INK, BUSY }
+    /** Vorrat, wenn die Station keinen echten Vorrat hat (Debug). */
+    public static final int DEFAULT_TABLETS = 999;
+
+    public enum Refusal { EMPTY_SLOTS, NO_INK, NO_TABLETS, BUSY }
 
     public enum Hint { PICK_WORDS, PLACE_TILES, WRITE, DONE }
 
@@ -80,6 +83,8 @@ public final class TileSession {
     private final long seed;
     private final int[] wrongPerPage;
     private int ink;
+    /** Holztaefelchen: jedes geschriebene Wort verbraucht eines, auch ein falsches. */
+    private int tablets = DEFAULT_TABLETS;
     private int pageIndex;
 
     // Zustand des aktuellen Blatts
@@ -172,6 +177,8 @@ public final class TileSession {
     // ---- Abfragen ----
 
     public int ink() { return ink; }
+    public int tablets() { return tablets; }
+    public void setTablets(int n) { tablets = Math.max(0, n); }
     public int pageIndex() { return pageIndex; }
     public int pageCount() { return pages.size(); }
     public boolean isComplete() { return pageIndex >= pages.size(); }
@@ -246,7 +253,11 @@ public final class TileSession {
         if (isComplete() || pageDone()) return WriteResult.refused(Refusal.BUSY);
         if (hasEmptySlot()) return WriteResult.refused(Refusal.EMPTY_SLOTS);
         if (ink <= 0) return WriteResult.refused(Refusal.NO_INK);
+        int need = 0;
+        for (boolean d : done) if (!d) need++;
+        if (tablets < need) return WriteResult.refused(Refusal.NO_TABLETS);
         ink--;
+        tablets -= need;
         boolean[] attempted = new boolean[slotTile.length];
         boolean[] wrong = new boolean[slotTile.length];
         for (int i = 0; i < slotTile.length; i++) {
