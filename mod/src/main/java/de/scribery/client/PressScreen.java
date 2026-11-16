@@ -51,7 +51,7 @@ public class PressScreen extends StationScreen {
 
     @Override
     protected String resourceText() {
-        return "Ink " + session.ink() + "   Iron " + session.iron();
+        return "Ink " + session.ink() + "   Paper " + session.paperStock();
     }
 
     @Override
@@ -162,15 +162,14 @@ public class PressScreen extends StationScreen {
         if (cell >= 0) {
             char c = ui.letters[cell];
             if (button == 1) {
-                if (session.cast(c)) sound(SoundEvents.ANVIL_USE, 1.4f, 0.3f);
-                else flash("No iron left");
+                flash("Cast letters at a Minting Table");
             } else if (hand == Hand.NONE) {
                 if (session.takeFromCase(c)) {
                     hand = Hand.SORT;
                     handSort = c;
                     sound(SoundEvents.ITEM_PICKUP, 1.2f, 0.4f);
                 } else {
-                    flash("No " + c + " left. Right-click to cast");
+                    flash("No " + c + " left");
                 }
             }
             return;
@@ -209,6 +208,10 @@ public class PressScreen extends StationScreen {
 
         if (hasCabinet() && in(ui.rect("paper_stock"), x, y, 0)) {
             if (hand == Hand.NONE) {
+                if (session.paperStock() <= 0) {
+                    flash("Out of paper");
+                    return;
+                }
                 hand = Hand.PAPER;
                 sound(SoundEvents.BOOK_PAGE_TURN, 1.2f, 0.6f);
             } else if (hand == Hand.PAPER) {
@@ -290,6 +293,16 @@ public class PressScreen extends StationScreen {
     @Override
     public void removed() {
         if (rollerSound != null) rollerSound.end();
+        if (hand == Hand.SORT) session.returnToCase(handSort);
+        if (hand == Hand.ROLLER) session.returnRoller();
+        hand = Hand.NONE;
+        session.closeOut();
+        if (bench.cabinetPos != null && bench.stations.cabinet()) {
+            java.util.List<Integer> letters = new java.util.ArrayList<>();
+            for (char ch : de.scribery.core.Translit.ALPHABET.toCharArray()) letters.add(session.stock(ch));
+            net.neoforged.neoforge.network.PacketDistributor.sendToServer(
+                    new de.scribery.ModNetwork.CommitCabinet(bench.cabinetPos, letters, session.ink(), session.paperStock()));
+        }
         super.removed();
     }
 

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import de.scribery.CabinetBlockEntity;
 import de.scribery.LecternBlockEntity;
 import de.scribery.ModBlocks;
 import net.minecraft.client.Minecraft;
@@ -31,6 +32,11 @@ public final class ClientHooks {
         open(pos, Stations.Kind.PRESS);
     }
 
+    /** Minting Table angeklickt. */
+    public static void openMint(BlockPos pos) {
+        Minecraft.getInstance().setScreen(new MintScreen(pos));
+    }
+
     private static void open(BlockPos clicked, Stations.Kind start) {
         Minecraft mc = Minecraft.getInstance();
         Level level = mc.level;
@@ -38,7 +44,7 @@ public final class ClientHooks {
 
         // Alle Stationsbloecke, die waagerecht zusammenhaengen.
         boolean press = false, cabinet = false, desk = false;
-        BlockPos lectern = null, anchor = clicked;
+        BlockPos lectern = null, anchor = clicked, cabinetPos = null;
         int lecternFragment = -1;
         Set<BlockPos> seen = new HashSet<>();
         ArrayDeque<BlockPos> queue = new ArrayDeque<>();
@@ -48,7 +54,10 @@ public final class ClientHooks {
             BlockPos p = queue.poll();
             Block b = level.getBlockState(p).getBlock();
             if (b == ModBlocks.PRINTING_PRESS.get()) press = true;
-            else if (b == ModBlocks.LETTER_CABINET.get()) cabinet = true;
+            else if (b == ModBlocks.LETTER_CABINET.get()) {
+                cabinet = true;
+                if (cabinetPos == null || p.asLong() < cabinetPos.asLong()) cabinetPos = p;
+            }
             else if (b == ModBlocks.TRANSLATOR_DESK.get()) desk = true;
             else if (b == ModBlocks.SCRIBE_LECTERN.get()) {
                 int idx = level.getBlockEntity(p) instanceof LecternBlockEntity be ? be.debugFragmentIndex() : -1;
@@ -70,6 +79,10 @@ public final class ClientHooks {
         Workbench bench = (old != null && old.key() == lecternFragment && old.stations.equals(st)) ? old
                 : lecternFragment >= 0 ? new Workbench(lecternFragment, st) : Workbench.free(st);
         BENCHES.put(anchor, bench);
+        bench.cabinetPos = cabinetPos;
+        if (cabinetPos != null && level.getBlockEntity(cabinetPos) instanceof CabinetBlockEntity cbe) {
+            bench.applyResources(cbe.letters(), cbe.ink(), cbe.paper());
+        }
 
         mc.setScreen(start == Stations.Kind.LECTERN ? new LecternScreen(bench) : new PressScreen(bench));
     }

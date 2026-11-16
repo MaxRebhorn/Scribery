@@ -14,6 +14,14 @@ public final class ModBlockEntities {
             TYPES.register("scribe_lectern", () -> BlockEntityType.Builder
                     .of(LecternBlockEntity::new, ModBlocks.SCRIBE_LECTERN.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CabinetBlockEntity>> CABINET =
+            TYPES.register("letter_cabinet", () -> BlockEntityType.Builder
+                    .of(CabinetBlockEntity::new, ModBlocks.LETTER_CABINET.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MintBlockEntity>> MINT =
+            TYPES.register("minting_table", () -> BlockEntityType.Builder
+                    .of(MintBlockEntity::new, ModBlocks.MINTING_TABLE.get()).build(null));
+
     public static void register(IEventBus bus) {
         TYPES.register(bus);
     }

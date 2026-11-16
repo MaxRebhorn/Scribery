@@ -56,7 +56,11 @@ public final class PressSession {
     private final List<String> finishedLines = new ArrayList<>();
     private final List<char[]> printedSheets = new ArrayList<>();
 
+    /** So viele Bogen Papier liegen im Vorrat. */
+    public static final int START_PAPER = 16;
+
     private int ink;
+    private int paperStock = START_PAPER;
     private int iron;
     private int pageIndex;
 
@@ -143,6 +147,10 @@ public final class PressSession {
     public boolean isFree() { return free; }
     public int ink() { return ink; }
     public int iron() { return iron; }
+    public int paperStock() { return paperStock; }
+    public void setPaperStock(int n) { paperStock = Math.max(0, n); }
+    public void setInk(int n) { ink = Math.max(0, n); }
+    public void setStock(char letter, int n) { if (stock.containsKey(letter)) stock.put(letter, Math.max(0, n)); }
     public int stock(char letter) { return stock.getOrDefault(letter, 0); }
     public Paper paper() { return paper; }
     public boolean rollerCharged() { return rollerCharged; }
@@ -229,6 +237,25 @@ public final class PressSession {
         return !isComplete() && paper != Paper.FED && !awaitingFinish;
     }
 
+    /**
+     * Raeumt die Presse auf, wenn der Spieler geht: ein offener Abzug wird abgeschlossen, alles Gesetzte
+     * geht zurueck in die Box, unbedrucktes Papier zurueck in den Vorrat, die Walze wird abgelegt.
+     */
+    public void closeOut() {
+        if (awaitingFinish) finishPage();
+        if (paper != Paper.NONE) {
+            paperStock++;
+            paper = Paper.NONE;
+        }
+        for (int i = 0; i < slotCount; i++) {
+            if (fixed[i] || slots[i] == 0) continue;
+            returnToCase(slots[i]);
+            slots[i] = 0;
+            inkLevel[i] = 0;
+        }
+        rollerCharged = false;
+    }
+
     // ---- Buchstabenbox ----
 
     public boolean takeFromCase(char letter) {
@@ -293,7 +320,8 @@ public final class PressSession {
     // ---- Papier, Kurbel, Hebel ----
 
     public boolean layPaper() {
-        if (isComplete() || awaitingFinish || paper != Paper.NONE) return false;
+        if (isComplete() || awaitingFinish || paper != Paper.NONE || paperStock <= 0) return false;
+        paperStock--;
         paper = Paper.ON_TRAY;
         return true;
     }

@@ -317,6 +317,7 @@ public abstract class StationScreen extends Screen {
             case LECTERN -> new LecternScreen(bench);
             case PRESS -> new PressScreen(bench);
             case DESK -> new TileScreen(bench);
+            case MINT -> null;
         };
     }
 

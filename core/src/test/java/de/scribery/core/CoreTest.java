@@ -251,4 +251,23 @@ class CoreTest {
         assertEquals(0, s.slot(5)); // Forme ist wieder frei
         assertFalse(s.isComplete());
     }
+
+    @Test
+    void paperIsConsumedAndCloseOutReturnsEverything() {
+        PressSession s = PressSession.free(16, 4, 4, 8, 24, new Random(1));
+        s.setPaperStock(1);
+        assertTrue(s.layPaper());
+        assertFalse(s.layPaper()); // belegt
+        assertEquals(0, s.paperStock());
+        assertTrue(s.takeFromCase('K'));
+        assertTrue(s.place(3, 'K'));
+        s.closeOut();
+        assertEquals(1, s.paperStock()); // unbedrucktes Papier zurueck
+        assertEquals(0, s.slot(3));
+        assertEquals(4, s.stock('K'));
+        s.setStock('K', 0);
+        assertEquals(0, s.stock('K'));
+        s.setPaperStock(0);
+        assertFalse(s.layPaper());
+    }
 }

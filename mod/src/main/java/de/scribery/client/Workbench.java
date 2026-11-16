@@ -23,6 +23,8 @@ final class Workbench {
     final Stations stations;
     /** Wird von der Plaettchen-Station angelegt, sobald sie zum ersten Mal offen ist. */
     TileSession tiles;
+    /** Der Lettern-Schrank, aus dem diese Presse ihre Vorraete bezieht; null im Debug. */
+    net.minecraft.core.BlockPos cabinetPos;
 
     Workbench(int index) {
         this(index, Stations.DEBUG);
@@ -54,6 +56,15 @@ final class Workbench {
     /** Schluessel fuer den Zwischenspeicher: das Fragment oder -1 ohne. */
     int key() {
         return fragment == null ? -1 : fragmentIndex;
+    }
+
+    /** Uebernimmt Letter-Vorrat, Tinte und Papier aus dem Schrank. */
+    void applyResources(int[] letters, int ink, int paper) {
+        for (int i = 0; i < letters.length && i < de.scribery.core.Translit.ALPHABET.length(); i++) {
+            press.setStock(de.scribery.core.Translit.ALPHABET.charAt(i), letters[i]);
+        }
+        press.setInk(ink);
+        press.setPaperStock(paper);
     }
 
     int startInk() {

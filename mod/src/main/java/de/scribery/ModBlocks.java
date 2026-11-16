@@ -31,10 +31,11 @@ public final class ModBlocks {
     }
 
     public static final DeferredBlock<Block> SCRIBE_LECTERN = station("scribe_lectern", ScribeLecternBlock::new);
-    public static final DeferredBlock<Block> LETTER_CABINET = station("letter_cabinet", GroupStationBlock::new);
+    public static final DeferredBlock<Block> LETTER_CABINET = station("letter_cabinet", CabinetBlock::new);
     public static final DeferredBlock<Block> PRINTING_PRESS = station("printing_press", GroupStationBlock::new);
     public static final DeferredBlock<Block> TRANSLATOR_DESK = station("translator_desk");
     public static final DeferredBlock<Block> MANUSCRIPT_ARCHIVE = station("manuscript_archive");
+    public static final DeferredBlock<Block> MINTING_TABLE = station("minting_table", MintBlock::new);
     public static final DeferredBlock<Block> BOOKSHELF = station("bookshelf");
 
     public static void register(IEventBus bus) {

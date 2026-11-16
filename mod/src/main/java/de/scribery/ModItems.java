@@ -19,6 +19,8 @@ public final class ModItems {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Scribery.MODID);
 
     private static final List<Supplier<Item>> ALL = new ArrayList<>();
+    /** Die Letter Types in der Reihenfolge der Buchstabenbox (A B C D E Ē G H ...). */
+    public static final List<Supplier<Item>> LETTER_ITEMS = new ArrayList<>();
 
     private static Supplier<Item> simple(String id) {
         Supplier<Item> s = ITEMS.registerSimpleItem(id);
@@ -38,7 +40,7 @@ public final class ModItems {
         "m", "n", "o", "o_long", "p", "r", "s", "t", "u", "x", "z"
     };
     static {
-        for (String l : LETTERS) simple("letter_type_" + l);
+        for (String l : LETTERS) LETTER_ITEMS.add(simple("letter_type_" + l));
         for (int i = 1; i <= 5; i++) {
             final int n = i;
             Supplier<Item> s = ITEMS.registerItem("manuscript_fragment_" + n,
@@ -57,6 +59,12 @@ public final class ModItems {
                     .icon(() -> ModItems.ALL.get(ALL.size() - 7).get().getDefaultInstance())
                     .displayItems((params, out) -> { ModBlocks.ALL.forEach(b -> out.accept(b.get())); ALL.forEach(s -> out.accept(s.get())); })
                     .build());
+
+    /** Index des Buchstabens in der Box, oder -1 wenn das Item kein Letter Type ist. */
+    public static int letterIndex(Item item) {
+        for (int i = 0; i < LETTER_ITEMS.size(); i++) if (LETTER_ITEMS.get(i).get() == item) return i;
+        return -1;
+    }
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

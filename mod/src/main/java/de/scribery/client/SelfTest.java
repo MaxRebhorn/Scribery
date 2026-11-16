@@ -153,6 +153,9 @@ final class SelfTest {
         then(40, () -> { });
         shot(mc, "15-tiles-complete");
 
+        then(0, () -> mc.setScreen(new MintScreen(net.minecraft.core.BlockPos.ZERO)));
+        shot(mc, "16-mint");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();
