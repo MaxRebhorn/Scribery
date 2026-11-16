@@ -9,6 +9,7 @@ public final class Scribery {
 
     public Scribery(IEventBus modBus) {
         ModBlocks.register(modBus);
+        ModBlockEntities.register(modBus);
         ModItems.register(modBus);
     }
 }

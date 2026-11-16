@@ -55,14 +55,8 @@ public class PressScreen extends StationScreen {
     }
 
     @Override
-    protected boolean hasNeighbour(int direction) {
-        return direction > 0;
-    }
-
-    /** Rechts von der Presse steht die Plaettchen-Station. */
-    @Override
-    protected StationScreen neighbour(int direction) {
-        return direction > 0 ? new TileScreen(bench) : null;
+    protected Stations.Kind kind() {
+        return Stations.Kind.PRESS;
     }
 
     @Override

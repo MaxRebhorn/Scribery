@@ -131,14 +131,8 @@ public class TileScreen extends StationScreen {
     }
 
     @Override
-    protected boolean hasNeighbour(int direction) {
-        return direction < 0;
-    }
-
-    /** Links von der Uebersetzung steht die Presse. */
-    @Override
-    protected StationScreen neighbour(int direction) {
-        return direction < 0 ? new PressScreen(bench) : null;
+    protected Stations.Kind kind() {
+        return Stations.Kind.DESK;
     }
 
     @Override

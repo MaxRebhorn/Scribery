@@ -39,7 +39,12 @@ public final class ModItems {
     };
     static {
         for (String l : LETTERS) simple("letter_type_" + l);
-        for (int i = 1; i <= 5; i++) simple("manuscript_fragment_" + i, 1);
+        for (int i = 1; i <= 5; i++) {
+            final int n = i;
+            Supplier<Item> s = ITEMS.registerItem("manuscript_fragment_" + n,
+                    p -> new ManuscriptFragmentItem(p.stacksTo(1), n));
+            ALL.add(s);
+        }
         for (String b : new String[] {
                 "greek_alphabet_primer", "greek_grammar_book", "greek_lexicon_a_c", "greek_lexicon_d_f",
                 "thematic_greek_lexicon", "greek_forms_grammar_lexicon", "complete_greek_lexicon"})

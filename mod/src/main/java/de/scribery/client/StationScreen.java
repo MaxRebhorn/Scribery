@@ -47,7 +47,7 @@ public abstract class StationScreen extends Screen {
 
     /** Beginnt mit einem Fragment von vorn. */
     protected void restart(int index) {
-        bench = new Workbench(index);
+        bench = new Workbench(index, bench.stations);
         fragmentIndex = bench.fragmentIndex;
         flashTicks = 0;
         onBenchChanged();
@@ -66,8 +66,8 @@ public abstract class StationScreen extends Screen {
     /** Text rechts in der Titelleiste, z. B. Vorraete. */
     protected abstract String resourceText();
 
-    /** Nachbarstation in Richtung -1 (links) oder +1 (rechts), oder null. */
-    protected abstract StationScreen neighbour(int direction);
+    /** Welche Station das ist. */
+    protected abstract Stations.Kind kind();
 
     protected abstract void drawStation(GuiGraphics g);
 
@@ -212,8 +212,10 @@ public abstract class StationScreen extends Screen {
         g.drawString(font, title, bar[0] + (bar[2] - font.width(title)) / 2, bar[1] + 4, dark, false);
         String res = resourceText();
         g.drawString(font, res, bar[0] + bar[2] - font.width(res) - 6, bar[1] + 4, dark, false);
-        String id = fragments.get(fragmentIndex).id() + "  " + fragments.get(fragmentIndex).ref();
-        g.drawString(font, id, bar[0] + 6, bar[1] + 4, dark, false);
+        if (bench.fragment != null) {
+            String id = fragments.get(fragmentIndex).id() + "  " + fragments.get(fragmentIndex).ref();
+            g.drawString(font, id, bar[0] + 6, bar[1] + 4, dark, false);
+        }
 
         for (int dir = -1; dir <= 1; dir += 2) {
             int[] r = ui.rect(dir < 0 ? "arrow_left" : "arrow_right");
@@ -225,7 +227,29 @@ public abstract class StationScreen extends Screen {
     }
 
     /** Ob der Pfeil in diese Richtung etwas tut. */
-    protected abstract boolean hasNeighbour(int direction);
+    protected final boolean hasNeighbour(int direction) {
+        return target(direction) != null;
+    }
+
+    /** Naechste erreichbare Station in Richtung -1 (links) oder +1 (rechts). Ohne Fragment auf dem Pult gibt es keine. */
+    private Stations.Kind target(int direction) {
+        if (bench.fragment == null) return null;
+        Stations.Kind[] kinds = Stations.Kind.values();
+        for (int i = kind().ordinal() + direction; i >= 0 && i < kinds.length; i += direction) {
+            if (bench.stations.has(kinds[i])) return kinds[i];
+        }
+        return null;
+    }
+
+    private StationScreen neighbour(int direction) {
+        Stations.Kind k = target(direction);
+        if (k == null) return null;
+        return switch (k) {
+            case LECTERN -> new LecternScreen(bench);
+            case PRESS -> new PressScreen(bench);
+            case DESK -> new TileScreen(bench);
+        };
+    }
 
     private void drawCandle(GuiGraphics g) {
         int[] c = ui.rect("candle");

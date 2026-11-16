@@ -19,14 +19,18 @@ public final class ModBlocks {
     public static final List<DeferredBlock<Block>> ALL = new ArrayList<>();
 
     private static DeferredBlock<Block> station(String id) {
-        DeferredBlock<Block> b = BLOCKS.register(id, () -> new FacingBlock(BlockBehaviour.Properties.of()
+        return station(id, FacingBlock::new);
+    }
+
+    private static DeferredBlock<Block> station(String id, java.util.function.Function<BlockBehaviour.Properties, Block> factory) {
+        DeferredBlock<Block> b = BLOCKS.register(id, () -> factory.apply(BlockBehaviour.Properties.of()
                 .mapColor(MapColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).ignitedByLava()));
         BLOCK_ITEMS.registerSimpleBlockItem(id, b, new Item.Properties());
         ALL.add(b);
         return b;
     }
 
-    public static final DeferredBlock<Block> SCRIBE_LECTERN = station("scribe_lectern");
+    public static final DeferredBlock<Block> SCRIBE_LECTERN = station("scribe_lectern", ScribeLecternBlock::new);
     public static final DeferredBlock<Block> LETTER_CABINET = station("letter_cabinet");
     public static final DeferredBlock<Block> PRINTING_PRESS = station("printing_press");
     public static final DeferredBlock<Block> TRANSLATOR_DESK = station("translator_desk");
