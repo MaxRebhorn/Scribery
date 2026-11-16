@@ -51,7 +51,9 @@ public final class ClientHooks {
         if (mc.level == null || !(mc.level.getBlockEntity(pos) instanceof de.scribery.DeskBlockEntity be)) return;
         de.scribery.SheetData d = be.sheetData();
         if (d == null || !d.translatable()) return;
-        mc.setScreen(new TileScreen(Workbench.forSheet(d.fragment(), d.page(), pos, be.ink(), be.tablets())));
+        // Das Original (Manuskript) ist nur da, wenn ein Pult mit diesem Fragment am Tisch steht.
+        boolean manuscript = StationNetwork.scan(mc.level, pos).hasManuscript(d.fragment());
+        mc.setScreen(new TileScreen(Workbench.forSheet(d.fragment(), d.page(), pos, be.ink(), be.tablets(), manuscript)));
     }
 
     private static void open(BlockPos clicked, Stations.Kind start) {
@@ -59,44 +61,15 @@ public final class ClientHooks {
         Level level = mc.level;
         if (level == null) return;
 
-        // Alle Stationsbloecke, die waagerecht zusammenhaengen.
-        boolean press = false, cabinet = false, desk = false;
-        BlockPos lectern = null, anchor = clicked, cabinetPos = null;
-        int lecternFragment = -1;
-        Set<BlockPos> seen = new HashSet<>();
-        ArrayDeque<BlockPos> queue = new ArrayDeque<>();
-        queue.add(clicked);
-        seen.add(clicked);
-        while (!queue.isEmpty()) {
-            BlockPos p = queue.poll();
-            Block b = level.getBlockState(p).getBlock();
-            if (b == ModBlocks.PRINTING_PRESS.get()) press = true;
-            else if (b == ModBlocks.LETTER_CABINET.get()) {
-                cabinet = true;
-                if (cabinetPos == null || p.asLong() < cabinetPos.asLong()) cabinetPos = p;
-            }
-            else if (b == ModBlocks.SCRIBE_LECTERN.get()) {
-                int idx = level.getBlockEntity(p) instanceof LecternBlockEntity be ? be.debugFragmentIndex() : -1;
-                // Das angeklickte Pult gewinnt, sonst eines mit Fragment.
-                if (lectern == null || p.equals(clicked) || (lecternFragment < 0 && idx >= 0 && !lectern.equals(clicked))) {
-                    lectern = p;
-                    lecternFragment = idx;
-                }
-            } else continue;
-            if (p.asLong() < anchor.asLong()) anchor = p;
-            for (Direction d : Direction.Plane.HORIZONTAL) {
-                BlockPos n = p.relative(d);
-                if (seen.add(n)) queue.add(n);
-            }
-        }
-
-        Stations st = new Stations(lectern != null, press, cabinet, desk);
-        Workbench old = BENCHES.get(anchor);
+        StationNetwork net = StationNetwork.scan(level, clicked);
+        Stations st = net.stations();
+        int lecternFragment = net.lecternFragment();
+        Workbench old = BENCHES.get(net.anchor());
         Workbench bench = (old != null && old.key() == lecternFragment && old.stations.equals(st)) ? old
                 : lecternFragment >= 0 ? new Workbench(lecternFragment, st) : Workbench.free(st);
-        BENCHES.put(anchor, bench);
-        bench.cabinetPos = cabinetPos;
-        if (cabinetPos != null && level.getBlockEntity(cabinetPos) instanceof CabinetBlockEntity cbe) {
+        BENCHES.put(net.anchor(), bench);
+        bench.cabinetPos = net.cabinet();
+        if (net.cabinet() != null && level.getBlockEntity(net.cabinet()) instanceof CabinetBlockEntity cbe) {
             bench.applyResources(cbe.letters(), cbe.ink(), cbe.paper(), cbe.forme());
         }
 

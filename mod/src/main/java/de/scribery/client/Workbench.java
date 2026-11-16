@@ -32,6 +32,8 @@ final class Workbench {
     /** Beim Uebersetzungstisch: nur dieser Bogen des Fragments wird uebersetzt, sonst -1. */
     int sheetPage = -1;
     int deskInk, deskTablets;
+    /** Am Uebersetzungstisch: das Original liegt auf einem Pult daneben. Sonst ist nur der Druck da. */
+    boolean manuscript = true;
 
     Workbench(int index) {
         this(index, Stations.DEBUG);
@@ -48,12 +50,13 @@ final class Workbench {
     }
 
     /** Fuer den Uebersetzungstisch: ein einzelner gedruckter Bogen mit den Vorraeten des Tisches. */
-    static Workbench forSheet(int fragment, int page, net.minecraft.core.BlockPos desk, int ink, int tablets) {
+    static Workbench forSheet(int fragment, int page, net.minecraft.core.BlockPos desk, int ink, int tablets, boolean manuscript) {
         Workbench w = new Workbench(fragment, Stations.NONE);
         w.sheetPage = page;
         w.deskPos = desk;
         w.deskInk = ink;
         w.deskTablets = tablets;
+        w.manuscript = manuscript;
         return w;
     }
 

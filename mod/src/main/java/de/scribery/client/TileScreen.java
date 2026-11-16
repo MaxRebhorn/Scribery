@@ -303,7 +303,7 @@ public class TileScreen extends StationScreen {
         }
 
         // Ein Wort im Manuskript oder auf dem gedruckten Bogen anklicken
-        int word = wordAt(lecternWordRects(pageWords(true)), x, y);
+        int word = bench.manuscript ? wordAt(lecternWordRects(pageWords(true)), x, y) : -1;
         if (word >= 0) {
             pick(word, session.word(word).greek());
             return;
@@ -442,8 +442,10 @@ public class TileScreen extends StationScreen {
     @Override
     protected void drawStation(GuiGraphics g) {
         syncPage();
-        if (session.isComplete()) drawLecternBoard(g, ui.rect("lectern"));
-        else drawLectern(g, pageWords(true), session::isRevealed);
+        if (bench.manuscript) {
+            if (session.isComplete()) drawLecternBoard(g, ui.rect("lectern"));
+            else drawLectern(g, pageWords(true), session::isRevealed);
+        }
         drawPrintedSheet(g);
         drawSheet(g);
         drawBoxes(g);

@@ -189,7 +189,7 @@ class TileSessionTest {
     }
 
     @Test
-    void typedWordsWorkLikeTilesAndCostTablets() {
+    void typedWordsAreFreeAndTilesCostTablets() {
         TileSession s = session(12);
         s.setTablets(10);
         for (int i = 0; i < 5; i++) s.reveal(i);
@@ -200,10 +200,22 @@ class TileSessionTest {
         assertTrue(s.setTyped(4, "word"));
         var r = s.write();
         assertNull(r.refusal());
-        assertEquals(5, 10 - s.tablets());
+        assertEquals(2, 10 - s.tablets(), "nur die zwei Plaettchen kosten ein Taefelchen, getippte nicht");
         assertTrue(s.isDone(0));
         assertFalse(s.isDone(1));
         assertEquals("beginings", s.smudged(1));
         assertNull(s.typed(1), "ein verwischtes Wort muss neu getippt werden");
+    }
+
+    @Test
+    void typingNeedsNoTabletsAtAll() {
+        TileSession s = session(12);
+        s.setTablets(0);
+        for (int i = 0; i < 5; i++) s.reveal(i);
+        String[] words = { "in", " Beginning ", "WAS", "the", "word" }; // Gross-/Kleinschreibung und Rand egal
+        for (int i = 0; i < 5; i++) assertTrue(s.setTyped(i, words[i]));
+        var r = s.write();
+        assertNull(r.refusal());
+        assertTrue(s.pageDone());
     }
 }

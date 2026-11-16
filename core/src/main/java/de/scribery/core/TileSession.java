@@ -26,7 +26,7 @@ public final class TileSession {
      */
     public record Word(String greek, String latin, List<String> ok, List<String> wrong, int box) {
         public boolean accepts(String face) {
-            return ok.stream().anyMatch(o -> o.equalsIgnoreCase(face));
+            return face != null && ok.stream().anyMatch(o -> o.equalsIgnoreCase(face.strip()));
         }
     }
 
@@ -83,7 +83,7 @@ public final class TileSession {
     private final long seed;
     private final int[] wrongPerPage;
     private int ink;
-    /** Holztaefelchen: jedes geschriebene Wort verbraucht eines, auch ein falsches. */
+    /** Holztaefelchen: jedes mit einem Plaettchen geschriebene Wort verbraucht eines, auch ein falsches; getippte nicht. */
     private int tablets = DEFAULT_TABLETS;
     private int pageIndex;
 
@@ -275,8 +275,9 @@ public final class TileSession {
         if (isComplete() || pageDone()) return WriteResult.refused(Refusal.BUSY);
         if (hasEmptySlot()) return WriteResult.refused(Refusal.EMPTY_SLOTS);
         if (ink <= 0) return WriteResult.refused(Refusal.NO_INK);
+        // Nur Woerter, die mit einem Plaettchen gelegt sind, kosten ein Holztaefelchen. Getippte sind gratis.
         int need = 0;
-        for (boolean d : done) if (!d) need++;
+        for (int i = 0; i < slotTile.length; i++) if (!done[i] && slotTile[i] >= 0) need++;
         if (tablets < need) return WriteResult.refused(Refusal.NO_TABLETS);
         ink--;
         tablets -= need;
@@ -286,7 +287,7 @@ public final class TileSession {
             if (done[i]) continue;
             attempted[i] = true;
             Tile t = slotTile[i] < 0 ? null : tiles.get(slotTile[i]);
-            String face = t != null ? t.face() : typed[i];
+            String face = t != null ? t.face() : typed[i].strip();
             if (word(i).accepts(face)) {
                 done[i] = true;
                 written[i] = face;
