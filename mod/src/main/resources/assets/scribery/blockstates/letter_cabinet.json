@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "scribery:block/letter_cabinet"
+    },
+    "facing=east": {
+      "model": "scribery:block/letter_cabinet",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "scribery:block/letter_cabinet",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "scribery:block/letter_cabinet",
+      "y": 270
+    }
+  }
+}

@@ -8,6 +8,7 @@ public final class Scribery {
     public static final String MODID = "scribery";
 
     public Scribery(IEventBus modBus) {
+        ModBlocks.register(modBus);
         ModItems.register(modBus);
     }
 }

@@ -33,5 +33,11 @@
   "item.scribery.letter_type_u": "Letter Type U",
   "item.scribery.letter_type_x": "Letter Type X",
   "item.scribery.letter_type_z": "Letter Type Z",
-  "itemGroup.scribery": "Scribery & Crafts"
+  "itemGroup.scribery": "Scribery & Crafts",
+  "block.scribery.scribe_lectern": "Scribe's Lectern",
+  "block.scribery.letter_cabinet": "Letter Cabinet",
+  "block.scribery.printing_press": "Printing Press",
+  "block.scribery.translator_desk": "Translator's Desk",
+  "block.scribery.manuscript_archive": "Manuscript Archive",
+  "block.scribery.bookshelf": "Bookshelf"
 }

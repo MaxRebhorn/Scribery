@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "scribery:block/bookshelf"
+    },
+    "facing=east": {
+      "model": "scribery:block/bookshelf",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "scribery:block/bookshelf",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "scribery:block/bookshelf",
+      "y": 270
+    }
+  }
+}

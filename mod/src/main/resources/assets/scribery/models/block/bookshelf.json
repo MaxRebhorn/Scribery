@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "scribery:block/bookshelf_top",
+    "front": "scribery:block/bookshelf_front",
+    "side": "scribery:block/bookshelf_side"
+  }
+}

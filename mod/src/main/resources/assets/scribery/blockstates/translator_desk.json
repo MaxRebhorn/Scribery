@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "scribery:block/translator_desk"
+    },
+    "facing=east": {
+      "model": "scribery:block/translator_desk",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "scribery:block/translator_desk",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "scribery:block/translator_desk",
+      "y": 270
+    }
+  }
+}

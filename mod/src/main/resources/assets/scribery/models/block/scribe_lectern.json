@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "scribery:block/scribe_lectern_top",
+    "front": "scribery:block/scribe_lectern_front",
+    "side": "scribery:block/scribe_lectern_side"
+  }
+}

@@ -50,7 +50,7 @@ public final class ModItems {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.scribery"))
                     .icon(() -> ModItems.ALL.get(ALL.size() - 7).get().getDefaultInstance())
-                    .displayItems((params, out) -> ALL.forEach(s -> out.accept(s.get())))
+                    .displayItems((params, out) -> { ModBlocks.ALL.forEach(b -> out.accept(b.get())); ALL.forEach(s -> out.accept(s.get())); })
                     .build());
 
     public static void register(IEventBus bus) {

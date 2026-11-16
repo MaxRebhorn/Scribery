@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "scribery:block/printing_press_table_top",
+    "front": "scribery:block/printing_press_table_front",
+    "side": "scribery:block/printing_press_table_side"
+  }
+}

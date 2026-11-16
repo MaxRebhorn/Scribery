@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "scribery:block/scribe_lectern"
+    },
+    "facing=east": {
+      "model": "scribery:block/scribe_lectern",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "scribery:block/scribe_lectern",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "scribery:block/scribe_lectern",
+      "y": 270
+    }
+  }
+}

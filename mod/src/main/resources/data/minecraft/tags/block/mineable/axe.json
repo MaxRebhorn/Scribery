@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "scribery:scribe_lectern",
+    "scribery:letter_cabinet",
+    "scribery:printing_press",
+    "scribery:translator_desk",
+    "scribery:manuscript_archive",
+    "scribery:bookshelf"
+  ]
+}
