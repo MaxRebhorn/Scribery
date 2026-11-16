@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "scribery:item/greek_forms_grammar_lexicon"
+  }
+}
