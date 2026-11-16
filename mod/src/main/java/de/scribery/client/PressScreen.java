@@ -37,6 +37,8 @@ public class PressScreen extends StationScreen {
     private double lastRollerX = Double.NaN;
     private RollerSound rollerSound;
 
+    /** Tipp-Cursor in der Setzform: dort landet der naechste getippte Buchstabe. -1 = noch keiner. */
+    private int cursor = -1;
     private int crankAnim, leverAnim, finishDelay;
     private PullResult proof;
 
@@ -114,8 +116,86 @@ public class PressScreen extends StationScreen {
 
     // ------------------------------------------------------------------ Eingabe
 
+    // ------------------------------------------------------------------ Tippen
+
+    /** Tippen geht nur, wenn Presse und Lettern-Schrank da sind und gerade nichts laeuft. */
+    private boolean canType() {
+        return hasPress() && hasCabinet() && !busy() && !session.isComplete() && hand != Hand.SORT;
+    }
+
+    /** Naechster Slot ab {@code from}, in den man setzen kann: weder Leerstelle noch vorgesetzt noch belegt. */
+    private int nextFree(int from) {
+        for (int i = Math.max(0, from); i < session.slotCount(); i++) {
+            if (!session.isSpacer(i) && !session.isFixed(i) && session.slot(i) == 0) return i;
+        }
+        return -1;
+    }
+
+    /** Setzt einen Buchstaben von Hand: aus dem Vorrat in den Slot am Cursor. Oeffentlich fuer den Selbsttest. */
+    public void typeLetter(char letter) {
+        if (!canType()) return;
+        int slot = nextFree(cursor < 0 ? 0 : cursor);
+        if (slot < 0) {
+            flash("The forme is full");
+            return;
+        }
+        if (!session.takeFromCase(letter)) {
+            flash("No " + letter + " left");
+            return;
+        }
+        if (!session.place(slot, letter)) {
+            session.returnToCase(letter);
+            return;
+        }
+        cursor = slot + 1;
+        sound(SoundEvents.STONE_BUTTON_CLICK_ON, 1.3f, 0.4f);
+    }
+
+    /** Nimmt den Buchstaben links vom Cursor wieder heraus. */
+    private void backspace() {
+        if (!canType()) return;
+        for (int i = Math.min(cursor < 0 ? session.slotCount() : cursor, session.slotCount()) - 1; i >= 0; i--) {
+            char c = session.pickUp(i);
+            if (c != 0) {
+                session.returnToCase(c);
+                cursor = i;
+                sound(SoundEvents.ITEM_PICKUP, 1.2f, 0.3f);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public boolean charTyped(char c, int modifiers) {
+        if (!canType()) return super.charTyped(c, modifiers);
+        char up = Character.toUpperCase(c);
+        for (char known : ui.letters) {
+            if (known == up) {
+                typeLetter(up);
+                return true;
+            }
+        }
+        if (Character.isLetter(up) && up < 128) flash("There is no type for " + up);
+        if (c == ' ') cursor = Math.min(session.slotCount(), (cursor < 0 ? 0 : cursor) + 1);
+        return true;
+    }
+
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (canType()) {
+            int c = cursor < 0 ? 0 : cursor;
+            switch (keyCode) {
+                case GLFW.GLFW_KEY_BACKSPACE -> { backspace(); return true; }
+                case GLFW.GLFW_KEY_LEFT -> { cursor = Math.max(0, c - 1); return true; }
+                case GLFW.GLFW_KEY_RIGHT -> { cursor = Math.min(session.slotCount() - 1, c + 1); return true; }
+                case GLFW.GLFW_KEY_UP -> { cursor = Math.max(0, c - ui.lineSlots); return true; }
+                case GLFW.GLFW_KEY_DOWN, GLFW.GLFW_KEY_ENTER -> {
+                    cursor = Math.min(session.slotCount() - 1, (c / ui.lineSlots + 1) * ui.lineSlots);
+                    return true;
+                }
+                default -> { }
+            }
+        }
         if (keyCode == GLFW.GLFW_KEY_N && session.isComplete()) {
             restart(fragmentIndex + 1);
             return true;
@@ -179,6 +259,7 @@ public class PressScreen extends StationScreen {
         // Eine gesetzte Letter wieder greifen. Abgelegt wird beim Loslassen, siehe releaseCanvas.
         int slot = hasPress() ? slotAt(x, y) : -1;
         if (slot >= 0) {
+            cursor = slot;
             if (hand == Hand.NONE) {
                 char c = session.pickUp(slot);
                 if (c != 0) {
@@ -188,6 +269,15 @@ public class PressScreen extends StationScreen {
                 }
             }
             return;
+        }
+
+        if (hasCabinet() && hasPress()) {
+            for (int i = 0; i < PALETTE.length; i++) {
+                if (in(paletteRect(i), x, y, 0)) {
+                    typeLetter(PALETTE[i]);
+                    return;
+                }
+            }
         }
 
         if (hasCabinet() && in(ui.rect("barrel"), x, y, 0)) {
@@ -481,9 +571,33 @@ public class PressScreen extends StationScreen {
         // Abzug: kommt auf die Ablage zurueck, von der das Papier kam
         if (proof != null && leverAnim <= LEVER_PROOF_AT && session.paper() == Paper.NONE) drawProof(g, tray);
 
+        // Caret: zeigt, wo der naechste getippte Buchstabe landet
+        if (canType() && cursor >= 0 && cursor < session.slotCount() && (ticks / 10) % 2 == 0) {
+            int caretX = slotX(cursor), caretY = slotY(cursor);
+            fill(g, caretX, caretY + ui.sortH, ui.sortW, 1, 0xFFFFB62E);
+        }
+
+        // Tasten fuer Buchstaben, die es auf der Tastatur nicht gibt
+        if (hasCabinet()) {
+            int[] kr = paletteRect(0);
+            g.drawString(font, "Type on the keyboard", kr[0] + 36, kr[1] + 2, 0xFFC9A66B, false);
+            for (int i = 0; i < PALETTE.length; i++) {
+                int[] r = paletteRect(i);
+                frame(g, r, 1, "iron_block", 0xFF23232B);
+                g.blit(letterTexture(PALETTE[i]), r[0] + 2, r[1], 2f, 2f, 10, 12, 16, 16);
+            }
+        }
+
         // Hinweiszeile
         String sheet = session.isComplete() || session.isFree() ? "" : "Sheet " + (session.pageIndex() + 1) + "/" + session.pageCount();
         drawHintLine(g, ui.rect("line_counter"), sheet, hintText(session.hint()));
+    }
+
+    private static final char[] PALETTE = { 'Ē', 'Ō' }; // Ē Ō
+
+    private int[] paletteRect(int i) {
+        int[] f = ui.rect("paper_tray");
+        return new int[] { f[0] + i * 16, 190, 14, 12 };
     }
 
     private void drawStrip(GuiGraphics g, int x, int y) {

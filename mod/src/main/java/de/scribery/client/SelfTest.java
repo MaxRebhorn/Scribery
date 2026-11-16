@@ -153,6 +153,18 @@ final class SelfTest {
         then(40, () -> { });
         shot(mc, "15-tiles-complete");
 
+        // Freier Druck: von Hand tippen, auch Buchstaben ohne Taste (Ē, Ō)
+        then(0, () -> {
+            PressScreen free = new PressScreen(Workbench.free(new Stations(false, true, true, false)));
+            mc.setScreen(free);
+            for (char c : "HELLO".toCharArray()) free.charTyped(c, 0);
+            free.charTyped(' ', 0);
+            free.typeLetter('Ē');
+            free.typeLetter('Ō');
+            free.charTyped('q', 0);   // gibt es nicht
+        });
+        shot(mc, "16-free-typing");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();
