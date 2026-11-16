@@ -348,9 +348,15 @@ public class PressScreen extends StationScreen {
     private void drawLeft(GuiGraphics g) {
         drawLectern(g, bench.fragment.words().stream().map(w -> w.greek()).toList(), i -> false);
 
+        int[] lc = ui.rect("lectern");
+        nail(g, lc[0] + 2, lc[1] + 2);
+        nail(g, lc[0] + lc[2] - 5, lc[1] + 2);
+        nail(g, lc[0] + 2, lc[1] + lc[3] - 5);
+        nail(g, lc[0] + lc[2] - 5, lc[1] + lc[3] - 5);
+
         // Stapel der fertigen Zeilen
         int[] st = ui.rect("proof_stack");
-        fill(g, st[0], st[1], st[2], st[3], col("wood_0"));
+        panel(g, st, col("wood_0"), col("wood_1"), col("ink_1"));
         List<String> done = session.finishedLines();
         int visible = st[3] / 8;
         int first = Math.max(0, done.size() - visible);

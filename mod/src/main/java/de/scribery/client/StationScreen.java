@@ -21,7 +21,6 @@ import net.minecraft.util.FormattedCharSequence;
  * im Spiel werden die Stationen spaeter eigene Bloecke.
  */
 public abstract class StationScreen extends Screen {
-    private static final ResourceLocation HOTBAR = ResourceLocation.withDefaultNamespace("hud/hotbar");
     protected static final int FLASH_TICKS = 50;
 
     protected final UiLayout ui = UiLayout.get();
@@ -191,17 +190,57 @@ public abstract class StationScreen extends Screen {
         g.pose().translate(originX, originY, 0);
         g.pose().scale(scale, scale, 1);
 
-        fill(g, 0, 0, ui.canvasW, ui.canvasH, col("wood_0"));
-        fill(g, 0, 22, ui.canvasW, 168, col("wood_1"));
-        for (int y = 22 + 27; y < 190; y += 28) fill(g, 0, y, ui.canvasW, 1, col("wood_0"));
+        drawBackdrop(g);
         drawTopBar(g);
         drawCandle(g);
         drawStation(g);
-        int[] hb = ui.rect("hotbar");
-        g.blitSprite(HOTBAR, hb[0], hb[1], hb[2], hb[3]);
         drawHand(g);
 
         g.pose().popPose();
+    }
+
+    private static int hash(int n) {
+        n = (n ^ 61) ^ (n >>> 16);
+        n *= 9;
+        n ^= n >>> 4;
+        n *= 0x27d4eb2d;
+        n ^= n >>> 15;
+        return n & 0x7fffffff;
+    }
+
+    /** Holzbretter mit Maserung und Naegeln, eingefasst von einem Rahmen. Nur Palettenfarben, feste Muster. */
+    private void drawBackdrop(GuiGraphics g) {
+        int w = ui.canvasW, h = ui.canvasH;
+        fill(g, 0, 0, w, h, col("wood_0"));
+        fill(g, 1, 1, w - 2, h - 2, col("wood_3"));
+        fill(g, 2, 2, w - 4, h - 4, col("wood_1"));
+        int top = 22, plank = 27, row = 0;
+        for (int py = top; py < h - 2; py += plank, row++) {
+            int ph = Math.min(plank, h - 2 - py);
+            for (int k = 0; k < 16; k++) {
+                int r = hash(row * 97 + k);
+                int gx = 3 + (r & 0xff) * (w - 30) / 255;
+                int gy = py + 2 + ((r >> 8) & 0xff) * (ph - 4) / 255;
+                int len = 8 + ((r >> 16) & 15) * 3;
+                fill(g, gx, gy, Math.min(len, w - 3 - gx), 1, ((r >> 20) & 3) == 0 ? col("wood_0") : col("wood_2"));
+            }
+            if (row > 0) {
+                fill(g, 2, py, w - 4, 1, col("wood_0"));
+                fill(g, 2, py + 1, w - 4, 1, col("wood_2"));
+            }
+            int seam = 40 + hash(row * 13 + 5) % (w - 80);
+            fill(g, seam, py + 1, 1, ph - 1, col("wood_0"));
+            if (ph >= plank) {
+                nail(g, 5, py + 4);
+                nail(g, w - 8, py + 4);
+            }
+        }
+    }
+
+    protected void nail(GuiGraphics g, int x, int y) {
+        fill(g, x, y, 3, 3, col("lead_1"));
+        fill(g, x, y, 2, 2, col("lead_3"));
+        fill(g, x + 2, y + 2, 1, 1, col("lead_0"));
     }
 
     private void drawTopBar(GuiGraphics g) {
