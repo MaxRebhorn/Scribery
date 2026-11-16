@@ -516,8 +516,6 @@ public class PressScreen extends StationScreen {
         int ink = session.ink();
         String level = ink >= 6 ? "barrel_full" : ink >= 3 ? "barrel_two_thirds" : ink >= 1 ? "barrel_one_third" : "barrel_empty";
         fill(g, b[0] + 4, b[1] + 12, b[2] - 8, b[3] - 24, col(level));
-        // Mit Tinte steht ein Tintenbeutel im Fass, leer sieht man nur den hellen Boden.
-        if (ink > 0) g.blit(item("ink_sac"), b[0] + (b[2] - 16) / 2, b[1] + 12 + (b[3] - 24 - 16) / 2, 0f, 0f, 16, 16, 16, 16);
         if (hand != Hand.ROLLER) {
             int[] r = ui.rect("roller_rest");
             fill(g, r[0], r[1] + 2, r[2] - 8, r[3] - 4, col("lead_3"));
