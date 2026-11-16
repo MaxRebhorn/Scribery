@@ -410,7 +410,12 @@ public class PressScreen extends StationScreen {
     // ------------------------------------------------------------------ Zeichnen
 
     private void drawLeft(GuiGraphics g) {
-        drawLectern(g, bench.fragment.words().stream().map(w -> w.greek()).toList(), i -> false);
+        // Nur der Text des Bogens, den man gerade setzt
+        java.util.List<String> sheetWords = new java.util.ArrayList<>();
+        if (!session.isComplete()) {
+            for (int wi : session.sheets().get(session.pageIndex())) sheetWords.add(bench.fragment.words().get(wi).greek());
+        }
+        drawLectern(g, sheetWords, i -> false);
 
         // Fertige Zeilen: kleine Zettel, jeder so breit wie sein Text, ohne Kasten drumherum
         int[] st = ui.rect("proof_stack");

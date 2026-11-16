@@ -168,6 +168,15 @@ final class SelfTest {
             if (real.size() != 21) throw new IllegalStateException("erwartet 21 Manuskripte, geladen " + real.size());
         });
 
+        // Ein langes echtes Manuskript (P6, Joh 1,5) in der Presse und auf dem Pult
+        then(0, () -> {
+            de.scribery.Manuscripts.useReal();
+            mc.setScreen(new PressScreen(new Workbench(5, Stations.DEBUG)));
+        });
+        shot(mc, "17-long-manuscript");
+        then(0, () -> mc.setScreen(new LecternScreen(new Workbench(5, new Stations(true, false, false, false)))));
+        shot(mc, "18-lectern-screen");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();

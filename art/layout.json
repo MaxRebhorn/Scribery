@@ -16,9 +16,9 @@
     "arrow_right":  { "rect": [364, 4, 16, 16],   "fill": "gui_face",    "label": ">" },
 
     "candle":       { "rect": [8, 24, 12, 24],    "fill": "flame_1",     "label": "" },
-    "lectern":      { "rect": [6, 50, 78, 74],    "fill": "wood_2",      "label": "" },
-    "fragment":     { "rect": [12, 56, 66, 62],   "fill": "parchment_1", "label": "Fragment" },
-    "proof_stack":  { "rect": [14, 130, 62, 56],  "fill": "parchment_3", "label": "Abzuege" },
+    "lectern":      { "rect": [6, 50, 78, 80],    "fill": "wood_2",      "label": "" },
+    "fragment":     { "rect": [12, 56, 66, 68],   "fill": "parchment_1", "label": "Fragment" },
+    "proof_stack":  { "rect": [14, 136, 62, 52],  "fill": "parchment_3", "label": "Abzuege" },
 
     "platen":       { "rect": [106, 24, 184, 16], "fill": "lead_1",      "label": "Tiegel" },
     "forme":        { "rect": [106, 46, 184, 61], "fill": "wood_1",      "label": "" },

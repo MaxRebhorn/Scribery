@@ -60,6 +60,11 @@ public final class Manuscripts {
         return cache;
     }
 
+    /** Nur fuer den Selbsttest: ab jetzt die echten Manuskripte statt der Platzhalter verwenden. */
+    public static void useReal() {
+        cache = loadReal();
+    }
+
     /** Immer die echten Manuskripte, auch im Selbsttest. */
     public static List<Fragment> loadReal() {
         return read("/assets/scribery/data/manuscripts.json");

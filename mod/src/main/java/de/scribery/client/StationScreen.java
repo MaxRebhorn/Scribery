@@ -310,31 +310,9 @@ public abstract class StationScreen extends Screen {
         return out;
     }
 
-    /** Papier und Woerter, an die Textmenge angepasst: {papier x, y, w, h} und je Wort {x, y, breite}. */
-    protected record Fit(int[] paper, int[][] words) {}
-
-    /**
-     * Setzt die Woerter in die Flaeche und macht das Papier nicht groesser als der Text.
-     * Das Papier sitzt mittig in der Flaeche.
-     */
-    protected Fit fit(List<String> words, int[] area, int lineHeight, int pad) {
-        int[][] at0 = flowWords(words, 0, 0, area[2] - 2 * pad, lineHeight);
-        int bw = 0, bh = 0;
-        for (int[] r : at0) {
-            bw = Math.max(bw, r[0] + r[2]);
-            bh = Math.max(bh, r[1] + 9);
-        }
-        int pw = Math.min(area[2], Math.max(24, bw + 2 * pad));
-        int ph = Math.min(area[3], Math.max(16, bh + 2 * pad));
-        int px = area[0] + (area[2] - pw) / 2, py = area[1] + (area[3] - ph) / 2;
-        int[][] out = new int[at0.length][];
-        for (int i = 0; i < at0.length; i++) out[i] = new int[] { px + pad + at0[i][0], py + pad + at0[i][1], at0[i][2] };
-        return new Fit(new int[] { px, py, pw, ph }, out);
-    }
-
     /** Wo die Woerter des Fragments auf dem Pult stehen. */
     protected int[][] lecternWordRects(List<String> words) {
-        return fit(words, ui.rect("fragment"), 10, 5).words();
+        return FragmentLayout.fit(font, words, ui.rect("fragment")).words();
     }
 
     /** Ein sauberes kleines Lesepult aus glattem Holz: Lesebrett mit Ablageleiste, ohne Naegel. */
@@ -366,7 +344,7 @@ public abstract class StationScreen extends Screen {
 
     /** Das Fragment als ausgefranster Zettel in der Flaeche. Pult und Vollansicht benutzen dieselbe Anordnung. */
     protected void drawFragmentPaper(GuiGraphics g, List<String> words, int[] area, java.util.function.IntPredicate dimmed) {
-        Fit fit = fit(words, area, 10, 5);
+        FragmentLayout.Result fit = FragmentLayout.fit(font, words, area);
         RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
         int[][] rects = fit.words();
         for (int i = 0; i < rects.length; i++) {

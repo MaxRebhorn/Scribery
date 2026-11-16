@@ -36,9 +36,10 @@ final class LecternScreen extends StationScreen {
         // Dieselbe Anordnung wie auf dem Pult in der Presse, nur doppelt vergroessert.
         List<String> words = bench.fragment.words().stream().map(w -> w.greek()).toList();
         g.pose().pushPose();
-        g.pose().translate((ui.canvasW - 2 * 66) / 2f, (ui.canvasH - 2 * 62) / 2f, 0);
+        int[] f = ui.rect("fragment");
+        g.pose().translate((ui.canvasW - 2 * f[2]) / 2f, (ui.canvasH - 2 * f[3]) / 2f, 0);
         g.pose().scale(2f, 2f, 1f);
-        drawFragmentPaper(g, words, new int[] { 0, 0, 66, 62 }, i -> false);
+        drawFragmentPaper(g, words, new int[] { 0, 0, f[2], f[3] }, i -> false);
         g.pose().popPose();
         if (bench.lecternPos != null) drawButton(g, takeRect(), TAKE);
     }

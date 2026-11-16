@@ -47,7 +47,10 @@ public class LecternBlockEntity extends BlockEntity {
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        return saveWithoutMetadata(registries);
+        // Ein leeres Paket ignoriert der Client; darum immer mindestens einen Eintrag schicken.
+        CompoundTag tag = saveWithoutMetadata(registries);
+        if (tag.isEmpty()) tag.putBoolean("sync", true);
+        return tag;
     }
 
     @Override

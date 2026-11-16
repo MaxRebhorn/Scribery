@@ -64,11 +64,12 @@ final class SheetViewScreen extends Screen {
 
     private void renderFragment(GuiGraphics g) {
         // 2-fach: dieselbe Anordnung wie am Pult
-        int s = Math.max(1, Math.min(2, Math.min(width / 66, height / 62)));
+        int[] f = ui.rect("fragment");
+        int s = Math.max(1, Math.min(2, Math.min(width / f[2], height / f[3])));
         g.pose().pushPose();
-        g.pose().translate((width - s * 66) / 2f, (height - s * 62) / 2f, 0);
+        g.pose().translate((width - s * f[2]) / 2f, (height - s * f[3]) / 2f, 0);
         g.pose().scale(s, s, 1f);
-        var fit = fit(fragmentWords, new int[] { 0, 0, 66, 62 }, 10, 5);
+        var fit = FragmentLayout.fit(font, fragmentWords, new int[] { 0, 0, f[2], f[3] });
         RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
         for (int i = 0; i < fit.words().length; i++) {
             g.drawString(font, fragmentWords.get(i), fit.words()[i][0], fit.words()[i][1], color("ink_1"), false);
@@ -109,26 +110,5 @@ final class SheetViewScreen extends Screen {
             }
         }
         g.pose().popPose();
-    }
-
-    /** Wie {@link StationScreen#fit}, ohne Station. */
-    private record Fit(int[] paper, int[][] words) {}
-
-    private Fit fit(List<String> words, int[] area, int lineHeight, int pad) {
-        int[][] at0 = new int[words.size()][];
-        int cx = 0, cy = 0, space = font.width(" "), bw = 0, bh = 0, wrap = area[2] - 2 * pad;
-        for (int i = 0; i < words.size(); i++) {
-            int w = font.width(words.get(i));
-            if (cx > 0 && cx + w > wrap) { cx = 0; cy += lineHeight; }
-            at0[i] = new int[] { cx, cy, w };
-            bw = Math.max(bw, cx + w);
-            bh = Math.max(bh, cy + 9);
-            cx += w + space;
-        }
-        int pw = Math.min(area[2], Math.max(24, bw + 2 * pad)), ph = Math.min(area[3], Math.max(16, bh + 2 * pad));
-        int px = area[0] + (area[2] - pw) / 2, py = area[1] + (area[3] - ph) / 2;
-        int[][] out = new int[at0.length][];
-        for (int i = 0; i < at0.length; i++) out[i] = new int[] { px + pad + at0[i][0], py + pad + at0[i][1], at0[i][2] };
-        return new Fit(new int[] { px, py, pw, ph }, out);
     }
 }
