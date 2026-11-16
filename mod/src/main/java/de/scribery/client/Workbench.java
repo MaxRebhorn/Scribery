@@ -17,7 +17,7 @@ final class Workbench {
     private static final int START_IRON = 24;
 
     final int fragmentIndex;
-    /** Null, wenn auf dem Pult nichts liegt. */
+    /** Null, wenn kein Fragment gewaehlt ist (freier Druck). */
     final DebugFragments.Fragment fragment;
     final PressSession press;
     final Stations stations;
@@ -38,16 +38,22 @@ final class Workbench {
                 START_STOCK, START_INK, START_IRON, new Random());
     }
 
-    /** Leeres Pult. */
+    /** Ohne Fragment: freier Druck, die Presse setzt beliebige Lettern. */
     private Workbench(Stations stations) {
+        UiLayout ui = UiLayout.get();
         this.stations = stations;
         this.fragmentIndex = 0;
         this.fragment = null;
-        this.press = null;
+        this.press = PressSession.free(ui.lineSlots, ui.rows, START_STOCK, START_INK, START_IRON, new Random());
     }
 
-    static Workbench empty(Stations stations) {
+    static Workbench free(Stations stations) {
         return new Workbench(stations);
+    }
+
+    /** Schluessel fuer den Zwischenspeicher: das Fragment oder -1 ohne. */
+    int key() {
+        return fragment == null ? -1 : fragmentIndex;
     }
 
     int startInk() {

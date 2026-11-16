@@ -61,9 +61,19 @@ public class PressScreen extends StationScreen {
 
     @Override
     protected void drawStation(GuiGraphics g) {
-        drawLeft(g);
-        drawPress(g);
-        drawRight(g);
+        if (bench.fragment != null) drawLeft(g);
+        if (hasPress()) drawPress(g);
+        if (hasCabinet()) drawRight(g);
+    }
+
+    /** Die Presse selbst: Setzform, Papierablage, Kurbel, Hebel. */
+    private boolean hasPress() {
+        return bench.stations.press();
+    }
+
+    /** Der Lettern-Schrank: Buchstabenbox, Tintenfass mit Walze, Papiervorrat. */
+    private boolean hasCabinet() {
+        return bench.stations.cabinet();
     }
 
     @Override
@@ -148,7 +158,7 @@ public class PressScreen extends StationScreen {
     public void clickCanvas(double x, double y, int button) {
         if (busy()) return;
 
-        int cell = caseCellAt(x, y);
+        int cell = hasCabinet() ? caseCellAt(x, y) : -1;
         if (cell >= 0) {
             char c = ui.letters[cell];
             if (button == 1) {
@@ -167,7 +177,7 @@ public class PressScreen extends StationScreen {
         }
 
         // Eine gesetzte Letter wieder greifen. Abgelegt wird beim Loslassen, siehe releaseCanvas.
-        int slot = slotAt(x, y);
+        int slot = hasPress() ? slotAt(x, y) : -1;
         if (slot >= 0) {
             if (hand == Hand.NONE) {
                 char c = session.pickUp(slot);
@@ -180,7 +190,7 @@ public class PressScreen extends StationScreen {
             return;
         }
 
-        if (in(ui.rect("barrel"), x, y, 0)) {
+        if (hasCabinet() && in(ui.rect("barrel"), x, y, 0)) {
             if (hand == Hand.NONE) {
                 if (session.dipRoller()) {
                     hand = Hand.ROLLER;
@@ -197,7 +207,7 @@ public class PressScreen extends StationScreen {
             return;
         }
 
-        if (in(ui.rect("paper_stock"), x, y, 0)) {
+        if (hasCabinet() && in(ui.rect("paper_stock"), x, y, 0)) {
             if (hand == Hand.NONE) {
                 hand = Hand.PAPER;
                 sound(SoundEvents.BOOK_PAGE_TURN, 1.2f, 0.6f);
@@ -206,6 +216,8 @@ public class PressScreen extends StationScreen {
             }
             return;
         }
+
+        if (!hasPress()) return;
 
         if (in(ui.rect("paper_tray"), x, y, 0)) {
             if (hand == Hand.PAPER && session.layPaper()) {
@@ -241,7 +253,7 @@ public class PressScreen extends StationScreen {
 
     /** Slot unter dem Cursor, grosszuegig: irgendwo in der Setzform zaehlt der naechste Slot. */
     private int slotNear(double x, double y) {
-        if (!in(ui.rect("forme"), x, y, 3)) return -1;
+        if (!hasPress() || !in(ui.rect("forme"), x, y, 3)) return -1;
         int col = (int) Math.floor((x - ui.slotsX + 0.5) / ui.pitch);
         int row = (int) Math.floor((y - ui.slotsY + 0.5) / ui.rowPitch);
         col = Math.max(0, Math.min(ui.lineSlots - 1, col));
@@ -284,7 +296,7 @@ public class PressScreen extends StationScreen {
     /** Mausbewegung in Leinwand-Koordinaten. Oeffentlich fuer den Selbsttest. */
     @Override
     public void moveCanvas(double x, double y) {
-        if (hand != Hand.ROLLER) return;
+        if (hand != Hand.ROLLER || !hasPress()) return;
         int[] forme = ui.rect("forme");
         if (y < forme[1] - 8 || y >= forme[1] + forme[3] + 8) {
             lastRollerX = Double.NaN;
@@ -422,7 +434,7 @@ public class PressScreen extends StationScreen {
         if (proof != null && leverAnim <= LEVER_PROOF_AT && session.paper() == Paper.NONE) drawProof(g, tray);
 
         // Hinweiszeile
-        String sheet = session.isComplete() ? "" : "Sheet " + (session.pageIndex() + 1) + "/" + session.pageCount();
+        String sheet = session.isComplete() || session.isFree() ? "" : "Sheet " + (session.pageIndex() + 1) + "/" + session.pageCount();
         drawHintLine(g, ui.rect("line_counter"), sheet, hintText(session.hint()));
     }
 

@@ -229,4 +229,26 @@ class CoreTest {
         assertFalse(s.dipRoller());
         assertFalse(s.cast('A'));
     }
+
+    @Test
+    void freePressPrintsAnythingWithoutAText() {
+        PressSession s = PressSession.free(16, 4, 4, 8, 24, new Random(1));
+        assertFalse(s.isComplete());
+        assertEquals(PressSession.Hint.SET_TYPE, s.hint());
+        assertTrue(s.takeFromCase('K'));
+        assertTrue(s.place(5, 'K'));
+        assertTrue(s.takeFromCase('Z'));
+        assertTrue(s.place(40, 'Z')); // beliebiger Slot, auch in einer anderen Zeile
+        inkAll(s);
+        assertTrue(s.layPaper());
+        assertNull(s.crank());
+        PressSession.PullResult r = s.pull();
+        assertNull(r.refusal());
+        assertTrue(r.allCorrect());
+        assertEquals('K', r.printed()[5]);
+        assertTrue(s.finishPage());
+        assertEquals(1, s.printedCount());
+        assertEquals(0, s.slot(5)); // Forme ist wieder frei
+        assertFalse(s.isComplete());
+    }
 }

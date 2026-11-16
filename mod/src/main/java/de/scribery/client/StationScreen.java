@@ -231,11 +231,11 @@ public abstract class StationScreen extends Screen {
         return target(direction) != null;
     }
 
-    /** Naechste erreichbare Station in Richtung -1 (links) oder +1 (rechts). Ohne Fragment auf dem Pult gibt es keine. */
+    /** Naechste erreichbare Station in Richtung -1 (links) oder +1 (rechts). Uebersetzt wird nur mit Fragment. */
     private Stations.Kind target(int direction) {
-        if (bench.fragment == null) return null;
         Stations.Kind[] kinds = Stations.Kind.values();
         for (int i = kind().ordinal() + direction; i >= 0 && i < kinds.length; i += direction) {
+            if (kinds[i] == Stations.Kind.DESK && bench.fragment == null) continue;
             if (bench.stations.has(kinds[i])) return kinds[i];
         }
         return null;

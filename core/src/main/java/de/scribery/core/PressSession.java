@@ -44,6 +44,8 @@ public final class PressSession {
     }
 
     private final List<PressWord> words;
+    /** Freier Druck ohne Vorlage: jeder Slot ist offen, jeder Abzug gelingt. */
+    private final boolean free;
     /** Bogen -> Zeilen -> Wortindizes. */
     private final List<List<List<Integer>>> pages = new ArrayList<>();
     private final int lineSlots;
@@ -72,6 +74,17 @@ public final class PressSession {
     /** @param maxWordsPerLine hoechstens so viele Woerter in einer Zeile */
     public PressSession(List<PressWord> words, int lineSlots, int rows, int maxWordsPerLine, int stockPerLetter,
             int ink, int iron, Random rng) {
+        this(words, false, lineSlots, rows, maxWordsPerLine, stockPerLetter, ink, iron, rng);
+    }
+
+    /** Presse ohne Fragment: der Spieler setzt und druckt beliebige Lettern. */
+    public static PressSession free(int lineSlots, int rows, int stockPerLetter, int ink, int iron, Random rng) {
+        return new PressSession(List.of(), true, lineSlots, rows, 1, stockPerLetter, ink, iron, rng);
+    }
+
+    private PressSession(List<PressWord> words, boolean free, int lineSlots, int rows, int maxWordsPerLine,
+            int stockPerLetter, int ink, int iron, Random rng) {
+        this.free = free;
         this.words = List.copyOf(words);
         this.lineSlots = lineSlots;
         this.rows = rows;
@@ -97,7 +110,7 @@ public final class PressSession {
         java.util.Arrays.fill(slotWord, -1);
         paper = Paper.NONE;
         awaitingFinish = false;
-        if (isComplete()) return;
+        if (isComplete() || free) return;
         List<List<Integer>> page = pages.get(pageIndex);
         for (int row = 0; row < page.size(); row++) {
             int pos = row * lineSlots;
@@ -125,7 +138,9 @@ public final class PressSession {
     public int slotCount() { return slotCount; }
     public int pageCount() { return pages.size(); }
     public int pageIndex() { return pageIndex; }
-    public boolean isComplete() { return pageIndex >= pages.size(); }
+    public boolean isComplete() { return !free && pageIndex >= pages.size(); }
+    /** Freier Druck ohne Fragment. */
+    public boolean isFree() { return free; }
     public int ink() { return ink; }
     public int iron() { return iron; }
     public int stock(char letter) { return stock.getOrDefault(letter, 0); }
@@ -187,6 +202,11 @@ public final class PressSession {
         return any;
     }
 
+    private boolean anyLetter() {
+        for (char c : slots) if (c != 0) return true;
+        return false;
+    }
+
     private boolean hasEmptyGap() {
         for (int i = 0; i < slotCount; i++) {
             if (slotWord[i] >= 0 && slots[i] == 0) return true;
@@ -198,7 +218,7 @@ public final class PressSession {
     public Hint hint() {
         if (isComplete()) return Hint.DONE;
         if (paper == Paper.FED) return Hint.PULL_LEVER;
-        if (hasEmptyGap()) return Hint.SET_TYPE;
+        if (hasEmptyGap() || (free && !anyLetter())) return Hint.SET_TYPE;
         if (!isInked()) return rollerCharged ? Hint.ROLL_INK : Hint.DIP_ROLLER;
         if (paper == Paper.NONE) return Hint.LAY_PAPER;
         return Hint.TURN_CRANK;
@@ -296,6 +316,12 @@ public final class PressSession {
 
         char[] printed = slots.clone();
         boolean[] smudged = new boolean[slotCount];
+        if (free) {
+            paper = Paper.NONE;
+            java.util.Arrays.fill(inkLevel, 0);
+            awaitingFinish = true;
+            return new PullResult(null, printed, smudged, true);
+        }
         boolean allCorrect = true;
         List<List<Integer>> page = pages.get(pageIndex);
         for (int row = 0; row < page.size(); row++) {
@@ -333,7 +359,18 @@ public final class PressSession {
     public boolean finishPage() {
         if (!awaitingFinish) return false;
         printedSheets.add(slots.clone());
-        for (List<Integer> line : pages.get(pageIndex)) {
+        if (free) {
+            for (int row = 0; row < rows; row++) {
+                StringBuilder text = new StringBuilder();
+                for (int c = 0; c < lineSlots; c++) {
+                    char ch = slots[row * lineSlots + c];
+                    text.append(ch == 0 ? ' ' : ch);
+                }
+                String t = text.toString().stripTrailing();
+                if (!t.isBlank()) finishedLines.add(t);
+            }
+        }
+        for (List<Integer> line : free ? List.<List<Integer>>of() : pages.get(pageIndex)) {
             StringBuilder text = new StringBuilder();
             for (int wi : line) {
                 if (text.length() > 0) text.append(' ');
