@@ -23,6 +23,14 @@ public final class PressSession {
     /** Eine gesetzte Letter nutzt sich beim Ablegen mit Wahrscheinlichkeit 1/WEAR_ODDS ab. */
     public static final int WEAR_ODDS = 25;
 
+    /**
+     * Ein fertig gedruckter Bogen.
+     *
+     * @param page  Index des Bogens im Fragment, -1 beim freien Druck
+     * @param lines die gedruckten Zeilen (lateinische Umschrift bzw. das Gesetzte)
+     */
+    public record PrintedSheet(int page, List<String> lines) {}
+
     public enum Paper { NONE, ON_TRAY, FED }
 
     public enum Refusal { NOT_INKED, NO_PAPER, NOT_FED, BUSY }
@@ -55,6 +63,7 @@ public final class PressSession {
     private final Random rng;
     private final List<String> finishedLines = new ArrayList<>();
     private final List<char[]> printedSheets = new ArrayList<>();
+    private final List<PrintedSheet> sheetLog = new ArrayList<>();
 
     /** So viele Bogen Papier liegen im Vorrat. */
     public static final int START_PAPER = 16;
@@ -169,6 +178,9 @@ public final class PressSession {
         }
         return out;
     }
+
+    /** Alle bisher fertigen Boegen in der Reihenfolge, in der sie fertig wurden. */
+    public List<PrintedSheet> sheetLog() { return List.copyOf(sheetLog); }
 
     /** Anzahl der fertig gedruckten Boegen. */
     public int printedCount() { return printedSheets.size(); }
@@ -387,6 +399,8 @@ public final class PressSession {
     public boolean finishPage() {
         if (!awaitingFinish) return false;
         printedSheets.add(slots.clone());
+        int firstLine = finishedLines.size();
+        int donePage = free ? -1 : pageIndex;
         if (free) {
             for (int row = 0; row < rows; row++) {
                 StringBuilder text = new StringBuilder();
@@ -406,6 +420,7 @@ public final class PressSession {
             }
             finishedLines.add(text.toString());
         }
+        sheetLog.add(new PrintedSheet(donePage, List.copyOf(finishedLines.subList(firstLine, finishedLines.size()))));
         lastWorn = 0;
         for (int i = 0; i < slotCount; i++) {
             if (slots[i] == 0 || fixed[i]) continue;

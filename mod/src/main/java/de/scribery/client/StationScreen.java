@@ -46,7 +46,9 @@ public abstract class StationScreen extends Screen {
 
     /** Beginnt mit einem Fragment von vorn. */
     protected void restart(int index) {
-        bench = new Workbench(index, bench.stations);
+        Workbench old = bench;
+        bench = new Workbench(index, old.stations);
+        bench.inherit(old);
         fragmentIndex = bench.fragmentIndex;
         flashTicks = 0;
         onBenchChanged();

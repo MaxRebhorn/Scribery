@@ -103,6 +103,7 @@ public class PressScreen extends StationScreen {
             if (session.lastWorn() > 0) {
                 flash(session.lastWorn() == 1 ? "A letter wore out" : session.lastWorn() + " letters wore out");
             }
+            commit();
         }
     }
 
@@ -297,13 +298,24 @@ public class PressScreen extends StationScreen {
         if (hand == Hand.ROLLER) session.returnRoller();
         hand = Hand.NONE;
         session.closeOut();
-        if (bench.cabinetPos != null && bench.stations.cabinet()) {
-            java.util.List<Integer> letters = new java.util.ArrayList<>();
-            for (char ch : de.scribery.core.Translit.ALPHABET.toCharArray()) letters.add(session.stock(ch));
-            net.neoforged.neoforge.network.PacketDistributor.sendToServer(
-                    new de.scribery.ModNetwork.CommitCabinet(bench.cabinetPos, letters, session.ink(), session.paperStock()));
-        }
+        commit();
         super.removed();
+    }
+
+    /** Meldet dem Server den Stand des Schranks und neue fertige Boegen. Ohne Schrank (Debug) passiert nichts. */
+    private void commit() {
+        if (bench.cabinetPos == null || !bench.stations.cabinet()) return;
+        java.util.List<Integer> letters = new java.util.ArrayList<>();
+        for (char ch : de.scribery.core.Translit.ALPHABET.toCharArray()) letters.add(session.stock(ch));
+        java.util.List<de.scribery.ModNetwork.SheetOut> sheets = new java.util.ArrayList<>();
+        var log = session.sheetLog();
+        for (int i = bench.sheetsSent; i < log.size(); i++) {
+            sheets.add(new de.scribery.ModNetwork.SheetOut(session.isFree() ? -1 : bench.fragmentIndex,
+                    log.get(i).page(), log.get(i).lines()));
+        }
+        bench.sheetsSent = log.size();
+        net.neoforged.neoforge.network.PacketDistributor.sendToServer(new de.scribery.ModNetwork.CommitCabinet(
+                bench.cabinetPos, letters, session.ink(), session.paperStock(), sheets));
     }
 
     /** Mausbewegung in Leinwand-Koordinaten. Oeffentlich fuer den Selbsttest. */

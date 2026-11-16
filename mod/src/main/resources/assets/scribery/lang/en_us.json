@@ -40,5 +40,7 @@
   "block.scribery.translator_desk": "Translator's Desk",
   "block.scribery.manuscript_archive": "Manuscript Archive",
   "block.scribery.bookshelf": "Bookshelf",
-  "block.scribery.minting_table": "Minting Table"
+  "block.scribery.minting_table": "Minting Table",
+  "item.scribery.printed_sheet": "Printed Sheet",
+  "item.scribery.translated_sheet": "Translated Sheet"
 }

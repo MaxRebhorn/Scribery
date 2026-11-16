@@ -25,6 +25,8 @@ final class Workbench {
     TileSession tiles;
     /** Der Lettern-Schrank, aus dem diese Presse ihre Vorraete bezieht; null im Debug. */
     net.minecraft.core.BlockPos cabinetPos;
+    /** Wie viele fertige Boegen der Presse schon an den Server gemeldet sind. */
+    int sheetsSent;
 
     Workbench(int index) {
         this(index, Stations.DEBUG);
@@ -65,6 +67,15 @@ final class Workbench {
         }
         press.setInk(ink);
         press.setPaperStock(paper);
+    }
+
+    /** Uebernimmt Schrank und Vorraete einer vorherigen Arbeit, damit ein Neustart nichts neu erfindet. */
+    void inherit(Workbench old) {
+        cabinetPos = old.cabinetPos;
+        if (old.cabinetPos == null) return;
+        for (char c : de.scribery.core.Translit.ALPHABET.toCharArray()) press.setStock(c, old.press.stock(c));
+        press.setInk(old.press.ink());
+        press.setPaperStock(old.press.paperStock());
     }
 
     int startInk() {

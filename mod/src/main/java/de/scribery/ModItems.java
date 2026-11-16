@@ -66,6 +66,13 @@ public final class ModItems {
         return -1;
     }
 
+    public static final Supplier<Item> PRINTED_SHEET = ITEMS.registerItem("printed_sheet", SheetItem::new);
+    public static final Supplier<Item> TRANSLATED_SHEET = ITEMS.registerItem("translated_sheet", SheetItem::new);
+    static {
+        ALL.add(PRINTED_SHEET);
+        ALL.add(TRANSLATED_SHEET);
+    }
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
         TABS.register(bus);
