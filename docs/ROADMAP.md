@@ -1,72 +1,89 @@
 # Scribery & Crafts – Roadmap
 
 Reihenfolge der nächsten Schritte. Oben steht, was als Nächstes kommt. Der Stand bezieht sich auf Branch `phase-1-press`.
-Das Design steht in `Scribery_and_Crafts_Game_Design_Document.md`, die UI-Regeln in `UI-REQUIREMENTS.md` und `docs/ui-spec.md`.
+Das Design steht in `Scribery_and_Crafts_Game_Design_Document.md`, die UI-Regeln in `UI-REQUIREMENTS.md` und `docs/ui-spec.md`, die Stationen in `docs/STATIONS.md`.
 
 ## Stand heute
 
 Fertig:
-- Items: 22 Letter Types, 5 Manuskriptfragmente (Platzhalter), 7 Bücher (ohne Inhalt), Printed/Translated Sheet, Wooden Word Tablet.
-- Blöcke: Scribe's Lectern (legt Fragment auf, öffnet Oberfläche), Printing Press und Letter Cabinet (gemeinsame Druck-Oberfläche, zeigt nur, was angrenzt, freier Druck ohne Fragment), Minting Table (Stonecutter-Menü, Eisennuggets → Letter Types).
-- Der Letter Cabinet lagert Letter Types, Tintenbeutel und Papier. Die Presse bezieht und verbraucht ihre Vorräte, der Server prüft jede Meldung.
-- Übersetzungstisch: eigener Block mit Vorräten, übersetzt den aufgelegten bedruckten Bogen.
-- UI-Optik: Tischplatte, Minecraft-Texturen, unsere Letter-Items, ausgefranstes Papier in Textgröße.
+- **Items:** 22 Letter Types, Manuscript Fragment (ein Item, Datenfeld mit Manuskript-ID P1–P21), 7 Bücher (ohne Inhalt), Printed Sheet, Translated Sheet, Wooden Word Tablet.
+- **Blöcke:** Scribe's Lectern, Printing Press und Letter Cabinet (gemeinsame Druck-Oberfläche, zeigt nur, was angrenzt), Minting Table (Stonecutter-Menü, Eisennuggets → Letter Types), Translator's Desk (eigener Block mit Vorräten, übersetzt den aufgelegten bedruckten Bogen).
+- **Server:** Vorräte liegen in Block-Entities, der Client meldet nur Verbrauch, der Server prüft jede Meldung.
+- **Texte:** Pilot Johannes 1,1–18 als 21 Manuskripte, erzeugt von `tools/build_manuscripts.py`, geprüft von `ManuscriptDataTest`.
+- **Eingabe:** Presse manuell (Lettern ziehen), Übersetzung mit Plättchen oder von Hand getippt; Buttons zum Nachfüllen aus dem Inventar.
+- **Optik:** Tischplatte, Minecraft-Texturen, unsere Letter-Items, ausgefranstes Papier in Textgröße.
 
-Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher, Rezepte, die Texte (nur 3 Platzhaltertexte aus Johannes 1).
+Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die meisten Rezepte, die Fundorte der Fragmente (bisher nur der Creative-Tab).
 
-## Reihenfolge
+## Als Nächstes, in dieser Reihenfolge
 
-### 1. Bedruckter Bogen als Item – erledigt
-- Die Presse gibt pro fertigem Bogen ein Printed Sheet aus (Datenkomponente mit Fragment, Bogen, Zeilen). Der Server nimmt nur so viele Bögen an, wie Papier verbraucht wurde.
-- Der Übersetzungstisch nimmt den Bogen (aufgelegt wie in einen Bilderrahmen) und gibt ein Translated Sheet heraus.
-- Offen: Die Bögen sind nicht gegen die echte Setzform geprüft, ein Client könnte Papier gegen beliebigen Text eintauschen. Und beide Items nutzen noch Vanilla-Texturen (Papier, Buch).
+### 1. Übersetzungstisch direkt mit dem Manuskript benutzen
+- Der Tisch soll auch ein **Manuskript** annehmen, nicht nur einen bedruckten Bogen. Wer das Griechische schon so lesen kann, überspringt die Presse und übersetzt direkt vom griechischen Original.
+- Das ist bewusst schwerer: Es gibt keine lateinische Umschrift als Hilfe, die Wörter erscheinen nur griechisch. Als Belohnung spart man Presse, Lettern, Tinte und Papier für den Druck.
+- Zu klären: Gibt es einen Unterschied beim Ergebnis (zum Beispiel kein Printed Sheet, aber dasselbe Translated Sheet)? Zählt es gleich für den Fortschritt? Kosten (Tablets, Tinte, Papier) gleich oder anders?
+- Technik: Der Tisch kennt dann zwei Eingaben, `PRINTED_SHEET` und `MANUSCRIPT_FRAGMENT`. In `StationNetwork` und `docs/STATIONS.md` die Regel ergänzen. Die Server-Prüfung der Übersetzung nutzt die Wörter des Fragments statt der gedruckten Zeilen.
 
-### 2. Wooden Word Tablets – erledigt
-- Item mit Rezept (6 Planks → 3 Tablets) und eigener Textur. Der Tisch lagert Tablets, Tinte und Papier; jedes geschriebene Wort verbraucht ein Tablet, auch ein falsches.
-- Eine Übersetzung kostet zusätzlich ein Blatt Papier. Der Server prüft sie gegen die Glossen des Fragments.
+### 2. Das restliche Johannesevangelium übernehmen
+- Alle 21 Kapitel (879 Verse) durch `tools/build_manuscripts.py` erzeugen, nicht nur Kapitel 1. Das Skript ist schon so gebaut, dass es mit einem größeren Pool bessere falsche Antworten findet.
+- Rohdaten holen (Abfrage des Bibel-Zugangs in 50-Verse-Schritten oder eine Datei der STEPBible-Daten, das Herunterladen nur mit Okay). Lizenz und Namensnennung vorher klären.
+- Danach: Glossen stichprobenartig prüfen, die Manuskript-Nummer auf feste IDs umstellen (sonst verschieben sich bestehende Bögen), den englischen Satz je Manuskript aus der BSB nehmen.
+- Schwierigkeit bleibt in 3 Stufen, zufällig gemischt. Verteilung auf Biome als Mischung.
 
-### 3. Freie Eingabe von Hand – erledigt (nur am Übersetzungstisch)
-- In der Übersetzung klickt man in eine Lücke unter einem Wort und tippt es selbst (Tab/Enter/Rücktaste). Tippfehler verwischen wie ein falsches Plättchen, jedes getippte Wort kostet ein Tablet. Tasten für Ē und Ō erscheinen nur beim Tippen, links neben dem Quill.
-- Die Presse bleibt ausdrücklich manuell: Lettern werden gezogen, nicht getippt. Sie merkt sich die gesetzten Lettern (im Schrank gespeichert); Buttons füllen Letter Types bzw. Tinte und Papier aus dem Inventar nach.
-- Ausbau offen: Griechische Eingabe mit Akzenten und Spiritus (für Restaurierung und Formenübungen). Eingabeprüfung tolerant: Akzente ignorieren, Buchstaben und Endungen prüfen. Normalisierung (NFC/NFD) beim Vergleichen.
+### 3. Bücher implementieren
+- Greek Alphabet Primer, Grammar Book und die Lexika werden lesbar, mit echtem Inhalt (Alphabet, Aussprache, Deklinationen, Wortlisten).
+- Bücher lassen sich nicht in den Arbeits-UIs öffnen: Man muss das UI verlassen, nachschlagen und zurückkehren.
+- Bookshelf als Block zum Lagern und Ordnen.
+- Zu klären: Lexikon-Inhalte pro Buch, Überschneidungen, Form der Anzeige (Seiten, Suche?).
 
-### 4. Echte Texte und Manuskript-IDs – Pilot eingebunden (Johannes 1,1-18)
-- `tools/build_manuscripts.py` erzeugt aus den Rohdaten (`tools/data/john-*.tsv`) die Manuskripte: Glossen, erlaubte Varianten, falsche Antworten (Kasus/Zahl bei Nomen, sonst gleiche Wortart), Schwierigkeit in 3 Stufen, zufälliges Biom. `ManuscriptDataTest` prüft, dass alles in die Setzform passt.
-- Im Spiel: ein Fragment-Item mit Datenfeld (ID wie P7); der Creative-Tab listet alle. Server und Client laden dieselben Daten (`Manuscripts`). Der Selbsttest nutzt weiter die Platzhalter (Systemeigenschaft `scribery.selftest`).
-- Offen: Das ganze Evangelium erzeugen, Glossen stichprobenartig prüfen, Lizenz/Namensnennung der Wortdaten klären, englischen Satz je Manuskript aus der BSB statt aus den Glossen. Die Manuskript-Nummer ist der Index in der Liste: Wird neu erzeugt, ändert sie sich (bestehende Bögen in der Welt würden falsch zugeordnet); dann auf IDs umstellen.
+### 4. Händler, die die Bücher verkaufen
+- Villager verkaufen die Bücher für Emeralds; ein günstiges Wörterbuch zu Beginn.
+- Offen: Ein **eigener Villager-Beruf** (mit Arbeitsblock, zum Beispiel dem Bookshelf oder dem Pult) oder ein bestehender Beruf (Bibliothekar) mit zusätzlichen Angeboten? Ein eigener Beruf ist sauberer, aber mehr Aufwand (Beruf, Arbeitsblock, Handelsliste, Texturen).
+- Preise und die Reihenfolge, in der Bücher auftauchen, werden später balanciert.
 
-### 5. Rezepte und Fortschritt
+### 5. Wie Fragmente in die Welt kommen
+- Verschiedene Arten, wie ein Fragment entsteht oder gefunden wird: Loot in Truhen und Strukturen, verdächtiger Sand und Kies, Fischen, Händler, Funde bei Villagern. Genau das ist noch zu entscheiden.
+- Die Manuskript-Nummer ist die Position im Evangelium, die Schwierigkeit läuft getrennt. Jedes Biom bekommt eine Mischung aus leichten, mittleren und schweren Stücken.
+- Die ersten Manuskripte sind kurz und einfach, spätere länger. Bereits gefundene Fragmente sollen nicht ständig doppelt auftauchen (Zufallsgewichtung oder Hinweise).
+
+### 6. Ferne Zukunft: unterschiedliches Aussehen je nach Fundort
+- Fragmente sehen verschieden aus, je nachdem, wo man sie findet: Sumpf, Wüste, Taiga und so weiter, mit eigenen Texturen. Das Datenfeld `origin.biome` ist dafür schon in den Manuskriptdaten vorbereitet.
+- Technisch später: Item-Modell-Überschreibungen nach Datenfeld, mehrere Texturen (vier ungenutzte liegen schon im Repo).
+
+## Weitere Schritte, danach
+
+### Rezepte und Fortschritt
 - Crafting-Rezepte für alle Blöcke und Hilfsmittel (bisher nur Wooden Word Tablets).
 - Gespeicherter Fortschritt je Spieler (übersetzte Manuskripte); heute geht eine halb fertige Übersetzung beim Schließen verloren.
 
-### 6. Fragmente in der Welt
-- Fund in Biomen (Loot oder kleine Strukturen). Die Nummer bestimmt die Position im Evangelium, die Schwierigkeit läuft getrennt.
-- Die ersten Manuskripte sind kurz und einfach, spätere länger.
-
-### 7. Bücher, Händler und Bookshelf
-- Greek Alphabet Primer, Grammar Book und die Lexika als lesbare Bücher mit Inhalt.
-- Händler (Villager-Beruf) mit Preisen in Emeralds; ein günstiges Wörterbuch zu Beginn.
-- Bookshelf lagert Bücher. Bücher lassen sich nicht in den Arbeits-UIs öffnen: Spieler muss das UI verlassen.
-- Zu klären: Welche Lexikon-Inhalte in welche Bücher, Preise, Überschneidungen.
-
-### 8. Manuscript Archive
+### Manuscript Archive
 - Das Puzzle zum Zusammensetzen der Fragmente in die richtige Reihenfolge.
 - Zu klären: Wie funktioniert das Verschieben im UI? Was gilt als „richtig“?
 
-### 9. Restaurierungsaufträge, Achievements
+### Restaurierungsaufträge, Achievements
 - Villager bieten beschädigte Manuskripte an (Buchstabe oder Endung rekonstruieren), Belohnung in Emeralds. Optional.
 - Achievements: gefundene, transkribierte, übersetzte Manuskripte, Vollständigkeit des Evangeliums.
 
-### 10. Politur und Optik (ganz am Ende)
-- Texturen und Modelle: eigene Textur für den Minting Table, Modelle statt Würfel (zum Beispiel zweiteilige Presse), Pult-Look.
-- Optik der Einzelteile wie Kurbel, Hebel, Tintenfass und die Titelleiste.
+### Eingabe ausbauen
+- Griechische Eingabe mit Akzenten und Spiritus (für Restaurierung und Formenübungen). Eingabeprüfung tolerant: Akzente ignorieren, Buchstaben und Endungen prüfen. Normalisierung (NFC/NFD) beim Vergleichen.
+
+### Politur und Optik (ganz am Ende)
+- Texturen und Modelle: eigene Textur für den Minting Table, Modelle statt Würfel (zum Beispiel zweiteilige Presse), Pult-Look, eigene Texturen für Printed/Translated Sheet.
+- Optik der Einzelteile wie Kurbel, Hebel und Tintenfass.
 - Kontroll-Mockups in `art/out/` neu erzeugen.
+
+## Bekannte Schwächen
+
+- Printed Sheets sind nicht gegen die echte Setzform geprüft, ein Client könnte Papier gegen beliebigen Text eintauschen.
+- Die Manuskript-Nummer ist der Index in der Liste: Wird neu erzeugt, verschieben sich bestehende Bögen. Vor dem ganzen Evangelium auf IDs umstellen.
+- Eine halb fertige Übersetzung geht beim Schließen verloren.
+- Der Selbsttest nutzt die Platzhalter, die echten Daten laden nur über einen eigenen Schritt (`Manuscripts.useReal`).
 
 ## Offene Designentscheidungen
 
-Aus dem Design-Dokument und aus der Arbeit bisher:
 - Wie der Archiv-Puzzle im UI funktioniert.
-- Wann und wie freie Eingabe eingeführt wird.
+- Wie genau Übersetzen direkt vom Manuskript (ohne Druck) belohnt oder bewertet wird.
+- Ob ein eigener Villager-Beruf entsteht.
+- Wo und wie Fragmente gefunden werden (Spawn-Arten).
 - Welche Bibelstellen welche sprachlichen Anforderungen haben.
 - Wie viele Restaurierungsaufträge ein Villager gleichzeitig anbietet.
 - Bücherpreise und Lexikon-Inhalte.
