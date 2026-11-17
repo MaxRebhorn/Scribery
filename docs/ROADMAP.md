@@ -36,6 +36,9 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 - Bookshelf als Block zum Lagern und Ordnen.
 - Zu klären: Lexikon-Inhalte pro Buch, Überschneidungen, Form der Anzeige (Seiten, Suche?).
 
+- **Überarbeiten:** Beide fertigen Bücher (Alphabet Primer, Grammar Book) kommen noch einmal durch: Text, Aufteilung in Seiten und Länge.
+- **Leichter benutzbar machen:** Das Nachschlagen soll nicht nervig sein. Die Regel „Arbeits-UI verlassen, Buch öffnen“ gilt weiter, aber der Weg dorthin ist zu umständlich. Ideen: das Buch merkt sich die letzte Seite, ein Tastenkürzel öffnet das zuletzt gelesene Buch (und danach geht es zurück an die Station), Lesezeichen, schnellerer Zugriff aus der Hotbar. Entscheiden, wie viel Reibung gewollt ist.
+
 ### 4. Händler, die die Bücher verkaufen
 - Villager verkaufen die Bücher für Emeralds; ein günstiges Wörterbuch zu Beginn.
 - Offen: Ein **eigener Villager-Beruf** (mit Arbeitsblock, zum Beispiel dem Bookshelf oder dem Pult) oder ein bestehender Beruf (Bibliothekar) mit zusätzlichen Angeboten? Ein eigener Beruf ist sauberer, aber mehr Aufwand (Beruf, Arbeitsblock, Handelsliste, Texturen).
@@ -45,6 +48,16 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 - Verschiedene Arten, wie ein Fragment entsteht oder gefunden wird: Loot in Truhen und Strukturen, verdächtiger Sand und Kies, Fischen, Händler, Funde bei Villagern. Genau das ist noch zu entscheiden.
 - Die Manuskript-Nummer ist die Position im Evangelium, die Schwierigkeit läuft getrennt. Jedes Biom bekommt eine Mischung aus leichten, mittleren und schweren Stücken.
 - Die ersten Manuskripte sind kurz und einfach, spätere länger. Bereits gefundene Fragmente sollen nicht ständig doppelt auftauchen (Zufallsgewichtung oder Hinweise).
+
+### 5a. Strukturen und Fundblöcke (zu Punkt 5)
+Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, noch nicht entschieden.
+- **Verlassene Strukturen:** aufgegebene Außenposten, Lager und Ruinen; auch **vergrabene** Funde (verdächtiger Sand und Kies, Truhen unter der Erde).
+- **Versunkene griechische Schiffe:** ein kleines Schiffswrack im Ozean, mit Loot unter Wasser.
+- **Ausgetrocknete Schiffe in der Wüste:** dasselbe Schiff als Wrack im Sand, dazu weitere Funde in der Wüste.
+- **Amphoren-Blöcke:**
+  - ein Block für **Scherben von Amphoren** (Potsherds), der Scherben und Text-Funde fallen lässt,
+  - ein **Amphorenblock** als Behälter (Container), der Inhalt droppt: **beschriftete Scherben** (mit einem kurzen Text, einem Hinweis oder einem Wort, das zum Manuskript passen könnte) und **Manuskripte**.
+- Zu klären: Welche Texte auf den Scherben stehen (Wörter aus den Manuskripten? Namen? Hinweise auf Fundorte?), ob Scherben im Archiv eine Rolle spielen, wie die Strukturen erzeugt werden (Strukturdatei, Loot-Tabellen nach Biom), und wie sich Fundort und Aussehen des Fragments verbinden (siehe Punkt 6).
 
 ### 6. Ferne Zukunft: unterschiedliches Aussehen je nach Fundort
 - Fragmente sehen verschieden aus, je nachdem, wo man sie findet: Sumpf, Wüste, Taiga und so weiter, mit eigenen Texturen. Das Datenfeld `origin.biome` ist dafür schon in den Manuskriptdaten vorbereitet.
@@ -84,7 +97,8 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 - Wie der Archiv-Puzzle im UI funktioniert.
 - Wie genau Übersetzen direkt vom Manuskript (ohne Druck) belohnt oder bewertet wird.
 - Ob ein eigener Villager-Beruf entsteht.
-- Wo und wie Fragmente gefunden werden (Spawn-Arten).
+- Wo und wie Fragmente gefunden werden (Spawn-Arten, Strukturen, Amphoren und Scherben).
+- Wie viel Reibung das Nachschlagen in den Büchern haben soll, ohne dass es nervt.
 - Welche Bibelstellen welche sprachlichen Anforderungen haben.
 - Wie viele Restaurierungsaufträge ein Villager gleichzeitig anbietet.
 - Bücherpreise und Lexikon-Inhalte.
