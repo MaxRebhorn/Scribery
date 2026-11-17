@@ -178,6 +178,15 @@ final class SelfTest {
         shot(mc, "18-lectern-screen");
 
         // Das Buch: Titelseite, ein langer Abschnitt, eine Tabelle
+        // Jedes Buch, das eine Textdatei hat, muss sich setzen lassen
+        then(0, () -> {
+            for (String id : new String[] { "greek_alphabet_primer", "greek_grammar_book", "greek_lexicon_a_c", "greek_lexicon_d_f",
+                    "thematic_greek_lexicon", "greek_forms_grammar_lexicon", "complete_greek_lexicon" }) {
+                if (!BookText.exists(id)) continue;
+                int pages = BookText.paginate(mc.font, BookText.read(id)).size();
+                LOG.info("[selftest] Buch {}: {} Seiten", id, pages);
+            }
+        });
         then(0, () -> mc.setScreen(new BookScreen(BookText.read("greek_alphabet_primer"))));
         shot(mc, "19-book-cover");
         then(0, () -> {
