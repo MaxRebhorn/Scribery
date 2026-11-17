@@ -161,6 +161,11 @@ final class BookText {
             if (y + height > HEIGHT && !cur.isEmpty()) newPage();
         }
 
+        /** Beginnt eine neue Seite, wenn der Block nicht mehr passt, aber auf eine ganze Seite passen wuerde. */
+        void keepTogether(int height) {
+            if (y + height > HEIGHT && height <= HEIGHT && !cur.isEmpty()) newPage();
+        }
+
         void line(int x, FormattedCharSequence seq, int color, float scale, int rowHeight) {
             need(rowHeight);
             cur.add(new Drawn(x, y, seq, color, scale, 0));
@@ -218,10 +223,12 @@ final class BookText {
             b.y += 2;
         } else if (block instanceof Para p) {
             List<FormattedCharSequence> lines = font.split(inline(p.text(), false, BLACK), WIDTH);
+            b.keepTogether(lines.size() * LINE); // ein Absatz bleibt auf einer Seite, wenn er passt
             for (FormattedCharSequence l : lines) b.line(p.centered() ? centerX(font, l, WIDTH) : 0, l, BLACK, 1f, LINE);
             b.y += 4;
         } else if (block instanceof Bullet bl) {
             List<FormattedCharSequence> lines = font.split(inline(bl.text(), false, BLACK), WIDTH - 8);
+            b.keepTogether(lines.size() * LINE);
             for (int i = 0; i < lines.size(); i++) {
                 if (i == 0) b.cur.add(new Drawn(0, Math.min(b.y, HEIGHT - LINE), Component.literal("•").getVisualOrderText(), BLACK, 1f, 0));
                 b.line(8, lines.get(i), BLACK, 1f, LINE);
