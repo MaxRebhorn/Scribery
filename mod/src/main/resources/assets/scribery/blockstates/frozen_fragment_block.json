@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "scribery:block/frozen_fragment_block"
+    }
+  }
+}

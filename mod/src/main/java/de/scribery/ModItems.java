@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomModelData;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -53,6 +56,9 @@ public final class ModItems {
         }
     }
 
+    /** Reihenfolge = Wert von custom_model_data (1 bis 5). */
+    static final String[] VARIANT_NAMES = {"charred", "water damaged", "faded", "codex", "frozen"};
+
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("main",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.scribery"))
@@ -61,6 +67,15 @@ public final class ModItems {
                         ModBlocks.ALL.forEach(b -> out.accept(b.get()));
                         ALL.forEach(s -> { if (s != MANUSCRIPT_FRAGMENT) out.accept(s.get()); });
                         for (Manuscripts.Fragment f : Manuscripts.load()) out.accept(ManuscriptFragmentItem.of(f.id()));
+                        // Testvarianten (nur Optik, siehe Ueberschreibungen in models/item/manuscript_fragment.json)
+                        String first = Manuscripts.load().get(0).id();
+                        for (int i = 0; i < VARIANT_NAMES.length; i++) {
+                            ItemStack v = ManuscriptFragmentItem.of(first);
+                            v.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(i + 1));
+                            v.set(DataComponents.CUSTOM_NAME, Component.literal("Manuscript Fragment (" + VARIANT_NAMES[i] + ")")
+                                    .withStyle(s -> s.withItalic(false)));
+                            out.accept(v);
+                        }
                     })
                     .build());
 

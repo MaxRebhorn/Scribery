@@ -2,5 +2,37 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "scribery:item/manuscript_fragment_1"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "scribery:item/manuscript_fragment_charred"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2
+      },
+      "model": "scribery:item/manuscript_fragment_water_damaged"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3
+      },
+      "model": "scribery:item/manuscript_fragment_faded"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4
+      },
+      "model": "scribery:item/manuscript_fragment_codex"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5
+      },
+      "model": "scribery:item/manuscript_fragment_frozen"
+    }
+  ]
 }

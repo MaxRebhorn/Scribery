@@ -1,0 +1,88 @@
+{
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "ice": "minecraft:block/ice",
+    "frag": "scribery:item/manuscript_fragment_frozen",
+    "particle": "minecraft:block/ice"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#ice",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#ice",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#ice",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#ice",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#ice",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#ice",
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frag"
+        },
+        "south": {
+          "texture": "#frag"
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        0,
+        0
+      ],
+      "to": [
+        8,
+        16,
+        16
+      ],
+      "faces": {
+        "east": {
+          "texture": "#frag"
+        },
+        "west": {
+          "texture": "#frag"
+        }
+      }
+    }
+  ]
+}

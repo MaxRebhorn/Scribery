@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -37,6 +38,17 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> MANUSCRIPT_ARCHIVE = station("manuscript_archive");
     public static final DeferredBlock<Block> MINTING_TABLE = station("minting_table", MintBlock::new);
     public static final DeferredBlock<Block> BOOKSHELF = station("bookshelf");
+
+    /** Eisblock mit eingefrorenem Fragment (Testblock fuer das Modell, noch ohne Funktion). */
+    public static final DeferredBlock<Block> FROZEN_FRAGMENT_BLOCK = BLOCKS.register("frozen_fragment_block",
+            () -> new TransparentBlock(BlockBehaviour.Properties.of().mapColor(MapColor.ICE).strength(0.5F)
+                    .sound(SoundType.GLASS).noOcclusion().isValidSpawn((st, l, p, e) -> false)
+                    .isRedstoneConductor((st, l, p) -> false).isSuffocating((st, l, p) -> false)
+                    .isViewBlocking((st, l, p) -> false)));
+    static {
+        BLOCK_ITEMS.registerSimpleBlockItem("frozen_fragment_block", FROZEN_FRAGMENT_BLOCK, new Item.Properties());
+        ALL.add(FROZEN_FRAGMENT_BLOCK);
+    }
 
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
