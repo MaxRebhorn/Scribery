@@ -146,6 +146,24 @@ final class BookText {
         final List<Page> pages = new ArrayList<>();
         List<Drawn> cur = new ArrayList<>();
         int y;
+        /** Index des ersten Elements der letzten Ueberschrift auf dieser Seite, oder -1. */
+        int headStart = -1;
+        /** Wenn wahr, bleiben Absaetze nicht zwingend auf einer Seite. */
+        boolean allowSplit;
+
+        record State(List<Page> pages, List<Drawn> cur, int y, int headStart) {}
+
+        State save() {
+            return new State(new ArrayList<>(pages), new ArrayList<>(cur), y, headStart);
+        }
+
+        void restore(State s) {
+            pages.clear();
+            pages.addAll(s.pages());
+            cur = new ArrayList<>(s.cur());
+            y = s.y();
+            headStart = s.headStart();
+        }
 
         Builder(Font font) {
             this.font = font;
@@ -163,7 +181,25 @@ final class BookText {
 
         /** Beginnt eine neue Seite, wenn der Block nicht mehr passt, aber auf eine ganze Seite passen wuerde. */
         void keepTogether(int height) {
-            if (y + height > HEIGHT && height <= HEIGHT && !cur.isEmpty()) newPage();
+            if (allowSplit) {
+                headStart = -1;
+                return;
+            }
+            if (y + height > HEIGHT && height <= HEIGHT && !cur.isEmpty()) {
+                // Eine Ueberschrift direkt davor wandert mit, sie soll nicht allein am Seitenende stehen
+                if (headStart >= 0 && headStart < cur.size()) {
+                    List<Drawn> carried = new ArrayList<>(cur.subList(headStart, cur.size()));
+                    cur.subList(headStart, cur.size()).clear();
+                    newPage();
+                    int base = carried.get(0).y();
+                    for (Drawn d : carried) cur.add(new Drawn(d.x(), d.y() - base, d.text(), d.color(), d.scale(), d.ruleWidth()));
+                    Drawn last = carried.get(carried.size() - 1);
+                    y = last.y() - base + (last.text() == null ? 3 : LINE) + 2;
+                } else {
+                    newPage();
+                }
+            }
+            headStart = -1;
         }
 
         void line(int x, FormattedCharSequence seq, int color, float scale, int rowHeight) {
@@ -178,6 +214,18 @@ final class BookText {
             y += 3;
         }
 
+        /** Beginnt eine neue Doppelseite: die naechste Seite ist eine linke. */
+        void spread() {
+            if (!cur.isEmpty()) newPage();
+            if (pages.size() % 2 == 1) pages.add(new Page(new ArrayList<>()));
+            y = 0;
+        }
+
+        /** Springt auf die rechte Seite der Doppelseite, wenn man gerade auf der linken steht. */
+        void toRightPage() {
+            if (pages.size() % 2 == 0 && !cur.isEmpty()) newPage();
+        }
+
         void gap(int h) {
             if (y > 0) y += h;
         }
@@ -190,7 +238,7 @@ final class BookText {
     /** Setzt das Buch in Seiten. Muss auf dem Client laufen, weil es die Schriftbreite braucht. */
     static List<Page> paginate(Font font, String md) {
         Builder b = new Builder(font);
-        boolean firstSection = true;
+        boolean firstSection = true, inLetter = false;
         for (List<Block> section : sections(md)) {
             // Nur die Titelseite steht allein; danach fliesst der Text weiter, sonst bleiben halbe Seiten leer.
             if (firstSection) {
@@ -199,12 +247,69 @@ final class BookText {
             } else {
                 b.gap(8);
             }
-            for (Block block : section) place(b, block, firstSection);
+            int i = 0;
+            while (i < section.size()) {
+                Block block = section.get(i);
+                if (!firstSection && block instanceof Heading h && h.level() == 2) {
+                    // Nach den Buchstaben beginnt der naechste Abschnitt auf einer neuen Doppelseite
+                    if (inLetter) {
+                        b.spread();
+                        inLetter = false;
+                    }
+                    if (i + 1 < section.size() && section.get(i + 1) instanceof Heading n && isLetter(n)) {
+                        b.spread();
+                        inLetter = true;
+                    }
+                    place(b, block, false);
+                    i++;
+                } else if (block instanceof Heading h && h.level() == 3 && isLetter(h)) {
+                    boolean afterGroup = i > 0 && section.get(i - 1) instanceof Heading p && p.level() == 2 && inLetter;
+                    if (!afterGroup) b.spread(); // jeder Buchstabe bekommt eine Doppelseite
+                    inLetter = true;
+                    int j = i + 1;
+                    while (j < section.size() && !(section.get(j) instanceof Heading n && isLetter(n))) j++;
+                    placeLetter(b, section, i, j);
+                    i = j;
+                } else {
+                    place(b, block, firstSection);
+                    i++;
+                }
+            }
             if (firstSection) b.newPage();
             firstSection = false;
         }
         b.finish();
         return b.pages;
+    }
+
+    /**
+     * Setzt einen Buchstaben auf seine Doppelseite: links die Beschreibung, rechts das Beispiel. Absaetze bleiben
+     * ganz, wenn es geht. Reicht der Platz dafuer nicht, darf ein Absatz von der linken auf die rechte Seite laufen,
+     * damit der Buchstabe trotzdem eine Doppelseite bleibt.
+     */
+    private static void placeLetter(Builder b, List<Block> section, int from, int to) {
+        Builder.State saved = b.save();
+        placeRange(b, section, from, to, false);
+        int used = b.pages.size() + (b.cur.isEmpty() ? 0 : 1) - saved.pages().size();
+        if (used > 2) {
+            b.restore(saved);
+            placeRange(b, section, from, to, true);
+        }
+    }
+
+    private static void placeRange(Builder b, List<Block> section, int from, int to, boolean split) {
+        b.allowSplit = split;
+        for (int k = from; k < to; k++) {
+            Block block = section.get(k);
+            if (k > from && block instanceof Para p && p.text().startsWith("Example")) b.toRightPage();
+            place(b, block, false);
+        }
+        b.allowSplit = false;
+    }
+
+    /** Ein Buchstabenabschnitt: "1. Alpha - ...". */
+    private static boolean isLetter(Heading h) {
+        return h.text().matches("^\\d+\\..*");
     }
 
     private static int centerX(Font font, FormattedCharSequence seq, int width) {
@@ -216,16 +321,20 @@ final class BookText {
         if (block instanceof Heading h) {
             int color = h.level() == 3 ? SUB : HEAD;
             List<FormattedCharSequence> lines = font.split(inline(h.text(), true, color), WIDTH);
-            b.gap(h.level() == 3 ? 5 : 0);
+            b.gap(h.level() == 3 ? (b.cur.isEmpty() || b.y < 20 ? 2 : 5) : 0);
             b.need(lines.size() * LINE + 2 * LINE); // Ueberschrift nicht allein am Seitenende
+            b.headStart = b.cur.size();
             for (FormattedCharSequence l : lines) b.line(h.centered() ? centerX(font, l, WIDTH) : 0, l, color, 1f, LINE);
             if (h.level() == 2 && !h.centered()) b.rule(0, WIDTH);
             b.y += 2;
         } else if (block instanceof Para p) {
             List<FormattedCharSequence> lines = font.split(inline(p.text(), false, BLACK), WIDTH);
             b.keepTogether(lines.size() * LINE); // ein Absatz bleibt auf einer Seite, wenn er passt
+            int start = b.cur.size();
             for (FormattedCharSequence l : lines) b.line(p.centered() ? centerX(font, l, WIDTH) : 0, l, BLACK, 1f, LINE);
-            b.y += 4;
+            b.y += 3;
+            // Ein Absatz, der mit ":" endet ("Example:"), bleibt mit dem Folgenden zusammen
+            if (p.text().strip().endsWith(":") && start < b.cur.size()) b.headStart = start;
         } else if (block instanceof Bullet bl) {
             List<FormattedCharSequence> lines = font.split(inline(bl.text(), false, BLACK), WIDTH - 8);
             b.keepTogether(lines.size() * LINE);
@@ -241,6 +350,7 @@ final class BookText {
 
     private static void placeTable(Builder b, Table t) {
         Font font = b.font;
+        b.headStart = -1;
         int cols = 0;
         for (List<String> r : t.rows()) cols = Math.max(cols, r.size());
         int[] w = new int[cols];

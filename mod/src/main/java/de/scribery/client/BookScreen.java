@@ -121,6 +121,19 @@ final class BookScreen extends Screen {
         updateButtons();
     }
 
+    /** Fuer den Selbsttest: Nummer der ersten Seite, deren Text den Suchbegriff enthaelt, sonst 0. */
+    int findPage(String needle) {
+        for (int i = 0; i < pages.size(); i++) {
+            for (BookText.Drawn d : pages.get(i).items()) {
+                if (d.text() == null) continue;
+                StringBuilder sb = new StringBuilder();
+                d.text().accept((idx, st, cp) -> { sb.appendCodePoint(cp); return true; });
+                if (sb.toString().contains(needle)) return i;
+            }
+        }
+        return 0;
+    }
+
     int pageCount() {
         return pages.size();
     }

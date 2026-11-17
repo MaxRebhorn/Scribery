@@ -183,10 +183,18 @@ final class SelfTest {
         then(0, () -> {
             BookScreen b = (BookScreen) mc.screen;
             LOG.info("[selftest] Buch: {} Seiten", b.pageCount());
-            b.goTo(6);
+            String[] names = { "Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu",
+                    "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega" };
+            StringBuilder spill = new StringBuilder();
+            for (int i = 0; i + 1 < names.length; i++) {
+                int a0 = b.findPage((i + 1) + ". " + names[i]), a1 = b.findPage((i + 2) + ". " + names[i + 1]);
+                if (a1 - a0 != 2) spill.append(names[i]).append('=').append(a1 - a0).append(' ');
+            }
+            LOG.info("[selftest] Buchstaben, die nicht genau eine Doppelseite haben: {}", spill.length() == 0 ? "keine" : spill);
+            b.goTo(b.findPage("1. Alpha"));
         });
         shot(mc, "20-book-letters");
-        then(0, () -> ((BookScreen) mc.screen).goTo(((BookScreen) mc.screen).pageCount() - 12));
+        then(0, () -> ((BookScreen) mc.screen).findPage("20. Upsilon"));
         shot(mc, "21-book-table");
 
         then(10, () -> {
