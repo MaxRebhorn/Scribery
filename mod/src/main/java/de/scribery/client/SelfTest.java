@@ -206,6 +206,32 @@ final class SelfTest {
         then(0, () -> ((BookScreen) mc.screen).findPage("20. Upsilon"));
         shot(mc, "21-book-table");
 
+        // Fragment-Varianten (custom_model_data 0 bis 5) und der Eisblock als Item gross gezeichnet
+        then(0, () -> mc.setScreen(new net.minecraft.client.gui.screens.Screen(net.minecraft.network.chat.Component.literal("preview")) {
+            @Override
+            public void render(net.minecraft.client.gui.GuiGraphics g, int mx, int my, float pt) {
+                g.fill(0, 0, width, height, 0xFF3A3640);
+                int x = 20;
+                for (int i = 0; i <= 5; i++) {
+                    var st = de.scribery.ManuscriptFragmentItem.of("P1");
+                    if (i > 0) st.set(net.minecraft.core.component.DataComponents.CUSTOM_MODEL_DATA,
+                            new net.minecraft.world.item.component.CustomModelData(i));
+                    g.pose().pushPose();
+                    g.pose().translate(x, 40, 0);
+                    g.pose().scale(6, 6, 1);
+                    g.renderItem(st, 0, 0);
+                    g.pose().popPose();
+                    x += 100;
+                }
+                g.pose().pushPose();
+                g.pose().translate(20, 170, 0);
+                g.pose().scale(6, 6, 1);
+                g.renderItem(new net.minecraft.world.item.ItemStack(de.scribery.ModBlocks.FROZEN_FRAGMENT_BLOCK.get()), 0, 0);
+                g.pose().popPose();
+            }
+        }));
+        shot(mc, "22-variants");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();
