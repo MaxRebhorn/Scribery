@@ -47,7 +47,10 @@ public final class ModItems {
         for (String b : new String[] {
                 "greek_alphabet_primer", "greek_grammar_book", "greek_lexicon_a_c", "greek_lexicon_d_f",
                 "thematic_greek_lexicon", "greek_forms_grammar_lexicon", "complete_greek_lexicon"})
-            simple(b, 1);
+        {
+            final String id = b;
+            ALL.add(ITEMS.registerItem(id, p -> new BookItem(p, id)));
+        }
     }
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("main",

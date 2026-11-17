@@ -23,6 +23,16 @@ public final class ClientHooks {
 
     private ClientHooks() {}
 
+    /** Buch in der Hand aufgeschlagen. Ein Buch ohne Textdatei ist noch leer. */
+    public static void openBook(String id, net.minecraft.world.entity.player.Player player) {
+        String md = BookText.read(id);
+        if (md == null) {
+            player.displayClientMessage(net.minecraft.network.chat.Component.literal("This book is still blank"), true);
+            return;
+        }
+        Minecraft.getInstance().setScreen(new BookScreen(md));
+    }
+
     /** Fragment in der Hand angeschaut: gleiche Anordnung wie am Pult. */
     public static void openFragmentView(int debugIndex) {
         var all = Manuscripts.load();

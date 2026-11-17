@@ -30,6 +30,7 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 - Schwierigkeit bleibt in 3 Stufen, zufällig gemischt. Verteilung auf Biome als Mischung.
 
 ### 3. Bücher implementieren
+- **Erledigt:** Greek Alphabet Primer. Der Text liegt als Markdown unter `mod/src/main/resources/assets/scribery/books/<id>.md`, die Leseansicht (`BookScreen`, `BookText`) zeigt eine Doppelseite mit der Minecraft-Buchtextur; unterstützt werden Überschriften, Absätze, Listen, fett/kursiv und Tabellen. Jedes weitere Buch braucht nur seine Textdatei (Dateiname = Item-ID).
 - Greek Alphabet Primer, Grammar Book und die Lexika werden lesbar, mit echtem Inhalt (Alphabet, Aussprache, Deklinationen, Wortlisten).
 - Bücher lassen sich nicht in den Arbeits-UIs öffnen: Man muss das UI verlassen, nachschlagen und zurückkehren.
 - Bookshelf als Block zum Lagern und Ordnen.

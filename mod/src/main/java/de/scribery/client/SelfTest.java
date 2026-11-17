@@ -177,6 +177,18 @@ final class SelfTest {
         then(0, () -> mc.setScreen(new LecternScreen(new Workbench(5, new Stations(true, false, false, false)))));
         shot(mc, "18-lectern-screen");
 
+        // Das Buch: Titelseite, ein langer Abschnitt, eine Tabelle
+        then(0, () -> mc.setScreen(new BookScreen(BookText.read("greek_alphabet_primer"))));
+        shot(mc, "19-book-cover");
+        then(0, () -> {
+            BookScreen b = (BookScreen) mc.screen;
+            LOG.info("[selftest] Buch: {} Seiten", b.pageCount());
+            b.goTo(6);
+        });
+        shot(mc, "20-book-letters");
+        then(0, () -> ((BookScreen) mc.screen).goTo(((BookScreen) mc.screen).pageCount() - 12));
+        shot(mc, "21-book-table");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();
