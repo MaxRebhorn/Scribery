@@ -94,7 +94,14 @@ public final class DebugWreck {
      * unten auf dem Boden.
      */
     private BlockPos at(int u, int v, int h) {
-        return side ? world(u, h, v + 3) : world(u, v, h);
+        // Jeder Querschnitt sitzt mit seiner untersten Kante (v = -halbe Breite) buendig auf dem Boden, damit nichts schwebt;
+        // an den schmalen Enden liegt das Schiff dadurch flach auf, in der Mitte steht der Kiel hoeher.
+        return side ? world(u, h, v + halfWidth(u)) : world(u, v, h);
+    }
+
+    /** Beim Schiff auf der Seite ist die obere Haelfte (v > 0) abgebrochen und als Truemmer zusammengefallen. */
+    private boolean kept(int v) {
+        return !side || v <= 0;
     }
 
     /** Position im Gelaende rund um das Wrack, quer zur Duenenmitte. */
@@ -156,25 +163,25 @@ public final class DebugWreck {
             if (random.nextInt(12) > 0) put(at(u, 0, 0), log(Blocks.STRIPPED_DARK_OAK_LOG, keelAxis()));
             // Boden: ein Viertel fehlt
             for (int v = -w + 1; v <= w - 1; v++) {
-                if (v != 0 && random.nextInt(4) > 0) put(at(u, v, 0), floor);
+                if (v != 0 && kept(v) && random.nextInt(4) > 0) put(at(u, v, 0), floor);
             }
             if (w < 1) continue;
             // Bordwaende: Backbord (v>0) halb zerfallen, Steuerbord (v<0) staerker, oben fehlt mehr
             for (int h = 1; h <= rise; h++) {
                 double missPort = 0.12 + 0.10 * h, missStarboard = 0.30 + 0.12 * h;
-                if (random.nextDouble() > missPort) put(at(u, w, h), wall);
+                if (kept(w) && random.nextDouble() > missPort) put(at(u, w, h), wall);
                 if (random.nextDouble() > missStarboard) put(at(u, -w, h), wall);
             }
             // Spanten: alle zwei Bloecke ragt ein Rippenbogen ueber die Bordwand hinaus
             if (Math.floorMod(u, 2) == 0) {
-                if (random.nextInt(5) > 0) put(at(u, w, rise + 1), rib);
+                if (kept(w) && random.nextInt(5) > 0) put(at(u, w, rise + 1), rib);
                 if (random.nextInt(3) > 0) put(at(u, -w, rise + 1), rib);
             }
         }
         // Deckbalken quer, an zwei Stellen, teilweise abgebrochen
         for (int u : new int[] { -4, 4 }) {
             int w = halfWidth(u), h = Math.min(2, wallHeight(u));
-            for (int v = -w; v <= w; v++) if (random.nextInt(2) == 0) put(at(u, v, h), log(Blocks.STRIPPED_OAK_LOG, crossAxis()));
+            for (int v = -w; v <= w; v++) if (kept(v) && random.nextInt(2) == 0) put(at(u, v, h), log(Blocks.STRIPPED_OAK_LOG, crossAxis()));
         }
         // Vordersteven (Bug) hoch, Achtersteven (Heck) abgebrochen
         for (int h = 0; h <= 5; h++) put(at(-HALF, 0, h), log(Blocks.DARK_OAK_LOG, Direction.Axis.Y));
@@ -185,7 +192,22 @@ public final class DebugWreck {
         // Mastrest mit Splittern
         for (int h = 1; h <= 3; h++) put(at(-3, 0, h), log(Blocks.STRIPPED_OAK_LOG, Direction.Axis.Y));
         put(at(-3, 0, 4), rib);
-        put(at(-3, 1, 1), log(Blocks.STRIPPED_OAK_LOG, crossAxis()));   // Mastfisch
+        if (kept(1)) put(at(-3, 1, 1), log(Blocks.STRIPPED_OAK_LOG, crossAxis()));   // Mastfisch
+        if (side) debris();
+    }
+
+    /**
+     * Beim Schiff auf der Seite ist die obere Haelfte zusammengefallen: verstreute Bretter und Spantenreste liegen flach
+     * auf der anderen Seite des Kiels, vereinzelt zwei Lagen hoch.
+     */
+    private void debris() {
+        BlockState plank = Blocks.SPRUCE_PLANKS.defaultBlockState();
+        BlockState rib = Blocks.SPRUCE_FENCE.defaultBlockState();
+        for (int i = 0; i < 26; i++) {
+            int u = -HALF + 1 + random.nextInt(2 * HALF - 1), lat = -1 - random.nextInt(4);
+            put(world(u, lat, 0), random.nextInt(4) == 0 ? rib : plank);
+            if (random.nextInt(5) == 0) put(world(u, lat, 1), random.nextBoolean() ? rib : plank);
+        }
     }
 
     /** Eine bunte Mischung: heile, liegende, halbe, schiefe und zerscherbte Amphoren in zufaelliger Blickrichtung. */
@@ -234,7 +256,17 @@ public final class DebugWreck {
             }
         }
         Collections.shuffle(cells, new java.util.Random(origin.asLong()));
-        int count = load <= 1 ? 1 : (int) Math.round(cells.size() * (load - 1) / 9.0);
+        // Ab Stufe 7 werden einige Stellen statt mit Amphoren mit Sand und Scherbenhaufen gefuellt (bei Stufe 10 ein Fuenftel),
+        // teils mit einer duennen Sandschicht darueber, damit die volle Ladung nicht monoton aussieht
+        double fillerShare = load >= 7 ? 0.2 * (load - 6) / 4.0 : 0;
+        int total = load <= 1 ? 1 : (int) Math.round(cells.size() * (load - 1) / 9.0);
+        int filler = (int) Math.round(cells.size() * fillerShare);
+        int count = Math.max(1, total - filler);
+        for (int i = count; i < count + filler && i < cells.size(); i++) {
+            int[] c = cells.get(i);
+            put(cargoPos(c, 0), random.nextInt(100) < 55 ? Blocks.SAND.defaultBlockState() : ModBlocks.SHARD_PILE.get().defaultBlockState());
+            if (random.nextInt(100) < 35) put(cargoPos(c, 1), Blocks.SAND.defaultBlockState());
+        }
         for (int i = 0; i < count && i < cells.size(); i++) {
             int[] c = cells.get(i);
             boolean stacked = load >= 7 && random.nextFloat() < (load - 6) / 4f;

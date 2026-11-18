@@ -23,7 +23,7 @@ Wagen, Kisten und Tragetiere-Reste im Eis, die Funde stecken in Eisblöcken mit 
 Ein flaches Grab im Moor: Holzreste, verrostete Waffe, Schildrest, ein Helm. Im Grab liegt ein kleines **Amulett mit winziger Schriftrolle**, auf der Bibelstellen stehen (Vorbild: historische Funde von Amuletten mit Bibeltext). Dafür braucht es ein neues Item (Amulett-Kapsel), aus dem man ein Manuskript bekommt.
 
 ### Katakomben-Kirche (unter der Erde, in mehreren Versionen je Landschaft)
-Die frühen Christen haben sich teils in Katakomben getroffen und dort Gottesdienst gefeiert. Die Anlage soll **als Kirche erkennbar** sein, siehe „Erkennbarkeit“. Versionen nach Gestein: Wüste (Sandstein), Berge (Stein), Ebene (Tuff oder Lehmziegel), Sumpf (Lehmziegel). Der Eingang liegt versteckt (Treppe in einer Mulde, Hinweis durch Suspicious-Blöcke).
+Die frühen Christen haben sich teils in Katakomben getroffen und dort Gottesdienst gefeiert. Die Anlage soll **als Kirche erkennbar** sein, siehe „Erkennbarkeit“. **Zwei Hauptversionen** mit verschiedenem Gestein: eine für die **Wüste** (Sandstein) und eine für **normale Biome** (je nach Gegend Stein, Tuff oder Lehmziegel). Für das **Eisbiom** vielleicht eine dritte, ähnliche Fassung (noch offen). Der Eingang liegt versteckt (Treppe in einer Mulde, Hinweis durch Suspicious-Blöcke).
 
 ### Verschüttete Häuser (kurz unter der Oberfläche)
 Eingestürzte Häuser, die nur wenige Blöcke tief unter der Erde liegen. An der Oberfläche sitzen **Suspicious-Blöcke als Hinweis**, dass darunter etwas ist; wer gräbt, findet ein Haus mit Boden, Feuerstelle, Amphoren. Technik: Strukturen können sich in das Gelände eingraben (`terrain_adaptation: bury`), die Hinweis-Blöcke setzt ein eigenes Feature darüber (ähnlich wie bei den Pfadruinen im Spiel).
@@ -43,12 +43,16 @@ Eingestürzte Häuser, die nur wenige Blöcke tief unter der Erde liegen. An der
 
 ## Erkennbarkeit der Katakomben-Kirche
 
-Ohne Hinweise ist ein Raum im Fels nur ein Raum. Vorschlag für erkennbare Merkmale:
-- **Grundriss einer Kirche:** ein langer Mittelraum (Schiff) mit Bankreihen, am Ende eine Nische (Apsis) mit **Altartisch**, darauf Amphore, Brot und Kelch.
-- **Wandbilder mit frühchristlichen Symbolen** als eigene Dekorationsblöcke aus unserem Pixelskript: Fisch, Anker, Taube, Christusmonogramm (Chi-Rho), guter Hirte. Sie hängen in der Apsis und an den Seiten.
+Ohne Hinweise ist ein Raum im Fels nur ein Raum. Entschieden (18.11.2026):
+- **Altartisch** am Ende des Mittelraums, **aus glattem Stein** (Smooth Stone); in der Wüste-Version aus glattem Sandstein.
+- **Keine Wandbilder.** Die frühchristlichen Symbole (Fisch, Anker, Taube) entfallen.
+- **Grabnischen** (Loculi) in den Seitenwänden, mit verschlossenen Platten. Das ist eine Idee, die gefällt.
+- Ein **ausgetrocknetes Taufbecken** in einem Nebenraum: ein steinernes Becken ohne Wasser.
+- **Grundriss einer Kirche:** ein langer Mittelraum (Schiff) mit Bankreihen, am Ende die Nische (Apsis) mit dem Altartisch.
+
+Als Vorschlag noch offen:
 - **Lampen:** kleine Öllampen in Wandnischen (die Lampe von Kapitel 1).
-- **Grabnischen** (Loculi) in den Seitenwänden, mit verschlossenen Platten.
-- Ein **Taufbecken** in einem Nebenraum und ein **Gemeinschaftstisch** (Liebesmahl) mit Krügen.
+- Ein **Gemeinschaftstisch** (Liebesmahl) mit Krügen und ein paar Amphoren als Fund.
 - Ostraka mit einfachen Inschriften als Fund (kein Witz-Ostrakon).
 
-Noch zu klären: Welche Symbole genau, wie viel Dunkelheit, und ob die Loculi Inhalt haben dürfen (ohne Knochen).
+Noch zu klären: Wie viel Dunkelheit, ob die Loculi Inhalt haben dürfen (ohne Knochen), und wie die Eis-Version aussieht (zum Beispiel Eisbogen und Schnee im Gang).
