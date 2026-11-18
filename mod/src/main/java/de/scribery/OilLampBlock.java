@@ -102,8 +102,16 @@ public class OilLampBlock extends Block {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (!state.getValue(LIT)) return;
-        double x = pos.getX() + 13.5 / 16.0, y = pos.getY() + 5.0 / 16.0, z = pos.getZ() + 0.5;
-        if (random.nextInt(3) == 0) level.addParticle(ParticleTypes.SMALL_FLAME, x, y + 0.1, z, 0, 0, 0);
-        if (random.nextInt(8) == 0) level.addParticle(ParticleTypes.SMOKE, x, y + 0.25, z, 0, 0.01, 0);
+        // Dieselbe Flamme wie bei Kerzen (CandleBlock): kleine Flammenteilchen, ab und zu Rauch und Knistern
+        double x = pos.getX() + 13.5 / 16.0, y = pos.getY() + 4.5 / 16.0 + 0.125, z = pos.getZ() + 0.5;
+        float f = random.nextFloat();
+        if (f < 0.3F) {
+            level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
+            if (f < 0.17F) {
+                level.playLocalSound(x, y, z, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1.0F + random.nextFloat(),
+                        random.nextFloat() * 0.7F + 0.3F, false);
+            }
+        }
+        level.addParticle(ParticleTypes.SMALL_FLAME, x, y, z, 0.0, 0.0, 0.0);
     }
 }

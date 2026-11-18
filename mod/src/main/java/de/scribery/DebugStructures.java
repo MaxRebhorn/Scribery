@@ -249,7 +249,15 @@ final class DebugStructures {
         for (int u : new int[] { 14, 27 }) b.cells(cells, u, u, 0, 0, -5, -1);
         // Der Boden ist normaler Steinboden im Stil des Mosaiks; Mosaik liegt nur an zwei Stellen: das Bild mit Broten und
         // Fischen im Gedenkraum und das Chi-Rho in der Grabkammer, jeweils mit einem Rand aus schlichten Steinchen.
-        b.carve(cells, wall, ModBlocks.ROMAN_FLOOR.get().defaultBlockState());
+        // Waende: alte Ziegel, dazwischen verwitterte, rissige und bruechige
+        b.carve(cells, p -> {
+            if (desert) return wall;
+            int r = b.random.nextInt(100);
+            if (r < 62) return ModBlocks.ROMAN_BRICKS.get().defaultBlockState();
+            if (r < 78) return ModBlocks.ROMAN_BRICKS_WEATHERED.get().defaultBlockState();
+            if (r < 92) return ModBlocks.ROMAN_BRICKS_CRACKED.get().defaultBlockState();
+            return ModBlocks.ROMAN_BRICKS_CRUMBLING.get().defaultBlockState();
+        }, p -> ModBlocks.ROMAN_FLOOR.get().defaultBlockState());
         mosaicPicture(b, ModBlocks.MOSAIC_LOAVES.get(), 5, 3, b.at(35, 0, -9));
         mosaicPicture(b, ModBlocks.MOSAIC_CHI_RHO.get(), 3, 3, b.at(24, 8, -9));
 

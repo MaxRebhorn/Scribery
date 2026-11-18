@@ -1,7 +1,6 @@
 {
   "textures": {
     "lamp": "scribery:block/oil_lamp",
-    "flame": "scribery:block/oil_lamp_flame",
     "particle": "scribery:block/oil_lamp"
   },
   "elements": [

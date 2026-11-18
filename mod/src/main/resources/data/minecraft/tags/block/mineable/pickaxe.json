@@ -18,6 +18,8 @@
     "scribery:mosaic_loaves",
     "scribery:roman_floor",
     "scribery:oil_lamp",
-    "scribery:amphora_storage"
+    "scribery:amphora_storage",
+    "scribery:roman_bricks_cracked",
+    "scribery:roman_bricks_crumbling"
   ]
 }

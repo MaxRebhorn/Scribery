@@ -1,8 +1,6 @@
 {
-  "render_type": "minecraft:cutout",
   "textures": {
     "lamp": "scribery:block/oil_lamp",
-    "flame": "scribery:block/oil_lamp_flame",
     "particle": "scribery:block/oil_lamp"
   },
   "elements": [
@@ -131,46 +129,6 @@
         },
         "down": {
           "texture": "#lamp"
-        }
-      }
-    },
-    {
-      "from": [
-        13.5,
-        4.5,
-        6.5
-      ],
-      "to": [
-        13.5,
-        8,
-        9.5
-      ],
-      "faces": {
-        "east": {
-          "texture": "#flame"
-        },
-        "west": {
-          "texture": "#flame"
-        }
-      }
-    },
-    {
-      "from": [
-        12,
-        4.5,
-        8
-      ],
-      "to": [
-        15,
-        8,
-        8
-      ],
-      "faces": {
-        "north": {
-          "texture": "#flame"
-        },
-        "south": {
-          "texture": "#flame"
         }
       }
     }

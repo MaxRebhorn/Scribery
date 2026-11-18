@@ -139,6 +139,11 @@ public final class ModBlocks {
                     .sound(SoundType.DECORATED_POT).noOcclusion()));
     /** Normaler Steinboden im Stil des Mosaiks: der Boden um die Mosaikbilder. */
     public static final DeferredBlock<Block> ROMAN_FLOOR = catacomb("roman_floor", () -> new Block(mosaicProps()));
+    /** Rissige und bruechige Ziegel: zwischen die alten Ziegel gemischt. */
+    public static final DeferredBlock<Block> ROMAN_BRICKS_CRACKED = catacomb("roman_bricks_cracked",
+            () -> new Block(brickProps().strength(1.2F, 4.0F)));
+    public static final DeferredBlock<Block> ROMAN_BRICKS_CRUMBLING = catacomb("roman_bricks_crumbling",
+            () -> new Block(brickProps().strength(0.8F, 3.0F)));
     public static final DeferredBlock<Block> MOSAIC_PLAIN = catacomb("mosaic_plain", () -> new Block(mosaicProps()));
     public static final DeferredBlock<Block> MOSAIC_DAMAGED = catacomb("mosaic_damaged", () -> new Block(mosaicProps().strength(0.8F, 3.0F)));
     /** Mosaikbilder aus 3 x 3 Bloecken (Eigenschaft part), siehe MosaicPictureBlock. */

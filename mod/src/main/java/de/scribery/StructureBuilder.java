@@ -88,6 +88,12 @@ final class StructureBuilder {
 
     /** Wie die Variante mit einem Boden, aber der Boden wird je Position gewaehlt (z. B. Mosaike). */
     void carve(Set<BlockPos> cells, BlockState wall, java.util.function.Function<BlockPos, BlockState> floor) {
+        carve(cells, p -> wall, floor);
+    }
+
+    /** Wand und Boden werden je Position gewaehlt (z. B. gemischte, teils brueechige Ziegel). */
+    void carve(Set<BlockPos> cells, java.util.function.Function<BlockPos, BlockState> wall,
+               java.util.function.Function<BlockPos, BlockState> floor) {
         Set<BlockPos> shell = new HashSet<>();
         Set<BlockPos> floors = new HashSet<>();
         for (BlockPos p : cells) {
@@ -98,7 +104,7 @@ final class StructureBuilder {
                 else shell.add(n);
             }
         }
-        for (BlockPos p : shell) if (!floors.contains(p)) put(p, wall);
+        for (BlockPos p : shell) if (!floors.contains(p)) put(p, wall.apply(p));
         for (BlockPos p : floors) put(p, floor.apply(p));
         for (BlockPos p : cells) {
             level.setBlock(p, level.getFluidState(p).is(FluidTags.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);

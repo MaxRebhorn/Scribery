@@ -68,5 +68,7 @@
   "block.scribery.roman_floor": "Roman Stone Floor",
   "block.scribery.oil_lamp": "Oil Lamp",
   "block.scribery.amphora_storage": "Storage Amphora",
-  "container.scribery.amphora_storage": "Storage Amphora"
+  "container.scribery.amphora_storage": "Storage Amphora",
+  "block.scribery.roman_bricks_cracked": "Cracked Roman Bricks",
+  "block.scribery.roman_bricks_crumbling": "Crumbling Roman Bricks"
 }

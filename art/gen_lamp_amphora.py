@@ -97,20 +97,19 @@ def lamp_models():
         box([11, 2, 7], [14, 3.5, 9], "#lamp"),
         box([13, 3.5, 7.6], [14, 4.5, 8.4], "#lamp"),
     ]
-    tex = {"lamp": "scribery:block/oil_lamp", "flame": "scribery:block/oil_lamp_flame", "particle": "scribery:block/oil_lamp"}
+    tex = {"lamp": "scribery:block/oil_lamp", "particle": "scribery:block/oil_lamp"}
     unlit = {"textures": tex, "elements": base}
-    flame = [
-        {"from": [13.5, 4.5, 6.5], "to": [13.5, 8, 9.5], "faces": {"east": {"texture": "#flame"}, "west": {"texture": "#flame"}}},
-        {"from": [12, 4.5, 8], "to": [15, 8, 8], "faces": {"north": {"texture": "#flame"}, "south": {"texture": "#flame"}}},
-    ]
-    lit = {"render_type": "minecraft:cutout", "textures": tex, "elements": base + flame}
+    # Wie bei Kerzen gibt es kein Flammenmodell: Die Flamme sind die kleinen Flammenteilchen des Spiels (siehe OilLampBlock).
+    lit = {"textures": tex, "elements": base}
     return unlit, lit
 
 
 def main():
     os.makedirs(TEX, exist_ok=True)
     lamp_texture().save(os.path.join(TEX, "oil_lamp.png"))
-    flame_texture().save(os.path.join(TEX, "oil_lamp_flame.png"))
+    flame_file = os.path.join(TEX, "oil_lamp_flame.png")
+    if os.path.exists(flame_file):
+        os.remove(flame_file)  # frueher gab es ein eigenes Flammenbild; jetzt wie bei Kerzen nur Teilchen
     storage_texture().save(os.path.join(TEX, "amphora_storage.png"))
     lid_texture().save(os.path.join(TEX, "amphora_lid.png"))
     unlit, lit = lamp_models()

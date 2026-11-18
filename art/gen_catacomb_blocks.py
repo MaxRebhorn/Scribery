@@ -26,8 +26,8 @@ OUT = os.path.join(ROOT, "art", "out")
 N = 16
 rng = random.Random(20261120)
 
-BRICK = [(132, 68, 52), (144, 78, 58), (120, 62, 48), (152, 86, 64), (138, 72, 54)]
-MORTAR = (176, 128, 102)       # kalkiger Moertel im Schatten: nur wenig heller als der Ziegel
+BRICK = [(146, 82, 62), (156, 90, 68), (134, 76, 58), (164, 98, 74), (142, 80, 60)]
+MORTAR = (188, 158, 130)       # alter, kalkiger Moertel
 
 GOLD = [(224, 186, 108), (214, 174, 96), (232, 196, 120), (204, 164, 88)]
 CREAM = [(240, 222, 168), (232, 208, 146), (246, 230, 184)]
@@ -49,9 +49,16 @@ def pick(lst):
     return rng.choice(lst)
 
 
-def bricks(weathered):
-    """Duenne Ziegel: fuenf Lagen zu je zwei Pixel Ziegel und einem Pixel Moertel (die erste Lage drei), kurze Stossfugen."""
+DUST = (212, 190, 162)         # Kalk und Staub: alte Ziegel bleichen aus
+RUBBLE = [(92, 70, 56), (80, 60, 48), (104, 80, 64)]
+CRACK = (96, 62, 50)
+
+
+def bricks(kind="aged"):
+    """Alte, ausgeblichene Ziegel (Ostia): fuenf duenne Lagen zu je zwei Pixel Ziegel und einem Pixel Moertel (die erste
+    Lage drei), kurze Stossfugen. Sorten: aged (Grundblock), weathered (dunkler, fleckig), cracked (Risse), crumbling (Luecken)."""
     im = Image.new("RGBA", (N, N))
+    bricks_at = []  # (Lage, x0, Laenge) fuer die Luecken
     for course in range(5):
         ys = [course * 3, course * 3 + 1] + ([15] if course == 0 else [])
         my = course * 3 + 2
@@ -59,24 +66,48 @@ def bricks(weathered):
         while x < N + 8:
             ln = rng.choice([6, 7, 8, 9])
             col = rng.choice(BRICK)
-            if weathered:
-                col = tuple(int(v * rng.uniform(0.7, 0.9)) for v in col)
+            if kind == "weathered":
+                col = tuple(int(v * rng.uniform(0.7, 0.88)) for v in col)
             for y in ys:
                 for dx in range(ln - 1):
                     im.putpixel(((x + dx) % N, y), jit(col, 6) + (255,))
                 im.putpixel(((x + ln - 1) % N, y), jit(MORTAR, 5) + (255,))
+            bricks_at.append((ys, x, ln))
             x += ln
         for xx in range(N):
-            c = jit(MORTAR, 5)
-            if weathered and rng.random() < 0.25:
-                c = tuple(int(v * 0.8) for v in c)
-            im.putpixel((xx, my), c + (255,))
-    if weathered:
-        for _ in range(22):  # Schmutz und Ausbluehungen
+            im.putpixel((xx, my), jit(MORTAR, 5) + (255,))
+    # Verblassen: jeder Pixel wird ein Stueck zum Kalkstaub gezogen, dazu helle Ausbluehungen
+    for y in range(N):
+        for x in range(N):
+            p = im.getpixel((x, y))[:3]
+            a = rng.uniform(0.08, 0.28) if kind != "weathered" else rng.uniform(0.0, 0.12)
+            im.putpixel((x, y), tuple(int(p[i] * (1 - a) + DUST[i] * a) for i in range(3)) + (255,))
+    for _ in range(10 if kind != "weathered" else 4):
+        x, y = rng.randrange(N), rng.randrange(N)
+        p = im.getpixel((x, y))[:3]
+        im.putpixel((x, y), tuple(min(255, int(v * 0.4 + DUST[i] * 0.6)) for i, v in enumerate(p)) + (255,))
+    if kind == "weathered":
+        for _ in range(26):  # Schmutz, Russ, dunkle Flecken
             x, y = rng.randrange(N), rng.randrange(N)
-            p = im.getpixel((x, y))
-            k = rng.choice([0.75, 0.85, 1.12])
-            im.putpixel((x, y), tuple(max(0, min(255, int(v * k))) for v in p[:3]) + (255,))
+            p = im.getpixel((x, y))[:3]
+            k = rng.choice([0.7, 0.8, 0.9])
+            im.putpixel((x, y), tuple(int(v * k) for v in p) + (255,))
+    if kind in ("cracked", "crumbling"):
+        for _ in range(2 if kind == "cracked" else 1):  # Risse: Zickzack von oben nach unten
+            x, y = rng.randrange(2, N - 2), rng.randrange(0, 4)
+            drift = rng.choice([-1, 1])  # Risse laufen schraeg in eine Richtung, nicht im Zickzack
+            for _ in range(rng.randint(6, 9)):
+                im.putpixel((x % N, y % N), jit(CRACK, 4) + (255,))
+                y += 1
+                if rng.random() < 0.35:
+                    x += drift
+    if kind == "crumbling":
+        picks = rng.sample(bricks_at, 4)
+        for ys, x0, ln in picks:  # ausgebrochene Ziegel: dunkler Schutt in der Luecke
+            for y in ys:
+                for dx in range(1, ln - 2):
+                    if rng.random() < 0.85:
+                        im.putpixel(((x0 + dx) % N, y), jit(pick(RUBBLE), 6) + (255,))
     return im
 
 
@@ -270,8 +301,10 @@ def split_picture(cells, cols, rows):
 
 PICTURES = {"mosaic_loaves": (5, 3, loaves_picture()), "mosaic_chi_rho": (3, 3, chi_rho_picture())}
 TEXTURES = {
-    "roman_bricks": bricks(False),
-    "roman_bricks_weathered": bricks(True),
+    "roman_bricks": bricks("aged"),
+    "roman_bricks_weathered": bricks("weathered"),
+    "roman_bricks_cracked": bricks("cracked"),
+    "roman_bricks_crumbling": bricks("crumbling"),
     "mosaic_plain": m_plain(),
     "mosaic_damaged": m_damaged(),
     "roman_floor": floor_tiles(),
@@ -287,6 +320,8 @@ NAMES = {
     "roman_brick_stairs": "Roman Brick Stairs",
     "roman_brick_slab": "Roman Brick Slab",
     "roman_bricks_weathered": "Weathered Roman Bricks",
+    "roman_bricks_cracked": "Cracked Roman Bricks",
+    "roman_bricks_crumbling": "Crumbling Roman Bricks",
     "roman_floor": "Roman Stone Floor",
     "mosaic_plain": "Mosaic Floor",
     "mosaic_damaged": "Damaged Mosaic Floor",
@@ -356,7 +391,7 @@ def main():
     # Bildbloecke eines frueheren Laufs mit mehr Teilen entfernen
     for name, im in TEXTURES.items():
         im.save(os.path.join(TEX, name + ".png"))
-    cubes = ["roman_bricks", "roman_bricks_weathered", "roman_floor", "mosaic_plain", "mosaic_damaged"]
+    cubes = ["roman_bricks", "roman_bricks_weathered", "roman_bricks_cracked", "roman_bricks_crumbling", "roman_floor", "mosaic_plain", "mosaic_damaged"]
     for c in cubes:
         w(os.path.join(A, "blockstates", c + ".json"), {"variants": {"": {"model": "scribery:block/" + c}}})
         w(os.path.join(A, "models", "block", c + ".json"),
@@ -415,14 +450,16 @@ def main():
     # Vorschau: Ziegel gekachelt, dann die zusammengesetzten Bilder in einem Rahmen aus schlichtem Mosaik
     Z = 4
     pad = N * Z
-    wide = N * Z * 3 * 2 + 8 * 4 + 9 * N * Z + 7 * N * Z + 8
+    wide = N * Z * 6 + 8 * 4 + 9 * N * Z + 7 * N * Z + 8
     sheet = Image.new("RGBA", (wide + 4 * pad, N * Z * 7 + 8), (40, 36, 34, 255))
     x0 = 4
-    for n in ("roman_bricks", "roman_bricks_weathered"):
-        for ty in range(3):
-            for tx in range(3):
-                sheet.paste(TEXTURES[n].resize((N * Z, N * Z), Image.NEAREST), (x0 + tx * N * Z, 4 + ty * N * Z))
-        x0 += N * Z * 3 + 8
+    mix = ["roman_bricks"] * 8 + ["roman_bricks_weathered"] * 3 + ["roman_bricks_cracked"] * 3 + ["roman_bricks_crumbling"] * 2
+    prng = random.Random(5)
+    for ty in range(6):  # eine Wand aus gemischten Ziegeln, wie in der Katakombe
+        for tx in range(6):
+            n = prng.choice(mix)
+            sheet.paste(TEXTURES[n].resize((N * Z, N * Z), Image.NEAREST), (x0 + tx * N * Z, 4 + ty * N * Z))
+    x0 += N * Z * 6 + 8
     for pic, (cols, rows, _) in PICTURES.items():
         for yy in range(rows + 4):
             for xx in range(cols + 4):
