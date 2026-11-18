@@ -10,6 +10,7 @@ public final class Scribery {
     public Scribery(IEventBus modBus) {
         ModBlocks.register(modBus);
         ModBlockEntities.register(modBus);
+        ModAttachments.register(modBus);
         ModComponents.register(modBus);
         ModItems.register(modBus);
         ModLoot.register(modBus);

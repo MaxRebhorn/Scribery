@@ -62,7 +62,7 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 ### 5a. Strukturen und Fundblöcke (zu Punkt 5)
 Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, noch nicht entschieden.
 - **Verlassene Strukturen:** aufgegebene Außenposten, Lager und Ruinen; auch **vergrabene** Funde (verdächtiger Sand und Kies, Truhen unter der Erde).
-- **Versunkene griechische Schiffe:** ein kleines Schiffswrack im Ozean, mit Loot unter Wasser.
+- **Versunkene griechische Schiffe:** ein Schiffswrack mit Loot unter Wasser, die Ladung variiert von fast leer bis voller Amphoren (Test: `/scribery_wreck <1-10>`, 1 = eine Amphore, 10 = komplett voll). Später nicht nur auf dem Grund von Ozeanen und großen Seen, sondern auch in **gefluteten Höhlen**. Dafür bräuchte die Welt-Erzeugung ein Feature, das den Boden unter Wasser in der Höhle findet (Platzierung per Umgebungsscan nach unten bis zum festen Boden mit Wasser darüber), statt der Meeresboden-Höhenkarte. Das kleine Wrack aus `DebugWreck` wäre dafür die Vorlage.
 - **Ausgetrocknete Schiffe in der Wüste:** dasselbe Schiff als Wrack im Sand, dazu weitere Funde in der Wüste.
 - **Amphoren-Blöcke:**
   - ein Block für **Scherben von Amphoren** (Potsherds), der Scherben und Text-Funde fallen lässt,

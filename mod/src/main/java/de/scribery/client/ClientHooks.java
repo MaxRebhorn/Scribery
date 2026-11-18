@@ -33,6 +33,11 @@ public final class ClientHooks {
         Minecraft.getInstance().setScreen(new BookScreen(md));
     }
 
+    /** Archiv angeklickt: das Evangelium als Text in drei Spalten mit dem, was der Spieler eingetragen hat. */
+    public static void openArchive() {
+        Minecraft.getInstance().setScreen(new ArchiveScreen());
+    }
+
     /** Fragment in der Hand angeschaut: gleiche Anordnung wie am Pult. */
     public static void openFragmentView(int debugIndex, int variant) {
         var all = Manuscripts.load();

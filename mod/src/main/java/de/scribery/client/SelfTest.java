@@ -314,6 +314,27 @@ final class SelfTest {
         }));
         shot(mc, "25-amphora-variants");
 
+        // Das Manuscript Archive mit Beispieldaten: vorn vollstaendig, dann lueckenhaft, dann fast leer
+        then(0, () -> {
+            var real = de.scribery.Manuscripts.load();
+            var data = de.scribery.ArchiveData.EMPTY;
+            for (int i = 0; i < real.size(); i++) {
+                de.scribery.core.ArchiveProgress p = de.scribery.core.ArchiveProgress.NONE;
+                if (i < 40) p = new de.scribery.core.ArchiveProgress(true, Long.MAX_VALUE, i < 20 ? Long.MAX_VALUE : 0L);
+                else if (i < 120 && i % 3 != 0) p = new de.scribery.core.ArchiveProgress(true, i % 2 == 0 ? 1L : 0L, 0L);
+                else if (i >= 300 && i < 330) p = new de.scribery.core.ArchiveProgress(true, Long.MAX_VALUE, Long.MAX_VALUE);
+                else if (i % 17 == 0) p = de.scribery.core.ArchiveProgress.NONE.withFound();
+                if (!p.isEmpty()) data = data.with(real.get(i).id(), p);
+            }
+            ClientArchive.set(data);
+            mc.setScreen(new ArchiveScreen());
+        });
+        shot(mc, "26-archive-top");
+        then(0, () -> ((ArchiveScreen) mc.screen).debugScrollBy(300));
+        shot(mc, "27-archive-gaps");
+        then(0, () -> ((ArchiveScreen) mc.screen).debugJumpToChapter(4));
+        shot(mc, "28-archive-chapter-4");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();

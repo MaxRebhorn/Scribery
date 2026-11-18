@@ -1,5 +1,9 @@
 package de.scribery;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -27,23 +31,34 @@ public final class DebugWreck {
     private final BlockPos origin;        // Kielhoehe in der Mitte des Rumpfes
     private final boolean alongX;
     private final RandomSource random;
-    private int placed;
+    private final int load;               // Ladung 1 (eine Amphore) bis 10 (komplett voll)
+    private int placed, amphorae;
 
-    private DebugWreck(Level level, BlockPos origin, Direction facing) {
+    /** Ergebnis: gesetzte Bloecke insgesamt und davon Amphoren (alle Varianten). */
+    public record Result(int blocks, int amphorae) {}
+
+    private DebugWreck(Level level, BlockPos origin, Direction facing, int load) {
         this.level = level;
         this.origin = origin;
         this.alongX = facing.getAxis() == Direction.Axis.X;
         this.random = RandomSource.create(origin.asLong());
+        this.load = Math.max(1, Math.min(10, load));
     }
 
-    /** Baut das Wrack. @param origin Kielhoehe in der Mitte; @return Anzahl gesetzter Bloecke */
-    public static int build(Level level, BlockPos origin, Direction facing) {
-        DebugWreck w = new DebugWreck(level, origin, facing);
+    /**
+     * Baut das Wrack.
+     *
+     * @param origin Kielhoehe in der Mitte
+     * @param load   Ladung von 1 (so wenig wie moeglich: eine Amphore) bis 10 (Laderaum komplett voll, teils gestapelt,
+     *               dazu ein grosser Haufen am Heck)
+     */
+    public static Result build(Level level, BlockPos origin, Direction facing, int load) {
+        DebugWreck w = new DebugWreck(level, origin, facing, load);
         w.dune();
         w.hull();
         w.cargo();
         w.surroundings();
-        return w.placed;
+        return new Result(w.placed, w.amphorae);
     }
 
     // ------------------------------------------------------------------ Geometrie
@@ -163,37 +178,52 @@ public final class DebugWreck {
         if (s.hasProperty(BrokenAmphoraBlock.FACING)) {
             s = s.setValue(BrokenAmphoraBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random));
         }
+        amphorae++;
         return s;
     }
 
-    /** Ladung: bunt gemischte Amphoren im Laderaum, dazwischen Scherbenhaufen. */
+    /**
+     * Ladung nach {@code load}: Stufe 1 hat genau eine Amphore, Stufe 10 fuellt jede freie Stelle im Laderaum (ab Stufe 7
+     * teils zwei uebereinander). Dazwischen steigt die Menge gleichmaessig; ein Teil der Stellen bleibt fuer Scherbenhaufen.
+     */
     private void cargo() {
-        int amphorae = 0, tries = 0;
-        while (amphorae < 14 && tries++ < 300) {
-            int u = -7 + random.nextInt(15), v = random.nextInt(7) - 3;
-            if (Math.abs(v) >= halfWidth(u) || Math.abs(v) < 0) continue;
-            if (u == -3 && v == 0) continue;               // Mast
-            put(at(u, v, 1), anyAmphora());
-            amphorae++;
+        List<int[]> cells = new ArrayList<>();
+        for (int u = -HALF + 2; u <= HALF - 2; u++) {
+            int w = halfWidth(u);
+            for (int v = -(w - 1); v <= w - 1; v++) {
+                if (u == -3 && v == 0) continue;           // Mast
+                cells.add(new int[] { u, v });
+            }
         }
-        for (int i = 0; i < 3; i++) {
-            int u = -5 + random.nextInt(11), v = random.nextInt(3) - 1;
-            put(at(u, v, 1), ModBlocks.SHARD_PILE.get().defaultBlockState());
+        Collections.shuffle(cells, new java.util.Random(origin.asLong()));
+        int count = load <= 1 ? 1 : (int) Math.round(cells.size() * (load - 1) / 9.0);
+        for (int i = 0; i < count && i < cells.size(); i++) {
+            int[] c = cells.get(i);
+            put(at(c[0], c[1], 1), anyAmphora());
+            if (load >= 7 && random.nextFloat() < (load - 6) / 4f) put(at(c[0], c[1], 2), anyAmphora());   // gestapelt
+        }
+        // Scherbenhaufen aus den noch freien Stellen: von 0 (Stufe 1 und 2) bis 4 (Stufe 10)
+        for (int i = count; i < cells.size() && i < count + load / 3 + (load > 2 ? 1 : 0); i++) {
+            int[] c = cells.get(i);
+            put(at(c[0], c[1], 1), ModBlocks.SHARD_PILE.get().defaultBlockState());
         }
     }
 
-    /** Rund um das Wrack: Amphorenhaufen am Heck, verstreute Scherbenhaufen und Fundboeden. */
+    /** Rund um das Wrack: Amphorenhaufen am Heck (waechst mit der Ladung), verstreute Scherbenhaufen und Fundboeden. */
     private void surroundings() {
-        // Amphorenhaufen am Heck wie auf dem Meeresboden: Scherbenhaufen als Grund, Amphoren darauf
-        for (int u = HALF + 2; u <= HALF + 4; u++) {
-            for (int v = -2; v <= 2; v++) {
-                if (random.nextInt(3) == 0) continue;
-                put(at(u, v, 0), ModBlocks.SHARD_PILE.get().defaultBlockState());
-                if (random.nextInt(3) > 0) put(at(u, v, 1), anyAmphora());
+        // Amphorenhaufen am Heck wie auf dem Meeresboden: Scherbenhaufen als Grund, Amphoren darauf; ab Stufe 3
+        double fill = load / 10.0;
+        if (load >= 3) {
+            for (int u = HALF + 2; u <= HALF + 4; u++) {
+                for (int v = -2; v <= 2; v++) {
+                    if (random.nextDouble() > fill) continue;
+                    put(at(u, v, 0), ModBlocks.SHARD_PILE.get().defaultBlockState());
+                    if (random.nextDouble() < 0.4 + fill * 0.6) put(at(u, v, 1), anyAmphora());
+                }
             }
         }
-        // Verstreute Funde im Sand ringsum (Suspicious Sand ueberwiegt, daneben Mud und Ashes)
-        for (int i = 0; i < 16; i++) {
+        // Verstreute Funde im Sand ringsum (Suspicious Sand ueberwiegt, daneben Mud und Ashes); mehr bei voller Ladung
+        for (int i = 0; i < 3 + load; i++) {
             int u = -HALF - 2 + random.nextInt(2 * HALF + 5), v = (random.nextBoolean() ? 1 : -1) * (halfWidth(u) + 1 + random.nextInt(3));
             Block b = switch (random.nextInt(8)) {
                 case 0, 1 -> ModBlocks.SUSPICIOUS_MUD.get();

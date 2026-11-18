@@ -35,8 +35,16 @@ Am Ende steht eine durchgehende Interlinear-Ausgabe des Evangeliums, die vollst�
 - **Lücken als grauer Platzhalter** in der Länge des fehlenden Textes. So sieht man, wie viel fehlt.
 - **Die drei Spalten scrollen gekoppelt:** Wer in einer Spalte scrollt, bewegt die anderen mit. Zeilen, Wörter und Lücken liegen immer auf gleicher Höhe nebeneinander.
 
+## Umsetzung (Stand 18.11.2026, kompiliert und im Selbsttest angesehen, noch nicht in einer Welt getestet)
+
+- **Eintragen am Archiv-Block:** Rechtsklick mit einem Fragment trägt den griechischen Urtext ein, mit einem gedruckten Bogen die Umschrift dieses Bogens, mit einem übersetzten Bogen die Übersetzung (er zählt auch als gedruckt). Der Gegenstand ist dann verbraucht; was das Archiv schon hat, bleibt als Duplikat beim Spieler. Mit leerer Hand öffnet der Block den Text.
+- **Sammlung pro Spieler** (`ArchiveData`, Spielerdaten, bleibt nach dem Tod): pro Manuskript ein Fortschritt (gefunden, gedruckte Bögen, übersetzte Bögen als Bits). Der Server schickt sie beim Anmelden, beim Respawn und nach jeder Änderung zum Client (`SyncArchive`).
+- **Bögen:** Welches Wort zu welchem Bogen gehört, folgt derselben Zeilenteilung wie in der Presse (`ArchiveModel.pageOfWord`, 17 Slots, 4 Zeilen, höchstens 3 Wörter pro Zeile). Insgesamt 2.205 Bögen für 1.540 Manuskripte.
+- **Screen:** ein durchgehender Text in drei Spalten (Urtext, Umschrift, Interlinear), jede Zeile zeigt in allen Spalten dieselben Wörter, ein Scrollen bewegt alle gemeinsam. Was fehlt, ist ein grauer Platzhalter in der Länge des fehlenden Textes. Kapitelköpfe mit Geschichte und Versbereich, links der Vers, oben Statistik mit Balken, unten 21 Kapitel-Knöpfe (grün je nach Fortschritt), rechts eine Übersichtsleiste des ganzen Textes zum Anklicken und Ziehen. Tasten: Bild hoch/runter, Pfeile, Pos1/Ende, Mausrad.
+- **Entschieden:** jede Spalte füllt sich für sich (Urtext, Umschrift und Übersetzung hängen nicht voneinander ab), damit man auch Bögen eintragen kann, deren Fragment als Duplikat schon verbraucht ist.
+
 ## Noch offen
 
-1. **Füllreihenfolge:** Vorschlag, noch nicht bestätigt: Jede Spalte füllt sich für sich (gefunden, gedruckt, übersetzt), aber ein Bogen lässt sich nur dort einlegen, wo sein Manuskript schon liegt. Das passt zur Reihenfolge Fragment → Abzug → Reinschrift.
+1. **Füllreihenfolge:** Im Code gilt jetzt, **ohne dass du es bestätigt hast**: Jede Spalte füllt sich unabhängig, auch ein Bogen lässt sich eintragen, wenn das Fragment nicht im Archiv liegt (es steckt ja nur als Duplikat bei dir oder ist verbraucht). Die Alternative wäre, Bögen nur dort anzunehmen, wo das Fragment schon eingetragen ist (passt zu Fragment → Abzug → Reinschrift, ist aber strenger).
 2. **Folio:** Ist Heften noch ein eigener Schritt, oder reicht „alles drin“?
 3. **Technik:** Gleiche Höhe heißt, dass eine Zeile so hoch ist wie die höchste der drei Spalten. Bei Lücken im Urtext braucht die Umschrift dieselbe Platzhalterlänge.

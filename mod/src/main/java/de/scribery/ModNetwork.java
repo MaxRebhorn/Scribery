@@ -94,8 +94,22 @@ public final class ModNetwork {
         }
     }
 
+    /** Vom Server zum Client: die ganze Sammlung des Spielers im Manuscript Archive (siehe ArchiveService). */
+    public record SyncArchive(List<ArchiveData.Entry> entries) implements CustomPacketPayload {
+        public static final Type<SyncArchive> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Scribery.MODID, "sync_archive"));
+        public static final StreamCodec<ByteBuf, SyncArchive> CODEC = StreamCodec.composite(
+                ArchiveData.Entry.STREAM_CODEC.apply(ByteBufCodecs.list(4096)), SyncArchive::entries, SyncArchive::new);
+
+        @Override
+        public Type<? extends CustomPacketPayload> type() {
+            return TYPE;
+        }
+    }
+
     public static void register(RegisterPayloadHandlersEvent event) {
         var r = event.registrar("1");
+        r.playToClient(SyncArchive.TYPE, SyncArchive.CODEC,
+                (p, ctx) -> ctx.enqueueWork(() -> de.scribery.client.ClientArchive.set(ArchiveData.fromEntries(p.entries()))));
         r.playToServer(CommitCabinet.TYPE, CommitCabinet.CODEC, (p, ctx) -> ctx.enqueueWork(() -> commit(p, ctx)));
         r.playToServer(TakeItem.TYPE, TakeItem.CODEC, (p, ctx) -> ctx.enqueueWork(() -> take(p, ctx)));
         r.playToServer(Refill.TYPE, Refill.CODEC, (p, ctx) -> ctx.enqueueWork(() -> refill(p, ctx)));
