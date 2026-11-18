@@ -18,16 +18,23 @@ Click a link to jump to that page. **Back** (top left) takes you to where you we
 - [At a glance](#the-alphabet-at-a-glance)
 - [Greek Grammar Book](book:greek_grammar_book#contents)
 
-| Jump to a letter | | |
-|---|---|---|
-| [Alpha](#alpha) | [Beta](#beta) | [Gamma](#gamma) |
-| [Delta](#delta) | [Epsilon](#epsilon) | [Zeta](#zeta) |
-| [Eta](#eta) | [Theta](#theta) | [Iota](#iota) |
-| [Kappa](#kappa) | [Lambda](#lambda) | [Mu](#mu) |
-| [Nu](#nu) | [Xi](#xi) | [Omicron](#omicron) |
-| [Pi](#pi) | [Rho](#rho) | [Sigma](#sigma) |
-| [Tau](#tau) | [Upsilon](#upsilon) | [Phi](#phi) |
-| [Chi](#chi) | [Psi](#psi) | [Omega](#omega) |
+**Jump to a letter**
+
+[Alpha](#alpha) · [Beta](#beta) · [Gamma](#gamma)
+
+[Delta](#delta) · [Epsilon](#epsilon) · [Zeta](#zeta)
+
+[Eta](#eta) · [Theta](#theta) · [Iota](#iota)
+
+[Kappa](#kappa) · [Lambda](#lambda) · [Mu](#mu)
+
+[Nu](#nu) · [Xi](#xi) · [Omicron](#omicron)
+
+[Pi](#pi) · [Rho](#rho) · [Sigma](#sigma)
+
+[Tau](#tau) · [Upsilon](#upsilon) · [Phi](#phi)
+
+[Chi](#chi) · [Psi](#psi) · [Omega](#omega)
 
 ---
 

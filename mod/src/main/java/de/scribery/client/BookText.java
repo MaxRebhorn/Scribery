@@ -28,8 +28,9 @@ import net.minecraft.util.FormattedCharSequence;
  * fest ({@code ### Alpha {#alpha}}) oder als Slug ihres Textes; {@link #anchors} liefert Anker -> Seite.
  */
 final class BookText {
-    static final int WIDTH = 114, HEIGHT = 126, LINE = 9;
-    private static final int BLACK = 0xFF000000, HEAD = 0xFF6A1E14, SUB = 0xFF5A3A22, RULE = 0xFF8F7446;
+    /** Textflaeche einer Seite: breit und niedrig genug fuer helle Handbuchseiten (siehe BookScreen). */
+    static final int WIDTH = 150, HEIGHT = 140, LINE = 9;
+    private static final int BLACK = 0xFF1F2327, HEAD = 0xFF14181C, SUB = 0xFF3B4147, RULE = 0xFF6B7178;
     private static final int LINK = 0xFF1B4F8F, LINK_HOVER = 0xFF2F86E0;
 
     /**
@@ -383,12 +384,16 @@ final class BookText {
             b.gap(h.level() == 3 ? (b.cur.isEmpty() || b.y < 20 ? 2 : 5) : 0);
             b.need(lines.size() * LINE + 2 * LINE); // Ueberschrift nicht allein am Seitenende
             b.headStart = b.cur.size();
+            // Seitentitel (Ebene 2) stehen zentriert und unterstrichen wie in einem Handbuch
+            boolean center = h.centered() || h.level() == 2;
+            int widest = 0;
             for (int li = 0; li < lines.size(); li++) {
                 FormattedCharSequence l = lines.get(li);
+                widest = Math.max(widest, font.width(l));
                 // Der Anker haengt an der ersten Zeile der Ueberschrift
-                b.line(h.centered() ? centerX(font, l, WIDTH) : 0, l, color, 1f, LINE, null, li == 0 ? h.anchor() : null);
+                b.line(center ? centerX(font, l, WIDTH) : 0, l, color, 1f, LINE, null, li == 0 ? h.anchor() : null);
             }
-            if (h.level() == 2 && !h.centered()) b.rule(0, WIDTH);
+            if (h.level() == 2 && !h.centered()) b.rule((WIDTH - widest) / 2, widest);
             b.y += 2;
         } else if (block instanceof Para p) {
             List<FormattedCharSequence> lines = font.split(inline(p.text(), false, BLACK), WIDTH);

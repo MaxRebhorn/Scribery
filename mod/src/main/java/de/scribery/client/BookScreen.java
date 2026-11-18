@@ -9,27 +9,38 @@ import java.util.Map;
 import de.scribery.core.BookMarkup;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.PageButton;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 
 /**
- * Leseansicht fuer ein Buch, mit der Textur und den Seitenknoepfen des Minecraft-Buchs. Querverweise im Text ({@code [Text](#anker)},
- * {@code [Text](book:id#anker)}) sind anklickbar: Ein Klick springt zur Seite der Ueberschrift mit diesem Anker, auch in ein anderes Buch.
- * Oben links fuehrt "Back" in der Reihenfolge der Spruenge zurueck (auch ueber Buecher hinweg, Rueck-Taste), oben rechts "Contents"
- * zum Anker {@code contents} des Buchs (sonst zur ersten Seite).
+ * Leseansicht fuer ein Buch im Stil eines Handbuchs: zwei helle graue Seiten in einem metallischen Rahmen, Seitentitel zentriert
+ * und unterstrichen, unten in der Mitte die Seitenzahl, unten in den Ecken geschwungene Blaetter-Pfeile. In den oberen Ecken
+ * zwei kleine Symbole: links Zurueck (in der Reihenfolge der Spruenge, auch ueber Buecher), rechts das Inhaltsverzeichnis
+ * (Anker {@code contents}).
+ *
+ * <p>Querverweise im Text ({@code [Text](#anker)}, {@code [Text](book:id#anker)}) sind anklickbar: Ein Klick springt zur Seite
+ * der Ueberschrift mit diesem Anker, auch in ein anderes Buch.
  */
 final class BookScreen extends Screen {
-    private static final ResourceLocation BG = ResourceLocation.withDefaultNamespace("textures/gui/book.png");
-    private static final int PAGE_W = 192, TEXT_X = 36, TEXT_Y = 32;
-    private static final int BLACK = 0xFF000000, BUTTON = 0xFF5A3A22, BUTTON_HOVER = 0xFF2F86E0, NOTE = 0xFF8F1D14;
+    // Aufbau in GUI-Einheiten
+    private static final int TEXT_W = BookText.WIDTH, TEXT_H = BookText.HEIGHT;
+    private static final int MARGIN_X = 14, FRAME = 4, SPINE = 8, PAD_TOP = 10, FOOT = 24;
+    private static final int PW = TEXT_W + 2 * MARGIN_X;
+    private static final int BOOK_W = 2 * PW + SPINE + 2 * FRAME;
+    private static final int BOOK_H = 2 * FRAME + PAD_TOP + TEXT_H + FOOT;
+
+    // Farben
+    private static final int OUTLINE = 0xFF1E2124, METAL = 0xFF6C7278, METAL_LIGHT = 0xFFA7ADB3, METAL_DARK = 0xFF4A4F55, BRACKET = 0xFF868C93;
+    private static final int PAGE = 0xFFE6E8EB, PAGE_SHADE = 0xFFD3D6DA, SPINE_COLOR = 0xFFB5BAC0, NUMBER = 0xFF8A9099;
+    private static final int ICON = 0xFF5F656B, ICON_OFF = 0xFFB1B6BC, ICON_HOVER = 0xFF2F86E0, NOTE = 0xFF8F1D14;
 
     private record Loaded(List<BookText.Page> pages, Map<String, Integer> anchors) {}
 
     /** Ein Ort, zu dem "Back" zurueckkehrt. */
     private record Place(String book, int page) {}
+
+    private record Link(BookText.Drawn line, String target) {}
 
     private String bookId;
     private final String firstMarkdown;
@@ -38,7 +49,6 @@ final class BookScreen extends Screen {
     private Map<String, Integer> anchors = Map.of();
     private final Deque<Place> history = new ArrayDeque<>();
     private int page;
-    private PageButton forward, back;
     private String note = "";
     private int noteTicks;
 
@@ -48,13 +58,38 @@ final class BookScreen extends Screen {
         this.firstMarkdown = markdown;
     }
 
-    /** Linker Rand der linken und der rechten Seite. */
-    private int leftX() {
-        return (width - 2 * PAGE_W) / 2;
+    // ------------------------------------------------------------------ Geometrie
+
+    private int bookX() {
+        return (width - BOOK_W) / 2;
     }
 
-    private int rightX() {
-        return leftX() + PAGE_W;
+    private int bookY() {
+        return Math.max(16, (height - BOOK_H) / 2);
+    }
+
+    private int leftPageX() {
+        return bookX() + FRAME;
+    }
+
+    private int rightPageX() {
+        return leftPageX() + PW + SPINE;
+    }
+
+    private int textTop() {
+        return bookY() + FRAME + PAD_TOP;
+    }
+
+    private int footY() {
+        return textTop() + TEXT_H + 8;
+    }
+
+    private boolean canForward() {
+        return page + 2 < pages.size();
+    }
+
+    private boolean canBack() {
+        return page > 0;
     }
 
     @Override
@@ -64,9 +99,6 @@ final class BookScreen extends Screen {
             pages = l.pages();
             anchors = l.anchors();
         }
-        forward = addRenderableWidget(new PageButton(rightX() + 116, 159, true, b -> turn(1), true));
-        back = addRenderableWidget(new PageButton(leftX() + 43, 159, false, b -> turn(-1), true));
-        updateButtons();
     }
 
     private Loaded paginated(String id, String md) {
@@ -93,34 +125,53 @@ final class BookScreen extends Screen {
         goTo(page + 2 * d);
     }
 
-    private void updateButtons() {
-        forward.visible = page + 2 < pages.size();
-        back.visible = page > 0;
+    // ------------------------------------------------------------------ Bedienelemente (Rechtecke fuer Klick und Hover)
+
+    private int[] rectBackIcon() {
+        return new int[] { bookX() + 4, bookY() - 12, 15, 10 };
+    }
+
+    private int[] rectContentsIcon() {
+        return new int[] { bookX() + BOOK_W - 19, bookY() - 12, 15, 10 };
+    }
+
+    private int[] rectPrevArrow() {
+        return new int[] { leftPageX() + MARGIN_X - 2, footY() - 1, 16, 11 };
+    }
+
+    private int[] rectNextArrow() {
+        return new int[] { rightPageX() + PW - MARGIN_X - 14, footY() - 1, 16, 11 };
+    }
+
+    private static boolean inside(int[] r, double mx, double my) {
+        return mx >= r[0] && mx < r[0] + r[2] && my >= r[1] && my < r[1] + r[3];
+    }
+
+    private boolean hasContents() {
+        return anchors.containsKey("contents");
     }
 
     // ------------------------------------------------------------------ Querverweise
 
-    /** Das Linkziel an einer Stelle einer Seite, oder null. {@code x0} ist der linke Textrand dieser Seite. */
-    private Drawn linkLine(int index, int x0, double mx, double my) {
+    /** Der Link an einer Stelle einer Seite, oder null. {@code x0} ist der linke Textrand dieser Seite. */
+    private Link linkLine(int index, int x0, double mx, double my) {
         if (index >= pages.size()) return null;
         for (BookText.Drawn d : pages.get(index).items()) {
             if (d.text() == null || d.hover() == null) continue;
             float scale = d.scale();
-            double lx = (mx - (x0 + d.x())) / scale, ly = (my - (TEXT_Y + d.y())) / scale;
+            double lx = (mx - (x0 + d.x())) / scale, ly = (my - (textTop() + d.y())) / scale;
             if (ly < 0 || ly >= BookText.LINE || lx < 0) continue;
             Style st = font.getSplitter().componentStyleAtWidth(d.text(), (int) lx);
             if (st != null && st.getClickEvent() != null && st.getClickEvent().getAction() == ClickEvent.Action.CHANGE_PAGE) {
-                return new Drawn(d, st.getClickEvent().getValue());
+                return new Link(d, st.getClickEvent().getValue());
             }
         }
         return null;
     }
 
-    private record Drawn(BookText.Drawn line, String target) {}
-
-    private Drawn linkAt(double mx, double my) {
-        Drawn l = linkLine(page, leftX() + TEXT_X, mx, my);
-        return l != null ? l : linkLine(page + 1, rightX() + TEXT_X, mx, my);
+    private Link linkAt(double mx, double my) {
+        Link l = linkLine(page, leftPageX() + MARGIN_X, mx, my);
+        return l != null ? l : linkLine(page + 1, rightPageX() + MARGIN_X, mx, my);
     }
 
     /** Folgt einem Link. Ein Ziel, das es nicht gibt, bleibt ohne Wirkung und zeigt eine kurze Meldung. */
@@ -178,29 +229,28 @@ final class BookScreen extends Screen {
 
     // ------------------------------------------------------------------ Eingabe
 
-    private boolean overBack(double mx, double my) {
-        return !history.isEmpty() && mx >= leftX() + TEXT_X && mx < leftX() + TEXT_X + font.width("< Back") && my >= 14 && my < 24;
-    }
-
-    private boolean overContents(double mx, double my) {
-        String s = "Contents";
-        return anchors.containsKey("contents") && mx >= rightX() + TEXT_X && mx < rightX() + TEXT_X + font.width(s) && my >= 14 && my < 24;
-    }
-
     @Override
     public boolean mouseClicked(double mx, double my, int button) {
         if (button == 0) {
-            Drawn link = linkAt(mx, my);
+            Link link = linkAt(mx, my);
             if (link != null) {
                 follow(link.target());
                 return true;
             }
-            if (overBack(mx, my)) {
+            if (inside(rectBackIcon(), mx, my)) {
                 goBack();
                 return true;
             }
-            if (overContents(mx, my)) {
+            if (inside(rectContentsIcon(), mx, my)) {
                 goContents();
+                return true;
+            }
+            if (canBack() && inside(rectPrevArrow(), mx, my)) {
+                turn(-1);
+                return true;
+            }
+            if (canForward() && inside(rectNextArrow(), mx, my)) {
+                turn(1);
                 return true;
             }
         }
@@ -244,33 +294,84 @@ final class BookScreen extends Screen {
     // ------------------------------------------------------------------ Zeichnen
 
     @Override
-    public void renderBackground(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
-        super.renderBackground(g, mouseX, mouseY, partialTick);
-        g.blit(BG, leftX(), 2, 0, 0, PAGE_W, PAGE_W);
-        g.blit(BG, rightX(), 2, 0, 0, PAGE_W, PAGE_W);
-    }
-
-    @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         super.render(g, mouseX, mouseY, partialTick);
-        String indicator = pages.isEmpty() ? "" : (page + 1) + (page + 2 <= pages.size() ? "-" + (page + 2) : "") + " / " + pages.size();
-        g.drawString(font, indicator, rightX() + PAGE_W - 44 - font.width(indicator), 18, BLACK, false);
-        // Zurueck und Inhaltsverzeichnis
-        if (!history.isEmpty()) {
-            g.drawString(font, "< Back", leftX() + TEXT_X, 15, overBack(mouseX, mouseY) ? BUTTON_HOVER : BUTTON, false);
-        }
-        if (anchors.containsKey("contents")) {
-            g.drawString(font, "Contents", rightX() + TEXT_X, 15, overContents(mouseX, mouseY) ? BUTTON_HOVER : BUTTON, false);
-        }
-        Drawn hover = linkAt(mouseX, mouseY);
-        drawPage(g, page, leftX() + TEXT_X, hover);
-        drawPage(g, page + 1, rightX() + TEXT_X, hover);
-        if (noteTicks > 0) g.drawCenteredString(font, note, width / 2, 170, NOTE);
+        drawBook(g);
+        Link hover = linkAt(mouseX, mouseY);
+        drawPage(g, page, leftPageX() + MARGIN_X, hover);
+        drawPage(g, page + 1, rightPageX() + MARGIN_X, hover);
+        drawFoot(g, mouseX, mouseY);
+        drawCornerIcons(g, mouseX, mouseY);
+        if (noteTicks > 0) g.drawCenteredString(font, note, width / 2, bookY() + BOOK_H + 6, NOTE);
     }
 
-    private void drawPage(GuiGraphics g, int index, int x0, Drawn hover) {
+    /** Rahmen, Seiten, Falz und Eckbeschlaege. */
+    private void drawBook(GuiGraphics g) {
+        int bx = bookX(), by = bookY();
+        g.fill(bx - 1, by - 1, bx + BOOK_W + 1, by + BOOK_H + 1, OUTLINE);
+        g.fill(bx, by, bx + BOOK_W, by + BOOK_H, METAL);
+        g.fill(bx, by, bx + BOOK_W, by + 1, METAL_LIGHT);
+        g.fill(bx, by, bx + 1, by + BOOK_H, METAL_LIGHT);
+        g.fill(bx, by + BOOK_H - 1, bx + BOOK_W, by + BOOK_H, METAL_DARK);
+        g.fill(bx + BOOK_W - 1, by, bx + BOOK_W, by + BOOK_H, METAL_DARK);
+        int top = by + FRAME, bottom = by + BOOK_H - FRAME;
+        g.fill(leftPageX(), top, leftPageX() + PW, bottom, PAGE);
+        g.fill(rightPageX(), top, rightPageX() + PW, bottom, PAGE);
+        // Falz in der Mitte, daneben ein dunklerer Streifen auf jeder Seite
+        g.fill(leftPageX() + PW, top, rightPageX(), bottom, SPINE_COLOR);
+        g.fill(leftPageX() + PW - 3, top, leftPageX() + PW, bottom, PAGE_SHADE);
+        g.fill(rightPageX(), top, rightPageX() + 3, bottom, PAGE_SHADE);
+        g.fill(leftPageX() + PW + SPINE / 2 - 1, top, leftPageX() + PW + SPINE / 2, bottom, METAL_DARK);
+        // Eckbeschlaege wie Winkel an den vier Ecken
+        for (int[] c : new int[][] { { bx, by, 1, 1 }, { bx + BOOK_W, by, -1, 1 }, { bx, by + BOOK_H, 1, -1 }, { bx + BOOK_W, by + BOOK_H, -1, -1 } }) {
+            int x = c[0], y = c[1], dx = c[2], dy = c[3];
+            g.fill(Math.min(x, x + dx * 9), Math.min(y, y + dy * 4), Math.max(x, x + dx * 9), Math.max(y, y + dy * 4), BRACKET);
+            g.fill(Math.min(x, x + dx * 4), Math.min(y, y + dy * 9), Math.max(x, x + dx * 4), Math.max(y, y + dy * 9), BRACKET);
+        }
+    }
+
+    /** Seitenzahlen in der Mitte und die Blaetter-Pfeile unten. */
+    private void drawFoot(GuiGraphics g, int mx, int my) {
+        String left = Integer.toString(page + 1), right = Integer.toString(page + 2);
+        if (page < pages.size()) g.drawString(font, left, leftPageX() + PW / 2 - font.width(left) / 2, footY() + 1, NUMBER, false);
+        if (page + 1 < pages.size()) g.drawString(font, right, rightPageX() + PW / 2 - font.width(right) / 2, footY() + 1, NUMBER, false);
+        if (canBack()) arrow(g, rectPrevArrow(), false, inside(rectPrevArrow(), mx, my));
+        if (canForward()) arrow(g, rectNextArrow(), true, inside(rectNextArrow(), mx, my));
+    }
+
+    /** Ein geschwungener Pfeil (aus Rechtecken gesetzt): Schaft mit Haken und Spitze. */
+    private static void arrow(GuiGraphics g, int[] r, boolean right, boolean hover) {
+        int c = hover ? ICON_HOVER : ICON;
+        int x = r[0] + 1, y = r[1] + 1;
+        if (right) {
+            g.fill(x, y + 5, x + 3, y + 7, c);              // Haken unten links
+            g.fill(x + 1, y + 3, x + 10, y + 5, c);          // Schaft
+            for (int i = 0; i < 4; i++) g.fill(x + 9 + i, y + 1 + i, x + 10 + i, y + 8 - i, c);   // Spitze nach rechts
+        } else {
+            g.fill(x + 11, y + 5, x + 14, y + 7, c);
+            g.fill(x + 4, y + 3, x + 13, y + 5, c);
+            for (int i = 0; i < 4; i++) g.fill(x + 4 - i, y + 1 + i, x + 5 - i, y + 8 - i, c);
+        }
+    }
+
+    /** Oben links Zurueck, oben rechts das Inhaltsverzeichnis, jeweils mit Hinweistext. */
+    private void drawCornerIcons(GuiGraphics g, int mx, int my) {
+        int[] b = rectBackIcon(), c = rectContentsIcon();
+        boolean canBackLink = !history.isEmpty(), hoverB = inside(b, mx, my), hoverC = inside(c, mx, my);
+        // Zurueck: Pfeil nach links
+        int cb = !canBackLink ? ICON_OFF : hoverB ? ICON_HOVER : ICON;
+        g.fill(b[0] + 3, b[1] + 3, b[0] + 13, b[1] + 6, cb);                       // Schaft
+        for (int i = 0; i < 4; i++) g.fill(b[0] + 3 - i, b[1] + 1 + i, b[0] + 4 - i, b[1] + 8 - i, cb);   // Spitze nach links
+        // Inhaltsverzeichnis: drei Zeilen
+        int cc = !hasContents() ? ICON_OFF : hoverC ? ICON_HOVER : ICON;
+        for (int i = 0; i < 3; i++) g.fill(c[0] + 2, c[1] + 1 + i * 3, c[0] + 13, c[1] + 2 + i * 3, cc);
+        if (hoverB && canBackLink) g.renderTooltip(font, Component.literal("Back"), mx, my);
+        if (hoverC && hasContents()) g.renderTooltip(font, Component.literal("Contents"), mx, my);
+    }
+
+    private void drawPage(GuiGraphics g, int index, int x0, Link hover) {
         if (index >= pages.size()) return;
-        int y0 = TEXT_Y;
+        int y0 = textTop();
         for (BookText.Drawn d : pages.get(index).items()) {
             if (d.text() == null) {
                 g.fill(x0 + d.x(), y0 + d.y(), x0 + d.x() + d.ruleWidth(), y0 + d.y() + 1, d.color());
@@ -294,7 +395,6 @@ final class BookScreen extends Screen {
 
     void goTo(int p) {
         page = Math.max(0, Math.min(Math.max(0, pages.size() - 1), p)) / 2 * 2;
-        updateButtons();
     }
 
     /** Fuer den Selbsttest: Nummer der ersten Seite, deren Text den Suchbegriff enthaelt, sonst 0. */
