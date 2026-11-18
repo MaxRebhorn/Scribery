@@ -54,6 +54,28 @@ RUBBLE = [(92, 70, 56), (80, 60, 48), (104, 80, 64)]
 CRACK = (96, 62, 50)
 
 
+def shade(im, x, y, k):
+    x, y = x % N, y % N
+    p = im.getpixel((x, y))
+    im.putpixel((x, y), tuple(max(0, min(255, int(v * k))) for v in p[:3]) + (255,))
+
+
+def crack(im, x, y, dx, steps, branch):
+    """Ein Riss: laeuft nach unten, macht ab und zu einen Schritt zur Seite und verzweigt sich einmal."""
+    for i in range(steps):
+        shade(im, x, y, 0.62)
+        shade(im, x + dx, y, 1.1)  # helle Kante neben dem Riss
+        y += 1
+        r = rng.random()
+        if r < 0.55:
+            x += dx
+        elif r < 0.7:
+            dx = -dx
+        if branch and i >= 2 and rng.random() < 0.3:
+            crack(im, x, y, -dx, rng.randint(2, 3), False)
+            branch = False
+
+
 def bricks(kind="aged"):
     """Alte, ausgeblichene Ziegel (Ostia): fuenf duenne Lagen zu je zwei Pixel Ziegel und einem Pixel Moertel (die erste
     Lage drei), kurze Stossfugen. Sorten: aged (Grundblock), weathered (dunkler, fleckig), cracked (Risse), crumbling (Luecken)."""
@@ -93,21 +115,21 @@ def bricks(kind="aged"):
             k = rng.choice([0.7, 0.8, 0.9])
             im.putpixel((x, y), tuple(int(v * k) for v in p) + (255,))
     if kind in ("cracked", "crumbling"):
-        for _ in range(2 if kind == "cracked" else 1):  # Risse: Zickzack von oben nach unten
-            x, y = rng.randrange(2, N - 2), rng.randrange(0, 4)
-            drift = rng.choice([-1, 1])  # Risse laufen schraeg in eine Richtung, nicht im Zickzack
-            for _ in range(rng.randint(6, 9)):
-                im.putpixel((x % N, y % N), jit(CRACK, 4) + (255,))
-                y += 1
-                if rng.random() < 0.35:
-                    x += drift
+        # Risse wie bei Minecrafts rissigen Steinziegeln: kurze, verzweigte Zickzacklinien nur wenig dunkler als der Ziegel,
+        # daneben ein hellerer Pixel als Kante
+        for _ in range(5 if kind == "cracked" else 3):
+            crack(im, rng.randrange(N), rng.randrange(N), rng.choice([-1, 1]), rng.randint(4, 7), True)
     if kind == "crumbling":
-        picks = rng.sample(bricks_at, 4)
-        for ys, x0, ln in picks:  # ausgebrochene Ziegel: dunkler Schutt in der Luecke
-            for y in ys:
-                for dx in range(1, ln - 2):
-                    if rng.random() < 0.85:
-                        im.putpixel(((x0 + dx) % N, y), jit(pick(RUBBLE), 6) + (255,))
+        for _ in range(4):  # ausgebrochene Stellen: kleine dunkle Klumpen mit heller Kante
+            cx, cy = rng.randrange(N), rng.randrange(N)
+            for dx, dy in rng.sample([(0, 0), (1, 0), (0, 1), (1, 1), (-1, 0), (0, -1), (2, 0), (1, -1), (-1, 1)], 5):
+                shade(im, cx + dx, cy + dy, 0.5)
+                shade(im, cx + dx - 1, cy + dy - 1, 1.1)
+    # Rauschen wie bei Vanilla-Steinen: Jeder Pixel leicht verschoben
+    for y in range(N):
+        for x in range(N):
+            if rng.random() < 0.35:
+                shade(im, x, y, rng.choice([0.93, 1.07]))
     return im
 
 

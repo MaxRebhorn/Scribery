@@ -38,7 +38,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class OilLampBlock extends Block {
     public static final MapCodec<OilLampBlock> CODEC = simpleCodec(OilLampBlock::new);
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE = Shapes.or(Block.box(4, 0, 4, 12, 3, 12), Block.box(11, 2, 7, 14, 4.5, 9));
+    private static final VoxelShape SHAPE = Shapes.or(Block.box(3, 0, 3, 13, 5, 13), Block.box(12, 2, 6.5, 15, 5.6, 9.5));
 
     public OilLampBlock(Properties props) {
         super(props);
@@ -103,7 +103,7 @@ public class OilLampBlock extends Block {
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (!state.getValue(LIT)) return;
         // Dieselbe Flamme wie bei Kerzen (CandleBlock): kleine Flammenteilchen, ab und zu Rauch und Knistern
-        double x = pos.getX() + 13.5 / 16.0, y = pos.getY() + 4.5 / 16.0 + 0.125, z = pos.getZ() + 0.5;
+        double x = pos.getX() + 14.4 / 16.0, y = pos.getY() + 5.6 / 16.0 + 0.125, z = pos.getZ() + 0.5;
         float f = random.nextFloat();
         if (f < 0.3F) {
             level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);

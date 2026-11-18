@@ -43,6 +43,40 @@ def lamp_texture():
     return im
 
 
+CLIENT_JAR = os.path.expanduser(r"~\.gradle\caches\neoformruntime\artifacts\minecraft_1.21.1_client.jar")
+
+
+def oil_texture():
+    """Olivenoel: die animierte Wassertextur von Minecraft, ins Olivgoldene umgefaerbt. Braucht das Minecraft-Archiv im
+    Gradle-Cache; fehlt es, bleibt die vorhandene Textur im Projekt unveraendert."""
+    import io
+    import zipfile
+    if not os.path.exists(CLIENT_JAR):
+        return False
+    z = zipfile.ZipFile(CLIENT_JAR)
+    src = Image.open(io.BytesIO(z.read("assets/minecraft/textures/block/water_still.png"))).convert("RGBA")
+    lum = [src.getpixel((x, y))[2] for y in range(src.height) for x in range(src.width)]
+    lo, hi = min(lum), max(lum)
+    dark, light = (92, 84, 18), (206, 188, 58)
+    out = Image.new("RGBA", src.size)
+    for y in range(src.height):
+        for x in range(src.width):
+            t = (src.getpixel((x, y))[2] - lo) / max(1, hi - lo)
+            out.putpixel((x, y), tuple(int(dark[i] + (light[i] - dark[i]) * t) for i in range(3)) + (255,))
+    out.save(os.path.join(TEX, "oil_surface.png"))
+    with open(os.path.join(TEX, "oil_surface.png.mcmeta"), "w", encoding="utf-8", newline="\n") as f:
+        f.write('{\n  "animation": {\n    "frametime": 3\n  }\n}\n')
+    return True
+
+
+def wick_texture():
+    im = Image.new("RGBA", (16, 16))
+    for y in range(16):
+        for x in range(16):
+            im.putpixel((x, y), jit((196, 176, 140) if y < 8 else (70, 56, 44), 6) + (255,))
+    return im
+
+
 def flame_texture():
     im = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
     rows = {  # y: (halbe Breite, Farbe)
@@ -91,13 +125,20 @@ def box(frm, to, tex):
 
 
 def lamp_models():
+    # Nach einer roemischen Tonlampe: runder Koerper mit offener Mitte, darin Olivenoel, ein Rand und eine Schnauze mit Docht.
     base = [
-        box([5, 0, 5], [11, 1, 11], "#lamp"),
-        box([4, 1, 4], [12, 3, 12], "#lamp"),
-        box([11, 2, 7], [14, 3.5, 9], "#lamp"),
-        box([13, 3.5, 7.6], [14, 4.5, 8.4], "#lamp"),
+        box([5, 0, 5], [11, 1, 11], "#lamp"),                                   # Fuss
+        box([3, 1, 3], [13, 4, 5], "#lamp"), box([3, 1, 11], [13, 4, 13], "#lamp"),   # Wand (Nord, Sued)
+        box([3, 1, 5], [5, 4, 11], "#lamp"), box([11, 1, 5], [13, 4, 11], "#lamp"),   # Wand (West, Ost)
+        box([5, 1, 5], [11, 2, 11], "#lamp"),                                   # Boden der Schale
+        {"from": [5, 2, 5], "to": [11, 3.2, 11], "faces": {"up": {"texture": "#oil"}}},  # das Oel
+        box([4, 4, 4], [12, 5, 5], "#lamp"), box([4, 4, 11], [12, 5, 12], "#lamp"),   # Rand
+        box([4, 4, 5], [5, 5, 11], "#lamp"), box([11, 4, 5], [12, 5, 11], "#lamp"),
+        box([12, 2, 6.5], [15, 4.5, 9.5], "#lamp"),                             # Schnauze
+        box([14, 4.5, 7.6], [14.8, 5.6, 8.4], "#wick"),                         # Docht
     ]
-    tex = {"lamp": "scribery:block/oil_lamp", "particle": "scribery:block/oil_lamp"}
+    tex = {"lamp": "scribery:block/oil_lamp", "oil": "scribery:block/oil_surface", "wick": "scribery:block/oil_lamp_wick",
+           "particle": "scribery:block/oil_lamp"}
     unlit = {"textures": tex, "elements": base}
     # Wie bei Kerzen gibt es kein Flammenmodell: Die Flamme sind die kleinen Flammenteilchen des Spiels (siehe OilLampBlock).
     lit = {"textures": tex, "elements": base}
@@ -107,6 +148,8 @@ def lamp_models():
 def main():
     os.makedirs(TEX, exist_ok=True)
     lamp_texture().save(os.path.join(TEX, "oil_lamp.png"))
+    oil_texture()
+    wick_texture().save(os.path.join(TEX, "oil_lamp_wick.png"))
     flame_file = os.path.join(TEX, "oil_lamp_flame.png")
     if os.path.exists(flame_file):
         os.remove(flame_file)  # frueher gab es ein eigenes Flammenbild; jetzt wie bei Kerzen nur Teilchen
