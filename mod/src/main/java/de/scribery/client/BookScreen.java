@@ -14,7 +14,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
 /**
- * Leseansicht fuer ein Buch im Stil eines Handbuchs: zwei helle graue Seiten in einem metallischen Rahmen, Seitentitel zentriert
+ * Leseansicht fuer ein Buch im Format eines Handbuchs (zwei breite Seiten in einem Rahmen) mit den Farben des Minecraft-Buchs
+ * (Pergamentseiten, Lederrand, rote Heftung): Seitentitel zentriert
  * und unterstrichen, unten in der Mitte die Seitenzahl, unten in den Ecken geschwungene Blaetter-Pfeile. In den oberen Ecken
  * zwei kleine Symbole: links Zurueck (in der Reihenfolge der Spruenge, auch ueber Buecher), rechts das Inhaltsverzeichnis
  * (Anker {@code contents}).
@@ -31,9 +32,12 @@ final class BookScreen extends Screen {
     private static final int BOOK_H = 2 * FRAME + PAD_TOP + TEXT_H + FOOT;
 
     // Farben
-    private static final int OUTLINE = 0xFF1E2124, METAL = 0xFF6C7278, METAL_LIGHT = 0xFFA7ADB3, METAL_DARK = 0xFF4A4F55, BRACKET = 0xFF868C93;
-    private static final int PAGE = 0xFFE6E8EB, PAGE_SHADE = 0xFFD3D6DA, SPINE_COLOR = 0xFFB5BAC0, NUMBER = 0xFF8A9099;
-    private static final int ICON = 0xFF5F656B, ICON_OFF = 0xFFB1B6BC, ICON_HOVER = 0xFF2F86E0, NOTE = 0xFF8F1D14;
+    // Farben wie im Minecraft-Buch: Lederrand in Rotbraun, Pergamentseiten, rote Heftung
+    private static final int OUTLINE = 0xFF2E1007, METAL = 0xFF783623, METAL_LIGHT = 0xFF9A4A32, METAL_DARK = 0xFF4C1A0B, BRACKET = 0xFF652816;
+    private static final int PAGE = 0xFFFAF0DE, PAGE_SHADE = 0xFFEBDDC0, SPINE_COLOR = 0xFFC9B48E, NUMBER = 0xFF8F7446, STITCH = 0xFFC3251D;
+    private static final int ICON = 0xFF5A3A22, ICON_OFF = 0xFFBBA98A, ICON_HOVER = 0xFF2F86E0, NOTE = 0xFF8F1D14;
+    /** Die Symbole in den oberen Ecken liegen ueber dem Rahmen auf dem dunklen Hintergrund und sind deshalb hell. */
+    private static final int CORNER = 0xFFE6D3A8, CORNER_OFF = 0xFF7D6A4E, CORNER_HOVER = 0xFF7FB8FF;
 
     private record Loaded(List<BookText.Page> pages, Map<String, Integer> anchors) {}
 
@@ -317,6 +321,11 @@ final class BookScreen extends Screen {
         int top = by + FRAME, bottom = by + BOOK_H - FRAME;
         g.fill(leftPageX(), top, leftPageX() + PW, bottom, PAGE);
         g.fill(rightPageX(), top, rightPageX() + PW, bottom, PAGE);
+        // Rote Heftung am linken Rand jeder Seite (wie im Minecraft-Buch)
+        for (int y = top + 8; y < bottom - 12; y += 12) {
+            g.fill(leftPageX() + 3, y, leftPageX() + 6, y + 6, STITCH);
+            g.fill(rightPageX() + 3, y, rightPageX() + 6, y + 6, STITCH);
+        }
         // Falz in der Mitte, daneben ein dunklerer Streifen auf jeder Seite
         g.fill(leftPageX() + PW, top, rightPageX(), bottom, SPINE_COLOR);
         g.fill(leftPageX() + PW - 3, top, leftPageX() + PW, bottom, PAGE_SHADE);
@@ -359,11 +368,11 @@ final class BookScreen extends Screen {
         int[] b = rectBackIcon(), c = rectContentsIcon();
         boolean canBackLink = !history.isEmpty(), hoverB = inside(b, mx, my), hoverC = inside(c, mx, my);
         // Zurueck: Pfeil nach links
-        int cb = !canBackLink ? ICON_OFF : hoverB ? ICON_HOVER : ICON;
+        int cb = !canBackLink ? CORNER_OFF : hoverB ? CORNER_HOVER : CORNER;
         g.fill(b[0] + 3, b[1] + 3, b[0] + 13, b[1] + 6, cb);                       // Schaft
         for (int i = 0; i < 4; i++) g.fill(b[0] + 3 - i, b[1] + 1 + i, b[0] + 4 - i, b[1] + 8 - i, cb);   // Spitze nach links
         // Inhaltsverzeichnis: drei Zeilen
-        int cc = !hasContents() ? ICON_OFF : hoverC ? ICON_HOVER : ICON;
+        int cc = !hasContents() ? CORNER_OFF : hoverC ? CORNER_HOVER : CORNER;
         for (int i = 0; i < 3; i++) g.fill(c[0] + 2, c[1] + 1 + i * 3, c[0] + 13, c[1] + 2 + i * 3, cc);
         if (hoverB && canBackLink) g.renderTooltip(font, Component.literal("Back"), mx, my);
         if (hoverC && hasContents()) g.renderTooltip(font, Component.literal("Contents"), mx, my);

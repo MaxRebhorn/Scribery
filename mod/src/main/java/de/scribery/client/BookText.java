@@ -28,9 +28,9 @@ import net.minecraft.util.FormattedCharSequence;
  * fest ({@code ### Alpha {#alpha}}) oder als Slug ihres Textes; {@link #anchors} liefert Anker -> Seite.
  */
 final class BookText {
-    /** Textflaeche einer Seite: breit und niedrig genug fuer helle Handbuchseiten (siehe BookScreen). */
+    /** Textflaeche einer Seite: breit und hoch genug fuer Handbuchseiten (siehe BookScreen). */
     static final int WIDTH = 150, HEIGHT = 140, LINE = 9;
-    private static final int BLACK = 0xFF1F2327, HEAD = 0xFF14181C, SUB = 0xFF3B4147, RULE = 0xFF6B7178;
+    private static final int BLACK = 0xFF000000, HEAD = 0xFF6A1E14, SUB = 0xFF5A3A22, RULE = 0xFF8F7446;
     private static final int LINK = 0xFF1B4F8F, LINK_HOVER = 0xFF2F86E0;
 
     /**

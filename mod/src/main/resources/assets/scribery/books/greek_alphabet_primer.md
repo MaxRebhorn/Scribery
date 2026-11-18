@@ -9,8 +9,6 @@
 
 ## Page 0 — Contents {#contents}
 
-Click a link to jump to that page. **Back** (top left) takes you to where you were.
-
 - [Meet the alphabet](#meet-the-alphabet)
 - [Sigma and its two faces](#sigma-and-its-two-faces)
 - [Latin letters](#so-how-do-we-write-this-in-latin-letters)
@@ -18,23 +16,7 @@ Click a link to jump to that page. **Back** (top left) takes you to where you we
 - [At a glance](#the-alphabet-at-a-glance)
 - [Greek Grammar Book](book:greek_grammar_book#contents)
 
-**Jump to a letter**
-
-[Alpha](#alpha) · [Beta](#beta) · [Gamma](#gamma)
-
-[Delta](#delta) · [Epsilon](#epsilon) · [Zeta](#zeta)
-
-[Eta](#eta) · [Theta](#theta) · [Iota](#iota)
-
-[Kappa](#kappa) · [Lambda](#lambda) · [Mu](#mu)
-
-[Nu](#nu) · [Xi](#xi) · [Omicron](#omicron)
-
-[Pi](#pi) · [Rho](#rho) · [Sigma](#sigma)
-
-[Tau](#tau) · [Upsilon](#upsilon) · [Phi](#phi)
-
-[Chi](#chi) · [Psi](#psi) · [Omega](#omega)
+[Α α](#alpha)   [Β β](#beta)   [Γ γ](#gamma)   [Δ δ](#delta)   [Ε ε](#epsilon)   [Ζ ζ](#zeta)   [Η η](#eta)   [Θ θ](#theta)   [Ι ι](#iota)   [Κ κ](#kappa)   [Λ λ](#lambda)   [Μ μ](#mu)   [Ν ν](#nu)   [Ξ ξ](#xi)   [Ο ο](#omicron)   [Π π](#pi)   [Ρ ρ](#rho)   [Σ σ ς](#sigma)   [Τ τ](#tau)   [Υ υ](#upsilon)   [Φ φ](#phi)   [Χ χ](#chi)   [Ψ ψ](#psi)   [Ω ω](#omega)
 
 ---
 

@@ -9,8 +9,6 @@
 
 ## Page 0 — Contents {#contents}
 
-Click a link to jump to that page. **Back** (top left) takes you to where you were.
-
 - [So, You Want to Learn Grammar?](#so-you-want-to-learn-grammar)
 - [Nouns: More Than Just Words](#nouns-more-than-just-words)
 - [The Three Genders](#the-three-genders)
