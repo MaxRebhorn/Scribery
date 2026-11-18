@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
-    "scribery:amphora"
+    "scribery:amphora",
+    "scribery:amphora_lying",
+    "scribery:amphora_lying_broken",
+    "scribery:amphora_broken_neck",
+    "scribery:amphora_half",
+    "scribery:amphora_shards",
+    "scribery:amphora_tilted"
   ]
 }

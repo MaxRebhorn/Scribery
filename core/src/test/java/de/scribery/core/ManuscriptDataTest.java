@@ -101,6 +101,23 @@ class ManuscriptDataTest {
                 "Amphore kann kein Ostrakon droppen");
     }
 
+    /** Jede zerbrochene Amphoren-Variante hat Blockstate, Modell, Item-Modell und eine Loot-Tabelle (Silk Touch behaelt sie). */
+    @Test
+    void everyBrokenAmphoraVariantIsComplete() throws IOException {
+        Path assets = Path.of("..", "mod", "src", "main", "resources", "assets", "scribery");
+        Path loot = Path.of("..", "mod", "src", "main", "resources", "data", "scribery", "loot_table", "blocks");
+        for (String v : List.of("lying", "lying_broken", "broken_neck", "half", "shards", "tilted")) {
+            String name = "amphora_" + v;
+            assertTrue(Files.exists(assets.resolve("blockstates/" + name + ".json")), "Blockstate fehlt: " + name);
+            assertTrue(Files.exists(assets.resolve("models/block/" + name + ".json")), "Block-Modell fehlt: " + name);
+            assertTrue(Files.exists(assets.resolve("models/item/" + name + ".json")), "Item-Modell fehlt: " + name);
+            String json = Files.readString(loot.resolve(name + ".json"), StandardCharsets.UTF_8);
+            assertTrue(json.contains("silk_touch") && json.contains("\"scribery:" + name + "\""), "Loot ohne Silk-Touch-Regel: " + name);
+            assertTrue(Files.readString(assets.resolve("lang/en_us.json"), StandardCharsets.UTF_8)
+                    .contains("\"block.scribery." + name + "\""), "Name fehlt: " + name);
+        }
+    }
+
     /** Die Zeilenlaenge im Test muss der im Spiel entsprechen. */
     @Test
     void lineSlotsMatchTheLayout() throws IOException {

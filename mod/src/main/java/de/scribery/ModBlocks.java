@@ -61,6 +61,25 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> SUSPICIOUS_ASHES = BLOCKS.register("suspicious_ashes",
             () -> new SuspiciousFindBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY)
                     .strength(0.25F).sound(SoundType.SAND)));
+    /** Zerbrochene Amphoren in verschiedener Lage (Wracks, Ruinen). Modelle: art/gen_amphora_variants.py. */
+    private static DeferredBlock<Block> brokenAmphora(String id, BrokenAmphoraBlock.Kind kind) {
+        DeferredBlock<Block> b = BLOCKS.register(id, () -> new BrokenAmphoraBlock(kind, BlockBehaviour.Properties.of()
+                .mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.DECORATED_POT).noOcclusion()));
+        BLOCK_ITEMS.registerSimpleBlockItem(id, b, new Item.Properties());
+        ALL.add(b);
+        return b;
+    }
+
+    public static final DeferredBlock<Block> AMPHORA_LYING = brokenAmphora("amphora_lying", BrokenAmphoraBlock.Kind.LYING);
+    public static final DeferredBlock<Block> AMPHORA_LYING_BROKEN = brokenAmphora("amphora_lying_broken", BrokenAmphoraBlock.Kind.LYING_BROKEN);
+    public static final DeferredBlock<Block> AMPHORA_BROKEN_NECK = brokenAmphora("amphora_broken_neck", BrokenAmphoraBlock.Kind.BROKEN_NECK);
+    public static final DeferredBlock<Block> AMPHORA_HALF = brokenAmphora("amphora_half", BrokenAmphoraBlock.Kind.HALF);
+    public static final DeferredBlock<Block> AMPHORA_SHARDS = brokenAmphora("amphora_shards", BrokenAmphoraBlock.Kind.SHARDS);
+    public static final DeferredBlock<Block> AMPHORA_TILTED = brokenAmphora("amphora_tilted", BrokenAmphoraBlock.Kind.TILTED);
+    /** Alle Amphoren-Varianten, fuer das Wrack zum Auswuerfeln. */
+    public static final List<DeferredBlock<Block>> AMPHORA_VARIANTS = List.of(AMPHORA_LYING, AMPHORA_LYING_BROKEN,
+            AMPHORA_BROKEN_NECK, AMPHORA_HALF, AMPHORA_SHARDS, AMPHORA_TILTED);
+
     /** Normaler Asche-Block: das, was Suspicious Ashes beim Abbauen zurueckgibt. */
     public static final DeferredBlock<Block> ASHES = BLOCKS.register("ashes",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY)

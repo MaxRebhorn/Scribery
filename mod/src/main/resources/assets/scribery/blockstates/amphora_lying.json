@@ -1,0 +1,43 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "scribery:block/amphora_lying",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "scribery:block/amphora_lying",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "scribery:block/amphora_lying",
+        "x": 90,
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "scribery:block/amphora_lying",
+        "x": 90,
+        "y": 270
+      }
+    }
+  ]
+}

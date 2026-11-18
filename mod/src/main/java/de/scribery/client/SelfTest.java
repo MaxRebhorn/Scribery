@@ -294,6 +294,26 @@ final class SelfTest {
         }));
         shot(mc, "24-fragment-closeups");
 
+        // Die Amphoren-Varianten als Item (liegende Varianten zeigen im Item die stehende Form; gedreht wird erst im Blockstate)
+        then(0, () -> mc.setScreen(new net.minecraft.client.gui.screens.Screen(net.minecraft.network.chat.Component.literal("amphorae")) {
+            @Override
+            public void render(net.minecraft.client.gui.GuiGraphics g, int mx, int my, float pt) {
+                g.fill(0, 0, width, height, 0xFF3A3640);
+                var all = new java.util.ArrayList<net.neoforged.neoforge.registries.DeferredBlock<net.minecraft.world.level.block.Block>>();
+                all.add(de.scribery.ModBlocks.AMPHORA);
+                all.addAll(de.scribery.ModBlocks.AMPHORA_VARIANTS);
+                float s = Math.min(6f, (width - 10) / (all.size() * 20f));
+                for (int i = 0; i < all.size(); i++) {
+                    g.pose().pushPose();
+                    g.pose().translate(5 + i * 20 * s, height / 2f - 8 * s, 0);
+                    g.pose().scale(s, s, 1);
+                    g.renderItem(new net.minecraft.world.item.ItemStack(all.get(i).get()), 0, 0);
+                    g.pose().popPose();
+                }
+            }
+        }));
+        shot(mc, "25-amphora-variants");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();

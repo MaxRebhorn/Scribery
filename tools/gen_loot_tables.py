@@ -69,6 +69,27 @@ TABLES = {
 }
 
 
+def broken_amphora(name, shards, ostrakon, manuscript_chance, papyrus):
+    """Zerbrochene Amphora-Variante: mit Silk Touch bleibt sie, sonst Scherben und mit Chance Ostrakon, Manuskript, Papyrus."""
+    not_silk = {"condition": "minecraft:inverted", "term": SILK_TOUCH}
+    return [pool(item(f"scribery:{name}"), SILK_TOUCH),
+            pool(item("scribery:amphora_shard", shards), not_silk),
+            pool(item("scribery:ostrakon"), not_silk, chance(ostrakon)),
+            pool(manuscript("shards"), not_silk, chance(manuscript_chance)),
+            pool(item("scribery:papyrus_scrap", (1, 2)), not_silk, chance(papyrus))]
+
+
+# Die zerbrochenen Varianten (art/gen_amphora_variants.py): je kaputter, desto weniger Inhalt
+TABLES.update({
+    "amphora_lying": broken_amphora("amphora_lying", (1, 3), 0.22, 0.28, 0.22),
+    "amphora_lying_broken": broken_amphora("amphora_lying_broken", (1, 3), 0.20, 0.22, 0.20),
+    "amphora_broken_neck": broken_amphora("amphora_broken_neck", (1, 3), 0.20, 0.22, 0.20),
+    "amphora_half": broken_amphora("amphora_half", (1, 2), 0.15, 0.15, 0.15),
+    "amphora_shards": broken_amphora("amphora_shards", (1, 2), 0.12, 0.10, 0.10),
+    "amphora_tilted": broken_amphora("amphora_tilted", (2, 3), 0.22, 0.28, 0.22),
+})
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     for name, pools in TABLES.items():

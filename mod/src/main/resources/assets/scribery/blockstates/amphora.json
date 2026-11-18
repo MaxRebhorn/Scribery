@@ -1,7 +1,9 @@
 {
-  "variants": {
-    "": {
-      "model": "scribery:block/amphora"
+  "multipart": [
+    {
+      "apply": {
+        "model": "scribery:block/amphora"
+      }
     }
-  }
+  ]
 }
