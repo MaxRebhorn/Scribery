@@ -380,7 +380,16 @@ final class BookText {
         Font font = b.font;
         if (block instanceof Heading h) {
             int color = h.level() == 3 ? SUB : HEAD;
-            List<FormattedCharSequence> lines = font.split(inline(h.text(), true, color), WIDTH);
+            String htext = h.text();
+            String big = null;
+            // Buchstabenueberschrift "21. Phi — Φ φ": die griechischen Zeichen gross und ohne Fettdruck in eigener Zeile,
+            // sonst sind sie in dieser kleinen Schrift kaum zu erkennen
+            int dash = htext.indexOf(" — ");
+            if (h.level() == 3 && dash > 0 && htext.substring(dash + 3).chars().anyMatch(c -> c > 0x370 && c < 0x400)) {
+                big = htext.substring(dash + 3).strip();
+                htext = htext.substring(0, dash);
+            }
+            List<FormattedCharSequence> lines = font.split(inline(htext, true, color), WIDTH);
             b.gap(h.level() == 3 ? (b.cur.isEmpty() || b.y < 20 ? 2 : 5) : 0);
             b.need(lines.size() * LINE + 2 * LINE); // Ueberschrift nicht allein am Seitenende
             b.headStart = b.cur.size();
@@ -394,6 +403,12 @@ final class BookText {
                 b.line(center ? centerX(font, l, WIDTH) : 0, l, color, 1f, LINE, null, li == 0 ? h.anchor() : null);
             }
             if (h.level() == 2 && !h.centered()) b.rule((WIDTH - widest) / 2, widest);
+            if (big != null) {
+                FormattedCharSequence g = inline(big, false, HEAD).getVisualOrderText();
+                float gs = 3f;
+                b.y += 2;
+                b.line(Math.round((WIDTH - font.width(g) * gs) / 2), g, HEAD, gs, Math.round(LINE * gs));
+            }
             b.y += 2;
         } else if (block instanceof Para p) {
             List<FormattedCharSequence> lines = font.split(inline(p.text(), false, BLACK), WIDTH);

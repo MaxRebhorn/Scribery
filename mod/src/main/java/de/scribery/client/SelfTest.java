@@ -350,7 +350,7 @@ final class SelfTest {
             b.goTo(b.findPage("Click a link"));
         });
         shot(mc, "29-book-contents");
-        then(0, () -> ((BookScreen) mc.screen).debugFollow("#alpha"));
+        then(0, () -> ((BookScreen) mc.screen).debugFollow("#phi"));
         shot(mc, "30-book-link-alpha");
         then(0, () -> ((BookScreen) mc.screen).debugFollow("book:greek_grammar_book#contents"));
         shot(mc, "31-book-other-book");
