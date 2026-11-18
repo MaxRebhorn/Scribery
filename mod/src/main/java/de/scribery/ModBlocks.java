@@ -45,6 +45,20 @@ public final class ModBlocks {
                     .sound(SoundType.GLASS).noOcclusion().isValidSpawn((st, l, p, e) -> false)
                     .isRedstoneConductor((st, l, p) -> false).isSuffocating((st, l, p) -> false)
                     .isViewBlocking((st, l, p) -> false)));
+    /** Amphore (Container-Platzhalter, noch ohne Inhalt). */
+    public static final DeferredBlock<Block> AMPHORA = BLOCKS.register("amphora",
+            () -> new AmphoraBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
+                    .strength(0.6F).sound(SoundType.DECORATED_POT).noOcclusion()));
+    /** Schlamm mit gebleichtem Holz und Papierstuecken (Optik per Blockzustand dusted 0-3, noch keine Pinsel-Logik). */
+    public static final DeferredBlock<Block> SUSPICIOUS_ARCHIVE_MUD = BLOCKS.register("suspicious_archive_mud",
+            () -> new SuspiciousMudBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT)
+                    .strength(0.25F).sound(SoundType.MUD)));
+    static {
+        BLOCK_ITEMS.registerSimpleBlockItem("amphora", AMPHORA, new Item.Properties());
+        BLOCK_ITEMS.registerSimpleBlockItem("suspicious_archive_mud", SUSPICIOUS_ARCHIVE_MUD, new Item.Properties());
+        ALL.add(AMPHORA);
+        ALL.add(SUSPICIOUS_ARCHIVE_MUD);
+    }
     static {
         BLOCK_ITEMS.registerSimpleBlockItem("frozen_fragment_block", FROZEN_FRAGMENT_BLOCK, new Item.Properties());
         ALL.add(FROZEN_FRAGMENT_BLOCK);

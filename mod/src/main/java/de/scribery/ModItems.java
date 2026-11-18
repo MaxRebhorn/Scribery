@@ -92,6 +92,7 @@ public final class ModItems {
         ALL.add(WOODEN_WORD_TABLET);
         ALL.add(PRINTED_SHEET);
         ALL.add(TRANSLATED_SHEET);
+        ALL.add(ITEMS.registerItem("ostrakon", p -> new Item(p.stacksTo(16))));
     }
 
     public static void register(IEventBus bus) {
