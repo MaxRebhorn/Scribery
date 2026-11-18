@@ -1,0 +1,8 @@
+{
+  "type": "scribery:scribery",
+  "kind": "house_sand",
+  "biomes": "#scribery:has_structure/house_sand",
+  "step": "underground_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

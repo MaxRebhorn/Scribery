@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#scribery:has_feature/suspicious_mud_swamp",
+  "features": "scribery:suspicious_mud_swamp",
+  "step": "top_layer_modification"
+}

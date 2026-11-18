@@ -5,7 +5,7 @@ import java.util.Set;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
@@ -57,7 +57,7 @@ final class DebugStructures {
     // ------------------------------------------------------------------ Eingefrorene Karawane (Taiga, Berge)
 
     /** Zwei Wagen im Eis, Ladung aus Amphoren, Faessern und Eisbloecken mit Fragment, dazu ein kaltes Lager. Etwa 28 lang. */
-    static int frozenCaravan(Level level, BlockPos origin, Direction facing) {
+    static int frozenCaravan(LevelAccessor level, BlockPos origin, Direction facing) {
         StructureBuilder b = new StructureBuilder(level, origin, facing);
         // Eisfeld unter der Karawane
         for (int u = -3; u <= 30; u++) {
@@ -122,7 +122,7 @@ final class DebugStructures {
         for (int u = u0; u <= u1; u++) {
             for (int v = v0; v <= v1; v++) {
                 BlockPos p = b.at(u, v, 1);
-                if (b.level.getBlockState(p).isAir() && !b.level.getBlockState(p.below()).isAir() && b.chance(40)) b.put(p, snow(b));
+                if (b.chance(40) && b.stateAt(p).isAir() && !b.stateAt(p.below()).isAir()) b.put(p, snow(b));
             }
         }
     }
@@ -130,7 +130,7 @@ final class DebugStructures {
     // ------------------------------------------------------------------ Erfrorener Wanderer (Eisbiom)
 
     /** Die kleine Fassung: eine Spur im Schnee, ein eingeschneiter Wanderer mit Gepaeck, Eis und einem eingefrorenen Fragment. */
-    static int frozenWanderer(Level level, BlockPos origin, Direction facing) {
+    static int frozenWanderer(LevelAccessor level, BlockPos origin, Direction facing) {
         StructureBuilder b = new StructureBuilder(level, origin, facing);
         for (int u = -6; u <= 9; u++) {
             for (int v = -4; v <= 5; v++) {
@@ -164,7 +164,7 @@ final class DebugStructures {
         for (int u = -14; u <= -6; u++) {
             int v = (int) Math.round(Math.sin(u * 0.6) * 1.2);
             BlockPos p = b.at(u, v, 1);
-            if (b.level.getBlockState(p).isAir()) b.put(p, Blocks.SNOW.defaultBlockState());
+            if (b.stateAt(p).isAir()) b.put(p, Blocks.SNOW.defaultBlockState());
         }
         frost(b, -6, 9, -4, 5);
         return b.placed;
@@ -173,7 +173,7 @@ final class DebugStructures {
     // ------------------------------------------------------------------ Soldatengrab (Sumpf)
 
     /** Flaches Grab im Moor: Schlammhuegel, halb versunkene Randbalken, Speer, Fundboeden mit dem Amulett darunter. */
-    static int soldierGrave(Level level, BlockPos origin, Direction facing) {
+    static int soldierGrave(LevelAccessor level, BlockPos origin, Direction facing) {
         StructureBuilder b = new StructureBuilder(level, origin, facing);
         for (int u = -3; u <= 8; u++) {
             for (int v = -4; v <= 4; v++) {
@@ -198,7 +198,7 @@ final class DebugStructures {
         b.put(0, 0, 4, Blocks.CHAIN);
         b.put(-1, 0, 1, Blocks.COBBLESTONE_WALL);
         b.put(-1, 0, 2, Blocks.MOSS_CARPET);
-        for (int u = -2; u <= 7; u++) for (int v = -3; v <= 3; v++) if (b.chance(18) && b.level.getBlockState(b.at(u, v, 1)).isAir()) b.put(u, v, 1, Blocks.MOSS_CARPET);
+        for (int u = -2; u <= 7; u++) for (int v = -3; v <= 3; v++) if (b.chance(18) && b.stateAt(b.at(u, v, 1)).isAir()) b.put(u, v, 1, Blocks.MOSS_CARPET);
         return b.placed;
     }
 
@@ -213,7 +213,7 @@ final class DebugStructures {
      *
      * @param desert Sandstein-Fassung fuer die Wueste, sonst Stein
      */
-    static int catacombChurch(Level level, BlockPos origin, Direction facing, boolean desert) {
+    static int catacombChurch(LevelAccessor level, BlockPos origin, Direction facing, boolean desert) {
         StructureBuilder b = new StructureBuilder(level, origin, facing);
         // Normal: roemische Ziegel; Wueste: Sandstein. Beide haben Mosaikboeden.
         BlockState wall = (desert ? Blocks.SANDSTONE : ModBlocks.ROMAN_BRICKS.get()).defaultBlockState();
@@ -257,7 +257,12 @@ final class DebugStructures {
             if (r < 78) return ModBlocks.ROMAN_BRICKS_WEATHERED.get().defaultBlockState();
             if (r < 92) return ModBlocks.ROMAN_BRICKS_CRACKED.get().defaultBlockState();
             return ModBlocks.ROMAN_BRICKS_CRUMBLING.get().defaultBlockState();
-        }, p -> ModBlocks.ROMAN_FLOOR.get().defaultBlockState());
+        }, p -> {  // Boden: viele Platten sind gerissen oder zerbrochen, sonst sieht er zu sauber aus
+            int r = b.random.nextInt(100);
+            if (r < 50) return ModBlocks.ROMAN_FLOOR.get().defaultBlockState();
+            if (r < 80) return ModBlocks.ROMAN_FLOOR_CRACKED.get().defaultBlockState();
+            return ModBlocks.ROMAN_FLOOR_BROKEN.get().defaultBlockState();
+        });
         mosaicPicture(b, ModBlocks.MOSAIC_LOAVES.get(), 5, 3, b.at(35, 0, -9));
         mosaicPicture(b, ModBlocks.MOSAIC_CHI_RHO.get(), 3, 3, b.at(24, 8, -9));
 
@@ -287,7 +292,6 @@ final class DebugStructures {
         // Lichtschacht: oben ein Gitter, damit nichts hineinfaellt. Es brennt kein Licht in der Katakombe: Oellampen stehen
         // ausgeschaltet am Boden des Gangs, der Spieler zuendet sie mit dem Feuerzeug an.
         for (int u : new int[] { 14, 27 }) b.put(u, 0, 0, Blocks.IRON_BARS);
-        for (int u : new int[] { 12, 17, 22 }) b.put(u, -1, -8, ModBlocks.OIL_LAMP.get());
         // Grabkammer: Grabplatten in den Bogennischen
         for (int v = 7; v <= 9; v++) {
             b.put(21, v, -8, smooth);
@@ -308,7 +312,6 @@ final class DebugStructures {
         b.put(b.at(36, 2, -8), amphora(b, ModBlocks.AMPHORA.get()));
         b.put(b.at(33, -3, -8), amphora(b, ModBlocks.AMPHORA_HALF.get()));
         b.put(b.at(34, 3, -8), amphora(b, ModBlocks.AMPHORA_BROKEN_NECK.get()));
-        for (int u : new int[] { 32, 37 }) for (int v : new int[] { -3, 3 }) b.put(u, v, -8, ModBlocks.OIL_LAMP.get());
         // Hinweise an der Oberflaeche
         b.put(2, -1, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
         b.put(-1, 2, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
@@ -343,7 +346,7 @@ final class DebugStructures {
      *
      * @param mud Lehmziegel und Suspicious Mud (Sumpf, Fluss) statt Sandstein und Suspicious Sand
      */
-    static int buriedHouse(Level level, BlockPos origin, Direction facing, boolean mud) {
+    static int buriedHouse(LevelAccessor level, BlockPos origin, Direction facing, boolean mud) {
         StructureBuilder b = new StructureBuilder(level, origin, facing);
         BlockState wall = (mud ? Blocks.MUD_BRICKS : Blocks.SANDSTONE).defaultBlockState();
         BlockState floor = Blocks.SPRUCE_PLANKS.defaultBlockState();

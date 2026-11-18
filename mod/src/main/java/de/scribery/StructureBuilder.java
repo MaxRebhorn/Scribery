@@ -7,7 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -21,13 +21,21 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  * mit Wasser gefuellt.
  */
 final class StructureBuilder {
-    final Level level;
+    /** Bei der Weltgenerierung: nur Bloecke in diesem Bereich (dem Chunk) werden wirklich gesetzt. Pro Thread. */
+    static final ThreadLocal<net.minecraft.world.level.levelgen.structure.BoundingBox> CLIP = new ThreadLocal<>();
+
+    static boolean inClip(BlockPos pos) {
+        var c = CLIP.get();
+        return c == null || c.isInside(pos);
+    }
+
+    final LevelAccessor level;
     final BlockPos origin;
     final Direction forward, right;
     final RandomSource random;
     int placed;
 
-    StructureBuilder(Level level, BlockPos origin, Direction facing) {
+    StructureBuilder(LevelAccessor level, BlockPos origin, Direction facing) {
         this.level = level;
         this.origin = origin;
         this.forward = facing;
@@ -52,11 +60,17 @@ final class StructureBuilder {
     }
 
     void put(BlockPos pos, BlockState state) {
+        placed++;
+        if (!inClip(pos)) return;  // bei der Weltgenerierung: ausserhalb des Chunks wird weder gelesen noch geschrieben
         if (state.hasProperty(BlockStateProperties.WATERLOGGED) && level.getFluidState(pos).is(FluidTags.WATER)) {
             state = state.setValue(BlockStateProperties.WATERLOGGED, true);
         }
         level.setBlock(pos, state, Block.UPDATE_CLIENTS);
-        placed++;
+    }
+
+    /** Block an der Stelle; ausserhalb des Bereichs der Weltgenerierung gilt Luft (dort darf nicht gelesen werden). */
+    BlockState stateAt(BlockPos pos) {
+        return inClip(pos) ? level.getBlockState(pos) : Blocks.AIR.defaultBlockState();
     }
 
     void put(int u, int v, int h, Block block) {
@@ -107,7 +121,7 @@ final class StructureBuilder {
         for (BlockPos p : shell) if (!floors.contains(p)) put(p, wall.apply(p));
         for (BlockPos p : floors) put(p, floor.apply(p));
         for (BlockPos p : cells) {
-            level.setBlock(p, level.getFluidState(p).is(FluidTags.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);
+            if (inClip(p)) level.setBlock(p, level.getFluidState(p).is(FluidTags.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);
             placed++;
         }
     }

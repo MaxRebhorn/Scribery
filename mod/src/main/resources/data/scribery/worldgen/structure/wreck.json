@@ -1,0 +1,8 @@
+{
+  "type": "scribery:scribery",
+  "kind": "wreck",
+  "biomes": "#scribery:has_structure/wreck",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

@@ -65,7 +65,8 @@ def oil_texture():
             out.putpixel((x, y), tuple(int(dark[i] + (light[i] - dark[i]) * t) for i in range(3)) + (255,))
     out.save(os.path.join(TEX, "oil_surface.png"))
     with open(os.path.join(TEX, "oil_surface.png.mcmeta"), "w", encoding="utf-8", newline="\n") as f:
-        f.write('{\n  "animation": {\n    "frametime": 3\n  }\n}\n')
+        # Sehr langsam: ein Bild alle drei Sekunden, mit weichem Uebergang
+        f.write('{\n  "animation": {\n    "frametime": 60,\n    "interpolate": true\n  }\n}\n')
     return True
 
 

@@ -1,0 +1,8 @@
+{
+  "type": "scribery:scribery",
+  "kind": "caravan",
+  "biomes": "#scribery:has_structure/caravan",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

@@ -1,0 +1,8 @@
+{
+  "type": "scribery:scribery",
+  "kind": "catacomb",
+  "biomes": "#scribery:has_structure/catacomb",
+  "step": "underground_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

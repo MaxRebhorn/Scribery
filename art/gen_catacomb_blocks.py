@@ -26,8 +26,8 @@ OUT = os.path.join(ROOT, "art", "out")
 N = 16
 rng = random.Random(20261120)
 
-BRICK = [(146, 82, 62), (156, 90, 68), (134, 76, 58), (164, 98, 74), (142, 80, 60)]
-MORTAR = (188, 158, 130)       # alter, kalkiger Moertel
+BRICK = [(116, 64, 50), (124, 70, 54), (106, 58, 46), (132, 76, 58), (112, 62, 48)]
+MORTAR = (150, 124, 102)       # alter, dunkler Moertel
 
 GOLD = [(224, 186, 108), (214, 174, 96), (232, 196, 120), (204, 164, 88)]
 CREAM = [(240, 222, 168), (232, 208, 146), (246, 230, 184)]
@@ -102,7 +102,7 @@ def bricks(kind="aged"):
     for y in range(N):
         for x in range(N):
             p = im.getpixel((x, y))[:3]
-            a = rng.uniform(0.08, 0.28) if kind != "weathered" else rng.uniform(0.0, 0.12)
+            a = rng.uniform(0.03, 0.14) if kind != "weathered" else rng.uniform(0.0, 0.06)
             im.putpixel((x, y), tuple(int(p[i] * (1 - a) + DUST[i] * a) for i in range(3)) + (255,))
     for _ in range(10 if kind != "weathered" else 4):
         x, y = rng.randrange(N), rng.randrange(N)
@@ -156,8 +156,29 @@ def tesserae_img(cells, missing=0.0):
 STONE = [(172, 158, 132), (162, 148, 124), (182, 168, 142), (154, 140, 118)]
 
 
-def floor_tiles():
-    """Normaler Steinboden im Stil des Mosaiks: warme Steinplatten (8 x 4 Pixel, versetzt) mit der dunklen Mosaikfuge."""
+DIRT = [(104, 80, 54), (92, 70, 48), (112, 88, 60)]
+
+
+def floor_tiles(kind="clean"):
+    """Steinboden im Stil des Mosaiks: warme Steinplatten (8 x 4 Pixel, versetzt) mit der dunklen Mosaikfuge.
+    Sorten: clean, cracked (Risse wie bei Vanilla-Steinziegeln), broken (Risse, ausgebrochene Platten, Erde in den Luecken)."""
+    im = _floor_base()
+    if kind in ("cracked", "broken"):
+        for _ in range(4 if kind == "cracked" else 5):
+            crack(im, rng.randrange(N), rng.randrange(N), rng.choice([-1, 1]), rng.randint(4, 7), True)
+    if kind == "broken":
+        for _ in range(3):  # ausgebrochene Stuecke: Erde schaut durch
+            x0, y0 = rng.randrange(N), rng.randrange(N)
+            for dx, dy in rng.sample([(0, 0), (1, 0), (2, 0), (0, 1), (1, 1), (3, 0), (2, 1), (1, -1)], rng.randint(4, 7)):
+                im.putpixel(((x0 + dx) % N, (y0 + dy) % N), jit(pick(DIRT), 5) + (255,))
+    for y in range(N):  # Rauschen und Staub: der Boden soll nicht sauber aussehen
+        for x in range(N):
+            if rng.random() < 0.3:
+                shade(im, x, y, rng.choice([0.9, 0.95, 1.05]))
+    return im
+
+
+def _floor_base():
     im = Image.new("RGBA", (N, N))
     for row in range(4):
         off = 0 if row % 2 == 0 else 4
@@ -329,7 +350,9 @@ TEXTURES = {
     "roman_bricks_crumbling": bricks("crumbling"),
     "mosaic_plain": m_plain(),
     "mosaic_damaged": m_damaged(),
-    "roman_floor": floor_tiles(),
+    "roman_floor": floor_tiles("clean"),
+    "roman_floor_cracked": floor_tiles("cracked"),
+    "roman_floor_broken": floor_tiles("broken"),
 }
 PARTS = {}
 for _name, (_c, _r, _cells) in PICTURES.items():
@@ -345,6 +368,8 @@ NAMES = {
     "roman_bricks_cracked": "Cracked Roman Bricks",
     "roman_bricks_crumbling": "Crumbling Roman Bricks",
     "roman_floor": "Roman Stone Floor",
+    "roman_floor_cracked": "Cracked Roman Stone Floor",
+    "roman_floor_broken": "Broken Roman Stone Floor",
     "mosaic_plain": "Mosaic Floor",
     "mosaic_damaged": "Damaged Mosaic Floor",
     "mosaic_loaves": "Loaves and Fishes Mosaic",
@@ -413,7 +438,7 @@ def main():
     # Bildbloecke eines frueheren Laufs mit mehr Teilen entfernen
     for name, im in TEXTURES.items():
         im.save(os.path.join(TEX, name + ".png"))
-    cubes = ["roman_bricks", "roman_bricks_weathered", "roman_bricks_cracked", "roman_bricks_crumbling", "roman_floor", "mosaic_plain", "mosaic_damaged"]
+    cubes = ["roman_bricks", "roman_bricks_weathered", "roman_bricks_cracked", "roman_bricks_crumbling", "roman_floor", "roman_floor_cracked", "roman_floor_broken", "mosaic_plain", "mosaic_damaged"]
     for c in cubes:
         w(os.path.join(A, "blockstates", c + ".json"), {"variants": {"": {"model": "scribery:block/" + c}}})
         w(os.path.join(A, "models", "block", c + ".json"),

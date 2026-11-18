@@ -144,6 +144,10 @@ public final class ModBlocks {
             () -> new Block(brickProps().strength(1.2F, 4.0F)));
     public static final DeferredBlock<Block> ROMAN_BRICKS_CRUMBLING = catacomb("roman_bricks_crumbling",
             () -> new Block(brickProps().strength(0.8F, 3.0F)));
+    public static final DeferredBlock<Block> ROMAN_FLOOR_CRACKED = catacomb("roman_floor_cracked",
+            () -> new Block(mosaicProps().strength(1.0F, 4.0F)));
+    public static final DeferredBlock<Block> ROMAN_FLOOR_BROKEN = catacomb("roman_floor_broken",
+            () -> new Block(mosaicProps().strength(0.8F, 3.0F)));
     public static final DeferredBlock<Block> MOSAIC_PLAIN = catacomb("mosaic_plain", () -> new Block(mosaicProps()));
     public static final DeferredBlock<Block> MOSAIC_DAMAGED = catacomb("mosaic_damaged", () -> new Block(mosaicProps().strength(0.8F, 3.0F)));
     /** Mosaikbilder aus 3 x 3 Bloecken (Eigenschaft part), siehe MosaicPictureBlock. */

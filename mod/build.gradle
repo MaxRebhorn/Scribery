@@ -25,6 +25,12 @@ neoForge {
             client()
             systemProperty 'scribery.selftest', 'true'
         }
+        // Testserver fuer die Weltgenerierung: gradlew runServer -Pwgtest=scribery:catacomb,scribery:grave (siehe WorldgenTest)
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'scribery.worldgentest', providers.gradleProperty('wgtest').getOrElse('')
+        }
         configureEach {
             gameDirectory = rootProject.file('run')
             logLevel = org.slf4j.event.Level.INFO

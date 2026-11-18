@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "scribery:roman_bricks",
+    "scribery:roman_bricks_weathered",
+    "scribery:roman_bricks_cracked",
+    "scribery:roman_bricks_crumbling",
+    "scribery:roman_brick_stairs",
+    "scribery:roman_brick_slab",
+    "scribery:roman_floor",
+    "scribery:roman_floor_cracked",
+    "scribery:roman_floor_broken",
+    "scribery:mosaic_plain",
+    "scribery:mosaic_damaged",
+    "scribery:mosaic_loaves",
+    "scribery:mosaic_chi_rho"
+  ]
+}

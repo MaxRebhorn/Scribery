@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 3,
+    "targets": [
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:ice"
+        },
+        "state": {
+          "Name": "scribery:frozen_fragment_block"
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:packed_ice"
+        },
+        "state": {
+          "Name": "scribery:frozen_fragment_block"
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:blue_ice"
+        },
+        "state": {
+          "Name": "scribery:frozen_fragment_block"
+        }
+      }
+    ]
+  }
+}

@@ -8,7 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 public final class DebugWreck {
     private static final int HALF = 10;   // halbe Rumpflaenge
 
-    private final Level level;
+    private final LevelAccessor level;
     private final BlockPos origin;        // Kielhoehe in der Mitte des Rumpfes
     private final boolean alongX;
     private final boolean side;           // auf der Seite liegend
@@ -42,7 +42,7 @@ public final class DebugWreck {
     /** Ergebnis: gesetzte Bloecke insgesamt und davon Amphoren (alle Varianten). */
     public record Result(int blocks, int amphorae) {}
 
-    private DebugWreck(Level level, BlockPos origin, Direction facing, int load, boolean onSide) {
+    private DebugWreck(LevelAccessor level, BlockPos origin, Direction facing, int load, boolean onSide) {
         this.level = level;
         this.origin = origin;
         this.alongX = facing.getAxis() == Direction.Axis.X;
@@ -60,7 +60,7 @@ public final class DebugWreck {
      *               dazu ein grosser Haufen am Heck)
      * @param onSide {@code true}: das Schiff liegt auf der Seite, sonst aufrecht
      */
-    public static Result build(Level level, BlockPos origin, Direction facing, int load, boolean onSide) {
+    public static Result build(LevelAccessor level, BlockPos origin, Direction facing, int load, boolean onSide) {
         DebugWreck w = new DebugWreck(level, origin, facing, load, onSide);
         w.dune();
         w.hull();
@@ -118,12 +118,13 @@ public final class DebugWreck {
     }
 
     private void put(BlockPos pos, BlockState state) {
+        placed++;
+        if (!StructureBuilder.inClip(pos)) return;  // Weltgenerierung: ausserhalb des Chunks nicht lesen oder schreiben
         // Unter Wasser mit Wasser fuellen, wo der Block es kann (Zaeune, Platten)
         if (state.hasProperty(BlockStateProperties.WATERLOGGED) && level.getFluidState(pos).is(FluidTags.WATER)) {
             state = state.setValue(BlockStateProperties.WATERLOGGED, true);
         }
         level.setBlock(pos, state, Block.UPDATE_CLIENTS);
-        placed++;
     }
 
     /** Stamm in Richtung des Schiffs: beim gekippten Schiff werden senkrechte Staemme waagerecht und umgekehrt. */
@@ -240,7 +241,7 @@ public final class DebugWreck {
     /** Unter einer Ladungsstelle darf kein Loch sein (fehlendes Brett, Luft, Wasser): dort kommt Sand als Unterlage hin. */
     private void ensureSupport(BlockPos pos) {
         BlockPos below = pos.below();
-        if (level.getBlockState(below).canBeReplaced()) put(below, Blocks.SAND.defaultBlockState());
+        if (!StructureBuilder.inClip(below) || level.getBlockState(below).canBeReplaced()) put(below, Blocks.SAND.defaultBlockState());
     }
 
     /**

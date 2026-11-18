@@ -1,0 +1,8 @@
+{
+  "type": "scribery:scribery",
+  "kind": "wanderer",
+  "biomes": "#scribery:has_structure/wanderer",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

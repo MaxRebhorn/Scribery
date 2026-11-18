@@ -15,6 +15,7 @@ public final class Scribery {
         ModItems.register(modBus);
         ModLoot.register(modBus);
         ModMenus.register(modBus);
+        ModStructures.register(modBus);
         modBus.addListener(ModNetwork::register);
     }
 }

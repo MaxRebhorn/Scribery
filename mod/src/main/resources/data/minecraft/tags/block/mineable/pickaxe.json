@@ -20,6 +20,8 @@
     "scribery:oil_lamp",
     "scribery:amphora_storage",
     "scribery:roman_bricks_cracked",
-    "scribery:roman_bricks_crumbling"
+    "scribery:roman_bricks_crumbling",
+    "scribery:roman_floor_cracked",
+    "scribery:roman_floor_broken"
   ]
 }
