@@ -267,7 +267,7 @@ final class DebugStructures {
                     if (b.chance(12)) {
                         b.put(u, 2 * side, h, Blocks.AIR);
                         b.put(u + 1, 2 * side, h, Blocks.AIR);
-                        b.put(u, 3 * side, h, Blocks.CANDLE.defaultBlockState().setValue(CandleBlock.LIT, true).setValue(CandleBlock.CANDLES, 1 + b.random.nextInt(2)));
+                        b.put(u, 3 * side, h, ModBlocks.OIL_LAMP.get());   // ausgeschaltet: Licht bringt der Spieler mit
                         b.put(b.at(u + 1, 3 * side, h), amphora(b, b.chance(50) ? ModBlocks.AMPHORA_HALF.get() : ModBlocks.AMPHORA_SHARDS.get()));
                     } else {
                         b.put(u, 2 * side, h, seal);
@@ -276,22 +276,23 @@ final class DebugStructures {
                 }
             }
         }
-        // Lichtschacht: oben ein Gitter, damit nichts hineinfaellt; Lampen im Gang
+        // Lichtschacht: oben ein Gitter, damit nichts hineinfaellt. Es brennt kein Licht in der Katakombe: Oellampen stehen
+        // ausgeschaltet am Boden des Gangs, der Spieler zuendet sie mit dem Feuerzeug an.
         for (int u : new int[] { 14, 27 }) b.put(u, 0, 0, Blocks.IRON_BARS);
-        for (int u : new int[] { 12, 17, 22 }) b.put(u, 0, -6, Blocks.LANTERN.defaultBlockState().setValue(LanternBlock.HANGING, true));
+        for (int u : new int[] { 12, 17, 22 }) b.put(u, -1, -8, ModBlocks.OIL_LAMP.get());
         // Grabkammer: Grabplatten in den Bogennischen
         for (int v = 7; v <= 9; v++) {
             b.put(21, v, -8, smooth);
             b.put(28, v, -8, smooth);
         }
         for (int u = 23; u <= 25; u++) b.put(u, 11, -8, smooth);
-        b.put(24, 11, -7, Blocks.CANDLE.defaultBlockState().setValue(CandleBlock.LIT, true));
+        b.put(24, 11, -7, ModBlocks.OIL_LAMP.get());
         // Taufraum: rechteckiges Becken, trocken; an der Westseite eine Stufe
         for (int v = -9; v <= -8; v++) b.put(19, v, -10, smooth);
         b.put(20, -8, -11, Blocks.COARSE_DIRT);
         // Gedenkraum: Maertyrergrab in der Bogennische, davor der Altartisch aus glattem Stein (zwei Beine, Platten), Amphoren
         for (int v = -1; v <= 1; v++) b.put(40, v, -8, smooth);
-        b.put(40, 0, -7, Blocks.CANDLE.defaultBlockState().setValue(CandleBlock.LIT, true).setValue(CandleBlock.CANDLES, 3));
+        b.put(40, 0, -7, ModBlocks.OIL_LAMP.get());
         b.put(38, -1, -8, smooth);
         b.put(38, 1, -8, smooth);
         for (int v = -1; v <= 1; v++) b.put(38, v, -7, slab);
@@ -299,7 +300,7 @@ final class DebugStructures {
         b.put(b.at(36, 2, -8), amphora(b, ModBlocks.AMPHORA.get()));
         b.put(b.at(33, -3, -8), amphora(b, ModBlocks.AMPHORA_HALF.get()));
         b.put(b.at(34, 3, -8), amphora(b, ModBlocks.AMPHORA_BROKEN_NECK.get()));
-        for (int u : new int[] { 33, 37 }) for (int v : new int[] { -3, 3 }) b.put(u, v, -4, Blocks.LANTERN.defaultBlockState().setValue(LanternBlock.HANGING, true));
+        for (int u : new int[] { 32, 37 }) for (int v : new int[] { -3, 3 }) b.put(u, v, -8, ModBlocks.OIL_LAMP.get());
         // Hinweise an der Oberflaeche
         b.put(2, -1, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
         b.put(-1, 2, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));

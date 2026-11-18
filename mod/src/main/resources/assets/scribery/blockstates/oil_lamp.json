@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "scribery:block/oil_lamp"
+    },
+    "lit=true": {
+      "model": "scribery:block/oil_lamp_lit"
+    }
+  }
+}

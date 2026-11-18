@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "scribery:amphora_shard"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "S S",
+    "SSS"
+  ],
+  "result": {
+    "id": "scribery:amphora_storage",
+    "count": 1
+  }
+}

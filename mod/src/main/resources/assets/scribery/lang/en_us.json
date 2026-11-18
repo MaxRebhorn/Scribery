@@ -65,5 +65,8 @@
   "block.scribery.mosaic_damaged": "Damaged Mosaic Floor",
   "block.scribery.mosaic_chi_rho": "Chi-Rho Mosaic",
   "block.scribery.mosaic_loaves": "Loaves and Fishes Mosaic",
-  "block.scribery.roman_floor": "Roman Stone Floor"
+  "block.scribery.roman_floor": "Roman Stone Floor",
+  "block.scribery.oil_lamp": "Oil Lamp",
+  "block.scribery.amphora_storage": "Storage Amphora",
+  "container.scribery.amphora_storage": "Storage Amphora"
 }

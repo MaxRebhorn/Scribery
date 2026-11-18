@@ -22,6 +22,10 @@ public final class ModBlockEntities {
             TYPES.register("translator_desk", () -> BlockEntityType.Builder
                     .of(DeskBlockEntity::new, ModBlocks.TRANSLATOR_DESK.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AmphoraStorageBlockEntity>> AMPHORA_STORAGE =
+            TYPES.register("amphora_storage", () -> BlockEntityType.Builder
+                    .of(AmphoraStorageBlockEntity::new, ModBlocks.AMPHORA_STORAGE.get()).build(null));
+
     public static void register(IEventBus bus) {
         TYPES.register(bus);
     }

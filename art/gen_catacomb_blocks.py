@@ -50,25 +50,27 @@ def pick(lst):
 
 
 def bricks(weathered):
-    """Duenne Ziegel: acht Lagen zu je einem Pixel Ziegel und einem Pixel Moertel, kurze Stossfugen."""
+    """Duenne Ziegel: fuenf Lagen zu je zwei Pixel Ziegel und einem Pixel Moertel (die erste Lage drei), kurze Stossfugen."""
     im = Image.new("RGBA", (N, N))
-    for row in range(8):
-        y = row * 2
+    for course in range(5):
+        ys = [course * 3, course * 3 + 1] + ([15] if course == 0 else [])
+        my = course * 3 + 2
         x = rng.randrange(6)
         while x < N + 8:
-            ln = rng.choice([5, 6, 7, 8])
+            ln = rng.choice([6, 7, 8, 9])
             col = rng.choice(BRICK)
             if weathered:
                 col = tuple(int(v * rng.uniform(0.7, 0.9)) for v in col)
-            for dx in range(ln - 1):
-                im.putpixel(((x + dx) % N, y), jit(col, 6) + (255,))
-            im.putpixel(((x + ln - 1) % N, y), jit(MORTAR, 5) + (255,))
+            for y in ys:
+                for dx in range(ln - 1):
+                    im.putpixel(((x + dx) % N, y), jit(col, 6) + (255,))
+                im.putpixel(((x + ln - 1) % N, y), jit(MORTAR, 5) + (255,))
             x += ln
         for xx in range(N):
             c = jit(MORTAR, 5)
             if weathered and rng.random() < 0.25:
                 c = tuple(int(v * 0.8) for v in c)
-            im.putpixel((xx, y + 1), c + (255,))
+            im.putpixel((xx, my), c + (255,))
     if weathered:
         for _ in range(22):  # Schmutz und Ausbluehungen
             x, y = rng.randrange(N), rng.randrange(N)
@@ -247,7 +249,7 @@ def chi_rho_picture():
         for t in (0, 1, 2):
             for x, y in ((10 + k + t, 11 + k), (12 - k + t, 11 + k)):
                 if ((x - 11.5) ** 2 + (y - 11.5) ** 2) ** .5 < 8.4:
-                    setc(g, x, y, pick(RED))
+                    setc(g, x, y, pick(BROWN))  # Chi und Rho in derselben Farbe, sonst wirkt es wie ein durchgestrichenes Rho
     for y in range(5, 19):  # Rho: Stab und Schlaufe
         for x in (11, 12):
             g[y][x] = pick(BROWN)

@@ -129,6 +129,14 @@ public final class ModBlocks {
             () -> new net.minecraft.world.level.block.SlabBlock(brickProps()));
     public static final DeferredBlock<Block> ROMAN_BRICKS_WEATHERED = catacomb("roman_bricks_weathered",
             () -> new Block(brickProps().strength(1.4F, 5.0F)));
+    /** Oellampe: steht ausgeschaltet in den Katakomben, mit Feuerzeug anzuzuenden. */
+    public static final DeferredBlock<Block> OIL_LAMP = catacomb("oil_lamp",
+            () -> new OilLampBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_ORANGE).strength(0.4F)
+                    .sound(SoundType.DECORATED_POT).noOcclusion().lightLevel(s -> s.getValue(OilLampBlock.LIT) ? 12 : 0)));
+    /** Lager-Amphore mit neun Plaetzen. */
+    public static final DeferredBlock<Block> AMPHORA_STORAGE = catacomb("amphora_storage",
+            () -> new AmphoraStorageBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_RED).strength(0.8F)
+                    .sound(SoundType.DECORATED_POT).noOcclusion()));
     /** Normaler Steinboden im Stil des Mosaiks: der Boden um die Mosaikbilder. */
     public static final DeferredBlock<Block> ROMAN_FLOOR = catacomb("roman_floor", () -> new Block(mosaicProps()));
     public static final DeferredBlock<Block> MOSAIC_PLAIN = catacomb("mosaic_plain", () -> new Block(mosaicProps()));
