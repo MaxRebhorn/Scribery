@@ -82,8 +82,11 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 - Gespeicherter Fortschritt je Spieler (übersetzte Manuskripte); heute geht eine halb fertige Übersetzung beim Schließen verloren.
 
 ### Manuscript Archive
-- Das Puzzle zum Zusammensetzen der Fragmente in die richtige Reihenfolge.
-- Zu klären: Wie funktioniert das Verschieben im UI? Was gilt als „richtig“?
+- Screen mit drei Spalten: links die Manuskripte (griechischer Urtext) in der Reihenfolge des Evangeliums zusammenfügen, in der Mitte die lateinische Umschrift (Printed Sheet), rechts die englische Interlinear-Übersetzung (Translated Sheet). Am Ende steht eine durchgehende Interlinear-Ausgabe. Entwurf: `docs/DESIGN-ARCHIVE.md`.
+- Abhängig von festen Manuskript-IDs (`data-wiring`) und der gespeicherten Sammlung pro Spieler (`collection-save`); geplanter Branch `archive-screen`.
+- Entschieden: kein Puzzle, Manuskripte rasten automatisch ein; das Evangelium erscheint als ein großer Text, Lücken zeigen, was fehlt und wie weit man ist.
+- Entschieden: Lücken als grauer Platzhalter in der Länge des fehlenden Textes; die drei Spalten scrollen gekoppelt.
+- Zu klären: Füllreihenfolge der Spalten und ob Heften noch ein eigener Schritt bleibt (siehe Entwurf).
 
 ### Restaurierungsaufträge, Achievements
 - Villager bieten beschädigte Manuskripte an (Buchstabe oder Endung rekonstruieren), Belohnung in Emeralds. Optional.
@@ -106,7 +109,7 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 
 ## Offene Designentscheidungen
 
-- Wie der Archiv-Puzzle im UI funktioniert.
+- Wie der Archiv-Screen mit den drei Spalten im UI funktioniert (drei offene Fragen in `docs/DESIGN-ARCHIVE.md`).
 - Wie genau Übersetzen direkt vom Manuskript (ohne Druck) belohnt oder bewertet wird.
 - Ob ein eigener Villager-Beruf entsteht.
 - Wo und wie Fragmente gefunden werden (Spawn-Arten, Strukturen, Amphoren und Scherben).
