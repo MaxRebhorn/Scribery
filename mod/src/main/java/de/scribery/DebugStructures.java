@@ -247,19 +247,17 @@ final class DebugStructures {
         }
         // Lichtschaechte von der Decke des Hauptgangs bis knapp unter die Oberflaeche
         for (int u : new int[] { 14, 27 }) b.cells(cells, u, u, 0, 0, -5, -1);
-        // Mosaikboeden: Gang Schachbrett, Raeume Raute, Gedenkraum mit Rosette in der Mitte; einzelne Steinchen fehlen
-        Set<BlockPos> memorial = new HashSet<>(), chambers = new HashSet<>();
-        b.cells(memorial, 31, 39, -4, 4, -8, -4);
-        b.cells(chambers, 17, 22, -10, -6, -8, -5);
-        b.cells(chambers, 22, 27, 6, 10, -8, -5);
-        BlockPos rosette = b.at(35, 0, -9);
-        b.carve(cells, wall, p -> {
-            if (b.chance(10)) return ModBlocks.MOSAIC_DAMAGED.get().defaultBlockState();
-            if (p.equals(rosette)) return ModBlocks.MOSAIC_ROSETTE.get().defaultBlockState();
-            BlockPos in = p.above();
-            if (memorial.contains(in) || chambers.contains(in)) return ModBlocks.MOSAIC_LOZENGE.get().defaultBlockState();
-            return ModBlocks.MOSAIC_CHECKER.get().defaultBlockState();
-        });
+        // Der Boden ist glatter Stein; ein Mosaik liegt nur an zwei Stellen: das Fischbild im Gedenkraum (mit einem Rand aus
+        // schlichten Steinchen, teils beschaedigt) und das Chi-Rho in der Grabkammer.
+        b.carve(cells, wall, smooth.defaultBlockState());
+        for (int u = 33; u <= 37; u++) {
+            for (int v = -2; v <= 2; v++) {
+                if (u >= 34 && u <= 36 && v >= -1 && v <= 1) continue;
+                b.put(u, v, -9, (b.chance(15) ? ModBlocks.MOSAIC_DAMAGED : ModBlocks.MOSAIC_PLAIN).get());
+            }
+        }
+        mosaicPicture(b, ModBlocks.MOSAIC_FISH.get(), 34, -1);
+        mosaicPicture(b, ModBlocks.MOSAIC_CHI_RHO.get(), 23, 7);
 
         for (int k = 0; k <= 9; k++) {                                                   // Stufen
             BlockState stair = stairBlock.defaultBlockState().setValue(StairBlock.FACING, facing.getOpposite());
@@ -313,6 +311,27 @@ final class DebugStructures {
         b.put(-1, 2, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
         b.put(4, 3, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
         return b.placed;
+    }
+
+    /**
+     * Legt ein Mosaikbild aus 3 x 3 Bloecken auf den Boden (Hoehe -9), links oben bei (u0, v0) im Bauplan. Die Teile werden
+     * nach Weltkoordinaten vergeben, damit das Bild unabhaengig von der Blickrichtung des Bauwerks zusammenpasst.
+     */
+    private static void mosaicPicture(StructureBuilder b, Block block, int u0, int v0) {
+        int minX = Integer.MAX_VALUE, minZ = Integer.MAX_VALUE;
+        for (int du = 0; du < 3; du++) {
+            for (int dv = 0; dv < 3; dv++) {
+                BlockPos p = b.at(u0 + du, v0 + dv, -9);
+                minX = Math.min(minX, p.getX());
+                minZ = Math.min(minZ, p.getZ());
+            }
+        }
+        for (int du = 0; du < 3; du++) {
+            for (int dv = 0; dv < 3; dv++) {
+                BlockPos p = b.at(u0 + du, v0 + dv, -9);
+                b.put(p, MosaicPictureBlock.stateFor(block, p.getX(), minX, p.getZ(), minZ));
+            }
+        }
     }
 
     // ------------------------------------------------------------------ Verschuettetes Haus (kurz unter der Erde)

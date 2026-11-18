@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "scribery:block/mosaic_chi_rho_0",
+    "bottom": "scribery:block/mosaic_plain",
+    "side": "scribery:block/mosaic_plain"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "part=0": {
+      "model": "scribery:block/mosaic_fish_0"
+    },
+    "part=1": {
+      "model": "scribery:block/mosaic_fish_1"
+    },
+    "part=2": {
+      "model": "scribery:block/mosaic_fish_2"
+    },
+    "part=3": {
+      "model": "scribery:block/mosaic_fish_3"
+    },
+    "part=4": {
+      "model": "scribery:block/mosaic_fish_4"
+    },
+    "part=5": {
+      "model": "scribery:block/mosaic_fish_5"
+    },
+    "part=6": {
+      "model": "scribery:block/mosaic_fish_6"
+    },
+    "part=7": {
+      "model": "scribery:block/mosaic_fish_7"
+    },
+    "part=8": {
+      "model": "scribery:block/mosaic_fish_8"
+    }
+  }
+}

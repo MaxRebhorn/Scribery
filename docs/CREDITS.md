@@ -29,7 +29,8 @@ Stand: 18.11.2026. Ich bin kein Anwalt; das hier ist die Auswertung der Lizenzte
 - **Frühere Lizenzangaben von STEPBible.** Ältere Seiten (Confluence-Wiki, Spiegel-Repos) nennen CC BY-NC bzw. CC BY-NC-ND. Das Repo und der Dateikopf, die ich vor mir hatte, sagen CC BY 4.0, und die gelten. Wer sicher gehen will (vor allem bei kommerzieller Nutzung): kurz bei STEPBible@gmail.com bestätigen lassen, die Adresse steht in der README.
 - **Griechische Ausgaben darunter.** TAGNT enthält laut Beschreibung „all the words from NA27/28, TR, SBL, TH, Byz, WH, Treg“. Die Rechte an NA28 selbst liegen bei der Deutschen Bibelgesellschaft. Tyndale House bietet die Daten trotzdem unter CC BY 4.0 an, und wir nutzen Wörter und Formen, nicht den Satz der Ausgabe. Ein Restzweifel bleibt; zu den Ausgaben, die selbst CC BY sind (SBLGNT, Tyndale House GNT), siehe die jeweilige Seite.
 - **Spanische Glossen** (Marvel Bible Project) stehen in der Datei, wir benutzen sie nicht.
-- Wörterbuch-Bücher im Spiel (KI-geschrieben): Wenn sie auf Thayer oder Abbott-Smith (gemeinfrei) beruhen, gilt das dort. Noch nicht geprüft, weil noch nicht geschrieben.
+- **Complete Greek Lexicon** (`complete_greek_lexicon.md`, erzeugt von `tools/gen_lexicon.py`): Grundformen, Umschrift, Wortart und kurze Bedeutungen stammen aus **STEPBible-Data, Datei TBESG** (Translators Brief lexicon of Extended Strongs for Greek, STEPBible.org, Tyndale House, **CC BY 4.0**, https://STEPBible.github.io/STEPBible-Data). Die Häufigkeiten zählt das Skript selbst aus den Johannes-Daten. Die Namensnennung gehört in den Abspann des Spiels.
+- Die übrigen Wörterbuch-Bücher (noch nicht geschrieben): Wenn sie auf Thayer oder Abbott-Smith (gemeinfrei) beruhen, gilt das dort.
 
 ## Textgrundlage Johannes
 

@@ -13,9 +13,8 @@
     "scribery:roman_brick_slab",
     "scribery:roman_bricks_weathered",
     "scribery:mosaic_plain",
-    "scribery:mosaic_checker",
-    "scribery:mosaic_lozenge",
-    "scribery:mosaic_rosette",
-    "scribery:mosaic_damaged"
+    "scribery:mosaic_damaged",
+    "scribery:mosaic_fish",
+    "scribery:mosaic_chi_rho"
   ]
 }

@@ -354,6 +354,9 @@ final class SelfTest {
         shot(mc, "30-book-link-alpha");
         then(0, () -> ((BookScreen) mc.screen).debugFollow("book:greek_grammar_book#contents"));
         shot(mc, "31-book-other-book");
+        then(0, () -> mc.setScreen(new BookScreen("complete_greek_lexicon", BookText.read("complete_greek_lexicon"))));
+        then(0, () -> ((BookScreen) mc.screen).debugFollow("#kappa"));
+        shot(mc, "32-lexicon");
         then(0, () -> {
             BookScreen b = (BookScreen) mc.screen;
             LOG.info("[selftest] Buch nach Links: {} Seite {} Verlauf {}", b.debugBook(), b.debugPage(), b.debugHistory());

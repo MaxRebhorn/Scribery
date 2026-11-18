@@ -62,8 +62,7 @@
   "block.scribery.roman_brick_slab": "Roman Brick Slab",
   "block.scribery.roman_bricks_weathered": "Weathered Roman Bricks",
   "block.scribery.mosaic_plain": "Mosaic Floor",
-  "block.scribery.mosaic_checker": "Checkered Mosaic Floor",
-  "block.scribery.mosaic_lozenge": "Lozenge Mosaic Floor",
-  "block.scribery.mosaic_rosette": "Rosette Mosaic Floor",
-  "block.scribery.mosaic_damaged": "Damaged Mosaic Floor"
+  "block.scribery.mosaic_damaged": "Damaged Mosaic Floor",
+  "block.scribery.mosaic_fish": "Fish Mosaic",
+  "block.scribery.mosaic_chi_rho": "Chi-Rho Mosaic"
 }
