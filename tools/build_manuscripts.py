@@ -1,6 +1,7 @@
 """Baut aus den Rohdaten (tools/data/john-*.tsv) die Manuskripte fuer das Spiel.
 
-Aufruf:  python tools/build_manuscripts.py
+Aufruf:  python tools/build_manuscripts.py          (Joh 1,1-18, P1-P21)
+         python tools/build_manuscripts.py --rest   (Joh 1,19-21,25, P22 ff., Ausgabe tools/data/manuscripts.john-rest.json)
 Ausgabe: tools/data/manuscripts.john1.json  (Format wie tools/examples/fragments.example.json, mehr Felder)
 
 Schritte
@@ -26,6 +27,9 @@ sys.stdout.reconfigure(encoding="utf-8")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, "tools/data/john-1-1-18.tsv")
 OUT = os.path.join(ROOT, "tools/data/manuscripts.john1.json")
+RAW_REST = os.path.join(ROOT, "tools/data/john-1-19-21-25.tsv")
+OUT_REST = os.path.join(ROOT, "tools/data/manuscripts.john-rest.json")
+FROZEN_COUNT = 21        # P1-P21 (Joh 1,1-18) sind eingefroren und werden nicht neu berechnet
 SEED = 20261116
 MIN_WORDS, MAX_WORDS = 5, 16
 WRONG_PER_WORD = 3
@@ -43,12 +47,13 @@ def read_raw(path):
         if line.startswith("#") or not line.strip():
             continue
         verse, greek, strongs, gloss, morph = line.rstrip("\n").split("\t")
+        chapter, verse = (verse.split(":") if ":" in verse else ("1", verse))
         punct = ""
         while greek and greek[-1] in PUNCT_END + PUNCT_CLAUSE + "’”":
             punct = greek[-1] + punct
             greek = greek[:-1]
-        words.append({"verse": int(verse), "greek": greek, "punct": punct, "strongs": strongs.rstrip("GH"),
-                      "gloss_raw": gloss, "morph": morph})
+        words.append({"chapter": int(chapter), "verse": int(verse), "greek": greek, "punct": punct, "strongs": strongs.rstrip("GH"),
+                      "gloss_raw": gloss, "morph": morph.split(" + ")[0], "morph_full": morph})
     return words
 
 
@@ -67,7 +72,10 @@ def clean_gloss(raw, morph):
     Kanonisch ist die Form ohne ergaenzte Klammerwoerter ("[the] name" -> "name"); die Form mit Klammerwoertern
     ("the name") wird zusaetzlich akzeptiert, wenn die Klammer nur Artikel oder Pronomen enthaelt.
     """
-    raw_g = raw.replace("’", "").replace("”", "").strip(" .,;·")
+    raw_g = raw.replace("’", "").replace("”", "")
+    raw_g = re.sub(r"\{[^}]*\}", "", raw_g)                  # Versnummern anderer Zaehlung, z. B. "{8.1} and"
+    raw_g = re.sub(r"[?!:;·—]", " ", raw_g)                   # Satzzeichen gehoeren nicht zur Antwort ("are?", "it is —")
+    raw_g = re.sub(r"\s+", " ", raw_g.replace(".", " ")).strip(" ,")
     g = raw_g.replace("<", "").replace(">", "")
     full = re.sub(r"\[([^\]]*)\]", lambda m: m.group(1), g)            # Klammerinhalt mit
     short = re.sub(r"\s*\[[^\]]*\]", "", g)                            # Klammerinhalt ohne
@@ -176,9 +184,10 @@ def word_score(w, freq):
 def chunk(words):
     """Teilt in Manuskripte: an Satzenden und, wenn es zu lang wuerde, an Kommas."""
     units, cur = [], []
-    for w in words:
+    for k, w in enumerate(words):
         cur.append(w)
-        if w["punct"]:
+        nxt = words[k + 1] if k + 1 < len(words) else None
+        if w["punct"] or (nxt and (nxt["chapter"] != w["chapter"] or nxt.get("seg") != w.get("seg"))):
             units.append(cur)
             cur = []
     if cur:
@@ -186,7 +195,7 @@ def chunk(words):
     out, cur = [], []
     for u in units:
         size = sum(len(x) for x in [cur, u])
-        if cur and size > MAX_WORDS:
+        if cur and (size > MAX_WORDS or cur[-1]["chapter"] != u[0]["chapter"] or cur[-1].get("seg") != u[0].get("seg")):
             out.append(cur)
             cur = []
         cur = cur + u
@@ -195,7 +204,7 @@ def chunk(words):
             out.append(cur)
             cur = []
     if cur:
-        if out and len(cur) < MIN_WORDS:
+        if out and len(cur) < MIN_WORDS and out[-1][-1]["chapter"] == cur[0]["chapter"] and out[-1][-1].get("seg") == cur[0].get("seg"):
             out[-1] = out[-1] + cur
         else:
             out.append(cur)
@@ -207,18 +216,18 @@ def refs(chunks):
     per_verse = Counter()
     for c in chunks:
         if c[0]["verse"] == c[-1]["verse"]:
-            per_verse[c[0]["verse"]] += 1
+            per_verse[(c[0]["chapter"], c[0]["verse"])] += 1
     seen, out = Counter(), []
     for c in chunks:
-        a, b = c[0]["verse"], c[-1]["verse"]
+        ch, a, b = c[0]["chapter"], c[0]["verse"], c[-1]["verse"]
         if a == b:
             letter = ""
-            if per_verse[a] > 1:
-                letter = "abcdefghij"[seen[a]]
-                seen[a] += 1
-            out.append(f"John 1:{a}{letter}")
+            if per_verse[(ch, a)] > 1:
+                letter = "abcdefghijklmnopqrstuvwxyz"[seen[(ch, a)]]
+                seen[(ch, a)] += 1
+            out.append(f"John {ch}:{a}{letter}")
         else:
-            out.append(f"John 1:{a}-{b}")
+            out.append(f"John {ch}:{a}-{b}")
     return out
 
 
@@ -233,7 +242,14 @@ FALLBACK = {
     "PRT": ["never", "no", "also", "even"], "K": ["whoever", "all who", "those who"],
     "N-P": ["Peter", "David", "Abraham", "Israel"], "D": ["these", "those", "such a one", "they"],
     "ADV": ["never", "once", "already", "still", "now"],
-    "P": ["me", "you", "them", "us"], "R": ["which", "whom", "whose"],
+    "P": ["me", "you", "them", "us"], "R": ["who", "which", "whom", "whose", "what", "that", "where", "when", "why", "how", "while"],  # Relativpronomen sind einander so aehnlich, dass die Auswahl der Klasse schnell leer ist
+    # Weitere Klassen (ab Joh 1,19): bewusst andere Woerter derselben Wortart, damit nie eine richtige Antwort dabei ist
+    "I": ["how", "where", "when", "whence", "how many"],
+    "COND": ["unless", "although", "since", "when", "until", "because"],
+    "INJ": ["alas", "woe", "hail", "hosanna", "farewell"],
+    "X": ["nobody", "every", "none", "all", "no one", "each"],
+    "C": ["themselves", "each", "together", "all"],
+    "F": ["himself", "herself", "themselves", "myself", "yourselves", "ourselves", "itself"],
 }
 
 
@@ -285,9 +301,24 @@ def pool_shape(gloss, pool, cls):
 # ---------------------------------------------------------------------------------------------- Hauptprogramm
 
 
-def main():
-    rng = random.Random(SEED)
+def main(rest=False):
+    """Normal: Joh 1,1-18 (Pilot, P1-P21). Mit --rest: Joh 1,19-21,25 als P22 ff.
+
+    Im Rest-Modus bleibt P1-P21 unberuehrt (eingefroren, steht in manuscripts.john1.json). Haeufigkeiten und der Pool
+    falscher Antworten kommen aus dem ganzen bisherigen Text, die Stufen (leicht/mittel/schwer) aus den neuen Manuskripten.
+    """
+    rng = random.Random(SEED + (1 if rest else 0))
     words = read_raw(RAW)
+    chunk_words = words
+    if rest:
+        assert len(chunk(words)) == FROZEN_COUNT, "Pilot hat sich veraendert: P1-P21 waeren nicht mehr dieselben"
+        chunk_words = read_raw(RAW_REST)
+        # Seiten (tools/structure_john.py): kein Manuskript ueber eine Seitengrenze, damit Manuskript < Seite < Geschichte gilt
+        import structure_john
+        page = structure_john.verse_to_page()
+        for w in chunk_words:
+            w["seg"] = page[(w["chapter"], w["verse"])]
+        words = words + chunk_words
     freq = Counter(w["strongs"] for w in words)
 
     for w in words:
@@ -309,7 +340,7 @@ def main():
             pool[cls].append(w["gloss"])
             _shape_of[(cls, w["gloss"])] = w["morph"].split("-")[1] if "-" in w["morph"] else ""
 
-    chunks = chunk(words)
+    chunks = chunk(chunk_words)
     names = refs(chunks)
     scores = [sum(word_score(w, freq) for w in c) / len(c) + 0.004 * len(c) for c in chunks]
     order = sorted(scores)
@@ -320,18 +351,19 @@ def main():
         return 1 if rank < third else 2 if rank < 2 * third else 3
 
     fragments, problems = [], []
-    for n, (c, ref, score) in enumerate(zip(chunks, names, scores), start=1):
+    first_id = FROZEN_COUNT + 1 if rest else 1
+    for n, (c, ref, score) in enumerate(zip(chunks, names, scores), start=first_id):
         entries = []
         for i, w in enumerate(c):
             wrong = wrong_answers(w, w["allowed"], pool, rng, by_lemma[w["strongs"]])
             if len(wrong) < WRONG_PER_WORD:
                 problems.append(f"{ref} Wort {i} {w['greek']}: nur {len(wrong)} falsche Antworten")
             entries.append({
-                "i": i, "greek": w["greek"], "lemma": "G" + w["strongs"], "morph": w["morph"],
+                "i": i, "greek": w["greek"], "lemma": "G" + w["strongs"], "morph": w["morph_full"],
                 "gloss": {"ok": w["allowed"], "wrong": wrong, "status": "draft"},
             })
         fragments.append({
-            "id": f"P{n}", "ref": ref, "chapter": 1, "order": n,
+            "id": f"P{n}", "ref": ref, "chapter": c[0]["chapter"], "order": n,
             "tier": tier(score), "difficulty": round(score * 100, 1),
             "origin": {"biome": rng.choice(BIOMES), "container": "loot"},
             "reference_en": " ".join(w["gloss"] for w in c),
@@ -341,14 +373,21 @@ def main():
 
     data = {
         "schema": 1, "placeholder": False,
-        "source": {"text": "STEPBible-Wortanalyse mit BSB-Glossen, Johannes 1,1-18 (Pilot)",
-                   "license": "Namensnennung vor Veroeffentlichung pruefen"},
+        "source": ({"text": "STEPBible TAGNT (Tyndale House Cambridge / STEPBible.org), Johannes 1,19-21,25, Textgrundlage NA28; "
+                            "englische Glossen im TAGNT nach der Berean Study Bible",
+                    "license": "CC BY 4.0, siehe docs/CREDITS.md"} if rest else
+                   {"text": "STEPBible-Wortanalyse mit BSB-Glossen, Johannes 1,1-18 (Pilot)",
+                    "license": "Namensnennung vor Veroeffentlichung pruefen"}),
         "fragments": fragments,
     }
-    json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    target = OUT_REST if rest else OUT
+    if rest:   # grosse Datei: kompakt schreiben
+        json.dump(data, open(target, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    else:
+        json.dump(data, open(target, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-    print(f"{len(words)} Woerter, {len(fragments)} Manuskripte -> {os.path.relpath(OUT, ROOT)}")
-    for f in fragments:
+    print(f"{len(chunk_words)} Woerter, {len(fragments)} Manuskripte -> {os.path.relpath(target, ROOT)}")
+    for f in (fragments[:3] + fragments[-3:] if rest else fragments):
         print(f"  {f['id']:>4} {f['ref']:<14} {len(f['words']):>2} Woerter  Stufe {f['tier']}  Schwierigkeit {f['difficulty']:>5}  {f['origin']['biome'][11:]}")
     tiers = Counter(f["tier"] for f in fragments)
     print("Stufen:", dict(sorted(tiers.items())))
@@ -360,4 +399,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(rest="--rest" in sys.argv)

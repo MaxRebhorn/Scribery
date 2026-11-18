@@ -1,6 +1,6 @@
 # Scribery & Crafts – Roadmap
 
-Reihenfolge der nächsten Schritte. Oben steht, was als Nächstes kommt. Der Stand bezieht sich auf Branch `phase-1-press`.
+Reihenfolge der nächsten Schritte. Oben steht, was als Nächstes kommt. Der Stand bezieht sich auf Branch `biome-by-theme` (aufbauend auf `phase-1-press`), Stand 18.11.2026.
 Das Design steht in `Scribery_and_Crafts_Game_Design_Document.md`, die UI-Regeln in `UI-REQUIREMENTS.md` und `docs/ui-spec.md`, die Stationen in `docs/STATIONS.md`.
 
 ## Stand heute
@@ -12,6 +12,9 @@ Fertig:
 - **Texte:** Pilot Johannes 1,1–18 als 21 Manuskripte, erzeugt von `tools/build_manuscripts.py`, geprüft von `ManuscriptDataTest`.
 - **Eingabe:** Presse manuell (Lettern ziehen), Übersetzung mit Plättchen oder von Hand getippt; Buttons zum Nachfüllen aus dem Inventar.
 - **Optik:** Tischplatte, Minecraft-Texturen, unsere Letter-Items, ausgefranstes Papier in Textgröße.
+
+- **Varianten und Fundblöcke (Texturen und Testbarkeit, nicht im Spiel geprüft):** Fragment-Varianten verkohlt, wassergeschädigt, verblasst, Codex, gefroren (blau getöntes Papyrus), dazu Block für gefrorenes Fragment, Amphore als Nicht-Würfel-Block, Ostrakon, verdächtiger Archivschlamm (4 Stufen). Die Java-Teile sind nicht kompiliert.
+- **Daten:** ganzes Johannesevangelium (1.540 Manuskripte), Gliederung in 64 Geschichten, 143 Seiten, 878 Verse, Fundbiome thematisch (11 Biome). Alles noch `draft`.
 
 Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die meisten Rezepte, die Fundorte der Fragmente (bisher nur der Creative-Tab).
 
@@ -26,8 +29,12 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 ### 2. Das restliche Johannesevangelium übernehmen
 - Alle 21 Kapitel (879 Verse) durch `tools/build_manuscripts.py` erzeugen, nicht nur Kapitel 1. Das Skript ist schon so gebaut, dass es mit einem größeren Pool bessere falsche Antworten findet.
 - Rohdaten holen (Abfrage des Bibel-Zugangs in 50-Verse-Schritten oder eine Datei der STEPBible-Daten, das Herunterladen nur mit Okay). Lizenz und Namensnennung vorher klären.
+- **Stand 18.11.2026 (Branch `john-rest`):** Rohdaten Joh 1,19–21,25 aus STEPBible TAGNT gezogen (`tools/data/john-1-19-21-25.tsv`, Lizenz CC BY 4.0, Quelle und Pflichten in `docs/CREDITS.md`), Manuskripte P22 bis P1540 erzeugt (`python tools/build_manuscripts.py --rest` -> `tools/data/manuscripts.john-rest.json`, 1519 Manuskripte, 15 380 Wörter). P1–P21 sind eingefroren und unverändert. **Noch nicht im Spiel eingebunden** (`mod/build.gradle` und `ManuscriptDataTest` kennen nur `manuscripts.john1.json`). Alle Glossen `draft`.
+- **Fundbiome (thematisch):** jedes Manuskript hat ein Biom, vergeben nach Geschichte (Ort, Bild, Stimmung), bei Bedarf einzelne Seiten (`docs/FRAGMENT-BIOMES.md`, Daten in `tools/data/fragment-biomes.json`, Zuordnung von Hand pflegbar in `tools/data/john-biomes.tsv`, erzeugt von `tools/assign_biomes.py`). 11 Biome mit 116 bis 166 Manuskripten. Die Schwierigkeit bleibt als Eigenschaft erhalten, bestimmt aber nicht mehr den Fundort. Das alte Zufallsfeld `origin.biome` gilt nicht mehr. Biom-Tags (z. B. `#c:is_desert`) sind noch nicht gegen 1.21.1 geprüft.
+- **Gliederung für das Manuscript Archive:** 64 Geschichten, 143 Seiten, 878 Verse (`docs/JOHN-STRUCTURE.md`, Daten `tools/data/john-structure.json`, erzeugt von `tools/structure_john.py`). Die Manuskripte werden an Seitengrenzen geschnitten, damit Manuskript < Seite < Geschichte gilt. Geschichten-Grenzen und Titel (`tools/data/john-stories.tsv`) sind ein Entwurf.
+- Offen: Textgrundlage (NA28 oder Tyndale), Perikope Joh 7,53–8,11, das 17-Buchstaben-Wort μεθερμηνευόμενον, Prüfung der Glossen und der falschen Antworten.
 - Danach: Glossen stichprobenartig prüfen, die Manuskript-Nummer auf feste IDs umstellen (sonst verschieben sich bestehende Bögen), den englischen Satz je Manuskript aus der BSB nehmen.
-- Schwierigkeit bleibt in 3 Stufen, zufällig gemischt. Verteilung auf Biome als Mischung.
+- Schwierigkeit: 3 Stufen als Eigenschaft jedes Manuskripts; der Fundort richtet sich nicht danach, sondern ist thematisch pro Geschichte vergeben (siehe oben).
 
 ### 3. Bücher implementieren
 - **Erledigt:** Greek Alphabet Primer. Der Text liegt als Markdown unter `mod/src/main/resources/assets/scribery/books/<id>.md`, die Leseansicht (`BookScreen`, `BookText`) zeigt eine Doppelseite mit der Minecraft-Buchtextur; unterstützt werden Überschriften, Absätze, Listen, fett/kursiv und Tabellen. Jedes weitere Buch braucht nur seine Textdatei (Dateiname = Item-ID).
@@ -43,10 +50,13 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 - Villager verkaufen die Bücher für Emeralds; ein günstiges Wörterbuch zu Beginn.
 - Offen: Ein **eigener Villager-Beruf** (mit Arbeitsblock, zum Beispiel dem Bookshelf oder dem Pult) oder ein bestehender Beruf (Bibliothekar) mit zusätzlichen Angeboten? Ein eigener Beruf ist sauberer, aber mehr Aufwand (Beruf, Arbeitsblock, Handelsliste, Texturen).
 - Preise und die Reihenfolge, in der Bücher auftauchen, werden später balanciert.
+- Derselbe Händler (oder ein Gelehrter) kauft lose Manuskripte-Dubletten und verkauft Fundkarten, siehe `docs/DESIGN-FINDS.md`.
 
 ### 5. Wie Fragmente in die Welt kommen
 - Verschiedene Arten, wie ein Fragment entsteht oder gefunden wird: Loot in Truhen und Strukturen, verdächtiger Sand und Kies, Fischen, Händler, Funde bei Villagern. Genau das ist noch zu entscheiden.
-- Die Manuskript-Nummer ist die Position im Evangelium, die Schwierigkeit läuft getrennt. Jedes Biom bekommt eine Mischung aus leichten, mittleren und schweren Stücken.
+- Die Manuskript-Nummer ist die Position im Evangelium, die Schwierigkeit läuft getrennt. Jedes Biom liefert ganze Geschichten oder Seiten und enthält leichte, mittlere und schwere Stücke.
+- **Entwurf Fundhilfen und Dubletten:** `docs/DESIGN-FINDS.md`. Kern: mehrere Fundquellen (alle 10 bis 15 Minuten ein Fund), Erstfund garantiert, Schlechtes-Glück-Schutz (rund 70 % noch fehlende Manuskripte), Verkauf **loser** Manuskripte (nicht im Archiv) für 1 bis 3 Smaragde nach Stufe mit Tageslimit, Tausch 3 Dubletten gegen ein Manuskript des gewählten Bioms, Wegweiser-Karten. Rechnung dahinter: rund 770 Zufallsfunde für ein ganzes Biom, daher Schutz und Verkauf nötig. Zahlen sind ungetestet.
+- Abhängigkeit: der Schutz braucht die gespeicherte Sammlung, also das Manuscript Archive. Biom-Tags (`#c:is_desert` und andere) sind noch gegen 1.21.1 zu prüfen; seltene Biome (Tonhügel, Dschungel) brauchen höhere Fundraten.
 - Die ersten Manuskripte sind kurz und einfach, spätere länger. Bereits gefundene Fragmente sollen nicht ständig doppelt auftauchen (Zufallsgewichtung oder Hinweise).
 
 ### 5a. Strukturen und Fundblöcke (zu Punkt 5)
@@ -57,9 +67,11 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 - **Amphoren-Blöcke:**
   - ein Block für **Scherben von Amphoren** (Potsherds), der Scherben und Text-Funde fallen lässt,
   - ein **Amphorenblock** als Behälter (Container), der Inhalt droppt: **beschriftete Scherben** (mit einem kurzen Text, einem Hinweis oder einem Wort, das zum Manuskript passen könnte) und **Manuskripte**.
+- **Stand:** Texturen und Blöcke für Amphorenscherben (Bleich-Palette), Amphore als Container, Ostrakon und verdächtigen Archivschlamm gibt es (siehe oben); Fund-Logik, Strukturen und Loot fehlen noch.
 - Zu klären: Welche Texte auf den Scherben stehen (Wörter aus den Manuskripten? Namen? Hinweise auf Fundorte?), ob Scherben im Archiv eine Rolle spielen, wie die Strukturen erzeugt werden (Strukturdatei, Loot-Tabellen nach Biom), und wie sich Fundort und Aussehen des Fragments verbinden (siehe Punkt 6).
 
 ### 6. Ferne Zukunft: unterschiedliches Aussehen je nach Fundort
+- **Teilweise erledigt:** fünf Zustandsvarianten (verkohlt, wassergeschädigt, verblasst, Codex, gefroren) liegen als Texturen vor (`custom_model_data` 1–5). Offen ist, sie nach Fundort oder Biom zu vergeben. Das alte Feld `origin.biome` ist obsolet, maßgeblich ist `tools/data/fragment-biomes.json`.
 - Fragmente sehen verschieden aus, je nachdem, wo man sie findet: Sumpf, Wüste, Taiga und so weiter, mit eigenen Texturen. Das Datenfeld `origin.biome` ist dafür schon in den Manuskriptdaten vorbereitet.
 - Technisch später: Item-Modell-Überschreibungen nach Datenfeld, mehrere Texturen (vier ungenutzte liegen schon im Repo).
 
