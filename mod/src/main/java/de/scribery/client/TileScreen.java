@@ -219,7 +219,9 @@ public class TileScreen extends StationScreen {
 
     /** Der Bogen dieses Blatts ist an der Presse schon gedruckt. */
     private boolean printed() {
-        return !session.isComplete() && (bench.sheetPage >= 0 || bench.press.printedCount() > session.pageIndex());
+        // Mit einem verbundenen Pult braucht der Tisch kein gedrucktes Blatt: Der Text kommt vom Pult.
+        return !session.isComplete() && (bench.stations.lectern() || bench.sheetPage >= 0
+                || bench.press.printedCount() > session.pageIndex());
     }
 
     private List<String> pageWords(boolean greek) {

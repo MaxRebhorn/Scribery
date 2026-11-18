@@ -1,0 +1,27 @@
+{
+  "schema": "scribery.ostraka-jokes/1",
+  "source": "Nacherzaehlt nach dem Philogelos (\"Der Lachfreund\"), einer antiken Witzsammlung, ueberliefert unter den Namen Hierokles und Philagrios, vermutlich 4./5. Jh. n. Chr. Der griechische Text ist gemeinfrei. Die englischen Fassungen sind eigene, kurze Nacherzaehlungen fuer das Spiel (keine Uebernahme einer modernen Uebersetzung, z. B. Baldwin 1983 oder Berg 2008). Vor Veroeffentlichung gegen den griechischen Text pruefen.",
+  "note": "Die Hauptfigur vieler Witze ist der Scholastikos (Gelehrter, Pedant, Student). Kurz halten: Ein Scherben bietet Platz fuer etwa 3 Zeilen zu je 20 Zeichen.",
+  "jokes": [
+    { "id": "swim", "en": "A scholar nearly drowned.\nHe swore never to touch water again until he had learned to swim." },
+    { "id": "dead_friend", "en": "\"I heard you were dead!\"\n\"As you see, I am alive.\"\n\"But the man who told me is more reliable than you.\"" },
+    { "id": "dizzy", "en": "Patient: \"Doctor, when I wake I'm dizzy for half an hour.\"\nDoctor: \"Then wake up half an hour later.\"" },
+    { "id": "brick", "en": "A scholar wanted to sell his house.\nHe carried a single brick around town as a sample." },
+    { "id": "barber", "en": "Barber: \"How shall I cut your hair?\"\nCustomer: \"In silence.\"" },
+    { "id": "debt", "en": "\"Why do you never answer my letters?\"\n\"I'd rather you didn't ask a man who is not at home.\"" },
+    { "id": "sleep", "en": "A scholar dreamed he was at sea.\nHe slept with his feet out of the bed, so as not to get them wet." },
+    { "id": "sundial", "en": "A scholar was asked the hour.\n\"Come back when the sun is out,\" he said." },
+    { "id": "cough", "en": "A scholar's friend coughed in the night.\n\"Stop it!\" he said. \"You'll wake the thief.\"" },
+    { "id": "twin", "en": "\"Is that your brother or the one who looks like him?\"\n\"Both,\" said the twin." },
+    { "id": "bald", "en": "A bald man was given a comb as a gift.\n\"Thank you,\" he said. \"I will keep it for my memories.\"" },
+    { "id": "miser", "en": "A miser heard that grain was cheap this year.\nHe hanged himself, because he had kept so much of his own." },
+    { "id": "lamp", "en": "\"Why do you carry a lamp in broad daylight?\"\n\"I'm looking for an honest man. And some oil.\"" },
+    { "id": "wine", "en": "\"This wine has turned to vinegar.\"\n\"Good. Then it will last longer.\"" },
+    { "id": "ship", "en": "A scholar was warned the ship was leaking.\n\"Then I'll wait on the shore,\" he said, \"and take the next one that's dry.\"" },
+    { "id": "echo", "en": "A scholar shouted into a well and heard his own voice.\n\"So there is someone down there,\" he said, \"and he is rude.\"" },
+    { "id": "lesson", "en": "Father: \"What did you learn today?\"\nSon: \"That you owe the teacher money.\"" },
+    { "id": "donkey", "en": "A scholar bought a donkey that would not eat.\n\"It's a bargain,\" he said. \"Think of the saving.\"" },
+    { "id": "memory", "en": "\"I have an excellent memory.\"\n\"Then pay me what you owe.\"\n\"On second thought, I have forgotten that.\"" },
+    { "id": "cart", "en": "A scholar left his house on a cart to get fitter.\nThe horse did all the walking." }
+  ]
+}

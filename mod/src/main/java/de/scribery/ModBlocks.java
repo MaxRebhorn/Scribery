@@ -102,6 +102,41 @@ public final class ModBlocks {
         ALL.add(SUSPICIOUS_ASHES);
         ALL.add(ASHES);
     }
+    // ------------------------------------------------------------------ Katakomben: roemische Ziegel und Mosaikboeden
+    // Texturen, Modelle und Loot: art/gen_catacomb_blocks.py
+
+    private static DeferredBlock<Block> catacomb(String id, java.util.function.Supplier<Block> factory) {
+        DeferredBlock<Block> b = BLOCKS.register(id, factory);
+        BLOCK_ITEMS.registerSimpleBlockItem(id, b, new Item.Properties());
+        ALL.add(b);
+        return b;
+    }
+
+    private static BlockBehaviour.Properties brickProps() {
+        return BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_ORANGE).strength(1.6F, 6.0F)
+                .sound(SoundType.STONE).requiresCorrectToolForDrops();
+    }
+
+    private static BlockBehaviour.Properties mosaicProps() {
+        return BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(1.2F, 5.0F)
+                .sound(SoundType.STONE).requiresCorrectToolForDrops();
+    }
+
+    public static final DeferredBlock<Block> ROMAN_BRICKS = catacomb("roman_bricks", () -> new Block(brickProps()));
+    public static final DeferredBlock<Block> ROMAN_BRICK_STAIRS = catacomb("roman_brick_stairs",
+            () -> new net.minecraft.world.level.block.StairBlock(ROMAN_BRICKS.get().defaultBlockState(), brickProps()));
+    public static final DeferredBlock<Block> ROMAN_BRICK_SLAB = catacomb("roman_brick_slab",
+            () -> new net.minecraft.world.level.block.SlabBlock(brickProps()));
+    public static final DeferredBlock<Block> ROMAN_BRICKS_WEATHERED = catacomb("roman_bricks_weathered",
+            () -> new Block(brickProps().strength(1.4F, 5.0F)));
+    public static final DeferredBlock<Block> MOSAIC_PLAIN = catacomb("mosaic_plain", () -> new Block(mosaicProps()));
+    public static final DeferredBlock<Block> MOSAIC_CHECKER = catacomb("mosaic_checker", () -> new Block(mosaicProps()));
+    public static final DeferredBlock<Block> MOSAIC_LOZENGE = catacomb("mosaic_lozenge", () -> new Block(mosaicProps()));
+    public static final DeferredBlock<Block> MOSAIC_ROSETTE = catacomb("mosaic_rosette", () -> new Block(mosaicProps()));
+    public static final DeferredBlock<Block> MOSAIC_DAMAGED = catacomb("mosaic_damaged", () -> new Block(mosaicProps().strength(0.8F, 3.0F)));
+    /** Mosaike zum Auswuerfeln fuer Boeden (ohne das beschaedigte). */
+    public static final List<DeferredBlock<Block>> MOSAIC_FLOORS = List.of(MOSAIC_PLAIN, MOSAIC_CHECKER, MOSAIC_LOZENGE);
+
     static {
         BLOCK_ITEMS.registerSimpleBlockItem("frozen_fragment_block", FROZEN_FRAGMENT_BLOCK, new Item.Properties());
         ALL.add(FROZEN_FRAGMENT_BLOCK);

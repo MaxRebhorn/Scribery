@@ -7,6 +7,15 @@
     "scribery:amphora_broken_neck",
     "scribery:amphora_half",
     "scribery:amphora_shards",
-    "scribery:amphora_tilted"
+    "scribery:amphora_tilted",
+    "scribery:roman_bricks",
+    "scribery:roman_brick_stairs",
+    "scribery:roman_brick_slab",
+    "scribery:roman_bricks_weathered",
+    "scribery:mosaic_plain",
+    "scribery:mosaic_checker",
+    "scribery:mosaic_lozenge",
+    "scribery:mosaic_rosette",
+    "scribery:mosaic_damaged"
   ]
 }

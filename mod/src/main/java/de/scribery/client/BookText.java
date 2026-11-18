@@ -305,7 +305,7 @@ final class BookText {
                 b.newPage();
                 b.y = 26; // Titelseite: etwas Luft oben
             } else {
-                b.gap(8);
+                b.newPage(); // jedes neue Kapitel beginnt auf einer neuen Seite
             }
             int i = 0;
             while (i < section.size()) {

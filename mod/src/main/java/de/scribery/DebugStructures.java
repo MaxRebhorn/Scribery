@@ -215,10 +215,10 @@ final class DebugStructures {
      */
     static int catacombChurch(Level level, BlockPos origin, Direction facing, boolean desert) {
         StructureBuilder b = new StructureBuilder(level, origin, facing);
-        BlockState wall = (desert ? Blocks.SANDSTONE : Blocks.STONE_BRICKS).defaultBlockState();
-        BlockState floor = (desert ? Blocks.SMOOTH_SANDSTONE : Blocks.SMOOTH_STONE).defaultBlockState();
-        BlockState seal = (desert ? Blocks.CHISELED_SANDSTONE : Blocks.CHISELED_STONE_BRICKS).defaultBlockState();
-        Block stairBlock = desert ? Blocks.SANDSTONE_STAIRS : Blocks.STONE_BRICK_STAIRS;
+        // Normal: roemische Ziegel; Wueste: Sandstein. Beide haben Mosaikboeden.
+        BlockState wall = (desert ? Blocks.SANDSTONE : ModBlocks.ROMAN_BRICKS.get()).defaultBlockState();
+        BlockState seal = (desert ? Blocks.CHISELED_SANDSTONE : ModBlocks.ROMAN_BRICKS_WEATHERED.get()).defaultBlockState();
+        Block stairBlock = desert ? Blocks.SANDSTONE_STAIRS : ModBlocks.ROMAN_BRICK_STAIRS.get();
         Block slab = desert ? Blocks.SMOOTH_SANDSTONE_SLAB : Blocks.SMOOTH_STONE_SLAB;
         Block smooth = desert ? Blocks.SMOOTH_SANDSTONE : Blocks.SMOOTH_STONE;
 
@@ -247,7 +247,19 @@ final class DebugStructures {
         }
         // Lichtschaechte von der Decke des Hauptgangs bis knapp unter die Oberflaeche
         for (int u : new int[] { 14, 27 }) b.cells(cells, u, u, 0, 0, -5, -1);
-        b.carve(cells, wall, floor);
+        // Mosaikboeden: Gang Schachbrett, Raeume Raute, Gedenkraum mit Rosette in der Mitte; einzelne Steinchen fehlen
+        Set<BlockPos> memorial = new HashSet<>(), chambers = new HashSet<>();
+        b.cells(memorial, 31, 39, -4, 4, -8, -4);
+        b.cells(chambers, 17, 22, -10, -6, -8, -5);
+        b.cells(chambers, 22, 27, 6, 10, -8, -5);
+        BlockPos rosette = b.at(35, 0, -9);
+        b.carve(cells, wall, p -> {
+            if (b.chance(10)) return ModBlocks.MOSAIC_DAMAGED.get().defaultBlockState();
+            if (p.equals(rosette)) return ModBlocks.MOSAIC_ROSETTE.get().defaultBlockState();
+            BlockPos in = p.above();
+            if (memorial.contains(in) || chambers.contains(in)) return ModBlocks.MOSAIC_LOZENGE.get().defaultBlockState();
+            return ModBlocks.MOSAIC_CHECKER.get().defaultBlockState();
+        });
 
         for (int k = 0; k <= 9; k++) {                                                   // Stufen
             BlockState stair = stairBlock.defaultBlockState().setValue(StairBlock.FACING, facing.getOpposite());

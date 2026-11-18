@@ -56,5 +56,14 @@
   "block.scribery.shard_pile": "Shard Pile",
   "item.scribery.ostrakon": "Ostrakon",
   "item.scribery.papyrus_scrap": "Papyrus Scrap",
-  "item.scribery.amphora_shard": "Amphora Shard"
+  "item.scribery.amphora_shard": "Amphora Shard",
+  "block.scribery.roman_bricks": "Roman Bricks",
+  "block.scribery.roman_brick_stairs": "Roman Brick Stairs",
+  "block.scribery.roman_brick_slab": "Roman Brick Slab",
+  "block.scribery.roman_bricks_weathered": "Weathered Roman Bricks",
+  "block.scribery.mosaic_plain": "Mosaic Floor",
+  "block.scribery.mosaic_checker": "Checkered Mosaic Floor",
+  "block.scribery.mosaic_lozenge": "Lozenge Mosaic Floor",
+  "block.scribery.mosaic_rosette": "Rosette Mosaic Floor",
+  "block.scribery.mosaic_damaged": "Damaged Mosaic Floor"
 }

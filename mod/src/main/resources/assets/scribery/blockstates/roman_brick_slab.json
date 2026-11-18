@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "scribery:block/roman_brick_slab"
+    },
+    "type=top": {
+      "model": "scribery:block/roman_brick_slab_top"
+    },
+    "type=double": {
+      "model": "scribery:block/roman_bricks"
+    }
+  }
+}
