@@ -345,11 +345,13 @@ public abstract class StationScreen extends Screen {
     /** Das Fragment als ausgefranster Zettel in der Flaeche. Pult und Vollansicht benutzen dieselbe Anordnung. */
     protected void drawFragmentPaper(GuiGraphics g, List<String> words, int[] area, java.util.function.IntPredicate dimmed) {
         FragmentLayout.Result fit = FragmentLayout.fit(font, words, area);
-        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
+        // Papier und Tinte passen zum Zustand des Fragments (verkohlt, wassergeschaedigt, verblasst, gefroren)
+        int look = RaggedPaper.look(bench.variant);
+        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2, look);
         int[][] rects = fit.words();
         for (int i = 0; i < rects.length; i++) {
             g.drawString(font, words.get(i), rects[i][0], rects[i][1],
-                    dimmed.test(i) ? col("parchment_0") : col("ink_1"), false);
+                    dimmed.test(i) ? RaggedPaper.color(ui, look, "parchment_0") : RaggedPaper.ink(ui, look), false);
         }
     }
 

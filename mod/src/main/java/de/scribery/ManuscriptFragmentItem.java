@@ -24,6 +24,12 @@ public class ManuscriptFragmentItem extends Item {
         return s;
     }
 
+    /** Zustand des Fragments: der Wert von custom_model_data (0 normal, 1 verkohlt, 2 wasser, 3 verblasst, 4 gefroren). */
+    public static int variant(ItemStack stack) {
+        var cmd = stack.get(net.minecraft.core.component.DataComponents.CUSTOM_MODEL_DATA);
+        return cmd == null ? 0 : cmd.value();
+    }
+
     /** Index des Manuskripts in {@link Manuscripts}, oder -1, wenn das Item keins (mehr) kennt. */
     public static int indexOf(ItemStack stack) {
         String id = stack.get(ModComponents.MANUSCRIPT.get());
@@ -35,7 +41,7 @@ public class ManuscriptFragmentItem extends Item {
         ItemStack stack = player.getItemInHand(hand);
         int index = indexOf(stack);
         if (index < 0) return InteractionResultHolder.pass(stack);
-        if (level.isClientSide) de.scribery.client.ClientHooks.openFragmentView(index);
+        if (level.isClientSide) de.scribery.client.ClientHooks.openFragmentView(index, variant(stack));
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
     }
 

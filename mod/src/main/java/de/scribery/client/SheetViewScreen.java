@@ -16,12 +16,15 @@ final class SheetViewScreen extends Screen {
     private final UiLayout ui = UiLayout.get();
     private final List<String> fragmentWords;
     private final SheetData sheet;
+    /** Zustand des Fragments (custom_model_data), bestimmt Papier und Tinte. */
+    private final int look;
 
-    /** Fragment: nur die griechischen Woerter. */
-    SheetViewScreen(List<String> fragmentWords) {
+    /** Fragment: nur die griechischen Woerter, dazu sein Zustand. */
+    SheetViewScreen(List<String> fragmentWords, int variant) {
         super(Component.literal("Fragment"));
         this.fragmentWords = fragmentWords;
         this.sheet = null;
+        this.look = RaggedPaper.look(variant);
     }
 
     /** Bedruckter oder uebersetzter Bogen. */
@@ -29,6 +32,7 @@ final class SheetViewScreen extends Screen {
         super(Component.literal(sheet.english().isEmpty() ? "Printed Sheet" : "Translated Sheet"));
         this.fragmentWords = null;
         this.sheet = sheet;
+        this.look = RaggedPaper.NORMAL;
     }
 
     @Override
@@ -70,9 +74,9 @@ final class SheetViewScreen extends Screen {
         g.pose().translate((width - s * f[2]) / 2f, (height - s * f[3]) / 2f, 0);
         g.pose().scale(s, s, 1f);
         var fit = FragmentLayout.fit(font, fragmentWords, new int[] { 0, 0, f[2], f[3] });
-        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2);
+        RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2, look);
         for (int i = 0; i < fit.words().length; i++) {
-            g.drawString(font, fragmentWords.get(i), fit.words()[i][0], fit.words()[i][1], color("ink_1"), false);
+            g.drawString(font, fragmentWords.get(i), fit.words()[i][0], fit.words()[i][1], RaggedPaper.ink(ui, look), false);
         }
         g.pose().popPose();
     }

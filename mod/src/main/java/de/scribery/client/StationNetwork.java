@@ -19,9 +19,11 @@ import net.minecraft.world.level.block.Block;
  * @param anchor           kleinste Position im Netz, Schluessel fuer den gemerkten Arbeitsstand
  * @param lectern          das massgebliche Pult, oder null
  * @param lecternFragment  Index des Fragments auf diesem Pult, -1 wenn nichts darauf liegt
+ * @param lecternVariant   Zustand dieses Fragments (0 normal, 1 verkohlt, 2 wasser, 3 verblasst, 4 gefroren)
  * @param cabinet          der Lettern-Schrank, aus dem die Presse ihre Vorraete bezieht, oder null
  */
-record StationNetwork(BlockPos anchor, BlockPos lectern, int lecternFragment, BlockPos cabinet, boolean press, boolean desk) {
+record StationNetwork(BlockPos anchor, BlockPos lectern, int lecternFragment, int lecternVariant, BlockPos cabinet,
+                      boolean press, boolean desk) {
 
     boolean hasLectern() { return lectern != null; }
     boolean hasCabinet() { return cabinet != null; }
@@ -40,7 +42,7 @@ record StationNetwork(BlockPos anchor, BlockPos lectern, int lecternFragment, Bl
     static StationNetwork scan(Level level, BlockPos start) {
         boolean press = false, desk = false;
         BlockPos lectern = null, anchor = start, cabinet = null;
-        int fragment = -1;
+        int fragment = -1, variant = 0;
         Set<BlockPos> seen = new HashSet<>();
         ArrayDeque<BlockPos> queue = new ArrayDeque<>();
         queue.add(start);
@@ -55,10 +57,12 @@ record StationNetwork(BlockPos anchor, BlockPos lectern, int lecternFragment, Bl
             } else if (b == ModBlocks.TRANSLATOR_DESK.get()) {
                 desk = true;
             } else if (b == ModBlocks.SCRIBE_LECTERN.get()) {
-                int idx = level.getBlockEntity(p) instanceof LecternBlockEntity be ? be.debugFragmentIndex() : -1;
+                var lbe = level.getBlockEntity(p) instanceof LecternBlockEntity be ? be : null;
+                int idx = lbe != null ? lbe.debugFragmentIndex() : -1;
                 if (lectern == null || p.equals(start) || (fragment < 0 && idx >= 0 && !lectern.equals(start))) {
                     lectern = p;
                     fragment = idx;
+                    variant = lbe != null ? lbe.fragmentVariant() : 0;
                 }
             } else {
                 continue;
@@ -69,6 +73,6 @@ record StationNetwork(BlockPos anchor, BlockPos lectern, int lecternFragment, Bl
                 if (seen.add(n)) queue.add(n);
             }
         }
-        return new StationNetwork(anchor, lectern, fragment, cabinet, press, desk);
+        return new StationNetwork(anchor, lectern, fragment, variant, cabinet, press, desk);
     }
 }

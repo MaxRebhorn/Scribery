@@ -268,6 +268,32 @@ final class SelfTest {
         }));
         shot(mc, "23-chapter-tabs");
 
+        // Nahansicht: dasselbe Fragment in allen Zustaenden (normal, verkohlt, wasser, verblasst, gefroren) wie auf dem Pult
+        then(0, () -> mc.setScreen(new net.minecraft.client.gui.screens.Screen(net.minecraft.network.chat.Component.literal("closeups")) {
+            @Override
+            public void render(net.minecraft.client.gui.GuiGraphics g, int mx, int my, float pt) {
+                g.fill(0, 0, width, height, 0xFF3A3640);
+                var ui = UiLayout.get();
+                int[] f = ui.rect("fragment");
+                var words = de.scribery.Manuscripts.load().get(5).words().stream().map(w -> w.greek()).toList();
+                float s = Math.min(2f, (width - 10) / (5f * (f[2] + 6)));
+                String[] names = { "normal", "charred", "water", "faded", "frozen" };
+                for (int look = 0; look < 5; look++) {
+                    g.pose().pushPose();
+                    g.pose().translate(5 + look * (f[2] + 6) * s, (height - f[3] * s) / 2f, 0);
+                    g.pose().scale(s, s, 1f);
+                    var fit = FragmentLayout.fit(font, words, new int[] { 0, 0, f[2], f[3] });
+                    RaggedPaper.draw(g, ui, fit.paper()[0], fit.paper()[1], fit.paper()[2], fit.paper()[3], 2, look);
+                    for (int i = 0; i < fit.words().length; i++) {
+                        g.drawString(font, words.get(i), fit.words()[i][0], fit.words()[i][1], RaggedPaper.ink(ui, look), false);
+                    }
+                    g.drawString(font, names[look], 2, f[3] + 4, 0xFFFFFFFF, false);
+                    g.pose().popPose();
+                }
+            }
+        }));
+        shot(mc, "24-fragment-closeups");
+
         then(10, () -> {
             LOG.info("[selftest] fertig");
             mc.stop();

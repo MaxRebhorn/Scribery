@@ -20,6 +20,8 @@ final class Workbench {
     final int fragmentIndex;
     /** Null, wenn kein Fragment gewaehlt ist (freier Druck). */
     final Manuscripts.Fragment fragment;
+    /** Zustand des Fragments auf dem Pult (custom_model_data: 0 normal, 1 verkohlt, 2 wasser, 3 verblasst, 4 gefroren). */
+    int variant;
     final PressSession press;
     final Stations stations;
     /** Wird von der Plaettchen-Station angelegt, sobald sie zum ersten Mal offen ist. */

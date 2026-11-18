@@ -61,6 +61,10 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> SUSPICIOUS_ASHES = BLOCKS.register("suspicious_ashes",
             () -> new SuspiciousFindBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY)
                     .strength(0.25F).sound(SoundType.SAND)));
+    /** Normaler Asche-Block: das, was Suspicious Ashes beim Abbauen zurueckgibt. */
+    public static final DeferredBlock<Block> ASHES = BLOCKS.register("ashes",
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .strength(0.25F).sound(SoundType.SAND)));
     /** Scherbenhaufen: Tonscherben, spaeter mit Ostraka und Fragmenten darin. */
     public static final DeferredBlock<Block> SHARD_PILE = BLOCKS.register("shard_pile",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
@@ -70,12 +74,14 @@ public final class ModBlocks {
         BLOCK_ITEMS.registerSimpleBlockItem("suspicious_mud", SUSPICIOUS_MUD, new Item.Properties());
         BLOCK_ITEMS.registerSimpleBlockItem("suspicious_sand", SUSPICIOUS_SAND, new Item.Properties());
         BLOCK_ITEMS.registerSimpleBlockItem("suspicious_ashes", SUSPICIOUS_ASHES, new Item.Properties());
+        BLOCK_ITEMS.registerSimpleBlockItem("ashes", ASHES, new Item.Properties());
         BLOCK_ITEMS.registerSimpleBlockItem("shard_pile", SHARD_PILE, new Item.Properties());
         ALL.add(AMPHORA);
         ALL.add(SHARD_PILE);
         ALL.add(SUSPICIOUS_SAND);
         ALL.add(SUSPICIOUS_MUD);
         ALL.add(SUSPICIOUS_ASHES);
+        ALL.add(ASHES);
     }
     static {
         BLOCK_ITEMS.registerSimpleBlockItem("frozen_fragment_block", FROZEN_FRAGMENT_BLOCK, new Item.Properties());

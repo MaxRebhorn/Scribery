@@ -198,8 +198,26 @@ def amphora_shard():
     return im
 
 
+def ashes_block():
+    """Normaler Asche-Block (16x16): uralte, kalte Asche in grauen Toenen mit etwas Rauschen und wenigen dunklen Kohlekruemeln."""
+    rng = random.Random(SEED + 3)
+    tones = [(138, 138, 134), (146, 146, 141), (154, 154, 148), (162, 162, 156), (120, 118, 116)]
+    im = Image.new("RGBA", (16, 16))
+    for y in range(16):
+        for x in range(16):
+            im.putpixel((x, y), rng.choices(tones, weights=[2, 3, 4, 2, 1])[0] + (255,))
+    for _ in range(7):  # dunkle Kohlekruemel
+        x, y = rng.randrange(16), rng.randrange(16)
+        im.putpixel((x, y), (58, 54, 52, 255))
+        if rng.random() < .5:
+            im.putpixel(((x + 1) % 16, y), (74, 70, 66, 255))
+    return im
+
+
 def write_items():
     """Items ins Mod schreiben: Textur und Modell."""
+    ashes_block().save(os.path.join(ROOT, "mod/src/main/resources/assets/scribery/textures/block/ashes.png"))
+    ashes_block().save(os.path.join(OUT, "ashes.png"))
     tex = os.path.join(ROOT, "mod/src/main/resources/assets/scribery/textures/item")
     mod = os.path.join(ROOT, "mod/src/main/resources/assets/scribery/models/item")
     for name, fn in (("papyrus_scrap", papyrus_scrap), ("amphora_shard", amphora_shard)):

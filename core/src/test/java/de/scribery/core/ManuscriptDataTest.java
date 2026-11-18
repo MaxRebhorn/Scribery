@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -66,21 +67,38 @@ class ManuscriptDataTest {
         assertEquals(all, seen, "Pools und Manuskripte stimmen nicht ueberein");
     }
 
-    /** Die Loot-Tabellen nennen nur bekannte Fundarten und existierende Items; jede Fundblock-Tabelle gibt den Block zurueck. */
+    /**
+     * Die Loot-Tabellen nennen nur bekannte Fundarten und existierende Items. Regeln: Suspicious-Bloecke geben den
+     * normalen Block zurueck (nicht sich selbst), der Eisblock nur das Manuskript, die Amphore auch Ostraka.
+     */
     @Test
-    void lootTablesUseKnownFindsAndItems() throws IOException {
+    void lootTablesFollowTheRules() throws IOException {
         Path dir = Path.of("..", "mod", "src", "main", "resources", "data", "scribery", "loot_table", "blocks");
         Set<String> finds = Set.of("sand", "mud", "ashes", "ice", "shards");
-        Set<String> items = Set.of("suspicious_sand", "suspicious_mud", "suspicious_ashes", "frozen_fragment_block", "shard_pile",
-                "amphora", "amphora_shard", "papyrus_scrap", "ostrakon", "manuscript_fragment");
+        Set<String> items = Set.of("minecraft:sand", "minecraft:mud", "scribery:ashes", "scribery:shard_pile", "scribery:amphora",
+                "scribery:amphora_shard", "scribery:papyrus_scrap", "scribery:ostrakon", "scribery:manuscript_fragment");
+        Map<String, String> normalBlock = Map.of("suspicious_sand", "minecraft:sand", "suspicious_mud", "minecraft:mud",
+                "suspicious_ashes", "scribery:ashes");
         for (String name : List.of("suspicious_sand", "suspicious_mud", "suspicious_ashes", "frozen_fragment_block", "shard_pile", "amphora")) {
             String json = Files.readString(dir.resolve(name + ".json"), StandardCharsets.UTF_8);
-            assertTrue(json.contains("\"scribery:" + name + "\""), name + " gibt sich selbst nicht zurueck");
             var m = java.util.regex.Pattern.compile("\"find\": \"([a-z]+)\"").matcher(json);
             while (m.find()) assertTrue(finds.contains(m.group(1)), name + ": unbekannte Fundart " + m.group(1));
-            var n = java.util.regex.Pattern.compile("\"name\": \"scribery:([a-z_]+)\"").matcher(json);
+            var n = java.util.regex.Pattern.compile("\"name\": \"([a-z_]+:[a-z_]+)\"").matcher(json);
             while (n.find()) assertTrue(items.contains(n.group(1)), name + ": unbekanntes Item " + n.group(1));
+            // Suspicious-Bloecke und der Eisblock droppen sich nicht selbst; Scherbenhaufen und (mit Silk Touch) Amphore schon
+            if (name.startsWith("suspicious_") || name.equals("frozen_fragment_block")) {
+                assertFalse(json.contains("\"name\": \"scribery:" + name + "\""), name + " darf sich nicht selbst droppen");
+            }
         }
+        for (var e : normalBlock.entrySet()) {
+            assertTrue(Files.readString(dir.resolve(e.getKey() + ".json"), StandardCharsets.UTF_8)
+                    .contains("\"name\": \"" + e.getValue() + "\""), e.getKey() + " gibt den normalen Block nicht zurueck");
+        }
+        String ice = Files.readString(dir.resolve("frozen_fragment_block.json"), StandardCharsets.UTF_8);
+        assertTrue(ice.contains("\"find\": \"ice\""), "Eisblock gibt kein Manuskript");
+        assertFalse(ice.contains("random_chance"), "Eisblock: das Manuskript steckt immer darin");
+        assertTrue(Files.readString(dir.resolve("amphora.json"), StandardCharsets.UTF_8).contains("scribery:ostrakon"),
+                "Amphore kann kein Ostrakon droppen");
     }
 
     /** Die Zeilenlaenge im Test muss der im Spiel entsprechen. */

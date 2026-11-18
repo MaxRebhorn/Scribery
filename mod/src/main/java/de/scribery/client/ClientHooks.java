@@ -34,11 +34,11 @@ public final class ClientHooks {
     }
 
     /** Fragment in der Hand angeschaut: gleiche Anordnung wie am Pult. */
-    public static void openFragmentView(int debugIndex) {
+    public static void openFragmentView(int debugIndex, int variant) {
         var all = Manuscripts.load();
         if (debugIndex < 0 || debugIndex >= all.size()) return;
         Minecraft.getInstance().setScreen(new SheetViewScreen(
-                all.get(debugIndex).words().stream().map(w -> w.greek()).toList()));
+                all.get(debugIndex).words().stream().map(w -> w.greek()).toList(), variant));
     }
 
     /** Bedruckten oder uebersetzten Bogen in der Hand angeschaut. */
@@ -79,6 +79,7 @@ public final class ClientHooks {
         Workbench bench = (old != null && old.key() == lecternFragment && old.stations.equals(st)) ? old
                 : lecternFragment >= 0 ? new Workbench(lecternFragment, st) : Workbench.free(st);
         BENCHES.put(net.anchor(), bench);
+        bench.variant = lecternFragment >= 0 ? net.lecternVariant() : 0;   // Aussehen des Fragments auf dem Pult
         bench.cabinetPos = net.cabinet();
         bench.lecternPos = net.lectern();
         if (net.cabinet() != null && level.getBlockEntity(net.cabinet()) instanceof CabinetBlockEntity cbe) {

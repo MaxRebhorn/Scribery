@@ -1,9 +1,9 @@
 {
   "render_type": "minecraft:cutout",
   "textures": {
-    "mud": "minecraft:block/light_gray_concrete_powder",
+    "mud": "scribery:block/ashes",
     "bits": "scribery:block/suspicious_ashes_1",
-    "particle": "minecraft:block/light_gray_concrete_powder"
+    "particle": "scribery:block/ashes"
   },
   "elements": [
     {

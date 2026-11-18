@@ -3,10 +3,13 @@
 Aufruf: python tools/gen_loot_tables.py
 
 Regeln (docs/DESIGN-FINDS.md):
-- Beim Abbauen gibt es den Block selbst zurueck, plus mit einer Chance ein Manuskript (es kann also auch keins kommen).
+- Ein Suspicious-Block (Sand, Mud, Ashes) gibt beim Abbauen den NORMALEN Block zurueck (Sand, Mud, Ashes), nicht sich
+  selbst, plus mit einer Chance ein Manuskript (es kann also auch keins kommen).
+- Der Eisblock mit Fragment gibt nur das Manuskript, das darin steckt, nicht sich selbst.
 - Welches Manuskript und wie es aussieht, bestimmt die Fundart des Blocks (Loot-Funktion scribery:random_manuscript).
 - Papyrusfetzen sind Beifund (nur Brennstoff). Der Scherbenhaufen gibt Scherben und manchmal ein Ostrakon.
-- Die Amphore bleibt nur mit Behutsamkeit (Silk Touch) heil, sonst zerbricht sie in Scherben.
+- Die Amphore bleibt nur mit Behutsamkeit (Silk Touch) heil, sonst zerbricht sie in Scherben, dazu Ostraka,
+  Manuskripte und Papyrusfetzen mit Chance.
 Alle Zahlen sind Schaetzungen und muessen im Spiel abgestimmt werden.
 """
 import json
@@ -45,21 +48,22 @@ def table(name, pools):
 
 
 TABLES = {
-    # Fundboeden: Block zurueck, 40 % ein Manuskript, manchmal Papyrusfetzen
-    "suspicious_sand": [pool(item("scribery:suspicious_sand")), pool(manuscript("sand"), chance(0.40)),
+    # Fundboeden: der normale Block, 40 % ein Manuskript, manchmal Papyrusfetzen
+    "suspicious_sand": [pool(item("minecraft:sand")), pool(manuscript("sand"), chance(0.40)),
                         pool(item("scribery:papyrus_scrap", (1, 2)), chance(0.35))],
-    "suspicious_mud": [pool(item("scribery:suspicious_mud")), pool(manuscript("mud"), chance(0.40)),
+    "suspicious_mud": [pool(item("minecraft:mud")), pool(manuscript("mud"), chance(0.40)),
                        pool(item("scribery:papyrus_scrap", (1, 2)), chance(0.35))],
-    "suspicious_ashes": [pool(item("scribery:suspicious_ashes")), pool(manuscript("ashes"), chance(0.40)),
+    "suspicious_ashes": [pool(item("scribery:ashes")), pool(manuscript("ashes"), chance(0.40)),
                          pool(item("scribery:papyrus_scrap", (1, 2)), chance(0.35))],
-    # Eisblock mit eingefrorenem Fragment: Block zurueck, 60 % das Fragment
-    "frozen_fragment_block": [pool(item("scribery:frozen_fragment_block")), pool(manuscript("ice"), chance(0.60))],
+    # Eisblock mit eingefrorenem Fragment: nur das Manuskript, das darin steckt (der Block selbst geht verloren)
+    "frozen_fragment_block": [pool(manuscript("ice"))],
     # Scherbenhaufen: Block zurueck, 1 bis 3 Scherben, selten ein Ostrakon, manchmal ein Manuskript
     "shard_pile": [pool(item("scribery:shard_pile")), pool(item("scribery:amphora_shard", (1, 3))),
                    pool(item("scribery:ostrakon"), chance(0.12)), pool(manuscript("shards"), chance(0.25))],
-    # Amphore: mit Silk Touch heil, sonst Scherben, mit Chance ein Manuskript und Papyrusfetzen
+    # Amphore: mit Silk Touch heil, sonst Scherben, mit Chance Ostrakon, Manuskript und Papyrusfetzen
     "amphora": [pool(item("scribery:amphora"), SILK_TOUCH),
                 pool(item("scribery:amphora_shard", (2, 4)), {"condition": "minecraft:inverted", "term": SILK_TOUCH}),
+                pool(item("scribery:ostrakon"), {"condition": "minecraft:inverted", "term": SILK_TOUCH}, chance(0.25)),
                 pool(manuscript("shards"), {"condition": "minecraft:inverted", "term": SILK_TOUCH}, chance(0.30)),
                 pool(item("scribery:papyrus_scrap", (1, 2)), {"condition": "minecraft:inverted", "term": SILK_TOUCH}, chance(0.25))],
 }

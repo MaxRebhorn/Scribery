@@ -50,10 +50,12 @@ Erzeugt von `tools/gen_loot_tables.py`, die Pools von `tools/export_find_pools.p
 
 | Block | Gibt zurück |
 |---|---|
-| Suspicious Sand, Mud, Ashes | der Block selbst; 40 % ein Manuskript der Fundart; 35 % 1 bis 2 Papyrusfetzen |
-| Eisblock mit Fragment | der Block selbst; 60 % ein gefrorenes Manuskript |
+| Suspicious Sand, Mud, Ashes | der **normale** Block (Sand, Mud, Ashes), nicht der Suspicious-Block; 40 % ein Manuskript der Fundart; 35 % 1 bis 2 Papyrusfetzen |
+| Eisblock mit Fragment | nur das Manuskript, das darin steckt (immer, gefroren); der Block selbst geht verloren |
 | Scherbenhaufen | der Block selbst; 1 bis 3 Amphorenscherben; 12 % ein Ostrakon; 25 % ein Manuskript |
-| Amphore | mit Behutsamkeit (Silk Touch) die Amphore, sonst 2 bis 4 Scherben, 30 % ein Manuskript, 25 % Papyrusfetzen |
+| Amphore | mit Behutsamkeit (Silk Touch) die Amphore, sonst 2 bis 4 Scherben, 25 % ein Ostrakon, 30 % ein Manuskript, 25 % Papyrusfetzen |
+
+Neu dafür: der normale Block **Ashes** (eigene Textur, Untergrund von Suspicious Ashes).
 
 - **Loot-Funktion `scribery:random_manuscript`** (`"find": "sand" | "mud" | "ashes" | "ice" | "shards"`): zieht ein zufälliges Manuskript aus dem Pool der Fundart und setzt das Aussehen (Schlamm wassergeschädigt, Asche verkohlt, Eis gefroren, Sand zu 35 % verblasst, Scherben normal).
 - **Pools:** Sand 388, Schlamm 438, Eis 295, Asche 272, Scherben 147 Manuskripte (Summe 1.540). Die Zuordnung der elf Biome steht in `BIOME_TO_FIND` in `tools/export_find_pools.py`.

@@ -33,6 +33,11 @@ public class LecternBlockEntity extends BlockEntity {
         return fragment.getItem() instanceof ManuscriptFragmentItem ? ManuscriptFragmentItem.indexOf(fragment) : -1;
     }
 
+    /** Zustand des aufgelegten Fragments (0 normal, sonst eine Variante), 0 wenn nichts darauf liegt. */
+    public int fragmentVariant() {
+        return fragment.getItem() instanceof ManuscriptFragmentItem ? ManuscriptFragmentItem.variant(fragment) : 0;
+    }
+
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
