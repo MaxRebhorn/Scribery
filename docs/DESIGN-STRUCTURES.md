@@ -22,8 +22,8 @@ Wagen, Kisten und Tragetiere-Reste im Eis, die Funde stecken in Eisblöcken mit 
 ### Soldatengrab (Sumpf, Fundart Schlamm)
 Ein flaches Grab im Moor: Holzreste, verrostete Waffe, Schildrest, ein Helm. Im Grab liegt ein kleines **Amulett mit winziger Schriftrolle**, auf der Bibelstellen stehen (Vorbild: historische Funde von Amuletten mit Bibeltext). Dafür braucht es ein neues Item (Amulett-Kapsel), aus dem man ein Manuskript bekommt.
 
-### Katakomben-Kirche (unter der Erde, in mehreren Versionen je Landschaft)
-Die frühen Christen haben sich teils in Katakomben getroffen und dort Gottesdienst gefeiert. Die Anlage soll **als Kirche erkennbar** sein, siehe „Erkennbarkeit“. **Zwei Hauptversionen** mit verschiedenem Gestein: eine für die **Wüste** (Sandstein) und eine für **normale Biome** (je nach Gegend Stein, Tuff oder Lehmziegel). Für das **Eisbiom** vielleicht eine dritte, ähnliche Fassung (noch offen). Der Eingang liegt versteckt (Treppe in einer Mulde, Hinweis durch Suspicious-Blöcke).
+### Katakombe mit Gedenkraum (unter der Erde, in mehreren Versionen je Landschaft)
+**Umgesetzt nach der Recherche** (`/scribery_catacomb [normal|desert]`, siehe „Historische Grundlage“): Katakomben waren Friedhöfe, in denen auch Gedenkmahle und Feiern zu Beerdigungen stattfanden, kein heimlicher Alltagsgottesdienst. Der Generator baut deshalb ein Netz statt eines Kirchenschiffs: ein schmaler Hauptgang mit zwei Lagen gestapelter Grabnischen in beiden Wänden (meist mit gemeißeltem Stein verschlossen, einzelne offen mit Kerze und zerbrochener Amphore), zwei Lichtschächte mit Gitter an der Oberfläche, ein Seitengang zu einer **Grabkammer** mit drei Arkosolien, ein Seitengang zu einem **Taufraum** mit rechteckigem, trockenem Becken und einer Stufe, und am Ende ein hoher **Gedenkraum** ohne Sitzplätze mit dem **Altartisch aus glattem Stein** vor einem Märtyrergrab in einer Bogennische. Die Anlage soll **als Ort christlicher Feiern erkennbar** sein, siehe „Erkennbarkeit“. **Zwei Hauptversionen** mit verschiedenem Gestein: eine für die **Wüste** (Sandstein) und eine für **normale Biome** (je nach Gegend Stein, Tuff oder Lehmziegel). Für das **Eisbiom** vielleicht eine dritte, ähnliche Fassung (noch offen). Der Eingang liegt versteckt (Treppe in einer Mulde, Hinweis durch Suspicious-Blöcke).
 
 ### Verschüttete Häuser (kurz unter der Oberfläche)
 Eingestürzte Häuser, die nur wenige Blöcke tief unter der Erde liegen. An der Oberfläche sitzen **Suspicious-Blöcke als Hinweis**, dass darunter etwas ist; wer gräbt, findet ein Haus mit Boden, Feuerstelle, Amphoren. Technik: Strukturen können sich in das Gelände eingraben (`terrain_adaptation: bury`), die Hinweis-Blöcke setzt ein eigenes Feature darüber (ähnlich wie bei den Pfadruinen im Spiel).
@@ -55,8 +55,8 @@ Zusammengefasst aus Nachschlagewerken und Fachartikeln (Quellen unten). Die Fors
 
 **Taufbecken:** Das älteste bekannte (Dura-Europos) ist ein rechteckiges Becken in einem kleinen Raum, tief genug zum Eintauchen, mit Stufen hinunter. Auch frühe Beispiele in Katakomben sind rechteckig (San Ponziano in Rom); achteckige Becken sind später.
 
-### Was das für unsere Katakomben-Kirche bedeutet
-Unser erster Entwurf (ein langes, breites Schiff mit Altarnische) ist eher eine **spätere Basilika im Fels** als eine frühe Katakombe. Historisch näher wäre:
+### Was das für unsere Katakombe bedeutet (umgesetzt am 18.11.2026)
+Der erste Entwurf (ein langes, breites Schiff mit Altarnische) war eher eine **spätere Basilika im Fels** als eine frühe Katakombe und ist ersetzt. Historisch näher, und so jetzt gebaut:
 - **Ein Netz aus schmalen Gängen** mit vielen Loculi in den Wänden, dazwischen Arkosolien und Cubicula.
 - **Eine größere Kammer** für das Gedenkmahl und die Eucharistie: ein **Altartisch aus glattem Stein**, am besten **auf oder an einem Arkosolgrab** (Märtyrergrab als Tisch), davor Platz zum Stehen. Keine Bänke in der Kirche selbst; in einer **Mahlkammer** wären Wandbänke historisch belegt (nicht in der Kirche).
 - **Rechteckiges Taufbecken mit Stufen** in einem kleinen Raum (bei uns trocken).

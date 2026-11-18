@@ -202,13 +202,14 @@ final class DebugStructures {
         return b.placed;
     }
 
-    // ------------------------------------------------------------------ Katakomben-Kirche (unter der Erde)
+    // ------------------------------------------------------------------ Katakombe mit Gedenkraum (unter der Erde)
 
     /**
-     * Eine Kirche in der Katakombe, 9 Stufen unter der Erde. Schiff ohne Sitzplaetze (die fruehen Kirchen hatten keine), am Ende
-     * die Nische mit dem Altartisch aus glattem Stein, an einer Wand Grabnischen (teils verschlossen, teils offen mit Kerze und
-     * zerbrochener Amphore), an der anderen ein Nebenraum mit ausgetrocknetem Taufbecken. Der Eingang ist eine Treppe, an
-     * der Oberflaeche liegen Suspicious-Bloecke als Hinweis.
+     * Eine Katakombe nach historischen Vorbildern (siehe docs/DESIGN-STRUCTURES.md): ein schmaler Hauptgang mit gestapelten
+     * Grabnischen (Loculi) in beiden Waenden, Lichtschaechte zur Oberflaeche, ein Seitengang zu einer Grabkammer (Cubiculum) mit
+     * Arkosolien, ein Seitengang zu einem Taufraum mit rechteckigem, trockenem Becken mit Stufen und am Ende ein groesserer
+     * Gedenkraum: dort steht ein Altartisch aus glattem Stein vor einem Maertyrergrab in einer Bogennische. Es gibt keine Baenke,
+     * die Gemeinde steht. Der Eingang ist eine Treppe, an der Oberflaeche liegen Suspicious-Bloecke als Hinweis.
      *
      * @param desert Sandstein-Fassung fuer die Wueste, sonst Stein
      */
@@ -219,49 +220,82 @@ final class DebugStructures {
         BlockState seal = (desert ? Blocks.CHISELED_SANDSTONE : Blocks.CHISELED_STONE_BRICKS).defaultBlockState();
         Block stairBlock = desert ? Blocks.SANDSTONE_STAIRS : Blocks.STONE_BRICK_STAIRS;
         Block slab = desert ? Blocks.SMOOTH_SANDSTONE_SLAB : Blocks.SMOOTH_STONE_SLAB;
-        Block altar = desert ? Blocks.SMOOTH_SANDSTONE : Blocks.SMOOTH_STONE;
+        Block smooth = desert ? Blocks.SMOOTH_SANDSTONE : Blocks.SMOOTH_STONE;
 
         Set<BlockPos> cells = new HashSet<>();
-        for (int k = 0; k <= 9; k++) b.cells(cells, k, k, 0, 1, -k + 1, -k + 3);              // Treppe
-        b.cells(cells, 10, 25, -3, 3, -8, -4);                                                 // Schiff
-        for (int u = 26; u <= 29; u++) {                                                       // Nische (Apsis)
-            for (int v = -4; v <= 4; v++) if (Math.pow(u - 25, 2) + v * v <= 12) b.cells(cells, u, u, v, v, -8, -4);
+        for (int k = 0; k <= 9; k++) b.cells(cells, k, k, 0, 1, -k + 1, -k + 3);        // Treppe
+        b.cells(cells, 10, 30, -1, 1, -8, -6);                                          // Hauptgang, drei Bloecke hoch
+        b.cells(cells, 19, 20, -5, -2, -8, -6);                                         // Seitengang zum Taufraum
+        b.cells(cells, 17, 22, -10, -6, -8, -5);                                        // Taufraum
+        b.cells(cells, 19, 21, -9, -8, -10, -9);                                        // Becken (zwei tief, rechteckig)
+        b.cells(cells, 24, 25, 2, 5, -8, -6);                                           // Seitengang zur Grabkammer
+        b.cells(cells, 22, 27, 6, 10, -8, -5);                                          // Grabkammer (Cubiculum)
+        b.cells(cells, 21, 21, 7, 9, -8, -7);                                           // Arkosolien der Grabkammer
+        b.cells(cells, 28, 28, 7, 9, -8, -7);
+        b.cells(cells, 23, 25, 11, 11, -8, -7);
+        b.cells(cells, 31, 39, -4, 4, -8, -4);                                          // Gedenkraum, hoch, ohne Sitzplaetze
+        b.cells(cells, 40, 40, -1, 1, -8, -7);                                          // Bogennische mit Maertyrergrab
+        // Loculi: zwei Lagen uebereinander (Boden und Decke des Gangs), je zwei Bloecke lang, dazwischen eine Wand
+        int[] nicheU = { 11, 14, 17, 20, 23, 26, 29 };
+        int[] tierH = { -8, -6 };
+        for (int u : nicheU) {
+            for (int side : new int[] { -1, 1 }) {
+                boolean branch = side < 0 ? u + 1 >= 19 && u <= 20 : u + 1 >= 24 && u <= 25;
+                if (branch) continue;
+                for (int h : tierH) b.cells(cells, u, u + 1, 3 * side, 3 * side, h, h);
+            }
         }
-        b.cells(cells, 15, 16, -4, -4, -8, -6);                                                // Tuer zum Nebenraum
-        b.cells(cells, 13, 19, -10, -5, -8, -5);                                               // Nebenraum
-        int[] nicheU = { 11, 14, 17, 20, 23 };
-        int[][] tiers = { { -8, -7 }, { -6, -5 } };
-        for (int u : nicheU) for (int[] t : tiers) b.cells(cells, u, u + 1, 5, 5, t[0], t[1]);  // Grabnischen
+        // Lichtschaechte von der Decke des Hauptgangs bis knapp unter die Oberflaeche
+        for (int u : new int[] { 14, 27 }) b.cells(cells, u, u, 0, 0, -5, -1);
         b.carve(cells, wall, floor);
 
-        for (int k = 0; k <= 9; k++) {                                                          // Stufen
+        for (int k = 0; k <= 9; k++) {                                                   // Stufen
             BlockState stair = stairBlock.defaultBlockState().setValue(StairBlock.FACING, facing.getOpposite());
             b.put(k, 0, -k, stair);
             b.put(k, 1, -k, stair);
         }
-        // Grabnischen: meist mit gemeisseltem Stein verschlossen, einige offen mit Kerze und zerbrochener Amphore
+        // Loculi: meist mit gemeisseltem Stein verschlossen, einige offen mit Kerze und zerbrochener Amphore
         for (int u : nicheU) {
-            for (int[] t : tiers) {
-                if (b.chance(25)) {
-                    for (int du = 0; du <= 1; du++) for (int h = t[0]; h <= t[1]; h++) b.put(u + du, 4, h, Blocks.AIR);
-                    b.put(u, 5, t[0], Blocks.CANDLE.defaultBlockState().setValue(CandleBlock.LIT, true).setValue(CandleBlock.CANDLES, 1 + b.random.nextInt(3)));
-                    b.put(b.at(u + 1, 5, t[0]), amphora(b, b.chance(50) ? ModBlocks.AMPHORA_HALF.get() : ModBlocks.AMPHORA_SHARDS.get()));
-                } else {
-                    for (int du = 0; du <= 1; du++) for (int h = t[0]; h <= t[1]; h++) b.put(u + du, 4, h, seal);
+            for (int side : new int[] { -1, 1 }) {
+                boolean branch = side < 0 ? u + 1 >= 19 && u <= 20 : u + 1 >= 24 && u <= 25;
+                if (branch) continue;
+                for (int h : tierH) {
+                    if (b.chance(12)) {
+                        b.put(u, 2 * side, h, Blocks.AIR);
+                        b.put(u + 1, 2 * side, h, Blocks.AIR);
+                        b.put(u, 3 * side, h, Blocks.CANDLE.defaultBlockState().setValue(CandleBlock.LIT, true).setValue(CandleBlock.CANDLES, 1 + b.random.nextInt(2)));
+                        b.put(b.at(u + 1, 3 * side, h), amphora(b, b.chance(50) ? ModBlocks.AMPHORA_HALF.get() : ModBlocks.AMPHORA_SHARDS.get()));
+                    } else {
+                        b.put(u, 2 * side, h, seal);
+                        b.put(u + 1, 2 * side, h, seal);
+                    }
                 }
             }
         }
-        // Altartisch aus glattem Stein: zwei Beine, darueber Platten; daneben Amphoren
-        b.put(28, -1, -8, altar);
-        b.put(28, 1, -8, altar);
-        for (int v = -1; v <= 1; v++) b.put(28, v, -7, slab);
-        b.put(b.at(26, -3, -8), amphora(b, ModBlocks.AMPHORA.get()));
-        b.put(b.at(26, 3, -8), amphora(b, ModBlocks.AMPHORA_BROKEN_NECK.get()));
-        // Ausgetrocknetes Taufbecken: Ring aus glattem Stein, innen trockene Erde
-        for (int u = 15; u <= 17; u++) for (int v = -9; v <= -7; v++) if (!(u == 16 && v == -8)) b.put(u, v, -8, altar);
-        b.put(16, -8, -9, Blocks.COARSE_DIRT);
-        // Haengende Lampen im Schiff
-        for (int u : new int[] { 12, 17, 22 }) b.put(u, 0, -4, Blocks.LANTERN.defaultBlockState().setValue(LanternBlock.HANGING, true));
+        // Lichtschacht: oben ein Gitter, damit nichts hineinfaellt; Lampen im Gang
+        for (int u : new int[] { 14, 27 }) b.put(u, 0, 0, Blocks.IRON_BARS);
+        for (int u : new int[] { 12, 17, 22 }) b.put(u, 0, -6, Blocks.LANTERN.defaultBlockState().setValue(LanternBlock.HANGING, true));
+        // Grabkammer: Grabplatten in den Bogennischen
+        for (int v = 7; v <= 9; v++) {
+            b.put(21, v, -8, smooth);
+            b.put(28, v, -8, smooth);
+        }
+        for (int u = 23; u <= 25; u++) b.put(u, 11, -8, smooth);
+        b.put(24, 11, -7, Blocks.CANDLE.defaultBlockState().setValue(CandleBlock.LIT, true));
+        // Taufraum: rechteckiges Becken, trocken; an der Westseite eine Stufe
+        for (int v = -9; v <= -8; v++) b.put(19, v, -10, smooth);
+        b.put(20, -8, -11, Blocks.COARSE_DIRT);
+        // Gedenkraum: Maertyrergrab in der Bogennische, davor der Altartisch aus glattem Stein (zwei Beine, Platten), Amphoren
+        for (int v = -1; v <= 1; v++) b.put(40, v, -8, smooth);
+        b.put(40, 0, -7, Blocks.CANDLE.defaultBlockState().setValue(CandleBlock.LIT, true).setValue(CandleBlock.CANDLES, 3));
+        b.put(38, -1, -8, smooth);
+        b.put(38, 1, -8, smooth);
+        for (int v = -1; v <= 1; v++) b.put(38, v, -7, slab);
+        b.put(b.at(36, -2, -8), amphora(b, ModBlocks.AMPHORA.get()));
+        b.put(b.at(36, 2, -8), amphora(b, ModBlocks.AMPHORA.get()));
+        b.put(b.at(33, -3, -8), amphora(b, ModBlocks.AMPHORA_HALF.get()));
+        b.put(b.at(34, 3, -8), amphora(b, ModBlocks.AMPHORA_BROKEN_NECK.get()));
+        for (int u : new int[] { 33, 37 }) for (int v : new int[] { -3, 3 }) b.put(u, v, -4, Blocks.LANTERN.defaultBlockState().setValue(LanternBlock.HANGING, true));
         // Hinweise an der Oberflaeche
         b.put(2, -1, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
         b.put(-1, 2, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
