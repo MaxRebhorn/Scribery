@@ -183,8 +183,9 @@ public final class DebugWreck {
     }
 
     /**
-     * Ladung nach {@code load}: Stufe 1 hat genau eine Amphore, Stufe 10 fuellt jede freie Stelle im Laderaum (ab Stufe 7
-     * teils zwei uebereinander). Dazwischen steigt die Menge gleichmaessig; ein Teil der Stellen bleibt fuer Scherbenhaufen.
+     * Ladung nach {@code load}: Stufe 1 hat genau eine Amphore, Stufe 10 fuellt jede freie Stelle im Laderaum. Ab Stufe 7
+     * liegt teils eine zweite Lage darauf; Amphoren stapeln sich aber nie direkt, darunter ist immer ein Scherbenhaufen.
+     * Dazwischen steigt die Menge gleichmaessig; ein Teil der Stellen bleibt fuer Scherbenhaufen.
      */
     private void cargo() {
         List<int[]> cells = new ArrayList<>();
@@ -199,8 +200,14 @@ public final class DebugWreck {
         int count = load <= 1 ? 1 : (int) Math.round(cells.size() * (load - 1) / 9.0);
         for (int i = 0; i < count && i < cells.size(); i++) {
             int[] c = cells.get(i);
-            put(at(c[0], c[1], 1), anyAmphora());
-            if (load >= 7 && random.nextFloat() < (load - 6) / 4f) put(at(c[0], c[1], 2), anyAmphora());   // gestapelt
+            boolean stacked = load >= 7 && random.nextFloat() < (load - 6) / 4f;
+            if (stacked) {
+                // Amphoren stapeln sich nicht: wo eine auf einer anderen liegen wuerde, ist die untere nur ein Scherbenhaufen
+                put(at(c[0], c[1], 1), ModBlocks.SHARD_PILE.get().defaultBlockState());
+                put(at(c[0], c[1], 2), anyAmphora());
+            } else {
+                put(at(c[0], c[1], 1), anyAmphora());
+            }
         }
         // Scherbenhaufen aus den noch freien Stellen: von 0 (Stufe 1 und 2) bis 4 (Stufe 10)
         for (int i = count; i < cells.size() && i < count + load / 3 + (load > 2 ? 1 : 0); i++) {
