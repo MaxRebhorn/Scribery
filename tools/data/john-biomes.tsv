@@ -1,0 +1,67 @@
+# Fundbiom je Geschichte (oder je Seite). Spalten: Einheit (stNN oder pgNNN), Biom, Begruendung.
+# Eine Seitenzeile (pgNNN) ueberschreibt die Geschichtenzeile fuer diese Seite. Biome: siehe BIOMES in tools/assign_biomes.py.
+# Die Zuordnung ist thematisch (Ort, Bild, Stimmung) und ein ENTWURF zum Aendern.
+st01	desert	Anfang des Evangeliums, Taeufer, Wueste
+st02	desert	Stimme in der Wueste
+st03	river	Jordan
+st04	river	Jordan, Bethanien jenseits des Jordan
+st05	forest	Feigenbaum
+st06	plains	Dorffest in Kana
+st07	plains	Jerusalem, Tempel
+st08	taiga	bei Nacht
+st09	river	Aenon, viel Wasser
+st10	river	Jakobsbrunnen, lebendiges Wasser
+st11	plains	Felder, weiss zur Ernte
+st12	beach	Kapernaum am See
+st13	swamp	Teich mit Kranken
+st14	badlands	Graeber, Stunde der Auferstehung
+st15	mountain	Moses hat von mir geschrieben, Sinai
+st16	mountain	auf dem Berg gespeist
+st17	beach	Gang ueber den See
+st18	desert	Manna in der Wueste
+st19	beach	Kapernaum, Synagoge, Brot
+st20	beach	Kapernaum, Juenger gehen weg
+st21	forest	Laubhuettenfest
+st22	forest	Laubhuettenfest
+st23	river	letzter Festtag, Wasser
+st24	badlands	Steine, Steinigung
+st25	savanna	Licht der Welt, offener Himmel
+st26	desert	Abraham, ehe Abraham wurde
+st27	river	Teich Siloah
+st28	plains	Stadt, Verhoer
+st29	plains	Stadt
+st30	savanna	Hirte und Herde
+st31	taiga	es war Winter
+st32	badlands	Krankheit, Tod
+st33	badlands	Trauer, Grab
+st34	badlands	Grab im Fels
+st35	swamp	Anschlag im Dunkeln
+st36	jungle	Narde, kostbare Gewuerze
+st37	jungle	Palmzweige
+st38	jungle	Weizenkorn bringt viel Frucht
+st39	swamp	Wandel in der Finsternis
+st40	taiga	Nacht im Abendmahlssaal
+st41	taiga	Nacht
+st42	taiga	Nacht
+st43	savanna	der Weg
+st44	taiga	Nacht, Abschiedsreden
+st45	jungle	Weinstock und Reben
+st46	jungle	Weinstock, Hass der Welt gegen die Reben
+st47	jungle	bleibt in mir, Frucht
+st48	savanna	Trauer wird Freude, Weite
+st49	mountain	Blick zum Himmel
+st50	mountain	Gebet
+st51	mountain	Gebet
+st52	forest	Garten Gethsemane
+st53	swamp	Verhoer im Hof, Verrat
+st54	swamp	Verhoer
+st55	swamp	Urteil, Geisselung
+st56	mountain	Golgatha
+st57	mountain	Golgatha
+st58	forest	Garten, Grab
+st59	forest	Garten, leeres Grab
+st60	forest	Garten
+st61	plains	Haus, verschlossene Tuer
+st62	plains	Haus
+st63	beach	See Tiberias, Fischfang
+st64	beach	Ufer, Gespraech mit Petrus

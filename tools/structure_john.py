@@ -23,7 +23,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = [os.path.join(ROOT, "tools/data/john-1-1-18.tsv"), os.path.join(ROOT, "tools/data/john-1-19-21-25.tsv")]
 STORIES = os.path.join(ROOT, "tools/data/john-stories.tsv")
 FRAGMENTS = [os.path.join(ROOT, "tools/data/manuscripts.john1.json"), os.path.join(ROOT, "tools/data/manuscripts.john-rest.json")]
-GROUPS = os.path.join(ROOT, "tools/data/fragment-groups.json")
+BIOMES = os.path.join(ROOT, "tools/data/fragment-biomes.json")
 OUT_JSON = os.path.join(ROOT, "tools/data/john-structure.json")
 OUT_MD = os.path.join(ROOT, "docs/JOHN-STRUCTURE.md")
 TARGET_PAGE_WORDS = 110
@@ -161,7 +161,7 @@ def main():
     words, order, counts, stories, pages = build_a()
     frags = load_fragments()
     info = build_b(words, stories, pages, frags) if frags else {}
-    groups = json.load(open(GROUPS, encoding="utf-8")) if os.path.exists(GROUPS) else None
+    groups = json.load(open(BIOMES, encoding="utf-8")) if os.path.exists(BIOMES) else None
     frag_group = groups["fragments"] if groups else {}
 
     by_verse, by_page = defaultdict(list), defaultdict(list)
@@ -171,13 +171,13 @@ def main():
         by_page[i["page"]].append(fid)
 
     def biomes_of(fids):
-        return sorted({frag_group[i]["biome"].split("_")[-1] for i in fids if i in frag_group})
+        return sorted({frag_group[i]["biome"] for i in fids if i in frag_group})
 
     data = {
         "schema": 1,
         "note": "Hierarchie Geschichte > Seite > Vers > Manuskript. Erzeugt von tools/structure_john.py aus john-stories.tsv und den Rohdaten.",
         "stories": [{"id": s["id"], "title": s["title"], "from": fmt(s["from"]), "to": fmt(s["to"]), "verses": len(s["verses"]),
-                     "words": s["words"], "pages": s["pages"],
+                     "words": s["words"], "pages": s["pages"], "biomes": biomes_of(sum((by_page[p] for p in s["pages"]), [])),
                      "fragments": sum(len(by_page[p]) for p in s["pages"])} for s in stories],
         "pages": [{"id": p["id"], "story": p["story"], "from": fmt(p["verses"][0]), "to": fmt(p["verses"][-1]),
                    "verses": [fmt(v) for v in p["verses"]], "words": p["words"], "fragments": by_page[p["id"]]} for p in pages],
@@ -201,15 +201,15 @@ def main():
          f"- {split} Verse bestehen aus mehr als einem Manuskript; {multi} Manuskripte reichen über eine Versgrenze.",
          "- Vers 5,4 fehlt (steht in NA28 nicht im Text, siehe `docs/CREDITS.md`)."]
     if spread:
-        L.append(f"- Fundorte: Weil Schwierigkeit und Biom quer zum Text liegen, liegen die Manuskripte einer Seite in durchschnittlich "
-                 f"**{sum(spread) / len(spread):.1f} verschiedenen Biomen** (Minimum {min(spread)}, Maximum {max(spread)}).")
-    L += ["", "## Geschichten", "", "| ID | Titel | Verse | Wörter | Seiten | Manuskripte |", "|---|---|---|---|---|---|"]
+        L.append(f"- Fundorte: Biome sind thematisch pro Geschichte vergeben (`docs/FRAGMENT-BIOMES.md`). Eine Seite liegt in durchschnittlich "
+                 f"{sum(spread) / len(spread):.2f} Biomen (Maximum {max(spread)}); eine Geschichte in {sum(len(s['biomes']) for s in data['stories']) / len(stories):.2f}.")
+    L += ["", "## Geschichten", "", "| ID | Titel | Verse | Wörter | Seiten | Manuskripte | Biom |", "|---|---|---|---|---|---|---|"]
     for s in data["stories"]:
         pg = s["pages"][0] if len(s["pages"]) == 1 else f"{s['pages'][0]}–{s['pages'][-1]}"
-        L.append(f"| {s['id']} | {s['title']} | {s['from']}–{s['to']} | {s['words']} | {pg} | {s['fragments']} |")
+        L.append(f"| {s['id']} | {s['title']} | {s['from']}–{s['to']} | {s['words']} | {pg} | {s['fragments']} | {', '.join(s['biomes'])} |")
     L += ["", "## Hinweise", "",
           "- Die **Geschichten-Grenzen sind ein Entwurf** aus gängigen Gliederungen, die Titel sind eigene. Bitte durchsehen und in `john-stories.tsv` ändern, danach alles neu erzeugen "
-          "(`build_manuscripts.py --rest`, `group_manuscripts.py`, `structure_john.py`).",
+          "(`build_manuscripts.py --rest`, `assign_biomes.py`, `structure_john.py`).",
           "- Die **Seiten** sind rein rechnerisch: etwa gleich lang, geschnitten an Versgrenzen. Für Prolog-Seiten (P1–P21, eingefroren) war das möglich, weil kein Pilot-Manuskript eine Versgrenze überschreitet.",
           "- **Für das Archiv:** Ein Vers ist vollständig, wenn alle seine Manuskripte vorliegen (`verses.<kap:vers>.fragments`). Eine Seite ist vollständig, wenn alle ihre Verse vollständig sind, eine Geschichte, wenn alle ihre Seiten vollständig sind."]
     open(OUT_MD, "w", encoding="utf-8").write("\n".join(L) + "\n")
