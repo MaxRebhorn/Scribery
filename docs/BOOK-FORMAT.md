@@ -33,8 +33,10 @@ Sprache: derzeit Englisch, passend zum Rest des Spiels.
 | Liste | Zeilen mit `- ` am Anfang (keine Verschachtelung) |
 | Tabelle | `\| A \| B \|`, danach `\|---\|---\|`, dann die Zeilen |
 | Trenner | `---` wird ignoriert (nur zur Lesbarkeit der Datei) |
+| Link | `[Text](#anker)`, `[Text](book:id)`, `[Text](book:id#anker)`, siehe Abschnitt 7 |
+| fester Anker | am Ende einer Überschrift: `### 1. Alpha — Α α {#alpha}` |
 
-**Nicht unterstützt:** Bilder, Links, Code, Zitate (`>`), nummerierte Listen (`1.` als Listenpunkt), verschachtelte Listen, farbiger Text, Fußnoten, HTML. Solche Zeichen erscheinen als normaler Text.
+**Nicht unterstützt:** Bilder, Code, Zitate (`>`), nummerierte Listen (`1.` als Listenpunkt), verschachtelte Listen, farbiger Text, Fußnoten, HTML, Links zu Internetseiten. Solche Zeichen erscheinen als normaler Text.
 
 Zeichen: Alles, was die Minecraft-Standardschrift kann, geht: **Griechisch mit Akzenten und Spiritus, Ē, Ō, Gedankenstrich (—), Anführungszeichen.** Unbekannte Zeichen erscheinen als Kästchen. Bitte vorher ein Zeichen im Spiel prüfen, wenn es exotisch ist (zum Beispiel kombinierende Akzente in Sonderfällen).
 
@@ -83,6 +85,22 @@ Eine kurze Schlussbemerkung.
 - **Lexika** mit sehr vielen Einträgen sind lang: rund **11 Einträge pro Seite** bei einer Zeile je Eintrag. Ein Buch mit 600 Einträgen hätte 50 Seiten. Wenn das zu viel wird, ist eine Tabelle mit kleinerer Schrift sinnvoller (wird automatisch verkleinert).
 - **Seitenzahl** zeigt das Buch selbst. Kein „Page N“ im Fließtext verwenden.
 - Der Spieler kann im Buch blättern (Pfeile, Mausrad, A/D, Pfeiltasten) und es mit der Inventartaste schließen.
+
+## 7. Querverweise (Links)
+
+Ein Link ist anklickbar (blau, unterstrichen) und springt zur Seite einer Überschrift, auch in ein anderes Buch.
+
+| Ziel | Wirkung |
+|---|---|
+| `#anker` | Seite im **selben** Buch |
+| `book:greek_grammar_book` | erste Seite eines **anderen** Buchs (Dateiname ohne `.md`) |
+| `book:greek_grammar_book#anker` | Seite mit diesem Anker im anderen Buch |
+
+- **Anker:** Jede Überschrift hat einen. Fest vergeben mit `{#id}` am Ende (`### 1. Alpha — Α α {#alpha}`); sonst ist es der **Slug** des Texts: Kleinbuchstaben, Buchstaben und Ziffern bleiben (auch Griechisch), alles andere wird zum Bindestrich (`## Page 2 — Meet the Alphabet` → `meet-the-alphabet`). Bei `## Page N — Titel` zählt der Titel. Feste Anker eines Buchs müssen eindeutig sein.
+- **Inhaltsverzeichnis:** Ein Anker mit dem Namen **`contents`** (`## Page 0 — Contents {#contents}`) ist das Inhaltsverzeichnis; der Knopf **Contents** oben rechts und die Taste **C** springen dorthin.
+- **Zurück:** Oben links steht **< Back**, sobald man einem Link gefolgt ist (Rück-Taste ebenso). Es führt Sprung für Sprung zurück, auch über Bücher hinweg.
+- **Links in Listen, Absätzen und Tabellen** sind erlaubt, nicht in Überschriften. `**fett**` und `*kursiv*` dürfen um einen Link stehen. Der Linktext darf keine eckigen Klammern enthalten, das Ziel kein Leerzeichen.
+- Ein Ziel, das es nicht gibt, bleibt ohne Wirkung und zeigt kurz eine Meldung („That book is still blank“, „That page is missing“). `BookMarkupTest` prüft, dass jeder Link in den echten Büchern ein Buch und einen Anker hat.
 
 ## 6. Prüfen
 

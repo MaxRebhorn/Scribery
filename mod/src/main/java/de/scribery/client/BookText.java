@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import de.scribery.core.BookMarkup;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
+import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
@@ -18,13 +22,28 @@ import net.minecraft.util.FormattedCharSequence;
  * Absaetze, "- " Listen, **fett**, *kursiv*, Tabellen mit "|" und "---" als Trenner. Jeder Abschnitt
  * "## Page N - Titel" beginnt eine neue Seite; was davor steht, ist die Titelseite. Ein Abschnitt,
  * der nicht auf eine Seite passt, laeuft auf weitere Seiten.
+ *
+ * <p>Querverweise: {@code [Text](#anker)}, {@code [Text](book:id)} und {@code [Text](book:id#anker)} werden zu anklickbaren,
+ * blau unterstrichenen Textstuecken (Klickereignis im Stil, Wert = Linkziel). Ueberschriften tragen einen Anker, entweder
+ * fest ({@code ### Alpha {#alpha}}) oder als Slug ihres Textes; {@link #anchors} liefert Anker -> Seite.
  */
 final class BookText {
     static final int WIDTH = 114, HEIGHT = 126, LINE = 9;
     private static final int BLACK = 0xFF000000, HEAD = 0xFF6A1E14, SUB = 0xFF5A3A22, RULE = 0xFF8F7446;
+    private static final int LINK = 0xFF1B4F8F, LINK_HOVER = 0xFF2F86E0;
 
-    /** Etwas, das auf einer Seite steht: Text oder eine Linie. */
-    record Drawn(int x, int y, FormattedCharSequence text, int color, float scale, int ruleWidth) {}
+    /**
+     * Etwas, das auf einer Seite steht: Text oder eine Linie.
+     *
+     * @param hover  dieselbe Zeile mit hervorgehobenen Links, oder null ohne Link
+     * @param anchor Anker der Ueberschrift, die in dieser Zeile beginnt, oder null
+     */
+    record Drawn(int x, int y, FormattedCharSequence text, int color, float scale, int ruleWidth,
+                 FormattedCharSequence hover, String anchor) {
+        Drawn(int x, int y, FormattedCharSequence text, int color, float scale, int ruleWidth) {
+            this(x, y, text, color, scale, ruleWidth, null, null);
+        }
+    }
 
     record Page(List<Drawn> items) {}
 
@@ -47,7 +66,7 @@ final class BookText {
 
     private sealed interface Block permits Heading, Para, Bullet, Table {}
 
-    private record Heading(int level, String text, boolean centered) implements Block {}
+    private record Heading(int level, String text, boolean centered, String anchor) implements Block {}
 
     private record Para(String text, boolean centered) implements Block {}
 
@@ -82,13 +101,17 @@ final class BookText {
                 cover = false;
                 String title = line.substring(2).strip();
                 int dash = title.indexOf('—');
-                cur.add(new Heading(2, dash >= 0 ? title.substring(dash + 1).strip() : title, false));
+                BookMarkup.Heading hd = BookMarkup.heading(dash >= 0 ? title.substring(dash + 1).strip() : title);
+                cur.add(new Heading(2, hd.text(), false, hd.anchor()));
             } else if (line.startsWith("### ")) {
-                cur.add(new Heading(3, line.substring(4).strip(), cover));
+                BookMarkup.Heading hd = BookMarkup.heading(line.substring(4));
+                cur.add(new Heading(3, hd.text(), cover, hd.anchor()));
             } else if (line.startsWith("## ")) {
-                cur.add(new Heading(2, line.substring(3).strip(), cover));
+                BookMarkup.Heading hd = BookMarkup.heading(line.substring(3));
+                cur.add(new Heading(2, hd.text(), cover, hd.anchor()));
             } else if (line.startsWith("# ")) {
-                cur.add(new Heading(1, line.substring(2).strip(), cover));
+                BookMarkup.Heading hd = BookMarkup.heading(line.substring(2));
+                cur.add(new Heading(1, hd.text(), cover, hd.anchor()));
             } else if (line.startsWith("- ")) {
                 cur.add(new Bullet(line.substring(2).strip()));
             } else if (isTable) {
@@ -111,26 +134,49 @@ final class BookText {
     // ------------------------------------------------------------------ Inline: **fett** und *kursiv*
 
     static MutableComponent inline(String s, boolean baseBold, int color) {
+        return inline(s, baseBold, color, false);
+    }
+
+    /** Ob der Text einen Link enthaelt (dann gibt es eine zweite Fassung mit hervorgehobenem Link). */
+    static boolean hasLink(String s) {
+        for (BookMarkup.Span span : BookMarkup.spans(s)) if (span.target() != null) return true;
+        return false;
+    }
+
+    /**
+     * @param hover wahr: Links in der Hervorhebungsfarbe (wenn die Maus darueber ist). Fett und kursiv gelten ueber Links hinweg.
+     */
+    static MutableComponent inline(String s, boolean baseBold, int color, boolean hover) {
         MutableComponent out = Component.empty();
-        StringBuilder sb = new StringBuilder();
         boolean bold = baseBold, italic = false;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            boolean twoStars = c == '*' && i + 1 < s.length() && s.charAt(i + 1) == '*';
-            if (c == '*') {
-                if (sb.length() > 0) out.append(styled(sb.toString(), bold, italic, color));
-                sb.setLength(0);
-                if (twoStars) {
-                    bold = !bold;
-                    i++;
-                } else {
-                    italic = !italic;
-                }
-            } else {
-                sb.append(c);
+        for (BookMarkup.Span span : BookMarkup.spans(s)) {
+            if (span.target() != null) {
+                Style st = Style.EMPTY.withBold(bold).withItalic(italic).withUnderlined(true)
+                        .withColor((hover ? LINK_HOVER : LINK) & 0xFFFFFF)
+                        .withClickEvent(new ClickEvent(ClickEvent.Action.CHANGE_PAGE, span.target()));
+                out.append(Component.literal(span.text()).withStyle(st));
+                continue;
             }
+            String t = span.text();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < t.length(); i++) {
+                char c = t.charAt(i);
+                boolean twoStars = c == '*' && i + 1 < t.length() && t.charAt(i + 1) == '*';
+                if (c == '*') {
+                    if (sb.length() > 0) out.append(styled(sb.toString(), bold, italic, color));
+                    sb.setLength(0);
+                    if (twoStars) {
+                        bold = !bold;
+                        i++;
+                    } else {
+                        italic = !italic;
+                    }
+                } else {
+                    sb.append(c);
+                }
+            }
+            if (sb.length() > 0) out.append(styled(sb.toString(), bold, italic, color));
         }
-        if (sb.length() > 0) out.append(styled(sb.toString(), bold, italic, color));
         return out;
     }
 
@@ -192,7 +238,7 @@ final class BookText {
                     cur.subList(headStart, cur.size()).clear();
                     newPage();
                     int base = carried.get(0).y();
-                    for (Drawn d : carried) cur.add(new Drawn(d.x(), d.y() - base, d.text(), d.color(), d.scale(), d.ruleWidth()));
+                    for (Drawn d : carried) cur.add(new Drawn(d.x(), d.y() - base, d.text(), d.color(), d.scale(), d.ruleWidth(), d.hover(), d.anchor()));
                     Drawn last = carried.get(carried.size() - 1);
                     y = last.y() - base + (last.text() == null ? 3 : LINE) + 2;
                 } else {
@@ -203,8 +249,12 @@ final class BookText {
         }
 
         void line(int x, FormattedCharSequence seq, int color, float scale, int rowHeight) {
+            line(x, seq, color, scale, rowHeight, null, null);
+        }
+
+        void line(int x, FormattedCharSequence seq, int color, float scale, int rowHeight, FormattedCharSequence hover, String anchor) {
             need(rowHeight);
-            cur.add(new Drawn(x, y, seq, color, scale, 0));
+            cur.add(new Drawn(x, y, seq, color, scale, 0, hover, anchor));
             y += rowHeight;
         }
 
@@ -233,6 +283,15 @@ final class BookText {
         void finish() {
             if (!cur.isEmpty()) pages.add(new Page(cur));
         }
+    }
+
+    /** Anker -> Seitenindex (ab 0): die Seite, auf der die Ueberschrift mit diesem Anker beginnt. Der erste gewinnt. */
+    static Map<String, Integer> anchors(List<Page> pages) {
+        Map<String, Integer> out = new HashMap<>();
+        for (int i = 0; i < pages.size(); i++) {
+            for (Drawn d : pages.get(i).items()) if (d.anchor() != null) out.putIfAbsent(d.anchor(), i);
+        }
+        return out;
     }
 
     /** Setzt das Buch in Seiten. Muss auf dem Client laufen, weil es die Schriftbreite braucht. */
@@ -324,23 +383,33 @@ final class BookText {
             b.gap(h.level() == 3 ? (b.cur.isEmpty() || b.y < 20 ? 2 : 5) : 0);
             b.need(lines.size() * LINE + 2 * LINE); // Ueberschrift nicht allein am Seitenende
             b.headStart = b.cur.size();
-            for (FormattedCharSequence l : lines) b.line(h.centered() ? centerX(font, l, WIDTH) : 0, l, color, 1f, LINE);
+            for (int li = 0; li < lines.size(); li++) {
+                FormattedCharSequence l = lines.get(li);
+                // Der Anker haengt an der ersten Zeile der Ueberschrift
+                b.line(h.centered() ? centerX(font, l, WIDTH) : 0, l, color, 1f, LINE, null, li == 0 ? h.anchor() : null);
+            }
             if (h.level() == 2 && !h.centered()) b.rule(0, WIDTH);
             b.y += 2;
         } else if (block instanceof Para p) {
             List<FormattedCharSequence> lines = font.split(inline(p.text(), false, BLACK), WIDTH);
+            List<FormattedCharSequence> hover = hasLink(p.text()) ? font.split(inline(p.text(), false, BLACK, true), WIDTH) : null;
             b.keepTogether(lines.size() * LINE); // ein Absatz bleibt auf einer Seite, wenn er passt
             int start = b.cur.size();
-            for (FormattedCharSequence l : lines) b.line(p.centered() ? centerX(font, l, WIDTH) : 0, l, BLACK, 1f, LINE);
+            for (int li = 0; li < lines.size(); li++) {
+                FormattedCharSequence l = lines.get(li);
+                b.line(p.centered() ? centerX(font, l, WIDTH) : 0, l, BLACK, 1f, LINE,
+                        hover != null && li < hover.size() ? hover.get(li) : null, null);
+            }
             b.y += 3;
             // Ein Absatz, der mit ":" endet ("Example:"), bleibt mit dem Folgenden zusammen
             if (p.text().strip().endsWith(":") && start < b.cur.size()) b.headStart = start;
         } else if (block instanceof Bullet bl) {
             List<FormattedCharSequence> lines = font.split(inline(bl.text(), false, BLACK), WIDTH - 8);
+            List<FormattedCharSequence> hover = hasLink(bl.text()) ? font.split(inline(bl.text(), false, BLACK, true), WIDTH - 8) : null;
             b.keepTogether(lines.size() * LINE);
             for (int i = 0; i < lines.size(); i++) {
                 if (i == 0) b.cur.add(new Drawn(0, Math.min(b.y, HEIGHT - LINE), Component.literal("•").getVisualOrderText(), BLACK, 1f, 0));
-                b.line(8, lines.get(i), BLACK, 1f, LINE);
+                b.line(8, lines.get(i), BLACK, 1f, LINE, hover != null && i < hover.size() ? hover.get(i) : null, null);
             }
             b.y += 1;
         } else if (block instanceof Table t) {
@@ -384,7 +453,8 @@ final class BookText {
         int x = 0;
         for (int c = 0; c < cells.size(); c++) {
             FormattedCharSequence seq = inline(cells.get(c), header, header ? HEAD : BLACK).getVisualOrderText();
-            b.cur.add(new Drawn(Math.round(x * scale), b.y, seq, header ? HEAD : BLACK, scale, 0));
+            FormattedCharSequence hover = hasLink(cells.get(c)) ? inline(cells.get(c), header, header ? HEAD : BLACK, true).getVisualOrderText() : null;
+            b.cur.add(new Drawn(Math.round(x * scale), b.y, seq, header ? HEAD : BLACK, scale, 0, hover, null));
             x += w[c] + gap;
         }
         b.y += rowH;

@@ -7,6 +7,30 @@
 
 ---
 
+## Page 0 — Contents {#contents}
+
+Click a link to jump to that page. **Back** (top left) takes you to where you were.
+
+- [Meet the alphabet](#meet-the-alphabet)
+- [Sigma and its two faces](#sigma-and-its-two-faces)
+- [Latin letters](#so-how-do-we-write-this-in-latin-letters)
+- [The little marks](#what-are-all-those-little-marks)
+- [At a glance](#the-alphabet-at-a-glance)
+- [Greek Grammar Book](book:greek_grammar_book#contents)
+
+| Jump to a letter | | |
+|---|---|---|
+| [Alpha](#alpha) | [Beta](#beta) | [Gamma](#gamma) |
+| [Delta](#delta) | [Epsilon](#epsilon) | [Zeta](#zeta) |
+| [Eta](#eta) | [Theta](#theta) | [Iota](#iota) |
+| [Kappa](#kappa) | [Lambda](#lambda) | [Mu](#mu) |
+| [Nu](#nu) | [Xi](#xi) | [Omicron](#omicron) |
+| [Pi](#pi) | [Rho](#rho) | [Sigma](#sigma) |
+| [Tau](#tau) | [Upsilon](#upsilon) | [Phi](#phi) |
+| [Chi](#chi) | [Psi](#psi) | [Omega](#omega) |
+
+---
+
 ## Page 1 — A Few Words Before We Begin
 
 This book is meant to be your first step into the Greek language. And where better to start than with the fundamentals? The alphabet, of course!
@@ -63,7 +87,7 @@ Now, on to the letters!
 
 ## Page 3 — The First Six
 
-### 1. Alpha — Α α
+### 1. Alpha — Α α {#alpha}
 **Latin letter: A**
 
 The first letter of the Greek alphabet. Rather straightforward, really.
@@ -74,7 +98,7 @@ Example:
 
 A good place to start, wouldn't you say?
 
-### 2. Beta — Β β
+### 2. Beta — Β β {#beta}
 **Latin letter: B**
 
 Beta. You've probably heard this one before. It even sounds like the name of a rather unsuccessful experiment.
@@ -85,7 +109,7 @@ Example:
 
 Quite appropriate for a book, I suppose.
 
-### 3. Gamma — Γ γ
+### 3. Gamma — Γ γ {#gamma}
 **Latin letter: G**
 
 Gamma is one of those letters that looks a little like a strange corner someone forgot to finish drawing.
@@ -96,7 +120,7 @@ Example:
 
 Remember this one. Language is rather important when learning a language.
 
-### 4. Delta — Δ δ
+### 4. Delta — Δ δ {#delta}
 **Latin letter: D**
 
 Another familiar one! Delta is particularly popular with mathematicians. They even borrowed its uppercase shape for their equations.
@@ -107,7 +131,7 @@ Example:
 
 - δῶρον — DŌRON — gift
 
-### 5. Epsilon — Ε ε
+### 5. Epsilon — Ε ε {#epsilon}
 **Latin letter: E**
 
 Epsilon is a short vowel. Think of it as the simpler cousin of Eta, who apparently needed a little extra room.
@@ -118,7 +142,7 @@ Example:
 
 You'll notice that the little accent mark doesn't appear in the Latin version. We'll get to those marks later.
 
-### 6. Zeta — Ζ ζ
+### 6. Zeta — Ζ ζ {#zeta}
 **Latin letter: Z**
 
 Zeta. A rather pleasant letter, if you ask me. Not particularly troublesome.
@@ -135,7 +159,7 @@ Please don't put that on your résumé.
 
 ## Page 4 — The Next Six
 
-### 7. Eta — Η η
+### 7. Eta — Η η {#eta}
 **Latin letter: Ē**
 
 Now here's where things get slightly more interesting.
@@ -150,7 +174,7 @@ Example:
 
 Notice the H at the beginning? We'll explain that little fellow later.
 
-### 8. Theta — Θ θ
+### 8. Theta — Θ θ {#theta}
 **Latin letters: TH**
 
 Theta is a single Greek letter, even though we write it with two Latin letters: T and H.
@@ -161,7 +185,7 @@ Example:
 
 - θεός — THEOS — god
 
-### 9. Iota — Ι ι
+### 9. Iota — Ι ι {#iota}
 **Latin letter: I**
 
 A simple little letter. Nothing particularly complicated about this one.
@@ -176,7 +200,7 @@ Example:
 
 Why fish? Why not. They're perfectly respectable creatures.
 
-### 10. Kappa — Κ κ
+### 10. Kappa — Κ κ {#kappa}
 **Latin letter: K**
 
 Kappa looks quite familiar to anyone who knows the Latin alphabet.
@@ -187,7 +211,7 @@ Example:
 
 Not to be confused with the heart-shaped things people keep drawing on their letters. Completely different subject.
 
-### 11. Lambda — Λ λ
+### 11. Lambda — Λ λ {#lambda}
 **Latin letter: L**
 
 Lambda has a rather simple shape. Its uppercase form looks a little like a roof.
@@ -200,7 +224,7 @@ Example:
 
 A rather important word in Greek, as it happens. But that's a story for another, more expensive book.
 
-### 12. Mu — Μ μ
+### 12. Mu — Μ μ {#mu}
 **Latin letter: M**
 
 Mu. Another letter that should feel quite familiar.
@@ -217,7 +241,7 @@ And yes, that's where the word "metre" comes from. You're welcome.
 
 ## Page 5 — Getting Further Along
 
-### 13. Nu — Ν ν
+### 13. Nu — Ν ν {#nu}
 **Latin letter: N**
 
 Nu looks almost exactly like our Latin N, at least in its uppercase form.
@@ -230,7 +254,7 @@ Example:
 
 A lovely word. Especially when the laws are written by someone sensible.
 
-### 14. Xi — Ξ ξ
+### 14. Xi — Ξ ξ {#xi}
 **Latin letter: X**
 
 Ah, Xi. A particularly interesting one.
@@ -243,7 +267,7 @@ Example:
 
 The letter is represented by X. And no, you don't need to write KS. We already have enough things to remember.
 
-### 15. Omicron — Ο ο
+### 15. Omicron — Ο ο {#omicron}
 **Latin letter: O**
 
 Omicron means "little O". Its counterpart, Omega, means "great O".
@@ -256,7 +280,7 @@ Example:
 
 Very useful if you happen to own one.
 
-### 16. Pi — Π π
+### 16. Pi — Π π {#pi}
 **Latin letter: P**
 
 Pi! Yes, that Pi.
@@ -271,7 +295,7 @@ Example:
 
 A perfectly good letter, despite its unfortunate mathematical reputation.
 
-### 17. Rho — Ρ ρ
+### 17. Rho — Ρ ρ {#rho}
 **Latin letter: R**
 
 Rho looks a little like P, which can be confusing if you're not paying attention.
@@ -286,7 +310,7 @@ Example:
 
 Yes, RH. Not a spelling mistake.
 
-### 18. Sigma — Σ σ ς
+### 18. Sigma — Σ σ ς {#sigma}
 **Latin letter: S**
 
 Sigma gets two lowercase forms. Two!
@@ -301,13 +325,13 @@ Example:
 
 - σοφία — SOPHIA — wisdom
 
-We'll give Sigma its own little section later. It clearly needs the attention.
+We'll give Sigma its own little [section](#sigma-and-its-two-faces) later. It clearly needs the attention.
 
 ---
 
 ## Page 6 — The Final Six
 
-### 19. Tau — Τ τ
+### 19. Tau — Τ τ {#tau}
 **Latin letter: T**
 
 Tau is another straightforward letter.
@@ -320,7 +344,7 @@ Example:
 
 Nothing particularly strange here. Let's enjoy the moment while it lasts.
 
-### 20. Upsilon — Υ υ
+### 20. Upsilon — Υ υ {#upsilon}
 **Latin letter: U**
 
 Now this is an interesting one.
@@ -335,7 +359,7 @@ Example:
 
 And yes, the H is intentional. More on that shortly.
 
-### 21. Phi — Φ φ
+### 21. Phi — Φ φ {#phi}
 **Latin letters: PH**
 
 Phi is another letter represented by two Latin letters.
@@ -350,7 +374,7 @@ At this point, you may be noticing a pattern.
 
 I'm afraid we're not finished.
 
-### 22. Chi — Χ χ
+### 22. Chi — Χ χ {#chi}
 **Latin letters: CH**
 
 Chi. Don't confuse it with Xi.
@@ -363,7 +387,7 @@ Example:
 
 Remember: CH represents one Greek letter, not two.
 
-### 23. Psi — Ψ ψ
+### 23. Psi — Ψ ψ {#psi}
 **Latin letters: PS**
 
 Another letter represented by two Latin letters.
@@ -376,7 +400,7 @@ Example:
 
 A rather interesting word with several meanings. But we'll leave that to the people who can afford the lexicon.
 
-### 24. Omega — Ω ω
+### 24. Omega — Ω ω {#omega}
 **Latin letter: Ō**
 
 And finally, Omega!
@@ -600,7 +624,7 @@ You'll still need to learn how words fit together, how nouns change their ending
 
 Luckily, I've been working on a few more books.
 
-If you'd like to learn how Greek actually works, look out for my **Greek Grammar Book**. It covers the basics of nouns, verbs, cases and all those other lovely things.
+If you'd like to learn how Greek actually works, look out for my **[Greek Grammar Book](book:greek_grammar_book#contents)**. It covers the basics of nouns, verbs, cases and all those other lovely things.
 
 If you'd rather find out what individual words mean, there's the **Greek Lexicon A–C** and, eventually, the **Greek Lexicon D–F**. Yes, there will be more letters. Try to contain your excitement.
 

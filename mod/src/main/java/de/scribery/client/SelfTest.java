@@ -190,7 +190,7 @@ final class SelfTest {
                 LOG.info("[selftest] Buch {}: {} Seiten", id, pages);
             }
         });
-        then(0, () -> mc.setScreen(new BookScreen(BookText.read("greek_alphabet_primer"))));
+        then(0, () -> mc.setScreen(new BookScreen("greek_alphabet_primer", BookText.read("greek_alphabet_primer"))));
         shot(mc, "19-book-cover");
         then(0, () -> {
             BookScreen b = (BookScreen) mc.screen;
@@ -342,6 +342,23 @@ final class SelfTest {
         shot(mc, "27-archive-gaps");
         then(0, () -> ((ArchiveScreen) mc.screen).debugJumpToChapter(4));
         shot(mc, "28-archive-chapter-4");
+
+        // Buecher mit Querverweisen: Inhaltsverzeichnis, Sprung zu einem Buchstaben, Sprung ins andere Buch, Zurueck
+        then(0, () -> mc.setScreen(new BookScreen("greek_alphabet_primer", BookText.read("greek_alphabet_primer"))));
+        then(0, () -> {
+            BookScreen b = (BookScreen) mc.screen;
+            b.goTo(b.findPage("Click a link"));
+        });
+        shot(mc, "29-book-contents");
+        then(0, () -> ((BookScreen) mc.screen).debugFollow("#alpha"));
+        shot(mc, "30-book-link-alpha");
+        then(0, () -> ((BookScreen) mc.screen).debugFollow("book:greek_grammar_book#contents"));
+        shot(mc, "31-book-other-book");
+        then(0, () -> {
+            BookScreen b = (BookScreen) mc.screen;
+            LOG.info("[selftest] Buch nach Links: {} Seite {} Verlauf {}", b.debugBook(), b.debugPage(), b.debugHistory());
+            if (!"greek_grammar_book".equals(b.debugBook()) || b.debugHistory() != 2) throw new IllegalStateException("Linksprung falsch");
+        });
 
         then(10, () -> {
             LOG.info("[selftest] fertig");

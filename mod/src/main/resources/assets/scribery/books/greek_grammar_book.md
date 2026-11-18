@@ -7,11 +7,32 @@
 
 ---
 
+## Page 0 — Contents {#contents}
+
+Click a link to jump to that page. **Back** (top left) takes you to where you were.
+
+- [So, You Want to Learn Grammar?](#so-you-want-to-learn-grammar)
+- [Nouns: More Than Just Words](#nouns-more-than-just-words)
+- [The Three Genders](#the-three-genders)
+- [Cases: Why Does Every Word Have So Many Endings?](#cases-why-does-every-word-have-so-many-endings)
+- [Cases, Continued](#cases-continued)
+- [The Definite Article: The Little Word That Changes Everything](#the-definite-article-the-little-word-that-changes-everything)
+- [Adjectives: Describing Things](#adjectives-describing-things)
+- [Verbs: The Things That Actually Happen](#verbs-the-things-that-actually-happen)
+- [Tense and Aspect: Greek Has Opinions About Time](#tense-and-aspect-greek-has-opinions-about-time)
+- [Voice and Mood: Who Does What, and How?](#voice-and-mood-who-does-what-and-how)
+- [Putting It Together: Simple Sentences](#putting-it-together-simple-sentences)
+- [A Few Things Worth Remembering](#a-few-things-worth-remembering)
+- [What to Read Next](#what-to-read-next)
+- [Greek Alphabet Primer](book:greek_alphabet_primer#contents)
+
+---
+
 ## Page 1 — So, You Want to Learn Grammar?
 
 Welcome back!
 
-If you've read my *Greek Alphabet Primer*, you should now be familiar with all twenty-four Greek letters. You can look at a Greek word without immediately assuming someone spilled a collection of strange symbols onto the page.
+If you've read my *[Greek Alphabet Primer](book:greek_alphabet_primer#contents)*, you should now be familiar with all twenty-four Greek letters. You can look at a Greek word without immediately assuming someone spilled a collection of strange symbols onto the page.
 
 That's progress.
 
@@ -79,6 +100,8 @@ They have genders.
 
 Yes, even objects get assigned a gender. Don't ask me why. I wasn't there when they decided.
 
+Next: [The Three Genders](#the-three-genders)
+
 ---
 
 ## Page 3 — The Three Genders
@@ -126,6 +149,8 @@ Don't just memorize ANTHRŌPOS and move on. Remember that it is masculine.
 Your future self will thank you.
 
 Or blame you, depending on how much you've forgotten.
+
+Next: [Cases: Why Does Every Word Have So Many Endings?](#cases-why-does-every-word-have-so-many-endings)
 
 ---
 
@@ -184,6 +209,8 @@ You can often translate a genitive with the English word "of".
 The house **of the person**.
 
 A rather useful little case, especially if you own a house and would like people to know about it.
+
+Next: [Cases, Continued](#cases-continued)
 
 ---
 
@@ -255,6 +282,8 @@ It doesn't appear with the same frequency as the other cases, but it's still wor
 
 And please don't shout at people just to practise your Greek. I won't be responsible for the consequences.
 
+Next: [The Definite Article: The Little Word That Changes Everything](#the-definite-article-the-little-word-that-changes-everything)
+
 ---
 
 ## Page 6 — The Definite Article: The Little Word That Changes Everything
@@ -311,6 +340,8 @@ A small word doing a surprisingly large amount of work.
 
 Perhaps I should start charging it rent.
 
+Next: [Adjectives: Describing Things](#adjectives-describing-things)
+
 ---
 
 ## Page 7 — Adjectives: Describing Things
@@ -352,6 +383,8 @@ But there's a reason for it. These endings help show which words belong together
 A useful feature, really.
 
 Just don't tell the Greeks I said that.
+
+Next: [Verbs: The Things That Actually Happen](#verbs-the-things-that-actually-happen)
 
 ---
 
@@ -416,6 +449,8 @@ That's convenient.
 
 One less word to memorize. Finally, some good news.
 
+Next: [Tense and Aspect: Greek Has Opinions About Time](#tense-and-aspect-greek-has-opinions-about-time)
+
 ---
 
 ## Page 9 — Tense and Aspect: Greek Has Opinions About Time
@@ -456,6 +491,8 @@ For now, remember this:
 They're related, but they aren't quite the same thing.
 
 And if that sounds confusing, don't worry. It takes practice.
+
+Next: [Voice and Mood: Who Does What, and How?](#voice-and-mood-who-does-what-and-how)
 
 ---
 
@@ -513,6 +550,8 @@ Just remember that Greek verbs aren't only about actions and time. They also sho
 
 Quite a lot of responsibility for a single word.
 
+Next: [Putting It Together: Simple Sentences](#putting-it-together-simple-sentences)
+
 ---
 
 ## Page 11 — Putting It Together: Simple Sentences
@@ -559,6 +598,8 @@ A little more complicated than English, perhaps.
 
 But at least the word endings are doing some of the work for you.
 
+Next: [A Few Things Worth Remembering](#a-few-things-worth-remembering)
+
 ---
 
 ## Page 12 — A Few Things Worth Remembering
@@ -597,6 +638,8 @@ The ancient Greeks made mistakes too.
 
 Probably.
 
+Next: [What to Read Next](#what-to-read-next)
+
 ---
 
 ## Page 13 — What to Read Next
@@ -611,7 +654,7 @@ No.
 
 Let's not get ahead of ourselves.
 
-If you'd like to learn more about the alphabet, my **Greek Alphabet Primer** is still available. You should probably have started there, actually.
+If you'd like to learn more about the alphabet, my **[Greek Alphabet Primer](book:greek_alphabet_primer#contents)** is still available. You should probably have started there, actually.
 
 For vocabulary, take a look at the **Greek Lexicon A–C** and **Greek Lexicon D–F**. They're useful when you encounter a word and have absolutely no idea what it means.
 

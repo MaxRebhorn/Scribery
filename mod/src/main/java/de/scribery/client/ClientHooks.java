@@ -30,7 +30,7 @@ public final class ClientHooks {
             player.displayClientMessage(net.minecraft.network.chat.Component.literal("This book is still blank"), true);
             return;
         }
-        Minecraft.getInstance().setScreen(new BookScreen(md));
+        Minecraft.getInstance().setScreen(new BookScreen(id, md));
     }
 
     /** Archiv angeklickt: das Evangelium als Text in drei Spalten mit dem, was der Spieler eingetragen hat. */
