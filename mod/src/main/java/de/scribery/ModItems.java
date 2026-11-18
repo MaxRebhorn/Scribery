@@ -131,6 +131,10 @@ public final class ModItems {
         ALL.add(PRINTED_SHEET);
         ALL.add(TRANSLATED_SHEET);
         ALL.add(ITEMS.registerItem("ostrakon", p -> new Item(p.stacksTo(16))));
+        // Papyrusfetzen: nur Brennstoff (data/neoforge/data_maps/item/furnace_fuels.json), sonst zu nichts zu gebrauchen
+        ALL.add(ITEMS.registerSimpleItem("papyrus_scrap"));
+        // Scherbe: Beifund aus Amphoren und Scherbenhaufen
+        ALL.add(ITEMS.registerSimpleItem("amphora_shard"));
     }
 
     public static void register(IEventBus bus) {

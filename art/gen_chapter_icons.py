@@ -289,9 +289,9 @@ def icon18():  # Kette
 
 def icon19():  # Drei Kreuze auf einem Huegel (das mittlere hoeher)
     c = Canvas()
-    c.poly([(0, 15), (0, 12), (4, 10), (12, 10), (15, 12), (15, 15)], "green")
-    c.poly([(9, 10), (12, 10), (15, 12), (15, 15), (9, 15)], "green_d")
-    c.rect(0, 12, 4, 13, "green_l")
+    c.poly([(0, 15), (0, 12), (4, 10), (12, 10), (15, 12), (15, 15)], "tan")
+    c.poly([(9, 10), (12, 10), (15, 12), (15, 15), (9, 15)], "clay_d")
+    c.rect(0, 12, 4, 13, "light")
     # mittleres Kreuz
     c.rect(7, 1, 8, 10, "brown")
     c.rect(5, 3, 10, 4, "brown")

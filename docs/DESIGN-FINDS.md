@@ -44,6 +44,22 @@ Der **Block**, in dem ein Fragment steckt, bestimmt sein Aussehen. Der Codex-Loo
 - Alle drei „Suspicious“-Blöcke nutzen dieselbe Block-Klasse (`SuspiciousFindBlock`) mit dem Zustand `dusted` 0 bis 3. Pinsel-Logik gibt es noch nicht.
 - Offen: **Wie genau entscheidet der Biom-Eintrag den Block?** Vorschlag: pro Biom eine Gewichtung (Wüste 100 % Sand, Sumpf 100 % Schlamm, Wald Asche und Schlamm gemischt) in `tools/data/fragment-biomes.json`.
 
+## Loot-Tabellen (Stand 18.11.2026, im Mod, noch nicht im Spiel geladen)
+
+Erzeugt von `tools/gen_loot_tables.py`, die Pools von `tools/export_find_pools.py` (`tools/data/find-pools.json`). Alle Zahlen sind Schätzungen.
+
+| Block | Gibt zurück |
+|---|---|
+| Suspicious Sand, Mud, Ashes | der Block selbst; 40 % ein Manuskript der Fundart; 35 % 1 bis 2 Papyrusfetzen |
+| Eisblock mit Fragment | der Block selbst; 60 % ein gefrorenes Manuskript |
+| Scherbenhaufen | der Block selbst; 1 bis 3 Amphorenscherben; 12 % ein Ostrakon; 25 % ein Manuskript |
+| Amphore | mit Behutsamkeit (Silk Touch) die Amphore, sonst 2 bis 4 Scherben, 30 % ein Manuskript, 25 % Papyrusfetzen |
+
+- **Loot-Funktion `scribery:random_manuscript`** (`"find": "sand" | "mud" | "ashes" | "ice" | "shards"`): zieht ein zufälliges Manuskript aus dem Pool der Fundart und setzt das Aussehen (Schlamm wassergeschädigt, Asche verkohlt, Eis gefroren, Sand zu 35 % verblasst, Scherben normal).
+- **Pools:** Sand 388, Schlamm 438, Eis 295, Asche 272, Scherben 147 Manuskripte (Summe 1.540). Die Zuordnung der elf Biome steht in `BIOME_TO_FIND` in `tools/export_find_pools.py`.
+- **Papyrusfetzen:** nur Brennstoff (100 Ticks), sonst zu nichts zu gebrauchen.
+- **Noch offen:** Ostraka mit Witzen auf Altgriechisch (Joke-Items, keine Manuskripte), Schutz vor Dubletten (braucht die gespeicherte Sammlung), Welt-Erzeugung der Blöcke.
+
 ## Offene Risiken
 
 - Zu großzügig, und der Reiz geht verloren; die Menge allein ermüdet auch ohne Grind.

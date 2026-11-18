@@ -149,8 +149,70 @@ def mud_overlay(stage, kind="mud"):
     return im
 
 
+def papyrus_scrap():
+    """Ein paar kleine, ausgefranste Papyrusstuecke. Nur als Brennstoff zu gebrauchen, traegt keinen Text."""
+    im = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    pieces = [
+        ([(2, 8), (6, 5), (9, 7), (8, 11), (4, 12)], P["parchment_3"], P["parchment_2"]),
+        ([(8, 3), (12, 2), (14, 5), (11, 7), (9, 6)], P["parchment_2"], P["parchment_1"]),
+        ([(8, 9), (12, 8), (14, 11), (12, 14), (9, 13)], P["parchment_3"], P["parchment_2"]),
+    ]
+    for pts, light, dark in pieces:
+        d.polygon(pts, fill=light)
+        mid = sum(p[0] for p in pts) / len(pts)
+        top = min(p[1] for p in pts)
+        for x in range(16):
+            for y in range(16):
+                if im.getpixel((x, y)) == light and x > mid + 1 and y > top + 1:
+                    im.putpixel((x, y), dark)  # Schatten rechts unten
+    mask = {(x, y) for x in range(16) for y in range(16) if im.getpixel((x, y))[3]}
+    for (x, y) in mask:  # Kontur wie bei den anderen Items
+        if any((x + dx, y + dy) not in mask for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+            im.putpixel((x, y), P["wood_1"])
+    for (x, y) in ((4, 8), (5, 9), (11, 4), (10, 11)):  # Tintenreste
+        if im.getpixel((x, y)) != P["wood_1"] and im.getpixel((x, y))[3]:
+            im.putpixel((x, y), GLAZE)
+    return im
+
+
+def amphora_shard():
+    """Gebogene Tonscherbe mit einem Rest des schwarzen Glasurbandes."""
+    im = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.polygon([(2, 9), (4, 4), (9, 2), (14, 5), (13, 10), (8, 13), (4, 13)], fill=CLAY[2])
+    mask = [(x, y) for x in range(16) for y in range(16) if im.getpixel((x, y))[3]]
+    for (x, y) in mask:  # Licht von links oben
+        if x + y < 11:
+            im.putpixel((x, y), CLAY[3])
+        elif x + y > 19:
+            im.putpixel((x, y), CLAY[1])
+    for x in range(4, 13):  # Glasurband quer ueber die Scherbe
+        for y in (7, 8):
+            if im.getpixel((x, y))[3]:
+                im.putpixel((x, y), GLAZE)
+    ms = set(mask)
+    for (x, y) in mask:
+        if any((x + dx, y + dy) not in ms for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+            im.putpixel((x, y), P["wood_1"])
+    return im
+
+
+def write_items():
+    """Items ins Mod schreiben: Textur und Modell."""
+    tex = os.path.join(ROOT, "mod/src/main/resources/assets/scribery/textures/item")
+    mod = os.path.join(ROOT, "mod/src/main/resources/assets/scribery/models/item")
+    for name, fn in (("papyrus_scrap", papyrus_scrap), ("amphora_shard", amphora_shard)):
+        fn().save(os.path.join(tex, name + ".png"))
+        fn().save(os.path.join(OUT, name + ".png"))
+        with open(os.path.join(mod, name + ".json"), "w", encoding="utf-8", newline="\n") as f:
+            json.dump({"parent": "minecraft:item/generated", "textures": {"layer0": f"scribery:item/{name}"}}, f, indent=2)
+            f.write("\n")
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
+    write_items()
     amphora().save(os.path.join(OUT, "amphora.png"))
     ostrakon().save(os.path.join(OUT, "ostrakon.png"))
     for kind in PALETTES:

@@ -15,6 +15,31 @@
           "name": "scribery:frozen_fragment_block"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.6
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "scribery:manuscript_fragment",
+          "functions": [
+            {
+              "function": "scribery:random_manuscript",
+              "find": "ice"
+            }
+          ]
+        }
+      ]
     }
   ],
   "random_sequence": "scribery:blocks/frozen_fragment_block"

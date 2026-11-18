@@ -47,5 +47,7 @@
   "block.scribery.suspicious_sand": "Suspicious Sand",
   "block.scribery.suspicious_ashes": "Suspicious Ashes",
   "block.scribery.shard_pile": "Shard Pile",
-  "item.scribery.ostrakon": "Ostrakon"
+  "item.scribery.ostrakon": "Ostrakon",
+  "item.scribery.papyrus_scrap": "Papyrus Scrap",
+  "item.scribery.amphora_shard": "Amphora Shard"
 }

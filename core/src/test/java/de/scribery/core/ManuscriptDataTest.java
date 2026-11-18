@@ -50,6 +50,39 @@ class ManuscriptDataTest {
         assertEquals(used, described, "Kapitel der Manuskripte und chapters.json stimmen nicht ueberein");
     }
 
+    /** Jedes Manuskript liegt in genau einer Fundart (tools/data/find-pools.json), sonst gehen Manuskripte verloren. */
+    @Test
+    void everyManuscriptIsInExactlyOneFindPool() throws IOException {
+        JsonObject pools = JsonParser.parseString(Files.readString(Path.of("..", "tools", "data", "find-pools.json"),
+                StandardCharsets.UTF_8)).getAsJsonObject().getAsJsonObject("pools");
+        assertEquals(Set.of("sand", "mud", "ashes", "ice", "shards"), pools.keySet());
+        Set<String> seen = new HashSet<>();
+        for (String find : pools.keySet()) {
+            assertTrue(pools.getAsJsonArray(find).size() > 0, "leerer Pool " + find);
+            for (JsonElement e : pools.getAsJsonArray(find)) assertTrue(seen.add(e.getAsString()), "doppelt: " + e);
+        }
+        Set<String> all = new HashSet<>();
+        for (JsonObject f : fragments()) all.add(f.get("id").getAsString());
+        assertEquals(all, seen, "Pools und Manuskripte stimmen nicht ueberein");
+    }
+
+    /** Die Loot-Tabellen nennen nur bekannte Fundarten und existierende Items; jede Fundblock-Tabelle gibt den Block zurueck. */
+    @Test
+    void lootTablesUseKnownFindsAndItems() throws IOException {
+        Path dir = Path.of("..", "mod", "src", "main", "resources", "data", "scribery", "loot_table", "blocks");
+        Set<String> finds = Set.of("sand", "mud", "ashes", "ice", "shards");
+        Set<String> items = Set.of("suspicious_sand", "suspicious_mud", "suspicious_ashes", "frozen_fragment_block", "shard_pile",
+                "amphora", "amphora_shard", "papyrus_scrap", "ostrakon", "manuscript_fragment");
+        for (String name : List.of("suspicious_sand", "suspicious_mud", "suspicious_ashes", "frozen_fragment_block", "shard_pile", "amphora")) {
+            String json = Files.readString(dir.resolve(name + ".json"), StandardCharsets.UTF_8);
+            assertTrue(json.contains("\"scribery:" + name + "\""), name + " gibt sich selbst nicht zurueck");
+            var m = java.util.regex.Pattern.compile("\"find\": \"([a-z]+)\"").matcher(json);
+            while (m.find()) assertTrue(finds.contains(m.group(1)), name + ": unbekannte Fundart " + m.group(1));
+            var n = java.util.regex.Pattern.compile("\"name\": \"scribery:([a-z_]+)\"").matcher(json);
+            while (n.find()) assertTrue(items.contains(n.group(1)), name + ": unbekanntes Item " + n.group(1));
+        }
+    }
+
     /** Die Zeilenlaenge im Test muss der im Spiel entsprechen. */
     @Test
     void lineSlotsMatchTheLayout() throws IOException {
