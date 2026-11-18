@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "dusted=0": {
+      "model": "scribery:block/suspicious_archive_mud_0"
+    },
+    "dusted=1": {
+      "model": "scribery:block/suspicious_archive_mud_1"
+    },
+    "dusted=2": {
+      "model": "scribery:block/suspicious_archive_mud_2"
+    },
+    "dusted=3": {
+      "model": "scribery:block/suspicious_archive_mud_3"
+    }
+  }
+}
