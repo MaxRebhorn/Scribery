@@ -186,7 +186,8 @@ def chunk(words):
     units, cur = [], []
     for k, w in enumerate(words):
         cur.append(w)
-        if w["punct"] or (k + 1 < len(words) and words[k + 1]["chapter"] != w["chapter"]):
+        nxt = words[k + 1] if k + 1 < len(words) else None
+        if w["punct"] or (nxt and (nxt["chapter"] != w["chapter"] or nxt.get("seg") != w.get("seg"))):
             units.append(cur)
             cur = []
     if cur:
@@ -194,7 +195,7 @@ def chunk(words):
     out, cur = [], []
     for u in units:
         size = sum(len(x) for x in [cur, u])
-        if cur and (size > MAX_WORDS or cur[-1]["chapter"] != u[0]["chapter"]):
+        if cur and (size > MAX_WORDS or cur[-1]["chapter"] != u[0]["chapter"] or cur[-1].get("seg") != u[0].get("seg")):
             out.append(cur)
             cur = []
         cur = cur + u
@@ -203,7 +204,7 @@ def chunk(words):
             out.append(cur)
             cur = []
     if cur:
-        if out and len(cur) < MIN_WORDS and out[-1][-1]["chapter"] == cur[0]["chapter"]:
+        if out and len(cur) < MIN_WORDS and out[-1][-1]["chapter"] == cur[0]["chapter"] and out[-1][-1].get("seg") == cur[0].get("seg"):
             out[-1] = out[-1] + cur
         else:
             out.append(cur)
@@ -312,6 +313,11 @@ def main(rest=False):
     if rest:
         assert len(chunk(words)) == FROZEN_COUNT, "Pilot hat sich veraendert: P1-P21 waeren nicht mehr dieselben"
         chunk_words = read_raw(RAW_REST)
+        # Seiten (tools/structure_john.py): kein Manuskript ueber eine Seitengrenze, damit Manuskript < Seite < Geschichte gilt
+        import structure_john
+        page = structure_john.verse_to_page()
+        for w in chunk_words:
+            w["seg"] = page[(w["chapter"], w["verse"])]
         words = words + chunk_words
     freq = Counter(w["strongs"] for w in words)
 
