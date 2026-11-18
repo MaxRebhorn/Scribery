@@ -271,6 +271,7 @@ final class DebugStructures {
             b.put(k, 0, -k, stair);
             b.put(k, 1, -k, stair);
         }
+        rubbleMound(b, desert);
         // Loculi: meist mit gemeisseltem Stein verschlossen, einige offen mit Kerze und zerbrochener Amphore
         for (int u : nicheU) {
             for (int side : new int[] { -1, 1 }) {
@@ -317,6 +318,35 @@ final class DebugStructures {
         b.put(-1, 2, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
         b.put(4, 3, 0, dusted(b, ModBlocks.SUSPICIOUS_SAND.get()));
         return b.placed;
+    }
+
+    /**
+     * Der Eingang der Katakombe sieht an der Oberflaeche aus wie ein Truemmerhaufen: Kies und Bruchstein (Wueste: Sand und
+     * Sandstein) liegen um die Treppe und ueber ihrem Anfang, bis zu zwei Bloecke hoch. Ein Streifen der Treppe bleibt frei.
+     * Alle Zufallszahlen werden fuer jede Stelle immer gezogen, damit die Weltgenerierung chunkweise dasselbe Ergebnis liefert.
+     */
+    private static void rubbleMound(StructureBuilder b, boolean desert) {
+        for (int u = -3; u <= 5; u++) {
+            for (int v = -3; v <= 4; v++) {
+                int r0 = b.random.nextInt(100), r1 = b.random.nextInt(100), r2 = b.random.nextInt(100), r3 = b.random.nextInt(100);
+                int[] kind = { r1, r2, r3 };
+                boolean lane = u >= 0 && v >= 0 && v <= 1;
+                if (lane && !(v == 1 && u <= 1)) continue;                 // der Weg nach unten bleibt frei
+                double d = Math.hypot(u - 1.5, v - 0.5);
+                if (r0 >= Math.max(8, (int) (105 - 17 * d))) continue;      // am Rand wird der Haufen lueckig
+                int top = d < 2.6 ? 2 : d < 4.0 ? 1 : 0;
+                if (r0 % 3 == 0) top = Math.max(0, top - 1);
+                for (int h = 0; h <= top; h++) {
+                    BlockPos p = b.at(u, v, h);
+                    if (b.stateAt(p.below()).isAir()) break;                // nichts schwebt oder faellt
+                    int r = kind[h];
+                    Block block;
+                    if (desert) block = r < 62 ? Blocks.SAND : Blocks.SANDSTONE;
+                    else block = r < 52 ? Blocks.GRAVEL : r < 74 ? Blocks.COBBLESTONE : r < 86 ? Blocks.MOSSY_COBBLESTONE : Blocks.COARSE_DIRT;
+                    b.put(p, block.defaultBlockState());
+                }
+            }
+        }
     }
 
     /**
