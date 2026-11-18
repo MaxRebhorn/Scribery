@@ -1,0 +1,110 @@
+{
+  "_comment": "Anzeige der Creative-Tabs pro Kapitel: kurzer Geschichten-Titel und ein eigenes Icon (art/gen_chapter_icons.py, Item scribery:chapter_icon_N). Den Versbereich (John 1:1-51) berechnet der Mod aus den Manuskripten. Titel sind Entwurf, siehe john-stories.tsv.",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "The Word & first disciples",
+      "icon": "scribery:chapter_icon_1"
+    },
+    {
+      "chapter": 2,
+      "title": "Cana & the temple",
+      "icon": "scribery:chapter_icon_2"
+    },
+    {
+      "chapter": 3,
+      "title": "Nicodemus",
+      "icon": "scribery:chapter_icon_3"
+    },
+    {
+      "chapter": 4,
+      "title": "The woman at the well",
+      "icon": "scribery:chapter_icon_4"
+    },
+    {
+      "chapter": 5,
+      "title": "The pool of Bethesda",
+      "icon": "scribery:chapter_icon_5"
+    },
+    {
+      "chapter": 6,
+      "title": "Bread from heaven",
+      "icon": "scribery:chapter_icon_6"
+    },
+    {
+      "chapter": 7,
+      "title": "Living water",
+      "icon": "scribery:chapter_icon_7"
+    },
+    {
+      "chapter": 8,
+      "title": "Light of the world",
+      "icon": "scribery:chapter_icon_8"
+    },
+    {
+      "chapter": 9,
+      "title": "The blind man",
+      "icon": "scribery:chapter_icon_9"
+    },
+    {
+      "chapter": 10,
+      "title": "The good shepherd",
+      "icon": "scribery:chapter_icon_10"
+    },
+    {
+      "chapter": 11,
+      "title": "Lazarus",
+      "icon": "scribery:chapter_icon_11"
+    },
+    {
+      "chapter": 12,
+      "title": "Bethany & Jerusalem",
+      "icon": "scribery:chapter_icon_12"
+    },
+    {
+      "chapter": 13,
+      "title": "Washing the feet",
+      "icon": "scribery:chapter_icon_13"
+    },
+    {
+      "chapter": 14,
+      "title": "The way, truth, life",
+      "icon": "scribery:chapter_icon_14"
+    },
+    {
+      "chapter": 15,
+      "title": "The vine",
+      "icon": "scribery:chapter_icon_15"
+    },
+    {
+      "chapter": 16,
+      "title": "The Helper & joy",
+      "icon": "scribery:chapter_icon_16"
+    },
+    {
+      "chapter": 17,
+      "title": "The prayer",
+      "icon": "scribery:chapter_icon_17"
+    },
+    {
+      "chapter": 18,
+      "title": "Arrest & Pilate",
+      "icon": "scribery:chapter_icon_18"
+    },
+    {
+      "chapter": 19,
+      "title": "The cross",
+      "icon": "scribery:chapter_icon_19"
+    },
+    {
+      "chapter": 20,
+      "title": "The empty tomb",
+      "icon": "scribery:chapter_icon_20"
+    },
+    {
+      "chapter": 21,
+      "title": "The catch of fish",
+      "icon": "scribery:chapter_icon_21"
+    }
+  ]
+}

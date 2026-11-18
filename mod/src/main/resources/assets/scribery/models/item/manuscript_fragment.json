@@ -26,12 +26,6 @@
       "predicate": {
         "custom_model_data": 4
       },
-      "model": "scribery:item/manuscript_fragment_codex"
-    },
-    {
-      "predicate": {
-        "custom_model_data": 5
-      },
       "model": "scribery:item/manuscript_fragment_frozen"
     }
   ]

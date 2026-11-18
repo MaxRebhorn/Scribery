@@ -1,14 +1,14 @@
 {
   "_comment": "Einzige Quelle fuer das UI-Raster der Presse. Einheit: GUI-Pixel, Ursprung oben links der Leinwand. rect = [x, y, w, h].",
   "canvas": { "w": 384, "h": 216 },
-  "sort": { "w": 10, "h": 12, "pitch": 11, "glyph_w": 5, "glyph_h": 7, "macron_rows": 2 },
-  "line_slots": 16,
+  "sort": { "w": 10, "h": 12, "pitch": 10, "glyph_w": 5, "glyph_h": 7, "macron_rows": 2 },
+  "line_slots": 17,
   "max_words_per_line": 3,
   "forme_rows": 4,
   "row_pitch": 13,
   "case": { "cols": 5, "rows": 5, "cell_w": 14, "cell_h": 21, "origin": [306, 74], "sort_offset": [2, 0], "count_offset_y": 13,
             "letters": ["A","B","C","D","E","Ē","G","H","I","K","L","M","N","O","Ō","P","R","S","T","U","X","Z"] },
-  "forme_slots_origin": [110, 51],
+  "forme_slots_origin": [113, 51],
   "platen_travel": 6,
   "rects": {
     "arrow_left":   { "rect": [4, 4, 16, 16],     "fill": "gui_face",    "label": "<" },

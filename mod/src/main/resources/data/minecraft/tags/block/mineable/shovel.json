@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "scribery:suspicious_archive_mud"
+    "scribery:suspicious_mud",
+    "scribery:suspicious_sand",
+    "scribery:suspicious_ashes",
+    "scribery:shard_pile"
   ]
 }

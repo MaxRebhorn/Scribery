@@ -13,7 +13,7 @@ Fertig:
 - **Eingabe:** Presse manuell (Lettern ziehen), Übersetzung mit Plättchen oder von Hand getippt; Buttons zum Nachfüllen aus dem Inventar.
 - **Optik:** Tischplatte, Minecraft-Texturen, unsere Letter-Items, ausgefranstes Papier in Textgröße.
 
-- **Varianten und Fundblöcke (Texturen und Testbarkeit, nicht im Spiel geprüft):** Fragment-Varianten verkohlt, wassergeschädigt, verblasst, Codex, gefroren (blau getöntes Papyrus), dazu Block für gefrorenes Fragment, Amphore als Nicht-Würfel-Block, Ostrakon, verdächtiger Archivschlamm (4 Stufen). Die Java-Teile sind nicht kompiliert.
+- **Varianten und Fundblöcke (Texturen und Testbarkeit):** Fragment-Varianten verkohlt, wassergeschädigt, verblasst, gefroren (blau getöntes Papyrus; der Codex-Look entfällt), dazu Block für gefrorenes Fragment, Amphore als Nicht-Würfel-Block, Ostrakon, Scherbenhaufen und die drei Fundböden Suspicious Mud, Suspicious Sand und Suspicious Ashes (je 4 Stufen). Welcher Block welche Variante liefert, steht in `docs/DESIGN-FINDS.md`. Kompiliert, Tests grün; im Spiel erst per Selbsttest angesehen.
 - **Daten:** ganzes Johannesevangelium (1.540 Manuskripte), Gliederung in 64 Geschichten, 143 Seiten, 878 Verse, Fundbiome thematisch (11 Biome). Alles noch `draft`.
 
 Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die meisten Rezepte, die Fundorte der Fragmente (bisher nur der Creative-Tab).
@@ -71,7 +71,7 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 - Zu klären: Welche Texte auf den Scherben stehen (Wörter aus den Manuskripten? Namen? Hinweise auf Fundorte?), ob Scherben im Archiv eine Rolle spielen, wie die Strukturen erzeugt werden (Strukturdatei, Loot-Tabellen nach Biom), und wie sich Fundort und Aussehen des Fragments verbinden (siehe Punkt 6).
 
 ### 6. Ferne Zukunft: unterschiedliches Aussehen je nach Fundort
-- **Teilweise erledigt:** fünf Zustandsvarianten (verkohlt, wassergeschädigt, verblasst, Codex, gefroren) liegen als Texturen vor (`custom_model_data` 1–5). Offen ist, sie nach Fundort oder Biom zu vergeben. Das alte Feld `origin.biome` ist obsolet, maßgeblich ist `tools/data/fragment-biomes.json`.
+- **Teilweise erledigt:** vier Zustandsvarianten (verkohlt, wassergeschädigt, verblasst, gefroren) liegen als Texturen vor (`custom_model_data` 1–4, Codex entfällt). Das Aussehen bestimmt der Fundblock (Sand, Schlamm, Asche, Eis, siehe `docs/DESIGN-FINDS.md`). Offen ist, Biom und Block zu verbinden. Das alte Feld `origin.biome` ist obsolet, maßgeblich ist `tools/data/fragment-biomes.json`.
 - Fragmente sehen verschieden aus, je nachdem, wo man sie findet: Sumpf, Wüste, Taiga und so weiter, mit eigenen Texturen. Das Datenfeld `origin.biome` ist dafür schon in den Manuskriptdaten vorbereitet.
 - Technisch später: Item-Modell-Überschreibungen nach Datenfeld, mehrere Texturen (vier ungenutzte liegen schon im Repo).
 

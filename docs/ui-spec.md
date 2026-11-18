@@ -18,8 +18,8 @@ Die Zahlen stehen nur in [art/layout.json](../art/layout.json) (Presse), [art/ti
 
 Ein **Bogen** ist die Einheit, die durch die Stationen wandert: An der Presse wird er gedruckt, in der Übersetzungs-Station liegt er als gedruckter lateinischer Bogen unter dem Pult.
 
-- Ein Bogen hat **vier Zeilen** mit je 16 Slots. Gesetzt wird nur die lateinische Umschrift.
-- Zeilen werden in `core` berechnet: Wörter in Textreihenfolge auffüllen, bis 16 Slots oder **drei Wörter** erreicht sind. Ein Bogen trägt damit höchstens zwölf Wörter, so viele, wie auf das Blatt der Übersetzungs-Station passen.
+- Ein Bogen hat **vier Zeilen** mit je 17 Slots (17, damit das längste Wort des Evangeliums, μεθερμηνευόμενον, in eine Zeile passt). Gesetzt wird nur die lateinische Umschrift.
+- Zeilen werden in `core` berechnet: Wörter in Textreihenfolge auffüllen, bis 17 Slots oder **drei Wörter** erreicht sind. Ein Bogen trägt damit höchstens zwölf Wörter, so viele, wie auf das Blatt der Übersetzungs-Station passen.
 - Hat ein Fragment mehr als vier Zeilen, folgen weitere Bögen. Beide Stationen benutzen dieselbe Einteilung.
 
 Beispiel `P1`: ein Bogen, Zeile 1 `EN ARCHĒ ĒN`, Zeile 2 `HO LOGOS`.
@@ -32,7 +32,7 @@ Links Kerze, Pult mit dem Fragment und der Stapel fertiger Zeilen. Mitte Kurbel,
 |---|---|---|
 | Letter | 10 × 12 | in Box, am Cursor und in der Setzform gleich groß |
 | Glyphe | 5 × 7, plus 2 Reihen für den Längenstrich | eigener Pixelsatz für beide Alphabete |
-| Setzform | 184 × 61 | 4 Zeilen × 16 Slots, Slot-Abstand 11, Zeilenabstand 13 |
+| Setzform | 184 × 61 | 4 Zeilen × 17 Slots, Slot-Abstand 10 (Letter stoßen aneinander), Zeilenabstand 13 |
 | Papierablage | 184 × 59 | der Abzug kommt hierher zurück |
 | Buchstabenbox | 74 × 109 | 5 × 5 Zellen, Vorratszahl unter jeder Letter |
 | Walze am Cursor | 8 × 42 | erreicht mittig geführt alle vier Zeilen |
@@ -112,7 +112,7 @@ Die lateinische Zielform steht nicht in den Daten. Sie wird aus `greek` per Umsc
 - **Einseitige Plättchen** statt der zweiseitigen aus Abschnitt 5 des Plans; Rechtsklick zum Drehen entfällt.
 - **Stationen als Blöcke** statt Wechsel per Pfeil.
 - **IDs:** Das JSON-Beispiel im Plan nutzt `jhn-001-a` und `order`; festgelegt ist `P1` bis `Pn`.
-- **[offen] Längstes Wort:** Ob jedes Wort des Evangeliums in 16 Slots passt, prüft der Validator in Phase 4.
+- **Längstes Wort:** 17 Buchstaben (μεθερμηνευόμενον), deshalb 17 Slots. `ManuscriptDataTest` prüft, dass jedes Wort des Evangeliums passt.
 - **[offen] Breite Glossen:** Ein Plättchen ist höchstens 56 Pixel breit, etwa neun bis zehn Buchstaben. Längere Glossen braucht eine Regel.
 - **[offen] Umschrift:** Buchstabe für Buchstabe, γγ wird `GG`, υ immer `U`. Nicht bestätigt.
 - **[offen] Glossen der Platzhalter** sind von Hand getippt und ungeprüft (`draft`).

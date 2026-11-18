@@ -92,8 +92,10 @@ final class SelfTest {
         shot(mc, "01-start");
 
         // Presse. Ein Bogen: Zeile 1 EN ARCHĒ ĒN, Zeile 2 HO LOGOS. LOGOS zuerst falsch (Z statt S).
+        // Zeile 2 beginnt bei Slot lineSlots (nicht fest 16), das Wort steht ab dem dritten Slot der Zeile
+        final int row2 = UiLayout.get().lineSlots + 3;
         setWord(3, "ARCHĒ");
-        setWord(19, "LOGOZ");
+        setWord(row2, "LOGOZ");
         shot(mc, "02-set");
         inkPaperCrank(mc, "03-inked-once");
         shot(mc, "04-inked-paper");
@@ -104,10 +106,10 @@ final class SelfTest {
         then(8, () -> { });
         shot(mc, "06-smudged");
         then(0, () -> {
-            screen.debugClickSlot(23);       // Z greifen
+            screen.debugClickSlot(row2 + 4); // Z greifen
             screen.debugReleaseOnCase();     // ueber der Box loslassen
             screen.debugClickLetter('S');
-            screen.debugReleaseOnSlot(23);
+            screen.debugReleaseOnSlot(row2 + 4);
         });
         inkPaperCrank(mc, null);
         then(0, () -> screen.debugClick("crank"));
@@ -156,16 +158,17 @@ final class SelfTest {
         // Die echten Manuskripte: laden, in Boegen aufteilen, Plaettchen bauen
         then(0, () -> {
             var real = de.scribery.Manuscripts.loadReal();
+            var ui = UiLayout.get();
             int sheets = 0;
             for (var f : real) {
-                var press = new de.scribery.core.PressSession(f.words(), 16, 4, 3, 16, 8, 0, new java.util.Random(1));
+                var press = new de.scribery.core.PressSession(f.words(), ui.lineSlots, ui.rows, ui.maxWordsPerLine, 16, 8, 0, new java.util.Random(1));
                 sheets += press.pageCount();
                 for (var page : press.sheets()) {
                     de.scribery.core.TileSession.tilesFor(f.tileWords(), page, 1L, 3);
                 }
             }
             LOG.info("[selftest] echte Manuskripte: {} mit {} Boegen", real.size(), sheets);
-            if (real.size() != 21) throw new IllegalStateException("erwartet 21 Manuskripte, geladen " + real.size());
+            if (real.size() != 1540) throw new IllegalStateException("erwartet 1540 Manuskripte, geladen " + real.size());
         });
 
         // Ein langes echtes Manuskript (P6, Joh 1,5) in der Presse und auf dem Pult
@@ -206,13 +209,13 @@ final class SelfTest {
         then(0, () -> ((BookScreen) mc.screen).findPage("20. Upsilon"));
         shot(mc, "21-book-table");
 
-        // Fragment-Varianten (custom_model_data 0 bis 5) und der Eisblock als Item gross gezeichnet
+        // Fragment-Varianten (custom_model_data 0 bis 4) und die Fundbloecke als Item gross gezeichnet
         then(0, () -> mc.setScreen(new net.minecraft.client.gui.screens.Screen(net.minecraft.network.chat.Component.literal("preview")) {
             @Override
             public void render(net.minecraft.client.gui.GuiGraphics g, int mx, int my, float pt) {
                 g.fill(0, 0, width, height, 0xFF3A3640);
                 int x = 20;
-                for (int i = 0; i <= 5; i++) {
+                for (int i = 0; i <= 4; i++) {
                     var st = de.scribery.ManuscriptFragmentItem.of("P1");
                     if (i > 0) st.set(net.minecraft.core.component.DataComponents.CUSTOM_MODEL_DATA,
                             new net.minecraft.world.item.component.CustomModelData(i));
@@ -223,14 +226,47 @@ final class SelfTest {
                     g.pose().popPose();
                     x += 100;
                 }
-                g.pose().pushPose();
-                g.pose().translate(20, 170, 0);
-                g.pose().scale(6, 6, 1);
-                g.renderItem(new net.minecraft.world.item.ItemStack(de.scribery.ModBlocks.FROZEN_FRAGMENT_BLOCK.get()), 0, 0);
-                g.pose().popPose();
+                // Fundbloecke: Sand, Schlamm, Asche, Eis mit Fragment, Scherbenhaufen, Amphore
+                var blocks = java.util.List.of(de.scribery.ModBlocks.SUSPICIOUS_SAND, de.scribery.ModBlocks.SUSPICIOUS_MUD,
+                        de.scribery.ModBlocks.SUSPICIOUS_ASHES, de.scribery.ModBlocks.FROZEN_FRAGMENT_BLOCK,
+                        de.scribery.ModBlocks.SHARD_PILE, de.scribery.ModBlocks.AMPHORA);
+                int bx = 20;
+                for (var b : blocks) {
+                    g.pose().pushPose();
+                    g.pose().translate(bx, 170, 0);
+                    g.pose().scale(5, 5, 1);
+                    g.renderItem(new net.minecraft.world.item.ItemStack(b.get()), 0, 0);
+                    g.pose().popPose();
+                    bx += 85;
+                }
             }
         }));
         shot(mc, "22-variants");
+
+        // Kapitel-Tabs wie im Creative-Menue: Icon, Geschichte und Versbereich (eine Liste, damit sie ins Fenster passt)
+        then(0, () -> mc.setScreen(new net.minecraft.client.gui.screens.Screen(net.minecraft.network.chat.Component.literal("tabs")) {
+            @Override
+            public void render(net.minecraft.client.gui.GuiGraphics g, int mx, int my, float pt) {
+                g.fill(0, 0, width, height, 0xFF3A3640);
+                float s = Math.min(1f, (height - 6) / (21f * 11f));
+                g.pose().pushPose();
+                g.pose().scale(s, s, 1);
+                for (int c = 1; c <= 21; c++) {
+                    var info = de.scribery.Chapters.of(c);
+                    int y = 3 + (c - 1) * 11;
+                    var icon = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(
+                            net.minecraft.resources.ResourceLocation.parse(info.icon()));
+                    g.pose().pushPose();
+                    g.pose().translate(8, y, 0);
+                    g.pose().scale(0.65f, 0.65f, 1);
+                    g.renderItem(new net.minecraft.world.item.ItemStack(icon), 0, 0);
+                    g.pose().popPose();
+                    g.drawString(font, info.title() + " · John " + info.range(), 24, y + 1, 0xFFFFFFFF);
+                }
+                g.pose().popPose();
+            }
+        }));
+        shot(mc, "23-chapter-tabs");
 
         then(10, () -> {
             LOG.info("[selftest] fertig");

@@ -1,13 +1,14 @@
-"""Erzeugt die Blocktextur fuer den Amphoren-Scherben-Block (16x16, nahtlos kachelbar).
+"""Erzeugt die Blocktextur fuer den Scherbenhaufen (16x16, nahtlos kachelbar).
 
 Aufruf: python art/gen_sherd_block.py
 Ausgabe: art/out/amphora_sherds.png (Textur) und art/out/amphora_sherds-preview.png (3x3 gekachelt, 6x vergroessert)
 
-Aufbau: ein Haufen Tonscherben. Die Scherben sind Voronoi-Zellen (mit Umlauf, damit die Kante nahtlos ist),
-zwischen ihnen liegen dunkle Fugen. Manche Scherben tragen schwarze Glasurstreifen oder einen roten Streifen,
-einzelne zeigen die helle Innenseite. Farben: art/palette.json plus vier gebleichte Tonfarben, Glasur und Rot (nicht in der Palette).
+Stil: Vanilla-nah. Minecraft-Bloecke wie Kies oder Terrakotta haben wenige, eng beieinanderliegende Toene und ein
+leichtes Pixelrauschen, keine harten Kontraste. Darum: viele kleine Scherben (Voronoi-Zellen mit Umlauf, damit die Kante
+nahtlos ist), nur schwach dunklere Fugen, Licht von links oben ueber die Tonstufe, und auf zwei Scherben ein blasser
+Tintenrest (ein bis zwei Pixel), mehr nicht. Farben: gebleichter Ton, nicht aus art/palette.json, weil Vanilla-Toene gebraucht werden.
 """
-import json
+import math
 import os
 import random
 from PIL import Image
@@ -15,14 +16,11 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEED = 20261118
 N = 16
-CELLS = 8
+CELLS = 12
 
-_raw = json.load(open(os.path.join(ROOT, "art/palette.json")))
-P = {k: tuple(int(v[i:i + 2], 16) for i in (1, 3, 5)) + (255,)
-     for k, v in _raw.items() if isinstance(v, str) and v.startswith("#")}
-CLAY = [(96, 76, 62, 255), (168, 136, 108, 255), (198, 168, 136, 255), (226, 204, 172, 255)]  # gebleichter Ton: Fuge, mittel, hell, Glanz
-GLAZE = (58, 54, 56, 255)      # verblasste Glasur
-FADED_RED = (150, 96, 80, 255)  # verblasstes Rot
+# Gebleichter Ton in fuenf nahen Stufen: Fuge, dunkel, mittel, hell, etwas heller (kein Glanzweiss)
+CLAY = [(118, 93, 77), (142, 112, 92), (156, 125, 102), (169, 137, 112), (180, 148, 122)]
+INK = (96, 80, 74)  # blasser Tintenrest, kaum dunkler als die Fuge
 
 
 def torus_d2(ax, ay, bx, by):
@@ -33,65 +31,46 @@ def torus_d2(ax, ay, bx, by):
 
 def build():
     rng = random.Random(SEED)
-    # Punkte gleichmaessiger verteilt als reiner Zufall (Mindestabstand), sonst gibt es Riesen- und Zwergscherben
     pts = []
-    while len(pts) < CELLS:
+    while len(pts) < CELLS:  # gleichmaessiger als reiner Zufall (Mindestabstand), sonst Riesen- und Zwergscherben
         c = (rng.uniform(0, N), rng.uniform(0, N))
-        if all(torus_d2(c[0], c[1], q[0], q[1]) > 13 for q in pts):
+        if all(torus_d2(c[0], c[1], q[0], q[1]) > 9 for q in pts):
             pts.append(c)
-    import math
-    shape = [(rng.uniform(0, math.pi), rng.uniform(1.0, 1.9)) for _ in range(CELLS)]  # Drehung, Streckung
-    style = {}
-    kinds = ["clay"] * 4 + ["band"] * 2 + ["red", "inner"]
-    rng.shuffle(kinds)
-    for i in range(CELLS):
-        style[i] = (kinds[i], rng.choice([1, 2, 2]))  # (Art, Tonstufe)
-    im = Image.new("RGBA", (N, N))
-    cell = {}
-    for y in range(N):
-        for x in range(N):
-            def dist2(i, px, py):
-                dx = ((x + .5 - px + N / 2) % N) - N / 2
-                dy = ((y + .5 - py + N / 2) % N) - N / 2
-                th, st = shape[i]
-                u = dx * math.cos(th) + dy * math.sin(th)
-                v = -dx * math.sin(th) + dy * math.cos(th)
-                return (u / st) ** 2 + (v * st) ** 2   # gestreckt entlang einer Achse -> Scherben statt Kiesel
-            d = sorted((dist2(i, px, py), i) for i, (px, py) in enumerate(pts))
-            (d0, i0), (d1, _) = d[0], d[1]
-            cell[(x, y)] = (i0, d0, d1)
-    for (x, y), (i, d0, d1) in cell.items():
-        kind, tone = style[i]
-        gap = (d1 ** .5 - d0 ** .5) < 0.85  # nahe an der Grenze zur Nachbarzelle
-        if gap:
-            im.putpixel((x, y), CLAY[0])
-            continue
-        col = CLAY[tone]
+    shape = [(rng.uniform(0, math.pi), rng.uniform(1.0, 1.6)) for _ in range(CELLS)]  # Drehung, Streckung
+    tone = [rng.choice([1, 2, 2, 3]) for _ in range(CELLS)]
+    inked = set(rng.sample(range(CELLS), 2))  # nur zwei Scherben tragen einen Tintenrest
+
+    def dist2(i, x, y):
         px, py = pts[i]
-        # Licht von links oben: Pixel links/oberhalb des Zellmittelpunkts heller, rechts/unten dunkler
         dx = ((x + .5 - px + N / 2) % N) - N / 2
         dy = ((y + .5 - py + N / 2) % N) - N / 2
-        if dx + dy < -2.2:
-            col = CLAY[min(3, tone + 1)]
-        elif dx + dy > 2.6:
-            col = CLAY[max(1, tone - 1)]
-        if kind == "inner":
-            col = P["parchment_2"] if dx + dy > 0 else P["parchment_3"]
-        elif kind == "band":
-            r = (y + i * 3) % 8  # Streifen quer ueber die Scherbe, an Zelle gebunden
-            if r in (3, 4):
-                col = GLAZE
-            elif r in (2, 5):
-                col = CLAY[3]  # helle Ritzlinie ober- und unterhalb des Bandes
-        elif kind == "red":
-            if (x - y + i) % 6 in (0, 1):
-                col = FADED_RED
-        im.putpixel((x, y), col)
-    # Ein paar Splitter-Lichter
-    for _ in range(5):
-        x, y = rng.randrange(N), rng.randrange(N)
-        if im.getpixel((x, y)) in (CLAY[2], CLAY[3]):
-            im.putpixel((x, y), CLAY[3])
+        th, st = shape[i]
+        u = dx * math.cos(th) + dy * math.sin(th)
+        v = -dx * math.sin(th) + dy * math.cos(th)
+        return (u / st) ** 2 + (v * st) ** 2
+
+    im = Image.new("RGBA", (N, N))
+    for y in range(N):
+        for x in range(N):
+            d = sorted((dist2(i, x, y), i) for i in range(CELLS))
+            (d0, i0), (d1, _) = d[0], d[1]
+            if (d1 ** .5 - d0 ** .5) < 0.7:   # Fuge zwischen zwei Scherben
+                col = CLAY[0]
+            else:
+                px, py = pts[i0]
+                dx = ((x + .5 - px + N / 2) % N) - N / 2
+                dy = ((y + .5 - py + N / 2) % N) - N / 2
+                t = tone[i0]
+                if dx + dy < -1.8:            # Licht von links oben
+                    t = min(4, t + 1)
+                elif dx + dy > 2.2:
+                    t = max(1, t - 1)
+                col = CLAY[t]
+                if i0 in inked and abs(dx + dy * .5) < 1.1 and abs(dy) < 1.6 and (x * 3 + y) % 4 == 0:
+                    col = INK                 # kurzer, blasser Strich
+            # Pixelrauschen wie bei Kies: kleine Helligkeitsabweichung pro Pixel
+            j = rng.choice([-5, -3, 0, 0, 0, 3, 5])
+            im.putpixel((x, y), tuple(max(0, min(255, c + j)) for c in col) + (255,))
     return im
 
 

@@ -29,6 +29,7 @@
   "item.scribery.letter_type_x": "Letter Type X",
   "item.scribery.letter_type_z": "Letter Type Z",
   "itemGroup.scribery": "Scribery & Crafts",
+  "itemGroup.scribery.manuscripts": "%s · John %s",
   "block.scribery.scribe_lectern": "Scribe's Lectern",
   "block.scribery.letter_cabinet": "Letter Cabinet",
   "block.scribery.printing_press": "Printing Press",
@@ -42,6 +43,9 @@
   "item.scribery.manuscript_fragment": "Manuscript Fragment",
   "block.scribery.frozen_fragment_block": "Frozen Manuscript Block",
   "block.scribery.amphora": "Amphora",
-  "block.scribery.suspicious_archive_mud": "Suspicious Archive Mud",
+  "block.scribery.suspicious_mud": "Suspicious Mud",
+  "block.scribery.suspicious_sand": "Suspicious Sand",
+  "block.scribery.suspicious_ashes": "Suspicious Ashes",
+  "block.scribery.shard_pile": "Shard Pile",
   "item.scribery.ostrakon": "Ostrakon"
 }

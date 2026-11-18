@@ -27,6 +27,23 @@ Der Grind steckt im hinteren Drittel, und es entstehen viele Dubletten. Darum: F
 - Kein direkter Rückkauf von Fragmenten (sonst Smaragd-Kreislauf). Stattdessen Tausch 3 Dubletten gegen ein zufälliges Manuskript eines gewählten Bioms, und Fundkarten gegen Smaragde.
 - Vanilla-Villager können Dubletten nicht erkennen. Empfohlen: nur **lose** Manuskripte (nicht im Archiv eingetragen) sind verkaufbar. Alternative: eigener Händler-Block oder NPC mit eigener Oberfläche (aufwendiger).
 
+## Fundblöcke und Aussehen des Fragments (entschieden 18.11.2026)
+
+Der **Block**, in dem ein Fragment steckt, bestimmt sein Aussehen. Der Codex-Look entfällt. Es sind 4 Zustandsvarianten (`custom_model_data` 1 bis 4) plus das normale Fragment.
+
+| Fundblock | Fragment sieht aus wie | Wo (Biome) |
+|---|---|---|
+| Suspicious Sand | normal, zufällig verblasst | Wüste |
+| Suspicious Mud | wassergeschädigt | Fluss, Strand, Sumpf |
+| Suspicious Ashes | verkohlt (uralte, kalte Asche, nichts glüht) | **[Vorschlag]** Wald, Dschungel |
+| Eisblock mit Fragment | gefroren | **[Vorschlag]** Berg (kalt) |
+| Scherbenhaufen | normal | **[Vorschlag]** Ebene, Savanne |
+| Amphore | normal (Behälter, siehe Roadmap Punkt 5a) | überall in Ruinen |
+
+- Der Dschungel ist laut Ansage egal und passt zum Schlamm oder zur Asche. Die Zuordnung der übrigen Biome ist noch nicht festgelegt.
+- Alle drei „Suspicious“-Blöcke nutzen dieselbe Block-Klasse (`SuspiciousFindBlock`) mit dem Zustand `dusted` 0 bis 3. Pinsel-Logik gibt es noch nicht.
+- Offen: **Wie genau entscheidet der Biom-Eintrag den Block?** Vorschlag: pro Biom eine Gewichtung (Wüste 100 % Sand, Sumpf 100 % Schlamm, Wald Asche und Schlamm gemischt) in `tools/data/fragment-biomes.json`.
+
 ## Offene Risiken
 
 - Zu großzügig, und der Reiz geht verloren; die Menge allein ermüdet auch ohne Grind.

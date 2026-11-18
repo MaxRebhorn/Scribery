@@ -4,8 +4,9 @@ Aufruf: python art/gen_finds.py
 Ausgabe: art/out/finds/*.png und art/out/finds-preview.png
 
 Die Schlamm-Overlays liegen als zweite, transparente Ebene ueber der Vanilla-Textur minecraft:block/mud
-(siehe models/block/suspicious_archive_mud_*.json). Sie zeigen gebleichte Holzsplitter und Papierstuecke,
-die mit jeder Stufe mehr herausschauen (die Stuecke der Stufe n bleiben in Stufe n+1 erhalten).
+(siehe models/block/suspicious_mud_*.json, suspicious_sand_*.json, suspicious_ashes_*.json). Sie zeigen Holzsplitter
+und Papierstuecke, die mit jeder Stufe mehr herausschauen (die Stuecke der Stufe n bleiben in Stufe n+1 erhalten).
+Schlamm: gebleichtes Holz, Sand: dunkleres Holz, Asche: verkohltes Holz und angesengtes Papier (uralt, nichts glueht).
 Farben: art/palette.json plus die gebleichten Tonfarben aus gen_sherd_block.py.
 """
 import json
@@ -95,8 +96,23 @@ def ostrakon():
 
 
 # ------------------------------------------------------------------------------------------------ Schlamm
-def mud_bits():
+# Farben der Fundstuecke je Untergrund: Holz (dunkel, mittel, hell), Papier (hell, mittel, Tinte)
+PALETTES = {
+    "mud": dict(wood=BLEACH, paper=(P["parchment_3"], P["parchment_2"], P["parchment_1"])),
+    # auf hellem Sand muessen die Stuecke dunkler sein als der Untergrund
+    "sand": dict(wood=[(84, 66, 48, 255), (116, 92, 66, 255), (150, 124, 92, 255)],
+                 paper=(P["parchment_3"], P["parchment_2"], P["parchment_1"])),
+    # Asche: uraltes, verkohltes Holz und brueckiges, angesengtes Papier (kalt, nichts glueht)
+    "ashes": dict(wood=[(22, 20, 20, 255), (44, 38, 36, 255), (74, 64, 58, 255)],
+                  paper=((96, 78, 60, 255), (62, 50, 42, 255), (34, 28, 26, 255))),
+}
+
+
+def mud_bits(kind="mud"):
     """Liste von Fundstuecken (Art, Pixel). Reihenfolge = Reihenfolge des Erscheinens."""
+    pal = PALETTES[kind]
+    BLEACH = pal["wood"]
+    paper_hi, paper_mid, paper_lo = pal["paper"]
     rng = random.Random(SEED + 2)
     bits = []
     spots = [(3, 4), (11, 9), (6, 12), (12, 3), (2, 10), (8, 6), (13, 13), (5, 1)]
@@ -116,18 +132,18 @@ def mud_bits():
         else:
             for dx in range(3):
                 for dy in range(2):
-                    px.append((x + dx, y + dy, P["parchment_3"]))
-            px.append((x, y + 1, P["parchment_2"]))
-            px.append((x + 1, y + 1, P["parchment_1"]))  # Tintenspur/Schatten
+                    px.append((x + dx, y + dy, paper_hi))
+            px.append((x, y + 1, paper_mid))
+            px.append((x + 1, y + 1, paper_lo))  # Tintenspur/Schatten
             px = [p for p in px if not (p[0] == x + 2 and p[1] == y + 1)]  # abgerissene Ecke
         bits.append(([(a, b, c) for a, b, c in px if 0 <= a < 16 and 0 <= b < 16]))
     return bits
 
 
-def mud_overlay(stage):
+def mud_overlay(stage, kind="mud"):
     shown = {0: 2, 1: 4, 2: 6, 3: 8}[stage]
     im = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
-    for bit in mud_bits()[:shown]:
+    for bit in mud_bits(kind)[:shown]:
         for x, y, c in bit:
             im.putpixel((x, y), c)
     return im
@@ -137,21 +153,32 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     amphora().save(os.path.join(OUT, "amphora.png"))
     ostrakon().save(os.path.join(OUT, "ostrakon.png"))
-    for s in range(4):
-        mud_overlay(s).save(os.path.join(OUT, f"suspicious_archive_mud_{s}.png"))
-    # Vorschau: Ostrakon, Amphore, 4 Schlammstufen auf einem nachgebauten (!) Schlamm-Hintergrund
+    for kind in PALETTES:
+        for s in range(4):
+            mud_overlay(s, kind).save(os.path.join(OUT, f"suspicious_{kind}_{s}.png"))
+    # Vorschau: pro Untergrund 4 Stufen auf einem nachgebauten (!) Hintergrund, dazu Ostrakon und Amphore.
+    # Die Hintergruende sind nur grobe Naeherungen der Vanilla-Texturen, das Spiel nimmt die echten.
     rng = random.Random(1)
-    base = Image.new("RGBA", (16, 16))
-    for y in range(16):
-        for x in range(16):
-            v = rng.choice([54, 58, 62, 66])
-            base.putpixel((x, y), (v, v - 6, v - 8, 255))
+
+    def noise(c, spread):
+        im = Image.new("RGBA", (16, 16))
+        for y in range(16):
+            for x in range(16):
+                v = rng.choice(spread)
+                im.putpixel((x, y), tuple(max(0, min(255, a + v)) for a in c) + (255,))
+        return im
+
+    bases = {"mud": noise((60, 54, 52), (-6, -2, 2, 6)), "sand": noise((218, 207, 163), (-10, -4, 0, 5)),
+             "ashes": noise((154, 154, 148), (-8, -3, 2, 6))}
     S = 10
-    sheet = Image.new("RGBA", (6 * (16 * S + 10) + 10, 16 * S + 20), (38, 38, 42, 255))
-    tiles = [ostrakon(), amphora()] + [Image.alpha_composite(base, mud_overlay(s)) for s in range(4)]
-    for i, t in enumerate(tiles):
-        b = t.resize((16 * S, 16 * S), Image.NEAREST)
-        sheet.alpha_composite(b, (10 + i * (16 * S + 10), 10))
+    cols = 4
+    sheet = Image.new("RGBA", (cols * (16 * S + 10) + 10, 4 * (16 * S + 10) + 10), (38, 38, 42, 255))
+    rows = [[Image.alpha_composite(bases[k], mud_overlay(s, k)) for s in range(4)] for k in PALETTES]
+    rows.append([ostrakon(), amphora()])
+    for r, row in enumerate(rows):
+        for i, t in enumerate(row):
+            b = t.resize((16 * S, 16 * S), Image.NEAREST)
+            sheet.alpha_composite(b, (10 + i * (16 * S + 10), 10 + r * (16 * S + 10)))
     sheet.save(os.path.join(ROOT, "art/out/finds-preview.png"))
     print("ok")
 

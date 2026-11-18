@@ -56,8 +56,8 @@ public final class ModItems {
         }
     }
 
-    /** Reihenfolge = Wert von custom_model_data (1 bis 5). */
-    static final String[] VARIANT_NAMES = {"charred", "water damaged", "faded", "codex", "frozen"};
+    /** Reihenfolge = Wert von custom_model_data (1 bis 4). Der Untergrund, in dem das Fragment liegt, bestimmt die Variante. */
+    static final String[] VARIANT_NAMES = {"charred", "water damaged", "faded", "frozen"};
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("main",
             () -> CreativeModeTab.builder()
@@ -66,7 +66,7 @@ public final class ModItems {
                     .displayItems((params, out) -> {
                         ModBlocks.ALL.forEach(b -> out.accept(b.get()));
                         ALL.forEach(s -> { if (s != MANUSCRIPT_FRAGMENT) out.accept(s.get()); });
-                        for (Manuscripts.Fragment f : Manuscripts.load()) out.accept(ManuscriptFragmentItem.of(f.id()));
+                        // Die Manuskripte selbst stehen in eigenen Tabs, einer pro Kapitel (siehe unten).
                         // Testvarianten (nur Optik, siehe Ueberschreibungen in models/item/manuscript_fragment.json)
                         String first = Manuscripts.load().get(0).id();
                         for (int i = 0; i < VARIANT_NAMES.length; i++) {
@@ -78,6 +78,44 @@ public final class ModItems {
                         }
                     })
                     .build());
+
+    /**
+     * Ein Creative-Tab pro Kapitel, damit die rund 1.500 Manuskripte nicht zwischen den anderen Items untergehen.
+     * Die Kapitel kommen aus den Daten, die Tabs stehen in der Reihenfolge des Evangeliums.
+     */
+    public static final List<DeferredHolder<CreativeModeTab, CreativeModeTab>> CHAPTER_TABS = new ArrayList<>();
+    static {
+        java.util.SortedSet<Integer> chapters = new java.util.TreeSet<>();
+        // Immer die echten Daten: der Selbsttest laedt sonst Platzhalter mit nur einem Kapitel, und Items lassen sich spaeter nicht nachregistrieren
+        for (Manuscripts.Fragment f : Boolean.getBoolean("scribery.selftest") ? Manuscripts.loadReal() : Manuscripts.load()) {
+            chapters.add(f.chapter());
+        }
+        for (int chapter : chapters) {
+            // Nur als Tab-Icon, nicht in einem Tab und nicht herstellbar (Textur: art/gen_chapter_icons.py)
+            ITEMS.registerSimpleItem("chapter_icon_" + chapter);
+            Chapters.Info info = Chapters.of(chapter);
+            CHAPTER_TABS.add(TABS.register("manuscripts_john_" + chapter, () -> CreativeModeTab.builder()
+                    // z. B. "The Word & first disciples · John 1:1-51": Geschichte statt Kapitelnummer, dazu der Versbereich
+                    .title(Component.translatable("itemGroup.scribery.manuscripts", info.title(), info.range()))
+                    .icon(() -> {
+                        // Vanilla-Item, das zur Geschichte passt; ohne Eintrag das erste Manuskript des Kapitels
+                        var item = net.minecraft.core.registries.BuiltInRegistries.ITEM
+                                .getOptional(net.minecraft.resources.ResourceLocation.parse(
+                                        info.icon().isEmpty() ? "minecraft:air" : info.icon()));
+                        if (item.isPresent() && item.get() != net.minecraft.world.item.Items.AIR) return item.get().getDefaultInstance();
+                        for (Manuscripts.Fragment f : Manuscripts.load()) {
+                            if (f.chapter() == chapter) return ManuscriptFragmentItem.of(f.id());
+                        }
+                        return ItemStack.EMPTY;
+                    })
+                    .displayItems((params, out) -> {
+                        for (Manuscripts.Fragment f : Manuscripts.load()) {
+                            if (f.chapter() == chapter) out.accept(ManuscriptFragmentItem.of(f.id()));
+                        }
+                    })
+                    .build()));
+        }
+    }
 
     /** Index des Buchstabens in der Box, oder -1 wenn das Item kein Letter Type ist. */
     public static int letterIndex(Item item) {

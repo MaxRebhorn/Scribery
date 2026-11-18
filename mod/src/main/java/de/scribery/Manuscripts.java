@@ -20,7 +20,12 @@ import de.scribery.core.TileSession;
  * Selbsttest zugeschnitten ist.
  */
 public final class Manuscripts {
-    public record Fragment(String id, String ref, List<PressWord> words, List<TileSession.Word> tileWords) {
+    /** Die Dateien mit den echten Manuskripten, in der Reihenfolge des Evangeliums. */
+    private static final List<String> REAL = List.of(
+            "/assets/scribery/data/manuscripts.john1.json",
+            "/assets/scribery/data/manuscripts.john-rest.json");
+
+    public record Fragment(String id, String ref, int chapter, List<PressWord> words, List<TileSession.Word> tileWords) {
         public String greekText() {
             StringBuilder sb = new StringBuilder();
             for (PressWord w : words) {
@@ -67,12 +72,25 @@ public final class Manuscripts {
 
     /** Immer die echten Manuskripte, auch im Selbsttest. */
     public static List<Fragment> loadReal() {
-        return read("/assets/scribery/data/manuscripts.json");
+        return readAll(REAL);
     }
 
     private static List<Fragment> read() {
-        return read(Boolean.getBoolean("scribery.selftest")
-                ? "/assets/scribery/debug/fragments.example.json" : "/assets/scribery/data/manuscripts.json");
+        return Boolean.getBoolean("scribery.selftest")
+                ? readAll(List.of("/assets/scribery/debug/fragments.example.json")) : readAll(REAL);
+    }
+
+    /** Liest die Dateien nacheinander. Eine ID darf nur einmal vorkommen, sonst waeren Bogen und Item nicht eindeutig. */
+    private static List<Fragment> readAll(List<String> paths) {
+        List<Fragment> out = new ArrayList<>();
+        java.util.Set<String> seen = new java.util.HashSet<>();
+        for (String p : paths) {
+            for (Fragment f : read(p)) {
+                if (!seen.add(f.id())) throw new IllegalStateException("Doppelte Manuskript-ID " + f.id() + " in " + p);
+                out.add(f);
+            }
+        }
+        return java.util.Collections.unmodifiableList(out);
     }
 
     private static List<Fragment> read(String path) {
@@ -94,7 +112,8 @@ public final class Manuscripts {
                     tileWords.add(new TileSession.Word(pw.greek(), pw.latin(), strings(gloss, "ok"),
                             strings(gloss, "wrong"), boxOf(w.get("morph").getAsString())));
                 }
-                out.add(new Fragment(f.get("id").getAsString(), f.get("ref").getAsString(), words, tileWords));
+                int chapter = f.has("chapter") ? f.get("chapter").getAsInt() : 1;
+                out.add(new Fragment(f.get("id").getAsString(), f.get("ref").getAsString(), chapter, words, tileWords));
             }
         } catch (java.io.IOException e) {
             throw new IllegalStateException(e);

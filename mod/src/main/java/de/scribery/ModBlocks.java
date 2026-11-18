@@ -50,14 +50,32 @@ public final class ModBlocks {
             () -> new AmphoraBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
                     .strength(0.6F).sound(SoundType.DECORATED_POT).noOcclusion()));
     /** Schlamm mit gebleichtem Holz und Papierstuecken (Optik per Blockzustand dusted 0-3, noch keine Pinsel-Logik). */
-    public static final DeferredBlock<Block> SUSPICIOUS_ARCHIVE_MUD = BLOCKS.register("suspicious_archive_mud",
-            () -> new SuspiciousMudBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT)
+    public static final DeferredBlock<Block> SUSPICIOUS_MUD = BLOCKS.register("suspicious_mud",
+            () -> new SuspiciousFindBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT)
                     .strength(0.25F).sound(SoundType.MUD)));
+    /** Sand mit dunklem Holz und Papierstuecken (Wueste). */
+    public static final DeferredBlock<Block> SUSPICIOUS_SAND = BLOCKS.register("suspicious_sand",
+            () -> new SuspiciousFindBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND)
+                    .strength(0.25F).sound(SoundType.SAND)));
+    /** Asche mit verkohltem Holz und angesengtem Papier (verkohlte Fragmente). */
+    public static final DeferredBlock<Block> SUSPICIOUS_ASHES = BLOCKS.register("suspicious_ashes",
+            () -> new SuspiciousFindBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .strength(0.25F).sound(SoundType.SAND)));
+    /** Scherbenhaufen: Tonscherben, spaeter mit Ostraka und Fragmenten darin. */
+    public static final DeferredBlock<Block> SHARD_PILE = BLOCKS.register("shard_pile",
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
+                    .strength(0.4F).sound(SoundType.GRAVEL)));
     static {
         BLOCK_ITEMS.registerSimpleBlockItem("amphora", AMPHORA, new Item.Properties());
-        BLOCK_ITEMS.registerSimpleBlockItem("suspicious_archive_mud", SUSPICIOUS_ARCHIVE_MUD, new Item.Properties());
+        BLOCK_ITEMS.registerSimpleBlockItem("suspicious_mud", SUSPICIOUS_MUD, new Item.Properties());
+        BLOCK_ITEMS.registerSimpleBlockItem("suspicious_sand", SUSPICIOUS_SAND, new Item.Properties());
+        BLOCK_ITEMS.registerSimpleBlockItem("suspicious_ashes", SUSPICIOUS_ASHES, new Item.Properties());
+        BLOCK_ITEMS.registerSimpleBlockItem("shard_pile", SHARD_PILE, new Item.Properties());
         ALL.add(AMPHORA);
-        ALL.add(SUSPICIOUS_ARCHIVE_MUD);
+        ALL.add(SHARD_PILE);
+        ALL.add(SUSPICIOUS_SAND);
+        ALL.add(SUSPICIOUS_MUD);
+        ALL.add(SUSPICIOUS_ASHES);
     }
     static {
         BLOCK_ITEMS.registerSimpleBlockItem("frozen_fragment_block", FROZEN_FRAGMENT_BLOCK, new Item.Properties());
