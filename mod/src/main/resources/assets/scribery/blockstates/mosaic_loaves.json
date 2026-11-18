@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "part=0": {
+      "model": "scribery:block/mosaic_loaves_0"
+    },
+    "part=1": {
+      "model": "scribery:block/mosaic_loaves_1"
+    },
+    "part=2": {
+      "model": "scribery:block/mosaic_loaves_2"
+    },
+    "part=3": {
+      "model": "scribery:block/mosaic_loaves_3"
+    },
+    "part=4": {
+      "model": "scribery:block/mosaic_loaves_4"
+    },
+    "part=5": {
+      "model": "scribery:block/mosaic_loaves_5"
+    },
+    "part=6": {
+      "model": "scribery:block/mosaic_loaves_6"
+    },
+    "part=7": {
+      "model": "scribery:block/mosaic_loaves_7"
+    },
+    "part=8": {
+      "model": "scribery:block/mosaic_loaves_8"
+    },
+    "part=9": {
+      "model": "scribery:block/mosaic_loaves_9"
+    },
+    "part=10": {
+      "model": "scribery:block/mosaic_loaves_10"
+    },
+    "part=11": {
+      "model": "scribery:block/mosaic_loaves_11"
+    },
+    "part=12": {
+      "model": "scribery:block/mosaic_loaves_12"
+    },
+    "part=13": {
+      "model": "scribery:block/mosaic_loaves_13"
+    },
+    "part=14": {
+      "model": "scribery:block/mosaic_loaves_14"
+    }
+  }
+}

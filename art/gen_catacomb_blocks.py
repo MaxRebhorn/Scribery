@@ -4,15 +4,18 @@ Aufruf: python art/gen_catacomb_blocks.py
 Ausgabe: Texturen, Blockstates, Modelle, Item-Modelle und Loot-Tabellen direkt unter mod/src/main/resources,
 dazu art/out/catacomb-preview.png.
 
-Vorbild: Duenne roemische Ziegel (Ostia, Katakomben): sehr flache Lagen, rotbraun, der Moertel kaum heller. Mosaike
-aus kleinen Steinchen: ein einzelnes Bild (Fisch, Chi-Rho) in einem Ring, aus 3x3 Bloecken zusammengesetzt, drumherum
-schlichte cremefarbene Steinchen. Der uebrige Boden der Katakombe bleibt normaler Stein.
-Die Bildbloecke tragen die Eigenschaft "part" (0-8, Zeile * 3 + Spalte, Zeile 0 = Norden, Spalte 0 = Westen).
+Vorbild: Duenne roemische Ziegel (Ostia, Katakomben): sehr flache Lagen, rotbraun, der Moertel kaum heller.
+Mosaike nach dem Vorbild von Tabgha (Brotvermehrung): goldener Grund aus kleinen, unregelmaessigen Steinchen, dunkle
+Fugen. Zwei Bilder, jeweils aus mehreren Bloecken zusammengesetzt:
+  mosaic_loaves   5 x 3 Bloecke: zwei Fische und ein Brotkorb
+  mosaic_chi_rho  3 x 3 Bloecke: Chi-Rho im Ring
+Die Bildbloecke tragen die Eigenschaft "part" (Zeile * Spalten + Spalte, Zeile 0 = Norden, Spalte 0 = Westen).
 """
 import json
+import math
 import os
-from PIL import Image
 import random
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(ROOT, "mod", "src", "main", "resources")
@@ -21,16 +24,20 @@ D = os.path.join(RES, "data", "scribery", "loot_table", "blocks")
 TEX = os.path.join(A, "textures", "block")
 OUT = os.path.join(ROOT, "art", "out")
 N = 16
-rng = random.Random(20261119)
+rng = random.Random(20261120)
 
 BRICK = [(132, 68, 52), (144, 78, 58), (120, 62, 48), (152, 86, 64), (138, 72, 54)]
 MORTAR = (176, 128, 102)       # kalkiger Moertel im Schatten: nur wenig heller als der Ziegel
-CREAM = [(226, 210, 176), (218, 201, 166), (232, 217, 184)]
-DARK = [(58, 52, 50), (48, 43, 42), (66, 59, 56)]
-RED = [(160, 74, 54), (150, 66, 48), (170, 82, 60)]
-OCHRE = [(205, 160, 80), (196, 150, 72), (214, 170, 90)]
-BLUE = [(52, 78, 96), (44, 68, 86), (60, 88, 106)]
-BED = (150, 128, 98)  # Moertelbett, wo Steinchen fehlen
+
+GOLD = [(224, 186, 108), (214, 174, 96), (232, 196, 120), (204, 164, 88)]
+CREAM = [(240, 222, 168), (232, 208, 146), (246, 230, 184)]
+BROWN = [(88, 60, 40), (76, 52, 34), (98, 68, 44)]
+DARK = [(58, 48, 42), (48, 40, 36), (66, 56, 48)]
+RED = [(176, 70, 46), (164, 62, 42), (186, 80, 52)]
+ORANGE = [(222, 124, 52), (212, 112, 46), (230, 136, 62)]
+OCHRE = [(214, 160, 72), (205, 150, 66), (222, 170, 84)]
+YELLOW = [(232, 184, 64), (224, 174, 56), (238, 194, 76)]
+BED = (112, 84, 54)            # Fuge und Moertelbett, wo Steinchen fehlen
 
 
 def jit(c, a=5):
@@ -71,118 +78,206 @@ def bricks(weathered):
     return im
 
 
-def tesserae_img(cells, size, missing=0.0):
-    """Mosaik aus 2x2-Steinchen. cells[y][x] ist die Farbe einer Steinchenzelle."""
-    im = Image.new("RGBA", (size * 2, size * 2))
-    for cy in range(size):
-        for cx in range(size):
+def tesserae_img(cells, missing=0.0):
+    """Mosaik aus 2x2-Steinchen. cells[y][x] ist die Farbe einer Steinchenzelle. Fuge rechts und unten, leichtes Rauschen."""
+    h, w = len(cells), len(cells[0])
+    im = Image.new("RGBA", (w * 2, h * 2))
+    for cy in range(h):
+        for cx in range(w):
             base = cells[cy][cx]
             gone = rng.random() < missing
             for dy in range(2):
                 for dx in range(2):
-                    c = BED if gone else jit(base, 4)
-                    if not gone and (dx == 1 or dy == 1):
-                        c = tuple(int(v * 0.9) for v in c)
+                    if gone:
+                        c = BED
+                    else:
+                        c = jit(base, 7)
+                        if dx == 1 or dy == 1:
+                            c = tuple(int(v * 0.8) for v in c)
                     im.putpixel((cx * 2 + dx, cy * 2 + dy), c + (255,))
     return im
 
 
+STONE = [(172, 158, 132), (162, 148, 124), (182, 168, 142), (154, 140, 118)]
+
+
+def floor_tiles():
+    """Normaler Steinboden im Stil des Mosaiks: warme Steinplatten (8 x 4 Pixel, versetzt) mit der dunklen Mosaikfuge."""
+    im = Image.new("RGBA", (N, N))
+    for row in range(4):
+        off = 0 if row % 2 == 0 else 4
+        for seg in range(2):
+            x0 = (seg * 8 + off) % N
+            col = pick(STONE)
+            for dy in range(4):
+                for dx in range(8):
+                    x, y = (x0 + dx) % N, row * 4 + dy
+                    if dx == 7 or dy == 3:  # Fuge rechts und unten, dunkel wie im Mosaik
+                        c = jit(BED, 4)
+                    else:
+                        c = jit(col, 6)
+                        if dy == 0 or dx == 0:
+                            c = tuple(min(255, v + 8) for v in c)  # Licht von links oben
+                    im.putpixel((x, y), c + (255,))
+    return im
+
+
+def background(w, h):
+    return [[pick(GOLD) if rng.random() < 0.72 else pick(CREAM) for _ in range(w)] for _ in range(h)]
+
+
 def m_plain():
-    return tesserae_img([[pick(CREAM) for _ in range(8)] for _ in range(8)], 8)
+    return tesserae_img(background(8, 8))
 
 
 def m_damaged():
-    return tesserae_img([[pick(CREAM) if (x + y * 3) % 5 else pick(DARK) for x in range(8)] for y in range(8)], 8, missing=0.38)
+    g = background(8, 8)
+    for y in range(8):
+        for x in range(8):
+            if (x + y * 3) % 7 == 0:
+                g[y][x] = pick(BROWN)
+    return tesserae_img(g, missing=0.4)
 
 
-S = 24  # Bild aus 3x3 Bloecken = 24x24 Steinchen
+def frame(g):
+    """Rahmen aus zwei Steinchenreihen: aussen dunkelbraun, innen hell."""
+    h, w = len(g), len(g[0])
+    for y in range(h):
+        for x in range(w):
+            e = min(x, y, w - 1 - x, h - 1 - y)
+            if e == 0:
+                g[y][x] = pick(BROWN)
+            elif e == 1:
+                g[y][x] = pick(CREAM)
 
 
-def ring_base():
-    """Kreis mit rotem und dunklem Ring, aussen cremefarben mit Ocker-Punkten."""
-    g = [[None] * S for _ in range(S)]
-    for y in range(S):
-        for x in range(S):
-            r = ((x - 11.5) ** 2 + (y - 11.5) ** 2) ** .5
-            if r < 8.6:
-                c = pick(CREAM)
-            elif r < 9.6:
-                c = pick(RED)
-            elif r < 10.8:
-                c = pick(DARK)
-            elif r < 11.9:
-                c = pick(CREAM)
-            else:
-                c = pick(OCHRE) if (x + y) % 4 == 0 else pick(CREAM)
-            g[y][x] = c
-    return g
+def setc(g, x, y, c):
+    if 0 <= y < len(g) and 0 <= x < len(g[0]):
+        g[y][x] = c
 
 
-def fish_picture():
-    g = ring_base()
-    for y in range(S):
-        for x in range(S):
-            if ((x - 11.5) ** 2 + (y - 11.5) ** 2) ** .5 >= 8.6:
+def draw_fish(g, cx, flip=False):
+    """Ein Fisch senkrecht, Kopf oben (wie in Tabgha), mit Flossen und Schwanz. cx = Mittelspalte."""
+    top, bottom = 3, 17
+    for y in range(top, bottom + 1):
+        t = (y - top) / (bottom - top)
+        half = 4.4 * math.sqrt(max(0.0, 1 - ((t - 0.42) / 0.62) ** 2))
+        for x in range(cx - 5, cx + 6):
+            dx = abs(x - cx)
+            if dx > half:
                 continue
-            if y in (6, 17) and 6 < x < 17 and (x // 2) % 2 == 0:  # Wellen
-                g[y][x] = pick(BLUE)
-    for k in range(4):  # Schwanzflosse links: ein Dreieck, das sich nach aussen oeffnet
-        for dy in range(-(k + 1), k + 2):
-            g[11 + dy][8 - k] = pick(DARK) if abs(dy) == k + 1 else pick(RED)
-    for y in range(S):
-        for x in range(S):
-            ex, ey = (x - 13.5) / 5.6, (y - 11.5) / 3.4
-            d = ex * ex + ey * ey
+            edge = dx > half - 1.0 or y == top
+            if edge:
+                c = pick(BROWN)
+            else:
+                body = pick(OCHRE) if t < 0.3 else pick(ORANGE) if t < 0.72 else pick(RED)
+                if (y + x) % 3 == 0 and 0.25 < t < 0.8:
+                    body = pick(RED)  # Schuppenreihen
+                c = body
+            setc(g, x, y, c)
+    setc(g, cx - 1 if not flip else cx + 1, top + 2, pick(DARK))                 # Auge
+    for y in range(top + 3, top + 12):                                           # Kiemenbogen
+        setc(g, cx - 2 if not flip else cx + 2, y, pick(BROWN)) if y in (top + 3, top + 4) else None
+    for k in range(4):                                                           # Brustflossen
+        setc(g, cx - 5 - (k // 2), 9 + k, pick(RED))
+        setc(g, cx + 5 + (k // 2), 9 + k, pick(RED))
+    for y in range(bottom, bottom + 6):                                          # Schwanzflosse
+        half = 1 + (y - bottom) * 0.75
+        for x in range(cx - 5, cx + 6):
+            if abs(x - cx) <= half:
+                edge = abs(x - cx) > half - 1 or y == bottom + 5
+                setc(g, x, y, pick(BROWN) if edge else pick(RED) if (y + x) % 2 else pick(ORANGE))
+
+
+def draw_basket(g, cx):
+    """Brotkorb: oben ein Oval mit Broten, darunter das geflochtene Koerbchen."""
+    cy_rim = 7
+    for y in range(3, 12):
+        for x in range(cx - 8, cx + 9):
+            d = ((x - cx) / 7.5) ** 2 + ((y - cy_rim) / 3.6) ** 2
             if d <= 1.0:
-                g[y][x] = pick(OCHRE) if d < 0.7 else pick(DARK)
-                if y > 12 and d < 0.7:
-                    g[y][x] = pick(CREAM) if (x + y) % 3 == 0 else pick(OCHRE)  # heller Bauch
-    for x in range(12, 17):  # Rueckenflosse
-        g[8][x] = pick(RED)
-    for x in range(13, 16):
-        g[7][x] = pick(RED)
-    for x in range(12, 16):  # Bauchflosse
-        g[15][x] = pick(RED)
-    g[10][17] = pick(DARK)       # Auge
-    for y in range(9, 14):       # Kieme
-        g[y][15] = pick(RED)
+                setc(g, x, y, pick(BROWN) if d > 0.72 else pick(CREAM))
+    for bx, by in ((cx - 4, 6), (cx, 5), (cx + 4, 6), (cx - 2, 8), (cx + 2, 8)):  # Brote mit Einschnitt
+        for dy in range(-1, 2):
+            for dx in range(-1, 2):
+                if abs(dx) + abs(dy) <= 1 or (abs(dx) == 1 and abs(dy) == 1 and False):
+                    setc(g, bx + dx, by + dy, pick(YELLOW) if (dx, dy) != (0, 0) else pick(DARK))
+    for y in range(11, 22):  # Koerbchen, nach unten schmaler
+        t = (y - 11) / 10
+        half = 7 - 2.2 * t
+        for x in range(cx - 8, cx + 9):
+            dx = abs(x - cx)
+            if dx > half:
+                continue
+            if dx > half - 1.0 or y == 21:
+                c = pick(BROWN)
+            elif (y - 11) % 3 == 1:
+                c = pick(YELLOW)
+            elif (y - 11) % 3 == 2:
+                c = pick(RED) if (x + y) % 4 else pick(DARK)
+            else:
+                c = pick(BROWN)
+            setc(g, x, y, c)
+
+
+def loaves_picture():
+    g = background(40, 24)
+    draw_fish(g, 7)
+    draw_fish(g, 32, flip=True)
+    draw_basket(g, 20)
+    frame(g)
     return g
 
 
 def chi_rho_picture():
-    g = ring_base()
+    S = 24
+    g = background(S, S)
+    for y in range(S):
+        for x in range(S):
+            r = ((x - 11.5) ** 2 + (y - 11.5) ** 2) ** .5
+            if 8.6 <= r < 9.6:
+                g[y][x] = pick(RED)
+            elif 9.6 <= r < 10.8:
+                g[y][x] = pick(BROWN)
+            elif 10.8 <= r < 11.9:
+                g[y][x] = pick(CREAM)
+            elif r < 8.6:
+                g[y][x] = pick(CREAM) if rng.random() < 0.75 else pick(GOLD)
     for k in range(-7, 8):  # Chi
         for t in (0, 1, 2):
             for x, y in ((10 + k + t, 11 + k), (12 - k + t, 11 + k)):
-                if 0 <= x < S and 0 <= y < S and ((x - 11.5) ** 2 + (y - 11.5) ** 2) ** .5 < 8.4:
-                    g[y][x] = pick(RED)
+                if ((x - 11.5) ** 2 + (y - 11.5) ** 2) ** .5 < 8.4:
+                    setc(g, x, y, pick(RED))
     for y in range(5, 19):  # Rho: Stab und Schlaufe
         for x in (11, 12):
-            g[y][x] = pick(DARK)
+            g[y][x] = pick(BROWN)
     for x in range(11, 17):
         for y in (5, 6, 10, 11):
-            g[y][x] = pick(DARK)
+            g[y][x] = pick(BROWN)
     for y in range(5, 12):
         for x in (15, 16):
-            g[y][x] = pick(DARK)
+            g[y][x] = pick(BROWN)
     return g
 
 
-def split_picture(cells):
-    """24x24 Zellen -> neun Bloecke, Index = Zeile * 3 + Spalte."""
-    big = tesserae_img(cells, S)
-    return [big.crop((c * 16, r * 16, c * 16 + 16, r * 16 + 16)) for r in range(3) for c in range(3)]
+def split_picture(cells, cols, rows):
+    """Zellen -> cols x rows Bloecke, Index = Zeile * cols + Spalte."""
+    big = tesserae_img(cells)
+    return [big.crop((c * 16, r * 16, c * 16 + 16, r * 16 + 16)) for r in range(rows) for c in range(cols)]
 
 
+PICTURES = {"mosaic_loaves": (5, 3, loaves_picture()), "mosaic_chi_rho": (3, 3, chi_rho_picture())}
 TEXTURES = {
     "roman_bricks": bricks(False),
     "roman_bricks_weathered": bricks(True),
     "mosaic_plain": m_plain(),
     "mosaic_damaged": m_damaged(),
+    "roman_floor": floor_tiles(),
 }
-PICTURES = {"mosaic_fish": split_picture(fish_picture()), "mosaic_chi_rho": split_picture(chi_rho_picture())}
-for _name, _parts in PICTURES.items():
-    for _i, _im in enumerate(_parts):
+PARTS = {}
+for _name, (_c, _r, _cells) in PICTURES.items():
+    PARTS[_name] = split_picture(_cells, _c, _r)
+    for _i, _im in enumerate(PARTS[_name]):
         TEXTURES[f"{_name}_{_i}"] = _im
 
 NAMES = {
@@ -190,12 +285,14 @@ NAMES = {
     "roman_brick_stairs": "Roman Brick Stairs",
     "roman_brick_slab": "Roman Brick Slab",
     "roman_bricks_weathered": "Weathered Roman Bricks",
+    "roman_floor": "Roman Stone Floor",
     "mosaic_plain": "Mosaic Floor",
     "mosaic_damaged": "Damaged Mosaic Floor",
-    "mosaic_fish": "Fish Mosaic",
+    "mosaic_loaves": "Loaves and Fishes Mosaic",
     "mosaic_chi_rho": "Chi-Rho Mosaic",
 }
-STALE = ["mosaic_checker", "mosaic_lozenge", "mosaic_rosette"]
+STALE = ["mosaic_checker", "mosaic_lozenge", "mosaic_rosette", "mosaic_fish"]
+MAX_PARTS = 15
 
 
 def w(path, obj):
@@ -239,39 +336,45 @@ def stairs_state(name):
     return {"variants": v}
 
 
-def remove(path):
-    if os.path.exists(path):
-        os.remove(path)
+def remove_stale():
+    for name in STALE:
+        for d, ext in ((TEX, ".png"), (os.path.join(A, "blockstates"), ".json"), (os.path.join(A, "models", "block"), ".json"),
+                       (os.path.join(A, "models", "item"), ".json"), (D, ".json")):
+            if not os.path.isdir(d):
+                continue
+            for f in os.listdir(d):
+                if f == name + ext or (f.startswith(name + "_") and f.endswith(ext) and f[len(name) + 1:-len(ext)].isdigit()):
+                    os.remove(os.path.join(d, f))
 
 
 def main():
     os.makedirs(TEX, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
-    for name in STALE:
-        for p in (os.path.join(TEX, name + ".png"), os.path.join(A, "blockstates", name + ".json"),
-                  os.path.join(A, "models", "block", name + ".json"), os.path.join(A, "models", "item", name + ".json"),
-                  os.path.join(D, name + ".json")):
-            remove(p)
+    remove_stale()
+    # Bildbloecke eines frueheren Laufs mit mehr Teilen entfernen
     for name, im in TEXTURES.items():
         im.save(os.path.join(TEX, name + ".png"))
-    cubes = ["roman_bricks", "roman_bricks_weathered", "mosaic_plain", "mosaic_damaged"]
+    cubes = ["roman_bricks", "roman_bricks_weathered", "roman_floor", "mosaic_plain", "mosaic_damaged"]
     for c in cubes:
         w(os.path.join(A, "blockstates", c + ".json"), {"variants": {"": {"model": "scribery:block/" + c}}})
         w(os.path.join(A, "models", "block", c + ".json"),
           {"parent": "minecraft:block/cube_all", "textures": {"all": "scribery:block/" + c}})
         w(os.path.join(A, "models", "item", c + ".json"), {"parent": "scribery:block/" + c})
         w(os.path.join(D, c + ".json"), loot(c))
-    # Bildbloecke: nur die Oberseite traegt das Bild
-    for pic in PICTURES:
+    # Bildbloecke: nur die Oberseite traegt das Bild, die Seiten sind schlichtes Mosaik
+    for pic, (cols, rows, _) in PICTURES.items():
+        n = cols * rows
         variants = {}
-        for i in range(9):
-            variants[f"part={i}"] = {"model": f"scribery:block/{pic}_{i}"}
+        for i in range(MAX_PARTS):
+            src = min(i, n - 1)  # nicht benutzte Werte zeigen das letzte Teil
+            variants[f"part={i}"] = {"model": f"scribery:block/{pic}_{src}"}
+        for i in range(n):
             w(os.path.join(A, "models", "block", f"{pic}_{i}.json"),
               {"parent": "minecraft:block/cube_bottom_top",
                "textures": {"top": f"scribery:block/{pic}_{i}", "bottom": "scribery:block/mosaic_plain",
                             "side": "scribery:block/mosaic_plain"}})
         w(os.path.join(A, "blockstates", pic + ".json"), {"variants": variants})
-        w(os.path.join(A, "models", "item", pic + ".json"), {"parent": f"scribery:block/{pic}_4"})
+        w(os.path.join(A, "models", "item", pic + ".json"), {"parent": f"scribery:block/{pic}_{n // 2}"})
         w(os.path.join(D, pic + ".json"), loot(pic))
     # Treppe
     t = {"bottom": "scribery:block/roman_bricks", "top": "scribery:block/roman_bricks", "side": "scribery:block/roman_bricks"}
@@ -307,20 +410,27 @@ def main():
             tag["values"].append("scribery:" + k)
     w(p, tag)
 
-    # Vorschau: Ziegel (gekachelt), Mosaikbilder (3x3 zusammengesetzt), schlicht, beschaedigt
-    Z = 5
-    sheet = Image.new("RGBA", (N * Z * 3 * 4 + 40, N * Z * 3 + 8), (40, 36, 34, 255))
+    # Vorschau: Ziegel gekachelt, dann die zusammengesetzten Bilder in einem Rahmen aus schlichtem Mosaik
+    Z = 4
+    pad = N * Z
+    wide = N * Z * 3 * 2 + 8 * 4 + 9 * N * Z + 7 * N * Z + 8
+    sheet = Image.new("RGBA", (wide + 4 * pad, N * Z * 7 + 8), (40, 36, 34, 255))
     x0 = 4
     for n in ("roman_bricks", "roman_bricks_weathered"):
         for ty in range(3):
             for tx in range(3):
                 sheet.paste(TEXTURES[n].resize((N * Z, N * Z), Image.NEAREST), (x0 + tx * N * Z, 4 + ty * N * Z))
         x0 += N * Z * 3 + 8
-    for pic in PICTURES:
-        for i in range(9):
-            sheet.paste(TEXTURES[f"{pic}_{i}"].resize((N * Z, N * Z), Image.NEAREST), (x0 + (i % 3) * N * Z, 4 + (i // 3) * N * Z))
-        x0 += N * Z * 3 + 8
-    sheet = sheet.crop((0, 0, x0, N * Z * 3 + 8))
+    for pic, (cols, rows, _) in PICTURES.items():
+        for yy in range(rows + 4):
+            for xx in range(cols + 4):
+                inside = 2 <= xx < cols + 2 and 2 <= yy < rows + 2
+                ring = 1 <= xx <= cols + 2 and 1 <= yy <= rows + 2
+                tex = (TEXTURES[f"{pic}_{(yy - 2) * cols + (xx - 2)}"] if inside
+                       else TEXTURES["mosaic_plain"] if ring else TEXTURES["roman_floor"])
+                sheet.paste(tex.resize((N * Z, N * Z), Image.NEAREST), (x0 + xx * N * Z, 4 + yy * N * Z))
+        x0 += (cols + 4) * N * Z + 8
+    sheet = sheet.crop((0, 0, x0, N * Z * 7 + 8))
     sheet.save(os.path.join(OUT, "catacomb-preview.png"))
     print("ok", len(TEXTURES), "Texturen")
 

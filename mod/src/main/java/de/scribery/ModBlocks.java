@@ -129,10 +129,12 @@ public final class ModBlocks {
             () -> new net.minecraft.world.level.block.SlabBlock(brickProps()));
     public static final DeferredBlock<Block> ROMAN_BRICKS_WEATHERED = catacomb("roman_bricks_weathered",
             () -> new Block(brickProps().strength(1.4F, 5.0F)));
+    /** Normaler Steinboden im Stil des Mosaiks: der Boden um die Mosaikbilder. */
+    public static final DeferredBlock<Block> ROMAN_FLOOR = catacomb("roman_floor", () -> new Block(mosaicProps()));
     public static final DeferredBlock<Block> MOSAIC_PLAIN = catacomb("mosaic_plain", () -> new Block(mosaicProps()));
     public static final DeferredBlock<Block> MOSAIC_DAMAGED = catacomb("mosaic_damaged", () -> new Block(mosaicProps().strength(0.8F, 3.0F)));
     /** Mosaikbilder aus 3 x 3 Bloecken (Eigenschaft part), siehe MosaicPictureBlock. */
-    public static final DeferredBlock<Block> MOSAIC_FISH = catacomb("mosaic_fish", () -> new MosaicPictureBlock(mosaicProps()));
+    public static final DeferredBlock<Block> MOSAIC_LOAVES = catacomb("mosaic_loaves", () -> new MosaicPictureBlock(mosaicProps()));
     public static final DeferredBlock<Block> MOSAIC_CHI_RHO = catacomb("mosaic_chi_rho", () -> new MosaicPictureBlock(mosaicProps()));
 
     static {

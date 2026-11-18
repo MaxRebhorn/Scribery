@@ -26,6 +26,24 @@
     },
     "part=8": {
       "model": "scribery:block/mosaic_chi_rho_8"
+    },
+    "part=9": {
+      "model": "scribery:block/mosaic_chi_rho_8"
+    },
+    "part=10": {
+      "model": "scribery:block/mosaic_chi_rho_8"
+    },
+    "part=11": {
+      "model": "scribery:block/mosaic_chi_rho_8"
+    },
+    "part=12": {
+      "model": "scribery:block/mosaic_chi_rho_8"
+    },
+    "part=13": {
+      "model": "scribery:block/mosaic_chi_rho_8"
+    },
+    "part=14": {
+      "model": "scribery:block/mosaic_chi_rho_8"
     }
   }
 }

@@ -247,17 +247,11 @@ final class DebugStructures {
         }
         // Lichtschaechte von der Decke des Hauptgangs bis knapp unter die Oberflaeche
         for (int u : new int[] { 14, 27 }) b.cells(cells, u, u, 0, 0, -5, -1);
-        // Der Boden ist glatter Stein; ein Mosaik liegt nur an zwei Stellen: das Fischbild im Gedenkraum (mit einem Rand aus
-        // schlichten Steinchen, teils beschaedigt) und das Chi-Rho in der Grabkammer.
-        b.carve(cells, wall, smooth.defaultBlockState());
-        for (int u = 33; u <= 37; u++) {
-            for (int v = -2; v <= 2; v++) {
-                if (u >= 34 && u <= 36 && v >= -1 && v <= 1) continue;
-                b.put(u, v, -9, (b.chance(15) ? ModBlocks.MOSAIC_DAMAGED : ModBlocks.MOSAIC_PLAIN).get());
-            }
-        }
-        mosaicPicture(b, ModBlocks.MOSAIC_FISH.get(), 34, -1);
-        mosaicPicture(b, ModBlocks.MOSAIC_CHI_RHO.get(), 23, 7);
+        // Der Boden ist normaler Steinboden im Stil des Mosaiks; Mosaik liegt nur an zwei Stellen: das Bild mit Broten und
+        // Fischen im Gedenkraum und das Chi-Rho in der Grabkammer, jeweils mit einem Rand aus schlichten Steinchen.
+        b.carve(cells, wall, ModBlocks.ROMAN_FLOOR.get().defaultBlockState());
+        mosaicPicture(b, ModBlocks.MOSAIC_LOAVES.get(), 5, 3, b.at(35, 0, -9));
+        mosaicPicture(b, ModBlocks.MOSAIC_CHI_RHO.get(), 3, 3, b.at(24, 8, -9));
 
         for (int k = 0; k <= 9; k++) {                                                   // Stufen
             BlockState stair = stairBlock.defaultBlockState().setValue(StairBlock.FACING, facing.getOpposite());
@@ -314,22 +308,20 @@ final class DebugStructures {
     }
 
     /**
-     * Legt ein Mosaikbild aus 3 x 3 Bloecken auf den Boden (Hoehe -9), links oben bei (u0, v0) im Bauplan. Die Teile werden
-     * nach Weltkoordinaten vergeben, damit das Bild unabhaengig von der Blickrichtung des Bauwerks zusammenpasst.
+     * Legt ein Mosaikbild aus cols x rows Bloecken um {@code center} auf den Boden, mit einem Rand aus schlichten Steinchen.
+     * Das Bild liegt immer in Weltrichtung (cols entlang X, rows entlang Z), damit die Teile zusammenpassen, egal wie das
+     * Bauwerk ausgerichtet ist.
      */
-    private static void mosaicPicture(StructureBuilder b, Block block, int u0, int v0) {
-        int minX = Integer.MAX_VALUE, minZ = Integer.MAX_VALUE;
-        for (int du = 0; du < 3; du++) {
-            for (int dv = 0; dv < 3; dv++) {
-                BlockPos p = b.at(u0 + du, v0 + dv, -9);
-                minX = Math.min(minX, p.getX());
-                minZ = Math.min(minZ, p.getZ());
-            }
-        }
-        for (int du = 0; du < 3; du++) {
-            for (int dv = 0; dv < 3; dv++) {
-                BlockPos p = b.at(u0 + du, v0 + dv, -9);
-                b.put(p, MosaicPictureBlock.stateFor(block, p.getX(), minX, p.getZ(), minZ));
+    private static void mosaicPicture(StructureBuilder b, Block block, int cols, int rows, BlockPos center) {
+        int minX = center.getX() - cols / 2, minZ = center.getZ() - rows / 2;
+        for (int r = -1; r <= rows; r++) {
+            for (int c = -1; c <= cols; c++) {
+                BlockPos p = new BlockPos(minX + c, center.getY(), minZ + r);
+                if (c >= 0 && c < cols && r >= 0 && r < rows) {
+                    b.put(p, MosaicPictureBlock.stateFor(block, c, r, cols));
+                } else {  // Rand aus schlichten Steinchen, ab und zu beschaedigt
+                    b.put(p, (b.chance(15) ? ModBlocks.MOSAIC_DAMAGED : ModBlocks.MOSAIC_PLAIN).get().defaultBlockState());
+                }
             }
         }
     }

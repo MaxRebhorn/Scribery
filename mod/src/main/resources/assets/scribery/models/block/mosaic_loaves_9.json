@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "top": "scribery:block/mosaic_fish_8",
+    "top": "scribery:block/mosaic_loaves_9",
     "bottom": "scribery:block/mosaic_plain",
     "side": "scribery:block/mosaic_plain"
   }

@@ -12,7 +12,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
  * {@link #stateFor(Block, int, int)}), damit es immer zusammenpasst. Texturen: art/gen_catacomb_blocks.py.
  */
 public class MosaicPictureBlock extends Block {
-    public static final IntegerProperty PART = IntegerProperty.create("part", 0, 8);
+    /** Bis zu 5 x 3 Teile (Zeile * Spalten + Spalte). */
+    public static final IntegerProperty PART = IntegerProperty.create("part", 0, 14);
 
     public MosaicPictureBlock(Properties properties) {
         super(properties);
@@ -32,12 +33,8 @@ public class MosaicPictureBlock extends Block {
         return defaultBlockState().setValue(PART, row * 3 + col);
     }
 
-    /** Teil des Bildes fuer die Weltposition, wenn das Bild bei (minX, minZ) beginnt (Nordwestecke). */
-    public static BlockState stateFor(Block block, int x, int minX, int z, int minZ) {
-        return block.defaultBlockState().setValue(PART, (z - minZ) * 3 + (x - minX));
-    }
-
-    public static BlockState stateFor(Block block, int col, int row) {
-        return block.defaultBlockState().setValue(PART, row * 3 + col);
+    /** Teil des Bildes in Spalte {@code col} (West nach Ost) und Zeile {@code row} (Nord nach Sued) eines Bildes mit {@code cols} Spalten. */
+    public static BlockState stateFor(Block block, int col, int row, int cols) {
+        return block.defaultBlockState().setValue(PART, row * cols + col);
     }
 }
