@@ -320,10 +320,18 @@ final class SelfTest {
             var data = de.scribery.ArchiveData.EMPTY;
             for (int i = 0; i < real.size(); i++) {
                 de.scribery.core.ArchiveProgress p = de.scribery.core.ArchiveProgress.NONE;
-                if (i < 40) p = new de.scribery.core.ArchiveProgress(true, Long.MAX_VALUE, i < 20 ? Long.MAX_VALUE : 0L);
-                else if (i < 120 && i % 3 != 0) p = new de.scribery.core.ArchiveProgress(true, i % 2 == 0 ? 1L : 0L, 0L);
-                else if (i >= 300 && i < 330) p = new de.scribery.core.ArchiveProgress(true, Long.MAX_VALUE, Long.MAX_VALUE);
-                else if (i % 17 == 0) p = de.scribery.core.ArchiveProgress.NONE.withFound();
+                // Vorn viel, aber mit Luecken in jeder Bahn an anderer Stelle: Urtext fehlt bei jedem elften Manuskript,
+                // der Druck nur fuer die ersten 30 und dann jedes dritte, die Uebersetzung nur bei einigen Bloecken
+                if (i < 80) {
+                    boolean found = i % 11 != 4;
+                    long printed = i < 30 ? Long.MAX_VALUE : (i % 3 == 0 ? Long.MAX_VALUE : 0L);
+                    long translated = (i < 12 || (i >= 20 && i < 26)) ? Long.MAX_VALUE : 0L;
+                    p = new de.scribery.core.ArchiveProgress(found, printed, translated);
+                } else if (i >= 300 && i < 330) {
+                    p = new de.scribery.core.ArchiveProgress(true, Long.MAX_VALUE, Long.MAX_VALUE);
+                } else if (i % 17 == 0) {
+                    p = de.scribery.core.ArchiveProgress.NONE.withFound();
+                }
                 if (!p.isEmpty()) data = data.with(real.get(i).id(), p);
             }
             ClientArchive.set(data);

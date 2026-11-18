@@ -48,11 +48,20 @@ Ohne Hinweise ist ein Raum im Fels nur ein Raum. Entschieden (18.11.2026):
 - **Keine Wandbilder.** Die frühchristlichen Symbole (Fisch, Anker, Taube) entfallen.
 - **Grabnischen** (Loculi) in den Seitenwänden, mit verschlossenen Platten. Das ist eine Idee, die gefällt.
 - Ein **ausgetrocknetes Taufbecken** in einem Nebenraum: ein steinernes Becken ohne Wasser.
-- **Grundriss einer Kirche:** ein langer Mittelraum (Schiff) mit Bankreihen, am Ende die Nische (Apsis) mit dem Altartisch.
+- **Keine Bänke und keine Sitzplätze:** die frühen Kirchen hatten keine, die Gemeinde stand (Bänke kamen erst viel später, selbst im Mittelalter stand man noch).
+- **Grundriss einer Kirche:** ein langer, freier Mittelraum (Schiff), am Ende die Nische (Apsis) mit dem Altartisch.
 
 Als Vorschlag noch offen:
 - **Lampen:** kleine Öllampen in Wandnischen (die Lampe von Kapitel 1).
 - Ein **Gemeinschaftstisch** (Liebesmahl) mit Krügen und ein paar Amphoren als Fund.
 - Ostraka mit einfachen Inschriften als Fund (kein Witz-Ostrakon).
 
-Noch zu klären: Wie viel Dunkelheit, ob die Loculi Inhalt haben dürfen (ohne Knochen), und wie die Eis-Version aussieht (zum Beispiel Eisbogen und Schnee im Gang).
+Noch zu klären: Wie viel Dunkelheit und ob die Loculi Inhalt haben dürfen (ohne Knochen).
+
+### Eisbiom: der erfrorene Wanderer (statt einer Höhle)
+Für das Eisbiom keine Katakombe, sondern die Spur eines Wanderers, der unterwegs erfroren ist: eine kleine Fundstelle im Schnee mit **gefrorenen Dingen**, die dort liegen. Die Manuskripte stecken in Eisblöcken mit Fragment (Fundart Eis), sodass sie wie Gepäck im Eis eingefroren wirken. Dazu braucht es **Dinge, die herumliegen können** (Dekoration), zum Beispiel:
+- ein halb eingeschneiter Wanderstab, ein Bündel oder Sack, eine Decke (Teppich), ein erloschenes Lagerfeuer,
+- eine Amphore oder ein Wasserkrug, gefroren (Eis darum),
+- ein paar Ostraka oder Papyrusfetzen im Schnee, Fußspuren (Schneeschichten),
+- Steinhaufen (Cairn) als Wegmarke.
+Das lässt sich mit der **eingefrorenen Karawane** verbinden: die Karawane ist die große Version, der Wanderer die kleine, häufige.

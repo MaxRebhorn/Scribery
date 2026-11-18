@@ -231,8 +231,16 @@ public final class DebugWreck {
 
     /** Position einer Ladungsstelle in der Lage {@code layer} (0 = unten, 1 = darauf). */
     private BlockPos cargoPos(int[] cell, int layer) {
-        // aufrecht: im Laderaum ueber dem Boden; auf der Seite: auf dem Boden neben dem offenen Rumpf
-        return side ? world(cell[0], cell[1], layer) : at(cell[0], cell[1], 1 + layer);
+        // aufrecht: im Laderaum ueber dem Boden; auf der Seite: auf der Oberflaeche neben und auf dem flach liegenden Rumpf.
+        // Beides liegt eine Lage ueber der Gelaendekante (H = 0 ist der Rumpf und der oberste Gelaendeblock), sonst sitzen die
+        // Amphoren im Boden.
+        return side ? world(cell[0], cell[1], 1 + layer) : at(cell[0], cell[1], 1 + layer);
+    }
+
+    /** Unter einer Ladungsstelle darf kein Loch sein (fehlendes Brett, Luft, Wasser): dort kommt Sand als Unterlage hin. */
+    private void ensureSupport(BlockPos pos) {
+        BlockPos below = pos.below();
+        if (level.getBlockState(below).canBeReplaced()) put(below, Blocks.SAND.defaultBlockState());
     }
 
     /**
@@ -243,8 +251,9 @@ public final class DebugWreck {
     private void cargo() {
         List<int[]> cells = new ArrayList<>();
         if (side) {
+            // Von der Rumpfkante (1) bis weit daneben (13); nahe am Rumpf liegt viel, nach aussen wird es duenn gestreut
             for (int u = -HALF + 2; u <= HALF - 2; u++) {
-                for (int lat = 7; lat <= 11; lat++) cells.add(new int[] { u, lat });
+                for (int lat = 1; lat <= 13; lat++) cells.add(new int[] { u, lat });
             }
         } else {
             for (int u = -HALF + 2; u <= HALF - 2; u++) {
@@ -255,20 +264,40 @@ public final class DebugWreck {
                 }
             }
         }
-        Collections.shuffle(cells, new java.util.Random(origin.asLong()));
+        java.util.Random rnd = new java.util.Random(origin.asLong());
+        if (side) {
+            // Gewichtete Auswahl ohne Zuruecklegen: Stellen nahe am Rumpf kommen zuerst, ferne selten
+            final double[] key = new double[cells.size()];
+            for (int i = 0; i < cells.size(); i++) {
+                double weight = Math.exp(-(cells.get(i)[1] - 1) / 4.5);
+                key[i] = Math.pow(rnd.nextDouble(), 1.0 / weight);
+            }
+            Integer[] order = new Integer[cells.size()];
+            for (int i = 0; i < order.length; i++) order[i] = i;
+            java.util.Arrays.sort(order, (a, b) -> Double.compare(key[b], key[a]));
+            List<int[]> sorted = new ArrayList<>();
+            for (int i : order) sorted.add(cells.get(i));
+            cells = sorted;
+        } else {
+            Collections.shuffle(cells, rnd);
+        }
+        // Auf der Seite verteilt sich die Ladung ueber ein grosses Feld; die Menge richtet sich nach einem festen Fassungsvermoegen
+        int capacity = side ? 60 : cells.size();
         // Ab Stufe 7 werden einige Stellen statt mit Amphoren mit Sand und Scherbenhaufen gefuellt (bei Stufe 10 ein Fuenftel),
         // teils mit einer duennen Sandschicht darueber, damit die volle Ladung nicht monoton aussieht
         double fillerShare = load >= 7 ? 0.2 * (load - 6) / 4.0 : 0;
-        int total = load <= 1 ? 1 : (int) Math.round(cells.size() * (load - 1) / 9.0);
-        int filler = (int) Math.round(cells.size() * fillerShare);
+        int total = load <= 1 ? 1 : (int) Math.round(capacity * (load - 1) / 9.0);
+        int filler = (int) Math.round(capacity * fillerShare);
         int count = Math.max(1, total - filler);
         for (int i = count; i < count + filler && i < cells.size(); i++) {
             int[] c = cells.get(i);
+            ensureSupport(cargoPos(c, 0));
             put(cargoPos(c, 0), random.nextInt(100) < 55 ? Blocks.SAND.defaultBlockState() : ModBlocks.SHARD_PILE.get().defaultBlockState());
             if (random.nextInt(100) < 35) put(cargoPos(c, 1), Blocks.SAND.defaultBlockState());
         }
         for (int i = 0; i < count && i < cells.size(); i++) {
             int[] c = cells.get(i);
+            ensureSupport(cargoPos(c, 0));
             boolean stacked = load >= 7 && random.nextFloat() < (load - 6) / 4f;
             if (stacked) {
                 // Amphoren stapeln sich nicht: wo eine auf einer anderen liegen wuerde, ist die untere nur ein Scherbenhaufen

@@ -39,6 +39,47 @@ public final class ModCommands {
                         .executes(ctx -> wreck(ctx, 5, true))
                         .then(Commands.argument("load", IntegerArgumentType.integer(1, 10))
                                 .executes(ctx -> wreck(ctx, IntegerArgumentType.getInteger(ctx, "load"), true)))));
+
+        // Weitere Struktur-Generatoren zum Testen (docs/DESIGN-STRUCTURES.md). Alle setzen an die Stelle des Spielers,
+        // ausgerichtet nach der Blickrichtung; die Treppe der Katakombe und das Haus laufen in Blickrichtung unter die Erde.
+        var d = event.getDispatcher();
+        d.register(Commands.literal("scribery_caravan").requires(src -> src.hasPermission(2))
+                .executes(ctx -> structure(ctx, "Frozen caravan", DebugStructures::frozenCaravan)));
+        d.register(Commands.literal("scribery_wanderer").requires(src -> src.hasPermission(2))
+                .executes(ctx -> structure(ctx, "Frozen wanderer", DebugStructures::frozenWanderer)));
+        d.register(Commands.literal("scribery_grave").requires(src -> src.hasPermission(2))
+                .executes(ctx -> structure(ctx, "Soldier's grave", DebugStructures::soldierGrave)));
+        // /scribery_catacomb [normal|desert]
+        d.register(Commands.literal("scribery_catacomb").requires(src -> src.hasPermission(2))
+                .executes(ctx -> structure(ctx, "Catacomb church (stone)", (l, o, f) -> DebugStructures.catacombChurch(l, o, f, false)))
+                .then(Commands.literal("normal")
+                        .executes(ctx -> structure(ctx, "Catacomb church (stone)", (l, o, f) -> DebugStructures.catacombChurch(l, o, f, false))))
+                .then(Commands.literal("desert")
+                        .executes(ctx -> structure(ctx, "Catacomb church (desert)", (l, o, f) -> DebugStructures.catacombChurch(l, o, f, true)))));
+        // /scribery_house [sand|mud]
+        d.register(Commands.literal("scribery_house").requires(src -> src.hasPermission(2))
+                .executes(ctx -> structure(ctx, "Buried house (sand)", (l, o, f) -> DebugStructures.buriedHouse(l, o, f, false)))
+                .then(Commands.literal("sand")
+                        .executes(ctx -> structure(ctx, "Buried house (sand)", (l, o, f) -> DebugStructures.buriedHouse(l, o, f, false))))
+                .then(Commands.literal("mud")
+                        .executes(ctx -> structure(ctx, "Buried house (mud)", (l, o, f) -> DebugStructures.buriedHouse(l, o, f, true)))));
+    }
+
+    /** Ein Struktur-Generator: setzt die Struktur und liefert die Zahl gesetzter Bloecke. */
+    @FunctionalInterface
+    private interface Generator {
+        int build(net.minecraft.world.level.Level level, BlockPos origin, net.minecraft.core.Direction facing);
+    }
+
+    private static int structure(CommandContext<CommandSourceStack> ctx, String name, Generator gen) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
+        var src = ctx.getSource();
+        var player = src.getPlayerOrException();
+        BlockPos origin = player.blockPosition().below();
+        var facing = player.getDirection();
+        int blocks = gen.build(src.getLevel(), origin, facing);
+        src.sendSuccess(() -> Component.literal(name + " placed at " + origin.toShortString() + " (" + blocks + " blocks, facing "
+                + facing.getName() + ")"), true);
+        return blocks;
     }
 
     private static int wreck(CommandContext<CommandSourceStack> ctx, int load, boolean onSide) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
