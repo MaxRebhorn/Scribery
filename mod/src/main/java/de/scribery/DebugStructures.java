@@ -375,7 +375,13 @@ final class DebugStructures {
      * @param mud Lehmziegel und Suspicious Mud (Sumpf, Fluss) statt Sandstein und Suspicious Sand
      */
     static int buriedHouse(LevelAccessor level, BlockPos origin, Direction facing, boolean mud) {
+        return buriedHouse(level, origin, facing, mud, null);
+    }
+
+    /** Mit {@code ground} folgt das Haus dem Gelaende (hoechstens 4 Bloecke, stark geglaettet); {@code ground} liefert die Hoehe des obersten festen Blocks. */
+    static int buriedHouse(LevelAccessor level, BlockPos origin, Direction facing, boolean mud, java.util.function.IntBinaryOperator ground) {
         StructureBuilder b = new StructureBuilder(level, origin, facing);
+        if (ground != null) b.followTerrain(-2, 10, -6, 6, 4, 3, ground);
         BlockState wall = (mud ? Blocks.MUD_BRICKS : Blocks.SANDSTONE).defaultBlockState();
         BlockState floor = Blocks.SPRUCE_PLANKS.defaultBlockState();
         Set<BlockPos> cells = new HashSet<>();

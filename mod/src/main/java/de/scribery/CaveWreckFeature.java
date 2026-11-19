@@ -43,7 +43,7 @@ public class CaveWreckFeature extends Feature<NoneFeatureConfiguration> {
             Direction facing = Direction.Plane.HORIZONTAL.getRandomDirection(random);
             carve(level, x, floorY, z, facing);
             ROOMS.incrementAndGet();
-            DebugWreck.build(level, new BlockPos(x, floorY, z), facing, 2 + random.nextInt(8), random.nextInt(4) == 0);
+            DebugWreck.build(level, new BlockPos(x, floorY, z), facing, 2 + random.nextInt(8), random.nextInt(4) == 0, (gx, gz) -> floorAround(level, gx, gz, floorY));
             PLACED.incrementAndGet();
             return true;
         }
@@ -96,5 +96,19 @@ public class CaveWreckFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
+    }
+
+    /** Boden an (x, z) in der Hoehle: der oberste feste Block unterhalb von floorY + 6, hoechstens 8 Bloecke tiefer als floorY. */
+    private static int floorAround(WorldGenLevel level, int x, int z, int floorY) {
+        BlockPos.MutableBlockPos p = new BlockPos.MutableBlockPos(x, 0, z);
+        for (int y = floorY + 6; y >= floorY - 8; y--) {
+            p.setY(y);
+            BlockState s = level.getBlockState(p);
+            if (s.isSolid() && !s.getFluidState().is(FluidTags.WATER)) {
+                p.setY(y + 1);
+                if (!level.getBlockState(p).isSolid()) return y;
+            }
+        }
+        return floorY;
     }
 }

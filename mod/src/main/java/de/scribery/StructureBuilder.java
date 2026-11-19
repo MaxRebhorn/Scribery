@@ -34,6 +34,8 @@ final class StructureBuilder {
     final Direction forward, right;
     final RandomSource random;
     int placed;
+    /** Optional: Verschiebung je Stelle, damit das Bauwerk dem Gelaende folgt (siehe TerrainShift). */
+    de.scribery.core.TerrainShift fit;
 
     StructureBuilder(LevelAccessor level, BlockPos origin, Direction facing) {
         this.level = level;
@@ -44,7 +46,15 @@ final class StructureBuilder {
     }
 
     BlockPos at(int u, int v, int h) {
-        return origin.relative(forward, u).relative(right, v).above(h);
+        return origin.relative(forward, u).relative(right, v).above(h + (fit == null ? 0 : fit.shift(u, v)));
+    }
+
+    /** Bauwerk folgt ab jetzt dem Gelaende: Bodenhoehe aus {@code ground}, hoechstens {@code maxShift} Bloecke, {@code passes} mal geglaettet. */
+    void followTerrain(int uMin, int uMax, int vMin, int vMax, int maxShift, int passes, java.util.function.IntBinaryOperator ground) {
+        fit = new de.scribery.core.TerrainShift(uMin, uMax, vMin, vMax, 4, maxShift, passes, origin.getY(), (u, v) -> {
+            BlockPos p = origin.relative(forward, u).relative(right, v);
+            return ground.applyAsInt(p.getX(), p.getZ());
+        });
     }
 
     Direction.Axis axisU() {

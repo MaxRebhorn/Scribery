@@ -38,6 +38,7 @@ public final class DebugWreck {
     private final RandomSource random;
     private final int load;               // Ladung 1 (eine Amphore) bis 10 (komplett voll)
     private int placed, amphorae;
+    private de.scribery.core.TerrainShift fit;   // null = starr, sonst folgt das Schiff dem Boden
 
     /** Ergebnis: gesetzte Bloecke insgesamt und davon Amphoren (alle Varianten). */
     public record Result(int blocks, int amphorae) {}
@@ -61,7 +62,21 @@ public final class DebugWreck {
      * @param onSide {@code true}: das Schiff liegt auf der Seite, sonst aufrecht
      */
     public static Result build(LevelAccessor level, BlockPos origin, Direction facing, int load, boolean onSide) {
+        return build(level, origin, facing, load, onSide, null);
+    }
+
+    /**
+     * Wie {@link #build(LevelAccessor, BlockPos, Direction, int, boolean)}, aber das Schiff folgt dem Boden: {@code ground} liefert die
+     * Hoehe des obersten festen Blocks an (x, z). Jeder Abschnitt wird bis zu 4 Bloecke nach oben oder unten verschoben, laengs
+     * und quer, sanft geglaettet. Ohne {@code ground} liegt das Schiff starr wie bisher.
+     */
+    public static Result build(LevelAccessor level, BlockPos origin, Direction facing, int load, boolean onSide,
+            java.util.function.IntBinaryOperator ground) {
         DebugWreck w = new DebugWreck(level, origin, facing, load, onSide);
+        if (ground != null) {
+            w.fit = new de.scribery.core.TerrainShift(-16, 16, -12, 12, 4, 4, 1, origin.getY(),
+                    (u, v) -> w.alongX ? ground.applyAsInt(origin.getX() + u, origin.getZ() + v) : ground.applyAsInt(origin.getX() + v, origin.getZ() + u));
+        }
         w.dune();
         w.hull();
         w.cargo();
@@ -85,7 +100,8 @@ public final class DebugWreck {
 
     /** Weltposition: u laengs, lat quer, h hoch, vom Kielpunkt aus. */
     private BlockPos world(int u, int lat, int h) {
-        return alongX ? origin.offset(u, h, lat) : origin.offset(lat, h, u);
+        BlockPos p = alongX ? origin.offset(u, h, lat) : origin.offset(lat, h, u);
+        return fit == null ? p : p.above(fit.shift(u, lat));
     }
 
     /**
@@ -146,10 +162,22 @@ public final class DebugWreck {
                 double e = Math.pow(u / (HALF + 3.5), 2) + Math.pow(v / (lat + 0.5), 2);
                 if (e > 1) continue;
                 put(ground(u, v, -1), random.nextInt(7) == 0 ? Blocks.GRAVEL.defaultBlockState() : Blocks.SAND.defaultBlockState());
+                if (fit != null) support(u, v);
                 boolean insideHull = !side && Math.abs(v) <= halfWidth(u) && Math.abs(u) <= HALF;
                 if (!insideHull && e > 0.3 && random.nextInt(3) > 0) put(ground(u, v, 0), Blocks.SAND.defaultBlockState());
                 if (!insideHull && e > 0.6 && random.nextInt(4) == 0) put(ground(u, v, 1), Blocks.SAND.defaultBlockState());
             }
+        }
+    }
+
+    /** Wo der Boden unter der verschobenen Duene tiefer liegt, wird mit Sand nach unten aufgefuellt (hoechstens 5 Bloecke), damit nichts schwebt. */
+    private void support(int u, int v) {
+        for (int k = 2; k <= 6; k++) {
+            BlockPos p = ground(u, v, -k);
+            if (!StructureBuilder.inClip(p)) return;
+            BlockState s = level.getBlockState(p);
+            if (!s.isAir() && !s.getFluidState().is(FluidTags.WATER)) return;
+            level.setBlock(p, Blocks.SAND.defaultBlockState(), Block.UPDATE_CLIENTS);
         }
     }
 

@@ -69,13 +69,14 @@ public class ScriberyStructure extends Structure {
             // sonst ragt die Decke an einem Hang aus dem Boden. Geprueft wird ueber die ganze Grundflaeche, nicht nur am Eingang.
             boolean catacomb = kind == Kind.CATACOMB || kind == Kind.CATACOMB_DESERT;
             int reach = catacomb ? 46 : 22, side = catacomb ? 16 : 12;
+            int tolerance = catacomb ? 1 : 4;   // Haeuser folgen dem Gelaende (bis 4 Bloecke), Katakomben nicht
             Direction right = facing.getClockWise();
             for (int u = 0; u <= reach; u += 6) {
                 for (int v = -side; v <= side; v += side / 2) {
                     int sx = x + facing.getStepX() * u + right.getStepX() * v, sz = z + facing.getStepZ() * u + right.getStepZ() * v;
                     int top = ctx.chunkGenerator().getFirstOccupiedHeight(sx, sz, Heightmap.Types.WORLD_SURFACE_WG, ctx.heightAccessor(), ctx.randomState());
                     int bottom = ctx.chunkGenerator().getFirstOccupiedHeight(sx, sz, Heightmap.Types.OCEAN_FLOOR_WG, ctx.heightAccessor(), ctx.randomState());
-                    if (top != bottom || top < floor - 1) return Optional.empty();   // Wasser darueber oder Gelaende faellt ab
+                    if (top != bottom || top < floor - tolerance) return Optional.empty();   // Wasser darueber oder Gelaende faellt zu stark ab
                 }
             }
         }
