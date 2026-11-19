@@ -38,6 +38,7 @@ public final class DebugWreck {
     private final RandomSource random;
     private final int load;               // Ladung 1 (eine Amphore) bis 10 (komplett voll)
     private int placed, amphorae;
+    private final java.util.Set<Long> wet = new java.util.HashSet<>();   // Zellen, die vor dem Bau unter Wasser lagen
     private de.scribery.core.TerrainShift fit;   // null = starr, sonst folgt das Schiff dem Boden
 
     /** Ergebnis: gesetzte Bloecke insgesamt und davon Amphoren (alle Varianten). */
@@ -136,11 +137,23 @@ public final class DebugWreck {
     private void put(BlockPos pos, BlockState state) {
         placed++;
         if (!StructureBuilder.inClip(pos)) return;  // Weltgenerierung: ausserhalb des Chunks nicht lesen oder schreiben
-        // Unter Wasser mit Wasser fuellen, wo der Block es kann (Zaeune, Platten)
-        if (state.hasProperty(BlockStateProperties.WATERLOGGED) && level.getFluidState(pos).is(FluidTags.WATER)) {
+        // Unter Wasser mit Wasser fuellen, wo der Block es kann (Zaeune, Platten). Auch dort, wo vorher Wasser war und die Duene
+        // es durch Sand ersetzt hat (sonst bleiben Luftblasen im Wrack).
+        long key = pos.asLong();
+        boolean wasWet = wet.contains(key) || level.getFluidState(pos).is(FluidTags.WATER);
+        if (wasWet) wet.add(key);
+        if (wasWet && state.hasProperty(BlockStateProperties.WATERLOGGED)) {
             state = state.setValue(BlockStateProperties.WATERLOGGED, true);
         }
         level.setBlock(pos, state, Block.UPDATE_CLIENTS);
+    }
+
+    /** Wie {@link #put}, aber nur wenn darunter ein fester Block steht, damit Zaeune und Bretter nicht in der Luft haengen. */
+    private void putSupported(BlockPos pos, BlockState state) {
+        if (!StructureBuilder.inClip(pos)) return;
+        BlockState below = level.getBlockState(pos.below());
+        if (below.isAir() || below.canBeReplaced() || !below.getFluidState().isEmpty() && below.getBlock() == Blocks.WATER) return;
+        put(pos, state);
     }
 
     /** Stamm in Richtung des Schiffs: beim gekippten Schiff werden senkrechte Staemme waagerecht und umgekehrt. */
@@ -203,8 +216,8 @@ public final class DebugWreck {
             }
             // Spanten: alle zwei Bloecke ragt ein Rippenbogen ueber die Bordwand hinaus
             if (Math.floorMod(u, 2) == 0) {
-                if (kept(w) && random.nextInt(5) > 0) put(at(u, w, rise + 1), rib);
-                if (random.nextInt(3) > 0) put(at(u, -w, rise + 1), rib);
+                if (kept(w) && random.nextInt(5) > 0) putSupported(at(u, w, rise + 1), rib);
+                if (random.nextInt(3) > 0) putSupported(at(u, -w, rise + 1), rib);
             }
         }
         // Deckbalken quer, an zwei Stellen, teilweise abgebrochen
@@ -217,10 +230,10 @@ public final class DebugWreck {
         for (int h = 0; h <= 4; h++) {
             if (h < 4 || random.nextBoolean()) put(at(HALF, 0, h), log(Blocks.DARK_OAK_LOG, Direction.Axis.Y));
         }
-        put(at(-HALF, 0, 6), rib);                       // Spitze des Stevens
+        putSupported(at(-HALF, 0, 6), rib);                       // Spitze des Stevens
         // Mastrest mit Splittern
         for (int h = 1; h <= 3; h++) put(at(-3, 0, h), log(Blocks.STRIPPED_OAK_LOG, Direction.Axis.Y));
-        put(at(-3, 0, 4), rib);
+        putSupported(at(-3, 0, 4), rib);
         if (kept(1)) put(at(-3, 1, 1), log(Blocks.STRIPPED_OAK_LOG, crossAxis()));   // Mastfisch
         if (side) debris();
     }
@@ -234,8 +247,8 @@ public final class DebugWreck {
         BlockState rib = Blocks.SPRUCE_FENCE.defaultBlockState();
         for (int i = 0; i < 26; i++) {
             int u = -HALF + 1 + random.nextInt(2 * HALF - 1), lat = -1 - random.nextInt(4);
-            put(world(u, lat, 0), random.nextInt(4) == 0 ? rib : plank);
-            if (random.nextInt(5) == 0) put(world(u, lat, 1), random.nextBoolean() ? rib : plank);
+            putSupported(world(u, lat, 0), random.nextInt(4) == 0 ? rib : plank);
+            if (random.nextInt(5) == 0) putSupported(world(u, lat, 1), random.nextBoolean() ? rib : plank);
         }
     }
 
