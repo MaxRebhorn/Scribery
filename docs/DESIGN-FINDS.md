@@ -59,7 +59,7 @@ Neu dafür: der normale Block **Ashes** (eigene Textur, Untergrund von Suspiciou
 
 - **Loot-Funktion `scribery:random_manuscript`** (`"find": "sand" | "mud" | "ashes" | "ice" | "shards"`): zieht ein zufälliges Manuskript aus dem Pool der Fundart und setzt das Aussehen (Schlamm wassergeschädigt, Asche verkohlt, Eis gefroren, Sand zu 35 % verblasst, Scherben normal).
 - **Pools:** Sand 388, Schlamm 438, Eis 295, Asche 272, Scherben 147 Manuskripte (Summe 1.540). Die Zuordnung der elf Biome steht in `BIOME_TO_FIND` in `tools/export_find_pools.py`.
-- **Papyrusfetzen:** nur Brennstoff (100 Ticks), sonst zu nichts zu gebrauchen.
+- **Papyrusfetzen:** Brennstoff (100 Ticks) und Rohstoff für Papier: 3 Papyrusfetzen ergeben 1 Papier (Rezept `papyrus_paper`, formlos).
 - **Noch offen:** Ostraka mit Witzen auf Altgriechisch (Joke-Items, keine Manuskripte), Schutz vor Dubletten (braucht die gespeicherte Sammlung), Welt-Erzeugung der Blöcke.
 
 ## Offene Risiken
