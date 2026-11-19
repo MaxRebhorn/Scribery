@@ -12,6 +12,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 /** Haelt das aufgelegte Fragment, wie ein Bilderrahmen. */
 public class LecternBlockEntity extends BlockEntity {
+    /** Aussehen eines Ostrakons am Pult und in den Bildschirmen (RaggedPaper.SHERD). */
+    public static final int OSTRAKON_LOOK = 5;
+
     private ItemStack fragment = ItemStack.EMPTY;
 
     public LecternBlockEntity(BlockPos pos, BlockState state) {
@@ -42,6 +45,7 @@ public class LecternBlockEntity extends BlockEntity {
 
     /** Zustand des aufgelegten Fragments (0 normal, sonst eine Variante), 0 wenn nichts darauf liegt. */
     public int fragmentVariant() {
+        if (fragment.getItem() instanceof OstrakonItem) return OSTRAKON_LOOK;   // Scherbe statt Papyrus
         return fragment.getItem() instanceof ManuscriptFragmentItem ? ManuscriptFragmentItem.variant(fragment) : 0;
     }
 

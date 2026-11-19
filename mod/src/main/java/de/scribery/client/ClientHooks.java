@@ -40,10 +40,9 @@ public final class ClientHooks {
 
     /** Fragment in der Hand angeschaut: gleiche Anordnung wie am Pult. */
     public static void openFragmentView(int debugIndex, int variant) {
-        var all = Manuscripts.load();
-        if (debugIndex < 0 || debugIndex >= all.size()) return;
+        if (debugIndex < 0 || !Manuscripts.has(debugIndex)) return;
         Minecraft.getInstance().setScreen(new SheetViewScreen(
-                all.get(debugIndex).words().stream().map(w -> w.greek()).toList(), variant));
+                Manuscripts.at(debugIndex).words().stream().map(w -> w.greek()).toList(), variant));
     }
 
     /** Bedruckten oder uebersetzten Bogen in der Hand angeschaut. */
@@ -68,8 +67,11 @@ public final class ClientHooks {
         de.scribery.SheetData d = be.sheetData();
         if (d == null || !d.translatable()) return;
         // Das Original (Manuskript) ist nur da, wenn ein Pult mit diesem Fragment am Tisch steht.
-        boolean manuscript = StationNetwork.scan(mc.level, pos).hasManuscript(d.fragment());
-        mc.setScreen(new TileScreen(Workbench.forSheet(d.fragment(), d.page(), pos, be.ink(), be.tablets(), manuscript)));
+        StationNetwork net = StationNetwork.scan(mc.level, pos);
+        boolean manuscript = net.hasManuscript(d.fragment());
+        Workbench bench = Workbench.forSheet(d.fragment(), d.page(), pos, be.ink(), be.tablets(), manuscript);
+        bench.variant = manuscript ? net.lecternVariant() : 0;   // Papyrus, Scherbe ... wie auf dem Pult
+        mc.setScreen(new TileScreen(bench));
     }
 
     private static void open(BlockPos clicked, Stations.Kind start) {

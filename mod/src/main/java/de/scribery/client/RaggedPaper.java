@@ -17,7 +17,7 @@ import net.minecraft.client.gui.GuiGraphics;
  * Pult zum Item.
  */
 final class RaggedPaper {
-    static final int NORMAL = 0, CHARRED = 1, WATER_DAMAGED = 2, FADED = 3, FROZEN = 4;
+    static final int NORMAL = 0, CHARRED = 1, WATER_DAMAGED = 2, FADED = 3, FROZEN = 4, SHERD = 5;
 
     /** Farben je Zustand: parchment_0 (Rand), parchment_1, parchment_2, parchment_3 (Flaeche), Tinte, Sonderfarbe. */
     private static final int[][] LOOKS = {
@@ -26,6 +26,7 @@ final class RaggedPaper {
         {0xFF5A4630, 0xFF8E7A52, 0xFFB09A68, 0xFFCDB985, 0xFF3E3228, 0xFF7F917C},   // wasser: Sonder = Wasserrand
         {0xFF6B5638, 0xFFB89E6E, 0xFFDCCB9B, 0xFFEBDDB4, 0xFF8E7D66, 0xFF000000},   // verblasst: blasse Tinte
         {0xFF3C5F8E, 0xFF7FA6CE, 0xFFA8C8E4, 0xFFBFD9EE, 0xFF22395A, 0xFFEAF6FF},   // gefroren: Sonder = Frost
+        {0xFF604C3E, 0xFFA8886C, 0xFFC6A888, 0xFFE2CCAC, 0xFF2B1F17, 0xFF826854},   // Scherbe (Ostrakon): gebleichter Ton, Sonder = Koernung
     };
 
     private record Run(int x, int y, int len, String color) {}
@@ -36,7 +37,7 @@ final class RaggedPaper {
 
     /** Zustand aus dem Wert von custom_model_data; alles Unbekannte gilt als normal. */
     static int look(int customModelData) {
-        return customModelData >= 1 && customModelData <= 4 ? customModelData : NORMAL;
+        return customModelData >= 1 && customModelData <= 5 ? customModelData : NORMAL;
     }
 
     /** Farbe einer Palettenfarbe im jeweiligen Zustand. */
@@ -91,7 +92,7 @@ final class RaggedPaper {
     private static List<Run> build(int w, int h, int edge, long seed, int look) {
         Random rng = new Random(seed);
         // Verkohltes Papier franst tiefer aus
-        int depth = look == CHARRED ? edge + 1 : edge;
+        int depth = look == CHARRED || look == SHERD ? edge + 1 : edge;
         int[] top = profile(rng, w, depth), bot = profile(rng, w, depth);
         int[] left = profile(rng, h, depth + 1), right = profile(rng, h, depth + 1);
         boolean[][] solid = new boolean[h][w];
@@ -100,7 +101,18 @@ final class RaggedPaper {
                 solid[yy][xx] = !(yy < top[xx] || yy >= h - bot[xx] || xx < left[yy] || xx >= w - right[yy]);
             }
         }
-        int chips = Math.max(1, w * h / (look == CHARRED ? 160 : 500));
+        int chips = Math.max(1, w * h / (look == CHARRED ? 160 : look == SHERD ? 220 : 500));
+        if (look == SHERD) { // Scherbe: Ecken sind schraeg abgebrochen
+            for (int corner = 0; corner < 4; corner++) {
+                int k = 2 + rng.nextInt(4);
+                for (int dy = 0; dy < k; dy++) {
+                    for (int dx = 0; dx < k - dy; dx++) {
+                        int px = corner % 2 == 0 ? dx : w - 1 - dx, py = corner < 2 ? dy : h - 1 - dy;
+                        if (px >= 0 && px < w && py >= 0 && py < h) solid[py][px] = false;
+                    }
+                }
+            }
+        }
         for (int i = 0; i < chips; i++) { // kleine Ausbrueche am oberen und unteren Rand
             int cx = 2 + rng.nextInt(Math.max(1, w - 4));
             int cy = rng.nextBoolean() ? rng.nextInt(2) : h - 1 - rng.nextInt(2);
@@ -123,7 +135,7 @@ final class RaggedPaper {
                 if (look == CHARRED && n && !e) color[yy][xx] = rng.nextDouble() < 0.7 ? "parchment_1" : "parchment_0";
             }
         }
-        for (int i = 0; i < w * h / 40; i++) { // Fasern
+        for (int i = 0; look != SHERD && i < w * h / 40; i++) { // Fasern
             int fx = rng.nextInt(w), fy = rng.nextInt(h), len = 2 + rng.nextInt(4);
             for (int k = 0; k < len; k++) {
                 if (fx + k < w && "parchment_3".equals(color[fy][fx + k])) color[fy][fx + k] = "parchment_2";
@@ -136,6 +148,19 @@ final class RaggedPaper {
                 for (int i = 0; i < w * h / 45; i++) { // Frost: einzelne helle Punkte
                     int fx = rng.nextInt(w), fy = rng.nextInt(h);
                     if (color[fy][fx] != null && !"parchment_0".equals(color[fy][fx])) color[fy][fx] = "special";
+                }
+            }
+            case SHERD -> {
+                for (int i = 0; i < w * h / 26; i++) { // Koernung des Tons: dunklere und hellere Punkte, ein paar kleine Kratzer
+                    int fx = rng.nextInt(w), fy = rng.nextInt(h);
+                    if (color[fy][fx] != null && !"parchment_0".equals(color[fy][fx])) color[fy][fx] = rng.nextDouble() < 0.6 ? "special" : "parchment_2";
+                }
+                for (int i = 0; i < w * h / 700; i++) {
+                    int fx = rng.nextInt(w), fy = rng.nextInt(h), len = 3 + rng.nextInt(5);
+                    for (int k = 0; k < len; k++) {
+                        int px = fx + k, py = fy + (k / 3);
+                        if (px < w && py < h && color[py][px] != null && !"parchment_0".equals(color[py][px])) color[py][px] = "parchment_1";
+                    }
                 }
             }
             default -> { }

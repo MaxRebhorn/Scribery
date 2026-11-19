@@ -212,6 +212,10 @@ final class SelfTest {
             }
             LOG.info("[selftest] Ostraka: {} Scherben, {} Boegen", de.scribery.Manuscripts.ostraka().size(), sheets);
         });
+        then(0, () -> mc.setScreen(new SheetViewScreen(
+                de.scribery.Manuscripts.ostraka().get(2).words().stream().map(w -> w.greek()).toList(), de.scribery.LecternBlockEntity.OSTRAKON_LOOK)));
+        then(20, () -> LOG.info("[selftest] Ostrakon-Ansicht offen: {}", mc.screen == null ? "nichts" : mc.screen.getClass().getSimpleName()));
+        shot(mc, "35-ostrakon-view");
         then(0, () -> mc.setScreen(new BookScreen("greek_grammar_book", BookText.read("greek_grammar_book"))));
         then(0, () -> ((BookScreen) mc.screen).goTo(8));
         shot(mc, "33-grammar-page-9");

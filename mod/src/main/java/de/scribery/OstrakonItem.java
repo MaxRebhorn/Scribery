@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * Ein beschriebener Scherben mit einem Witz auf Griechisch (Philogelos). Er ist zum Uebersetzen da: der griechische Text steht im
- * Tooltip, Rechtsklick schreibt ihn in den Chat, Schleichen + Rechtsklick zeigt die englische Loesung. Ohne Witz ist er leer.
+ * Tooltip, Rechtsklick zeigt ihn auf einer Scherbe, Schleichen + Rechtsklick zeigt die englische Loesung. Ohne Witz ist er leer.
  */
 public class OstrakonItem extends Item {
     private static final int WRAP = 44;
@@ -60,12 +60,13 @@ public class OstrakonItem extends Item {
         ItemStack stack = player.getItemInHand(hand);
         Ostraka.Joke joke = joke(stack);
         if (joke == null) return InteractionResultHolder.pass(stack);
-        if (!level.isClientSide) {
+        if (level.isClientSide) {
+            // Scherbe anschauen: der griechische Text auf Ton, wie auf dem Pult
+            if (!player.isShiftKeyDown()) de.scribery.client.ClientHooks.openFragmentView(Ostraka.fragmentIndex(stack), LecternBlockEntity.OSTRAKON_LOOK);
+        } else {
             if (player.isShiftKeyDown()) {
                 player.sendSystemMessage(Component.translatable("tooltip.scribery.ostrakon_solution").withStyle(ChatFormatting.GRAY));
                 for (String line : wrap(joke.en())) player.sendSystemMessage(Component.literal(line).withStyle(ChatFormatting.GREEN));
-            } else {
-                for (String line : wrap(joke.greek())) player.sendSystemMessage(Component.literal(line).withStyle(ChatFormatting.GOLD));
             }
         }
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
