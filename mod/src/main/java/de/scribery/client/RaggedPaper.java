@@ -26,7 +26,7 @@ final class RaggedPaper {
         {0xFF5A4630, 0xFF8E7A52, 0xFFB09A68, 0xFFCDB985, 0xFF3E3228, 0xFF7F917C},   // wasser: Sonder = Wasserrand
         {0xFF6B5638, 0xFFB89E6E, 0xFFDCCB9B, 0xFFEBDDB4, 0xFF8E7D66, 0xFF000000},   // verblasst: blasse Tinte
         {0xFF3C5F8E, 0xFF7FA6CE, 0xFFA8C8E4, 0xFFBFD9EE, 0xFF22395A, 0xFFEAF6FF},   // gefroren: Sonder = Frost
-        {0xFF5E5246, 0xFF8C7F6A, 0xFFA89A82, 0xFFBBAE96, 0xFF1F1812, 0xFF7C6F5A},   // Scherbe (Ostrakon): grauer Kalkstein wie auf alten Fotos, Sonder = dunkle Flecken
+        {0xFF54322A, 0xFF774837, 0xFFAD6C56, 0xFF98604A, 0xFF1E1410, 0xFF84503E},   // Scherbe (Ostrakon): Terrakotta wie auf Fotos echter Ostraka, Sonder = dunklere Koernung
     };
 
     private static final int SHERD_PAD = 8;
@@ -167,26 +167,35 @@ final class RaggedPaper {
      */
     private static List<Run> buildSherd(int w, int h, long seed) {
         Random rng = new Random(seed);
-        // Umriss: ein Rechteck mit unregelmaessigen Kanten (hoechstens SHERD_PAD - 2 Pixel nach innen) und abgerundeten oder
-        // schraeg abgebrochenen Ecken. So bleibt der Text immer vollstaendig auf der Scherbe.
-        int maxDepth = SHERD_PAD - 3;
-        int[] top = new int[w], bot = new int[w], left = new int[h], right = new int[h];   // klare, gerade Kanten ohne Fransen
+        // Umriss wie bei echten Bruchstuecken: ein Rechteck um den Text, von mehreren geraden Bruchkanten in beliebigen Winkeln
+        // abgeschnitten (Dreieck, Trapez, Fuenfeck). Jede Kante laesst den Text (mit Rand) ganz auf der Scherbe.
+        double cx = w / 2.0, cy = h / 2.0;
+        double[][] textCorners = {
+                {SHERD_PAD - cx, SHERD_PAD - cy}, {w - SHERD_PAD - cx, SHERD_PAD - cy},
+                {SHERD_PAD - cx, h - SHERD_PAD - cy}, {w - SHERD_PAD - cx, h - SHERD_PAD - cy}};
+        double[][] boxCorners = {{-cx, -cy}, {cx, -cy}, {-cx, cy}, {cx, cy}};
+        int cuts = 3 + rng.nextInt(3);
+        double[] nxs = new double[cuts], nys = new double[cuts], ds = new double[cuts];
+        int used = 0;
+        for (int i = 0; i < cuts * 3 && used < cuts; i++) {
+            double a = rng.nextDouble() * Math.PI * 2, nx = Math.cos(a), ny = Math.sin(a);
+            double textMax = -1e9, boxMax = -1e9;
+            for (double[] c : textCorners) textMax = Math.max(textMax, nx * c[0] + ny * c[1]);
+            for (double[] c : boxCorners) boxMax = Math.max(boxMax, nx * c[0] + ny * c[1]);
+            double lo = textMax + 2.5, room = boxMax - lo;
+            if (room < 1.5) continue;                       // diese Richtung schneidet nichts mehr ab
+            nxs[used] = nx;
+            nys[used] = ny;
+            ds[used] = lo + rng.nextDouble() * room * 0.9;
+            used++;
+        }
         boolean[][] solid = new boolean[h][w];
         for (int yy = 0; yy < h; yy++) {
             for (int xx = 0; xx < w; xx++) {
-                solid[yy][xx] = !(yy < top[xx] || yy >= h - bot[xx] || xx < left[yy] || xx >= w - right[yy]);
-            }
-        }
-        for (int corner = 0; corner < 4; corner++) {
-            int c = rng.nextInt(3) == 0 ? 3 : 5 + rng.nextInt(2 * SHERD_PAD - 7);   // Groesse der Ecke, kleiner als der Abstand der Textecke
-            boolean round = false;                                    // nur gerade Bruchkanten
-            for (int dy = 0; dy < c; dy++) {
-                for (int dx = 0; dx < c; dx++) {
-                    boolean cut = round ? Math.pow(c - 1 - dx, 2) + Math.pow(c - 1 - dy, 2) > Math.pow(c - 1, 2) : dx + dy < c - 1;
-                    if (!cut) continue;
-                    int px = corner % 2 == 0 ? dx : w - 1 - dx, py = corner < 2 ? dy : h - 1 - dy;
-                    if (px >= 0 && px < w && py >= 0 && py < h) solid[py][px] = false;
-                }
+                double px = xx + 0.5 - cx, py = yy + 0.5 - cy;
+                boolean in = true;
+                for (int i = 0; i < used && in; i++) if (nxs[i] * px + nys[i] * py > ds[i]) in = false;
+                solid[yy][xx] = in;
             }
         }
         String[][] color = new String[h][w];
@@ -199,18 +208,23 @@ final class RaggedPaper {
                 color[yy][xx] = e ? "parchment_0" : nearEdge && shade ? "parchment_1" : "parchment_3";
             }
         }
-        blobs(color, rng, 2 + w * h / 900, 3, 9, 3, 8, "parchment_2", "parchment_3", null);   // helle und dunklere Partien der Oberflaeche
-        blobs(color, rng, 1 + w * h / 1500, 1, 3, 1, 3, "special", "parchment_2", null);       // dunkle Flecken
-        for (int i = 0; i < w * h / 22; i++) { // Koernung
+        blobs(color, rng, 2 + w * h / 1100, 4, 10, 3, 7, "parchment_2", "parchment_3", null);   // hellere Partien des Tons
+        blobs(color, rng, 1 + w * h / 1600, 3, 8, 2, 5, "special", "parchment_3", null);       // dunklere Partien
+        for (int i = 0; i < w * h / 18; i++) { // feine Koernung
             int fx = rng.nextInt(w), fy = rng.nextInt(h);
-            if (color[fy][fx] != null && !"parchment_0".equals(color[fy][fx])) color[fy][fx] = rng.nextDouble() < 0.55 ? "parchment_2" : "special";
+            if (color[fy][fx] != null && !"parchment_0".equals(color[fy][fx])) color[fy][fx] = rng.nextDouble() < 0.5 ? "parchment_2" : "special";
         }
-        for (int i = 0; i < 1 + w * h / 1400; i++) { // feine Risse: kurze gerade Linien
-            double a = rng.nextDouble() * Math.PI;
-            double x = rng.nextInt(w), y = rng.nextInt(h);
-            int len = 6 + rng.nextInt(12);
-            for (int k = 0; k < len; k++) {
-                int px = (int) Math.round(x + Math.cos(a) * k), py = (int) Math.round(y + Math.sin(a) * k);
+        if (rng.nextInt(3) > 0) { // Toepferrille quer ueber die Scherbe: dunkle Linie mit heller Kante darunter
+            int ry = h / 4 + rng.nextInt(Math.max(1, h / 2));
+            for (int xx = 0; xx < w; xx++) {
+                if (ry < h && color[ry][xx] != null && !"parchment_0".equals(color[ry][xx])) color[ry][xx] = "parchment_1";
+                if (ry + 1 < h && color[ry + 1][xx] != null && !"parchment_0".equals(color[ry + 1][xx])) color[ry + 1][xx] = "parchment_2";
+            }
+        }
+        if (rng.nextBoolean()) { // alte Bruchlinie (zusammengesetzte Scherbe): eine gerade, schmale Linie quer durch
+            double a = rng.nextDouble() * Math.PI, x0 = w * (0.3 + rng.nextDouble() * 0.4), y0 = h * (0.3 + rng.nextDouble() * 0.4);
+            for (int k = -Math.max(w, h); k < Math.max(w, h); k++) {
+                int px = (int) Math.round(x0 + Math.cos(a) * k), py = (int) Math.round(y0 + Math.sin(a) * k);
                 if (px >= 0 && px < w && py >= 0 && py < h && color[py][px] != null && !"parchment_0".equals(color[py][px])) color[py][px] = "parchment_1";
             }
         }
