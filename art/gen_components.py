@@ -1,4 +1,5 @@
-"""Item-Texturen fuer die Bauteile des Minting Table: Mini-Amboss und Giessform (16x16).
+"""Item-Textur fuer die Giessform (16x16). Der Mini-Amboss hat keine eigene Textur: sein Item-Modell
+verweist auf das Vanilla-Ambossmodell (minecraft:block/anvil), nur verkleinert (models/item/mini_anvil.json).
 Aufruf: python art/gen_components.py   -> mod/.../textures/item/mini_anvil.png, casting_mold.png, art/out/components-preview.png
 Farben: Blei-Toene aus art/palette.json (Eisen), gebleichte Tonfarben wie in gen_finds.py."""
 import json, os
@@ -67,10 +68,10 @@ def mold():
     return im
 
 if __name__ == "__main__":
-    a, m = anvil(), mold()
-    a.save(os.path.join(OUT, "mini_anvil.png")); m.save(os.path.join(OUT, "casting_mold.png"))
+    m = mold()
+    m.save(os.path.join(OUT, "casting_mold.png"))
     pv = Image.new("RGBA", (16 * 8 * 2 + 24, 16 * 8 + 16), (198, 198, 198, 255))
-    for i, im in enumerate((a, m)):
+    for i, im in enumerate((m,)):
         pv.alpha_composite(im.resize((128, 128), Image.NEAREST), (8 + i * 144, 8))
     os.makedirs(os.path.join(ROOT, "art/out"), exist_ok=True)
     pv.convert("RGB").save(os.path.join(ROOT, "art/out/components-preview.png"))
