@@ -67,19 +67,21 @@ public final class ScribeTradeEvents {
 
         @Override
         public MerchantOffer getOffer(Entity trader, net.minecraft.util.RandomSource random) {
-            List<MerchantOffer> offers = offersFor(level, trader);
+            List<MerchantOffer> offers = offersFor(level, trader, random);
             if (offers.isEmpty()) return null;
+            // Reihenfolge wie in der Liste: erst alle ausser dem letzten anhaengen, der letzte kommt als Rueckgabewert danach
             if (trader instanceof Villager v) {
-                for (int i = 1; i < offers.size(); i++) v.getOffers().add(offers.get(i));
+                for (int i = 0; i < offers.size() - 1; i++) v.getOffers().add(offers.get(i));
             }
-            return offers.get(0);
+            return offers.get(offers.size() - 1);
         }
     }
 
     /** Die Angebote einer Stufe (ohne die Welt zu aendern). Auf Stufe 5 kommt die Fundkarte dazu, wenn eine Struktur gefunden wird. */
-    static List<MerchantOffer> offersFor(int level, Entity trader) {
+    static List<MerchantOffer> offersFor(int level, Entity trader, net.minecraft.util.RandomSource random) {
         List<MerchantOffer> out = new ArrayList<>();
         for (ScribeTrades.Offer o : ScribeTrades.forLevel(level)) out.add(toOffer(o));
+        if (level == 1) out.add(toOffer(ScribeTrades.PAPER_CHOICE.get(random.nextInt(2))));   // Papier: kaufen oder verkaufen, je nach Glueck
         if (level == 5) {
             MerchantOffer map = mapOffer(trader);
             if (map != null) out.add(map);

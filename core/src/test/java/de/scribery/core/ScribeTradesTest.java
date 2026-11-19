@@ -21,7 +21,21 @@ class ScribeTradesTest {
 
     @Test
     void neverSellsFinishedSheetsOrFragments() {
-        for (Offer o : ScribeTrades.ALL) assertFalse(ScribeTrades.NEVER_SOLD.contains(o.get()), o.toString());
+        for (Offer o : ScribeTrades.everything()) assertFalse(ScribeTrades.NEVER_SOLD.contains(o.get()), o.toString());
+    }
+
+    @Test
+    void doesNotSellInkAndOffersPaperEitherWay() {
+        for (Offer o : ScribeTrades.everything()) assertNotEquals("minecraft:ink_sac", o.get(), o.toString());
+        assertEquals("minecraft:emerald", ScribeTrades.PAPER_CHOICE.get(0).get());   // kauft
+        assertEquals("minecraft:paper", ScribeTrades.PAPER_CHOICE.get(1).get());     // verkauft
+        // Verkaufen darf nicht billiger sein als das, was er beim Kaufen zahlt
+        assertTrue(ScribePrices.PAPER_SOLD_PER_EMERALD < ScribePrices.PAPER_BOUGHT_PER_EMERALD);
+    }
+
+    @Test
+    void primerIsTheFirstOffer() {
+        assertEquals("scribery:greek_alphabet_primer", ScribeTrades.forLevel(1).get(0).get());
     }
 
     @Test

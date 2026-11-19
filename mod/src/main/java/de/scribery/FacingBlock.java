@@ -35,12 +35,19 @@ public class FacingBlock extends HorizontalDirectionalBlock {
         return null;
     }
 
+    /** Wie viele Vierteldrehungen (im Uhrzeigersinn) das Modell im Blockstate zusaetzlich zur Blickrichtung gedreht ist. */
+    protected int extraTurns() {
+        return 0;
+    }
+
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
         double[][] b = boxes();
         if (b == null) return super.getShape(state, level, pos, ctx);
         if (shapes == null) shapes = StationShapes.build(b);
-        return shapes.get(state.getValue(FACING));
+        Direction d = state.getValue(FACING);
+        for (int i = 0; i < extraTurns(); i++) d = d.getClockWise();   // Modell im Blockstate zusaetzlich gedreht
+        return shapes.get(d);
     }
 
     @Override

@@ -30,39 +30,36 @@ def renaissance(flat_beret=True):
             for j in range(0, 3):
                 for i in range(w - 3, w) if k == "left" else range(0, 3): t.p(x+i, y+j, C["wood_1"])
         t.fill(H["top"], C["wood_1"])
-    # Talar/Gelehrtenrobe: dunkel, Knopfleiste, Pelzkragen unten, Krause am Hals
-    for k, r in J.items(): t.fill(r, gown, gown_s if k in ("left", "right") else None)
+    # Robe im Vanilla-Stil: eine ruhige Grundfarbe, hellere Schuerze vorn, dunkler Guertel, Saum, kleine Tintenflecken
+    robe, robe_s, robe_d = C["wood_2"], C["wood_1"], C["wood_0"]
+    apron, apron_s, apron_l = C["parchment_2"], C["parchment_1"], C["parchment_3"]
+    for k, r in J.items(): t.fill(r, robe, robe_s if k in ("left", "right") else None)
     x, y, w, h = J["front"]
-    for i in range(w): t.p(x+i, y, ruff); t.p(x+i, y+1, ruff_s if i % 2 else ruff)      # Halskrause
-    for j in range(2, h):                                                                # Roter Untergrund im Ausschnitt + Knopfleiste
-        t.p(x+3, y+j, gown_d); t.p(x+4, y+j, gown_d)
-    for j in range(2, 18, 3): t.p(x+3, y+j, gold)                                       # Knoepfe
-    for j in range(2, 8): t.p(x+2, y+j, red_d); t.p(x+5, y+j, red_d)                    # Wams-Rand
-    for i in range(w): t.p(x+i, y+11, gown_d)                                            # Guertel
-    t.p(x+4, y+11, gold)
-    for j in range(h-3, h):
-        for i in range(w): t.p(x+i, y+j, ruff_s if (i+j) % 3 else C["parchment_1"])      # Pelzsaum
-    t.p(x+6, y+7, C["ink_0"]); t.p(x+1, y+14, C["ink_0"])                                # Tintenspritzer
-    # Schreibzeug am Guertel: Feder und Tintenhorn
-    for j in range(12, 16): t.p(x+6, y+j, ruff)
-    t.p(x+6, y+16, C["lead_3"]); t.p(x+1, y+13, C["parchment_1"]); t.p(x+1, y+14, C["parchment_1"])
+    for i in range(w): t.p(x+i, y, apron_l)                                              # Kragen
+    for j in range(1, h - 2):                                                            # Schuerze
+        for i in range(1, w - 1): t.p(x+i, y+j, apron if (i + j) % 7 else apron_s)
+    for j in range(1, h - 2): t.p(x+1, y+j, apron_s); t.p(x+w-2, y+j, apron_s)          # Schuerzenrand
+    for i in range(w): t.p(x+i, y+11, robe_d)                                            # Guertel
+    t.p(x+3, y+11, gold); t.p(x+4, y+11, gold)
+    for j in range(h-2, h):
+        for i in range(w): t.p(x+i, y+j, robe_s)                                         # Saum
+    t.p(x+5, y+5, C["ink_0"]); t.p(x+2, y+8, C["ink_0"]); t.p(x+5, y+14, C["ink_1"])     # Tintenflecken
+    for j in range(12, 16): t.p(x+6, y+j, ruff)                                          # Feder am Guertel
+    t.p(x+6, y+16, C["lead_3"])
     x, y, w, h = J["back"]
-    for i in range(w): t.p(x+i, y, ruff); t.p(x+i, y+1, ruff_s)
-    for j in range(2, 18): t.p(x+3, y+j, gown_d); t.p(x+4, y+j, gown_d)                  # Rueckennaht
-    for i in range(w): t.p(x+i, y+11, gown_d)
-    for j in range(h-3, h):
-        for i in range(w): t.p(x+i, y+j, ruff_s if (i+j) % 3 else C["parchment_1"])
+    for i in range(w): t.p(x+i, y, apron_l)
+    for i in range(w): t.p(x+i, y+11, robe_d)
+    for j in range(h-2, h):
+        for i in range(w): t.p(x+i, y+j, robe_s)
     for k in ("left", "right"):
         x, y, w, h = J[k]
-        for j in range(h-3, h):
-            for i in range(w): t.p(x+i, y+j, ruff_s if (i+j) % 3 else C["parchment_1"])
-        for i in range(w): t.p(x+i, y+11, gown_d)
-    # Aermel: dunkel mit rot geschlitzten Puffaermeln und Spitzenmanschette
-    for k, r in A.items(): t.fill(r, gown, gown_s)
+        for i in range(w): t.p(x+i, y+11, robe_d)
+        for j in range(h-2, h):
+            for i in range(w): t.p(x+i, y+j, robe_d)
+    # Aermel: Grundfarbe der Robe, helle Manschette
+    for k, r in A.items(): t.fill(r, robe, robe_s)
     x, y, w, h = A["front"]
-    for i in range(0, w, 2):
-        t.p(x+i, y, red); t.p(x+i, y+1, red_d)
-    for i in range(w): t.p(x+i, y+h-1, ruff)
+    for i in range(w): t.p(x+i, y+h-1, apron_l)
     return t.im
 
 def beret_texture():

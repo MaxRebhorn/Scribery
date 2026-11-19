@@ -29,6 +29,12 @@ public class CabinetBlock extends FacingBlock implements EntityBlock {
         super(props);
     }
 
+    /** Das Modell ist im Blockstate um 90 Grad nach rechts gedreht: Buchstabenfeld vorn, Tintenfass hinten rechts. */
+    @Override
+    protected int extraTurns() {
+        return 1;
+    }
+
     @Override
     protected double[][] boxes() {
         return StationShapes.LETTER_CABINET;

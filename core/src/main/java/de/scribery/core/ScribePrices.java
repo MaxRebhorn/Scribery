@@ -13,8 +13,8 @@ public final class ScribePrices {
     public static final int LEXICON_A_C = 10, LEXICON_D_F = 10;
     public static final int FORMS_GRAMMAR_LEXICON = 18, THEMATIC_LEXICON = 18;
     public static final int COMPLETE_LEXICON = 30;
-    /** Tintenbeutel-Buendel: so viele Tintenbeutel fuer einen Smaragd. */
-    public static final int INK_PER_EMERALD = 4;
+    /** Papier: je nach Glueck kauft er es (so viele Blatt fuer einen Smaragd) oder verkauft es (so viele Blatt fuer einen Smaragd). */
+    public static final int PAPER_BOUGHT_PER_EMERALD = 24, PAPER_SOLD_PER_EMERALD = 6;
     /** Fundkarte (Meister): Smaragde plus ein Kompass. */
     public static final int MAP = 16;
 
@@ -30,7 +30,7 @@ public final class ScribePrices {
 
     // ---- Tageslimits (maxUses; Vanilla fuellt Handel zweimal am Tag auf)
     public static final int USES_BOOK = 1;
-    public static final int USES_SCRAPS = 12, USES_OSTRAKA = 6, USES_INK = 8;
+    public static final int USES_SCRAPS = 12, USES_OSTRAKA = 6, USES_PAPER = 8;
     public static final int USES_DUPLICATE_SINGLE = 6;
     public static final int USES_POUCH = 2;
     public static final int USES_MAP = 1;

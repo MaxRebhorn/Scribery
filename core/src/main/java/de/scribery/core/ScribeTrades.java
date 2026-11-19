@@ -43,13 +43,24 @@ public final class ScribeTrades {
 
     public static final List<Offer> ALL = build();
 
+    /** Stufe 1, nach Glueck: entweder kauft er Papier (Index 0) oder er verkauft welches (Index 1). Der Mod wuerfelt je Dorfbewohner. */
+    public static final List<Offer> PAPER_CHOICE = List.of(
+            buy(1, "minecraft:paper", ScribePrices.PAPER_BOUGHT_PER_EMERALD, 1, ScribePrices.USES_PAPER, ScribePrices.XP_SMALL),
+            sell(1, 1, "minecraft:paper", ScribePrices.PAPER_SOLD_PER_EMERALD, ScribePrices.USES_PAPER, ScribePrices.XP_SMALL));
+
+    /** Alle moeglichen Angebote, auch die Glueckswahl (fuer Tests). */
+    public static List<Offer> everything() {
+        List<Offer> l = new ArrayList<>(ALL);
+        l.addAll(PAPER_CHOICE);
+        return l;
+    }
+
     private static List<Offer> build() {
         List<Offer> o = new ArrayList<>();
-        // Stufe 1, Novize
+        // Stufe 1, Novize: das Alphabet-Buch steht gleich oben; Papier kommt je nach Glueck dazu (siehe PAPER_CHOICE)
         o.add(sell(1, ScribePrices.PRIMER, "scribery:greek_alphabet_primer", 1, ScribePrices.USES_BOOK, ScribePrices.XP_SMALL));
         o.add(buy(1, "scribery:papyrus_scrap", ScribePrices.SCRAPS_PER_EMERALD, 1, ScribePrices.USES_SCRAPS, ScribePrices.XP_SMALL));
         o.add(buy(1, "scribery:ostrakon", ScribePrices.OSTRAKA_PER_EMERALD, 1, ScribePrices.USES_OSTRAKA, ScribePrices.XP_SMALL));
-        o.add(sell(1, 1, "minecraft:ink_sac", ScribePrices.INK_PER_EMERALD, ScribePrices.USES_INK, ScribePrices.XP_SMALL));
         // Stufe 2, Geselle
         o.add(sell(2, ScribePrices.GRAMMAR, "scribery:greek_grammar_book", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
         for (String find : FINDS) {
