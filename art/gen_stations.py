@@ -365,7 +365,7 @@ def box(a, b, tex, only=None, rot=None, **special):
 
 MODELS = {}
 SHAPES = {}
-CUTOUT = {"scribe_lectern", "scribe_lectern_mini", "minting_table"}
+CUTOUT = {"scribe_lectern", "minting_table"}
 
 FRONT_SIDES = lambda pre, h: dict(east=(pre + "_side", [0, 0, 16, h]), west=(pre + "_side", [0, 0, 16, h]), south=(pre + "_side", [0, 0, 16, h]))
 
@@ -416,24 +416,6 @@ MODELS["scribe_lectern"] = [
     box((1, 13, 13), (15, 16, 15), "dark"),
 ] + candle(12, 16, 13)          # wie eine normale Kerze: nur Vanilla-Kerzenmodell, Flamme als Teilchen
 SHAPES["scribe_lectern"] = [(3, 0, 3, 13, 3, 13), (6, 3, 6, 10, 11, 10), (1, 11, 1, 15, 13, 15), (1, 13, 13, 15, 16, 15)]
-
-# Pult-Variante "mini": ein verkleinertes Pult auf einem kleinen Tisch, etwa so hoch wie die Presse (16). Noch nicht
-# eingebunden; Modell: models/block/scribe_lectern_mini.json
-def _mini_lectern(s=0.45, y0=9.5):
-    def m(c, x, y, z):
-        return (round(8 + (x - 8) * s, 2), round(y0 + y * s, 2), round(8 + (z - 8) * s, 2))
-    out = []
-    for (a, b, t) in [((3, 0, 3), (13, 2, 13), "dark"), ((4, 2, 4), (12, 3, 12), "oak"), ((6, 3, 6), (10, 11, 10), "oak"),
-                      ((5, 9, 5), (11, 10, 11), "dark"), ((1, 11, 1), (15, 13, 15), "oak"), ((1, 13, 13), (15, 16, 15), "dark")]:
-        out.append(box(m(0, *a), m(0, *b), t))
-    return out
-
-
-MODELS["scribe_lectern_mini"] = [
-    box((2.5, 0, 2.5), (4.5, 8, 4.5), "dark"), box((11.5, 0, 2.5), (13.5, 8, 4.5), "dark"),
-    box((2.5, 0, 11.5), (4.5, 8, 13.5), "dark"), box((11.5, 0, 11.5), (13.5, 8, 13.5), "dark"),
-    box((1.5, 8, 1.5), (14.5, 9.5, 14.5), "oak"),
-] + _mini_lectern() + candle(11.2, 9.5, 11.2, 3)
 
 # Uebersetzungstisch: Schreibtisch-Block mit Schubladen, Schreibunterlage, Tintenfass und Papier hinten
 MODELS["translator_desk"] = [

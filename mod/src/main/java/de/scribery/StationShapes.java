@@ -53,6 +53,26 @@ public final class StationShapes {
             {4, 10, 3, 9, 11.5, 8},
             {0, 10, 9, 7, 15, 14} };
 
+    /** Formen fuer alle vier Blickrichtungen. Drehung wie im Blockstate (y = 90 im Uhrzeigersinn von oben: Norden wird Osten). */
+    public static Map<Direction, VoxelShape> build(double[][] boxes) {
+        Map<Direction, VoxelShape> out = new EnumMap<>(Direction.class);
+        Direction[] order = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
+        for (int turns = 0; turns < 4; turns++) {
+            VoxelShape shape = Shapes.empty();
+            for (double[] b : boxes) {
+                double x1 = b[0], z1 = b[2], x2 = b[3], z2 = b[5];
+                for (int i = 0; i < turns; i++) {   // (x, z) -> (16 - z, x)
+                    double nx1 = 16 - z2, nz1 = x1, nx2 = 16 - z1, nz2 = x2;
+                    x1 = nx1; z1 = nz1; x2 = nx2; z2 = nz2;
+                }
+                shape = Shapes.or(shape, Shapes.box(x1 / 16, b[1] / 16, z1 / 16, x2 / 16, b[4] / 16, z2 / 16));
+            }
+            out.put(order[turns], shape);
+        }
+        return out;
+    }
+
+    // Ab hier schreibt art/gen_stations.py nichts mehr um (es ersetzt nur die Konstanten oben).
     /** Punkt (x, z) in Pixeln (Blickrichtung Norden) fuer die Richtung drehen; Ergebnis in Bloecken (0 bis 1), wie die Formen gedreht. */
     public static double[] rotate(double x, double z, Direction facing) {
         int turns = switch (facing) { case EAST -> 1; case SOUTH -> 2; case WEST -> 3; default -> 0; };
@@ -83,24 +103,5 @@ public final class StationShapes {
             if (f < 0.17F) level.playLocalSound(px, py, pz, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1F, 1F, false);
         }
         level.addParticle(ParticleTypes.SMALL_FLAME, px, py, pz, 0, 0, 0);
-    }
-
-    /** Formen fuer alle vier Blickrichtungen. Drehung wie im Blockstate (y = 90 im Uhrzeigersinn von oben: Norden wird Osten). */
-    public static Map<Direction, VoxelShape> build(double[][] boxes) {
-        Map<Direction, VoxelShape> out = new EnumMap<>(Direction.class);
-        Direction[] order = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
-        for (int turns = 0; turns < 4; turns++) {
-            VoxelShape shape = Shapes.empty();
-            for (double[] b : boxes) {
-                double x1 = b[0], z1 = b[2], x2 = b[3], z2 = b[5];
-                for (int i = 0; i < turns; i++) {   // (x, z) -> (16 - z, x)
-                    double nx1 = 16 - z2, nz1 = x1, nx2 = 16 - z1, nz2 = x2;
-                    x1 = nx1; z1 = nz1; x2 = nx2; z2 = nz2;
-                }
-                shape = Shapes.or(shape, Shapes.box(x1 / 16, b[1] / 16, z1 / 16, x2 / 16, b[4] / 16, z2 / 16));
-            }
-            out.put(order[turns], shape);
-        }
-        return out;
     }
 }
