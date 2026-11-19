@@ -73,6 +73,18 @@ public final class StationShapes {
         if (random.nextFloat() < 0.1F) level.playLocalSound(px, py, pz, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1F, 1F, false);
     }
 
+    /** Wie eine Vanilla-Kerze: kleine Flamme jeden Tick, gelegentlich Rauch und Knistern. */
+    public static void candle(Level level, BlockPos pos, Direction facing, double x, double y, double z, RandomSource random) {
+        double[] c = rotate(x, z, facing);
+        double px = pos.getX() + c[0], py = pos.getY() + y / 16, pz = pos.getZ() + c[1];
+        float f = random.nextFloat();
+        if (f < 0.3F) {
+            level.addParticle(ParticleTypes.SMOKE, px, py, pz, 0, 0, 0);
+            if (f < 0.17F) level.playLocalSound(px, py, pz, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1F, 1F, false);
+        }
+        level.addParticle(ParticleTypes.SMALL_FLAME, px, py, pz, 0, 0, 0);
+    }
+
     /** Formen fuer alle vier Blickrichtungen. Drehung wie im Blockstate (y = 90 im Uhrzeigersinn von oben: Norden wird Osten). */
     public static Map<Direction, VoxelShape> build(double[][] boxes) {
         Map<Direction, VoxelShape> out = new EnumMap<>(Direction.class);

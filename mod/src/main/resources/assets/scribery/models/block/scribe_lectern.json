@@ -4,7 +4,6 @@
     "dark": "scribery:block/ws_dark",
     "oak": "scribery:block/ws_oak",
     "candle": "minecraft:block/candle_lit",
-    "fire": "minecraft:block/campfire_fire",
     "particle": "scribery:block/ws_oak"
   },
   "elements": [
@@ -337,88 +336,6 @@
             5,
             1,
             6
-          ]
-        }
-      }
-    },
-    {
-      "from": [
-        12.0,
-        21,
-        14
-      ],
-      "to": [
-        14.0,
-        23.5,
-        14
-      ],
-      "rotation": {
-        "angle": 45,
-        "axis": "y",
-        "origin": [
-          13,
-          21,
-          14
-        ]
-      },
-      "faces": {
-        "north": {
-          "texture": "#fire",
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ]
-        },
-        "south": {
-          "texture": "#fire",
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ]
-        }
-      }
-    },
-    {
-      "from": [
-        12.0,
-        21,
-        14
-      ],
-      "to": [
-        14.0,
-        23.5,
-        14
-      ],
-      "rotation": {
-        "angle": -45,
-        "axis": "y",
-        "origin": [
-          13,
-          21,
-          14
-        ]
-      },
-      "faces": {
-        "north": {
-          "texture": "#fire",
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ]
-        },
-        "south": {
-          "texture": "#fire",
-          "uv": [
-            0,
-            0,
-            16,
-            16
           ]
         }
       }

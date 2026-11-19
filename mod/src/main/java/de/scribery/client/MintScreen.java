@@ -63,8 +63,14 @@ public final class MintScreen extends AbstractContainerScreen<MintMenu> {
     @Override
     protected void renderBg(GuiGraphics g, float partialTick, int mouseX, int mouseY) {
         g.blit(BG, leftPos, topPos, 0, 0, imageWidth, imageHeight);
-        g.blitSprite(SLOT, leftPos + 19, topPos + 57, 18, 18);
-        if (menu.isLit()) g.blitSprite(FLAME, 14, 14, 0, 0, leftPos + 21, topPos + 51, 14, 14);   // Flamme ueber dem Brennstoffplatz
+        // Wie im Ofen: Eingabe oben, Flamme in der Mitte, Brennstoff unten. Der Rahmen des Eingabeslots im Hintergrund
+        // (Steinmetz, y 32) wird mit der Hintergrundfarbe uebermalt und beide Rahmen neu gezeichnet.
+        g.fill(leftPos + 18, topPos + 31, leftPos + 38, topPos + 51, 0xFFC6C6C6);
+        g.blitSprite(SLOT, leftPos + 19, topPos + 14, 18, 18);
+        g.blitSprite(SLOT, leftPos + 19, topPos + 52, 18, 18);
+        if (!menu.isLit()) g.setColor(0.25F, 0.25F, 0.25F, 0.8F);
+        g.blitSprite(FLAME, 14, 14, 0, 0, leftPos + 21, topPos + 34, 14, 14);   // Flamme: hell, wenn er brennt, sonst dunkel
+        g.setColor(1F, 1F, 1F, 1F);
         int k = (int) (41.0F * scrollOffs);
         g.blitSprite(scrollActive() ? SCROLLER : SCROLLER_OFF, leftPos + 119, topPos + 15 + k, 12, 15);
         if (!menu.hasInput()) return;

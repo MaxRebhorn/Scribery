@@ -46,7 +46,7 @@ public class MintMenu extends AbstractContainerMenu {
         this.fuel = access.evaluate((lv, p) -> lv.getBlockEntity(p) instanceof MintBlockEntity be ? (Container) be.fuel() : null)
                 .orElseGet(() -> new SimpleContainer(1));
         selected.set(-1);
-        addSlot(new Slot(input, 0, 20, 33) {
+        addSlot(new Slot(input, 0, 20, 15) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(Items.IRON_NUGGET);
@@ -75,7 +75,7 @@ public class MintMenu extends AbstractContainerMenu {
                 super.onTake(player, stack);
             }
         });
-        addSlot(new Slot(fuel, 0, 20, 58) {
+        addSlot(new Slot(fuel, 0, 20, 53) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return MintBlockEntity.isFuel(stack);

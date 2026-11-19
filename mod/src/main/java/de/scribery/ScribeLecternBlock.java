@@ -29,10 +29,10 @@ public class ScribeLecternBlock extends FacingBlock implements EntityBlock {
         super(props);
     }
 
-    /** Kerze auf der Rueckwand (Modell: Kerze bei x 12 bis 14, z 13 bis 15, Flamme darueber bei y 22). */
+    /** Kerze auf der Rueckwand (Modell: Kerze bei x 12 bis 14, z 13 bis 15, Docht bei y 21 bis 22; Flamme wie bei einer normalen Kerze). */
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, net.minecraft.util.RandomSource random) {
-        StationShapes.flame(level, pos, state.getValue(FACING), 13.0, 22.0, 14.0, random);
+        StationShapes.candle(level, pos, state.getValue(FACING), 13.0, 21.5, 14.0, random);
     }
 
     @Override
