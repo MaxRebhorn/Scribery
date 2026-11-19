@@ -27,8 +27,8 @@ import org.slf4j.LoggerFactory;
 @EventBusSubscriber(modid = Scribery.MODID)
 public final class VillageInjection {
     private static final Logger LOG = LoggerFactory.getLogger("scribery-village");
-    /** Gewicht im Haeuser-Pool (die Vanilla-Haeuser wiegen zusammen etwa 40 bis 60): so kommt etwa ein Haus je Dorf vor. */
-    static final int WEIGHT = 4;
+    /** Gewicht im Haeuser-Pool (die Vanilla-Haeuser wiegen zusammen etwa 40 bis 60): so steht in etwa zwei von drei Doerfern ein Haus (Test mit Gewicht 10: 3 von 4 Doerfern, teils 2 bis 4 Haeuser). */
+    static final int WEIGHT = 6;
 
     private VillageInjection() {}
 

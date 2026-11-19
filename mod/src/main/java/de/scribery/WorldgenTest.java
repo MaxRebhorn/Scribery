@@ -43,6 +43,34 @@ public final class WorldgenTest {
                 }
             }
             int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+            if (id.trim().startsWith("villages:")) {   // echte Doerfer setzen und zaehlen, in wie vielen das Schreiberhaus steht
+                String type = id.trim().substring(9);
+                int withHouse = 0, placed = 0, total = 4;
+                for (int n = 0; n < total; n++) {
+                    int px = 6000 + n * 700, pz = 6000 + i * 700;
+                    for (int cx = (px >> 4) - 9; cx <= (px >> 4) + 9; cx++) for (int cz = (pz >> 4) - 9; cz <= (pz >> 4) + 9; cz++) {
+                        level.getChunk(cx, cz, net.minecraft.world.level.chunk.status.ChunkStatus.FULL, true);
+                    }
+                    int py = level.getHeight(Heightmap.Types.WORLD_SURFACE, px, pz);
+                    try {
+                        int r = server.getCommands().getDispatcher().execute("place structure minecraft:" + type + " " + px + " " + py + " " + pz, src);
+                        if (r > 0) placed++;
+                    } catch (com.mojang.brigadier.exceptions.CommandSyntaxException ex) {
+                        LOG.info("[wgtest] Dorf nicht gesetzt: {}", ex.getMessage());
+                        continue;
+                    }
+                    int lecterns = 0;
+                    for (int dx = -80; dx <= 80; dx++) for (int dz = -80; dz <= 80; dz++) {
+                        for (int dy = -3; dy <= 10; dy++) {
+                            if (level.getBlockState(new BlockPos(px + dx, py + dy, pz + dz)).is(ModBlocks.SCRIBE_LECTERN.get())) lecterns++;
+                        }
+                    }
+                    if (lecterns > 0) withHouse++;
+                    LOG.info("[wgtest] Dorf {} bei {},{}: Pulte={}", type, px, pz, lecterns);
+                }
+                LOG.info("[wgtest] {}: {} von {} gesetzten Doerfern haben das Schreiberhaus", type, withHouse, placed);
+                continue;
+            }
             if (id.trim().startsWith("jigsaw:")) {   // Pool-Test: viele einzelne Haeuser aus einem Dorf-Pool setzen und zaehlen, wie oft unser Haus vorkommt
                 String pool = id.trim().substring(7);
                 int withHouse = 0, total = 40;
