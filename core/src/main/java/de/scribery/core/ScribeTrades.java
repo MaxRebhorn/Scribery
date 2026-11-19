@@ -61,7 +61,7 @@ public final class ScribeTrades {
         // Stufe 3, Fachmann
         o.add(sell(3, ScribePrices.LEXICON_A_C, "scribery:greek_lexicon_a_c", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
         o.add(sell(3, ScribePrices.LEXICON_D_F, "scribery:greek_lexicon_d_f", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
-        o.add(sell(3, ScribePrices.FORMS_GRAMMAR_LEXICON, "scribery:greek_forms_grammar_lexicon", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
+        // Das Forms & Grammar Lexicon ist noch nicht geschrieben (Buch waere leer) und kommt erst nach dem Text in die Liste.
         o.add(new Offer(3, FRAGMENT, 1, EMERALD, ScribePrices.FRAGMENT_SELL, ScribePrices.USES_FRAGMENT_SELL, ScribePrices.XP_SMALL));
         // Stufe 4, Experte
         o.add(sell(4, ScribePrices.THEMATIC_LEXICON, "scribery:thematic_greek_lexicon", 1, ScribePrices.USES_BOOK, ScribePrices.XP_BIG));

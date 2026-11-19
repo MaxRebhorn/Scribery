@@ -12,11 +12,11 @@ Kurzanleitung, damit neue Buchtexte ohne Umbauten im Spiel richtig aussehen. Der
 |---|---|
 | Greek Alphabet Primer | `greek_alphabet_primer.md` (fertig) |
 | Greek Grammar Book | `greek_grammar_book.md` |
-| Greek Lexicon A–C | `greek_lexicon_a_c.md` |
-| Greek Lexicon D–F | `greek_lexicon_d_f.md` |
-| Thematic Greek Lexicon | `thematic_greek_lexicon.md` |
+| Greek Lexicon A–C | `greek_lexicon_a_c.md` (fertig, erzeugt von `tools/gen_lexicon.py`) |
+| Greek Lexicon D–F | `greek_lexicon_d_f.md` (fertig, erzeugt) |
+| Thematic Greek Lexicon | `thematic_greek_lexicon.md` (fertig, erzeugt) |
 | Greek Forms & Grammar Lexicon | `greek_forms_grammar_lexicon.md` |
-| Complete Greek Lexicon | `complete_greek_lexicon.md` |
+| Complete Greek Lexicon | `complete_greek_lexicon.md` (fertig, erzeugt: Teil 1 nach dem Alphabet, Teil 2 nach Sachgebieten) |
 
 Sprache: derzeit Englisch, passend zum Rest des Spiels.
 

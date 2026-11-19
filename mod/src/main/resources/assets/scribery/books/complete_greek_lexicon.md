@@ -1,2095 +1,4290 @@
 # THE COMPLETE GREEK LEXICON
-### Every Word of the Gospel of John
+### Every Word of the Gospel of John, Twice
 
-*From alpha to omega: all the words you will meet, with what they mean and how often they turn up.*
+**By John Koine**
+
+*In order of the alphabet and in order of subject. Because you finally have the emeralds.*
 
 ---
 
 ## Page 0 — Contents {#contents}
 
-1005 words, in the order of the Greek alphabet. Each entry gives the word as a dictionary lists it, its sounds in Latin letters, what kind of word it is, its meaning and how often it appears in John (like this: ×12).
+- [A few words (the long version)](#preface)
+- [Entry key](#entry-key)
+- [Part One: The words from alpha to omega](#alpha)
+- [Part Two: The words by theme](#theme-divine)
 
 [Α α](#alpha)   [Β β](#beta)   [Γ γ](#gamma)   [Δ δ](#delta)   [Ε ε](#epsilon)   [Ζ ζ](#zeta)   [Η η](#eta)   [Θ θ](#theta)   [Ι ι](#iota)   [Κ κ](#kappa)   [Λ λ](#lambda)   [Μ μ](#mu)   [Ν ν](#nu)   [Ξ ξ](#xi)   [Ο ο](#omicron)   [Π π](#pi)   [Ρ ρ](#rho)   [Σ σ](#sigma)   [Τ τ](#tau)   [Υ υ](#upsilon)   [Φ φ](#phi)   [Χ χ](#chi)   [Ψ ψ](#psi)   [Ω ω](#omega)
 
 ---
 
-## Page 15 — Α α {#alpha}
+## Page 1 — Well, Look Who Has Emeralds {#preface}
 
-Ἀβραάμ **Abraam** *name* — Abraham ×11
+Well, well. Look who finally has some emeralds.
 
-ἀγαθός **agathos** *adj.* — good ×3
+I remember you. You were the one with the Alphabet Primer who couldn't quite afford the rest. I told you that a proper education doesn't come cheap.
 
-ἀγαλλιάω **agalliaō** *v.* — to rejoice ×2
+You didn't believe me.
 
-ἀγαπάω **agapaō** *v.* — to love ×37
+And now here you are, holding the Complete Greek Lexicon.
 
-ἀγάπη **agapē** *f.* — love ×7
+Every word of the Gospel of John, from alpha to omega. All 1005 of them. Twice, actually: once in the order of the alphabet and once sorted by subject.
 
-ἀγγέλλω **angellō** *v.* — to report ×1
+That's the Greek Lexicon A–C, the Greek Lexicon D–F and the Thematic Greek Lexicon in one handsome volume.
 
-ἄγγελος **angelos** *m.* — angel; messenger ×3
+Between you and me, those who bought the little ones separately will feel slightly foolish about it. I'd have mentioned it sooner. But then I'd have had to give up the emeralds.
 
-ἁγιάζω **hagiazō** *v.* — to sanctify ×4
+Take your time with it. It's heavy, for a book. Possibly because it's made entirely of value for money.
 
-ἅγιος **hagios** *adj.* — holy; saint ×5
+Now, if you'll excuse me, I have some emeralds to count.
 
-ἁγνίζω **hagnizō** *v.* — to purify ×1
+— John Koine
 
-ἀγοράζω **agorazō** *v.* — to buy ×3
 
-ἄγω **agō** *v.* — to bring ×13
+## Page 2 — Entry Key {#entry-key}
 
-ἀγωνίζομαι **agōnizomai** *v.* — to struggle ×1
+1005 words. Each entry gives the word as a dictionary lists it, its sounds in Latin letters, what kind of word it is and what it means.
 
-ἀδελφή **adelphē** *f.* — sister ×6
+Where a word has several senses, you get the one that matters most in John. For the others, you'll need a proper scholar.
 
-ἀδελφός **adelphos** *m.* — brother ×14
+The little marks:
 
-ἀδικία **adikia** *f.* — unrighteousness ×1
+| Mark | Meaning |
+|---|---|
+| m. / f. / n. | Masculine / feminine / neuter noun |
+| v. | Verb |
+| adj. / adv. | Adjective / adverb |
+| prep. / conj. | Preposition / conjunction |
+| pron. / art. | Pronoun / article |
+| part. / interj. | Particle / interjection |
+| name | Proper name |
 
-ἀθετέω **atheteō** *v.* — to reject ×1
 
-αἰγιαλός **aigialos** *m.* — shore ×1
+## Page 3 — Part One {#part-one}
 
-αἷμα **ahima** *n.* — blood; (Field of) Blood ×6
+Part One lists every word in the order of the Greek alphabet. Each letter begins on a new page.
 
-Αἰνών **Ainōn** *noun* — Aenon ×1
+Alpha is huge. Omega is tiny. Life isn't fair, and neither is the Greek alphabet.
 
-αἴρω **airō** *v.* — to take up ×26
 
-αἰτέω **aiteō** *v.* — to ask ×11
+## Page 4 — Α α {#alpha}
 
-αἰτία **aitia** *f.* — cause/charge ×3
+Ἀβραάμ **Abraam** *name* — Abraham
 
-αἰών **aiōn** *m.* — age; eternity ×13
+ἀγαθός **agathos** *adj.* — good
 
-αἰώνιος **aiōnios** *adj.* — eternal ×17
+ἀγαλλιάω **agalliaō** *v.* — to rejoice
 
-ἄκανθα **akantha** *f.* — a thorn ×1
+ἀγαπάω **agapaō** *v.* — to love
 
-ἀκάνθινος **akanthinos** *adj.* — thorny ×1
+ἀγάπη **agapē** *f.* — love
 
-ἀκοή **akoē** *f.* — hearing ×1
+ἀγγέλλω **angellō** *v.* — to report
 
-ἀκολουθέω **akoloutheō** *v.* — to follow ×19
+ἄγγελος **angelos** *m.* — angel
 
-ἀκούω **akouō** *v.* — to hear ×59
+ἁγιάζω **hagiazō** *v.* — to sanctify
 
-ἀλείφω **aleiphō** *v.* — to anoint ×2
+ἅγιος **hagios** *adj.* — holy
 
-ἀλέκτωρ **alektōr** *m.* — rooster ×2
+ἁγνίζω **hagnizō** *v.* — to purify
 
-ἀλήθεια **alētheia** *f.* — truth ×25
+ἀγοράζω **agorazō** *v.* — to buy
 
-ἀληθής **alēthēs** *adj.* — true ×14
+ἄγω **agō** *v.* — to bring
 
-ἀληθινός **alēthinos** *adj.* — true ×9
+ἀγωνίζομαι **agōnizomai** *v.* — to struggle
 
-ἀληθῶς **alēthōs** *adv.* — truly ×7
+ἀδελφή **adelphē** *f.* — sister
 
-ἁλιεύω **halieuō** *v.* — to fish ×1
+ἀδελφός **adelphos** *m.* — brother
 
-ἀλλά **alla** *conj.* — but ×102
+ἀδικία **adikia** *f.* — unrighteousness
 
-ἀλλαχόθεν **allachothen** *adv.* — from elsewhere ×1
+ἀθετέω **atheteō** *v.* — to reject
 
-ἀλλήλων **allēlōn** *conj.* — one another ×15
+αἰγιαλός **aigialos** *m.* — shore
 
-ἅλλομαι **hallomai** *v.* — to spring ×1
+αἷμα **ahima** *n.* — blood
 
-ἄλλος **allos** *adj.* — another ×33
+Αἰνών **Ainōn** *noun* — Aenon
 
-ἀλλότριος **allotrios** *adj.* — another’s ×2
+αἴρω **airō** *v.* — to take up
 
-ἀλόη **aloē** *f.* — aloes ×1
+αἰτέω **aiteō** *v.* — to ask
 
-ἁμαρτάνω **hamartanō** *v.* — to sin ×4
+αἰτία **aitia** *f.* — cause/charge
 
-ἁμαρτία **hamartia** *f.* — sin ×17
+αἰών **aiōn** *m.* — age
 
-ἁμαρτωλός **hamartōlos** *adj.* — sinful ×4
+αἰώνιος **aiōnios** *adj.* — eternal
 
-ἀμήν **amēn** *interj.* — amen ×50
+ἄκανθα **akantha** *f.* — a thorn
 
-ἀμνός **amnos** *m.* — lamb ×2
+ἀκάνθινος **akanthinos** *adj.* — thorny
 
-ἄμπελος **ampelos** *f.* — vine ×3
+ἀκοή **akoē** *f.* — hearing
 
-ἄν **an** *cond.* — if ×24
+ἀκολουθέω **akoloutheō** *v.* — to follow
 
-ἀνά **ana** *prep.* — each ×1
+ἀκούω **akouō** *v.* — to hear
 
-ἀναβαίνω **anabainō** *v.* — to ascend ×16
+ἀλείφω **aleiphō** *v.* — to anoint
 
-ἀναβλέπω **anablepō** *v.* — to look up/again ×4
+ἀλέκτωρ **alektōr** *m.* — rooster
 
-ἀναγγέλλω **anangellō** *v.* — to report ×5
+ἀλήθεια **alētheia** *f.* — truth
 
-ἀναγινώσκω **anaginōskō** *v.* — to read ×1
+ἀληθής **alēthēs** *adj.* — true
 
-ἀνάκειμαι **anakeimai** *v.* — to recline ×4
+ἀληθινός **alēthinos** *adj.* — true
 
-ἀνακύπτω **anakuptō** *v.* — to straighten up ×2
+ἀληθῶς **alēthōs** *adv.* — truly
 
-ἀναμάρτητος **anamartētos** *adj.* — sinless ×1
+ἁλιεύω **halieuō** *v.* — to fish
 
-ἀναπίπτω **anapiptō** *v.* — to recline ×5
+ἀλλά **alla** *conj.* — but
 
-ἀνάστασις **anastasis** *f.* — resurrection ×4
+ἀλλαχόθεν **allachothen** *adv.* — from elsewhere
 
-ἀνατρέπω **anatrepō** *v.* — to overturn ×1
+ἀλλήλων **allēlōn** *conj.* — one another
 
-ἀναχωρέω **anachōreō** *v.* — to leave ×1
+ἅλλομαι **hallomai** *v.* — to spring
 
-Ἀνδρέας **Andreas** *name* — Andrew ×5
+ἄλλος **allos** *adj.* — another
 
-ἄνεμος **anemos** *m.* — wind ×1
+ἀλλότριος **allotrios** *adj.* — another’s
 
-ἀνέρχομαι **anerchomai** *v.* — to go up ×1
+ἀλόη **aloē** *f.* — aloes
 
-ἀνήρ **anēr** *m.* — man; husband ×8
+ἁμαρτάνω **hamartanō** *v.* — to sin
 
-ἀνθρακιά **anthrakia** *f.* — charcoal fire ×2
+ἁμαρτία **hamartia** *f.* — sin
 
-ἀνθρωποκτόνος **anthrōpoktonos** *m.* — murderer ×1
+ἁμαρτωλός **hamartōlos** *adj.* — sinful
 
-ἄνθρωπος **anthrōpos** *m.* — a human ×59
+ἀμήν **amēn** *interj.* — amen
 
-ἀνίστημι **anistēmi** *v.* — to arise ×8
+ἀμνός **amnos** *m.* — lamb
 
-Ἄννας **Annas** *name* — Annas ×2
+ἄμπελος **ampelos** *f.* — vine
 
-ἀνοίγω **anoigō** *v.* — to open ×11
+ἄν **an** *cond.* — if
 
-ἀντί **anti** *prep.* — for ×1
+ἀνά **ana** *prep.* — each
 
-ἀντιλέγω **antilegō** *v.* — to dispute ×1
+ἀναβαίνω **anabainō** *v.* — to ascend
 
-ἀντλέω **antleō** *v.* — to draw ×4
+ἀναβλέπω **anablepō** *v.* — to look up/again
 
-ἄντλημα **antlēma** *n.* — bucket ×1
+ἀναγγέλλω **anangellō** *v.* — to report
 
-ἄνω **anō** *adv.* — above ×3
+ἀναγινώσκω **anaginōskō** *v.* — to read
 
-ἄνωθεν **anōthen** *adv.* — from above/again ×5
+ἀνάκειμαι **anakeimai** *v.* — to recline
 
-ἄξιος **axios** *adj.* — worthy ×1
+ἀνακύπτω **anakuptō** *v.* — to straighten up
 
-ἀπαγγέλλω **apangellō** *v.* — to announce ×1
+ἀναμάρτητος **anamartētos** *adj.* — sinless
 
-ἅπας **hapas** *adj.* — all ×1
+ἀναπίπτω **anapiptō** *v.* — to recline
 
-ἀπειθέω **apeitheō** *v.* — to disobey ×1
+ἀνάστασις **anastasis** *f.* — resurrection
 
-ἀπέρχομαι **aperchomai** *v.* — to go away ×21
+ἀνατρέπω **anatrepō** *v.* — to overturn
 
-ἄπιστος **apistos** *adj.* — unbelieving ×1
+ἀναχωρέω **anachōreō** *v.* — to leave
 
-ἀπό **apo** *prep.* — away from ×42
+Ἀνδρέας **Andreas** *name* — Andrew
 
-ἀποβαίνω **apobainō** *v.* — to get out ×1
+ἄνεμος **anemos** *m.* — wind
 
-ἀποθνήσκω **apothnēskō** *v.* — to die ×28
+ἀνέρχομαι **anerchomai** *v.* — to go up
 
-ἀποκαλύπτω **apokaluptō** *v.* — to reveal ×1
+ἀνήρ **anēr** *m.* — man
 
-ἀποκόπτω **apokoptō** *v.* — to cut off ×2
+ἀνθρακιά **anthrakia** *f.* — charcoal fire
 
-ἀποκρίνω **apokrinō** *v.* — to answer ×78
+ἀνθρωποκτόνος **anthrōpoktonos** *m.* — murderer
 
-ἀπόκρισις **apokrisis** *f.* — answer ×2
+ἄνθρωπος **anthrōpos** *m.* — a human
 
-ἀποκτείνω **apokteinō** *v.* — to kill ×12
+ἀνίστημι **anistēmi** *v.* — to arise
 
-ἀπολλύω **apolluō** *v.* — to destroy ×10
+Ἄννας **Annas** *name* — Annas
 
-ἀπολύω **apoluō** *v.* — release; divorce ×5
+ἀνοίγω **anoigō** *v.* — to open
 
-ἀπορέω **aporeō** *v.* — be perplexed ×1
+ἀντί **anti** *prep.* — for
 
-ἀποστέλλω **apostellō** *v.* — to send ×28
+ἀντιλέγω **antilegō** *v.* — to dispute
 
-ἀπόστολος **apostolos** *m.* — apostle ×1
+ἀντλέω **antleō** *v.* — to draw
 
-ἀποσυνάγωγος **aposunagōgos** *adj.* — excommunicated ×3
+ἄντλημα **antlēma** *n.* — bucket
 
-ἅπτω **haptō** *v.* — to touch ×1
+ἄνω **anō** *adv.* — above
 
-ἀπώλεια **apōleia** *f.* — destruction ×1
+ἄνωθεν **anōthen** *adv.* — from above/again
 
-ἀρεστός **arestos** *adj.* — pleasing ×1
+ἄξιος **axios** *adj.* — worthy
 
-ἀριθμός **arithmos** *m.* — number ×1
+ἀπαγγέλλω **apangellō** *v.* — to announce
 
-Ἀριμαθαία **Arimathaia** *f.* — Arimathea ×1
+ἅπας **hapas** *adj.* — all
 
-ἀριστάω **aristaō** *v.* — to eat early meal ×2
+ἀπειθέω **apeitheō** *v.* — to disobey
 
-ἀρκέω **arkeō** *v.* — be sufficient ×2
+ἀπέρχομαι **aperchomai** *v.* — to go away
 
-ἀρνέομαι **arneomai** *v.* — to deny ×4
+ἄπιστος **apistos** *adj.* — unbelieving
 
-ἀρνίον **arnion** *n.* — lamb ×1
+ἀπό **apo** *prep.* — away from
 
-ἁρπάζω **harpazō** *v.* — to seize ×4
+ἀποβαίνω **apobainō** *v.* — to get out
 
-ἄρραφος **arraphos** *adj.* — seamless ×1
+ἀποθνήσκω **apothnēskō** *v.* — to die
 
-ἄρτι **arti** *adv.* — now ×12
+ἀποκαλύπτω **apokaluptō** *v.* — to reveal
 
-ἄρτος **artos** *m.* — bread ×24
+ἀποκόπτω **apokoptō** *v.* — to cut off
 
-ἀρχή **archē** *f.* — beginning ×8
+ἀποκρίνω **apokrinō** *v.* — to answer
 
-ἀρχιερεύς **archiereus** *m.* — high-priest ×21
+ἀπόκρισις **apokrisis** *f.* — answer
 
-ἀρχιτρίκλινος **architriklinos** *m.* — head waiter ×3
+ἀποκτείνω **apokteinō** *v.* — to kill
 
-ἄρχω **archō** *v.* — be first ×2
+ἀπολλύω **apolluō** *v.* — to destroy
 
-ἄρχων **archōn** *m.* — ruler ×7
+ἀπολύω **apoluō** *v.* — release
 
-ἄρωμα **arōma** *n.* — spices ×1
+ἀπορέω **aporeō** *v.* — be perplexed
 
-ἀσθένεια **astheneia** *f.* — weak; ill ×2
+ἀποστέλλω **apostellō** *v.* — to send
 
-ἀσθενέω **astheneō** *v.* — weak; ill ×8
+ἀπόστολος **apostolos** *m.* — apostle
 
-ἀτιμάζω **atimazō** *v.* — to dishonor ×1
+ἀποσυνάγωγος **aposunagōgos** *adj.* — excommunicated
 
-αὐλή **aulē** *f.* — palace/courtyard ×3
+ἅπτω **haptō** *v.* — to touch
 
-αὐξάνω **auxanō** *v.* — to grow ×1
+ἀπώλεια **apōleia** *f.* — destruction
 
-αὐτός **autos** *pron.* — it/s/he ×769
+ἀρεστός **arestos** *adj.* — pleasing
 
-ἀφίημι **aphiēmi** *v.* — leave; forgive; permit ×15
+ἀριθμός **arithmos** *m.* — number
 
+Ἀριμαθαία **Arimathaia** *f.* — Arimathea
 
-## Page 268 — Β β {#beta}
+ἀριστάω **aristaō** *v.* — to eat early meal
 
-βαθύς **bathus** *adj.* — deep ×1
+ἀρκέω **arkeō** *v.* — be sufficient
 
-βαΐον **baion** *n.* — palm branch ×1
+ἀρνέομαι **arneomai** *v.* — to deny
 
-βάλλω **ballō** *v.* — throw; put; sow ×17
+ἀρνίον **arnion** *n.* — lamb
 
-βαπτίζω **baptizō** *v.* — to baptize ×13
+ἁρπάζω **harpazō** *v.* — to seize
 
-βάπτω **baptō** *v.* — to dip ×2
+ἄρραφος **arraphos** *adj.* — seamless
 
-Βαραββᾶς **Barabbas** *name* — Barabbas ×2
+ἄρτι **arti** *adv.* — now
 
-βασιλεία **basileia** *f.* — kingdom ×5
+ἄρτος **artos** *m.* — bread
 
-βασιλεύς **basileus** *m.* — king ×16
+ἀρχή **archē** *f.* — beginning
 
-βασιλικός **basilikos** *adj.* — royal ×2
+ἀρχιερεύς **archiereus** *m.* — high-priest
 
-βαστάζω **bastazō** *v.* — to carry ×5
+ἀρχιτρίκλινος **architriklinos** *m.* — head waiter
 
-Βηθανία **Bēthania** *f.* — Bethany ×4
+ἄρχω **archō** *v.* — be first
 
-Βηθζαθά **Bēthesda** *noun* — Bethesda ×1
+ἄρχων **archōn** *m.* — ruler
 
-Βηθλεέμ **Bēthleem** *noun* — Bethlehem ×1
+ἄρωμα **arōma** *n.* — spices
 
-Βηθσαϊδά **Bēthsaida** *noun* — Bethsaida ×2
+ἀσθένεια **astheneia** *f.* — weak
 
-βῆμα **bēma** *n.* — judgement seat ×1
+ἀσθενέω **astheneō** *v.* — weak
 
-βιβλίον **biblion** *n.* — scroll ×2
+ἀτιμάζω **atimazō** *v.* — to dishonor
 
-βιβρώσκω **bibrōskō** *v.* — to eat ×1
+αὐλή **aulē** *f.* — palace/courtyard
 
-βλασφημέω **blasphēmeō** *v.* — to blaspheme ×1
+αὐξάνω **auxanō** *v.* — to grow
 
-βλασφημία **blasphēmia** *f.* — blasphemy ×1
+αὐτός **autos** *pron.* — it/s/he
 
-βλέπω **blepō** *v.* — to see ×17
+ἀφίημι **aphiēmi** *v.* — leave
 
-βοάω **boaō** *v.* — to cry out ×1
 
-βόσκω **boskō** *v.* — to feed ×2
+## Page 5 — Β β {#beta}
 
-βουλεύω **bouleuō** *v.* — to plan ×2
+βαθύς **bathus** *adj.* — deep
 
-βούλομαι **boulomai** *v.* — to plan ×1
+βαΐον **baion** *n.* — palm branch
 
-βοῦς **bous** *m.* — ox ×2
+βάλλω **ballō** *v.* — throw
 
-βραχίων **brachiōn** *m.* — arm ×1
+βαπτίζω **baptizō** *v.* — to baptize
 
-βραχύς **brachus** *adj.* — little ×1
+βάπτω **baptō** *v.* — to dip
 
-βροντή **brontē** *f.* — thunder ×1
+Βαραββᾶς **Barabbas** *name* — Barabbas
 
-βρῶμα **brōma** *n.* — food ×1
+βασιλεία **basileia** *f.* — kingdom
 
-βρῶσις **brōsis** *f.* — eating ×4
+βασιλεύς **basileus** *m.* — king
 
+βασιλικός **basilikos** *adj.* — royal
 
-## Page 331 — Γ γ {#gamma}
+βαστάζω **bastazō** *v.* — to carry
 
-γαββαθά **gabbatha** *noun* — Gabbatha ×1
+Βηθανία **Bēthania** *f.* — Bethany
 
-γαζοφυλάκιον **gazophulakion** *n.* — treasury ×1
+Βηθζαθά **Bēthesda** *noun* — Bethesda
 
-Γαλιλαία **Galilaia** *f.* — Galilee; (Sea of) Galilee ×17
+Βηθλεέμ **Bēthleem** *noun* — Bethlehem
 
-Γαλιλαῖος **Galilaios** *noun* — Galilean ×1
+Βηθσαϊδά **Bēthsaida** *noun* — Bethsaida
 
-γάμος **gamos** *m.* — wedding ×2
+βῆμα **bēma** *n.* — judgement seat
 
-γάρ **gar** *conj.* — for ×64
+βιβλίον **biblion** *n.* — scroll
 
-γείτων **geitōn** *m.* — neighbour ×1
+βιβρώσκω **bibrōskō** *v.* — to eat
 
-γεμίζω **gemizō** *v.* — to fill ×3
+βλασφημέω **blasphēmeō** *v.* — to blaspheme
 
-γενετή **genetē** *f.* — birth ×1
+βλασφημία **blasphēmia** *f.* — blasphemy
 
-γεννάω **gennaō** *v.* — to beget ×18
+βλέπω **blepō** *v.* — to see
 
-γέρων **gerōn** *m.* — an old man ×1
+βοάω **boaō** *v.* — to cry out
 
-γεύω **geuō** *v.* — to taste ×2
+βόσκω **boskō** *v.* — to feed
 
-γεωργός **geōrgos** *m.* — farmer ×1
+βουλεύω **bouleuō** *v.* — to plan
 
-γῆ **gē** *f.* — soil; planet; country ×13
+βούλομαι **boulomai** *v.* — to plan
 
-γηράσκω **gēraskō** *v.* — to grow old ×1
+βοῦς **bous** *m.* — ox
 
-γίνομαι **ginomai** *v.* — to be ×51
+βραχίων **brachiōn** *m.* — arm
 
-γινώσκω **ginōskō** *v.* — to know ×57
+βραχύς **brachus** *adj.* — little
 
-γλωσσόκομον **glōssokomon** *n.* — moneybag ×2
+βροντή **brontē** *f.* — thunder
 
-γνωρίζω **gnōrizō** *v.* — to make known ×3
+βρῶμα **brōma** *n.* — food
 
-γνωστός, γνώριμος **gnōstos, gnōrimos** *adj.* — acquainted with ×2
+βρῶσις **brōsis** *f.* — eating
 
-γογγύζω **gonguzō** *v.* — to murmur ×4
 
-γογγυσμός **gongusmos** *m.* — murmuring ×1
+## Page 6 — Γ γ {#gamma}
 
-Γολγοθᾶ **Golgotha** *noun* — Golgotha ×1
+γαββαθά **gabbatha** *noun* — Gabbatha
 
-γονεύς **goneus** *m.* — parent ×6
+γαζοφυλάκιον **gazophulakion** *n.* — treasury
 
-γράμμα **gramma** *n.* — something written ×2
+Γαλιλαία **Galilaia** *f.* — Galilee
 
-γραμματεύς **grammateus** *m.* — scribe ×1
+Γαλιλαῖος **Galilaios** *noun* — Galilean
 
-γραφή **graphē** *f.* — a writing ×12
+γάμος **gamos** *m.* — wedding
 
-γράφω **graphō** *v.* — to write ×22
+γάρ **gar** *conj.* — for
 
-γυμνός **gumnos** *adj.* — naked ×1
+γείτων **geitōn** *m.* — neighbour
 
-γυνή **gunē** *f.* — woman; wife ×22
+γεμίζω **gemizō** *v.* — to fill
 
+γενετή **genetē** *f.* — birth
 
-## Page 394 — Δ δ {#delta}
+γεννάω **gennaō** *v.* — to beget
 
-δαιμονίζομαι **daimonizomai** *v.* — be demonised ×1
+γέρων **gerōn** *m.* — an old man
 
-δαιμόνιον **daimonion** *n.* — demon ×6
+γεύω **geuō** *v.* — to taste
 
-δακρύω **dakruō** *v.* — to weep ×1
+γεωργός **geōrgos** *m.* — farmer
 
-δάκτυλος **daktulos** *m.* — finger ×3
+γῆ **gē** *f.* — soil
 
-Δαυείδ, Δαυίδ, Δαβίδ **Daueid, Dauid, Dabid** *name* — David ×2
+γηράσκω **gēraskō** *v.* — to grow old
 
-δέ **de** *conj.* — then ×213
+γίνομαι **ginomai** *v.* — to be
 
-δεῖ **dei** *v.* — be necessary ×10
+γινώσκω **ginōskō** *v.* — to know
 
-δεικνύω **deiknuō** *v.* — to show ×7
+γλωσσόκομον **glōssokomon** *n.* — moneybag
 
-δειλιάω **deiliaō** *v.* — be timid ×1
+γνωρίζω **gnōrizō** *v.* — to make known
 
-δεῖπνον **deipnon** *n.* — dinner ×4
+γνωστός, γνώριμος **gnōstos, gnōrimos** *adj.* — acquainted with
 
-δεκαπέντε **dekapente** *adj.* — fifteen ×1
+γογγύζω **gonguzō** *v.* — to murmur
 
-δέκατος **dekatos** *adj.* — tenth ×1
+γογγυσμός **gongusmos** *m.* — murmuring
 
-δεξιός **dexios** *adj.* — right ×2
+Γολγοθᾶ **Golgotha** *noun* — Golgotha
 
-δέρω **derō** *v.* — to beat up ×1
+γονεύς **goneus** *m.* — parent
 
-δεῦρο **deuro** *interj.* — come ×1
+γράμμα **gramma** *n.* — something written
 
-δεῦτε **deute** *interj.* — come ×2
+γραμματεύς **grammateus** *m.* — scribe
 
-δεύτερος **deuteros** *adj.* — secondly ×4
+γραφή **graphē** *f.* — a writing
 
-δέχομαι **dechomai** *v.* — to receive ×1
+γράφω **graphō** *v.* — to write
 
-δέω **deō** *v.* — to bind ×4
+γυμνός **gumnos** *adj.* — naked
 
-δηνάριον **dēnarion** *n.* — denarius ×2
+γυνή **gunē** *f.* — woman
 
-διά **dia** *prep.* — through/because of ×59
 
-διάβολος **diabolos** *adj.* — devilish/the Devil ×3
+## Page 7 — Δ δ {#delta}
 
-διαδίδωμι **diadidōmi** *v.* — to distribute ×1
+δαιμονίζομαι **daimonizomai** *v.* — be demonised
 
-διαζώννυμι **diazōnnumi** *v.* — to tie around ×3
+δαιμόνιον **daimonion** *n.* — demon
 
-διακονέω **diakoneō** *v.* — to serve ×3
+δακρύω **dakruō** *v.* — to weep
 
-διάκονος **diakonos** *m.* — servant ×3
+δάκτυλος **daktulos** *m.* — finger
 
-διακόσιοι **diakosioi** *adj.* — two hundred ×2
+Δαυείδ, Δαυίδ, Δαβίδ **Daueid, Dauid, Dabid** *name* — David
 
-διαμερίζω **diamerizō** *v.* — to divide ×1
+δέ **de** *conj.* — then
 
-διασκορπίζω **diaskorpizō** *v.* — to scatter ×1
+δεῖ **dei** *v.* — be necessary
 
-διασπορά **diaspora** *f.* — dispersion ×1
+δεικνύω **deiknuō** *v.* — to show
 
-διατρίβω **diatribō** *v.* — to remain ×1
+δειλιάω **deiliaō** *v.* — be timid
 
-διδακτός **didaktos** *adj.* — taught ×1
+δεῖπνον **deipnon** *n.* — dinner
 
-διδάσκαλος **didaskalos** *m.* — teacher ×8
+δεκαπέντε **dekapente** *adj.* — fifteen
 
-διδάσκω **didaskō** *v.* — to teach ×10
+δέκατος **dekatos** *adj.* — tenth
 
-διδαχή **didachē** *f.* — teaching ×3
+δεξιός **dexios** *adj.* — right
 
-Δίδυμος **Didumos** *name* — Twin ×3
+δέρω **derō** *v.* — to beat up
 
-δίδωμι **didōmi** *v.* — to give ×75
+δεῦρο **deuro** *interj.* — come
 
-διεγείρω **diegeirō** *v.* — to arouse ×1
+δεῦτε **deute** *interj.* — come
 
-διέρχομαι **dierchomai** *v.* — to pass through ×2
+δεύτερος **deuteros** *adj.* — secondly
 
-δίκαιος **dikaios** *adj.* — just ×3
+δέχομαι **dechomai** *v.* — to receive
 
-δικαιοσύνη **dikaiosunē** *f.* — righteousness ×2
+δέω **deō** *v.* — to bind
 
-δίκτυον **diktuon** *n.* — net ×4
+δηνάριον **dēnarion** *n.* — denarius
 
-διψάω **dipsaō** *v.* — to thirst ×6
+διά **dia** *prep.* — through/because of
 
-διώκω **diōkō** *v.* — to pursue ×3
+διάβολος **diabolos** *adj.* — devilish/the Devil
 
-δοκέω **dokeō** *v.* — to think ×8
+διαδίδωμι **diadidōmi** *v.* — to distribute
 
-δόλος **dolos** *m.* — deceit ×1
+διαζώννυμι **diazōnnumi** *v.* — to tie around
 
-δόξα **doxa** *f.* — glory ×19
+διακονέω **diakoneō** *v.* — to serve
 
-δοξάζω **doxazō** *v.* — to glorify ×23
+διάκονος **diakonos** *m.* — servant
 
-δουλεύω **douleuō** *v.* — be a slave ×1
+διακόσιοι **diakosioi** *adj.* — two hundred
 
-δοῦλος **doulos** *noun* — slave ×11
+διαμερίζω **diamerizō** *v.* — to divide
 
-δύναμαι **dunamai** *v.* — be able ×37
+διασκορπίζω **diaskorpizō** *v.* — to scatter
 
-δύο **duo** *adj.* — two ×13
+διασπορά **diaspora** *f.* — dispersion
 
-δώδεκα **dōdeka** *adj.* — twelve ×6
+διατρίβω **diatribō** *v.* — to remain
 
-δωρεά **dōrea** *f.* — free gift ×1
+διδακτός **didaktos** *adj.* — taught
 
-δωρεάν **dōrean** *adv.* — freely ×1
+διδάσκαλος **didaskalos** *m.* — teacher
 
+διδάσκω **didaskō** *v.* — to teach
 
-## Page 507 — Ε ε {#epsilon}
+διδαχή **didachē** *f.* — teaching
 
-ἐάν **ean** *cond.* — if ×59
+Δίδυμος **Didumos** *name* — Twin
 
-ἑαυτοῦ **heautou** — themself ×27
+δίδωμι **didōmi** *v.* — to give
 
-ἕβδομος **hebdomos** *adj.* — seventh ×1
+διεγείρω **diegeirō** *v.* — to arouse
 
-Ἑβραϊστί **Hebraisti** *adv.* — Hebrew ×5
+διέρχομαι **dierchomai** *v.* — to pass through
 
-ἐγγύς **engus** *prep.* — near ×11
+δίκαιος **dikaios** *adj.* — just
 
-ἐγείρω **egeirō** *v.* — to arise ×13
+δικαιοσύνη **dikaiosunē** *f.* — righteousness
 
-ἐγκαίνια **egkainia** *n.* — Feast|Festival of Dedication ×1
+δίκτυον **diktuon** *n.* — net
 
-ἐγώ **egō** *pron.* — I/we ×309
+διψάω **dipsaō** *v.* — to thirst
 
-ἔθνος **ethnos** *n.* — Gentiles ×5
+διώκω **diōkō** *v.* — to pursue
 
-ἔθος **ethos** *n.* — custom ×1
+δοκέω **dokeō** *v.* — to think
 
-εἰ **ei** *cond.* — if; not; is(QUESTION) ×49
+δόλος **dolos** *m.* — deceit
 
-εἶδος **eidos** *n.* — appearance ×1
+δόξα **doxa** *f.* — glory
 
-εἴδω **eidō** *v.* — see; understand; know ×53
+δοξάζω **doxazō** *v.* — to glorify
 
-εἴκοσι **eikosi** *adj.* — twenty ×1
+δουλεύω **douleuō** *v.* — be a slave
 
-εἰμί **eimi** *v.* — to be ×442
+δοῦλος **doulos** *noun* — slave
 
-εἶναι **einai** *v.* — to exist ×3
+δύναμαι **dunamai** *v.* — be able
 
-εἶπον **eipon** *v.* — to say; of age, in the prime of manhood; sonorous ×206
+δύο **duo** *adj.* — two
 
-εἰρήνη **eirēnē** *f.* — peace ×6
+δώδεκα **dōdeka** *adj.* — twelve
 
-εἰς **eis** *prep.* — toward ×187
+δωρεά **dōrea** *f.* — free gift
 
-εἷς **ehis** *adj.* — one ×40
+δωρεάν **dōrean** *adv.* — freely
 
-εἰσάγω **eisagō** *v.* — to bring in ×1
 
-εἰσέρχομαι **eiserchomai** *v.* — to enter ×15
+## Page 8 — Ε ε {#epsilon}
 
-εἶτα **eita** *adv.* — then ×3
+ἐάν **ean** *cond.* — if
 
-ἐκ **ek** *prep.* — out from ×165
+ἑαυτοῦ **heautou** — themself
 
-ἕκαστος **hekastos** *adj.* — each ×4
+ἕβδομος **hebdomos** *adj.* — seventh
 
-ἑκατόν **hekaton** *adj.* — hundred ×2
+Ἑβραϊστί **Hebraisti** *adv.* — Hebrew
 
-ἐκβάλλω **ekballō** *v.* — to expel ×6
+ἐγγύς **engus** *prep.* — near
 
-ἐκεῖ **ekei** *adv.* — there ×22
+ἐγείρω **egeirō** *v.* — to arise
 
-ἐκεῖθεν **ekeithen** *adv.* — from there ×2
+ἐγκαίνια **egkainia** *n.* — Feast|Festival of Dedication
 
-ἐκεῖνος **ekeinos** *pron.* — that ×70
+ἐγώ **egō** *pron.* — I/we
 
-ἐκκεντέω **ekkenteō** *v.* — to pierce ×1
+ἔθνος **ethnos** *n.* — Gentiles
 
-ἐκλέγω **eklegō** *v.* — to select ×5
+ἔθος **ethos** *n.* — custom
 
-ἐκμάσσω **ekmassō** *v.* — to wipe off ×3
+εἰ **ei** *cond.* — if
 
-ἐκνεύω **ekneuō** *v.* — to withdraw ×1
+εἶδος **eidos** *n.* — appearance
 
-ἐκπορεύω **ekporeuō** *v.* — to depart ×2
+εἴδω **eidō** *v.* — see
 
-ἐκτείνω **ekteinō** *v.* — to stretch out ×1
+εἴκοσι **eikosi** *adj.* — twenty
 
-ἕκτος **hektos** *adj.* — sixth ×2
+εἰμί **eimi** *v.* — to be
 
-ἐκχέω **ekcheō** *v.* — to pour out ×1
+εἶναι **einai** *v.* — to exist
 
-ἐλαιών **elaiōn** *m.* — Olivet ×1
+εἶπον **eipon** *v.* — to say
 
-ἐλάσσων **elassōn** *adj.* — lesser ×1
+εἰρήνη **eirēnē** *f.* — peace
 
-ἐλαττόω **elattoō** *v.* — to make less ×1
+εἰς **eis** *prep.* — toward
 
-ἐλαύνω **elaunō** *v.* — to drive ×1
+εἷς **ehis** *adj.* — one
 
-ἐλέγχω **elegchō** *v.* — to rebuke ×3
+εἰσάγω **eisagō** *v.* — to bring in
 
-ἐλεύθερος **eleutheros** *adj.* — free/freedom ×2
+εἰσέρχομαι **eiserchomai** *v.* — to enter
 
-ἐλευθερόω **eleutheroō** *v.* — to set free ×2
+εἶτα **eita** *adv.* — then
 
-ἕλκω **helkuō, helkō** *v.* — to draw/persuade ×5
+ἐκ **ek** *prep.* — out from
 
-Ἕλλην=Ἕλλην **Hellēn** *noun* — Greek, Gentile ×3
+ἕκαστος **hekastos** *adj.* — each
 
-Ἑλληνιστί=Ἑλληνικός **Hellēnisti** *adv.* — Greek ×1
+ἑκατόν **hekaton** *adj.* — hundred
 
-ἐλπίζω **elpizō** *v.* — to hope/expect ×1
+ἐκβάλλω **ekballō** *v.* — to expel
 
-ἐμβαίνω **embainō** *v.* — to climb ×3
+ἐκεῖ **ekei** *adv.* — there
 
-ἐμβλέπω **emblepō** *v.* — to look into/upon ×2
+ἐκεῖθεν **ekeithen** *adv.* — from there
 
-ἐμβριμάομαι **embrimaomai** *v.* — be agitated ×2
+ἐκεῖνος **ekeinos** *pron.* — that
 
-ἐμπίμπλημι **empimplēmi** *v.* — to fill up ×1
+ἐκκεντέω **ekkenteō** *v.* — to pierce
 
-ἐμπόριον **emporion** *n.* — marketplace/trade ×1
+ἐκλέγω **eklegō** *v.* — to select
 
-ἔμπροσθεν **emprosthen** *prep.* — before ×5
+ἐκμάσσω **ekmassō** *v.* — to wipe off
 
-ἐμφανίζω **emphanizō** *v.* — to show ×2
+ἐκνεύω **ekneuō** *v.* — to withdraw
 
-ἐμφυσάω **emphusaō** *v.* — to breathe into ×1
+ἐκπορεύω **ekporeuō** *v.* — to depart
 
-ἐν **en** *prep.* — in/on/among ×226
+ἐκτείνω **ekteinō** *v.* — to stretch out
 
-ἐνθάδε **enthade** *adv.* — in/to this place ×2
+ἕκτος **hektos** *adj.* — sixth
 
-ἐνιαυτός **eniautos** *m.* — year ×3
+ἐκχέω **ekcheō** *v.* — to pour out
 
-ἐνταφιάζω **entaphiazō** *v.* — to prepare burial ×1
+ἐλαιών **elaiōn** *m.* — Olivet
 
-ἐνταφιασμός **entaphiasmos** *m.* — burial ×1
+ἐλάσσων **elassōn** *adj.* — lesser
 
-ἐντέλλω **entellō** *v.* — to order ×4
+ἐλαττόω **elattoō** *v.* — to make less
 
-ἐντεῦθεν, ἔνθεν **enteuthen, enthen** *adv.* — from here ×6
+ἐλαύνω **elaunō** *v.* — to drive
 
-ἐντολή **entolē** *f.* — commandment ×10
+ἐλέγχω **elegchō** *v.* — to rebuke
 
-ἐντυλίσσω **entulissō** *v.* — to wrap up ×1
+ἐλεύθερος **eleutheros** *adj.* — free/freedom
 
-ἐνώπιον **enōpion** *prep.* — before ×1
+ἐλευθερόω **eleutheroō** *v.* — to set free
 
-ἕξ **hex** *adj.* — six ×3
+ἕλκω **helkuō, helkō** *v.* — to draw/persuade
 
-ἐξάγω **exagō** *v.* — to lead out ×1
+Ἕλλην=Ἕλλην **Hellēn** *noun* — Greek, Gentile
 
-ἐξέρχομαι **exerchomai** *v.* — to go out ×30
+Ἑλληνιστί=Ἑλληνικός **Hellēnisti** *adv.* — Greek
 
-ἔξεστι, ἐξόν **exesti, exon** *v.* — be permitted ×2
+ἐλπίζω **elpizō** *v.* — to hope/expect
 
-ἐξετάζω **exetazō** *v.* — to find out ×1
+ἐμβαίνω **embainō** *v.* — to climb
 
-ἐξηγέομαι **exēgeomai** *v.* — to tell ×1
+ἐμβλέπω **emblepō** *v.* — to look into/upon
 
-ἐξουσία **exousia** *f.* — authority ×8
+ἐμβριμάομαι **embrimaomai** *v.* — be agitated
 
-ἐξυπνίζω **exupnizō** *v.* — to awake ×1
+ἐμπίμπλημι **empimplēmi** *v.* — to fill up
 
-ἔξω **exō** *prep.* — out/outside(r) ×13
+ἐμπόριον **emporion** *n.* — marketplace/trade
 
-ἑορτή **heortē** *f.* — festival ×17
+ἔμπροσθεν **emprosthen** *prep.* — before
 
-ἐπαίρω **epairō** *v.* — to lift up ×4
+ἐμφανίζω **emphanizō** *v.* — to show
 
-ἐπάνω **epanō** *prep.* — above ×2
+ἐμφυσάω **emphusaō** *v.* — to breathe into
 
-ἐπάρατος **eparatos** *adj.* — accursed ×1
+ἐν **en** *prep.* — in/on/among
 
-ἐπαύριον **epaurion** *adv.* — the next day ×5
+ἐνθάδε **enthade** *adv.* — in/to this place
 
-ἐπαυτόφωρος, αὐτόφωρος **epautophōros, autophōros** *adj.* — in the very act ×1
+ἐνιαυτός **eniautos** *m.* — year
 
-ἐπεί **epei** *conj.* — since ×2
+ἐνταφιάζω **entaphiazō** *v.* — to prepare burial
 
-ἔπειτα **epeita** *adv.* — then ×1
+ἐνταφιασμός **entaphiasmos** *m.* — burial
 
-ἐπενδύτης **ependutēs** *m.* — coat ×1
+ἐντέλλω **entellō** *v.* — to order
 
-ἐπερωτάω **eperōtaō** *v.* — to question ×2
+ἐντεῦθεν, ἔνθεν **enteuthen, enthen** *adv.* — from here
 
-ἐπί **epi** *prep.* — upon/to/against ×36
+ἐντολή **entolē** *f.* — commandment
 
-ἐπιβάλλω **epiballō** *v.* — to put on/seize ×2
+ἐντυλίσσω **entulissō** *v.* — to wrap up
 
-ἐπίγειος **epigeios** *adj.* — earthly ×1
+ἐνώπιον **enōpion** *prep.* — before
 
-ἐπιθυμία **epithumia** *f.* — desire ×1
+ἕξ **hex** *adj.* — six
 
-ἐπίκειμαι **epikeimai** *v.* — to lay on ×2
+ἐξάγω **exagō** *v.* — to lead out
 
-ἐπιλέγω **epilegō** *v.* — to call/choose ×1
+ἐξέρχομαι **exerchomai** *v.* — to go out
 
-ἐπιμένω **epimenō** *v.* — to remain/keep on ×1
+ἔξεστι, ἐξόν **exesti, exon** *v.* — be permitted
 
-ἐπιστρέφω **epistrephō** *v.* — to turn ×1
+ἐξετάζω **exetazō** *v.* — to find out
 
-ἐπιτίθημι **epitithēmi** *v.* — to put/lay on; clamorous; eastwards ×2
+ἐξηγέομαι **exēgeomai** *v.* — to tell
 
-ἐπιτρέπω **epitrepō** *v.* — to permit; err; insatiable ×1
+ἐξουσία **exousia** *f.* — authority
 
-ἐπιχρίω **epichriō** *v.* — to rub on; righteous judge; forensic speeches ×2
+ἐξυπνίζω **exupnizō** *v.* — to awake
 
-ἐπουράνιος **epouranios** *adj.* — heavenly; to break the vertebrae; to hiss loudly ×1
+ἔξω **exō** *prep.* — out/outside(r)
 
-ἐργάζομαι **ergazomai** *v.* — to work; nephew; to change utterly ×8
+ἑορτή **heortē** *f.* — festival
 
-ἔργον **ergon** *n.* — work; fuller statement; to enroll ×27
+ἐπαίρω **epairō** *v.* — to lift up
 
-ἐρευνάω **ereunaō** *v.* — to look for/into; to minimise; to plant ×2
+ἐπάνω **epanō** *prep.* — above
 
-ἔρημος **erēmos** *adj.* — deserted; in weight; fusibility ×5
+ἐπάρατος **eparatos** *adj.* — accursed
 
-ἑρμηνεύω **hermēneuō** *v.* — to interpret; to feel compassion; hidden ×2
+ἐπαύριον **epaurion** *adv.* — the next day
 
-ἔρχομαι **erchomai** *v.* — to come/go; to desert; entreaty ×157
+ἐπαυτόφωρος, αὐτόφωρος **epautophōros, autophōros** *adj.* — in the very act
 
-ἐρῶ **erō** *v.* — to say; blight; to blush ×5
+ἐπεί **epei** *conj.* — since
 
-ἐρωτάω **erōtaō** *v.* — to ask; skilled in magic; cooking ×28
+ἔπειτα **epeita** *adv.* — then
 
-ἔσχατος **eschatos** *adj.* — last/least; wet with unguent; loathsomeness ×7
+ἐπενδύτης **ependutēs** *m.* — coat
 
-ἔσω **esō** *adv.* — in/inner/inwardly; newly created; beehive ×1
+ἐπερωτάω **eperōtaō** *v.* — to question
 
-ἕτερος **heteros** *adj.* — other; all-abominable; mixed of all sorts, all-blended ×1
+ἐπί **epi** *prep.* — upon/to/against
 
-ἔτι **eti** *adv.* — still; to cause to dine; appendage ×8
+ἐπιβάλλω **epiballō** *v.* — to put on/seize
 
-ἑτοιμάζω **hetoimazō** *v.* — to make ready; near; to preside ×2
+ἐπίγειος **epigeios** *adj.* — earthly
 
-ἕτοιμος **hetoimos** *adj.* — ready; outspoken; to deny ×1
+ἐπιθυμία **epithumia** *f.* — desire
 
-ἔτος **etos** *n.* — year; to inflame; detected ×3
+ἐπίκειμαι **epikeimai** *v.* — to lay on
 
-εὐθέως **eutheōs** *adv.* — immediately; by weight; sebaceous formation in the scrotum ×6
+ἐπιλέγω **epilegō** *v.* — to call/choose
 
-εὐθύνω **euthunō** *v.* — to straighten; girdle; useless ×1
+ἐπιμένω **epimenō** *v.* — to remain/keep on
 
-εὐλογέω **eulogeō** *v.* — to praise/bless; composer of hymns; to self-exalt ×1
+ἐπιστρέφω **epistrephō** *v.* — to turn
 
-εὑρίσκω **ehuriskō** *v.* — to find/meet; Samae; Saph ×19
+ἐπιτίθημι **epitithēmi** *v.* — to put/lay on
 
-εὐχαριστέω **eucharisteō** *v.* — to thank ×3
+ἐπιτρέπω **epitrepō** *v.* — to permit
 
-Ἐφραίμ **Ephraim** *noun* — Ephraim ×1
+ἐπιχρίω **epichriō** *v.* — to rub on
 
-ἔχω **echō** *v.* — to have/be ×87
+ἐπουράνιος **epouranios** *adj.* — heavenly
 
-ἕως **heōs** *prep.* — until ×10
+ἐργάζομαι **ergazomai** *v.* — to work
 
+ἔργον **ergon** *n.* — work
 
-## Page 752 — Ζ ζ {#zeta}
+ἐρευνάω **ereunaō** *v.* — to look for/into
 
-ζάω **zaō** *v.* — to live ×17
+ἔρημος **erēmos** *adj.* — deserted
 
-Ζεβεδαῖος **Zebedaios** *name* — Zebedee; [wife of Zebedee] ×1
+ἑρμηνεύω **hermēneuō** *v.* — to interpret
 
-ζῆλος **zēlos** *m.* — zeal ×1
+ἔρχομαι **erchomai** *v.* — to come/go
 
-ζητέω **zēteō** *v.* — to seek ×34
+ἐρῶ **erō** *v.* — to say
 
-ζήτησις **zētēsis** *f.* — controversy ×1
+ἐρωτάω **erōtaō** *v.* — to ask
 
-ζωή **zōē** *f.* — life ×36
+ἔσχατος **eschatos** *adj.* — last/least
 
-ζώννυμι **zōnnumi** *v.* — to dress ×2
+ἔσω **esō** *adv.* — in/inner/inwardly
 
-ζωοποιέω **zōopoieō** *v.* — to make alive ×3
+ἕτερος **heteros** *adj.* — other
 
+ἔτι **eti** *adv.* — still
 
-## Page 771 — Η η {#eta}
+ἑτοιμάζω **hetoimazō** *v.* — to make ready
 
-ἤ **ē** *conj.* — or ×12
+ἕτοιμος **hetoimos** *adj.* — ready
 
-ἤδη **ēdē** *adv.* — already ×16
+ἔτος **etos** *n.* — year
 
-ἥκω **hēkō** *v.* — to come/be present ×4
+εὐθέως **eutheōs** *adv.* — immediately
 
-Ἡλίας **Hēlias** *name* — Elijah ×2
+εὐθύνω **euthunō** *v.* — to straighten
 
-ἡλικία **hēlikia** *f.* — age/height ×2
+εὐλογέω **eulogeō** *v.* — to praise/bless
 
-ἧλος **hēlos** *m.* — nail ×2
+εὑρίσκω **ehuriskō** *v.* — to find/meet
 
-ἡμέρα **hēmera** *f.* — day ×31
+εὐχαριστέω **eucharisteō** *v.* — to thank
 
-ἤπερ **ēper** *conj.* — than ×1
+Ἐφραίμ **Ephraim** *noun* — Ephraim
 
-Ἡσαΐας **Hēsaias** *name* — Isaiah ×4
+ἔχω **echō** *v.* — to have/be
 
+ἕως **heōs** *prep.* — until
 
-## Page 792 — Θ θ {#theta}
 
-θάλασσα **thalassa** *f.* — sea ×9
+## Page 9 — Ζ ζ {#zeta}
 
-θάνατος **thanatos** *m.* — death ×8
+ζάω **zaō** *v.* — to live
 
-θαρσέω **tharseō** *v.* — take heart ×1
+Ζεβεδαῖος **Zebedaios** *name* — Zebedee
 
-θαυμάζω **thaumazō** *v.* — to marvel ×6
+ζῆλος **zēlos** *m.* — zeal
 
-θαυμαστός **thaumastos** *adj.* — marvellous ×1
+ζητέω **zēteō** *v.* — to seek
 
-θεάομαι **theaomai** *v.* — to look at ×6
+ζήτησις **zētēsis** *f.* — controversy
 
-θέλημα **thelēma** *n.* — will/desire ×11
+ζωή **zōē** *f.* — life
 
-θέλω **thelō** *v.* — to will/desire ×23
+ζώννυμι **zōnnumi** *v.* — to dress
 
-θεός **theos** *m.* — God ×83
+ζωοποιέω **zōopoieō** *v.* — to make alive
 
-θεοσεβής **theosebēs** *adj.* — godly ×1
 
-θεραπεύω **therapeuō** *v.* — to serve/heal ×1
+## Page 10 — Η η {#eta}
 
-θερίζω **therizō** *v.* — to reap ×4
+ἤ **ē** *conj.* — or
 
-θερισμός **therismos** *m.* — harvest ×2
+ἤδη **ēdē** *adv.* — already
 
-θερμαίνω **thermainō** *v.* — to warm ×3
+ἥκω **hēkō** *v.* — to come/be present
 
-θεωρέω **theōreō** *v.* — to see/experience ×24
+Ἡλίας **Hēlias** *name* — Elijah
 
-θήκη **thēkē** *f.* — sheath ×1
+ἡλικία **hēlikia** *f.* — age/height
 
-θλῖψις **thlipsis** *f.* — pressure ×2
+ἧλος **hēlos** *m.* — nail
 
-θνῄσκω **thnēskō** *v.* — to die/be dead ×2
+ἡμέρα **hēmera** *f.* — day
 
-θρέμμα **thremma** *n.* — livestock ×1
+ἤπερ **ēper** *conj.* — than
 
-θρηνέω **thrēneō** *v.* — to lament ×1
+Ἡσαΐας **Hēsaias** *name* — Isaiah
 
-θρίξ **thrix** *f.* — hair ×2
 
-θυγάτηρ **thugatēr** *f.* — daughter ×1
+## Page 11 — Θ θ {#theta}
 
-θύρα **thura** *f.* — door ×7
+θάλασσα **thalassa** *f.* — sea
 
-θυρωρός **thurōros** *m.* — gatekeeper ×3
+θάνατος **thanatos** *m.* — death
 
-θύω **thuō** *v.* — to sacrifice ×1
+θαρσέω **tharseō** *v.* — take heart
 
-Θωμᾶς **Thōmas** *name* — Thomas ×7
+θαυμάζω **thaumazō** *v.* — to marvel
 
+θαυμαστός **thaumastos** *adj.* — marvellous
 
-## Page 847 — Ι ι {#iota}
+θεάομαι **theaomai** *v.* — to look at
 
-Ἰακώβ **Iakōb** *name* — Jacob ×3
+θέλημα **thelēma** *n.* — will/desire
 
-ἰάομαι **iaomai** *v.* — to heal ×3
+θέλω **thelō** *v.* — to will/desire
 
-ἴδε **ide** *interj.* — look! ×15
+θεός **theos** *m.* — God
 
-ἴδιος **idios** *adj.* — one's own/private ×15
+θεοσεβής **theosebēs** *adj.* — godly
 
-ἰδού **idou** *interj.* — look! ×4
+θεραπεύω **therapeuō** *v.* — to serve/heal
 
-ἱερεύς **hiereus** *m.* — priest ×1
+θερίζω **therizō** *v.* — to reap
 
-ἱερόν **hieros** *n.* — temple ×11
+θερισμός **therismos** *m.* — harvest
 
-Ἱεροσόλυμα **Hierosoluma** *noun* — Jerusalem ×12
+θερμαίνω **thermainō** *v.* — to warm
 
-Ἱεροσολυμίτης **Hierosolumitēs** *m.* — Jerusalem ×1
+θεωρέω **theōreō** *v.* — to see/experience
 
-Ἰησοῦς **Iēsous** *name* — Jesus; Joshua ×244
+θήκη **thēkē** *f.* — sheath
 
-ἱμάς **himas** *m.* — leather strap ×1
+θλῖψις **thlipsis** *f.* — pressure
 
-ἱμάτιον **himation** *n.* — clothing ×6
+θνῄσκω **thnēskō** *v.* — to die/be dead
 
-ἱματισμός **himatismos** *m.* — clothing ×1
+θρέμμα **thremma** *n.* — livestock
 
-ἵνα **hina** *conj.* — in order that/to ×145
+θρηνέω **thrēneō** *v.* — to lament
 
-Ἰορδάνης **Iordanēs** *m.* — Jordan ×3
+θρίξ **thrix** *f.* — hair
 
-Ἰουδαία **Ioudaia** *f.* — Judea ×6
+θυγάτηρ **thugatēr** *f.* — daughter
 
-Ἰουδαῖος **Ioudaios** *name* — Jew ×71
+θύρα **thura** *f.* — door
 
-Ἰούδας **Ioudas** *name* — Judas; Jude; Judah ×9
+θυρωρός **thurōros** *m.* — gatekeeper
 
-Ἰσκαριώτης, Ἰσκαριώθ **Iskariōtēs, Iskariōth** *name* — Iscariot ×5
+θύω **thuō** *v.* — to sacrifice
 
-ἴσος **isos** *adj.* — equal ×1
+Θωμᾶς **Thōmas** *name* — Thomas
 
-Ἰσραήλ **Israēl** *noun* — Israel ×4
 
-Ἰσραηλίτης **Israēlitēs** *name* — Israelite ×1
+## Page 12 — Ι ι {#iota}
 
-ἵστημι **histēmi** *v.* — to stand ×20
+Ἰακώβ **Iakōb** *name* — Jacob
 
-ἰσχύω **ischuō** *v.* — be strong ×1
+ἰάομαι **iaomai** *v.* — to heal
 
-ἰχθύς **ichthus** *m.* — fish ×3
+ἴδε **ide** *interj.* — look!
 
-Ἰωάννης **Iōannēs** *name* — John ×23
+ἴδιος **idios** *adj.* — one's own/private
 
-Ἰωσήφ **Iōsēph** *name* — Joseph ×4
+ἰδού **idou** *interj.* — look!
 
+ἱερεύς **hiereus** *m.* — priest
 
-## Page 904 — Κ κ {#kappa}
+ἱερόν **hieros** *n.* — temple
 
-καθαίρω **kathairō** *v.* — to prune ×1
+Ἱεροσόλυμα **Hierosoluma** *noun* — Jerusalem
 
-καθαρισμός **katharismos** *m.* — cleansing ×2
+Ἱεροσολυμίτης **Hierosolumitēs** *m.* — Jerusalem
 
-καθαρός **katharos** *adj.* — clean ×4
+Ἰησοῦς **Iēsous** *name* — Jesus
 
-καθέζομαι **kathezomai** *v.* — to sit down ×3
+ἱμάς **himas** *m.* — leather strap
 
-κάθημαι **kathēmai** *v.* — to sit ×4
+ἱμάτιον **himation** *n.* — clothing
 
-καθίζω **kathizō** *v.* — to seat ×3
+ἱματισμός **himatismos** *m.* — clothing
 
-καθώς **kathōs** *conj.* — as/just as ×31
+ἵνα **hina** *conj.* — in order that/to
 
-καί **kai** *conj.* — and ×839
+Ἰορδάνης **Iordanēs** *m.* — Jordan
 
-Καϊάφας **Kaiaphas** *name* — Caiaphas; [wife of Ciaphas] ×5
+Ἰουδαία **Ioudaia** *f.* — Judea
 
-καινός **kainos** *adj.* — new ×2
+Ἰουδαῖος **Ioudaios** *name* — Jew
 
-καιρός **kairos** *m.* — time/right time ×3
+Ἰούδας **Ioudas** *name* — Judas
 
-Καῖσαρ **Kaisar** *noun* — Caesar ×3
+Ἰσκαριώτης, Ἰσκαριώθ **Iskariōtēs, Iskariōth** *name* — Iscariot
 
-καίω **kaiō** *v.* — to kindle/burn ×2
+ἴσος **isos** *adj.* — equal
 
-κακός **kakos** *adj.* — evil ×2
+Ἰσραήλ **Israēl** *noun* — Israel
 
-κακῶς **kakōs** *adv.* — badly ×1
+Ἰσραηλίτης **Israēlitēs** *name* — Israelite
 
-καλέω **kaleō** *v.* — call; name ×2
+ἵστημι **histēmi** *v.* — to stand
 
-καλός **kalos** *adj.* — good; Fair (Havens) ×7
+ἰσχύω **ischuō** *v.* — be strong
 
-καλῶς **kalōs** *adv.* — well ×4
+ἰχθύς **ichthus** *m.* — fish
 
-Κανᾶ **Kana** *noun* — Cana ×4
+Ἰωάννης **Iōannēs** *name* — John
 
-Καπερναούμ **Kapernaoum** *noun* — Capernaum ×5
+Ἰωσήφ **Iōsēph** *name* — Joseph
 
-καρδία **kardia** *f.* — heart ×7
 
-καρπός **karpos** *m.* — fruit ×10
+## Page 13 — Κ κ {#kappa}
 
-κατά **kata** *prep.* — according to ×10
+καθαίρω **kathairō** *v.* — to prune
 
-καταβαίνω **katabainō** *v.* — to come/go down ×17
+καθαρισμός **katharismos** *m.* — cleansing
 
-καταβολή **katabolē** *f.* — beginning ×1
+καθαρός **katharos** *adj.* — clean
 
-κατάγνυμι **katagnumi** *v.* — to break ×3
+καθέζομαι **kathezomai** *v.* — to sit down
 
-καταγράφω **katagraphō** *v.* — to delineate ×1
+κάθημαι **kathēmai** *v.* — to sit
 
-κατάκειμαι **katakeimai** *v.* — to recline ×2
+καθίζω **kathizō** *v.* — to seat
 
-κατακρίνω **katakrinō** *v.* — to condemn ×2
+καθώς **kathōs** *conj.* — as/just as
 
-καταλαμβάνω **katalambanō** *v.* — to grasp ×4
+καί **kai** *conj.* — and
 
-καταλείπω **kataleipō** *v.* — to leave behind ×1
+Καϊάφας **Kaiaphas** *name* — Caiaphas
 
-κατεσθίω **katesthiō** *v.* — to devour ×1
+καινός **kainos** *adj.* — new
 
-κατηγορέω **katēgoreō** *v.* — to accuse ×3
+καιρός **kairos** *m.* — time/right time
 
-κατηγορία **katēgoria** *f.* — accusation ×1
+Καῖσαρ **Kaisar** *noun* — Caesar
 
-κάτω **katō** *prep.* — under ×3
+καίω **kaiō** *v.* — to kindle/burn
 
-κέδρος **kedros** *noun* — Kidron ×1
+κακός **kakos** *adj.* — evil
 
-κεῖμαι **keimai** *v.* — to lay/be appointed ×7
+κακῶς **kakōs** *adv.* — badly
 
-κειρία **keiria** *f.* — graveclothes ×1
+καλέω **kaleō** *v.* — call
 
-κέρμα **kerma** *n.* — coin ×1
+καλός **kalos** *adj.* — good
 
-κερματιστής **kermatistēs** *m.* — moneychanger ×1
+καλῶς **kalōs** *adv.* — well
 
-κεφαλή **kephalē** *f.* — head ×5
+Κανᾶ **Kana** *noun* — Cana
 
-κῆπος **kēpos** *m.* — garden ×4
+Καπερναούμ **Kapernaoum** *noun* — Capernaum
 
-κηπουρός **kēpouros** *m.* — gardener ×1
+καρδία **kardia** *f.* — heart
 
-Κηφᾶς **Kēphas** *name* — Cephas ×1
+καρπός **karpos** *m.* — fruit
 
-κλαίω **klaiō** *v.* — to weep ×8
+κατά **kata** *prep.* — according to
 
-κλάσμα **klasma** *n.* — fragment ×2
+καταβαίνω **katabainō** *v.* — to come/go down
 
-κλείω **kleiō** *v.* — to shut ×2
+καταβολή **katabolē** *f.* — beginning
 
-κλέπτης **kleptēs** *m.* — thief ×4
+κατάγνυμι **katagnumi** *v.* — to break
 
-κλέπτω **kleptō** *v.* — to steal ×1
+καταγράφω **katagraphō** *v.* — to delineate
 
-κλῆμα **klēma** *n.* — branch ×4
+κατάκειμαι **katakeimai** *v.* — to recline
 
-κλῆρος **klēros** *m.* — lot ×1
+κατακρίνω **katakrinō** *v.* — to condemn
 
-κλίνω **klinō** *v.* — to bow/lay down ×1
+καταλαμβάνω **katalambanō** *v.* — to grasp
 
-Κλωπᾶς **Klōpas** *name* — Clopas ×1
+καταλείπω **kataleipō** *v.* — to leave behind
 
-κοιλία **koilia** *f.* — belly/womb/stomach ×2
+κατεσθίω **katesthiō** *v.* — to devour
 
-κοιμάω **koimaō** *v.* — to sleep ×2
+κατηγορέω **katēgoreō** *v.* — to accuse
 
-κοίμησις **koimēsis** *f.* — sleep ×1
+κατηγορία **katēgoria** *f.* — accusation
 
-κόκκος **kokkos** *m.* — seed ×1
+κάτω **katō** *prep.* — under
 
-κολλυβιστής **kollubistēs** *m.* — moneychanger ×1
+κέδρος **kedros** *noun* — Kidron
 
-κόλπος **kolpos** *m.* — bosom ×2
+κεῖμαι **keimai** *v.* — to lay/be appointed
 
-κολυμβήθρα **kolumbēthra** *f.* — pool ×3
+κειρία **keiria** *f.* — graveclothes
 
-κομψότερον **kompsoteron** *adj.* — better ×1
+κέρμα **kerma** *n.* — coin
 
-κοπιάω **kopiaō** *v.* — to labor ×3
+κερματιστής **kermatistēs** *m.* — moneychanger
 
-κόπος **kopos** *m.* — labor ×1
+κεφαλή **kephalē** *f.* — head
 
-κόσμος **kosmos** *m.* — world ×78
+κῆπος **kēpos** *m.* — garden
 
-κόφινος **kophinos** *m.* — basket ×1
+κηπουρός **kēpouros** *m.* — gardener
 
-κράββατος **krabbatos** *m.* — bed ×4
+Κηφᾶς **Kēphas** *name* — Cephas
 
-κράζω **krazō** *v.* — to cry ×4
+κλαίω **klaiō** *v.* — to weep
 
-κρανίον **kranion** *n.* — Skull ×1
+κλάσμα **klasma** *n.* — fragment
 
-κρατέω **krateō** *v.* — to grasp/seize ×2
+κλείω **kleiō** *v.* — to shut
 
-κραυγάζω **kraugazō** *v.* — to shout ×6
+κλέπτης **kleptēs** *m.* — thief
 
-κρίθινος **krithinos** *adj.* — barley ×2
+κλέπτω **kleptō** *v.* — to steal
 
-κρίμα **krima** *n.* — judgment ×1
+κλῆμα **klēma** *n.* — branch
 
-κρίνω **krinō** *v.* — to judge ×19
+κλῆρος **klēros** *m.* — lot
 
-κρίσις **krisis** *f.* — judgment ×11
+κλίνω **klinō** *v.* — to bow/lay down
 
-κρυπτός **kruptos** *adj.* — hidden ×3
+Κλωπᾶς **Klōpas** *name* — Clopas
 
-κρύπτω **kruptō** *v.* — to hide ×3
+κοιλία **koilia** *f.* — belly/womb/stomach
 
-κυκλόω **kukloō** *v.* — to surround ×1
+κοιμάω **koimaō** *v.* — to sleep
 
-κύπτω **kuptō** *v.* — to stoop/bend down ×1
+κοίμησις **koimēsis** *f.* — sleep
 
-κύριος **kurios** *m.* — God; master ×52
+κόκκος **kokkos** *m.* — seed
 
-κώμη **kōmē** *f.* — village ×3
+κολλυβιστής **kollubistēs** *m.* — moneychanger
 
+κόλπος **kolpos** *m.* — bosom
 
-## Page 1067 — Λ λ {#lambda}
+κολυμβήθρα **kolumbēthra** *f.* — pool
 
-λαγχάνω **lagchanō** *v.* — to choose by lot ×1
+κομψότερον **kompsoteron** *adj.* — better
 
-Λάζαρος **Lazaros** *name* — Lazarus; [father of Lazarus] ×11
+κοπιάω **kopiaō** *v.* — to labor
 
-λάθρα **lathra** *adv.* — quietly ×1
+κόπος **kopos** *m.* — labor
 
-λαλέω **laleō** *v.* — to speak ×59
+κόσμος **kosmos** *m.* — world
 
-λαλιά **lalia** *f.* — speech ×2
+κόφινος **kophinos** *m.* — basket
 
-λαμβάνω **lambanō** *v.* — to take ×46
+κράββατος **krabbatos** *m.* — bed
 
-λαμπάς **lampas** *f.* — window ×1
+κράζω **krazō** *v.* — to cry
 
-λαός **laos** *m.* — a people ×3
+κρανίον **kranion** *n.* — Skull
 
-λατρεία **latreia** *f.* — ministry ×1
+κρατέω **krateō** *v.* — to grasp/seize
 
-λέγω **legō** *v.* — to say; call ×269
+κραυγάζω **kraugazō** *v.* — to shout
 
-λέντιον **lention** *n.* — towel ×2
+κρίθινος **krithinos** *adj.* — barley
 
-Λευΐτης **Leuitēs** *name* — Levite ×1
+κρίμα **krima** *n.* — judgment
 
-λευκός **leukos** *adj.* — white ×2
+κρίνω **krinō** *v.* — to judge
 
-λῃστής **lēstēs** *m.* — robber/rebel ×3
+κρίσις **krisis** *f.* — judgment
 
-λιθάζω **lithazō** *v.* — to stone ×5
+κρυπτός **kruptos** *adj.* — hidden
 
-λίθινος **lithinos** *adj.* — stone ×1
+κρύπτω **kruptō** *v.* — to hide
 
-λίθος **lithos** *m.* — stone ×7
+κυκλόω **kukloō** *v.* — to surround
 
-λιθόστρωτος **lithostrōtos** *adj.* — The Stone Pavement ×1
+κύπτω **kuptō** *v.* — to stoop/bend down
 
-λίτρα **litra** *f.* — pound ×2
+κύριος **kurios** *m.* — God
 
-λογίζομαι **logizomai** *v.* — to count ×1
+κώμη **kōmē** *f.* — village
 
-λόγος **logos** *m.* — word ×40
 
-λόγχη **logchē** *f.* — spear ×1
+## Page 14 — Λ λ {#lambda}
 
-λοιδορέω **loidoreō** *v.* — to revile ×1
+λαγχάνω **lagchanō** *v.* — to choose by lot
 
-λούω **louō** *v.* — to wash ×1
+Λάζαρος **Lazaros** *name* — Lazarus
 
-λύκος **lukos** *m.* — wolf ×2
+λάθρα **lathra** *adv.* — quietly
 
-λυπέω **lupeō** *v.* — to grieve ×2
+λαλέω **laleō** *v.* — to speak
 
-λύπη **lupē** *f.* — grief ×4
+λαλιά **lalia** *f.* — speech
 
-λύχνος **luchnos** *m.* — lamp ×1
+λαμβάνω **lambanō** *v.* — to take
 
-λύω **luō** *v.* — to loose ×6
+λαμπάς **lampas** *f.* — window
 
+λαός **laos** *m.* — a people
 
-## Page 1128 — Μ μ {#mu}
+λατρεία **latreia** *f.* — ministry
 
-Μαγδαληνή **Magdalēnē** *f.* — Magdalene ×3
+λέγω **legō** *v.* — to say
 
-μαθητής **mathētēs** *m.* — disciple ×78
+λέντιον **lention** *n.* — towel
 
-μαίνομαι **mainomai** *v.* — to rave ×1
+Λευΐτης **Leuitēs** *name* — Levite
 
-μακάριος **makarios** *adj.* — blessed ×2
+λευκός **leukos** *adj.* — white
 
-μακράν **makran** *adv.* — far ×1
+λῃστής **lēstēs** *m.* — robber/rebel
 
-μᾶλλον **mallon** *adv.* — more; rather ×4
+λιθάζω **lithazō** *v.* — to stone
 
-Μάλχος **Malchos** *name* — Malchus ×1
+λίθινος **lithinos** *adj.* — stone
 
-μανθάνω **manthanō** *v.* — to learn ×2
+λίθος **lithos** *m.* — stone
 
-μάννα **manna** *noun* — manna ×2
+λιθόστρωτος **lithostrōtos** *adj.* — The Stone Pavement
 
-Μάρθα **Martha** *name* — Martha ×9
+λίτρα **litra** *f.* — pound
 
-Μαρία **Maria** *name* — Mary ×15
+λογίζομαι **logizomai** *v.* — to count
 
-μαρτυρέω **martureō** *v.* — to testify ×33
+λόγος **logos** *m.* — word
 
-μαρτυρία **marturia** *f.* — testimony ×14
+λόγχη **logchē** *f.* — spear
 
-μαστιγόω **mastigoō** *v.* — to whip ×1
+λοιδορέω **loidoreō** *v.* — to revile
 
-μάχαιρα **machaira** *f.* — sword ×2
+λούω **louō** *v.* — to wash
 
-μάχομαι **machomai** *v.* — to quarrel ×1
+λύκος **lukos** *m.* — wolf
 
-μέ **me** *pron.* — me ×290
+λυπέω **lupeō** *v.* — to grieve
 
-μέγας **megas** *adj.* — great ×18
+λύπη **lupē** *f.* — grief
 
-μεθερμηνεύω **methermēneuō** *v.* — to mean ×2
+λύχνος **luchnos** *m.* — lamp
 
-μεθύω **methuō** *v.* — to get drunk ×1
+λύω **luō** *v.* — to loose
 
-μέλλω **mellō** *v.* — to ensue ×12
 
-μέλω **melō** *v.* — to concern ×2
+## Page 15 — Μ μ {#mu}
 
-μέν **men** *part.* — on the other hand ×8
+Μαγδαληνή **Magdalēnē** *f.* — Magdalene
 
-μέντοι **mentoi** *conj.* — yet ×5
+μαθητής **mathētēs** *m.* — disciple
 
-μένω **menō** *v.* — to stay ×40
+μαίνομαι **mainomai** *v.* — to rave
 
-μέρος **meros** *n.* — part ×4
+μακάριος **makarios** *adj.* — blessed
 
-μέσος **mesos** *adj.* — midst ×6
+μακράν **makran** *adv.* — far
 
-μεσόω **mesoō** *v.* — be in the middle ×1
+μᾶλλον **mallon** *adv.* — more
 
-Μεσσίας **Messias** *noun* — Messiah ×2
+Μάλχος **Malchos** *name* — Malchus
 
-μεστός **mestos** *adj.* — full ×3
+μανθάνω **manthanō** *v.* — to learn
 
-μετά **meta** *prep.* — with/after ×55
+μάννα **manna** *noun* — manna
 
-μεταβαίνω **metabainō** *v.* — to depart ×3
+Μάρθα **Martha** *name* — Martha
 
-μεταξύ **metaxu** *prep.* — between/meanwhile ×1
+Μαρία **Maria** *name* — Mary
 
-μετρητής **metrētēs** *m.* — measure ×1
+μαρτυρέω **martureō** *v.* — to testify
 
-μέτρον **metron** *n.* — measure ×1
+μαρτυρία **marturia** *f.* — testimony
 
-μή **mē** *part.* — not ×118
+μαστιγόω **mastigoō** *v.* — to whip
 
-μηδέ **mēde** *part.* — nor ×2
+μάχαιρα **machaira** *f.* — sword
 
-μηκέτι **mēketi** *adv.* — never again ×2
+μάχομαι **machomai** *v.* — to quarrel
 
-μηνύω **mēnuō** *v.* — to disclose ×1
+μέ **me** *pron.* — me
 
-μήτηρ **mētēr** *f.* — mother ×11
+μέγας **megas** *adj.* — great
 
-μήτι **mēti** *part.* — surely not ×3
+μεθερμηνεύω **methermēneuō** *v.* — to mean
 
-μιαίνω **miainō** *v.* — to stain ×1
+μεθύω **methuō** *v.* — to get drunk
 
-μίγμα **migma** *n.* — mixture ×1
+μέλλω **mellō** *v.* — to ensue
 
-μικρός **mikros** *adj.* — small ×11
+μέλω **melō** *v.* — to concern
 
-μιμνήσκω **mimnēskō** *v.* — to remember ×3
+μέν **men** *part.* — on the other hand
 
-μισέω **miseō** *v.* — to hate ×12
+μέντοι **mentoi** *conj.* — yet
 
-μισθός **misthos** *m.* — wage ×1
+μένω **menō** *v.* — to stay
 
-μισθωτός **misthōtos** *m.* — hired worker ×2
+μέρος **meros** *n.* — part
 
-μνημεῖον **mnēmeion** *n.* — grave ×16
+μέσος **mesos** *adj.* — midst
 
-μνημονεύω **mnēmoneuō** *v.* — to remember ×3
+μεσόω **mesoō** *v.* — be in the middle
 
-μοιχεία **moicheia** *f.* — adultery ×1
+Μεσσίας **Messias** *noun* — Messiah
 
-μοιχεύω **moicheuō** *v.* — to commit adultery ×1
+μεστός **mestos** *adj.* — full
 
-μονή **monē** *f.* — abode ×2
+μετά **meta** *prep.* — with/after
 
-μονογενής **monogenēs** *adj.* — unique ×4
+μεταβαίνω **metabainō** *v.* — to depart
 
-μόνος **monos** *adj.* — alone ×15
+μεταξύ **metaxu** *prep.* — between/meanwhile
 
-μύρον **muron** *n.* — ointment ×4
+μετρητής **metrētēs** *m.* — measure
 
-Μωϋσῆς, Μωσῆς **Mōusēs, Mōsēs** *name* — Moses ×13
+μέτρον **metron** *n.* — measure
 
+μή **mē** *part.* — not
 
-## Page 1245 — Ν ν {#nu}
+μηδέ **mēde** *part.* — nor
 
-Ναζαρέθ, Ναζαρά **Nazareth, Nazara** *noun* — Nazareth ×2
+μηκέτι **mēketi** *adv.* — never again
 
-Ναζωραῖος **Nazōraios** *noun* — Nazareth ×3
+μηνύω **mēnuō** *v.* — to disclose
 
-Ναθαναήλ **Nathanaēl** *name* — Nathanael ×6
+μήτηρ **mētēr** *f.* — mother
 
-ναί **nai** *part.* — yes ×3
+μήτι **mēti** *part.* — surely not
 
-ναός **naos** *m.* — temple ×3
+μιαίνω **miainō** *v.* — to stain
 
-νάρδος **nardos** *f.* — nard ×1
+μίγμα **migma** *n.* — mixture
 
-νεκρός **nekros** *adj.* — dead ×8
+μικρός **mikros** *adj.* — small
 
-νέος **neos** *adj.* — new ×1
+μιμνήσκω **mimnēskō** *v.* — to remember
 
-νεύω **neuō** *v.* — to motion ×1
+μισέω **miseō** *v.* — to hate
 
-νικάω **nikaō** *v.* — to conquer ×1
+μισθός **misthos** *m.* — wage
 
-Νικόδημος **Nikodēmos** *name* — Nicodemus ×5
+μισθωτός **misthōtos** *m.* — hired worker
 
-νιπτήρ **niptēr** *m.* — wash basin ×1
+μνημεῖον **mnēmeion** *n.* — grave
 
-νίπτω **niptō** *v.* — to wash ×13
+μνημονεύω **mnēmoneuō** *v.* — to remember
 
-νοέω **noeō** *v.* — to understand ×1
+μοιχεία **moicheia** *f.* — adultery
 
-νομή **nomē** *f.* — pasture ×1
+μοιχεύω **moicheuō** *v.* — to commit adultery
 
-νόμος **nomos** *m.* — law ×15
+μονή **monē** *f.* — abode
 
-νύμφη **numphē** *f.* — bride ×1
+μονογενής **monogenēs** *adj.* — unique
 
-νυμφίος **numphios** *m.* — bridegroom ×4
+μόνος **monos** *adj.* — alone
 
-νῦν **nun** *adv.* — now ×29
+μύρον **muron** *n.* — ointment
 
-νύξ **nux** *f.* — night ×6
+Μωϋσῆς, Μωσῆς **Mōusēs, Mōsēs** *name* — Moses
 
-νύσσω **nussō** *v.* — to pierce ×1
 
+## Page 16 — Ν ν {#nu}
 
-## Page 1290 — Ξ ξ {#xi}
+Ναζαρέθ, Ναζαρά **Nazareth, Nazara** *noun* — Nazareth
 
-ξηραίνω **xērainō** *v.* — to dry ×1
+Ναζωραῖος **Nazōraios** *noun* — Nazareth
 
-ξηρός **xēros** *adj.* — dried up/withered ×1
+Ναθαναήλ **Nathanaēl** *name* — Nathanael
 
+ναί **nai** *part.* — yes
 
-## Page 1297 — Ο ο {#omicron}
+ναός **naos** *m.* — temple
 
-ὁ **ho** *art.* — the/this/who ×2187
+νάρδος **nardos** *f.* — nard
 
-ὁδηγέω **hodēgeō** *v.* — to guide ×1
+νεκρός **nekros** *adj.* — dead
 
-ὁδοιπορία **hodoiporia** *f.* — journey ×1
+νέος **neos** *adj.* — new
 
-ὁδός **hodos** *f.* — road ×4
+νεύω **neuō** *v.* — to motion
 
-ὄζω **ozō** *v.* — to stink ×1
+νικάω **nikaō** *v.* — to conquer
 
-ὀθόνιον **othonion** *n.* — bandages ×4
+Νικόδημος **Nikodēmos** *name* — Nicodemus
 
-οἶδα **oida** *v.* — to know ×68
+νιπτήρ **niptēr** *m.* — wash basin
 
-οἰκία **oikia** *f.* — home; household ×5
+νίπτω **niptō** *v.* — to wash
 
-οἰκοδομέω **oikodomeō** *v.* — to build ×1
+νοέω **noeō** *v.* — to understand
 
-οἶκος **oikos** *m.* — home; household ×5
+νομή **nomē** *f.* — pasture
 
-οἶνος **oinos** *m.* — wine ×6
+νόμος **nomos** *m.* — law
 
-οἴομαι **oiomai** *v.* — to suppose ×1
+νύμφη **numphē** *f.* — bride
 
-ὀκτώ **oktō** *adj.* — eight ×2
+νυμφίος **numphios** *m.* — bridegroom
 
-ὅλος **holos** *adj.* — all ×6
+νῦν **nun** *adv.* — now
 
-ὅμοιος **homoios** *adj.* — like ×2
+νύξ **nux** *f.* — night
 
-ὁμοίως **homoiōs** *adv.* — similarly ×3
+νύσσω **nussō** *v.* — to pierce
 
-ὁμολογέω **homologeō** *v.* — to confess/profess ×4
 
-ὁμοῦ **homou** *adv.* — together ×3
+## Page 17 — Ξ ξ {#xi}
 
-ὅμως **homōs** *conj.* — just as ×1
+ξηραίνω **xērainō** *v.* — to dry
 
-ὀνάριον **onarion** *n.* — young donkey ×1
+ξηρός **xēros** *adj.* — dried up/withered
 
-ὄνομα **onoma** *n.* — name ×25
 
-ὄνος **onos** *m.* — donkey ×1
+## Page 18 — Ο ο {#omicron}
 
-ὄντως **ontōs** *adv.* — really ×1
+ὁ **ho** *art.* — the/this/who
 
-ὄξος **oxos** *n.* — vinegar ×3
+ὁδηγέω **hodēgeō** *v.* — to guide
 
-ὀπίσω **opisō** *adv.* — after ×7
+ὁδοιπορία **hodoiporia** *f.* — journey
 
-ὅπλον **hoplon** *n.* — weapon ×1
+ὁδός **hodos** *f.* — road
 
-ὅπου **hopou** *conj.* — where(-ever) ×30
+ὄζω **ozō** *v.* — to stink
 
-ὀπτάνομαι **optanomai** *v.* — to appear ×7
+ὀθόνιον **othonion** *n.* — bandages
 
-ὅπως **hopōs** *conj.* — that ×1
+οἶδα **oida** *v.* — to know
 
-ὁράω **horaō** *v.* — see; appear ×23
+οἰκία **oikia** *f.* — home
 
-ὀργή **orgē** *f.* — wrath ×1
+οἰκοδομέω **oikodomeō** *v.* — to build
 
-ὄρθρος **orthros** *m.* — dawn ×1
+οἶκος **oikos** *m.* — home
 
-ὄρος **oros** *n.* — mountain ×5
+οἶνος **oinos** *m.* — wine
 
-ὀρφανός **orphanos** *adj.* — orphan ×1
+οἴομαι **oiomai** *v.* — to suppose
 
-ὅς **hos, hē** *pron.* — which ×158
+ὀκτώ **oktō** *adj.* — eight
 
-ὀσμή **osmē** *f.* — aroma ×1
+ὅλος **holos** *adj.* — all
 
-ὅσος **hosos** — just as/how much ×10
+ὅμοιος **homoios** *adj.* — like
 
-ὀστέον **osteon** *n.* — bone ×1
+ὁμοίως **homoiōs** *adv.* — similarly
 
-ὅστις **hostis, hētis** *pron.* — who/which ×3
+ὁμολογέω **homologeō** *v.* — to confess/profess
 
-ὅταν **hotan** *conj.* — when(-ever) ×17
+ὁμοῦ **homou** *adv.* — together
 
-ὅτε **hote** *conj.* — when ×21
+ὅμως **homōs** *conj.* — just as
 
-ὅτι **hoti** *conj.* — that ×271
+ὀνάριον **onarion** *n.* — young donkey
 
-οὐ **ou** *part.* — no ×294
+ὄνομα **onoma** *n.* — name
 
-οὐδέ **oude** *conj.* — nor ×17
+ὄνος **onos** *m.* — donkey
 
-οὐδείς **oudeis** *adj.* — none ×53
+ὄντως **ontōs** *adv.* — really
 
-οὐδέποτε **oudepote** *adv.* — never ×1
+ὄξος **oxos** *n.* — vinegar
 
-οὐδέπω **oudepō** *adv.* — not yet ×3
+ὀπίσω **opisō** *adv.* — after
 
-οὐκοῦν **oukoun** *part.* — so ×1
+ὅπλον **hoplon** *n.* — weapon
 
-οὖν **oun** *conj.* — therefore/then ×200
+ὅπου **hopou** *conj.* — where(-ever)
 
-οὔπω **oupō** *adv.* — not yet ×11
+ὀπτάνομαι **optanomai** *v.* — to appear
 
-οὐρανός **ouranos** *m.* — heaven ×18
+ὅπως **hopōs** *conj.* — that
 
-οὔτε **oute** *part.* — neither ×9
+ὁράω **horaō** *v.* — see
 
-οὗτος **ohutos** *pron.* — this/he/she/it ×239
+ὀργή **orgē** *f.* — wrath
 
-οὕτως **ohutō, ohutōs** *adv.* — thus(-ly) ×14
+ὄρθρος **orthros** *m.* — dawn
 
-οὐχί **ouchi** *part.* — not! ×5
+ὄρος **oros** *n.* — mountain
 
-ὀφείλω **opheilō** *v.* — to owe ×2
+ὀρφανός **orphanos** *adj.* — orphan
 
-ὀφθαλμός **ophthalmos** *m.* — eye ×18
+ὅς **hos, hē** *pron.* — which
 
-ὄφις **ophis** *m.* — snake ×1
+ὀσμή **osmē** *f.* — aroma
 
-ὄχλος **ochlos** *m.* — crowd ×20
+ὅσος **hosos** — just as/how much
 
-ὀψάριον **opsarion** *n.* — fish ×5
+ὀστέον **osteon** *n.* — bone
 
-ὀψία **opsia** *adj.* — evening ×2
+ὅστις **hostis, hētis** *pron.* — who/which
 
-ὄψις **opsis** *f.* — face ×2
+ὅταν **hotan** *conj.* — when(-ever)
 
+ὅτε **hote** *conj.* — when
 
-## Page 1424 — Π π {#pi}
+ὅτι **hoti** *conj.* — that
 
-παιδάριον **paidarion** *n.* — boy ×1
+οὐ **ou** *part.* — no
 
-παιδίον **paidion** *n.* — child ×3
+οὐδέ **oude** *conj.* — nor
 
-παιδίσκη **paidiskē** *f.* — maidservant ×1
+οὐδείς **oudeis** *adj.* — none
 
-παῖς **pais** *m.* — child ×1
+οὐδέποτε **oudepote** *adv.* — never
 
-παίω **paiō** *v.* — to strike ×1
+οὐδέπω **oudepō** *adv.* — not yet
 
-πάλιν **palin** *adv.* — again ×45
+οὐκοῦν **oukoun** *part.* — so
 
-πάντοτε **pantote** *adv.* — always ×7
+οὖν **oun** *conj.* — therefore/then
 
-παρά **para** *prep.* — from/with/beside ×35
+οὔπω **oupō** *adv.* — not yet
 
-παραγίνομαι **paraginomai** *v.* — to come ×2
+οὐρανός **ouranos** *m.* — heaven
 
-παράγω **paragō** *v.* — to pass ×1
+οὔτε **oute** *part.* — neither
 
-παραδίδωμι **paradidōmi** *v.* — to deliver ×14
+οὗτος **ohutos** *pron.* — this/he/she/it
 
-παράκλητος **paraklētos** *m.* — counsellor ×4
+οὕτως **ohutō, ohutōs** *adv.* — thus(-ly)
 
-παρακύπτω **parakuptō** *v.* — to stoop ×2
+οὐχί **ouchi** *part.* — not!
 
-παραλαμβάνω **paralambanō** *v.* — to take ×3
+ὀφείλω **opheilō** *v.* — to owe
 
-παραμυθέομαι **paramutheomai** *v.* — to encourage ×2
+ὀφθαλμός **ophthalmos** *m.* — eye
 
-παρασκευή **paraskeuē** *f.* — Preparation ×3
+ὄφις **ophis** *m.* — snake
 
-πάρειμι **pareimi** *v.* — be present ×2
+ὄχλος **ochlos** *m.* — crowd
 
-παρίστημι **paristēmi** *v.* — to stand by ×2
+ὀψάριον **opsarion** *n.* — fish
 
-παροιμία **paroimia** *f.* — proverb ×4
+ὀψία **opsia** *adj.* — evening
 
-παρρησία **parrēsia** *f.* — boldness ×9
+ὄψις **opsis** *f.* — face
 
-πᾶς **pas** *adj.* — all ×65
 
-πάσχα **pascha** *noun* — Passover lamb ×10
+## Page 19 — Π π {#pi}
 
-πατήρ **patēr** *m.* — father ×136
+παιδάριον **paidarion** *n.* — boy
 
-πατρίς **patris** *f.* — fatherland ×1
+παιδίον **paidion** *n.* — child
 
-πεινάω **peinaō** *v.* — to hunger ×1
+παιδίσκη **paidiskē** *f.* — maidservant
 
-πειράζω **peirazō** *v.* — tempt; try ×2
+παῖς **pais** *m.* — child
 
-πέμπω **pempō** *v.* — to send ×32
+παίω **paiō** *v.* — to strike
 
-πενθερός **pentheros** *m.* — father-in-law ×1
+πάλιν **palin** *adv.* — again
 
-πεντακισχίλιοι **pentakischilioi** *adj.* — five thousand ×1
+πάντοτε **pantote** *adv.* — always
 
-πέντε **pente** *adj.* — five ×5
+παρά **para** *prep.* — from/with/beside
 
-πεντήκοντα **pentēkonta** *adj.* — fifty ×2
+παραγίνομαι **paraginomai** *v.* — to come
 
-πέραν **peran** *prep.* — other side ×8
+παράγω **paragō** *v.* — to pass
 
-περί **peri** *prep.* — about ×67
+παραδίδωμι **paradidōmi** *v.* — to deliver
 
-περιβάλλω **periballō** *v.* — to clothe ×1
+παράκλητος **paraklētos** *m.* — counsellor
 
-περιδέω **perideō** *v.* — to wrap around ×1
+παρακύπτω **parakuptō** *v.* — to stoop
 
-περιΐστημι **periistēmi** *v.* — to stand around ×1
+παραλαμβάνω **paralambanō** *v.* — to take
 
-περιπατέω **peripateō** *v.* — to walk ×17
+παραμυθέομαι **paramutheomai** *v.* — to encourage
 
-περισσεύω **perisseuō** *v.* — to exceed ×2
+παρασκευή **paraskeuē** *f.* — Preparation
 
-περισσός **perissos** *adj.* — excessive ×1
+πάρειμι **pareimi** *v.* — be present
 
-περιστερά **peristera** *f.* — dove ×3
+παρίστημι **paristēmi** *v.* — to stand by
 
-περιτέμνω **peritemnō** *v.* — to circumcise ×1
+παροιμία **paroimia** *f.* — proverb
 
-περιτίθημι **peritithēmi** *v.* — to put on ×1
+παρρησία **parrēsia** *f.* — boldness
 
-περιτομή **peritomē** *f.* — circumcision ×2
+πᾶς **pas** *adj.* — all
 
-Πέτρος **Petros** *name* — Peter; [wife of Peter]; [mother-in-law of Peter] ×34
+πάσχα **pascha** *noun* — Passover lamb
 
-πηγή **pēgē** *f.* — flow ×3
+πατήρ **patēr** *m.* — father
 
-πηλός **pēlos** *m.* — clay ×5
+πατρίς **patris** *f.* — fatherland
 
-πῆχυς **pēchus** *m.* — cubit/hour ×1
+πεινάω **peinaō** *v.* — to hunger
 
-πιάζω **piazō** *v.* — to arrest/catch ×8
+πειράζω **peirazō** *v.* — tempt
 
-Πιλᾶτος **Pilatos** *name* — Pilate ×20
+πέμπω **pempō** *v.* — to send
 
-πίνω **pinō** *v.* — to drink ×11
+πενθερός **pentheros** *m.* — father-in-law
 
-πιπράσκω **pipraskō** *v.* — to sell ×1
+πεντακισχίλιοι **pentakischilioi** *adj.* — five thousand
 
-πίπτω **piptō** *v.* — to collapse ×3
+πέντε **pente** *adj.* — five
 
-πιστεύω **pisteuō** *v.* — to trust (in) ×98
+πεντήκοντα **pentēkonta** *adj.* — fifty
 
-πιστικός **pistikos** *adj.* — pure ×1
+πέραν **peran** *prep.* — other side
 
-πιστός **pistos** *adj.* — faithful ×1
+περί **peri** *prep.* — about
 
-πλανάω **planaō** *v.* — to lead astray ×2
+περιβάλλω **periballō** *v.* — to clothe
 
-πλείων, πλεῖον **pleiōn, pleion** *adj.* — greater ×4
+περιδέω **perideō** *v.* — to wrap around
 
-πλέκω **plekō** *v.* — to weave ×1
+περιΐστημι **periistēmi** *v.* — to stand around
 
-πλευρά **pleura** *f.* — side ×4
+περιπατέω **peripateō** *v.* — to walk
 
-πλῆθος **plēthos** *n.* — multitude ×2
+περισσεύω **perisseuō** *v.* — to exceed
 
-πλήρης **plērēs** *adj.* — full ×1
+περισσός **perissos** *adj.* — excessive
 
-πληρόω **plēroō** *v.* — to fulfill ×15
+περιστερά **peristera** *f.* — dove
 
-πλήρωμα **plērōma** *n.* — fulfillment ×1
+περιτέμνω **peritemnō** *v.* — to circumcise
 
-πλησίον **plēsion** *adv.* — near/neighbor ×1
+περιτίθημι **peritithēmi** *v.* — to put on
 
-πλοιάριον **ploiarion** *n.* — small boat ×4
+περιτομή **peritomē** *f.* — circumcision
 
-πλοῖον **ploion** *n.* — boat ×7
+Πέτρος **Petros** *name* — Peter
 
-πνεῦμα **pneuma** *n.* — spirit ×24
+πηγή **pēgē** *f.* — flow
 
-πνέω **pneō** *v.* — to blow ×2
+πηλός **pēlos** *m.* — clay
 
-πόθεν **pothen** *adv.* — whence ×13
+πῆχυς **pēchus** *m.* — cubit/hour
 
-ποιέω **poieō** *v.* — do; appoint; spend(TIME) ×110
+πιάζω **piazō** *v.* — to arrest/catch
 
-ποιμαίνω **poimainō** *v.* — to shepherd ×1
+Πιλᾶτος **Pilatos** *name* — Pilate
 
-ποιμήν **poimēn** *m.* — shepherd ×6
+πίνω **pinō** *v.* — to drink
 
-ποίμνη **poimnē** *f.* — flock ×1
+πιπράσκω **pipraskō** *v.* — to sell
 
-ποῖος **poios** *interj.* — what? ×4
+πίπτω **piptō** *v.* — to collapse
 
-πόλις **polis** *f.* — city ×8
+πιστεύω **pisteuō** *v.* — to trust (in)
 
-πολλάκις **pollakis** *adv.* — often ×1
+πιστικός **pistikos** *adj.* — pure
 
-πολύς **polus** *adj.* — much ×37
+πιστός **pistos** *adj.* — faithful
 
-πολύτιμος **polutimos** *adj.* — valuable ×1
+πλανάω **planaō** *v.* — to lead astray
 
-πονηρός **ponēros** *adj.* — evil/bad ×3
+πλείων, πλεῖον **pleiōn, pleion** *adj.* — greater
 
-πορεύω **poreuō** *v.* — to travel ×16
+πλέκω **plekō** *v.* — to weave
 
-πορνεία **porneia** *f.* — sexual sin ×1
+πλευρά **pleura** *f.* — side
 
-πορφύρεος **porphureos** *adj.* — purple ×2
+πλῆθος **plēthos** *n.* — multitude
 
-πόσις **posis** *f.* — drink ×1
+πλήρης **plērēs** *adj.* — full
 
-ποταμός **potamos** *m.* — river ×1
+πληρόω **plēroō** *v.* — to fulfill
 
-ποτέ **pote** *part.* — once/when ×1
+πλήρωμα **plērōma** *n.* — fulfillment
 
-πότε **pote** *part.* — when? ×2
+πλησίον **plēsion** *adv.* — near/neighbor
 
-πότερος **poteros** *adv.* — whether ×1
+πλοιάριον **ploiarion** *n.* — small boat
 
-ποτήριον **potērion** *n.* — cup ×1
+πλοῖον **ploion** *n.* — boat
 
-ποῦ **pou** *adv.* — where? ×19
+πνεῦμα **pneuma** *n.* — spirit
 
-πούς **pous** *m.* — foot ×14
+πνέω **pneō** *v.* — to blow
 
-πραιτώριον **praitōrion** *n.* — praetorium ×4
+πόθεν **pothen** *adv.* — whence
 
-πράσσω **prassō** *v.* — to do/require ×2
+ποιέω **poieō** *v.* — do
 
-πρεσβύτερος **presbuteros** *noun* — Elder; old ×1
+ποιμαίνω **poimainō** *v.* — to shepherd
 
-πρίν **prin** *prep.* — before ×3
+ποιμήν **poimēn** *m.* — shepherd
 
-πρό **pro** *prep.* — before ×9
+ποίμνη **poimnē** *f.* — flock
 
-προβατικός **probatikos** *adj.* — Sheep Gate ×1
+ποῖος **poios** *interj.* — what?
 
-πρόβατον **probaton** *n.* — sheep ×19
+πόλις **polis** *f.* — city
 
-πρός **pros** *prep.* — to/with ×102
+πολλάκις **pollakis** *adv.* — often
 
-προσαιτέω **prosaiteō** *v.* — to beg ×1
+πολύς **polus** *adj.* — much
 
-προσαίτης **prosaitēs** *m.* — a beggar ×1
+πολύτιμος **polutimos** *adj.* — valuable
 
-προσέρχομαι **proserchomai** *v.* — to come near/agree ×1
+πονηρός **ponēros** *adj.* — evil/bad
 
-προσκόπτω **proskoptō** *v.* — to strike ×2
+πορεύω **poreuō** *v.* — to travel
 
-προσκυνέω **proskuneō** *v.* — to worship ×11
+πορνεία **porneia** *f.* — sexual sin
 
-προσκυνητής **proskunētēs** *m.* — worshiper ×1
+πορφύρεος **porphureos** *adj.* — purple
 
-προσφάγιον **prosphagion** *n.* — fish ×1
+πόσις **posis** *f.* — drink
 
-προσφέρω **prospherō** *v.* — to bring to ×2
+ποταμός **potamos** *m.* — river
 
-πρότερος **proteros** *adj.* — before ×3
+ποτέ **pote** *part.* — once/when
 
-προτρέχω **protrechō** *v.* — to outrun ×1
+πότε **pote** *part.* — when?
 
-πρόφασις **prophasis** *f.* — pretense ×1
+πότερος **poteros** *adv.* — whether
 
-προφητεύω **prophēteuō** *v.* — to prophesy ×1
+ποτήριον **potērion** *n.* — cup
 
-προφήτης **prophētēs** *m.* — prophet ×14
+ποῦ **pou** *adv.* — where?
 
-πρωΐ **prōi** *adv.* — early ×2
+πούς **pous** *m.* — foot
 
-πρωΐα **prōia** *f.* — early morning ×1
+πραιτώριον **praitōrion** *n.* — praetorium
 
-πρῶτος **prōtos** *adj.* — first; previous; chief ×14
+πράσσω **prassō** *v.* — to do/require
 
-πτέρνα **pterna** *f.* — heel ×1
+πρεσβύτερος **presbuteros** *noun* — Elder
 
-πτύσμα **ptusma** *n.* — saliva ×1
+πρίν **prin** *prep.* — before
 
-πτύω **ptuō** *v.* — to spit ×1
+πρό **pro** *prep.* — before
 
-πτωχός **ptōchos** *noun* — poor ×4
+προβατικός **probatikos** *adj.* — Sheep Gate
 
-πυνθάνομαι **punthanomai** *v.* — to inquire ×2
+πρόβατον **probaton** *n.* — sheep
 
-πῦρ **pur** *n.* — fire ×1
+πρός **pros** *prep.* — to/with
 
-πυρετός **puretos** *m.* — fever ×1
+προσαιτέω **prosaiteō** *v.* — to beg
 
-πωλέω **pōleō** *v.* — to sell ×2
+προσαίτης **prosaitēs** *m.* — a beggar
 
-πῶλος **pōlos** *m.* — colt ×1
+προσέρχομαι **proserchomai** *v.* — to come near/agree
 
-πώποτε **pōpote** *adv.* — ever ×4
+προσκόπτω **proskoptō** *v.* — to strike
 
-πωρόω **pōroō** *v.* — to harden ×1
+προσκυνέω **proskuneō** *v.* — to worship
 
-πῶς **pōs** *part.* — how?! ×20
+προσκυνητής **proskunētēs** *m.* — worshiper
 
+προσφάγιον **prosphagion** *n.* — fish
 
-## Page 1679 — Ρ ρ {#rho}
+προσφέρω **prospherō** *v.* — to bring to
 
-ῥαββί **rhabbi** *noun* — Rabbi ×8
+πρότερος **proteros** *adj.* — before
 
-ῥαββονί **rhabboni** *noun* — Rabboni ×1
+προτρέχω **protrechō** *v.* — to outrun
 
-ῥάπισμα **rhapisma** *n.* — slap ×2
+πρόφασις **prophasis** *f.* — pretense
 
-ῥέω **rheō** *v.* — to flow ×1
+προφητεύω **prophēteuō** *v.* — to prophesy
 
-ῥῆμα **rhēma** *n.* — declaration ×12
+προφήτης **prophētēs** *m.* — prophet
 
-Ῥωμαῖος **Rhōmaios** *noun* — Roman ×1
+πρωΐ **prōi** *adv.* — early
 
-Ῥωμαϊστί **Rhōmaisti** *adv.* — in Latin ×1
+πρωΐα **prōia** *f.* — early morning
 
+πρῶτος **prōtos** *adj.* — first
 
-## Page 1696 — Σ σ {#sigma}
+πτέρνα **pterna** *f.* — heel
 
-σάββατον **sabbaton** *n.* — Sabbath ×13
+πτύσμα **ptusma** *n.* — saliva
 
-Σαλείμ **Saleim** *noun* — Salim ×1
+πτύω **ptuō** *v.* — to spit
 
-Σαμάρεια **Samareia** *f.* — Samaria ×3
+πτωχός **ptōchos** *noun* — poor
 
-Σαμαρείτης **Samareitēs** *noun* — Samaritan ×4
+πυνθάνομαι **punthanomai** *v.* — to inquire
 
-Σαμαρεῖτις **Samareitis** *f.* — Samaria ×2
+πῦρ **pur** *n.* — fire
 
-σάρξ **sarx** *f.* — flesh ×13
+πυρετός **puretos** *m.* — fever
 
-Σατανᾶς **Satanas** *noun* — Satan ×1
+πωλέω **pōleō** *v.* — to sell
 
-σημαίνω **sēmainō** *v.* — to signify ×3
+πῶλος **pōlos** *m.* — colt
 
-σημεῖον **sēmeion** *n.* — sign ×17
+πώποτε **pōpote** *adv.* — ever
 
-Σιλωάμ **Silōam** *noun* — Siloam ×2
+πωρόω **pōroō** *v.* — to harden
 
-Σίμων **Simōn** *name* — Simon ×25
+πῶς **pōs** *part.* — how?!
 
-σῖτος **sitos** *m.* — grain ×1
 
-Σιών **Siōn** *noun* — Zion ×1
+## Page 20 — Ρ ρ {#rho}
 
-σκανδαλίζω **skandalizō** *v.* — to cause to stumble ×2
+ῥαββί **rhabbi** *noun* — Rabbi
 
-σκέλος **skelos** *n.* — leg ×3
+ῥαββονί **rhabboni** *noun* — Rabboni
 
-σκεῦος **skeuos** *n.* — vessel ×1
+ῥάπισμα **rhapisma** *n.* — slap
 
-σκηνοπηγία **skēnopēgia** *f.* — Feast|Festival of Booths ×1
+ῥέω **rheō** *v.* — to flow
 
-σκηνόω **skēnoō** *v.* — to dwell ×1
+ῥῆμα **rhēma** *n.* — declaration
 
-σκληρός **sklēros** *adj.* — hard ×1
+Ῥωμαῖος **Rhōmaios** *noun* — Roman
 
-σκορπίζω **skorpizō** *v.* — to scatter ×2
+Ῥωμαϊστί **Rhōmaisti** *adv.* — in Latin
 
-σκοτία **skotia** *f.* — darkness ×8
 
-σκότος **skotos** *m.* — darkness ×1
+## Page 21 — Σ σ {#sigma}
 
-σμύρνα **smurna** *f.* — myrrh ×1
+σάββατον **sabbaton** *n.* — Sabbath
 
-Σολομών, Σαλωμών **Solomōn, Salōmōn** *name* — Solomon; Solomon's ×1
+Σαλείμ **Saleim** *noun* — Salim
 
-σουδάριον **soudarion** *n.* — handkerchief ×2
+Σαμάρεια **Samareia** *f.* — Samaria
 
-σπεῖρα **speira** *f.* — band ×2
+Σαμαρείτης **Samareitēs** *noun* — Samaritan
 
-σπείρω **speirō** *v.* — to sow ×2
+Σαμαρεῖτις **Samareitis** *f.* — Samaria
 
-σπέρμα **sperma** *n.* — offspring; seed(s) ×3
+σάρξ **sarx** *f.* — flesh
 
-σπήλαιον **spēlaion** *n.* — cave ×1
+Σατανᾶς **Satanas** *noun* — Satan
 
-σπόγγος **spongos** *m.* — sponge ×1
+σημαίνω **sēmainō** *v.* — to signify
 
-στάδιος **stadios** *m.* — stadium ×2
+σημεῖον **sēmeion** *n.* — sign
 
-σταυρός **stauros** *m.* — cross ×4
+Σιλωάμ **Silōam** *noun* — Siloam
 
-σταυρόω **stauroō** *v.* — to crucify ×11
+Σίμων **Simōn** *name* — Simon
 
-στέφανος **stephanos** *m.* — crown ×2
+σῖτος **sitos** *m.* — grain
 
-στῆθος **stēthos** *n.* — chest ×2
+Σιών **Siōn** *noun* — Zion
 
-στοά **stoa** *f.* — Portico ×2
+σκανδαλίζω **skandalizō** *v.* — to cause to stumble
 
-στόμα **stoma** *n.* — mouth ×1
+σκέλος **skelos** *n.* — leg
 
-στρατιώτης **stratiōtēs** *m.* — soldier ×6
+σκεῦος **skeuos** *n.* — vessel
 
-στρέφω **strephō** *v.* — to turn ×4
+σκηνοπηγία **skēnopēgia** *f.* — Feast|Festival of Booths
 
-σύ **su** *pron.* — you ×428
+σκηνόω **skēnoō** *v.* — to dwell
 
-συγγενής **sungenēs** *adj.* — kindred ×1
+σκληρός **sklēros** *adj.* — hard
 
-συγχράομαι **sugchraomai** *v.* — to associate with ×1
+σκορπίζω **skorpizō** *v.* — to scatter
 
-συκῆ **sukē** *f.* — fig tree ×2
+σκοτία **skotia** *f.* — darkness
 
-συλλαμβάνω **sullambanō** *v.* — to seize/conceive/help ×1
+σκότος **skotos** *m.* — darkness
 
-συμβουλεύω **sumbouleuō** *v.* — to consult ×1
+σμύρνα **smurna** *f.* — myrrh
 
-συμμαθητής **summathētēs** *m.* — fellow disciple ×1
+Σολομών, Σαλωμών **Solomōn, Salōmōn** *name* — Solomon
 
-συμφέρω **sumpherō** *v.* — be profitable ×3
+σουδάριον **soudarion** *n.* — handkerchief
 
-σύν **sun** *prep.* — with ×3
+σπεῖρα **speira** *f.* — band
 
-συνάγω **sunagō** *v.* — to assemble ×7
+σπείρω **speirō** *v.* — to sow
 
-συναγωγή **sunagōgē** *f.* — synagogue ×2
+σπέρμα **sperma** *n.* — offspring
 
-συνέδριον **sunedrion** *n.* — council ×1
+σπήλαιον **spēlaion** *n.* — cave
 
-συνεισέρχομαι **suneiserchomai** *v.* — to enter with ×2
+σπόγγος **spongos** *m.* — sponge
 
-συνέρχομαι **sunerchomai** *v.* — to assemble ×2
+στάδιος **stadios** *m.* — stadium
 
-συνήθεια **sunētheia** *f.* — custom ×1
+σταυρός **stauros** *m.* — cross
 
-συντίθημι **suntithēmi** *v.* — to agree ×1
+σταυρόω **stauroō** *v.* — to crucify
 
-συντρίβω **suntribō** *v.* — to break ×1
+στέφανος **stephanos** *m.* — crown
 
-σύρω **surō** *v.* — to drag ×1
+στῆθος **stēthos** *n.* — chest
 
-συσταυρόομαι **sustauroomai** *v.* — to crucify with ×1
+στοά **stoa** *f.* — Portico
 
-Συχάρ **Suchar** *noun* — Sychar ×1
+στόμα **stoma** *n.* — mouth
 
-σφραγίζω **sphragizō** *v.* — to seal ×2
+στρατιώτης **stratiōtēs** *m.* — soldier
 
-σχίζω **schizō** *v.* — to split ×2
+στρέφω **strephō** *v.* — to turn
 
-σχίσμα **schisma** *n.* — split ×3
+σύ **su** *pron.* — you
 
-σχοινίον **schoinion** *n.* — rope ×1
+συγγενής **sungenēs** *adj.* — kindred
 
-σῴζω **sōzō** *v.* — to save ×6
+συγχράομαι **sugchraomai** *v.* — to associate with
 
-σῶμα **sōma** *n.* — body ×6
+συκῆ **sukē** *f.* — fig tree
 
-σωτήρ **sōtēr** *m.* — savior ×1
+συλλαμβάνω **sullambanō** *v.* — to seize/conceive/help
 
-σωτηρία **sōtēria** *f.* — salvation ×1
+συμβουλεύω **sumbouleuō** *v.* — to consult
 
+συμμαθητής **summathētēs** *m.* — fellow disciple
 
-## Page 1833 — Τ τ {#tau}
+συμφέρω **sumpherō** *v.* — be profitable
 
-ταράσσω **tarassō** *v.* — to trouble ×6
+σύν **sun** *prep.* — with
 
-ταχέως **tacheōs** *adv.* — soon ×1
+συνάγω **sunagō** *v.* — to assemble
 
-τάχιον **tachion** *adv.* — quicker ×2
+συναγωγή **sunagōgē** *f.* — synagogue
 
-ταχύ **tachu** *adv.* — quickly ×1
+συνέδριον **sunedrion** *n.* — council
 
-τε **te** *conj.* — and/both ×3
+συνεισέρχομαι **suneiserchomai** *v.* — to enter with
 
-τεκνίον **teknion** *n.* — children ×1
+συνέρχομαι **sunerchomai** *v.* — to assemble
 
-τέκνον **teknon** *n.* — child ×3
+συνήθεια **sunētheia** *f.* — custom
 
-τελειόω **teleioō** *v.* — to perfect ×5
+συντίθημι **suntithēmi** *v.* — to agree
 
-τελευτάω **teleutaō** *v.* — to decease ×1
+συντρίβω **suntribō** *v.* — to break
 
-τελέω **teleō** *v.* — to finish ×2
+σύρω **surō** *v.* — to drag
 
-τέλος **telos** *n.* — goal/tax ×1
+συσταυρόομαι **sustauroomai** *v.* — to crucify with
 
-τέρας **teras** *n.* — wonders ×1
+Συχάρ **Suchar** *noun* — Sychar
 
-τεσσαράκοντα **tessarakonta** *adj.* — forty ×1
+σφραγίζω **sphragizō** *v.* — to seal
 
-τέσσαρες **tessares** *adj.* — four ×2
+σχίζω **schizō** *v.* — to split
 
-τεταρταῖος **tetartaios** *adj.* — fourth ×1
+σχίσμα **schisma** *n.* — split
 
-τετράμηνος **tetramēnos** *adj.* — four months ×1
+σχοινίον **schoinion** *n.* — rope
 
-τηρέω **tēreō** *v.* — observe; guard; protect ×18
+σῴζω **sōzō** *v.* — to save
 
-Τιβεριάς **Tiberias** *f.* — (Sea of) Tiberias ×3
+σῶμα **sōma** *n.* — body
 
-τίθημι **tithēmi** *v.* — to place ×18
+σωτήρ **sōtēr** *m.* — savior
 
-τίκτω **tiktō** *v.* — to give birth to ×1
+σωτηρία **sōtēria** *f.* — salvation
 
-τιμάω **timaō** *v.* — to honor ×6
 
-τιμή **timē** *f.* — honor ×1
+## Page 22 — Τ τ {#tau}
 
-τις **tis** *part.* — one ×56
+ταράσσω **tarassō** *v.* — to trouble
 
-τίς **tis** *interj.* — which? ×80
+ταχέως **tacheōs** *adv.* — soon
 
-τίτλος **titlos** *m.* — title ×2
+τάχιον **tachion** *adv.* — quicker
 
-τοιοῦτος **toioutos** *pron.* — such as this ×3
+ταχύ **tachu** *adv.* — quickly
 
-τολμάω **tolmaō** *v.* — be bold ×1
+τε **te** *conj.* — and/both
 
-τόπος **topos** *m.* — place ×16
+τεκνίον **teknion** *n.* — children
 
-τοσοῦτος **tosoutos** — so great ×4
+τέκνον **teknon** *n.* — child
 
-τότε **tote** *adv.* — then ×10
+τελειόω **teleioō** *v.* — to perfect
 
-τράπεζα **trapeza** *f.* — table ×1
+τελευτάω **teleutaō** *v.* — to decease
 
-τρεῖς **treis** *adj.* — Three ×4
+τελέω **teleō** *v.* — to finish
 
-τρέχω **trechō** *v.* — to run ×2
+τέλος **telos** *n.* — goal/tax
 
-τριάκοντα **triakonta** *adj.* — thirty ×2
+τέρας **teras** *n.* — wonders
 
-τριακόσιοι **triakosioi** *adj.* — three hundred ×1
+τεσσαράκοντα **tessarakonta** *adj.* — forty
 
-τρίς **tris** *adv.* — three times ×1
+τέσσαρες **tessares** *adj.* — four
 
-τρίτος **tritos** *adj.* — third ×4
+τεταρταῖος **tetartaios** *adj.* — fourth
 
-τροφή **trophē** *f.* — food ×1
+τετράμηνος **tetramēnos** *adj.* — four months
 
-τρώγω **trōgō** *v.* — to eat ×5
+τηρέω **tēreō** *v.* — observe
 
-τύπος **tupos** *m.* — mark/example ×2
+Τιβεριάς **Tiberias** *f.* — (Sea of) Tiberias
 
-τυφλός **tuphlos** *adj.* — blind ×16
+τίθημι **tithēmi** *v.* — to place
 
-τυφλόω **tuphloō** *v.* — to blind ×1
+τίκτω **tiktō** *v.* — to give birth to
 
+τιμάω **timaō** *v.* — to honor
 
-## Page 1920 — Υ υ {#upsilon}
+τιμή **timē** *f.* — honor
 
-ὑγιής **hugiēs** *adj.* — healthy ×6
+τις **tis** *part.* — one
 
-ὑδρία **hudria** *f.* — jar ×3
+τίς **tis** *interj.* — which?
 
-ὕδωρ **hudōr, hudatos** *n.* — water ×21
+τίτλος **titlos** *m.* — title
 
-υἱός **uhios** *m.* — son ×55
+τοιοῦτος **toioutos** *pron.* — such as this
 
-ὑπάγω **hupagō** *v.* — to go ×32
+τολμάω **tolmaō** *v.* — be bold
 
-ὑπαντάω **hupantaō** *v.* — to go meet ×4
+τόπος **topos** *m.* — place
 
-ὑπάντησις **hupantēsis** *f.* — meeting ×1
+τοσοῦτος **tosoutos** — so great
 
-ὑπέρ **huper** *prep.* — above/for ×13
+τότε **tote** *adv.* — then
 
-ὑπηρέτης **hupēretēs** *m.* — servant ×9
+τράπεζα **trapeza** *f.* — table
 
-ὕπνος **hupnos** *m.* — sleep ×1
+τρεῖς **treis** *adj.* — Three
 
-ὑπό **hupo** *prep.* — by ×2
+τρέχω **trechō** *v.* — to run
 
-ὑπόδειγμα **hupodeigma** *n.* — example ×1
+τριάκοντα **triakonta** *adj.* — thirty
 
-ὑπόδημα **hupodēma** *n.* — sandal ×1
+τριακόσιοι **triakosioi** *adj.* — three hundred
 
-ὑποκάτω **hupokatō** *prep.* — under ×1
+τρίς **tris** *adv.* — three times
 
-ὑπομιμνήσκω **hupomimnēskō** *v.* — to remind ×1
+τρίτος **tritos** *adj.* — third
 
-ὕσσωπος **hussōpos** *f.* — hyssop ×1
+τροφή **trophē** *f.* — food
 
-ὑστερέω **hustereō** *v.* — to lack ×1
+τρώγω **trōgō** *v.* — to eat
 
-ὕστερος **husteros** *adj.* — later ×1
+τύπος **tupos** *m.* — mark/example
 
-ὑφαντός **huphantos** *adj.* — woven ×1
+τυφλός **tuphlos** *adj.* — blind
 
-ὑψόω **hupsoō** *v.* — to lift up ×5
+τυφλόω **tuphloō** *v.* — to blind
 
 
-## Page 1963 — Φ φ {#phi}
+## Page 23 — Υ υ {#upsilon}
 
-φαγεῖν **phagein** *v.* — to eat ×15
+ὑγιής **hugiēs** *adj.* — healthy
 
-φαίνω **phainō** *v.* — to shine/appear ×2
+ὑδρία **hudria** *f.* — jar
 
-φανερόω **phaneroō** *v.* — to reveal ×9
+ὕδωρ **hudōr, hudatos** *n.* — water
 
-φανερῶς **phanerōs** *adv.* — plainly ×1
+υἱός **uhios** *m.* — son
 
-φανός **phanos** *m.* — torch ×1
+ὑπάγω **hupagō** *v.* — to go
 
-Φαρισαῖος **Pharisaios** *noun* — Pharisee ×20
+ὑπαντάω **hupantaō** *v.* — to go meet
 
-φαῦλος **phaulos** *adj.* — evil ×2
+ὑπάντησις **hupantēsis** *f.* — meeting
 
-φέρω **pherō** *v.* — to bear/lead ×17
+ὑπέρ **huper** *prep.* — above/for
 
-φεύγω **pheugō** *v.* — to flee ×2
+ὑπηρέτης **hupēretēs** *m.* — servant
 
-φημί **phēmi** *v.* — to assert ×3
+ὕπνος **hupnos** *m.* — sleep
 
-φιλέω **phileō** *v.* — to love ×13
+ὑπό **hupo** *prep.* — by
 
-Φίλιππος **Philippos** *name* — Philip; Philippi ×12
+ὑπόδειγμα **hupodeigma** *n.* — example
 
-φίλος **philos** *adj.* — friendly/friend ×6
+ὑπόδημα **hupodēma** *n.* — sandal
 
-φοβέω **phobeō** *v.* — to fear ×5
+ὑποκάτω **hupokatō** *prep.* — under
 
-φόβος **phobos** *m.* — fear ×3
+ὑπομιμνήσκω **hupomimnēskō** *v.* — to remind
 
-φοῖνιξ **phoinix** *m.* — palm ×1
+ὕσσωπος **hussōpos** *f.* — hyssop
 
-φορέω **phoreō** *v.* — to wear ×1
+ὑστερέω **hustereō** *v.* — to lack
 
-φραγέλλιον **phragellion** *n.* — whip ×1
+ὕστερος **husteros** *adj.* — later
 
-φρέαρ **phrear** *n.* — well/abyss ×2
+ὑφαντός **huphantos** *adj.* — woven
 
-φυλακή **phulakē** *f.* — prison ×1
+ὑψόω **hupsoō** *v.* — to lift up
 
-φυλάσσω **phulassō** *v.* — observe; protect ×3
 
-φωνέω **phōneō** *v.* — to call ×13
+## Page 24 — Φ φ {#phi}
 
-φωνή **phōnē** *f.* — noise ×15
+φαγεῖν **phagein** *v.* — to eat
 
-φῶς **phōs** *n.* — light ×23
+φαίνω **phainō** *v.* — to shine/appear
 
-φωτίζω **phōtizō** *v.* — to illuminate ×1
+φανερόω **phaneroō** *v.* — to reveal
 
+φανερῶς **phanerōs** *adv.* — plainly
 
-## Page 2016 — Χ χ {#chi}
+φανός **phanos** *m.* — torch
 
-χαίρω **chairō** *v.* — to rejoice ×9
+Φαρισαῖος **Pharisaios** *noun* — Pharisee
 
-χαμαί **chamai** *adv.* — on the ground ×2
+φαῦλος **phaulos** *adj.* — evil
 
-χαρά **chara** *f.* — joy ×9
+φέρω **pherō** *v.* — to bear/lead
 
-χάρις **charis** *f.* — grace ×4
+φεύγω **pheugō** *v.* — to flee
 
-χείμαρρος **cheimarros** *m.* — brook ×1
+φημί **phēmi** *v.* — to assert
 
-χειμών **cheimōn** *m.* — winter ×1
+φιλέω **phileō** *v.* — to love
 
-χείρ **cheir** *f.* — hand ×15
+Φίλιππος **Philippos** *name* — Philip
 
-χείρων **cheirōn** *adj.* — worse than ×1
+φίλος **philos** *adj.* — friendly/friend
 
-χθές **chthes** *adv.* — yesterday ×1
+φοβέω **phobeō** *v.* — to fear
 
-χιλίαρχος **chiliarchos** *m.* — military officer ×1
+φόβος **phobos** *m.* — fear
 
-χιτών **chitōn** *m.* — tunic ×2
+φοῖνιξ **phoinix** *m.* — palm
 
-χολάω **cholaō** *v.* — be angry ×1
+φορέω **phoreō** *v.* — to wear
 
-χορτάζω **chortazō** *v.* — to feed ×1
+φραγέλλιον **phragellion** *n.* — whip
 
-χόρτος **chortos** *m.* — grass ×1
+φρέαρ **phrear** *n.* — well/abyss
 
-χρεία **chreia** *f.* — need ×4
+φυλακή **phulakē** *f.* — prison
 
-Χριστός **Christos** *noun* — Christ ×19
+φυλάσσω **phulassō** *v.* — observe
 
-χρόνος **chronos** *m.* — time ×4
+φωνέω **phōneō** *v.* — to call
 
-χωλός **chōlos** *adj.* — lame ×1
+φωνή **phōnē** *f.* — noise
 
-χώρα **chōra** *f.* — country ×3
+φῶς **phōs** *n.* — light
 
-χωρέω **chōreō** *v.* — to make room for ×3
+φωτίζω **phōtizō** *v.* — to illuminate
 
-χωρίον **chōrion** *n.* — place; Field (of Blood) ×1
 
-χωρίς **chōris** *prep.* — without ×3
+## Page 25 — Χ χ {#chi}
 
+χαίρω **chairō** *v.* — to rejoice
 
-## Page 2063 — Ψ ψ {#psi}
+χαμαί **chamai** *adv.* — on the ground
 
-ψεῦδος **pseudos** *n.* — lie ×1
+χαρά **chara** *f.* — joy
 
-ψεύστης **pseustēs** *m.* — liar ×2
+χάρις **charis** *f.* — grace
 
-ψυχή **psuchē** *f.* — soul; life; myself ×10
+χείμαρρος **cheimarros** *m.* — brook
 
-ψῦχος **psuchos** *n.* — cold ×1
+χειμών **cheimōn** *m.* — winter
 
-ψωμίον **psōmion** *n.* — piece ×4
+χείρ **cheir** *f.* — hand
 
+χείρων **cheirōn** *adj.* — worse than
 
-## Page 2076 — Ω ω {#omega}
+χθές **chthes** *adv.* — yesterday
 
-ὧδε **hōde** *adv.* — here ×5
+χιλίαρχος **chiliarchos** *m.* — military officer
 
-ὥρα **hōra** *f.* — hour ×26
+χιτών **chitōn** *m.* — tunic
 
-ὡς **hōs** *prep.* — as/when ×31
+χολάω **cholaō** *v.* — be angry
 
-ὡσαννά **hōsanna** *interj.* — Hosanna ×1
+χορτάζω **chortazō** *v.* — to feed
 
-ὥσπερ **hōsper** *conj.* — just as ×2
+χόρτος **chortos** *m.* — grass
 
-ὥστε **hōste** *conj.* — so ×1
+χρεία **chreia** *f.* — need
 
-ὠτάριον **ōtarion** *n.* — ear ×1
+Χριστός **Christos** *noun* — Christ
 
-ὠτίον **ōtion** *n.* — ear ×1
+χρόνος **chronos** *m.* — time
 
-ὠφελέω **ōpheleō** *v.* — to help ×2
+χωλός **chōlos** *adj.* — lame
+
+χώρα **chōra** *f.* — country
+
+χωρέω **chōreō** *v.* — to make room for
+
+χωρίον **chōrion** *n.* — place
+
+χωρίς **chōris** *prep.* — without
+
+
+## Page 26 — Ψ ψ {#psi}
+
+ψεῦδος **pseudos** *n.* — lie
+
+ψεύστης **pseustēs** *m.* — liar
+
+ψυχή **psuchē** *f.* — soul
+
+ψῦχος **psuchos** *n.* — cold
+
+ψωμίον **psōmion** *n.* — piece
+
+
+## Page 27 — Ω ω {#omega}
+
+ὧδε **hōde** *adv.* — here
+
+ὥρα **hōra** *f.* — hour
+
+ὡς **hōs** *prep.* — as/when
+
+ὡσαννά **hōsanna** *interj.* — Hosanna
+
+ὥσπερ **hōsper** *conj.* — just as
+
+ὥστε **hōste** *conj.* — so
+
+ὠτάριον **ōtarion** *n.* — ear
+
+ὠτίον **ōtion** *n.* — ear
+
+ὠφελέω **ōpheleō** *v.* — to help
+
+
+## Page 28 — Part Two {#part-two}
+
+Part Two lists the very same words again, sorted by what they're about. Light, food, family, walking around.
+
+Twenty-one little chapters. Useful when you know what you want to say but not what it's called.
+
+Within a chapter, the words are sorted by their Latin spelling.
+
+
+## Page 29 — God and Heaven {#theme-divine}
+
+*Let's start at the top. The Gospel of John certainly does.*
+
+αἰών **aiōn** *m.* — age
+
+αἰώνιος **aiōnios** *adj.* — eternal
+
+ἀμήν **amēn** *interj.* — amen
+
+ἀμνός **amnos** *m.* — lamb
+
+ἄγγελος **angelos** *m.* — angel
+
+ἀρνίον **arnion** *n.* — lamb
+
+χάρις **charis** *f.* — grace
+
+Χριστός **Christos** *noun* — Christ
+
+δαιμόνιον **daimonion** *n.* — demon
+
+δαιμονίζομαι **daimonizomai** *v.* — be demonised
+
+διάβολος **diabolos** *adj.* — devilish/the Devil
+
+δόξα **doxa** *f.* — glory
+
+δοξάζω **doxazō** *v.* — to glorify
+
+εἰρήνη **eirēnē** *f.* — peace
+
+ἐπουράνιος **epouranios** *adj.* — heavenly
+
+εὐχαριστέω **eucharisteō** *v.* — to thank
+
+εὐλογέω **eulogeō** *v.* — to praise/bless
+
+ἁγιάζω **hagiazō** *v.* — to sanctify
+
+ἅγιος **hagios** *adj.* — holy
+
+ἁγνίζω **hagnizō** *v.* — to purify
+
+ὡσαννά **hōsanna** *interj.* — Hosanna
+
+Ἰησοῦς **Iēsous** *name* — Jesus
+
+κύριος **kurios** *m.* — God
+
+λατρεία **latreia** *f.* — ministry
+
+λόγος **logos** *m.* — word
+
+μακάριος **makarios** *adj.* — blessed
+
+Μεσσίας **Messias** *noun* — Messiah
+
+μονογενής **monogenēs** *adj.* — unique
+
+οὐρανός **ouranos** *m.* — heaven
+
+παράκλητος **paraklētos** *m.* — counsellor
+
+πατήρ **patēr** *m.* — father
+
+πλήρωμα **plērōma** *n.* — fulfillment
+
+πνεῦμα **pneuma** *n.* — spirit
+
+προσκυνέω **proskuneō** *v.* — to worship
+
+προσκυνητής **proskunētēs** *m.* — worshiper
+
+Σατανᾶς **Satanas** *noun* — Satan
+
+σωτήρ **sōtēr** *m.* — savior
+
+σωτηρία **sōtēria** *f.* — salvation
+
+σῴζω **sōzō** *v.* — to save
+
+θεός **theos** *m.* — God
+
+θεοσεβής **theosebēs** *adj.* — godly
+
+υἱός **uhios** *m.* — son
+
+
+## Page 30 — Light, Darkness and Truth {#theme-light}
+
+*John loves a contrast. Light and dark, true and false. Subtle he is not.*
+
+ἀλήθεια **alētheia** *f.* — truth
+
+ἀληθής **alēthēs** *adj.* — true
+
+ἀληθινός **alēthinos** *adj.* — true
+
+ἀληθῶς **alēthōs** *adv.* — truly
+
+ἀποκαλύπτω **apokaluptō** *v.* — to reveal
+
+δόλος **dolos** *m.* — deceit
+
+κόσμος **kosmos** *m.* — world
+
+κρύπτω **kruptō** *v.* — to hide
+
+κρυπτός **kruptos** *adj.* — hidden
+
+λαμπάς **lampas** *f.* — window
+
+λύχνος **luchnos** *m.* — lamp
+
+φαίνω **phainō** *v.* — to shine/appear
+
+φανερόω **phaneroō** *v.* — to reveal
+
+φανερῶς **phanerōs** *adv.* — plainly
+
+φανός **phanos** *m.* — torch
+
+φῶς **phōs** *n.* — light
+
+φωτίζω **phōtizō** *v.* — to illuminate
+
+ψεῦδος **pseudos** *n.* — lie
+
+ψεύστης **pseustēs** *m.* — liar
+
+σκοτία **skotia** *f.* — darkness
+
+σκότος **skotos** *m.* — darkness
+
+
+## Page 31 — Life, Death and Healing {#theme-life}
+
+*Birth, illness, death and, in this particular book, a surprising amount of getting up again afterwards.*
+
+ἀλόη **aloē** *f.* — aloes
+
+ἀνάστασις **anastasis** *f.* — resurrection
+
+ἀνίστημι **anistēmi** *v.* — to arise
+
+ἀποκτείνω **apokteinō** *v.* — to kill
+
+ἀποθνήσκω **apothnēskō** *v.* — to die
+
+ἄρωμα **arōma** *n.* — spices
+
+ἀσθένεια **astheneia** *f.* — weak
+
+ἀσθενέω **astheneō** *v.* — weak
+
+χωλός **chōlos** *adj.* — lame
+
+διεγείρω **diegeirō** *v.* — to arouse
+
+ἐγείρω **egeirō** *v.* — to arise
+
+ἐνταφιασμός **entaphiasmos** *m.* — burial
+
+ἐνταφιάζω **entaphiazō** *v.* — to prepare burial
+
+ἐξυπνίζω **exupnizō** *v.* — to awake
+
+γενετή **genetē** *f.* — birth
+
+γεννάω **gennaō** *v.* — to beget
+
+ὑγιής **hugiēs** *adj.* — healthy
+
+ὕπνος **hupnos** *m.* — sleep
+
+ἰάομαι **iaomai** *v.* — to heal
+
+κειρία **keiria** *f.* — graveclothes
+
+κοιμάω **koimaō** *v.* — to sleep
+
+κοίμησις **koimēsis** *f.* — sleep
+
+μνημεῖον **mnēmeion** *n.* — grave
+
+μύρον **muron** *n.* — ointment
+
+νάρδος **nardos** *f.* — nard
+
+νεκρός **nekros** *adj.* — dead
+
+ὀθόνιον **othonion** *n.* — bandages
+
+πυρετός **puretos** *m.* — fever
+
+σμύρνα **smurna** *f.* — myrrh
+
+σουδάριον **soudarion** *n.* — handkerchief
+
+τελευτάω **teleutaō** *v.* — to decease
+
+θάνατος **thanatos** *m.* — death
+
+θεραπεύω **therapeuō** *v.* — to serve/heal
+
+θνῄσκω **thnēskō** *v.* — to die/be dead
+
+τίκτω **tiktō** *v.* — to give birth to
+
+τυφλόω **tuphloō** *v.* — to blind
+
+τυφλός **tuphlos** *adj.* — blind
+
+ξηραίνω **xērainō** *v.* — to dry
+
+ξηρός **xēros** *adj.* — dried up/withered
+
+ζάω **zaō** *v.* — to live
+
+ζωή **zōē** *f.* — life
+
+ζωοποιέω **zōopoieō** *v.* — to make alive
+
+
+## Page 32 — Knowing, Seeing and Believing {#theme-mind}
+
+*What goes on inside people's heads. Mostly confusion, if the disciples are anything to go by.*
+
+ἀγαπάω **agapaō** *v.* — to love
+
+ἀγάπη **agapē** *f.* — love
+
+αἰτέω **aiteō** *v.* — to ask
+
+ἀναβλέπω **anablepō** *v.* — to look up/again
+
+ἀπειθέω **apeitheō** *v.* — to disobey
+
+ἄπιστος **apistos** *adj.* — unbelieving
+
+ἀρνέομαι **arneomai** *v.* — to deny
+
+βλέπω **blepō** *v.* — to see
+
+βουλεύω **bouleuō** *v.* — to plan
+
+βούλομαι **boulomai** *v.* — to plan
+
+διδαχή **didachē** *f.* — teaching
+
+διδακτός **didaktos** *adj.* — taught
+
+διδάσκαλος **didaskalos** *m.* — teacher
+
+διδάσκω **didaskō** *v.* — to teach
+
+δοκέω **dokeō** *v.* — to think
+
+εἴδω **eidō** *v.* — see
+
+ἐλπίζω **elpizō** *v.* — to hope/expect
+
+ἐμβλέπω **emblepō** *v.* — to look into/upon
+
+ἐπερωτάω **eperōtaō** *v.* — to question
+
+ἐπιθυμία **epithumia** *f.* — desire
+
+ἐρευνάω **ereunaō** *v.* — to look for/into
+
+ἐρωτάω **erōtaō** *v.* — to ask
+
+ἐξετάζω **exetazō** *v.* — to find out
+
+γινώσκω **ginōskō** *v.* — to know
+
+γνωρίζω **gnōrizō** *v.* — to make known
+
+γνωστός, γνώριμος **gnōstos, gnōrimos** *adj.* — acquainted with
+
+ὁμολογέω **homologeō** *v.* — to confess/profess
+
+ὁράω **horaō** *v.* — see
+
+ὑπομιμνήσκω **hupomimnēskō** *v.* — to remind
+
+καρδία **kardia** *f.* — heart
+
+λαγχάνω **lagchanō** *v.* — to choose by lot
+
+λογίζομαι **logizomai** *v.* — to count
+
+μανθάνω **manthanō** *v.* — to learn
+
+μιμνήσκω **mimnēskō** *v.* — to remember
+
+μισέω **miseō** *v.* — to hate
+
+μνημονεύω **mnēmoneuō** *v.* — to remember
+
+νοέω **noeō** *v.* — to understand
+
+οἶδα **oida** *v.* — to know
+
+οἴομαι **oiomai** *v.* — to suppose
+
+ὀπτάνομαι **optanomai** *v.* — to appear
+
+φιλέω **phileō** *v.* — to love
+
+φίλος **philos** *adj.* — friendly/friend
+
+πιστεύω **pisteuō** *v.* — to trust (in)
+
+πιστικός **pistikos** *adj.* — pure
+
+πιστός **pistos** *adj.* — faithful
+
+προσαιτέω **prosaiteō** *v.* — to beg
+
+πυνθάνομαι **punthanomai** *v.* — to inquire
+
+συμβουλεύω **sumbouleuō** *v.* — to consult
+
+θεάομαι **theaomai** *v.* — to look at
+
+θέλημα **thelēma** *n.* — will/desire
+
+θέλω **thelō** *v.* — to will/desire
+
+θεωρέω **theōreō** *v.* — to see/experience
+
+ζῆλος **zēlos** *m.* — zeal
+
+ζητέω **zēteō** *v.* — to seek
+
+ζήτησις **zētēsis** *f.* — controversy
+
+
+## Page 33 — Feelings {#theme-feelings}
+
+*Joy, fear, grief and a fair bit of anger. Greek people had feelings too. Who knew.*
+
+ἀγαλλιάω **agalliaō** *v.* — to rejoice
+
+ἀπορέω **aporeō** *v.* — be perplexed
+
+χαίρω **chairō** *v.* — to rejoice
+
+χαρά **chara** *f.* — joy
+
+χολάω **cholaō** *v.* — be angry
+
+δακρύω **dakruō** *v.* — to weep
+
+δειλιάω **deiliaō** *v.* — be timid
+
+ἐμβριμάομαι **embrimaomai** *v.* — be agitated
+
+γογγυσμός **gongusmos** *m.* — murmuring
+
+γογγύζω **gonguzō** *v.* — to murmur
+
+κλαίω **klaiō** *v.* — to weep
+
+λύπη **lupē** *f.* — grief
+
+λυπέω **lupeō** *v.* — to grieve
+
+μαίνομαι **mainomai** *v.* — to rave
+
+ὀργή **orgē** *f.* — wrath
+
+παρρησία **parrēsia** *f.* — boldness
+
+φοβέω **phobeō** *v.* — to fear
+
+φόβος **phobos** *m.* — fear
+
+ταράσσω **tarassō** *v.* — to trouble
+
+θαρσέω **tharseō** *v.* — take heart
+
+θαυμαστός **thaumastos** *adj.* — marvellous
+
+θαυμάζω **thaumazō** *v.* — to marvel
+
+θλῖψις **thlipsis** *f.* — pressure
+
+θρηνέω **thrēneō** *v.* — to lament
+
+τολμάω **tolmaō** *v.* — be bold
+
+
+## Page 34 — Speaking, Hearing and Writing {#theme-speech}
+
+*Words about words. Yes, a lexicon has a section on speaking. It's called being self-aware.*
+
+ἀκοή **akoē** *f.* — hearing
+
+ἀκούω **akouō** *v.* — to hear
+
+ἀναγινώσκω **anaginōskō** *v.* — to read
+
+ἀναγγέλλω **anangellō** *v.* — to report
+
+ἀγγέλλω **angellō** *v.* — to report
+
+ἀντιλέγω **antilegō** *v.* — to dispute
+
+ἀπαγγέλλω **apangellō** *v.* — to announce
+
+ἀποκρίνω **apokrinō** *v.* — to answer
+
+ἀπόκρισις **apokrisis** *f.* — answer
+
+βιβλίον **biblion** *n.* — scroll
+
+βλασφημέω **blasphēmeō** *v.* — to blaspheme
+
+βλασφημία **blasphēmia** *f.* — blasphemy
+
+βοάω **boaō** *v.* — to cry out
+
+δεικνύω **deiknuō** *v.* — to show
+
+εἶπον **eipon** *v.* — to say
+
+ἐλέγχω **elegchō** *v.* — to rebuke
+
+ἐρῶ **erō** *v.* — to say
+
+ἐξηγέομαι **exēgeomai** *v.* — to tell
+
+γράμμα **gramma** *n.* — something written
+
+γραμματεύς **grammateus** *m.* — scribe
+
+γραφή **graphē** *f.* — a writing
+
+γράφω **graphō** *v.* — to write
+
+Ἑβραϊστί **Hebraisti** *adv.* — Hebrew
+
+Ἑλληνιστί=Ἑλληνικός **Hellēnisti** *adv.* — Greek
+
+ἑρμηνεύω **hermēneuō** *v.* — to interpret
+
+καλέω **kaleō** *v.* — call
+
+κατηγορέω **katēgoreō** *v.* — to accuse
+
+κατηγορία **katēgoria** *f.* — accusation
+
+κραυγάζω **kraugazō** *v.* — to shout
+
+κράζω **krazō** *v.* — to cry
+
+λαλέω **laleō** *v.* — to speak
+
+λαλιά **lalia** *f.* — speech
+
+λέγω **legō** *v.* — to say
+
+λοιδορέω **loidoreō** *v.* — to revile
+
+μαρτυρέω **martureō** *v.* — to testify
+
+μαρτυρία **marturia** *f.* — testimony
+
+μηνύω **mēnuō** *v.* — to disclose
+
+μεθερμηνεύω **methermēneuō** *v.* — to mean
+
+ναί **nai** *part.* — yes
+
+ὄνομα **onoma** *n.* — name
+
+οὐχί **ouchi** *part.* — not!
+
+παροιμία **paroimia** *f.* — proverb
+
+φημί **phēmi** *v.* — to assert
+
+φωνή **phōnē** *f.* — noise
+
+φωνέω **phōneō** *v.* — to call
+
+πρόφασις **prophasis** *f.* — pretense
+
+προφήτης **prophētēs** *m.* — prophet
+
+προφητεύω **prophēteuō** *v.* — to prophesy
+
+ῥῆμα **rhēma** *n.* — declaration
+
+Ῥωμαϊστί **Rhōmaisti** *adv.* — in Latin
+
+σημαίνω **sēmainō** *v.* — to signify
+
+τίτλος **titlos** *m.* — title
+
+
+## Page 35 — Going, Coming and Moving {#theme-travel}
+
+*Nobody in this Gospel stays put for long. Jesus alone clocks up more miles than a postal worker.*
+
+ἄγω **agō** *v.* — to bring
+
+ἀναβαίνω **anabainō** *v.* — to ascend
+
+ἀναχωρέω **anachōreō** *v.* — to leave
+
+ἀνακύπτω **anakuptō** *v.* — to straighten up
+
+ἀνέρχομαι **anerchomai** *v.* — to go up
+
+ἀπέρχομαι **aperchomai** *v.* — to go away
+
+ἀποβαίνω **apobainō** *v.* — to get out
+
+ἀποστέλλω **apostellō** *v.* — to send
+
+ἀπόστολος **apostolos** *m.* — apostle
+
+βάλλω **ballō** *v.* — throw
+
+βαστάζω **bastazō** *v.* — to carry
+
+δεῦρο **deuro** *interj.* — come
+
+δεῦτε **deute** *interj.* — come
+
+διατρίβω **diatribō** *v.* — to remain
+
+διέρχομαι **dierchomai** *v.* — to pass through
+
+εἰσάγω **eisagō** *v.* — to bring in
+
+εἰσέρχομαι **eiserchomai** *v.* — to enter
+
+ἐκβάλλω **ekballō** *v.* — to expel
+
+ἐκνεύω **ekneuō** *v.* — to withdraw
+
+ἐκπορεύω **ekporeuō** *v.* — to depart
+
+ἐλαύνω **elaunō** *v.* — to drive
+
+ἐμβαίνω **embainō** *v.* — to climb
+
+ἐπαίρω **epairō** *v.* — to lift up
+
+ἔρχομαι **erchomai** *v.* — to come/go
+
+ἐξάγω **exagō** *v.* — to lead out
+
+ἐξέρχομαι **exerchomai** *v.* — to go out
+
+ἅλλομαι **hallomai** *v.* — to spring
+
+ἥκω **hēkō** *v.* — to come/be present
+
+ἕλκω **helkuō, helkō** *v.* — to draw/persuade
+
+ὁδηγέω **hodēgeō** *v.* — to guide
+
+ὁδοιπορία **hodoiporia** *f.* — journey
+
+ὁδός **hodos** *f.* — road
+
+ὑπάγω **hupagō** *v.* — to go
+
+ὑπαντάω **hupantaō** *v.* — to go meet
+
+ὑπάντησις **hupantēsis** *f.* — meeting
+
+ὑψόω **hupsoō** *v.* — to lift up
+
+καταβαίνω **katabainō** *v.* — to come/go down
+
+κύπτω **kuptō** *v.* — to stoop/bend down
+
+μεταβαίνω **metabainō** *v.* — to depart
+
+παραγίνομαι **paraginomai** *v.* — to come
+
+παράγω **paragō** *v.* — to pass
+
+παρακύπτω **parakuptō** *v.* — to stoop
+
+πέμπω **pempō** *v.* — to send
+
+πέραν **peran** *prep.* — other side
+
+περιπατέω **peripateō** *v.* — to walk
+
+φέρω **pherō** *v.* — to bear/lead
+
+φεύγω **pheugō** *v.* — to flee
+
+πίπτω **piptō** *v.* — to collapse
+
+πορεύω **poreuō** *v.* — to travel
+
+προσέρχομαι **proserchomai** *v.* — to come near/agree
+
+προσφέρω **prospherō** *v.* — to bring to
+
+προτρέχω **protrechō** *v.* — to outrun
+
+συνεισέρχομαι **suneiserchomai** *v.* — to enter with
+
+συνέρχομαι **sunerchomai** *v.* — to assemble
+
+σύρω **surō** *v.* — to drag
+
+τρέχω **trechō** *v.* — to run
+
+
+## Page 36 — Staying, Sitting and Standing {#theme-posture}
+
+*For when the walking stops. Which, admittedly, isn't often.*
+
+ἀνάκειμαι **anakeimai** *v.* — to recline
+
+ἀναπίπτω **anapiptō** *v.* — to recline
+
+ἐπίκειμαι **epikeimai** *v.* — to lay on
+
+ἐπιμένω **epimenō** *v.* — to remain/keep on
+
+ἵστημι **histēmi** *v.* — to stand
+
+κατάκειμαι **katakeimai** *v.* — to recline
+
+κάθημαι **kathēmai** *v.* — to sit
+
+καθέζομαι **kathezomai** *v.* — to sit down
+
+καθίζω **kathizō** *v.* — to seat
+
+κεῖμαι **keimai** *v.* — to lay/be appointed
+
+κλίνω **klinō** *v.* — to bow/lay down
+
+μένω **menō** *v.* — to stay
+
+μονή **monē** *f.* — abode
+
+παρίστημι **paristēmi** *v.* — to stand by
+
+περιΐστημι **periistēmi** *v.* — to stand around
+
+σκηνόω **skēnoō** *v.* — to dwell
+
+
+## Page 37 — Family and Everyday People {#theme-family}
+
+*Mothers, brothers, neighbours and one extremely unfortunate bridegroom with a wine problem.*
+
+ἀδελφή **adelphē** *f.* — sister
+
+ἀδελφός **adelphos** *m.* — brother
+
+ἀνήρ **anēr** *m.* — man
+
+ἀνθρωποκτόνος **anthrōpoktonos** *m.* — murderer
+
+ἄνθρωπος **anthrōpos** *m.* — a human
+
+γάμος **gamos** *m.* — wedding
+
+γείτων **geitōn** *m.* — neighbour
+
+γεωργός **geōrgos** *m.* — farmer
+
+γέρων **gerōn** *m.* — an old man
+
+γονεύς **goneus** *m.* — parent
+
+γυνή **gunē** *f.* — woman
+
+ἁμαρτωλός **hamartōlos** *adj.* — sinful
+
+κηπουρός **kēpouros** *m.* — gardener
+
+κλέπτης **kleptēs** *m.* — thief
+
+λαός **laos** *m.* — a people
+
+λῃστής **lēstēs** *m.* — robber/rebel
+
+μήτηρ **mētēr** *f.* — mother
+
+νύμφη **numphē** *f.* — bride
+
+νυμφίος **numphios** *m.* — bridegroom
+
+ὄχλος **ochlos** *m.* — crowd
+
+ὀρφανός **orphanos** *adj.* — orphan
+
+παιδάριον **paidarion** *n.* — boy
+
+παιδίον **paidion** *n.* — child
+
+παῖς **pais** *m.* — child
+
+πενθερός **pentheros** *m.* — father-in-law
+
+πλῆθος **plēthos** *n.* — multitude
+
+ποιμήν **poimēn** *m.* — shepherd
+
+προσαίτης **prosaitēs** *m.* — a beggar
+
+πτωχός **ptōchos** *noun* — poor
+
+συγγενής **sungenēs** *adj.* — kindred
+
+τεκνίον **teknion** *n.* — children
+
+τέκνον **teknon** *n.* — child
+
+θυγάτηρ **thugatēr** *f.* — daughter
+
+θυρωρός **thurōros** *m.* — gatekeeper
+
+
+## Page 38 — Rulers, Servants and Officials {#theme-rulers}
+
+*The people who give orders, and the people who regret receiving them.*
+
+ἀρχιερεύς **archiereus** *m.* — high-priest
+
+ἀρχιτρίκλινος **architriklinos** *m.* — head waiter
+
+ἄρχω **archō** *v.* — be first
+
+ἄρχων **archōn** *m.* — ruler
+
+βασιλεία **basileia** *f.* — kingdom
+
+βασιλεύς **basileus** *m.* — king
+
+βασιλικός **basilikos** *adj.* — royal
+
+χιλίαρχος **chiliarchos** *m.* — military officer
+
+διακονέω **diakoneō** *v.* — to serve
+
+διάκονος **diakonos** *m.* — servant
+
+δουλεύω **douleuō** *v.* — be a slave
+
+δοῦλος **doulos** *noun* — slave
+
+ἐξουσία **exousia** *f.* — authority
+
+ἱερεύς **hiereus** *m.* — priest
+
+ὑπηρέτης **hupēretēs** *m.* — servant
+
+Καῖσαρ **Kaisar** *noun* — Caesar
+
+κερματιστής **kermatistēs** *m.* — moneychanger
+
+κολλυβιστής **kollubistēs** *m.* — moneychanger
+
+Λευΐτης **Leuitēs** *name* — Levite
+
+μαθητής **mathētēs** *m.* — disciple
+
+μισθός **misthos** *m.* — wage
+
+μισθωτός **misthōtos** *m.* — hired worker
+
+παιδίσκη **paidiskē** *f.* — maidservant
+
+Φαρισαῖος **Pharisaios** *noun* — Pharisee
+
+πρεσβύτερος **presbuteros** *noun* — Elder
+
+ῥαββί **rhabbi** *noun* — Rabbi
+
+ῥαββονί **rhabboni** *noun* — Rabboni
+
+στρατιώτης **stratiōtēs** *m.* — soldier
+
+συμμαθητής **summathētēs** *m.* — fellow disciple
+
+συνέδριον **sunedrion** *n.* — council
+
+
+## Page 39 — The Body {#theme-body}
+
+*Head, shoulders, knees and, mercifully for the translator, only a few toes.*
+
+αἷμα **ahima** *n.* — blood
+
+βραχίων **brachiōn** *m.* — arm
+
+χείρ **cheir** *f.* — hand
+
+δάκτυλος **daktulos** *m.* — finger
+
+κεφαλή **kephalē** *f.* — head
+
+κοιλία **koilia** *f.* — belly/womb/stomach
+
+κόλπος **kolpos** *m.* — bosom
+
+ὀφθαλμός **ophthalmos** *m.* — eye
+
+ὄψις **opsis** *f.* — face
+
+ὀστέον **osteon** *n.* — bone
+
+ὠτάριον **ōtarion** *n.* — ear
+
+ὠτίον **ōtion** *n.* — ear
+
+πλευρά **pleura** *f.* — side
+
+πούς **pous** *m.* — foot
+
+ψυχή **psuchē** *f.* — soul
+
+πτέρνα **pterna** *f.* — heel
+
+πτύω **ptuō** *v.* — to spit
+
+πτύσμα **ptusma** *n.* — saliva
+
+ῥάπισμα **rhapisma** *n.* — slap
+
+σάρξ **sarx** *f.* — flesh
+
+σκέλος **skelos** *n.* — leg
+
+σῶμα **sōma** *n.* — body
+
+στῆθος **stēthos** *n.* — chest
+
+στόμα **stoma** *n.* — mouth
+
+θρίξ **thrix** *f.* — hair
+
+
+## Page 40 — Water, Earth and Weather {#theme-nature}
+
+*Rivers, wind, stone and fire. The outdoors, for those who still go there.*
+
+αἰγιαλός **aigialos** *m.* — shore
+
+ἄκανθα **akantha** *f.* — a thorn
+
+ἄνεμος **anemos** *m.* — wind
+
+ἀνθρακιά **anthrakia** *f.* — charcoal fire
+
+βροντή **brontē** *f.* — thunder
+
+χαμαί **chamai** *adv.* — on the ground
+
+χείμαρρος **cheimarros** *m.* — brook
+
+χειμών **cheimōn** *m.* — winter
+
+γῆ **gē** *f.* — soil
+
+ὕδωρ **hudōr, hudatos** *n.* — water
+
+καίω **kaiō** *v.* — to kindle/burn
+
+λιθάζω **lithazō** *v.* — to stone
+
+λίθινος **lithinos** *adj.* — stone
+
+λίθος **lithos** *m.* — stone
+
+νομή **nomē** *f.* — pasture
+
+ὄρος **oros** *n.* — mountain
+
+πηγή **pēgē** *f.* — flow
+
+πηλός **pēlos** *m.* — clay
+
+φρέαρ **phrear** *n.* — well/abyss
+
+πνέω **pneō** *v.* — to blow
+
+ποταμός **potamos** *m.* — river
+
+ψῦχος **psuchos** *n.* — cold
+
+πῦρ **pur** *n.* — fire
+
+ῥέω **rheō** *v.* — to flow
+
+σπήλαιον **spēlaion** *n.* — cave
+
+θάλασσα **thalassa** *f.* — sea
+
+θερμαίνω **thermainō** *v.* — to warm
+
+
+## Page 41 — Food, Farming and Animals {#theme-food}
+
+*Bread, fish, wine and the odd wolf. The Gospel of John does not skip meals.*
+
+ἀλέκτωρ **alektōr** *m.* — rooster
+
+ἄμπελος **ampelos** *f.* — vine
+
+ἀριστάω **aristaō** *v.* — to eat early meal
+
+ἄρτος **artos** *m.* — bread
+
+αὐξάνω **auxanō** *v.* — to grow
+
+βιβρώσκω **bibrōskō** *v.* — to eat
+
+βόσκω **boskō** *v.* — to feed
+
+βοῦς **bous** *m.* — ox
+
+βρῶμα **brōma** *n.* — food
+
+βρῶσις **brōsis** *f.* — eating
+
+χορτάζω **chortazō** *v.* — to feed
+
+χόρτος **chortos** *m.* — grass
+
+δεῖπνον **deipnon** *n.* — dinner
+
+δίκτυον **diktuon** *n.* — net
+
+διψάω **dipsaō** *v.* — to thirst
+
+γεύω **geuō** *v.* — to taste
+
+ἁλιεύω **halieuō** *v.* — to fish
+
+ὑδρία **hudria** *f.* — jar
+
+ἰχθύς **ichthus** *m.* — fish
+
+καρπός **karpos** *m.* — fruit
+
+κατεσθίω **katesthiō** *v.* — to devour
+
+κλῆμα **klēma** *n.* — branch
+
+κόκκος **kokkos** *m.* — seed
+
+κοπιάω **kopiaō** *v.* — to labor
+
+κόπος **kopos** *m.* — labor
+
+κρίθινος **krithinos** *adj.* — barley
+
+λύκος **lukos** *m.* — wolf
+
+μάννα **manna** *noun* — manna
+
+μεθύω **methuō** *v.* — to get drunk
+
+οἶνος **oinos** *m.* — wine
+
+ὀνάριον **onarion** *n.* — young donkey
+
+ὄνος **onos** *m.* — donkey
+
+ὄφις **ophis** *m.* — snake
+
+ὀψάριον **opsarion** *n.* — fish
+
+ὄξος **oxos** *n.* — vinegar
+
+πεινάω **peinaō** *v.* — to hunger
+
+περιστερά **peristera** *f.* — dove
+
+φαγεῖν **phagein** *v.* — to eat
+
+φυλάσσω **phulassō** *v.* — observe
+
+πίνω **pinō** *v.* — to drink
+
+πλοιάριον **ploiarion** *n.* — small boat
+
+πλοῖον **ploion** *n.* — boat
+
+ποιμαίνω **poimainō** *v.* — to shepherd
+
+ποίμνη **poimnē** *f.* — flock
+
+πῶλος **pōlos** *m.* — colt
+
+πόσις **posis** *f.* — drink
+
+ποτήριον **potērion** *n.* — cup
+
+πρόβατον **probaton** *n.* — sheep
+
+προσφάγιον **prosphagion** *n.* — fish
+
+ψωμίον **psōmion** *n.* — piece
+
+σῖτος **sitos** *m.* — grain
+
+σπείρω **speirō** *v.* — to sow
+
+σπέρμα **sperma** *n.* — offspring
+
+συκῆ **sukē** *f.* — fig tree
+
+θερισμός **therismos** *m.* — harvest
+
+θερίζω **therizō** *v.* — to reap
+
+θρέμμα **thremma** *n.* — livestock
+
+τρώγω **trōgō** *v.* — to eat
+
+τροφή **trophē** *f.* — food
+
+
+## Page 42 — Houses, Cities and Places {#theme-places}
+
+*Where things happen, which is everywhere, as long as there's a courtyard nearby.*
+
+ἀγοράζω **agorazō** *v.* — to buy
+
+αὐλή **aulē** *f.* — palace/courtyard
+
+βῆμα **bēma** *n.* — judgement seat
+
+χώρα **chōra** *f.* — country
+
+χωρίον **chōrion** *n.* — place
+
+ἐμπόριον **emporion** *n.* — marketplace/trade
+
+γαζοφυλάκιον **gazophulakion** *n.* — treasury
+
+ἱερόν **hieros** *n.* — temple
+
+κῆπος **kēpos** *m.* — garden
+
+κολυμβήθρα **kolumbēthra** *f.* — pool
+
+κώμη **kōmē** *f.* — village
+
+λιθόστρωτος **lithostrōtos** *adj.* — The Stone Pavement
+
+ναός **naos** *m.* — temple
+
+οἰκία **oikia** *f.* — home
+
+οἰκοδομέω **oikodomeō** *v.* — to build
+
+οἶκος **oikos** *m.* — home
+
+πατρίς **patris** *f.* — fatherland
+
+φυλακή **phulakē** *f.* — prison
+
+πόλις **polis** *f.* — city
+
+πραιτώριον **praitōrion** *n.* — praetorium
+
+προβατικός **probatikos** *adj.* — Sheep Gate
+
+στάδιος **stadios** *m.* — stadium
+
+στοά **stoa** *f.* — Portico
+
+συναγωγή **sunagōgē** *f.* — synagogue
+
+θύρα **thura** *f.* — door
+
+τόπος **topos** *m.* — place
+
+τράπεζα **trapeza** *f.* — table
+
+
+## Page 43 — Law, Worship and Feasts {#theme-law}
+
+*Rules, rituals and the occasional feast. Rather more fun than the rules.*
+
+ἀδικία **adikia** *f.* — unrighteousness
+
+αἰτία **aitia** *f.* — cause/charge
+
+ἀπώλεια **apōleia** *f.* — destruction
+
+ἀπολλύω **apolluō** *v.* — to destroy
+
+ἀπολύω **apoluō** *v.* — release
+
+ἀποσυνάγωγος **aposunagōgos** *adj.* — excommunicated
+
+ἀθετέω **atheteō** *v.* — to reject
+
+ἀτιμάζω **atimazō** *v.* — to dishonor
+
+βαπτίζω **baptizō** *v.* — to baptize
+
+βάπτω **baptō** *v.* — to dip
+
+διασπορά **diaspora** *f.* — dispersion
+
+δίκαιος **dikaios** *adj.* — just
+
+δικαιοσύνη **dikaiosunē** *f.* — righteousness
+
+ἐγκαίνια **egkainia** *n.* — Feast|Festival of Dedication
+
+ἐντολή **entolē** *f.* — commandment
+
+ἐπάρατος **eparatos** *adj.* — accursed
+
+ἐργάζομαι **ergazomai** *v.* — to work
+
+ἔργον **ergon** *n.* — work
+
+ἔθος **ethos** *n.* — custom
+
+ἁμαρτάνω **hamartanō** *v.* — to sin
+
+ἁμαρτία **hamartia** *f.* — sin
+
+ἑορτή **heortē** *f.* — festival
+
+κατακρίνω **katakrinō** *v.* — to condemn
+
+καθαίρω **kathairō** *v.* — to prune
+
+καθαρισμός **katharismos** *m.* — cleansing
+
+καθαρός **katharos** *adj.* — clean
+
+κρίμα **krima** *n.* — judgment
+
+κρίνω **krinō** *v.* — to judge
+
+κρίσις **krisis** *f.* — judgment
+
+λούω **louō** *v.* — to wash
+
+μιαίνω **miainō** *v.* — to stain
+
+μοιχεία **moicheia** *f.* — adultery
+
+μοιχεύω **moicheuō** *v.* — to commit adultery
+
+νόμος **nomos** *m.* — law
+
+παρασκευή **paraskeuē** *f.* — Preparation
+
+πάσχα **pascha** *noun* — Passover lamb
+
+περιτέμνω **peritemnō** *v.* — to circumcise
+
+περιτομή **peritomē** *f.* — circumcision
+
+πορνεία **porneia** *f.* — sexual sin
+
+σάββατον **sabbaton** *n.* — Sabbath
+
+σχίσμα **schisma** *n.* — split
+
+σημεῖον **sēmeion** *n.* — sign
+
+σκηνοπηγία **skēnopēgia** *f.* — Feast|Festival of Booths
+
+σφραγίζω **sphragizō** *v.* — to seal
+
+συνήθεια **sunētheia** *f.* — custom
+
+τέρας **teras** *n.* — wonders
+
+θύω **thuō** *v.* — to sacrifice
+
+τιμάω **timaō** *v.* — to honor
+
+τιμή **timē** *f.* — honor
+
+
+## Page 44 — Numbers and Time {#theme-time}
+
+*Counting things and waiting for them. Please note that Greek numbers do not get easier past ten.*
+
+ἀρχή **archē** *f.* — beginning
+
+ἄρτι **arti** *adv.* — now
+
+χρόνος **chronos** *m.* — time
+
+χθές **chthes** *adv.* — yesterday
+
+δεκαπέντε **dekapente** *adj.* — fifteen
+
+δέκατος **dekatos** *adj.* — tenth
+
+δεύτερος **deuteros** *adj.* — secondly
+
+διακόσιοι **diakosioi** *adj.* — two hundred
+
+δώδεκα **dōdeka** *adj.* — twelve
+
+δύο **duo** *adj.* — two
+
+ἤδη **ēdē** *adv.* — already
+
+εἷς **ehis** *adj.* — one
+
+εἴκοσι **eikosi** *adj.* — twenty
+
+ἐνιαυτός **eniautos** *m.* — year
+
+ἐπαύριον **epaurion** *adv.* — the next day
+
+ἔσχατος **eschatos** *adj.* — last/least
+
+ἔτος **etos** *n.* — year
+
+ἕβδομος **hebdomos** *adj.* — seventh
+
+ἑκατόν **hekaton** *adj.* — hundred
+
+ἕκτος **hektos** *adj.* — sixth
+
+ἡλικία **hēlikia** *f.* — age/height
+
+ἡμέρα **hēmera** *f.* — day
+
+ἕξ **hex** *adj.* — six
+
+ὥρα **hōra** *f.* — hour
+
+καιρός **kairos** *m.* — time/right time
+
+καταβολή **katabolē** *f.* — beginning
+
+νῦν **nun** *adv.* — now
+
+νύξ **nux** *f.* — night
+
+ὀκτώ **oktō** *adj.* — eight
+
+ὀψία **opsia** *adj.* — evening
+
+ὄρθρος **orthros** *m.* — dawn
+
+πάλιν **palin** *adv.* — again
+
+πάντοτε **pantote** *adv.* — always
+
+πεντακισχίλιοι **pentakischilioi** *adj.* — five thousand
+
+πέντε **pente** *adj.* — five
+
+πεντήκοντα **pentēkonta** *adj.* — fifty
+
+πρωΐ **prōi** *adv.* — early
+
+πρωΐα **prōia** *f.* — early morning
+
+πρότερος **proteros** *adj.* — before
+
+πρῶτος **prōtos** *adj.* — first
+
+τέλος **telos** *n.* — goal/tax
+
+τεσσαράκοντα **tessarakonta** *adj.* — forty
+
+τέσσαρες **tessares** *adj.* — four
+
+τεταρταῖος **tetartaios** *adj.* — fourth
+
+τετράμηνος **tetramēnos** *adj.* — four months
+
+τότε **tote** *adv.* — then
+
+τρεῖς **treis** *adj.* — Three
+
+τριάκοντα **triakonta** *adj.* — thirty
+
+τριακόσιοι **triakosioi** *adj.* — three hundred
+
+τρίς **tris** *adv.* — three times
+
+τρίτος **tritos** *adj.* — third
+
+
+## Page 45 — Clothes, Tools and Money {#theme-things}
+
+*What people wear, carry, hit each other with and pay each other in.*
+
+ἄντλημα **antlēma** *n.* — bucket
+
+ἀντλέω **antleō** *v.* — to draw
+
+ἀριθμός **arithmos** *m.* — number
+
+ἄρραφος **arraphos** *adj.* — seamless
+
+βαΐον **baion** *n.* — palm branch
+
+χιτών **chitōn** *m.* — tunic
+
+χρεία **chreia** *f.* — need
+
+δηνάριον **dēnarion** *n.* — denarius
+
+διαζώννυμι **diazōnnumi** *v.* — to tie around
+
+δωρεά **dōrea** *f.* — free gift
+
+εἶδος **eidos** *n.* — appearance
+
+ἐπενδύτης **ependutēs** *m.* — coat
+
+γλωσσόκομον **glōssokomon** *n.* — moneybag
+
+ἧλος **hēlos** *m.* — nail
+
+ἱμάς **himas** *m.* — leather strap
+
+ἱμάτιον **himation** *n.* — clothing
+
+ἱματισμός **himatismos** *m.* — clothing
+
+ὅπλον **hoplon** *n.* — weapon
+
+ὑφαντός **huphantos** *adj.* — woven
+
+ὑπόδειγμα **hupodeigma** *n.* — example
+
+ὑπόδημα **hupodēma** *n.* — sandal
+
+ὕσσωπος **hussōpos** *f.* — hyssop
+
+κέρμα **kerma** *n.* — coin
+
+κλάσμα **klasma** *n.* — fragment
+
+κλῆρος **klēros** *m.* — lot
+
+κόφινος **kophinos** *m.* — basket
+
+κράββατος **krabbatos** *m.* — bed
+
+λέντιον **lention** *n.* — towel
+
+λίτρα **litra** *f.* — pound
+
+λόγχη **logchē** *f.* — spear
+
+μάχαιρα **machaira** *f.* — sword
+
+μαστιγόω **mastigoō** *v.* — to whip
+
+μέρος **meros** *n.* — part
+
+μετρητής **metrētēs** *m.* — measure
+
+μέτρον **metron** *n.* — measure
+
+μίγμα **migma** *n.* — mixture
+
+νιπτήρ **niptēr** *m.* — wash basin
+
+νίπτω **niptō** *v.* — to wash
+
+ὀσμή **osmē** *f.* — aroma
+
+πῆχυς **pēchus** *m.* — cubit/hour
+
+περιβάλλω **periballō** *v.* — to clothe
+
+φοῖνιξ **phoinix** *m.* — palm
+
+φορέω **phoreō** *v.* — to wear
+
+φραγέλλιον **phragellion** *n.* — whip
+
+πορφύρεος **porphureos** *adj.* — purple
+
+σχοινίον **schoinion** *n.* — rope
+
+σκεῦος **skeuos** *n.* — vessel
+
+σπεῖρα **speira** *f.* — band
+
+σπόγγος **spongos** *m.* — sponge
+
+σταυρόω **stauroō** *v.* — to crucify
+
+σταυρός **stauros** *m.* — cross
+
+στέφανος **stephanos** *m.* — crown
+
+συσταυρόομαι **sustauroomai** *v.* — to crucify with
+
+θήκη **thēkē** *f.* — sheath
+
+τύπος **tupos** *m.* — mark/example
+
+ζώννυμι **zōnnumi** *v.* — to dress
+
+
+## Page 46 — Qualities and Descriptions {#theme-qualities}
+
+*Good, bad, big, small. The adjectives, that is. Not my moods.*
+
+ἀγαθός **agathos** *adj.* — good
+
+ἀκάνθινος **akanthinos** *adj.* — thorny
+
+ἄλλος **allos** *adj.* — another
+
+ἀλλότριος **allotrios** *adj.* — another’s
+
+ἀναμάρτητος **anamartētos** *adj.* — sinless
+
+ἀρεστός **arestos** *adj.* — pleasing
+
+ἄξιος **axios** *adj.* — worthy
+
+βαθύς **bathus** *adj.* — deep
+
+βραχύς **brachus** *adj.* — little
+
+χείρων **cheirōn** *adj.* — worse than
+
+δεξιός **dexios** *adj.* — right
+
+ἐλάσσων **elassōn** *adj.* — lesser
+
+ἐλεύθερος **eleutheros** *adj.* — free/freedom
+
+ἐπαυτόφωρος, αὐτόφωρος **epautophōros, autophōros** *adj.* — in the very act
+
+ἐπίγειος **epigeios** *adj.* — earthly
+
+ἔρημος **erēmos** *adj.* — deserted
+
+γυμνός **gumnos** *adj.* — naked
+
+ἅπας **hapas** *adj.* — all
+
+ἕκαστος **hekastos** *adj.* — each
+
+ἕτερος **heteros** *adj.* — other
+
+ἕτοιμος **hetoimos** *adj.* — ready
+
+ὅλος **holos** *adj.* — all
+
+ὅμοιος **homoios** *adj.* — like
+
+ὕστερος **husteros** *adj.* — later
+
+ἴδιος **idios** *adj.* — one's own/private
+
+ἴσος **isos** *adj.* — equal
+
+καινός **kainos** *adj.* — new
+
+κακός **kakos** *adj.* — evil
+
+καλός **kalos** *adj.* — good
+
+κομψότερον **kompsoteron** *adj.* — better
+
+λευκός **leukos** *adj.* — white
+
+μέγας **megas** *adj.* — great
+
+μέσος **mesos** *adj.* — midst
+
+μεστός **mestos** *adj.* — full
+
+μικρός **mikros** *adj.* — small
+
+μόνος **monos** *adj.* — alone
+
+νέος **neos** *adj.* — new
+
+οὐδείς **oudeis** *adj.* — none
+
+πᾶς **pas** *adj.* — all
+
+περισσός **perissos** *adj.* — excessive
+
+φαῦλος **phaulos** *adj.* — evil
+
+πλείων, πλεῖον **pleiōn, pleion** *adj.* — greater
+
+πλήρης **plērēs** *adj.* — full
+
+πολύς **polus** *adj.* — much
+
+πολύτιμος **polutimos** *adj.* — valuable
+
+πονηρός **ponēros** *adj.* — evil/bad
+
+σκληρός **sklēros** *adj.* — hard
+
+
+## Page 47 — Everyday Actions {#theme-actions}
+
+*Everything people do that didn't fit anywhere else. Which is quite a lot.*
+
+ἀγωνίζομαι **agōnizomai** *v.* — to struggle
+
+αἴρω **airō** *v.* — to take up
+
+ἀκολουθέω **akoloutheō** *v.* — to follow
+
+ἀλείφω **aleiphō** *v.* — to anoint
+
+ἀνατρέπω **anatrepō** *v.* — to overturn
+
+ἀνοίγω **anoigō** *v.* — to open
+
+ἀφίημι **aphiēmi** *v.* — leave
+
+ἀποκόπτω **apokoptō** *v.* — to cut off
+
+ἀρκέω **arkeō** *v.* — be sufficient
+
+χωρέω **chōreō** *v.* — to make room for
+
+δέχομαι **dechomai** *v.* — to receive
+
+δεῖ **dei** *v.* — be necessary
+
+δέω **deō** *v.* — to bind
+
+δέρω **derō** *v.* — to beat up
+
+διαδίδωμι **diadidōmi** *v.* — to distribute
+
+διαμερίζω **diamerizō** *v.* — to divide
+
+διασκορπίζω **diaskorpizō** *v.* — to scatter
+
+δίδωμι **didōmi** *v.* — to give
+
+διώκω **diōkō** *v.* — to pursue
+
+δύναμαι **dunamai** *v.* — be able
+
+ἔχω **echō** *v.* — to have/be
+
+εὑρίσκω **ehuriskō** *v.* — to find/meet
+
+εἰμί **eimi** *v.* — to be
+
+εἶναι **einai** *v.* — to exist
+
+ἐκχέω **ekcheō** *v.* — to pour out
+
+ἐκκεντέω **ekkenteō** *v.* — to pierce
+
+ἐκλέγω **eklegō** *v.* — to select
+
+ἐκμάσσω **ekmassō** *v.* — to wipe off
+
+ἐκτείνω **ekteinō** *v.* — to stretch out
+
+ἐλαττόω **elattoō** *v.* — to make less
+
+ἐλευθερόω **eleutheroō** *v.* — to set free
+
+ἐμφανίζω **emphanizō** *v.* — to show
+
+ἐμφυσάω **emphusaō** *v.* — to breathe into
+
+ἐμπίμπλημι **empimplēmi** *v.* — to fill up
+
+ἐντέλλω **entellō** *v.* — to order
+
+ἐντυλίσσω **entulissō** *v.* — to wrap up
+
+ἐπιβάλλω **epiballō** *v.* — to put on/seize
+
+ἐπιχρίω **epichriō** *v.* — to rub on
+
+ἐπιλέγω **epilegō** *v.* — to call/choose
+
+ἐπιστρέφω **epistrephō** *v.* — to turn
+
+ἐπιτίθημι **epitithēmi** *v.* — to put/lay on
+
+ἐπιτρέπω **epitrepō** *v.* — to permit
+
+εὐθύνω **euthunō** *v.* — to straighten
+
+ἔξεστι, ἐξόν **exesti, exon** *v.* — be permitted
+
+γεμίζω **gemizō** *v.* — to fill
+
+γηράσκω **gēraskō** *v.* — to grow old
+
+γίνομαι **ginomai** *v.* — to be
+
+ἅπτω **haptō** *v.* — to touch
+
+ἁρπάζω **harpazō** *v.* — to seize
+
+ἑτοιμάζω **hetoimazō** *v.* — to make ready
+
+ὑστερέω **hustereō** *v.* — to lack
+
+ἰσχύω **ischuō** *v.* — be strong
+
+κατάγνυμι **katagnumi** *v.* — to break
+
+καταγράφω **katagraphō** *v.* — to delineate
+
+καταλαμβάνω **katalambanō** *v.* — to grasp
+
+καταλείπω **kataleipō** *v.* — to leave behind
+
+κλείω **kleiō** *v.* — to shut
+
+κλέπτω **kleptō** *v.* — to steal
+
+κρατέω **krateō** *v.* — to grasp/seize
+
+κυκλόω **kukloō** *v.* — to surround
+
+λαμβάνω **lambanō** *v.* — to take
+
+λύω **luō** *v.* — to loose
+
+μάχομαι **machomai** *v.* — to quarrel
+
+μέλλω **mellō** *v.* — to ensue
+
+μέλω **melō** *v.* — to concern
+
+μεσόω **mesoō** *v.* — be in the middle
+
+νεύω **neuō** *v.* — to motion
+
+νικάω **nikaō** *v.* — to conquer
+
+νύσσω **nussō** *v.* — to pierce
+
+ὀφείλω **opheilō** *v.* — to owe
+
+ὠφελέω **ōpheleō** *v.* — to help
+
+ὄζω **ozō** *v.* — to stink
+
+παίω **paiō** *v.* — to strike
+
+παραδίδωμι **paradidōmi** *v.* — to deliver
+
+παραλαμβάνω **paralambanō** *v.* — to take
+
+παραμυθέομαι **paramutheomai** *v.* — to encourage
+
+πάρειμι **pareimi** *v.* — be present
+
+πειράζω **peirazō** *v.* — tempt
+
+περιδέω **perideō** *v.* — to wrap around
+
+περισσεύω **perisseuō** *v.* — to exceed
+
+περιτίθημι **peritithēmi** *v.* — to put on
+
+πιάζω **piazō** *v.* — to arrest/catch
+
+πιπράσκω **pipraskō** *v.* — to sell
+
+πλανάω **planaō** *v.* — to lead astray
+
+πλέκω **plekō** *v.* — to weave
+
+πληρόω **plēroō** *v.* — to fulfill
+
+ποιέω **poieō** *v.* — do
+
+πωλέω **pōleō** *v.* — to sell
+
+πωρόω **pōroō** *v.* — to harden
+
+πράσσω **prassō** *v.* — to do/require
+
+προσκόπτω **proskoptō** *v.* — to strike
+
+σχίζω **schizō** *v.* — to split
+
+σκανδαλίζω **skandalizō** *v.* — to cause to stumble
+
+σκορπίζω **skorpizō** *v.* — to scatter
+
+στρέφω **strephō** *v.* — to turn
+
+συγχράομαι **sugchraomai** *v.* — to associate with
+
+συλλαμβάνω **sullambanō** *v.* — to seize/conceive/help
+
+συμφέρω **sumpherō** *v.* — be profitable
+
+συνάγω **sunagō** *v.* — to assemble
+
+συντίθημι **suntithēmi** *v.* — to agree
+
+συντρίβω **suntribō** *v.* — to break
+
+τελειόω **teleioō** *v.* — to perfect
+
+τελέω **teleō** *v.* — to finish
+
+τηρέω **tēreō** *v.* — observe
+
+τίθημι **tithēmi** *v.* — to place
+
+
+## Page 48 — Names and Places {#theme-names}
+
+*Who and where. Spelling is a bit of a free-for-all, so don't take it personally.*
+
+Ἀβραάμ **Abraam** *name* — Abraham
+
+Αἰνών **Ainōn** *noun* — Aenon
+
+Ἀνδρέας **Andreas** *name* — Andrew
+
+Ἄννας **Annas** *name* — Annas
+
+Ἀριμαθαία **Arimathaia** *f.* — Arimathea
+
+Βαραββᾶς **Barabbas** *name* — Barabbas
+
+Βηθανία **Bēthania** *f.* — Bethany
+
+Βηθζαθά **Bēthesda** *noun* — Bethesda
+
+Βηθλεέμ **Bēthleem** *noun* — Bethlehem
+
+Βηθσαϊδά **Bēthsaida** *noun* — Bethsaida
+
+Δαυείδ, Δαυίδ, Δαβίδ **Daueid, Dauid, Dabid** *name* — David
+
+Δίδυμος **Didumos** *name* — Twin
+
+ἐλαιών **elaiōn** *m.* — Olivet
+
+Ἐφραίμ **Ephraim** *noun* — Ephraim
+
+ἔθνος **ethnos** *n.* — Gentiles
+
+γαββαθά **gabbatha** *noun* — Gabbatha
+
+Γαλιλαία **Galilaia** *f.* — Galilee
+
+Γαλιλαῖος **Galilaios** *noun* — Galilean
+
+Γολγοθᾶ **Golgotha** *noun* — Golgotha
+
+Ἡλίας **Hēlias** *name* — Elijah
+
+Ἕλλην=Ἕλλην **Hellēn** *noun* — Greek, Gentile
+
+Ἡσαΐας **Hēsaias** *name* — Isaiah
+
+Ἱεροσόλυμα **Hierosoluma** *noun* — Jerusalem
+
+Ἱεροσολυμίτης **Hierosolumitēs** *m.* — Jerusalem
+
+Ἰακώβ **Iakōb** *name* — Jacob
+
+Ἰωάννης **Iōannēs** *name* — John
+
+Ἰορδάνης **Iordanēs** *m.* — Jordan
+
+Ἰωσήφ **Iōsēph** *name* — Joseph
+
+Ἰουδαία **Ioudaia** *f.* — Judea
+
+Ἰουδαῖος **Ioudaios** *name* — Jew
+
+Ἰούδας **Ioudas** *name* — Judas
+
+Ἰσκαριώτης, Ἰσκαριώθ **Iskariōtēs, Iskariōth** *name* — Iscariot
+
+Ἰσραήλ **Israēl** *noun* — Israel
+
+Ἰσραηλίτης **Israēlitēs** *name* — Israelite
+
+Καϊάφας **Kaiaphas** *name* — Caiaphas
+
+Κανᾶ **Kana** *noun* — Cana
+
+Καπερναούμ **Kapernaoum** *noun* — Capernaum
+
+κέδρος **kedros** *noun* — Kidron
+
+Κηφᾶς **Kēphas** *name* — Cephas
+
+Κλωπᾶς **Klōpas** *name* — Clopas
+
+κρανίον **kranion** *n.* — Skull
+
+Λάζαρος **Lazaros** *name* — Lazarus
+
+Μαγδαληνή **Magdalēnē** *f.* — Magdalene
+
+Μάλχος **Malchos** *name* — Malchus
+
+Μαρία **Maria** *name* — Mary
+
+Μάρθα **Martha** *name* — Martha
+
+Μωϋσῆς, Μωσῆς **Mōusēs, Mōsēs** *name* — Moses
+
+Ναθαναήλ **Nathanaēl** *name* — Nathanael
+
+Ναζαρέθ, Ναζαρά **Nazareth, Nazara** *noun* — Nazareth
+
+Ναζωραῖος **Nazōraios** *noun* — Nazareth
+
+Νικόδημος **Nikodēmos** *name* — Nicodemus
+
+Πέτρος **Petros** *name* — Peter
+
+Φίλιππος **Philippos** *name* — Philip
+
+Πιλᾶτος **Pilatos** *name* — Pilate
+
+Ῥωμαῖος **Rhōmaios** *noun* — Roman
+
+Σαλείμ **Saleim** *noun* — Salim
+
+Σαμάρεια **Samareia** *f.* — Samaria
+
+Σαμαρείτης **Samareitēs** *noun* — Samaritan
+
+Σαμαρεῖτις **Samareitis** *f.* — Samaria
+
+Σιλωάμ **Silōam** *noun* — Siloam
+
+Σίμων **Simōn** *name* — Simon
+
+Σιών **Siōn** *noun* — Zion
+
+Σολομών, Σαλωμών **Solomōn, Salōmōn** *name* — Solomon
+
+Συχάρ **Suchar** *noun* — Sychar
+
+Θωμᾶς **Thōmas** *name* — Thomas
+
+Τιβεριάς **Tiberias** *f.* — (Sea of) Tiberias
+
+Ζεβεδαῖος **Zebedaios** *name* — Zebedee
+
+
+## Page 49 — Little Words {#theme-little}
+
+*Prepositions, conjunctions, particles and other tiny things that hold sentences together. You'll see them everywhere. Make friends.*
+
+ἀλλά **alla** *conj.* — but
+
+ἀλλαχόθεν **allachothen** *adv.* — from elsewhere
+
+ἀλλήλων **allēlōn** *conj.* — one another
+
+ἄν **an** *cond.* — if
+
+ἀνά **ana** *prep.* — each
+
+ἄνω **anō** *adv.* — above
+
+ἄνωθεν **anōthen** *adv.* — from above/again
+
+ἀντί **anti** *prep.* — for
+
+ἀπό **apo** *prep.* — away from
+
+αὐτός **autos** *pron.* — it/s/he
+
+χωρίς **chōris** *prep.* — without
+
+δέ **de** *conj.* — then
+
+διά **dia** *prep.* — through/because of
+
+δωρεάν **dōrean** *adv.* — freely
+
+ἤ **ē** *conj.* — or
+
+ἐάν **ean** *cond.* — if
+
+ἐγώ **egō** *pron.* — I/we
+
+εἰ **ei** *cond.* — if
+
+εἰς **eis** *prep.* — toward
+
+εἶτα **eita** *adv.* — then
+
+ἐκ **ek** *prep.* — out from
+
+ἐκεῖ **ekei** *adv.* — there
+
+ἐκεῖνος **ekeinos** *pron.* — that
+
+ἐκεῖθεν **ekeithen** *adv.* — from there
+
+ἔμπροσθεν **emprosthen** *prep.* — before
+
+ἐν **en** *prep.* — in/on/among
+
+ἐγγύς **engus** *prep.* — near
+
+ἐνώπιον **enōpion** *prep.* — before
+
+ἐντεῦθεν, ἔνθεν **enteuthen, enthen** *adv.* — from here
+
+ἐνθάδε **enthade** *adv.* — in/to this place
+
+ἐπάνω **epanō** *prep.* — above
+
+ἐπεί **epei** *conj.* — since
+
+ἔπειτα **epeita** *adv.* — then
+
+ἤπερ **ēper** *conj.* — than
+
+ἐπί **epi** *prep.* — upon/to/against
+
+ἔσω **esō** *adv.* — in/inner/inwardly
+
+ἔτι **eti** *adv.* — still
+
+εὐθέως **eutheōs** *adv.* — immediately
+
+ἔξω **exō** *prep.* — out/outside(r)
+
+γάρ **gar** *conj.* — for
+
+ἑαυτοῦ **heautou** — themself
+
+ἕως **heōs** *prep.* — until
+
+ἵνα **hina** *conj.* — in order that/to
+
+ὁ **ho** *art.* — the/this/who
+
+ὧδε **hōde** *adv.* — here
+
+ὁμοίως **homoiōs** *adv.* — similarly
+
+ὅμως **homōs** *conj.* — just as
+
+ὁμοῦ **homou** *adv.* — together
+
+ὅπως **hopōs** *conj.* — that
+
+ὅπου **hopou** *conj.* — where(-ever)
+
+ὡς **hōs** *prep.* — as/when
+
+ὅς **hos, hē** *pron.* — which
+
+ὅσος **hosos** — just as/how much
+
+ὥσπερ **hōsper** *conj.* — just as
+
+ὥστε **hōste** *conj.* — so
+
+ὅστις **hostis, hētis** *pron.* — who/which
+
+ὅταν **hotan** *conj.* — when(-ever)
+
+ὅτε **hote** *conj.* — when
+
+ὅτι **hoti** *conj.* — that
+
+ὑπέρ **huper** *prep.* — above/for
+
+ὑπό **hupo** *prep.* — by
+
+ὑποκάτω **hupokatō** *prep.* — under
+
+ἴδε **ide** *interj.* — look!
+
+ἰδού **idou** *interj.* — look!
+
+καί **kai** *conj.* — and
+
+κακῶς **kakōs** *adv.* — badly
+
+καλῶς **kalōs** *adv.* — well
+
+κατά **kata** *prep.* — according to
+
+καθώς **kathōs** *conj.* — as/just as
+
+κάτω **katō** *prep.* — under
+
+λάθρα **lathra** *adv.* — quietly
+
+μακράν **makran** *adv.* — far
+
+μᾶλλον **mallon** *adv.* — more
+
+μέ **me** *pron.* — me
+
+μή **mē** *part.* — not
+
+μηδέ **mēde** *part.* — nor
+
+μηκέτι **mēketi** *adv.* — never again
+
+μέν **men** *part.* — on the other hand
+
+μέντοι **mentoi** *conj.* — yet
+
+μετά **meta** *prep.* — with/after
+
+μεταξύ **metaxu** *prep.* — between/meanwhile
+
+μήτι **mēti** *part.* — surely not
+
+οὕτως **ohutō, ohutōs** *adv.* — thus(-ly)
+
+οὗτος **ohutos** *pron.* — this/he/she/it
+
+ὄντως **ontōs** *adv.* — really
+
+ὀπίσω **opisō** *adv.* — after
+
+οὐ **ou** *part.* — no
+
+οὐδέ **oude** *conj.* — nor
+
+οὐδέπω **oudepō** *adv.* — not yet
+
+οὐδέποτε **oudepote** *adv.* — never
+
+οὐκοῦν **oukoun** *part.* — so
+
+οὖν **oun** *conj.* — therefore/then
+
+οὔπω **oupō** *adv.* — not yet
+
+οὔτε **oute** *part.* — neither
+
+παρά **para** *prep.* — from/with/beside
+
+περί **peri** *prep.* — about
+
+πλησίον **plēsion** *adv.* — near/neighbor
+
+ποῖος **poios** *interj.* — what?
+
+πολλάκις **pollakis** *adv.* — often
+
+πώποτε **pōpote** *adv.* — ever
+
+πῶς **pōs** *part.* — how?!
+
+πότε **pote** *part.* — when?
+
+ποτέ **pote** *part.* — once/when
+
+πότερος **poteros** *adv.* — whether
+
+πόθεν **pothen** *adv.* — whence
+
+ποῦ **pou** *adv.* — where?
+
+πρίν **prin** *prep.* — before
+
+πρό **pro** *prep.* — before
+
+πρός **pros** *prep.* — to/with
+
+σύ **su** *pron.* — you
+
+σύν **sun** *prep.* — with
+
+ταχέως **tacheōs** *adv.* — soon
+
+τάχιον **tachion** *adv.* — quicker
+
+ταχύ **tachu** *adv.* — quickly
+
+τε **te** *conj.* — and/both
+
+τίς **tis** *interj.* — which?
+
+τις **tis** *part.* — one
+
+τοιοῦτος **toioutos** *pron.* — such as this
+
+τοσοῦτος **tosoutos** — so great
+
+
+## Page 50 — One Last Word
+
+That's everything.
+
+Every word in the Gospel of John, twice, with a preface and an unreasonable number of emeralds behind it.
+
+If you've read this from alpha to omega, you're either a scholar or in need of fresh air. Possibly both.
+
+Either way, you can now open the Gospel and know what the words mean. Whether you know what they're doing there is a question for the Grammar Book.
+
+I did tell you to read it.
+
+**— John Koine**
+
+*P.S. No refunds. The Scribe was most insistent.*

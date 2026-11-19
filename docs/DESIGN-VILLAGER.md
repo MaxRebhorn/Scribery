@@ -73,3 +73,5 @@ Ein Vanilla-Handel hat ein festes Ergebnis, kein Zufalls- oder Auswahlergebnis.
 - **Offen:** Dorfstruktur mit Schreibhaus (V2), Alternativweg fuer Dubletten ohne Schreiber, Preise nach Spielsimulation, Handels-UI zeigt keine Dublettenzahl (nur Tooltip am Item).
 
 **Aenderung 19.11.2026:** Grammar Book jetzt schon auf Stufe 1 (neben dem Alphabet Primer); Stufe 3 verkauft die Lexika A-C, D-F und das Forms-Grammar-Lexikon; thematisches Lexikon Stufe 4; das Complete Greek Lexicon bleibt Stufe 5, bis das Buch fertig ueberarbeitet ist.
+
+**Stand Buecher 19.11.2026:** Lexikon A-C, D-F, Thematic und Complete sind geschrieben (`tools/gen_lexicon.py`, Vorworte in `tools/data/lexicon-texts.json`, Sachgebiete in `tools/lexicon_themes.py`). Das Forms & Grammar Lexicon ist noch leer und steht deshalb nicht im Handel; es kommt auf Stufe 3 zurueck, sobald der Text steht.
