@@ -74,5 +74,9 @@
   "block.scribery.roman_bricks_cracked": "Cracked Roman Bricks",
   "block.scribery.roman_bricks_crumbling": "Crumbling Roman Bricks",
   "block.scribery.roman_floor_cracked": "Cracked Roman Stone Floor",
-  "block.scribery.roman_floor_broken": "Broken Roman Stone Floor"
+  "block.scribery.roman_floor_broken": "Broken Roman Stone Floor",
+  "tooltip.scribery.difficulty": "Difficulty: %s",
+  "tooltip.scribery.difficulty.easy": "Easy",
+  "tooltip.scribery.difficulty.medium": "Medium",
+  "tooltip.scribery.difficulty.hard": "Hard"
 }
