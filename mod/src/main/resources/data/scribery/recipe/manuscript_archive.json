@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "p": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "ppp",
+    "PPP"
+  ],
+  "result": {
+    "id": "scribery:manuscript_archive",
+    "count": 1
+  }
+}

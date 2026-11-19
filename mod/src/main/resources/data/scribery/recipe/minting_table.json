@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "p": {
+      "item": "minecraft:decorated_pot"
+    },
+    "m": {
+      "item": "scribery:casting_mold"
+    },
+    "f": {
+      "item": "minecraft:furnace"
+    },
+    "a": {
+      "item": "scribery:mini_anvil"
+    }
+  },
+  "pattern": [
+    " p ",
+    "mfa"
+  ],
+  "result": {
+    "id": "scribery:minting_table",
+    "count": 1
+  }
+}

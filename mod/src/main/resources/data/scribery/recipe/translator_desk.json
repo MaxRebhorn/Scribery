@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "i": {
+      "item": "minecraft:ink_sac"
+    },
+    "f": {
+      "item": "minecraft:feather"
+    },
+    "p": {
+      "item": "minecraft:paper"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "ifp",
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "id": "scribery:translator_desk",
+    "count": 1
+  }
+}

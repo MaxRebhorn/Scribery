@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "s": {
+      "item": "scribery:amphora_shard"
+    }
+  },
+  "pattern": [
+    " s ",
+    "s s",
+    " s "
+  ],
+  "result": {
+    "id": "scribery:casting_mold",
+    "count": 1
+  }
+}

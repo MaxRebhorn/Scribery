@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "minecraft:candles"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "p": {
+      "item": "minecraft:paper"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    " C ",
+    "SpS",
+    " P "
+  ],
+  "result": {
+    "id": "scribery:scribe_lectern",
+    "count": 1
+  }
+}
