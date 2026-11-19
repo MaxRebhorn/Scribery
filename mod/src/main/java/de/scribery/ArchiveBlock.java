@@ -18,7 +18,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * Das Manuscript Archive. Rechtsklick mit einem Fragment, einem gedruckten oder einem uebersetzten Bogen traegt es in die
- * Sammlung des Spielers ein (der Gegenstand ist dann verbraucht; ein Duplikat bleibt beim Spieler). Rechtsklick mit leerer
+ * Sammlung des Spielers ein (Boegen sind dann verbraucht; ein Fragment bleibt, markiert als eingetragen, und wird bei erneutem Ablegen zur Dublette). Rechtsklick mit leerer
  * Hand oeffnet den Text des Evangeliums mit seinen drei Spalten.
  */
 public class ArchiveBlock extends FacingBlock {
@@ -51,13 +51,27 @@ public class ArchiveBlock extends FacingBlock {
         }
         switch (result) {
             case ADDED -> {
-                if (!player.getAbilities().instabuild) held.shrink(1);
+                if (fragment) {
+                    // Das Fragment bleibt erhalten und wird markiert; eine zweite Ablage macht daraus eine Dublette
+                    ArchiveService.markCatalogued(held);
+                } else if (!player.getAbilities().instabuild) {
+                    held.shrink(1);
+                }
                 level.playSound(null, pos, SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1f, 1f);
-                ArchiveService.message(player, fragment ? "Filed in the archive: the Greek text is now in your collection"
+                ArchiveService.message(player, fragment ? "Filed in the archive: the Greek text is now in your collection. The fragment stays with you."
                         : translated ? "Filed in the archive: the translation is now in your collection"
                         : "Filed in the archive: the transliteration is now in your collection");
             }
-            case ALREADY_THERE -> ArchiveService.message(player, "The archive already has this one. Keep it as a duplicate.");
+            case ALREADY_THERE -> {
+                if (fragment) {
+                    boolean marked = ArchiveService.markDuplicate(held);
+                    ArchiveService.message(player, marked
+                            ? "The archive already has this one. Marked as a duplicate: the Scribe will take it."
+                            : "Already marked as a duplicate.");
+                } else {
+                    ArchiveService.message(player, "The archive already has this one. Keep it as a duplicate.");
+                }
+            }
             case NOT_ACCEPTED -> ArchiveService.message(player, "The archive cannot file this.");
         }
         return ItemInteractionResult.CONSUME;

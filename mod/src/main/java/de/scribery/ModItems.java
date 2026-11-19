@@ -138,6 +138,11 @@ public final class ModItems {
         // Bauteile des Minting Table (Rezepte siehe docs/DESIGN-RECIPES, Funktion im Block)
         ALL.add(ITEMS.registerSimpleItem("mini_anvil"));
         ALL.add(ITEMS.registerSimpleItem("casting_mold"));
+        // Fundbeutel des Scribe Villagers (je Fundart eines)
+        for (String find : FindPools.FINDS) {
+            final String f = find;
+            ALL.add(ITEMS.registerItem("find_pouch_" + f, p -> new FindPouchItem(p, f)));
+        }
     }
 
     public static void register(IEventBus bus) {

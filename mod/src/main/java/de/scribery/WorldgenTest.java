@@ -43,6 +43,10 @@ public final class WorldgenTest {
                 }
             }
             int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+            if (id.trim().equals("villager")) {   // Scribe Villager: Beruf, Angebote je Stufe, Dubletten
+                villagerCheck(level, new BlockPos(x, y, z));
+                continue;
+            }
             if (id.trim().equals("features")) {  // nur Gelaende laden und die Funde der Biome zaehlen
                 var biome = level.getBiome(new BlockPos(x, 64, z));
                 var steps = biome.value().getGenerationSettings().features();
@@ -90,5 +94,31 @@ public final class WorldgenTest {
         }
         LOG.info("[wgtest] fertig");
         server.halt(false);
+    }
+
+    private static void villagerCheck(ServerLevel level, BlockPos pos) {
+        for (int lvl = 1; lvl <= 5; lvl++) {
+            var v = net.minecraft.world.entity.EntityType.VILLAGER.create(level);
+            v.moveTo(pos.getX() + .5, pos.getY(), pos.getZ() + .5);
+            v.setVillagerData(v.getVillagerData().setProfession(ModVillagers.SCRIBE.get()).setLevel(lvl));
+            var offers = v.getOffers();
+            StringBuilder sb = new StringBuilder();
+            for (var o : offers) {
+                sb.append(o.getItemCostA().count()).append("x").append(BuiltInRegistries.ITEM.getKey(o.getItemCostA().item().value()).getPath())
+                  .append(o.getItemCostA().components().equals(net.minecraft.core.component.DataComponentPredicate.EMPTY) ? "" : "[marked]")
+                  .append(" -> ").append(o.getResult().getCount()).append("x").append(BuiltInRegistries.ITEM.getKey(o.getResult().getItem()).getPath())
+                  .append(" (max ").append(o.getMaxUses()).append("); ");
+            }
+            LOG.info("[wgtest] Scribe Stufe {}: {} Angebote: {}", lvl, offers.size(), sb);
+        }
+        // Dubletten: ein unmarkiertes und ein markiertes Fragment gegen das Angebot "3 Dubletten -> Beutel" und "1 leichte -> Smaragd"
+        var v = net.minecraft.world.entity.EntityType.VILLAGER.create(level);
+        v.setVillagerData(v.getVillagerData().setProfession(ModVillagers.SCRIBE.get()).setLevel(2));
+        var pouch = v.getOffers().stream().filter(o -> o.getResult().getItem() instanceof FindPouchItem).findFirst().orElse(null);
+        net.minecraft.world.item.ItemStack plain = ManuscriptFragmentItem.of(Manuscripts.load().get(0).id());
+        net.minecraft.world.item.ItemStack dup = plain.copy();
+        ArchiveService.markDuplicate(dup);
+        LOG.info("[wgtest] Beutel-Angebot gefunden: {}; unmarkiertes Fragment akzeptiert: {}; Dublette akzeptiert: {}",
+                pouch != null, pouch != null && pouch.getItemCostA().test(plain), pouch != null && pouch.getItemCostA().test(dup));
     }
 }

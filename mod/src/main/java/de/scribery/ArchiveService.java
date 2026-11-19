@@ -56,6 +56,22 @@ public final class ArchiveService {
         return Result.ADDED;
     }
 
+    /** Fragment-Item als eingetragen markieren (bleibt im Besitz des Spielers). */
+    public static void markCatalogued(ItemStack stack) {
+        if (!stack.has(ModComponents.DUPLICATE.get())) stack.set(ModComponents.CATALOGUED.get(), net.minecraft.util.Unit.INSTANCE);
+    }
+
+    /** Fragment-Item zur Dublette machen: Schwierigkeit merken, "eingetragen" ersetzen. Liefert false, wenn es schon eine war. */
+    public static boolean markDuplicate(ItemStack stack) {
+        if (stack.has(ModComponents.DUPLICATE.get())) return false;
+        String id = stack.get(ModComponents.MANUSCRIPT.get());
+        int tier = id == null ? 0 : FindPools.tier(id);
+        stack.remove(ModComponents.CATALOGUED.get());
+        stack.set(ModComponents.DUPLICATE.get(), net.minecraft.util.Unit.INSTANCE);
+        stack.set(ModComponents.DUPLICATE_TIER.get(), Math.max(1, Math.min(3, tier)));
+        return true;
+    }
+
     private static void store(ServerPlayer player, String id, ArchiveProgress progress) {
         player.setData(ModAttachments.ARCHIVE.get(), data(player).with(id, progress));
         sync(player);

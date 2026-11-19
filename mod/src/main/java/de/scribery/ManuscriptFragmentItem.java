@@ -52,6 +52,11 @@ public class ManuscriptFragmentItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tip, TooltipFlag flag) {
         // Bewusst keine Versangabe: Welche Stelle es ist, soll man selbst herausfinden.
+        if (stack.has(ModComponents.DUPLICATE.get())) {
+            tip.add(Component.translatable("tooltip.scribery.duplicate").withStyle(ChatFormatting.AQUA));
+        } else if (stack.has(ModComponents.CATALOGUED.get())) {
+            tip.add(Component.translatable("tooltip.scribery.catalogued").withStyle(ChatFormatting.DARK_AQUA));
+        }
         String id = stack.get(ModComponents.MANUSCRIPT.get());
         if (id == null) return;
         int tier = FindPools.tier(id);

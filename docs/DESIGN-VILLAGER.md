@@ -1,6 +1,6 @@
 # Entwurf: Scribe Villager (Schreiber)
 
-Stand: Planung, nichts implementiert. Zahlen ungetestet. Verknuepft mit `docs/DESIGN-FINDS.md` (Dubletten, Karten) und ROADMAP Abschnitt 4.
+Stand 19.11.2026: Beruf, Handel, Dublettenmarkierung und Fundbeutel sind gebaut (Branch `scribe-villager`), im Spiel noch nicht probiert. Zahlen ungetestet. Verknuepft mit `docs/DESIGN-FINDS.md` (Dubletten, Karten) und ROADMAP Abschnitt 4.
 
 ## Ziele und Grenzen
 - Er ist die **Geld-Senke und Hilfe**: Lernbuecher kaufen, Dubletten loswerden, Wegweiser kaufen.
@@ -62,3 +62,11 @@ Ein Vanilla-Handel hat ein festes Ergebnis, kein Zufalls- oder Auswahlergebnis.
 - Dublettenmarkierung ueber Archiv (Empfehlung) oder anderer Weg?
 - V2 Schreibhaus im Dorf: ja/nein, wann?
 - Fundbeutel akzeptieren, oder lieber freie Auswahl ueber ein Archiv-GUI?
+
+## Umsetzung (Stand 19.11.2026)
+- **Beruf:** `ModVillagers` (POI-Typ mit allen Pult-Zustaenden, Beruf `scribery:scribe`, Tag `acquirable_job_site`).
+- **Handel:** `core/ScribeTrades` (reine Daten, JUnit-getestet), Zahlen in `core/ScribePrices`, Umsetzung in `ScribeTradeEvents`. Vanilla waehlt je Stufe nur zwei zufaellige Eintraege aus der Liste; deshalb steht je Stufe ein einziger Eintrag (`LevelListing`) in der Liste, der alle Angebote der Stufe selbst an die Angebotsliste anhaengt. Tageslimit = `maxUses`.
+- **Dubletten:** Rechtsklick eines Fragments am Archiv: erste Ablage traegt es ein, das Item bleibt und bekommt `scribery:catalogued`; jede weitere Ablage macht es zur Dublette (`scribery:duplicate` plus `scribery:duplicate_tier` 1 bis 3 aus der Manuskript-Schwierigkeit). Der Handel nimmt nur Fragmente mit `duplicate` (`ItemCost` mit `DataComponentPredicate`). Der Fortschritt liegt weiter in den Spielerdaten, das Item ist nur ein Beleg.
+- **Fundbeutel:** fuenf Items `find_pouch_<sand|mud|ashes|ice|shards>`. Rechtsklick gibt ein Fragment aus dem Pool der Fundart; `core/FindLuck`: 70 % der Zuege waehlen ein im Archiv fehlendes Manuskript. Handel: 3 beliebige Dubletten gegen einen Beutel, Tageslimit 2 je Beutel (Stufe 2).
+- **Fundkarte (Meister):** zeigt auf die naechste Struktur im Tag `scribery:scribe_map_targets` (Katakomben, Wuesten-Katakomben, Sand- und Schlammhaus). Findet er innerhalb von 100 Chunks keine, fehlt das Angebot. Biom-Karten bleiben offen (keine eigene Suchlogik).
+- **Offen:** Dorfstruktur mit Schreibhaus (V2), Alternativweg fuer Dubletten ohne Schreiber, Preise nach Spielsimulation, Handels-UI zeigt keine Dublettenzahl (nur Tooltip am Item).
