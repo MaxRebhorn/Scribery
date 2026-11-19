@@ -1,4 +1,8 @@
-# Design: Minting Table mit Befeuerung und Schmelzen (ENTWURF, nicht gebaut)
+# Design: Minting Table mit Befeuerung
+
+**Entscheidung 19.11.2026:** Es wird nichts geschmolzen. Der Ofen muss brennen, damit man den Tisch benutzen kann; sonst bleibt alles wie im bisherigen Menü (Nuggets rein, Letter Types raus). Gebaut: Zustand `lit`, `MintBlockEntity` mit Restbrenndauer, Brennstoff per Rechtsklick (normale Ofen-Brennwerte, Papyrusfetzen 100 Ticks über `data/neoforge/data_maps/item/furnace_fuels.json`), Modell `minting_table_off` ohne Flamme, Licht 7 nur bei `lit`. Noch offen: Töne beim Gießen (Blubbern, Bing-Bing). Der Rest dieser Datei ist der frühere Entwurf mit Schmelzen und gilt nicht mehr.
+
+# (Früherer Entwurf) Minting Table mit Befeuerung und Schmelzen
 
 Stand 19.11.2026. Das **Aussehen** ist umgesetzt (Steinblock mit offenem Ofenmaul vorn, Flamme schlägt heraus, Tiegel oben, kleine Gussform, kleiner Amboss, siehe `art/gen_stations.py`). Die **Funktion** ist noch die alte: Rechtsklick öffnet das Stonecutter-Menü (`MintMenu`), Eisennuggets werden in Letter Types umgewandelt (1 Nugget → 2 Letter Types).
 

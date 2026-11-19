@@ -545,6 +545,13 @@ def write_models():
         with open(os.path.join(RES, "models/block", name + ".json"), "w", encoding="utf-8", newline="\n") as f:
             json.dump(model_json(name, elems), f, indent=2)
             f.write("\n")
+    # Minting Table ohne Feuer (Zustand lit=false): dasselbe Modell ohne die beiden Flammenflaechen
+    off = [e for e in MODELS["minting_table"] if "fire" not in str(e)]
+    with open(os.path.join(RES, "models/block", "minting_table_off.json"), "w", encoding="utf-8", newline="\n") as f:
+        m = model_json("minting_table", off)
+        m["textures"].pop("fire", None)
+        json.dump(m, f, indent=2)
+        f.write("\n")
 
 
 # ---------------------------------------------------------------- Vorschau (Software-Renderer, ohne Minecraft)

@@ -47,7 +47,8 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> PRINTING_PRESS = station("printing_press", GroupStationBlock::new, false, 0);
     public static final DeferredBlock<Block> TRANSLATOR_DESK = station("translator_desk", DeskBlock::new, false, 0);
     public static final DeferredBlock<Block> MANUSCRIPT_ARCHIVE = station("manuscript_archive", ArchiveBlock::new);
-    public static final DeferredBlock<Block> MINTING_TABLE = station("minting_table", MintBlock::new, false, 7);
+    public static final DeferredBlock<Block> MINTING_TABLE = station("minting_table",
+            p -> new MintBlock(p.lightLevel(s -> s.getValue(MintBlock.LIT) ? 7 : 0)), false, 0);
     public static final DeferredBlock<Block> BOOKSHELF = station("bookshelf");
 
     /** Eisblock mit eingefrorenem Fragment (Testblock fuer das Modell, noch ohne Funktion). */
