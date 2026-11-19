@@ -8,7 +8,6 @@
     "form": "scribery:block/station_form",
     "paper": "scribery:block/station_paper",
     "iron": "scribery:block/station_iron",
-    "flame": "scribery:block/station_flame",
     "particle": "scribery:block/station_dark"
   },
   "elements": [
@@ -489,12 +488,12 @@
     {
       "from": [
         13,
-        11.5,
+        12.5,
         7
       ],
       "to": [
         14,
-        12.5,
+        13.5,
         8
       ],
       "faces": {
@@ -521,13 +520,13 @@
     {
       "from": [
         14,
-        10.5,
-        5
+        11.5,
+        6
       ],
       "to": [
         15,
-        15.5,
-        10
+        14.5,
+        9
       ],
       "faces": {
         "north": {
@@ -553,13 +552,13 @@
     {
       "from": [
         15,
-        13,
-        8.5
+        12.5,
+        7.5
       ],
       "to": [
         16,
-        14,
-        9.5
+        13.5,
+        8.5
       ],
       "faces": {
         "north": {
@@ -579,70 +578,6 @@
         },
         "down": {
           "texture": "#light"
-        }
-      }
-    },
-    {
-      "from": [
-        13,
-        10,
-        11
-      ],
-      "to": [
-        14.5,
-        13,
-        12.5
-      ],
-      "faces": {
-        "north": {
-          "texture": "#paper"
-        },
-        "south": {
-          "texture": "#paper"
-        },
-        "east": {
-          "texture": "#paper"
-        },
-        "west": {
-          "texture": "#paper"
-        },
-        "up": {
-          "texture": "#paper"
-        },
-        "down": {
-          "texture": "#paper"
-        }
-      }
-    },
-    {
-      "from": [
-        13.4,
-        13,
-        11.4
-      ],
-      "to": [
-        14.1,
-        14,
-        12.1
-      ],
-      "faces": {
-        "north": {
-          "texture": "#flame"
-        },
-        "south": {
-          "texture": "#flame"
-        },
-        "east": {
-          "texture": "#flame"
-        },
-        "west": {
-          "texture": "#flame"
-        },
-        "up": {
-          "texture": "#flame"
-        },
-        "down": {
-          "texture": "#flame"
         }
       }
     }

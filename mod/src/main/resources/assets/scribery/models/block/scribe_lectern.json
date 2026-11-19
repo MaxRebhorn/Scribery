@@ -4,6 +4,8 @@
     "dark": "scribery:block/station_dark",
     "wood": "scribery:block/station_wood",
     "light": "scribery:block/station_light",
+    "paper": "scribery:block/station_paper",
+    "flame": "scribery:block/station_flame",
     "particle": "scribery:block/station_dark"
   },
   "elements": [
@@ -257,6 +259,70 @@
         },
         "down": {
           "texture": "#dark"
+        }
+      }
+    },
+    {
+      "from": [
+        12.5,
+        16,
+        13.3
+      ],
+      "to": [
+        14,
+        18,
+        14.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#paper"
+        },
+        "south": {
+          "texture": "#paper"
+        },
+        "east": {
+          "texture": "#paper"
+        },
+        "west": {
+          "texture": "#paper"
+        },
+        "up": {
+          "texture": "#paper"
+        },
+        "down": {
+          "texture": "#paper"
+        }
+      }
+    },
+    {
+      "from": [
+        12.9,
+        18,
+        13.7
+      ],
+      "to": [
+        13.6,
+        19.2,
+        14.4
+      ],
+      "faces": {
+        "north": {
+          "texture": "#flame"
+        },
+        "south": {
+          "texture": "#flame"
+        },
+        "east": {
+          "texture": "#flame"
+        },
+        "west": {
+          "texture": "#flame"
+        },
+        "up": {
+          "texture": "#flame"
+        },
+        "down": {
+          "texture": "#flame"
         }
       }
     }

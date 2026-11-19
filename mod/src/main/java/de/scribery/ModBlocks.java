@@ -42,9 +42,9 @@ public final class ModBlocks {
         return b;
     }
 
-    public static final DeferredBlock<Block> SCRIBE_LECTERN = station("scribe_lectern", ScribeLecternBlock::new, false, 0);
+    public static final DeferredBlock<Block> SCRIBE_LECTERN = station("scribe_lectern", ScribeLecternBlock::new, false, 5);
     public static final DeferredBlock<Block> LETTER_CABINET = station("letter_cabinet", CabinetBlock::new, false, 0);
-    public static final DeferredBlock<Block> PRINTING_PRESS = station("printing_press", GroupStationBlock::new, false, 5);
+    public static final DeferredBlock<Block> PRINTING_PRESS = station("printing_press", GroupStationBlock::new, false, 0);
     public static final DeferredBlock<Block> TRANSLATOR_DESK = station("translator_desk", DeskBlock::new, false, 0);
     public static final DeferredBlock<Block> MANUSCRIPT_ARCHIVE = station("manuscript_archive", ArchiveBlock::new);
     public static final DeferredBlock<Block> MINTING_TABLE = station("minting_table", MintBlock::new, false, 7);

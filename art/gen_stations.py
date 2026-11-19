@@ -228,6 +228,15 @@ def write_textures():
     tex = {}
     for name, fn in MATERIALS.items():
         im = tile(fn, SEEDS[name])
+        if name == "flame":     # animierte Flamme: 4 Bilder untereinander (siehe station_flame.png.mcmeta)
+            strip = Image.new("RGB", (16, 64))
+            for k in range(4):
+                strip.paste(tile(fn, SEEDS[name] + 10 * k), (0, 16 * k))
+            strip.save(os.path.join(RES, "textures/block", "station_flame.png"))
+            with open(os.path.join(RES, "textures/block", "station_flame.png.mcmeta"), "w", newline="\n") as f:
+                f.write('{\n  "animation": {\n    "frametime": 3\n  }\n}\n')
+            tex[name] = tile(fn, SEEDS[name])
+            continue
         im.save(os.path.join(RES, "textures/block", f"station_{name}.png"))
         tex[name] = im
     return tex
@@ -252,6 +261,7 @@ MODELS["scribe_lectern"] = [
     box((1, 13, 13), (15, 16, 15), "dark", north=("wood", None)),
     box((1, 13, 1), (2, 14, 2), "dark"),
     box((14, 13, 1), (15, 14, 2), "dark"),
+    box((12.5, 16, 13.3), (14, 18, 14.8), "paper"), box((12.9, 18, 13.7), (13.6, 19.2, 14.4), "flame"),
 ]
 SHAPES["scribe_lectern"] = [(3, 0, 3, 13, 3, 13), (6, 3, 6, 10, 11, 10), (1, 11, 1, 15, 13, 15), (1, 13, 13, 15, 16, 15)]
 
@@ -283,9 +293,8 @@ MODELS["printing_press"] = TABLE + [
     box((4.5, 13.5, 5), (11.5, 14.5, 11), "iron"),
     box((1.5, 10, 7.5), (2.5, 16, 8.5), "irond"), box((2.5, 13.5, 7.5), (4.5, 14.5, 8.5), "irond"),
     box((1, 15, 7), (3, 16, 9), "light"),
-    box((13, 11.5, 7), (14, 12.5, 8), "irond"), box((14, 10.5, 5), (15, 15.5, 10), "iron"),
-    box((15, 13, 8.5), (16, 14, 9.5), "light"),
-    box((13, 10, 11), (14.5, 13, 12.5), "paper"), box((13.4, 13, 11.4), (14.1, 14, 12.1), "flame"),
+    box((13, 12.5, 7), (14, 13.5, 8), "irond"), box((14, 11.5, 6), (15, 14.5, 9), "iron"),
+    box((15, 12.5, 7.5), (16, 13.5, 8.5), "light"),
 ]
 SHAPES["printing_press"] = [(0, 0, 1, 16, 10, 15), (1, 10, 1, 16, 16, 13)]
 
@@ -305,7 +314,7 @@ MODELS["minting_table"] = [
     box((0, 0, 0), (16, 8, 16), "dark", north=("wood", None)),
     box((0, 8, 0), (16, 9, 16), "irond", up=("irond", None)),
     box((1.5, 9, 1.5), (8.5, 10, 8.5), "stone"),
-    box((3, 10, 3), (7, 11.5, 7), "flame"), box((3.5, 11.5, 3.5), (6.5, 13, 6.5), "flame"), box((4.2, 13, 4.2), (5.8, 14, 5.8), "flame"),
+    box((3, 10, 3), (7, 11.5, 7), "flame"), box((3.5, 11.5, 3.5), (6.5, 13, 6.5), "flame"), box((4.2, 13, 4.2), (5.8, 14, 5.8), "flame"),   # Flammenwuerfel mit animierter Textur
     box((2, 10, 2), (3, 14, 3), "irond"), box((7, 10, 2), (8, 14, 3), "irond"),
     box((2, 10, 7), (3, 14, 8), "irond"), box((7, 10, 7), (8, 14, 8), "irond"),
     box((2, 14, 2), (8, 14.8, 8), "irond"),
