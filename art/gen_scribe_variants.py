@@ -96,11 +96,12 @@ def view(im, side):
     if side == "front": b(A["front"], 4, 14)
     return f.resize((16*10, 36*10), Image.NEAREST)
 
-designs = [("A: Schreiber (aktuell)", current()), ("B: Kopist-Moench", monk()), ("C: Griechischer Gelehrter", greek())]
-out = Image.new("RGBA", (3*(2*160+30), 36*10+50), (198, 198, 198, 255)); d = ImageDraw.Draw(out)
-for n, (name, im) in enumerate(designs):
-    x0 = n*(2*160+30) + 10
-    d.text((x0, 8), name, fill=(20, 20, 20))
-    out.alpha_composite(view(im, "front"), (x0, 30)); out.alpha_composite(view(im, "back"), (x0+160, 30))
-    im.save(os.path.join(ROOT, f"art/out/scribe-{'abc'[n]}.png"))
-out.convert("RGB").save(os.path.join(ROOT, "art/out/scribe-variants-preview.png"))
+if __name__ == '__main__':
+    designs = [("A: Schreiber (aktuell)", current()), ("B: Kopist-Moench", monk()), ("C: Griechischer Gelehrter", greek())]
+    out = Image.new("RGBA", (3*(2*160+30), 36*10+50), (198, 198, 198, 255)); d = ImageDraw.Draw(out)
+    for n, (name, im) in enumerate(designs):
+        x0 = n*(2*160+30) + 10
+        d.text((x0, 8), name, fill=(20, 20, 20))
+        out.alpha_composite(view(im, "front"), (x0, 30)); out.alpha_composite(view(im, "back"), (x0+160, 30))
+        im.save(os.path.join(ROOT, f"art/out/scribe-{'abc'[n]}.png"))
+    out.convert("RGB").save(os.path.join(ROOT, "art/out/scribe-variants-preview.png"))
