@@ -105,20 +105,18 @@ public final class WorldgenTest {
             StringBuilder sb = new StringBuilder();
             for (var o : offers) {
                 sb.append(o.getItemCostA().count()).append("x").append(BuiltInRegistries.ITEM.getKey(o.getItemCostA().item().value()).getPath())
-                  .append(o.getItemCostA().components().equals(net.minecraft.core.component.DataComponentPredicate.EMPTY) ? "" : "[marked]")
+                  
                   .append(" -> ").append(o.getResult().getCount()).append("x").append(BuiltInRegistries.ITEM.getKey(o.getResult().getItem()).getPath())
                   .append(" (max ").append(o.getMaxUses()).append("); ");
             }
             LOG.info("[wgtest] Scribe Stufe {}: {} Angebote: {}", lvl, offers.size(), sb);
         }
-        // Dubletten: ein unmarkiertes und ein markiertes Fragment gegen das Angebot "3 Dubletten -> Beutel" und "1 leichte -> Smaragd"
+        // Lose Fragmente: das Beutel-Angebot nimmt ein Fragment-Item
         var v = net.minecraft.world.entity.EntityType.VILLAGER.create(level);
         v.setVillagerData(v.getVillagerData().setProfession(ModVillagers.SCRIBE.get()).setLevel(2));
         var pouch = v.getOffers().stream().filter(o -> o.getResult().getItem() instanceof FindPouchItem).findFirst().orElse(null);
-        net.minecraft.world.item.ItemStack plain = ManuscriptFragmentItem.of(Manuscripts.load().get(0).id());
-        net.minecraft.world.item.ItemStack dup = plain.copy();
-        ArchiveService.markDuplicate(dup);
-        LOG.info("[wgtest] Beutel-Angebot gefunden: {}; unmarkiertes Fragment akzeptiert: {}; Dublette akzeptiert: {}",
-                pouch != null, pouch != null && pouch.getItemCostA().test(plain), pouch != null && pouch.getItemCostA().test(dup));
+        net.minecraft.world.item.ItemStack frag = ManuscriptFragmentItem.of(Manuscripts.load().get(0).id());
+        LOG.info("[wgtest] Beutel-Angebot gefunden: {}; Fragment akzeptiert: {}; Papier akzeptiert: {}", pouch != null,
+                pouch != null && pouch.getItemCostA().test(frag), pouch != null && pouch.getItemCostA().test(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.PAPER)));
     }
 }

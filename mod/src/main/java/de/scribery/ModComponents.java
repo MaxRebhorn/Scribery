@@ -18,21 +18,6 @@ public final class ModComponents {
                     b -> b.persistent(com.mojang.serialization.Codec.STRING)
                             .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.STRING_UTF8));
 
-    /** Das Fragment ist im Archiv eingetragen (das Item bleibt erhalten, der Fortschritt liegt in den Spielerdaten). */
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<net.minecraft.util.Unit>> CATALOGUED =
-            COMPONENTS.registerComponentType("catalogued",
-                    b -> b.persistent(net.minecraft.util.Unit.CODEC).networkSynchronized(net.minecraft.network.codec.StreamCodec.unit(net.minecraft.util.Unit.INSTANCE)));
-
-    /** Das Fragment war schon im Archiv: eine Dublette, die der Scribe Villager nimmt. */
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<net.minecraft.util.Unit>> DUPLICATE =
-            COMPONENTS.registerComponentType("duplicate",
-                    b -> b.persistent(net.minecraft.util.Unit.CODEC).networkSynchronized(net.minecraft.network.codec.StreamCodec.unit(net.minecraft.util.Unit.INSTANCE)));
-
-    /** Schwierigkeit der Dublette (1 leicht, 2 mittel, 3 schwer), beim Markieren aus dem Manuskript gelesen. */
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> DUPLICATE_TIER =
-            COMPONENTS.registerComponentType("duplicate_tier",
-                    b -> b.persistent(com.mojang.serialization.Codec.INT).networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT));
-
     public static void register(IEventBus bus) {
         COMPONENTS.register(bus);
     }

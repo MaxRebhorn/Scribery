@@ -16,6 +16,11 @@ public final class ModAttachments {
     public static final Supplier<AttachmentType<ArchiveData>> ARCHIVE = ATTACHMENTS.register("archive",
             () -> AttachmentType.builder(() -> ArchiveData.EMPTY).serialize(ArchiveData.CODEC).copyOnDeath().build());
 
+    /** Im Archiv abgelegte Fragmente (IDs wie "P7", in der Reihenfolge des Ablegens); man kann sie wieder herausnehmen. */
+    public static final Supplier<AttachmentType<java.util.List<String>>> STORED = ATTACHMENTS.register("stored_fragments",
+            () -> AttachmentType.<java.util.List<String>>builder(() -> java.util.List.of())
+                    .serialize(com.mojang.serialization.Codec.STRING.listOf()).copyOnDeath().build());
+
     public static void register(IEventBus bus) {
         ATTACHMENTS.register(bus);
     }

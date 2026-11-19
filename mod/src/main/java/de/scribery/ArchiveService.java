@@ -56,20 +56,24 @@ public final class ArchiveService {
         return Result.ADDED;
     }
 
-    /** Fragment-Item als eingetragen markieren (bleibt im Besitz des Spielers). */
-    public static void markCatalogued(ItemStack stack) {
-        if (!stack.has(ModComponents.DUPLICATE.get())) stack.set(ModComponents.CATALOGUED.get(), net.minecraft.util.Unit.INSTANCE);
+    /** Ein Fragment ablegen: das Item wird im Archiv aufbewahrt (bleibt herausnehmbar). */
+    public static void storeFragment(ServerPlayer player, String id) {
+        var list = new java.util.ArrayList<>(player.getData(ModAttachments.STORED.get()));
+        list.add(id);
+        player.setData(ModAttachments.STORED.get(), java.util.List.copyOf(list));
     }
 
-    /** Fragment-Item zur Dublette machen: Schwierigkeit merken, "eingetragen" ersetzen. Liefert false, wenn es schon eine war. */
-    public static boolean markDuplicate(ItemStack stack) {
-        if (stack.has(ModComponents.DUPLICATE.get())) return false;
-        String id = stack.get(ModComponents.MANUSCRIPT.get());
-        int tier = id == null ? 0 : FindPools.tier(id);
-        stack.remove(ModComponents.CATALOGUED.get());
-        stack.set(ModComponents.DUPLICATE.get(), net.minecraft.util.Unit.INSTANCE);
-        stack.set(ModComponents.DUPLICATE_TIER.get(), Math.max(1, Math.min(3, tier)));
-        return true;
+    /** Das zuletzt abgelegte Fragment herausnehmen; null, wenn nichts liegt. Der Fortschritt im Archiv bleibt. */
+    public static ItemStack takeOutFragment(ServerPlayer player) {
+        var list = new java.util.ArrayList<>(player.getData(ModAttachments.STORED.get()));
+        if (list.isEmpty()) return null;
+        String id = list.remove(list.size() - 1);
+        player.setData(ModAttachments.STORED.get(), java.util.List.copyOf(list));
+        return ManuscriptFragmentItem.of(id);
+    }
+
+    public static int storedCount(ServerPlayer player) {
+        return player.getData(ModAttachments.STORED.get()).size();
     }
 
     private static void store(ServerPlayer player, String id, ArchiveProgress progress) {

@@ -7,7 +7,6 @@ import java.util.Optional;
 import de.scribery.core.ScribePrices;
 import de.scribery.core.ScribeTrades;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponentPredicate;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -15,7 +14,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.Unit;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
@@ -91,23 +89,9 @@ public final class ScribeTradeEvents {
 
     static MerchantOffer toOffer(ScribeTrades.Offer o) {
         var give = BuiltInRegistries.ITEM.getHolderOrThrow(net.minecraft.resources.ResourceKey.create(Registries.ITEM, ResourceLocation.parse(o.give())));
-        ItemCost cost = o.mark().isDuplicate()
-                ? new ItemCost(give, o.giveCount(), predicate(o.mark()))
-                : new ItemCost(give.value(), o.giveCount());
+        ItemCost cost = new ItemCost(give.value(), o.giveCount());
         ItemStack result = new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(o.get())), o.getCount());
         return new MerchantOffer(cost, Optional.empty(), result, 0, o.maxUses(), o.xp(), 0.05F);
-    }
-
-    /** Nur Fragmente mit dem Zeichen "duplicate" (und bei Einzelverkauf mit passender Schwierigkeit). */
-    static DataComponentPredicate predicate(ScribeTrades.Mark mark) {
-        DataComponentPredicate.Builder b = DataComponentPredicate.builder().expect(ModComponents.DUPLICATE.get(), Unit.INSTANCE);
-        switch (mark) {
-            case DUPLICATE_EASY -> b.expect(ModComponents.DUPLICATE_TIER.get(), 1);
-            case DUPLICATE_MEDIUM -> b.expect(ModComponents.DUPLICATE_TIER.get(), 2);
-            case DUPLICATE_HARD -> b.expect(ModComponents.DUPLICATE_TIER.get(), 3);
-            default -> { }
-        }
-        return b.build();
     }
 
     /** Karte zur naechsten unserer Ruinen (Struktur-Tag scribe_map_targets); null, wenn keine in der Naehe liegt. */

@@ -10,7 +10,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import de.scribery.core.ScribeTrades.Mark;
 import de.scribery.core.ScribeTrades.Offer;
 
 class ScribeTradesTest {
@@ -39,10 +38,9 @@ class ScribeTradesTest {
     }
 
     @Test
-    void fragmentsAreOnlyTakenAsMarkedDuplicates() {
-        for (Offer o : ScribeTrades.ALL) {
-            if (o.give().equals(ScribeTrades.FRAGMENT)) assertTrue(o.mark().isDuplicate(), "nimmt ein unmarkiertes Fragment: " + o);
-            else assertEquals(Mark.NONE, o.mark(), o.toString());
+    void fragmentsAreOnlyTakenAsPayment() {
+        for (Offer o : ScribeTrades.everything()) {
+            if (o.give().equals(ScribeTrades.FRAGMENT)) assertTrue(o.get().equals(ScribeTrades.EMERALD) || o.get().startsWith("scribery:find_pouch_"), o.toString());
         }
     }
 
@@ -82,21 +80,18 @@ class ScribeTradesTest {
             assertEquals(1, o.size(), find);
             assertEquals(2, o.get(0).maxUses(), find);
             assertEquals(3, o.get(0).giveCount(), find);
-            assertEquals(Mark.ANY_DUPLICATE, o.get(0).mark(), find);
         }
     }
 
-    /** Verkaufen darf nie lohnender sein als Kaufen: eine Dublette bringt weniger als ein Drittel des billigsten Lexikons. */
+    /** Verkaufen darf nie lohnender sein als Kaufen: ein loses Fragment bringt weniger als ein Drittel des billigsten Lexikons. */
     @Test
-    void sellingDuplicatesPaysLessThanBooksCost() {
+    void sellingFragmentsPaysLessThanBooksCost() {
         int cheapestLexicon = Math.min(ScribePrices.LEXICON_A_C, ScribePrices.LEXICON_D_F);
         for (Offer o : ScribeTrades.ALL) {
-            if (o.mark().isDuplicate() && o.get().equals(ScribeTrades.EMERALD)) {
-                assertTrue(o.getCount() <= 3, o.toString());
+            if (o.give().equals(ScribeTrades.FRAGMENT) && o.get().equals(ScribeTrades.EMERALD)) {
                 assertTrue(o.getCount() * 3 < cheapestLexicon, o.toString());
             }
         }
-        assertTrue(ScribePrices.DUPLICATE_EASY < ScribePrices.DUPLICATE_MEDIUM && ScribePrices.DUPLICATE_MEDIUM < ScribePrices.DUPLICATE_HARD);
     }
 
     @Test

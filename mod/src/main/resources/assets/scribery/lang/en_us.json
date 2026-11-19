@@ -76,8 +76,6 @@
   "block.scribery.roman_bricks_crumbling": "Crumbling Roman Bricks",
   "block.scribery.roman_floor_cracked": "Cracked Roman Stone Floor",
   "block.scribery.roman_floor_broken": "Broken Roman Stone Floor",
-  "tooltip.scribery.duplicate": "Duplicate: the Scribe takes it",
-  "tooltip.scribery.catalogued": "Filed in the archive",
   "tooltip.scribery.find_pouch": "Right-click to open",
   "item.scribery.find_pouch_sand": "Sand Find Pouch",
   "item.scribery.find_pouch_mud": "Mud Find Pouch",

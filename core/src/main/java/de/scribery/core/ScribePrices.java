@@ -23,15 +23,15 @@ public final class ScribePrices {
     public static final int SCRAPS_PER_EMERALD = 8;
     /** So viele Ostraka ergeben einen Smaragd. */
     public static final int OSTRAKA_PER_EMERALD = 4;
-    /** Smaragde fuer eine einzelne Dublette: leicht, mittel, schwer. */
-    public static final int DUPLICATE_EASY = 1, DUPLICATE_MEDIUM = 2, DUPLICATE_HARD = 3;
-    /** So viele Dubletten (beliebige) kosten einen Fundbeutel. */
-    public static final int DUPLICATES_PER_POUCH = 3;
+    /** Smaragde fuer ein einzelnes loses Fragment (gleich, egal wie schwer). */
+    public static final int FRAGMENT_SELL = 2;
+    /** So viele lose Fragmente kosten einen Fundbeutel. */
+    public static final int FRAGMENTS_PER_POUCH = 3;
 
     // ---- Tageslimits (maxUses; Vanilla fuellt Handel zweimal am Tag auf)
     public static final int USES_BOOK = 1;
     public static final int USES_SCRAPS = 12, USES_OSTRAKA = 6, USES_PAPER = 8;
-    public static final int USES_DUPLICATE_SINGLE = 6;
+    public static final int USES_FRAGMENT_SELL = 6;
     public static final int USES_POUCH = 2;
     public static final int USES_MAP = 1;
 
