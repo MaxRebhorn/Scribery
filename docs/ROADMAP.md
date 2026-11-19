@@ -1,22 +1,24 @@
 # Scribery & Crafts – Roadmap
 
-Reihenfolge der nächsten Schritte. Oben steht, was als Nächstes kommt. Der Stand bezieht sich auf Branch `biome-by-theme` (aufbauend auf `phase-1-press`), Stand 18.11.2026.
+Reihenfolge der nächsten Schritte. Oben steht, was als Nächstes kommt. Der Stand bezieht sich auf Branch `phase-1-press`, abgeglichen mit dem Code am 19.11.2026.
 Das Design steht in `Scribery_and_Crafts_Game_Design_Document.md`, die UI-Regeln in `UI-REQUIREMENTS.md` und `docs/ui-spec.md`, die Stationen in `docs/STATIONS.md`.
 
 ## Stand heute
 
 Fertig:
-- **Items:** 22 Letter Types, Manuscript Fragment (ein Item, Datenfeld mit Manuskript-ID P1–P21), 7 Bücher (ohne Inhalt), Printed Sheet, Translated Sheet, Wooden Word Tablet.
+- **Items:** 22 Letter Types, Manuscript Fragment (ein Item, Datenfeld mit Manuskript-ID P1–P1540), 7 Bücher (Alphabet Primer, Grammar Book und Complete Greek Lexicon lesbar, die übrigen ohne Inhalt), Printed Sheet, Translated Sheet, Wooden Word Tablet.
 - **Blöcke:** Scribe's Lectern, Printing Press und Letter Cabinet (gemeinsame Druck-Oberfläche, zeigt nur, was angrenzt), Minting Table (Stonecutter-Menü, Eisennuggets → Letter Types), Translator's Desk (eigener Block mit Vorräten, übersetzt den aufgelegten bedruckten Bogen).
 - **Server:** Vorräte liegen in Block-Entities, der Client meldet nur Verbrauch, der Server prüft jede Meldung.
-- **Texte:** Pilot Johannes 1,1–18 als 21 Manuskripte, erzeugt von `tools/build_manuscripts.py`, geprüft von `ManuscriptDataTest`.
+- **Texte:** das ganze Johannesevangelium als 1.540 Manuskripte (P1–P21 Pilot, P22–P1540 Rest), erzeugt von `tools/build_manuscripts.py`, beide Dateien werden vom Mod geladen und von `ManuscriptDataTest` geprüft. Alle Glossen und falschen Antworten sind noch `draft`. Das 17-Buchstaben-Wort passt (17 Slots).
 - **Eingabe:** Presse manuell (Lettern ziehen), Übersetzung mit Plättchen oder von Hand getippt; Buttons zum Nachfüllen aus dem Inventar.
 - **Optik:** Tischplatte, Minecraft-Texturen, unsere Letter-Items, ausgefranstes Papier in Textgröße.
 
 - **Varianten und Fundblöcke (Texturen und Testbarkeit):** Fragment-Varianten verkohlt, wassergeschädigt, verblasst, gefroren (blau getöntes Papyrus; der Codex-Look entfällt), dazu Block für gefrorenes Fragment, Amphore als Nicht-Würfel-Block, Ostrakon, Scherbenhaufen und die drei Fundböden Suspicious Mud, Suspicious Sand und Suspicious Ashes (je 4 Stufen). Welcher Block welche Variante liefert, steht in `docs/DESIGN-FINDS.md`. Kompiliert, Tests grün; im Spiel erst per Selbsttest angesehen.
-- **Daten:** ganzes Johannesevangelium (1.540 Manuskripte), Gliederung in 64 Geschichten, 143 Seiten, 878 Verse, Fundbiome thematisch (11 Biome). Alles noch `draft`.
+- **Manuscript Archive:** Block, Dienst (`ArchiveService`), Sammlung pro Spieler (`ArchiveData`, bleibt nach dem Tod) und Screen mit drei Spalten (Urtext, Umschrift, Interlinear), gekoppelt scrollend, Lücken als Platzhalter. Kompiliert und im Selbsttest angesehen, nicht in einer Welt getestet (`docs/DESIGN-ARCHIVE.md`).
+- **Funde und Weltgenerierung:** Loot-Funktion `scribery:random_manuscript` mit Pools je Fundart, Loot-Tabellen, Strukturen (Wrack, Karawane, Wanderer, Grab, Katakomben, verschüttete Häuser) und Funde an der Oberfläche; Katakomben ohne Monster. Mit dem Testserver geprüft (außer dem Wrack, das tiefes Wasser braucht), siehe `docs/DESIGN-WORLDGEN.md`.
+- **Daten:** Gliederung in 64 Geschichten, 143 Seiten, 878 Verse, Fundbiome thematisch (11 Biome). Alles noch `draft`.
 
-Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die meisten Rezepte, die Fundorte der Fragmente (bisher nur der Creative-Tab).
+Noch Platzhalter: Bookshelf, die übrigen Bücher (nur Items), die meisten Rezepte. Noch nicht gebaut: Fundhilfen (Erstfund, Schlechtes-Glück-Schutz), Verkauf von Dubletten, Scribe Villager, Übersetzen direkt am Manuskript.
 
 ## Als Nächstes, in dieser Reihenfolge
 
@@ -29,7 +31,7 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 ### 2. Das restliche Johannesevangelium übernehmen
 - Alle 21 Kapitel (879 Verse) durch `tools/build_manuscripts.py` erzeugen, nicht nur Kapitel 1. Das Skript ist schon so gebaut, dass es mit einem größeren Pool bessere falsche Antworten findet.
 - Rohdaten holen (Abfrage des Bibel-Zugangs in 50-Verse-Schritten oder eine Datei der STEPBible-Daten, das Herunterladen nur mit Okay). Lizenz und Namensnennung vorher klären.
-- **Stand 18.11.2026 (Branch `john-rest`):** Rohdaten Joh 1,19–21,25 aus STEPBible TAGNT gezogen (`tools/data/john-1-19-21-25.tsv`, Lizenz CC BY 4.0, Quelle und Pflichten in `docs/CREDITS.md`), Manuskripte P22 bis P1540 erzeugt (`python tools/build_manuscripts.py --rest` -> `tools/data/manuscripts.john-rest.json`, 1519 Manuskripte, 15 380 Wörter). P1–P21 sind eingefroren und unverändert. **Noch nicht im Spiel eingebunden** (`mod/build.gradle` und `ManuscriptDataTest` kennen nur `manuscripts.john1.json`). Alle Glossen `draft`.
+- **Stand 19.11.2026:** Rohdaten Joh 1,19–21,25 aus STEPBible TAGNT gezogen (`tools/data/john-1-19-21-25.tsv`, Lizenz CC BY 4.0, Quelle und Pflichten in `docs/CREDITS.md`), Manuskripte P22 bis P1540 erzeugt (`python tools/build_manuscripts.py --rest` -> `tools/data/manuscripts.john-rest.json`, 1519 Manuskripte, 15 380 Wörter). P1–P21 sind eingefroren und unverändert. **Im Spiel eingebunden** (`mod/build.gradle`, `Manuscripts`, `ManuscriptDataTest`). Alle Glossen `draft`.
 - **Fundbiome (thematisch):** jedes Manuskript hat ein Biom, vergeben nach Geschichte (Ort, Bild, Stimmung), bei Bedarf einzelne Seiten (`docs/FRAGMENT-BIOMES.md`, Daten in `tools/data/fragment-biomes.json`, Zuordnung von Hand pflegbar in `tools/data/john-biomes.tsv`, erzeugt von `tools/assign_biomes.py`). 11 Biome mit 116 bis 166 Manuskripten. Die Schwierigkeit bleibt als Eigenschaft erhalten, bestimmt aber nicht mehr den Fundort. Das alte Zufallsfeld `origin.biome` gilt nicht mehr. Biom-Tags (z. B. `#c:is_desert`) sind noch nicht gegen 1.21.1 geprüft.
 - **Gliederung für das Manuscript Archive:** 64 Geschichten, 143 Seiten, 878 Verse (`docs/JOHN-STRUCTURE.md`, Daten `tools/data/john-structure.json`, erzeugt von `tools/structure_john.py`). Die Manuskripte werden an Seitengrenzen geschnitten, damit Manuskript < Seite < Geschichte gilt. Geschichten-Grenzen und Titel (`tools/data/john-stories.tsv`) sind ein Entwurf.
 - Offen: Textgrundlage (NA28 oder Tyndale), Perikope Joh 7,53–8,11, das 17-Buchstaben-Wort μεθερμηνευόμενον, Prüfung der Glossen und der falschen Antworten.
@@ -72,7 +74,7 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 - **Amphoren-Blöcke:**
   - ein Block für **Scherben von Amphoren** (Potsherds), der Scherben und Text-Funde fallen lässt,
   - ein **Amphorenblock** als Behälter (Container), der Inhalt droppt: **beschriftete Scherben** (mit einem kurzen Text, einem Hinweis oder einem Wort, das zum Manuskript passen könnte) und **Manuskripte**.
-- **Stand:** Texturen und Blöcke für Amphorenscherben (Bleich-Palette), Amphore als Container, Ostrakon und verdächtigen Archivschlamm gibt es (siehe oben); Fund-Logik, Strukturen und Loot fehlen noch.
+- **Stand:** Texturen und Blöcke für Amphorenscherben (Bleich-Palette), Amphore als Container, Ostrakon und verdächtigen Archivschlamm gibt es (siehe oben); Fund-Logik (`random_manuscript`), Loot-Tabellen und Strukturen gibt es inzwischen (siehe oben und `docs/DESIGN-FINDS.md`, `docs/DESIGN-WORLDGEN.md`); offen bleiben Dubletten-Schutz, Ostraka mit Witzen als eigene Items und das Wrack im echten Tiefwasser.
 - Zu klären: Welche Texte auf den Scherben stehen (Wörter aus den Manuskripten? Namen? Hinweise auf Fundorte?), ob Scherben im Archiv eine Rolle spielen, wie die Strukturen erzeugt werden (Strukturdatei, Loot-Tabellen nach Biom), und wie sich Fundort und Aussehen des Fragments verbinden (siehe Punkt 6).
 
 ### 6. Ferne Zukunft: unterschiedliches Aussehen je nach Fundort
@@ -84,14 +86,14 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 
 ### Rezepte und Fortschritt
 - Crafting-Rezepte für alle Blöcke und Hilfsmittel (bisher nur Wooden Word Tablets).
-- Gespeicherter Fortschritt je Spieler (übersetzte Manuskripte); heute geht eine halb fertige Übersetzung beim Schließen verloren.
+- Der Fortschritt im Archiv ist gespeichert (`ArchiveData`); offen bleibt, dass eine halb fertige Übersetzung am Tisch beim Schließen verloren geht.
 
 ### Manuscript Archive
 - Screen mit drei Spalten: links die Manuskripte (griechischer Urtext) in der Reihenfolge des Evangeliums zusammenfügen, in der Mitte die lateinische Umschrift (Printed Sheet), rechts die englische Interlinear-Übersetzung (Translated Sheet). Am Ende steht eine durchgehende Interlinear-Ausgabe. Entwurf: `docs/DESIGN-ARCHIVE.md`.
-- Abhängig von festen Manuskript-IDs (`data-wiring`) und der gespeicherten Sammlung pro Spieler (`collection-save`); geplanter Branch `archive-screen`.
+- **Umgesetzt** (Block, Sammlung pro Spieler, Screen; Branch `archive-screen`), nicht in einer Welt getestet.
 - Entschieden: kein Puzzle, Manuskripte rasten automatisch ein; das Evangelium erscheint als ein großer Text, Lücken zeigen, was fehlt und wie weit man ist.
 - Entschieden: Lücken als grauer Platzhalter in der Länge des fehlenden Textes; die drei Spalten scrollen gekoppelt.
-- Zu klären: Füllreihenfolge der Spalten und ob Heften noch ein eigener Schritt bleibt (siehe Entwurf).
+- Zu klären (im Code gilt vorläufig: jede Spalte füllt sich unabhängig): Füllreihenfolge der Spalten und ob Heften noch ein eigener Schritt bleibt (siehe Entwurf).
 
 ### Restaurierungsaufträge, Achievements
 - Villager bieten beschädigte Manuskripte an (Buchstabe oder Endung rekonstruieren), Belohnung in Emeralds. Optional.
@@ -108,9 +110,10 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 ## Bekannte Schwächen
 
 - Printed Sheets sind nicht gegen die echte Setzform geprüft, ein Client könnte Papier gegen beliebigen Text eintauschen.
-- Die Manuskript-Nummer ist der Index in der Liste: Wird neu erzeugt, verschieben sich bestehende Bögen. Vor dem ganzen Evangelium auf IDs umstellen.
+- Die Manuskript-Nummer ist der Index in der Liste (john1, dann john-rest). Das Archiv speichert nach diesem Index, die IDs (P1–P1540) sind stabil, aber wird neu erzeugt oder umsortiert, verschieben sich gespeicherte Sammlungen. Vor dem ersten echten Spielstand auf IDs umstellen.
 - Eine halb fertige Übersetzung geht beim Schließen verloren.
-- Der Selbsttest nutzt die Platzhalter, die echten Daten laden nur über einen eigenen Schritt (`Manuscripts.useReal`).
+- Der Selbsttest nutzt Platzhalter, die echten Daten laden dort nur über einen eigenen Schritt (`Manuscripts.useReal`).
+- Neue Fundquellen, Erstfund, Schlechtes-Glück-Schutz und Dubletten-Verkauf sind nur entworfen (`docs/DESIGN-FINDS.md`), nicht gebaut. Die Biom-Tags (`#c:is_desert` und andere) sind nicht gegen 1.21.1 geprüft.
 
 ## Offene Designentscheidungen
 
