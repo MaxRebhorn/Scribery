@@ -56,7 +56,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "scribery:ostrakon"
+          "name": "scribery:ostrakon",
+          "functions": [
+            {
+              "function": "scribery:random_joke"
+            }
+          ]
         }
       ]
     },

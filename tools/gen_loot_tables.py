@@ -38,6 +38,11 @@ def item(name, count=None):
     return e
 
 
+def joke_ostrakon():
+    """Ein beschriebener Scherben: der Witz wird beim Fallenlassen gewuerfelt (scribery:random_joke)."""
+    return {"type": "minecraft:item", "name": "scribery:ostrakon", "functions": [{"function": "scribery:random_joke"}]}
+
+
 def manuscript(find):
     return {"type": "minecraft:item", "name": "scribery:manuscript_fragment",
             "functions": [{"function": "scribery:random_manuscript", "find": find}]}
@@ -59,11 +64,11 @@ TABLES = {
     "frozen_fragment_block": [pool(manuscript("ice"))],
     # Scherbenhaufen: Block zurueck, 1 bis 3 Scherben, selten ein Ostrakon, manchmal ein Manuskript
     "shard_pile": [pool(item("scribery:shard_pile")), pool(item("scribery:amphora_shard", (1, 3))),
-                   pool(item("scribery:ostrakon"), chance(0.12)), pool(manuscript("shards"), chance(0.25))],
+                   pool(joke_ostrakon(), chance(0.12)), pool(manuscript("shards"), chance(0.25))],
     # Amphore: mit Silk Touch heil, sonst Scherben, mit Chance Ostrakon, Manuskript und Papyrusfetzen
     "amphora": [pool(item("scribery:amphora"), SILK_TOUCH),
                 pool(item("scribery:amphora_shard", (2, 4)), {"condition": "minecraft:inverted", "term": SILK_TOUCH}),
-                pool(item("scribery:ostrakon"), {"condition": "minecraft:inverted", "term": SILK_TOUCH}, chance(0.25)),
+                pool(joke_ostrakon(), {"condition": "minecraft:inverted", "term": SILK_TOUCH}, chance(0.25)),
                 pool(manuscript("shards"), {"condition": "minecraft:inverted", "term": SILK_TOUCH}, chance(0.30)),
                 pool(item("scribery:papyrus_scrap", (1, 2)), {"condition": "minecraft:inverted", "term": SILK_TOUCH}, chance(0.25))],
 }
@@ -74,7 +79,7 @@ def broken_amphora(name, shards, ostrakon, manuscript_chance, papyrus):
     not_silk = {"condition": "minecraft:inverted", "term": SILK_TOUCH}
     return [pool(item(f"scribery:{name}"), SILK_TOUCH),
             pool(item("scribery:amphora_shard", shards), not_silk),
-            pool(item("scribery:ostrakon"), not_silk, chance(ostrakon)),
+            pool(joke_ostrakon(), not_silk, chance(ostrakon)),
             pool(manuscript("shards"), not_silk, chance(manuscript_chance)),
             pool(item("scribery:papyrus_scrap", (1, 2)), not_silk, chance(papyrus))]
 

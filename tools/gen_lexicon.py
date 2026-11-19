@@ -225,7 +225,7 @@ def main():
     b.para(T["complete"]["key_intro"].replace("{n}", str(total)))
     b.line("| Mark | Meaning |")
     b.line("|---|---|")
-    for mark, meaning in (("m. / f. / n.", "Masculine / feminine / neuter noun"), ("v.", "Verb"), ("adj. / adv.", "Adjective / adverb"),
+    for mark, meaning in (("m. / f. / n.", "Masc. / fem. / neut. noun"), ("v.", "Verb"), ("adj. / adv.", "Adjective / adverb"),
                           ("prep. / conj.", "Preposition / conjunction"), ("pron. / art.", "Pronoun / article"),
                           ("part. / interj.", "Particle / interjection"), ("name", "Proper name")):
         b.line(f"| {mark} | {meaning} |")

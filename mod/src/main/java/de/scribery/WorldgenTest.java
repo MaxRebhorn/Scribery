@@ -97,6 +97,8 @@ public final class WorldgenTest {
     }
 
     private static void villagerCheck(ServerLevel level, BlockPos pos) {
+        var joke = Ostraka.random(level.random);
+        LOG.info("[wgtest] Ostraka: {} Witze, Beispiel {} = {}", Ostraka.ids().size(), joke.get(ModComponents.JOKE.get()), Ostraka.text(joke.get(ModComponents.JOKE.get())).replace((char) 10, (char) 47));
         for (int lvl = 1; lvl <= 5; lvl++) {
             var v = net.minecraft.world.entity.EntityType.VILLAGER.create(level);
             v.moveTo(pos.getX() + .5, pos.getY(), pos.getZ() + .5);

@@ -18,6 +18,12 @@ public final class ModComponents {
                     b -> b.persistent(com.mojang.serialization.Codec.STRING)
                             .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.STRING_UTF8));
 
+    /** Welcher Witz auf einem Ostrakon steht (ID aus ostraka-jokes.json). */
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> JOKE =
+            COMPONENTS.registerComponentType("joke",
+                    b -> b.persistent(com.mojang.serialization.Codec.STRING)
+                            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.STRING_UTF8));
+
     public static void register(IEventBus bus) {
         COMPONENTS.register(bus);
     }

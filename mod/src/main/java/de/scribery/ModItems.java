@@ -65,7 +65,8 @@ public final class ModItems {
                     .icon(() -> LETTER_ITEMS.get(0).get().getDefaultInstance())
                     .displayItems((params, out) -> {
                         ModBlocks.ALL.forEach(b -> out.accept(b.get()));
-                        ALL.forEach(s -> { if (s != MANUSCRIPT_FRAGMENT) out.accept(s.get()); });
+                        ALL.forEach(s -> { if (s != MANUSCRIPT_FRAGMENT && s != ModItems.OSTRAKON) out.accept(s.get()); });
+                        for (String joke : Ostraka.ids()) out.accept(Ostraka.of(joke));   // je Witz ein beschriebener Scherben
                         // Die Manuskripte selbst stehen in eigenen Tabs, einer pro Kapitel (siehe unten).
                         // Testvarianten (nur Optik, siehe Ueberschreibungen in models/item/manuscript_fragment.json)
                         String first = Manuscripts.load().get(0).id();
@@ -123,6 +124,7 @@ public final class ModItems {
         return -1;
     }
 
+    public static final Supplier<Item> OSTRAKON = ITEMS.registerItem("ostrakon", OstrakonItem::new);
     public static final Supplier<Item> WOODEN_WORD_TABLET = ITEMS.registerSimpleItem("wooden_word_tablet");
     public static final Supplier<Item> PRINTED_SHEET = ITEMS.registerItem("printed_sheet", SheetItem::new);
     public static final Supplier<Item> TRANSLATED_SHEET = ITEMS.registerItem("translated_sheet", SheetItem::new);
@@ -130,7 +132,7 @@ public final class ModItems {
         ALL.add(WOODEN_WORD_TABLET);
         ALL.add(PRINTED_SHEET);
         ALL.add(TRANSLATED_SHEET);
-        ALL.add(ITEMS.registerItem("ostrakon", p -> new Item(p.stacksTo(16))));
+        ALL.add(OSTRAKON);
         // Papyrusfetzen: nur Brennstoff (data/neoforge/data_maps/item/furnace_fuels.json), sonst zu nichts zu gebrauchen
         ALL.add(ITEMS.registerSimpleItem("papyrus_scrap"));
         // Scherbe: Beifund aus Amphoren und Scherbenhaufen

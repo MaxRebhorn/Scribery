@@ -52,7 +52,7 @@ The little marks:
 
 | Mark | Meaning |
 |---|---|
-| m. / f. / n. | Masculine / feminine / neuter noun |
+| m. / f. / n. | Masc. / fem. / neut. noun |
 | v. | Verb |
 | adj. / adv. | Adjective / adverb |
 | prep. / conj. | Preposition / conjunction |

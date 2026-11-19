@@ -14,6 +14,9 @@ public final class ModLoot {
     public static final DeferredHolder<LootItemFunctionType<?>, LootItemFunctionType<RandomManuscriptFunction>> RANDOM_MANUSCRIPT =
             FUNCTIONS.register("random_manuscript", () -> new LootItemFunctionType<>(RandomManuscriptFunction.CODEC));
 
+    public static final DeferredHolder<LootItemFunctionType<?>, LootItemFunctionType<RandomJokeFunction>> RANDOM_JOKE =
+            FUNCTIONS.register("random_joke", () -> new LootItemFunctionType<>(RandomJokeFunction.CODEC));
+
     public static void register(IEventBus bus) {
         FUNCTIONS.register(bus);
     }

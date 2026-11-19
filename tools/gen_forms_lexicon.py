@@ -179,10 +179,8 @@ def main():
     block(T["preface"].replace("{lemmas}", str(len(rows))).replace("{forms}", str(sum(len({g for g, _ in fm}) for _, _, fm in rows))))
     page("Reading the Codes", "codes")
     block(T["codes_intro"])
-    out.append("| Mark | Meaning |")
-    out.append("|---|---|")
-    for a, b in T["codes_table"]:
-        out.append(f"| {a} | {b} |")
+    for a, b in T["codes_table"]:      # als Liste, nicht als Tabelle: lange Erklaerungen wuerden die Seite sprengen
+        out.append(f"- **{a}** — {b}")
     out.append("")
     block(T["codes_outro"])
     first = True

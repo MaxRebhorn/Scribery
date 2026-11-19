@@ -186,10 +186,29 @@ final class SelfTest {
             for (String id : new String[] { "greek_alphabet_primer", "greek_grammar_book", "greek_lexicon_a_c", "greek_lexicon_d_f",
                     "thematic_greek_lexicon", "greek_forms_grammar_lexicon", "complete_greek_lexicon" }) {
                 if (!BookText.exists(id)) continue;
-                int pages = BookText.paginate(mc.font, BookText.read(id)).size();
-                LOG.info("[selftest] Buch {}: {} Seiten", id, pages);
+                var all = BookText.paginate(mc.font, BookText.read(id));
+                LOG.info("[selftest] Buch {}: {} Seiten", id, all.size());
+                // Layout-Pruefung: nichts darf ueber den unteren oder rechten Rand der Seite hinausragen
+                int bad = 0;
+                for (int p = 0; p < all.size(); p++) {
+                    for (BookText.Drawn d : all.get(p).items()) {
+                        if (d.text() == null) continue;
+                        float h = BookText.LINE * Math.max(1f, d.scale());
+                        float w = mc.font.width(d.text()) * d.scale();
+                        if (d.y() + h > BookText.HEIGHT + 1 || d.x() + w > BookText.WIDTH + 1) {
+                            if (bad++ < 5) LOG.warn("[selftest] Layout-Fehler {} Seite {}: y={} x={} breit={} \"{}\"", id, p + 1, d.y(), d.x(), Math.round(w), preview(d.text()));
+                        }
+                    }
+                }
+                if (bad > 0) LOG.warn("[selftest] Buch {}: {} Zeilen ausserhalb der Seite", id, bad);
             }
         });
+        then(0, () -> mc.setScreen(new BookScreen("greek_grammar_book", BookText.read("greek_grammar_book"))));
+        then(0, () -> ((BookScreen) mc.screen).goTo(8));
+        shot(mc, "33-grammar-page-9");
+        then(0, () -> mc.setScreen(new BookScreen("greek_forms_grammar_lexicon", BookText.read("greek_forms_grammar_lexicon"))));
+        then(0, () -> ((BookScreen) mc.screen).goTo(8));
+        shot(mc, "34-forms-page-9");
         then(0, () -> mc.setScreen(new BookScreen("greek_alphabet_primer", BookText.read("greek_alphabet_primer"))));
         shot(mc, "19-book-cover");
         then(0, () -> {
@@ -367,5 +386,11 @@ final class SelfTest {
             LOG.info("[selftest] fertig");
             mc.stop();
         });
+    }
+
+    private static String preview(net.minecraft.util.FormattedCharSequence seq) {
+        StringBuilder sb = new StringBuilder();
+        seq.accept((idx, st, cp) -> { if (sb.length() < 40) sb.appendCodePoint(cp); return true; });
+        return sb.toString();
     }
 }

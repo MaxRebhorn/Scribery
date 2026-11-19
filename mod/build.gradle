@@ -68,7 +68,7 @@ processResources {
     // Die Manuskripte des Spiels, erzeugt von tools/build_manuscripts.py.
     from(rootProject.file('tools/data')) {
         // Reihenfolge ist die Reihenfolge im Evangelium: P1-P21 (Prolog), danach P22-P1540.
-        include 'manuscripts.john1.json', 'manuscripts.john-rest.json', 'chapters.json', 'find-pools.json'
+        include 'manuscripts.john1.json', 'manuscripts.john-rest.json', 'chapters.json', 'find-pools.json', 'ostraka-jokes.json'
         into 'assets/scribery/data'
     }
     // Platzhalter-Fragmente fuer /scribery debug.

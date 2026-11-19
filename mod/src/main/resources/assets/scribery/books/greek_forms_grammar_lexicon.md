@@ -56,20 +56,18 @@ For verbs it gives the tense, the voice and the mood. Then comes the person and 
 
 Here's how to read the marks:
 
-| Mark | Meaning |
-|---|---|
-| nom / gen / dat / acc / voc | Case: nominative, genitive, dative, accusative, vocative |
-| sg / pl | Singular / plural |
-| m / f / n | Masculine / feminine / neuter |
-| 1 / 2 / 3 | First (I, we), second (you), third person (he, she, it, they). 3sg = he, she or it |
-| pres / impf / fut | Present / imperfect / future |
-| aor / perf / plup | Aorist / perfect / pluperfect |
-| 2aor / 2perf | Second aorist or perfect: a different stem, same job |
-| act / mid / pass | Active / middle / passive |
-| dep / p-dep | Deponent: passive or middle form, active meaning |
-| m/p | Middle or passive (the form is the same) |
-| ind / subj / imp / opt | Indicative / subjunctive / imperative / optative |
-| inf / ptc | Infinitive / participle |
+- **nom / gen / dat / acc / voc** — Case: nominative, genitive, dative, accusative, vocative
+- **sg / pl** — Singular / plural
+- **m / f / n** — Masculine / feminine / neuter
+- **1 / 2 / 3** — First (I, we), second (you), third person (he, she, it, they). 3sg = he, she or it
+- **pres / impf / fut** — Present / imperfect / future
+- **aor / perf / plup** — Aorist / perfect / pluperfect
+- **2aor / 2perf** — Second aorist or perfect: a different stem, same job
+- **act / mid / pass** — Active / middle / passive
+- **dep / p-dep** — Deponent: passive or middle form, active meaning
+- **m/p** — Middle or passive (the form is the same)
+- **ind / subj / imp / opt** — Indicative / subjunctive / imperative / optative
+- **inf / ptc** — Infinitive / participle
 
 An example: **pres act ind 3sg** is a present active indicative, third person singular. In plain English: he, she or it does something, right now.
 
