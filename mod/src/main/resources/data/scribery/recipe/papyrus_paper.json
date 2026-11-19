@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "scribery:papyrus_scrap" },
+    { "item": "scribery:papyrus_scrap" },
+    { "item": "scribery:papyrus_scrap" }
+  ],
+  "result": {
+    "id": "minecraft:paper",
+    "count": 1
+  }
+}
