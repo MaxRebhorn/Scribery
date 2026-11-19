@@ -43,6 +43,38 @@ public final class WorldgenTest {
                 }
             }
             int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+            if (id.trim().startsWith("dump:")) {   // Vorlage in die Welt setzen und Schichten als Text ausgeben (nur zum Untersuchen)
+                var tpl = server.getStructureManager().get(net.minecraft.resources.ResourceLocation.parse(id.trim().substring(5)));
+                if (tpl.isEmpty()) { LOG.info("[wgtest] Vorlage fehlt"); continue; }
+                var t = tpl.get();
+                BlockPos at = new BlockPos(x, y + 20, z);
+                t.placeInWorld(level, at, at, new net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings(), level.random, 2);
+                var size = t.getSize();
+                for (int yy = 0; yy < size.getY(); yy++) {
+                    StringBuilder sb = new StringBuilder("[wgtest] y=" + yy + System.lineSeparator());
+                    for (int zz = 0; zz < size.getZ(); zz++) {
+                        for (int xx = 0; xx < size.getX(); xx++) {
+                            var bs = level.getBlockState(at.offset(xx, yy, zz));
+                            String n = BuiltInRegistries.BLOCK.getKey(bs.getBlock()).getPath();
+                            char c = bs.isAir() ? '.' : n.contains("planks") ? 'p' : n.contains("log") ? 'L' : n.contains("stairs") ? 's' : n.contains("slab") ? '_' : n.contains("door") ? 'D' : n.contains("glass") ? 'g' : n.contains("cobble") ? 'c' : n.contains("jigsaw") ? 'J' : n.contains("bed") ? 'b' : n.contains("torch") || n.contains("lantern") ? 'i' : n.contains("fence") ? 'f' : n.contains("grass") || n.contains("dirt") ? 'd' : n.contains("path") ? '=' : '#';
+                            sb.append(c);
+                        }
+                        sb.append(System.lineSeparator());
+                    }
+                    LOG.info(sb.toString());
+                }
+                continue;
+            }
+            if (id.trim().startsWith("template:")) {   // Nur zum Untersuchen: Groesse und Jigsaw-Bloecke einer Vanilla-Vorlage
+                var tpl = server.getStructureManager().get(net.minecraft.resources.ResourceLocation.parse(id.trim().substring(9)));
+                LOG.info("[wgtest] Vorlage {}: {}", id.trim().substring(9), tpl.map(t -> t.getSize()).orElse(null));
+                tpl.ifPresent(t -> {
+                    for (var b : t.filterBlocks(BlockPos.ZERO, new net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings(), net.minecraft.world.level.block.Blocks.JIGSAW)) {
+                        LOG.info("[wgtest]   Jigsaw bei {}: {} {}", b.pos(), b.state(), b.nbt());
+                    }
+                });
+                continue;
+            }
             if (id.trim().equals("villager")) {   // Scribe Villager: Beruf, Angebote je Stufe, Dubletten
                 villagerCheck(level, new BlockPos(x, y, z));
                 continue;

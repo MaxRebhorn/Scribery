@@ -170,7 +170,7 @@ final class RaggedPaper {
         // Umriss: ein Rechteck mit unregelmaessigen Kanten (hoechstens SHERD_PAD - 2 Pixel nach innen) und abgerundeten oder
         // schraeg abgebrochenen Ecken. So bleibt der Text immer vollstaendig auf der Scherbe.
         int maxDepth = SHERD_PAD - 3;
-        int[] top = profile(rng, w, maxDepth), bot = profile(rng, w, maxDepth), left = profile(rng, h, maxDepth), right = profile(rng, h, maxDepth);
+        int[] top = new int[w], bot = new int[w], left = new int[h], right = new int[h];   // klare, gerade Kanten ohne Fransen
         boolean[][] solid = new boolean[h][w];
         for (int yy = 0; yy < h; yy++) {
             for (int xx = 0; xx < w; xx++) {
@@ -178,8 +178,8 @@ final class RaggedPaper {
             }
         }
         for (int corner = 0; corner < 4; corner++) {
-            int c = 3 + rng.nextInt(2 * SHERD_PAD - 3);          // Groesse der Ecke, kleiner als der Abstand der Textecke
-            boolean round = rng.nextBoolean();
+            int c = rng.nextInt(3) == 0 ? 3 : 5 + rng.nextInt(2 * SHERD_PAD - 7);   // Groesse der Ecke, kleiner als der Abstand der Textecke
+            boolean round = false;                                    // nur gerade Bruchkanten
             for (int dy = 0; dy < c; dy++) {
                 for (int dx = 0; dx < c; dx++) {
                     boolean cut = round ? Math.pow(c - 1 - dx, 2) + Math.pow(c - 1 - dy, 2) > Math.pow(c - 1, 2) : dx + dy < c - 1;
@@ -195,7 +195,8 @@ final class RaggedPaper {
                 if (!solid[yy][xx]) continue;
                 boolean e = !(at(solid, xx - 1, yy) && at(solid, xx + 1, yy) && at(solid, xx, yy - 1) && at(solid, xx, yy + 1));
                 boolean nearEdge = !(at(solid, xx - 2, yy) && at(solid, xx + 2, yy) && at(solid, xx, yy - 2) && at(solid, xx, yy + 2));
-                color[yy][xx] = e ? "parchment_0" : nearEdge && (xx + yy) % 2 == 0 ? "parchment_1" : "parchment_3";
+                boolean shade = !at(solid, xx + 2, yy) || !at(solid, xx, yy + 2) || !at(solid, xx + 2, yy + 2);   // Schatten unten und rechts
+                color[yy][xx] = e ? "parchment_0" : nearEdge && shade ? "parchment_1" : "parchment_3";
             }
         }
         blobs(color, rng, 2 + w * h / 900, 3, 9, 3, 8, "parchment_2", "parchment_3", null);   // helle und dunklere Partien der Oberflaeche
