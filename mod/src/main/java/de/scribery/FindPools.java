@@ -27,6 +27,8 @@ public final class FindPools {
     public static final int CHARRED = 1, WATER_DAMAGED = 2, FADED = 3, FROZEN = 4;
 
     private static Map<String, List<String>> pools;
+    private static Map<String, String> findOfId;
+    private static Map<String, Integer> tiers;
 
     private FindPools() {}
 
@@ -36,15 +38,24 @@ public final class FindPools {
         if (in == null) throw new IllegalStateException("find-pools.json fehlt im Mod");
         Map<String, List<String>> out = new LinkedHashMap<>();
         try (Reader r = new InputStreamReader(in, StandardCharsets.UTF_8)) {
-            JsonObject all = JsonParser.parseReader(r).getAsJsonObject().getAsJsonObject("pools");
+            JsonObject root = JsonParser.parseReader(r).getAsJsonObject();
+            JsonObject all = root.getAsJsonObject("pools");
+            Map<String, String> reverse = new java.util.HashMap<>();
+            Map<String, Integer> tier = new java.util.HashMap<>();
+            for (var e : root.getAsJsonObject("tiers").entrySet()) tier.put(e.getKey(), e.getValue().getAsInt());
+            tiers = Map.copyOf(tier);
             for (String find : FINDS) {
                 List<String> ids = new ArrayList<>();
-                for (JsonElement e : all.getAsJsonArray(find)) ids.add(e.getAsString());
+                for (JsonElement e : all.getAsJsonArray(find)) {
+                    ids.add(e.getAsString());
+                    reverse.put(e.getAsString(), find);
+                }
                 out.put(find, List.copyOf(ids));
             }
         } catch (java.io.IOException e) {
             throw new IllegalStateException(e);
         }
+        findOfId = Map.copyOf(reverse);
         return pools = out;
     }
 
@@ -59,13 +70,31 @@ public final class FindPools {
         return ids.isEmpty() ? null : ids.get(random.nextInt(ids.size()));
     }
 
-    /** Aussehen des Fragments nach Fundart: 0 = normal, sonst eine der Zustandsvarianten. */
-    public static int variant(String find, RandomSource random) {
+    /** Fundart, in der dieses Manuskript liegt ("sand", "mud", ...), oder null bei unbekannter ID. */
+    public static String findOf(String id) {
+        pools();
+        return findOfId.get(id);
+    }
+
+    /** Schwierigkeit: 1 leicht, 2 mittel, 3 schwer; 0, wenn das Manuskript nicht bekannt ist. */
+    public static int tier(String id) {
+        pools();
+        return tiers.getOrDefault(id, 0);
+    }
+
+    /**
+     * Aussehen des Fragments nach Fundart: 0 = normal, sonst eine der Zustandsvarianten. Haengt nur vom Manuskript ab
+     * (nicht vom Zufall), damit ein Manuskript in der Liste, im Loot und auf dem Pult gleich aussieht.
+     * Scherben und Amphoren: normal. Sand: gut ein Drittel der Manuskripte verblasst (feste Auswahl nach ID).
+     */
+    public static int variantOf(String id) {
+        String find = findOf(id);
+        if (find == null) return 0;
         return switch (find) {
             case "mud" -> WATER_DAMAGED;
             case "ashes" -> CHARRED;
             case "ice" -> FROZEN;
-            case "sand" -> random.nextFloat() < 0.35f ? FADED : 0;   // in der Wueste manchmal verblasst
+            case "sand" -> Math.floorMod(id.hashCode(), 100) < 35 ? FADED : 0;
             default -> 0;
         };
     }

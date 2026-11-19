@@ -58,6 +58,8 @@ Erzeugt von `tools/gen_loot_tables.py`, die Pools von `tools/export_find_pools.p
 Neu dafür: der normale Block **Ashes** (eigene Textur, Untergrund von Suspicious Ashes).
 
 - **Loot-Funktion `scribery:random_manuscript`** (`"find": "sand" | "mud" | "ashes" | "ice" | "shards"`): zieht ein zufälliges Manuskript aus dem Pool der Fundart und setzt das Aussehen (Schlamm wassergeschädigt, Asche verkohlt, Eis gefroren, Sand zu 35 % verblasst, Scherben normal).
+- **Aussehen hängt am Manuskript, nicht am Zufall (19.11.2026):** `FindPools.variantOf(id)` bestimmt es aus der Fundart des Manuskripts: Schlamm wassergeschädigt, Asche verkohlt, Eis gefroren, Sand zu etwa 35 % verblasst (feste Auswahl nach ID), Scherben und Amphoren normal. `ManuscriptFragmentItem.of(id)` setzt es immer, deshalb sehen Manuskripte in den Creative-Tabs, im Loot und auf dem Pult gleich aus.
+- **Tooltip:** keine Versangabe mehr (die Stelle soll man selbst herausfinden); stattdessen „Difficulty: Easy / Medium / Hard“ in Grün, Gelb, Rot. Die Schwierigkeit (1 bis 3) steht in `tools/data/find-pools.json` unter `tiers`.
 - **Pools:** Sand 388, Schlamm 438, Eis 295, Asche 272, Scherben 147 Manuskripte (Summe 1.540). Die Zuordnung der elf Biome steht in `BIOME_TO_FIND` in `tools/export_find_pools.py`.
 - **Papyrusfetzen:** nur Brennstoff (100 Ticks), sonst zu nichts zu gebrauchen.
 - **Noch offen:** Ostraka mit Witzen auf Altgriechisch (Joke-Items, keine Manuskripte), Schutz vor Dubletten (braucht die gespeicherte Sammlung), Welt-Erzeugung der Blöcke.

@@ -6,9 +6,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
@@ -39,9 +37,6 @@ public class RandomManuscriptFunction extends LootItemConditionalFunction {
     protected ItemStack run(ItemStack stack, LootContext context) {
         String id = FindPools.pick(find, context.getRandom());
         if (id == null) return stack;
-        ItemStack out = ManuscriptFragmentItem.of(id);
-        int variant = FindPools.variant(find, context.getRandom());
-        if (variant > 0) out.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(variant));
-        return out;
+        return ManuscriptFragmentItem.of(id);   // das Aussehen setzt of() nach dem Manuskript, siehe FindPools.variantOf
     }
 }

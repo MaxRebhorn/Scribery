@@ -21,6 +21,10 @@ public class ManuscriptFragmentItem extends Item {
     public static ItemStack of(String id) {
         ItemStack s = new ItemStack(ModItems.MANUSCRIPT_FRAGMENT.get());
         s.set(ModComponents.MANUSCRIPT.get(), id);
+        // Aussehen nach Fundart des Manuskripts (Schlamm wassergeschaedigt, Asche verkohlt, Eis gefroren, Sand teils verblasst)
+        int look = FindPools.variantOf(id);
+        if (look > 0) s.set(net.minecraft.core.component.DataComponents.CUSTOM_MODEL_DATA,
+                new net.minecraft.world.item.component.CustomModelData(look));
         return s;
     }
 
@@ -47,9 +51,14 @@ public class ManuscriptFragmentItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tip, TooltipFlag flag) {
-        int index = indexOf(stack);
-        if (index < 0) return;
-        Manuscripts.Fragment f = Manuscripts.load().get(index);
-        tip.add(Component.literal(f.id() + "  " + f.ref()).withStyle(ChatFormatting.GRAY));
+        // Bewusst keine Versangabe: Welche Stelle es ist, soll man selbst herausfinden.
+        String id = stack.get(ModComponents.MANUSCRIPT.get());
+        if (id == null) return;
+        int tier = FindPools.tier(id);
+        if (tier < 1 || tier > 3) return;
+        ChatFormatting color = switch (tier) { case 1 -> ChatFormatting.GREEN; case 2 -> ChatFormatting.YELLOW; default -> ChatFormatting.RED; };
+        String name = switch (tier) { case 1 -> "easy"; case 2 -> "medium"; default -> "hard"; };
+        tip.add(Component.translatable("tooltip.scribery.difficulty",
+                Component.translatable("tooltip.scribery.difficulty." + name).withStyle(color)).withStyle(ChatFormatting.GRAY));
     }
 }

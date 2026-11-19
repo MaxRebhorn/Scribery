@@ -65,6 +65,14 @@ class ManuscriptDataTest {
         Set<String> all = new HashSet<>();
         for (JsonObject f : fragments()) all.add(f.get("id").getAsString());
         assertEquals(all, seen, "Pools und Manuskripte stimmen nicht ueberein");
+        // Jedes Manuskript hat eine Schwierigkeit 1 bis 3 (Tooltip)
+        JsonObject tiers = JsonParser.parseString(Files.readString(Path.of("..", "tools", "data", "find-pools.json"),
+                StandardCharsets.UTF_8)).getAsJsonObject().getAsJsonObject("tiers");
+        assertEquals(all, tiers.keySet(), "Schwierigkeiten und Manuskripte stimmen nicht ueberein");
+        for (String id : tiers.keySet()) {
+            int t = tiers.get(id).getAsInt();
+            assertTrue(t >= 1 && t <= 3, "Schwierigkeit ausserhalb 1 bis 3: " + id);
+        }
     }
 
     /**
