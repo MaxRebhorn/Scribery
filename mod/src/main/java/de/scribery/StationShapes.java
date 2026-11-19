@@ -3,7 +3,13 @@ package de.scribery;
 import java.util.EnumMap;
 import java.util.Map;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -46,6 +52,26 @@ public final class StationShapes {
             {9.5, 10, 2.5, 16, 14, 7.5},
             {4, 10, 3, 9, 11.5, 8},
             {0, 10, 9, 7, 15, 14} };
+
+    /** Punkt (x, z) in Pixeln (Blickrichtung Norden) fuer die Richtung drehen; Ergebnis in Bloecken (0 bis 1), wie die Formen gedreht. */
+    public static double[] rotate(double x, double z, Direction facing) {
+        int turns = switch (facing) { case EAST -> 1; case SOUTH -> 2; case WEST -> 3; default -> 0; };
+        for (int i = 0; i < turns; i++) {   // (x, z) -> (16 - z, x), wie in build()
+            double nx = 16 - z;
+            z = x;
+            x = nx;
+        }
+        return new double[] {x / 16, z / 16};
+    }
+
+    /** Kerzenflamme (Teilchen wie bei Vanilla-Kerzen) an einem Punkt des Modells; y in Pixeln, x und z fuer Blickrichtung Norden. */
+    public static void flame(Level level, BlockPos pos, Direction facing, double x, double y, double z, RandomSource random) {
+        double[] c = rotate(x, z, facing);
+        double px = pos.getX() + c[0], py = pos.getY() + y / 16, pz = pos.getZ() + c[1];
+        if (random.nextFloat() < 0.3F) level.addParticle(ParticleTypes.SMALL_FLAME, px, py, pz, 0, 0, 0);
+        if (random.nextFloat() < 0.17F) level.addParticle(ParticleTypes.SMOKE, px, py + 0.05, pz, 0, 0, 0);
+        if (random.nextFloat() < 0.1F) level.playLocalSound(px, py, pz, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1F, 1F, false);
+    }
 
     /** Formen fuer alle vier Blickrichtungen. Drehung wie im Blockstate (y = 90 im Uhrzeigersinn von oben: Norden wird Osten). */
     public static Map<Direction, VoxelShape> build(double[][] boxes) {

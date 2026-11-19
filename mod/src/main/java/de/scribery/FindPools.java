@@ -52,10 +52,10 @@ public final class FindPools {
                 }
                 out.put(find, List.copyOf(ids));
             }
+            findOfId = Map.copyOf(reverse);
         } catch (java.io.IOException e) {
             throw new IllegalStateException(e);
         }
-        findOfId = Map.copyOf(reverse);
         return pools = out;
     }
 
