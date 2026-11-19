@@ -427,14 +427,14 @@ SHAPES["translator_desk"] = [(0, 0, 0, 16, 12, 16), (1.5, 12, 13, 14.5, 15, 16)]
 
 # Presse: Block mit Symbol, Setzform und Papierablage oben (gemalt), darueber Rahmen mit Tiegel-Platte, Kurbel und Hebel
 MODELS["printing_press"] = [
-    body("press", 10),
-    box((1, 10, 6), (3, 14, 10), "dark"), box((13, 10, 6), (15, 14, 10), "dark"),
-    box((1, 14, 5), (15, 16, 11), "dark"),
-    box((5, 11.5, 6.5), (11, 13, 9.5), "iron"), box((7, 13, 7), (9, 14, 9), "irond"),
-    box((0, 14, 7), (1, 16, 9), "oak"),
-    box((15, 12, 7), (16, 14.5, 9.5), "iron"),
+    body("press", 12),                                     # Oberflaeche auf 12 wie Schreibtisch und Lettern-Schrank
+    box((1, 12, 6), (3, 16, 10), "dark"), box((13, 12, 6), (15, 16, 10), "dark"),
+    box((1, 16, 5), (15, 18, 11), "dark"),
+    box((5, 13.5, 6.5), (11, 15, 9.5), "iron"), box((7, 15, 7), (9, 16, 9), "irond"),
+    box((0, 16, 7), (1, 18, 9), "oak"),
+    box((15, 14, 7), (16, 16.5, 9.5), "iron"),
 ]
-SHAPES["printing_press"] = [(0, 0, 0, 16, 10, 16), (1, 10, 5, 15, 16, 11)]
+SHAPES["printing_press"] = [(0, 0, 0, 16, 12, 16), (1, 12, 5, 15, 18, 11)]
 
 # Lettern-Schrank: richtiger Tisch (Beine, Platte) mit Buchstabenbox und Papier oben gemalt, Fass (Tinte) und Walze als 3D
 MODELS["letter_cabinet"] = [

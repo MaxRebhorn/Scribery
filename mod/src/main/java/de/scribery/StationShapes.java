@@ -34,8 +34,8 @@ public final class StationShapes {
 
     /** printing_press: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] PRINTING_PRESS = new double[][] {
-            {0, 0, 0, 16, 10, 16},
-            {1, 10, 5, 15, 16, 11} };
+            {0, 0, 0, 16, 12, 16},
+            {1, 12, 5, 15, 18, 11} };
 
     /** letter_cabinet: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] LETTER_CABINET = new double[][] {

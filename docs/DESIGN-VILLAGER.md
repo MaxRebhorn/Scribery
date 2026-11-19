@@ -71,3 +71,5 @@ Ein Vanilla-Handel hat ein festes Ergebnis, kein Zufalls- oder Auswahlergebnis.
 - **Fundbeutel:** fuenf Items `find_pouch_<sand|mud|ashes|ice|shards>`. Rechtsklick gibt ein Fragment aus dem Pool der Fundart; `core/FindLuck`: 70 % der Zuege waehlen ein im Archiv fehlendes Manuskript. Handel: 3 lose Fragmente gegen einen Beutel, Tageslimit 2 je Beutel (Stufe 2).
 - **Fundkarte (Meister):** zeigt auf die naechste Struktur im Tag `scribery:scribe_map_targets` (Katakomben, Wuesten-Katakomben, Sand- und Schlammhaus). Findet er innerhalb von 100 Chunks keine, fehlt das Angebot. Biom-Karten bleiben offen (keine eigene Suchlogik).
 - **Offen:** Dorfstruktur mit Schreibhaus (V2), Alternativweg fuer Dubletten ohne Schreiber, Preise nach Spielsimulation, Handels-UI zeigt keine Dublettenzahl (nur Tooltip am Item).
+
+**Aenderung 19.11.2026:** Grammar Book jetzt schon auf Stufe 1 (neben dem Alphabet Primer); Stufe 3 verkauft die Lexika A-C, D-F und das Forms-Grammar-Lexikon; thematisches Lexikon Stufe 4; das Complete Greek Lexicon bleibt Stufe 5, bis das Buch fertig ueberarbeitet ist.

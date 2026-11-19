@@ -64,8 +64,10 @@ class ScribeTradesTest {
     @Test
     void booksFollowTheLearningOrder() {
         assertEquals(1, level("greek_alphabet_primer"));
-        assertTrue(level("greek_grammar_book") < level("greek_lexicon_a_c"));
-        assertTrue(level("greek_lexicon_d_f") < level("greek_forms_grammar_lexicon"));
+        assertEquals(1, level("greek_grammar_book"));                      // Grammatik gleich am Anfang
+        assertEquals(3, level("greek_lexicon_a_c"));
+        assertEquals(3, level("greek_forms_grammar_lexicon"));            // mittlere Stufe: A-C, D-F, Formen
+        assertTrue(level("thematic_greek_lexicon") > level("greek_lexicon_a_c"));
         assertEquals(5, level("complete_greek_lexicon"));
     }
 

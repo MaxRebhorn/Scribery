@@ -48,12 +48,12 @@ public final class ScribeTrades {
 
     private static List<Offer> build() {
         List<Offer> o = new ArrayList<>();
-        // Stufe 1, Novize: das Alphabet-Buch steht gleich oben; Papier kommt je nach Glueck dazu (siehe PAPER_CHOICE)
+        // Stufe 1, Novize: Alphabet-Buch und Grammatik gleich oben; Papier kommt je nach Glueck dazu (siehe PAPER_CHOICE)
         o.add(sell(1, ScribePrices.PRIMER, "scribery:greek_alphabet_primer", 1, ScribePrices.USES_BOOK, ScribePrices.XP_SMALL));
+        o.add(sell(1, ScribePrices.GRAMMAR, "scribery:greek_grammar_book", 1, ScribePrices.USES_BOOK, ScribePrices.XP_SMALL));
         o.add(buy(1, "scribery:papyrus_scrap", ScribePrices.SCRAPS_PER_EMERALD, 1, ScribePrices.USES_SCRAPS, ScribePrices.XP_SMALL));
         o.add(buy(1, "scribery:ostrakon", ScribePrices.OSTRAKA_PER_EMERALD, 1, ScribePrices.USES_OSTRAKA, ScribePrices.XP_SMALL));
         // Stufe 2, Geselle
-        o.add(sell(2, ScribePrices.GRAMMAR, "scribery:greek_grammar_book", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
         for (String find : FINDS) {
             o.add(new Offer(2, FRAGMENT, ScribePrices.FRAGMENTS_PER_POUCH, pouch(find), 1,
                     ScribePrices.USES_POUCH, ScribePrices.XP_MEDIUM));
@@ -61,9 +61,9 @@ public final class ScribeTrades {
         // Stufe 3, Fachmann
         o.add(sell(3, ScribePrices.LEXICON_A_C, "scribery:greek_lexicon_a_c", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
         o.add(sell(3, ScribePrices.LEXICON_D_F, "scribery:greek_lexicon_d_f", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
+        o.add(sell(3, ScribePrices.FORMS_GRAMMAR_LEXICON, "scribery:greek_forms_grammar_lexicon", 1, ScribePrices.USES_BOOK, ScribePrices.XP_MEDIUM));
         o.add(new Offer(3, FRAGMENT, 1, EMERALD, ScribePrices.FRAGMENT_SELL, ScribePrices.USES_FRAGMENT_SELL, ScribePrices.XP_SMALL));
         // Stufe 4, Experte
-        o.add(sell(4, ScribePrices.FORMS_GRAMMAR_LEXICON, "scribery:greek_forms_grammar_lexicon", 1, ScribePrices.USES_BOOK, ScribePrices.XP_BIG));
         o.add(sell(4, ScribePrices.THEMATIC_LEXICON, "scribery:thematic_greek_lexicon", 1, ScribePrices.USES_BOOK, ScribePrices.XP_BIG));
         // Stufe 5, Meister (die Fundkarte kommt im Mod dazu)
         o.add(sell(5, ScribePrices.COMPLETE_LEXICON, "scribery:complete_greek_lexicon", 1, ScribePrices.USES_BOOK, ScribePrices.XP_BIG));
