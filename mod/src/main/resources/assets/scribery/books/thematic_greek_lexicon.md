@@ -47,7 +47,7 @@ That's the problem.
 
 This book solves it. Instead of the alphabet, the words are sorted by what they're about. Light and darkness. Food. Family. Walking about. You know, the usual.
 
-Every one of the 1005 words from the Gospel of John appears here exactly once. Not twice. I'm not made of ink.
+Every one of the 1005 words in this book appears here exactly once. Not twice. I'm not made of ink.
 
 If you can't find a word in the theme where you expect it, try another. Greek words have a habit of wandering.
 
@@ -64,7 +64,7 @@ Happy browsing.
 
 ## Page 2 — God and Heaven {#divine}
 
-*Let's start at the top. The Gospel of John certainly does.*
+*Let's start at the top. Greek texts usually do.*
 
 αἰών **aiōn** *m.* — age
 
@@ -153,7 +153,7 @@ Happy browsing.
 
 ## Page 3 — Light, Darkness and Truth {#light}
 
-*John loves a contrast. Light and dark, true and false. Subtle he is not.*
+*Writers love a contrast. Light and dark, true and false. Subtle they are not.*
 
 ἀλήθεια **alētheia** *f.* — truth
 
@@ -568,7 +568,7 @@ Happy browsing.
 
 ## Page 8 — Going, Coming and Moving {#travel}
 
-*Nobody in this Gospel stays put for long. Jesus alone clocks up more miles than a postal worker.*
+*Nobody in an ancient text stays put for long. Some of them clock up more miles than a postal worker.*
 
 ἄγω **agō** *v.* — to bring
 
@@ -974,7 +974,7 @@ Happy browsing.
 
 ## Page 14 — Food, Farming and Animals {#food}
 
-*Bread, fish, wine and the odd wolf. The Gospel of John does not skip meals.*
+*Bread, fish, wine and the odd wolf. Ancient texts do not skip meals.*
 
 ἀλέκτωρ **alektōr** *m.* — rooster
 
@@ -2179,7 +2179,7 @@ Happy browsing.
 
 ## Page 23 — What to Read Next
 
-That's the Gospel of John in twenty-one piles.
+That's the whole vocabulary in twenty-one piles.
 
 If you'd rather have your words in alphabetical order, there are the lexica A–C and D–F.
 

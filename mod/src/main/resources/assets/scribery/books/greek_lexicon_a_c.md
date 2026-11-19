@@ -30,7 +30,7 @@ This lexicon covers alpha, beta and gamma. That's three letters out of twenty-fo
 
 I know. But a proper education doesn't come cheap, and I have to split these things up somehow. It keeps the price tolerable. For you. Not for me.
 
-All 185 words in this book appear somewhere in the Gospel of John. I haven't padded it with words you'll never meet. Mostly because then I'd have to look them up.
+All 185 words in this book are the sort you'll actually meet once you start reading. I haven't padded it with words you'll never need. Mostly because then I'd have to look them up.
 
 Each entry gives you the word as a dictionary lists it, its sounds in Latin letters, what kind of word it is, and what it means.
 
@@ -437,4 +437,4 @@ Further reading, should your purse allow:
 
 **— John Koine**
 
-*P.S. If a word isn't in here, it isn't in John. Or I made a mistake. It's the first one. Probably.*
+*P.S. If a word isn't in here, it's either in another book or I made a mistake. It's the first one. Probably.*

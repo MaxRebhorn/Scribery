@@ -1,5 +1,5 @@
 # THE COMPLETE GREEK LEXICON
-### Every Word of the Gospel of John, and Every Form It Wears
+### Every Word, Every Theme, Every Form
 
 **By John Koine**
 
@@ -29,7 +29,7 @@ You didn't believe me.
 
 And now here you are, holding the Complete Greek Lexicon.
 
-Every word of the Gospel of John, from alpha to omega. All 1005 of them. Twice, actually: once in the order of the alphabet and once sorted by subject. And then, because I'm generous, every form they take.
+Every word from alpha to omega. All 1005 of them. Twice, actually: once in the order of the alphabet and once sorted by subject. And then, because I'm generous, every form they take.
 
 That's the Greek Lexicon A–C, the Greek Lexicon D–F, the Thematic Greek Lexicon and the Greek Forms & Grammar Lexicon in one handsome volume.
 
@@ -46,7 +46,7 @@ Now, if you'll excuse me, I have some emeralds to count.
 
 1005 words. Each entry gives the word as a dictionary lists it, its sounds in Latin letters, what kind of word it is and what it means.
 
-Where a word has several senses, you get the one that matters most in John. For the others, you'll need a proper scholar.
+Where a word has several senses, you get the one that matters most in everyday reading. For the others, you'll need a proper scholar.
 
 The little marks:
 
@@ -2161,7 +2161,7 @@ Within a chapter, the words are sorted by their Latin spelling.
 
 ## Page 29 — God and Heaven {#theme-divine}
 
-*Let's start at the top. The Gospel of John certainly does.*
+*Let's start at the top. Greek texts usually do.*
 
 αἰών **aiōn** *m.* — age
 
@@ -2250,7 +2250,7 @@ Within a chapter, the words are sorted by their Latin spelling.
 
 ## Page 30 — Light, Darkness and Truth {#theme-light}
 
-*John loves a contrast. Light and dark, true and false. Subtle he is not.*
+*Writers love a contrast. Light and dark, true and false. Subtle they are not.*
 
 ἀλήθεια **alētheia** *f.* — truth
 
@@ -2665,7 +2665,7 @@ Within a chapter, the words are sorted by their Latin spelling.
 
 ## Page 35 — Going, Coming and Moving {#theme-travel}
 
-*Nobody in this Gospel stays put for long. Jesus alone clocks up more miles than a postal worker.*
+*Nobody in an ancient text stays put for long. Some of them clock up more miles than a postal worker.*
 
 ἄγω **agō** *v.* — to bring
 
@@ -3071,7 +3071,7 @@ Within a chapter, the words are sorted by their Latin spelling.
 
 ## Page 41 — Food, Farming and Animals {#theme-food}
 
-*Bread, fish, wine and the odd wolf. The Gospel of John does not skip meals.*
+*Bread, fish, wine and the odd wolf. Ancient texts do not skip meals.*
 
 ἀλέκτωρ **alektōr** *m.* — rooster
 
@@ -4276,7 +4276,7 @@ Within a chapter, the words are sorted by their Latin spelling.
 
 ## Page 50 — Part Three {#part-three}
 
-Part Three is the Greek Forms & Grammar Lexicon. It lists every form of a word that turns up in the Gospel of John, with a little label saying what the form is doing.
+Part Three is the Greek Forms & Grammar Lexicon. It lists the forms a word takes, each with a little label saying what the form is doing.
 
 Use it when you find a word and the lexicon says it doesn't exist. It does. It's wearing a disguise.
 
@@ -5350,11 +5350,11 @@ The labels work as in the Entry Key, plus a few more. A word that only ever appe
 
 That's everything.
 
-Every word in the Gospel of John, twice, and in every form, with a preface and an unreasonable number of emeralds behind it.
+Every word, twice, and in every form, with a preface and an unreasonable number of emeralds behind it.
 
 If you've read this from alpha to omega, you're either a scholar or in need of fresh air. Possibly both.
 
-Either way, you can now open the Gospel and know what the words mean. Whether you know what they're doing there is a question for the Grammar Book.
+Either way, you can now open a Greek text and know what the words mean. Whether you know what they're doing there is a question for the Grammar Book.
 
 I did tell you to read it.
 

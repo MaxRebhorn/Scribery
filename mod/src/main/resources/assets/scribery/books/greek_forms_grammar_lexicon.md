@@ -1,5 +1,5 @@
 # THE GREEK FORMS & GRAMMAR LEXICON
-### Every Form in John, and What It Is Doing
+### Every Form, and What It Is Doing
 
 **By John Koine**
 
@@ -25,15 +25,15 @@
 
 You've learned the alphabet. You've survived the grammar. You've bought a lexicon, probably several. And yet.
 
-You open the Gospel of John, find a word, look it up in your lexicon, and it isn't there.
+You open a Greek text, find a word, look it up in your lexicon, and it isn't there.
 
 That's because it's wearing a disguise. Greek words change their endings, and sometimes the front of the word as well. It's nothing personal. It's just Greek.
 
 This book tells you which word is hiding under which ending, and what that ending is doing.
 
-497 words turn up in more than one form in the Gospel of John. Together they come to 2376 different forms. I've listed every single one. Yes, I counted.
+497 words turn up in more than one form in this collection. Together they come to 2376 different forms. I've listed every single one. Yes, I counted.
 
-For each word you get the dictionary form, its sounds in Latin letters, what kind of word it is and what it means. After that come all its forms from John, each with a little label.
+For each word you get the dictionary form, its sounds in Latin letters, what kind of word it is and what it means. After that come all its forms, each with a little label.
 
 The labels are explained on the next page. Learn them. They aren't difficult. Mostly.
 
@@ -1145,7 +1145,7 @@ Mostly.
 
 ## Page 26 — One Last Word
 
-And that's every form in the Gospel of John. Or at least the ones wearing a disguise.
+And that's every form in this book. Or at least the ones wearing a disguise.
 
 You now know which word is hiding under which ending. The rest is practice.
 

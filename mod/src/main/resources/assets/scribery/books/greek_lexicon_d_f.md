@@ -32,7 +32,7 @@ Be warned: epsilon is enormous. Well over a hundred words begin with it. I don't
 
 Zeta, on the other hand, has barely eight. The Greeks seem to have run out of enthusiasm somewhere around the sixth letter.
 
-All 184 words here appear in the Gospel of John, and the entries work exactly as in the first book: the word as a dictionary lists it, its sounds in Latin letters, what kind of word it is, and what it means.
+All 184 words here are the sort you'll actually meet once you start reading, and the entries work exactly as in the first book: the word as a dictionary lists it, its sounds in Latin letters, what kind of word it is, and what it means.
 
 If something looks oddly familiar, that's because half your English vocabulary comes from Greek. You're welcome.
 

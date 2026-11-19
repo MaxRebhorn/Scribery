@@ -8,12 +8,12 @@ and Places", Funktionswoerter: "Little Words"). Reststuecke melden sich beim Auf
 THEMES = [
     # (kurzname, Titel, Einleitung im Ton von John Koine, Woerter nach Umschrift)
     ("divine", "God and Heaven",
-     "Let's start at the top. The Gospel of John certainly does.",
+     "Let's start at the top. Greek texts usually do.",
      "theos patēr pneuma kurios Iēsous Christos Messias uhios logos doxa doxazō hagios hagiazō hagnizō ouranos epouranios "
      "angelos Satanas diabolos daimonion daimonizomai paraklētos theosebēs aiōn aiōnios amēn hōsanna monogenēs amnos arnion "
      "eucharisteō proskuneō proskunētēs eulogeō makarios sōtēr sōtēria sōzō charis latreia"),
     ("light", "Light, Darkness and Truth",
-     "John loves a contrast. Light and dark, true and false. Subtle he is not.",
+     "Writers love a contrast. Light and dark, true and false. Subtle they are not.",
      "phōs phōtizō skotos skotia alētheia alēthēs alēthinos alēthōs pseudos pseustēs phainō luchnos phanos lampas dolos kruptos "
      "kruptō phanerōs phaneroō apokaluptō phanos"),
     ("life", "Life, Death and Healing",
@@ -38,7 +38,7 @@ THEMES = [
      "hermēneuō methermēneuō Hebraisti Hellēnisti Rhōmaisti onoma loidoreō blasphēmeō blasphēmia prophēteuō prophētēs elegchō "
      "antilegō katēgoreō katēgoria martureō marturia nai ouchi akoē"),
     ("travel", "Going, Coming and Moving",
-     "Nobody in this Gospel stays put for long. Jesus alone clocks up more miles than a postal worker.",
+     "Nobody in an ancient text stays put for long. Some of them clock up more miles than a postal worker.",
      "erchomai eiserchomai exerchomai aperchomai anerchomai dierchomai proserchomai sunerchomai suneiserchomai katabainō "
      "anabainō embainō apobainō metabainō agō eisagō exagō paragō hupagō poreuō ekporeuō peripateō trechō protrechō pheugō hēkō "
      "paraginomai hupantaō hupantēsis anachōreō ekneuō hodos hodoiporia hodēgeō pempō apostellō apostolos pherō bastazō helkuō "
@@ -67,7 +67,7 @@ THEMES = [
      "hudōr thalassa potamos pēgē phrear cheimarros rheō anemos pneō brontē gē chamai pēlos lithos lithinos lithazō oros "
      "spēlaion aigialos pur kaiō anthrakia thermainō psuchos cheimōn xērainō nomē"),
     ("food", "Food, Farming and Animals",
-     "Bread, fish, wine and the odd wolf. The Gospel of John does not skip meals.",
+     "Bread, fish, wine and the odd wolf. Ancient texts do not skip meals.",
      "artos brōma brōsis trophē bibrōskō trōgō phagein katesthiō aristaō deipnon pinō posis potērion oinos oxos methuō hudria "
      "geuō peinaō dipsaō psōmion sitos kokkos speirō sperma therizō therismos karpos ampelos klēma sukē krithinos probaton "
      "poimnē poimainō boskō chortazō chortos ichthus opsarion prosphagion halieuō diktuon ploion ploiarion onos onarion pōlos "
