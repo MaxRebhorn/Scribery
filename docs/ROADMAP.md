@@ -6,13 +6,12 @@ Das Design steht in `Scribery_and_Crafts_Game_Design_Document.md`, die UI-Regeln
 ## Stand heute
 
 Fertig:
-- **Items:** 22 Letter Types, Manuscript Fragment (ein Item, Datenfeld mit Manuskript-ID P1–P21), 7 Bücher (ohne Inhalt), Printed Sheet, Translated Sheet, Wooden Word Tablet.
+- **Items:** 22 Letter Types, Manuscript Fragment (ein Item, Datenfeld mit Manuskript-ID P1–P21), 7 Bücher (Alphabet Primer und Grammar Book lesbar, die übrigen ohne Inhalt), Printed Sheet, Translated Sheet, Wooden Word Tablet.
 - **Blöcke:** Scribe's Lectern, Printing Press und Letter Cabinet (gemeinsame Druck-Oberfläche, zeigt nur, was angrenzt), Minting Table (Stonecutter-Menü, Eisennuggets → Letter Types), Translator's Desk (eigener Block mit Vorräten, übersetzt den aufgelegten bedruckten Bogen).
 - **Server:** Vorräte liegen in Block-Entities, der Client meldet nur Verbrauch, der Server prüft jede Meldung.
-- **Texte:** Pilot Johannes 1,1–18 als 21 Manuskripte, erzeugt von `tools/build_manuscripts.py`, geprüft von `ManuscriptDataTest`.
+- **Texte im Spiel:** nur der Pilot Johannes 1,1–18 als 21 Manuskripte (P1–P21), erzeugt von `tools/build_manuscripts.py`, geprüft von `ManuscriptDataTest`.
 - **Eingabe:** Presse manuell (Lettern ziehen), Übersetzung mit Plättchen oder von Hand getippt; Buttons zum Nachfüllen aus dem Inventar.
 - **Optik:** Tischplatte, Minecraft-Texturen, unsere Letter-Items, ausgefranstes Papier in Textgröße.
-
 - **Varianten und Fundblöcke (Texturen und Testbarkeit, nicht im Spiel geprüft):** Fragment-Varianten verkohlt, wassergeschädigt, verblasst, Codex, gefroren (blau getöntes Papyrus), dazu Block für gefrorenes Fragment, Amphore als Nicht-Würfel-Block, Ostrakon, verdächtiger Archivschlamm (4 Stufen). Die Java-Teile sind nicht kompiliert.
 - **Daten:** ganzes Johannesevangelium (1.540 Manuskripte), Gliederung in 64 Geschichten, 143 Seiten, 878 Verse, Fundbiome thematisch (11 Biome). Alles noch `draft`.
 
@@ -29,7 +28,7 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 ### 2. Das restliche Johannesevangelium übernehmen
 - Alle 21 Kapitel (879 Verse) durch `tools/build_manuscripts.py` erzeugen, nicht nur Kapitel 1. Das Skript ist schon so gebaut, dass es mit einem größeren Pool bessere falsche Antworten findet.
 - Rohdaten holen (Abfrage des Bibel-Zugangs in 50-Verse-Schritten oder eine Datei der STEPBible-Daten, das Herunterladen nur mit Okay). Lizenz und Namensnennung vorher klären.
-- **Stand 18.11.2026 (Branch `john-rest`):** Rohdaten Joh 1,19–21,25 aus STEPBible TAGNT gezogen (`tools/data/john-1-19-21-25.tsv`, Lizenz CC BY 4.0, Quelle und Pflichten in `docs/CREDITS.md`), Manuskripte P22 bis P1540 erzeugt (`python tools/build_manuscripts.py --rest` -> `tools/data/manuscripts.john-rest.json`, 1519 Manuskripte, 15 380 Wörter). P1–P21 sind eingefroren und unverändert. **Noch nicht im Spiel eingebunden** (`mod/build.gradle` und `ManuscriptDataTest` kennen nur `manuscripts.john1.json`). Alle Glossen `draft`.
+- **Stand 18.11.2026 (zuerst Branch `john-rest`, jetzt in `biome-by-theme`):** Rohdaten Joh 1,19–21,25 aus STEPBible TAGNT gezogen (`tools/data/john-1-19-21-25.tsv`, Lizenz CC BY 4.0, Quelle und Pflichten in `docs/CREDITS.md`), Manuskripte P22 bis P1540 erzeugt (`python tools/build_manuscripts.py --rest` -> `tools/data/manuscripts.john-rest.json`, 1519 Manuskripte, 15 380 Wörter). P1–P21 sind eingefroren und unverändert. **Noch nicht im Spiel eingebunden** (`mod/build.gradle` und `ManuscriptDataTest` kennen nur `manuscripts.john1.json`). Alle Glossen `draft`.
 - **Fundbiome (thematisch):** jedes Manuskript hat ein Biom, vergeben nach Geschichte (Ort, Bild, Stimmung), bei Bedarf einzelne Seiten (`docs/FRAGMENT-BIOMES.md`, Daten in `tools/data/fragment-biomes.json`, Zuordnung von Hand pflegbar in `tools/data/john-biomes.tsv`, erzeugt von `tools/assign_biomes.py`). 11 Biome mit 116 bis 166 Manuskripten. Die Schwierigkeit bleibt als Eigenschaft erhalten, bestimmt aber nicht mehr den Fundort. Das alte Zufallsfeld `origin.biome` gilt nicht mehr. Biom-Tags (z. B. `#c:is_desert`) sind noch nicht gegen 1.21.1 geprüft.
 - **Gliederung für das Manuscript Archive:** 64 Geschichten, 143 Seiten, 878 Verse (`docs/JOHN-STRUCTURE.md`, Daten `tools/data/john-structure.json`, erzeugt von `tools/structure_john.py`). Die Manuskripte werden an Seitengrenzen geschnitten, damit Manuskript < Seite < Geschichte gilt. Geschichten-Grenzen und Titel (`tools/data/john-stories.tsv`) sind ein Entwurf.
 - Offen: Textgrundlage (NA28 oder Tyndale), Perikope Joh 7,53–8,11, das 17-Buchstaben-Wort μεθερμηνευόμενον, Prüfung der Glossen und der falschen Antworten.
