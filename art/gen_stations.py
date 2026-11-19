@@ -166,7 +166,49 @@ def cab_front(px, rng):
         px[0, i] = C["wood_2"]
 
 
+def form(px, rng):
+    """Setzform: 4 Zeilen Lettern (je 2x3 Pixel), manche Plaetze leer."""
+    for y in range(16):
+        for x in range(16):
+            px[x, y] = C["ink_1"]
+    for r in range(4):
+        for c in range(8):
+            if rng.random() < 0.2:
+                continue
+            for y in range(r * 4, r * 4 + 3):
+                for x in range(c * 2, c * 2 + 2):
+                    px[x, y] = C["lead_3"] if y == r * 4 else C["lead_2"]
+            px[c * 2 + rng.randrange(2), r * 4 + 1] = C["lead_4"]
+
+
+def letterbox(px, rng):
+    """Buchstabenbox: 4x4 Faecher mit Lettern."""
+    for y in range(16):
+        for x in range(16):
+            px[x, y] = C["wood_0"]
+    for r in range(4):
+        for c in range(4):
+            for y in range(r * 4, r * 4 + 3):
+                for x in range(c * 4, c * 4 + 3):
+                    px[x, y] = C["lead_2"]
+            px[c * 4 + 1, r * 4 + 1] = C["lead_4"] if rng.random() < 0.7 else C["lead_3"]
+            for k in range(3):
+                px[c * 4 + k, r * 4] = C["lead_3"]
+
+
+def flame(px, rng):
+    for y in range(16):
+        for x in range(16):
+            d = abs(x - 7.5) / 8
+            px[x, y] = C["flame_2"] if (y > 9 or d > 0.55) else (C["flame_1"] if d > 0.25 or y > 4 else C["flame_0"])
+    for _ in range(30):
+        px[rng.randrange(16), rng.randrange(16)] = rng.choice([C["flame_0"], C["flame_1"], C["flame_2"]])
+
+
 MATERIALS = {
+    "form": form,
+    "letterbox": letterbox,
+    "flame": flame,
     "wood": planks(C["wood_2"], C["wood_1"], C["wood_3"], C["wood_1"]),
     "dark": planks(C["wood_1"], C["wood_0"], C["wood_2"], C["wood_0"]),
     "light": planks(C["wood_3"], C["wood_2"], C["wood_4"], C["wood_2"]),
@@ -227,44 +269,56 @@ MODELS["translator_desk"] = [
 SHAPES["translator_desk"] = [(0, 11, 1, 16, 13, 15), (1, 0, 2, 3, 11, 4), (13, 0, 2, 15, 11, 4), (1, 0, 12, 3, 11, 14),
                              (13, 0, 12, 15, 11, 14), (3, 6, 3, 13, 11, 13), (0, 13, 13, 16, 16, 15)]
 
-MODELS["printing_press"] = [
-    box((0, 0, 1), (16, 3, 15), "dark", up=("wood", None)),
-    box((2, 3, 3), (14, 5, 13), "irond", up=("iron", None)),
-    box((3, 5, 4), (13, 6, 12), "iron"),
-    box((1, 3, 4), (3, 12, 12), "wood"), box((13, 3, 4), (15, 12, 12), "wood"),
-    box((1, 12, 4), (15, 14, 12), "wood", up=("light", None)),
-    box((7, 9, 7), (9, 12, 9), "irond"),
-    box((4, 8, 5), (12, 9, 11), "iron"),
-    box((7, 14, 7), (9, 16, 9), "irond"),
-    box((2, 14, 7.5), (14, 15, 8.5), "irond"),
-    box((1, 14, 7), (2, 16, 9), "light"), box((14, 14, 7), (15, 16, 9), "light"),
-]
-SHAPES["printing_press"] = [(0, 0, 1, 16, 3, 15), (1, 3, 4, 3, 12, 12), (13, 3, 4, 15, 12, 12), (1, 12, 4, 15, 14, 12),
-                            (7, 14, 7, 9, 16, 9), (2, 3, 3, 14, 5, 13)]
+LEGS = [box((0, 0, 1), (2, 8, 3), "dark"), box((14, 0, 1), (16, 8, 3), "dark"),
+        box((0, 0, 13), (2, 8, 15), "dark"), box((14, 0, 13), (16, 8, 15), "dark")]
+TABLE = LEGS + [box((0, 8, 1), (16, 10, 15), "wood", up=("light", None)), box((2, 3, 3), (14, 4, 13), "dark")]
 
-MODELS["letter_cabinet"] = [
-    box((1, 0, 2), (15, 9, 14), "wood", north=("front", [1, 3, 15, 12]), up=("light", None)),
-    box((1, 9, 6), (15, 11, 14), "dark", north=("front", [1, 3, 15, 5]), up=("wood", None)),
-    box((11, 9, 3), (13.5, 11, 5.5), "ink"),
-    box((11.5, 11, 3.5), (13, 11.5, 5), "iron"),
-    box((3, 9, 3), (8, 11, 5), "dark"),
-    box((8, 9.5, 3.5), (9.5, 10.5, 4.5), "iron"),
+# Presse nach dem UI: Setzform in der Mitte, Papierablage davor, Tiegel (Platte) darueber, Kurbel links (aus Sicht des
+# Spielers, also x hoch), Hebel rechts (x niedrig), Kerze hinten links.
+MODELS["printing_press"] = TABLE + [
+    box((3, 10, 4), (13, 11, 12), "irond", up=("form", [3, 4, 13, 12])),
+    box((3, 10, 1.5), (13, 11, 3.5), "paper"),
+    box((3, 11, 12), (4, 15, 13), "dark"), box((12, 11, 12), (13, 15, 13), "dark"),
+    box((3, 15, 12), (13, 16, 13), "dark"),
+    box((4.5, 13.5, 5), (11.5, 14.5, 11), "iron"),
+    box((1.5, 10, 7.5), (2.5, 16, 8.5), "irond"), box((2.5, 13.5, 7.5), (4.5, 14.5, 8.5), "irond"),
+    box((1, 15, 7), (3, 16, 9), "light"),
+    box((13, 11.5, 7), (14, 12.5, 8), "irond"), box((14, 10.5, 5), (15, 15.5, 10), "iron"),
+    box((15, 13, 8.5), (16, 14, 9.5), "light"),
+    box((13, 10, 11), (14.5, 13, 12.5), "paper"), box((13.4, 13, 11.4), (14.1, 14, 12.1), "flame"),
 ]
-SHAPES["letter_cabinet"] = [(1, 0, 2, 15, 9, 14), (1, 9, 6, 15, 11, 14), (11, 9, 3, 14, 12, 6), (3, 9, 3, 8, 11, 5)]
+SHAPES["printing_press"] = [(0, 0, 1, 16, 10, 15), (1, 10, 1, 16, 16, 13)]
 
+# Lettern-Schrank: Tisch mit Buchstabenbox, Walze, Papiervorrat und dem Fass (Tinte) darauf.
+MODELS["letter_cabinet"] = TABLE + [
+    box((1, 10, 2), (9, 12, 14), "dark", up=("letterbox", [0, 0, 8, 12])),
+    box((10, 10, 9), (15, 14, 14), "dark", up=("ink", None)),
+    box((9.8, 10.5, 8.8), (15.2, 11.5, 14.2), "iron"), box((9.8, 12.5, 8.8), (15.2, 13.5, 14.2), "iron"),
+    box((10, 10, 6), (15, 11.5, 8.5), "paper"),
+    box((10.5, 10, 2.5), (14.5, 11.5, 5.5), "dark"),
+    box((10, 10.2, 3), (10.5, 11.3, 5), "iron"), box((14.5, 10.2, 3), (15, 11.3, 5), "iron"),
+]
+SHAPES["letter_cabinet"] = [(0, 0, 1, 16, 10, 15), (1, 10, 2, 9, 12, 14), (10, 10, 9, 15, 14, 14), (10, 10, 2.5, 15, 11.5, 8.5)]
+
+# Minting Table: Tiegel (Becher) auf einem Dreibein ueber offener Flamme, daneben ein kleiner Amboss.
 MODELS["minting_table"] = [
     box((0, 0, 0), (16, 8, 16), "dark", north=("wood", None)),
     box((0, 8, 0), (16, 9, 16), "irond", up=("irond", None)),
-    box((1, 9, 1), (9, 13, 9), "stone"),
-    box((2, 13, 2), (8, 16, 8), "stone"),
-    box((2, 9, 0.5), (8, 13, 1), "stone", north=("mouth", [0, 0, 16, 16])),
-    box((10, 9, 2), (15, 12, 7), "irond", up=("molten", None)),
+    box((1.5, 9, 1.5), (8.5, 10, 8.5), "stone"),
+    box((3, 10, 3), (7, 11.5, 7), "flame"), box((3.5, 11.5, 3.5), (6.5, 13, 6.5), "flame"), box((4.2, 13, 4.2), (5.8, 14, 5.8), "flame"),
+    box((2, 10, 2), (3, 14, 3), "irond"), box((7, 10, 2), (8, 14, 3), "irond"),
+    box((2, 10, 7), (3, 14, 8), "irond"), box((7, 10, 7), (8, 14, 8), "irond"),
+    box((2, 14, 2), (8, 14.8, 8), "irond"),
+    box((3, 14.8, 3), (7, 15.6, 7), "iron", up=("molten", None)),
+    box((3, 15.6, 3), (7, 16, 3.5), "iron"), box((3, 15.6, 6.5), (7, 16, 7), "iron"),
+    box((3, 15.6, 3.5), (3.5, 16, 6.5), "iron"), box((6.5, 15.6, 3.5), (7, 16, 6.5), "iron"),
+    box((8, 15, 4.5), (10.5, 15.6, 5.5), "irond"),
     box((10, 9, 9), (15, 10, 14), "irond"),
     box((11.5, 10, 10), (13.5, 12, 13), "irond"),
     box((10, 12, 9), (16, 14, 14), "iron"),
     box((16, 12.5, 10.5), (16.01, 13.5, 12.5), "iron"),
 ]
-SHAPES["minting_table"] = [(0, 0, 0, 16, 9, 16), (1, 9, 1, 9, 13, 9), (2, 13, 2, 8, 16, 8), (10, 9, 2, 15, 12, 7), (10, 9, 9, 16, 14, 14)]
+SHAPES["minting_table"] = [(0, 0, 0, 16, 10, 16), (2, 10, 2, 8, 16, 8), (10, 9, 9, 16, 14, 14)]
 
 FACES = ["north", "south", "east", "west", "up", "down"]
 
@@ -294,6 +348,18 @@ def model_json(elems):
     textures = {t: f"scribery:block/station_{t}" for t in used}
     textures["particle"] = textures[used[0]]
     return {"parent": "minecraft:block/block", "textures": textures, "elements": out}
+
+
+def write_java():
+    def arr(v):
+        return "new double[][] {\n            " + ",\n            ".join("{" + ", ".join(f"{x:g}" for x in t) + "}" for t in v) + " }"
+    consts = "\n".join(f"    /** {k}: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */\n"
+                       f"    public static final double[][] {k.upper()} = {arr(v)};\n" for k, v in SHAPES.items())
+    path = os.path.join(ROOT, "mod/src/main/java/de/scribery/StationShapes.java")
+    src = open(path, encoding="utf-8").read()
+    head = src[:src.index("    /** scribe_lectern") if "    /** scribe_lectern" in src else 0]
+    tail = src[src.index("    /** Formen fuer alle vier"):]
+    open(path, "w", encoding="utf-8", newline="\n").write(head + consts + "\n" + tail)
 
 
 def write_models():
@@ -376,5 +442,6 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     tex = write_textures()
     write_models()
+    write_java()
     preview(tex)
     print("fertig:", ", ".join(MODELS))

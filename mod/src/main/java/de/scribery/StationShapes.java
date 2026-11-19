@@ -33,26 +33,20 @@ public final class StationShapes {
 
     /** printing_press: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] PRINTING_PRESS = new double[][] {
-            {0, 0, 1, 16, 3, 15},
-            {1, 3, 4, 3, 12, 12},
-            {13, 3, 4, 15, 12, 12},
-            {1, 12, 4, 15, 14, 12},
-            {7, 14, 7, 9, 16, 9},
-            {2, 3, 3, 14, 5, 13} };
+            {0, 0, 1, 16, 10, 15},
+            {1, 10, 1, 16, 16, 13} };
 
     /** letter_cabinet: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] LETTER_CABINET = new double[][] {
-            {1, 0, 2, 15, 9, 14},
-            {1, 9, 6, 15, 11, 14},
-            {11, 9, 3, 14, 12, 6},
-            {3, 9, 3, 8, 11, 5} };
+            {0, 0, 1, 16, 10, 15},
+            {1, 10, 2, 9, 12, 14},
+            {10, 10, 9, 15, 14, 14},
+            {10, 10, 2.5, 15, 11.5, 8.5} };
 
     /** minting_table: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] MINTING_TABLE = new double[][] {
-            {0, 0, 0, 16, 9, 16},
-            {1, 9, 1, 9, 13, 9},
-            {2, 13, 2, 8, 16, 8},
-            {10, 9, 2, 15, 12, 7},
+            {0, 0, 0, 16, 10, 16},
+            {2, 10, 2, 8, 16, 8},
             {10, 9, 9, 16, 14, 14} };
 
     /** Formen fuer alle vier Blickrichtungen. Drehung wie im Blockstate (y = 90 im Uhrzeigersinn von oben: Norden wird Osten). */
