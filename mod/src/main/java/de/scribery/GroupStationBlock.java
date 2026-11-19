@@ -22,6 +22,11 @@ public class GroupStationBlock extends FacingBlock {
     }
 
     @Override
+    protected double[][] boxes() {
+        return StationShapes.PRINTING_PRESS;
+    }
+
+    @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }

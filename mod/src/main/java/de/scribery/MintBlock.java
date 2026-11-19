@@ -23,6 +23,11 @@ public class MintBlock extends FacingBlock {
     }
 
     @Override
+    protected double[][] boxes() {
+        return StationShapes.MINTING_TABLE;
+    }
+
+    @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }

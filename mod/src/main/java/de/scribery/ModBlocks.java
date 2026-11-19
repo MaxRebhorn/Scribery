@@ -24,19 +24,30 @@ public final class ModBlocks {
     }
 
     private static DeferredBlock<Block> station(String id, java.util.function.Function<BlockBehaviour.Properties, Block> factory) {
-        DeferredBlock<Block> b = BLOCKS.register(id, () -> factory.apply(BlockBehaviour.Properties.of()
-                .mapColor(MapColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).ignitedByLava()));
+        return station(id, factory, true, 0);
+    }
+
+    /** cube = false: Block mit eigenem Modell (kein Wuerfel), dann nicht lichtdicht; light: Helligkeit (Ofen am Minting Table). */
+    private static DeferredBlock<Block> station(String id, java.util.function.Function<BlockBehaviour.Properties, Block> factory,
+                                                boolean cube, int light) {
+        DeferredBlock<Block> b = BLOCKS.register(id, () -> {
+            BlockBehaviour.Properties p = BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).ignitedByLava();
+            if (!cube) p = p.noOcclusion();
+            if (light > 0) p = p.lightLevel(s -> light);
+            return factory.apply(p);
+        });
         BLOCK_ITEMS.registerSimpleBlockItem(id, b, new Item.Properties());
         ALL.add(b);
         return b;
     }
 
-    public static final DeferredBlock<Block> SCRIBE_LECTERN = station("scribe_lectern", ScribeLecternBlock::new);
-    public static final DeferredBlock<Block> LETTER_CABINET = station("letter_cabinet", CabinetBlock::new);
-    public static final DeferredBlock<Block> PRINTING_PRESS = station("printing_press", GroupStationBlock::new);
-    public static final DeferredBlock<Block> TRANSLATOR_DESK = station("translator_desk", DeskBlock::new);
+    public static final DeferredBlock<Block> SCRIBE_LECTERN = station("scribe_lectern", ScribeLecternBlock::new, false, 0);
+    public static final DeferredBlock<Block> LETTER_CABINET = station("letter_cabinet", CabinetBlock::new, false, 0);
+    public static final DeferredBlock<Block> PRINTING_PRESS = station("printing_press", GroupStationBlock::new, false, 0);
+    public static final DeferredBlock<Block> TRANSLATOR_DESK = station("translator_desk", DeskBlock::new, false, 0);
     public static final DeferredBlock<Block> MANUSCRIPT_ARCHIVE = station("manuscript_archive", ArchiveBlock::new);
-    public static final DeferredBlock<Block> MINTING_TABLE = station("minting_table", MintBlock::new);
+    public static final DeferredBlock<Block> MINTING_TABLE = station("minting_table", MintBlock::new, false, 7);
     public static final DeferredBlock<Block> BOOKSHELF = station("bookshelf");
 
     /** Eisblock mit eingefrorenem Fragment (Testblock fuer das Modell, noch ohne Funktion). */

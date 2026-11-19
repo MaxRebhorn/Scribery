@@ -101,7 +101,7 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 - Griechische Eingabe mit Akzenten und Spiritus (für Restaurierung und Formenübungen). Eingabeprüfung tolerant: Akzente ignorieren, Buchstaben und Endungen prüfen. Normalisierung (NFC/NFD) beim Vergleichen.
 
 ### Politur und Optik (ganz am Ende)
-- Texturen und Modelle: eigene Textur für den Minting Table, Modelle statt Würfel (zum Beispiel zweiteilige Presse), Pult-Look, eigene Texturen für Printed/Translated Sheet.
+- **Werkblöcke (19.11.2026, ungetestet im Spiel):** Pult, Presse, Lettern-Schrank, Übersetzungstisch und Minting Table haben jetzt eigene Quader-Modelle statt Würfel (Pult mit Standfuß und Rückwand, Presse mit Rahmen, Spindel und Hebel, Setzkasten mit Fächern und Tintenfass, Schreibtisch mit Beinen und Regal, Minting Table mit Schmelzofen, Tiegel und kleinem Amboss, leuchtet). Erzeugt von `art/gen_stations.py` (Vorschau `art/out/stations-preview.png`), Formen in `StationShapes`. Das Manuscript Archive bleibt ein Würfel. Offen: Bookshelf, Rückmeldung zum Look, Hebel/Spindel der Presse beweglich (Renderer), eigene Texturen für Printed/Translated Sheet.
 - Optik der Einzelteile wie Kurbel, Hebel und Tintenfass.
 - Kontroll-Mockups in `art/out/` neu erzeugen.
 

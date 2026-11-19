@@ -30,6 +30,11 @@ public class ScribeLecternBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
+    protected double[][] boxes() {
+        return StationShapes.SCRIBE_LECTERN;
+    }
+
+    @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
