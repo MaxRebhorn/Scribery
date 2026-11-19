@@ -215,24 +215,20 @@ def press_top():
     return rim(im, C["orim"])
 
 
-def mint_front():
-    """Steinblock mit offenem Ofenmaul links (aus Sicht des Spielers); davor schlaegt die Flamme heraus (Modell)."""
-    im = new(16, 10, C["k1"])
-    noise(im.load(), 16, 10, [C["k1"], C["k2"], C["k0"]], random.Random(21), [0.6, 0.25, 0.15])
+def mint_inner():
+    """Innenseite des Ofenmauls: dunkler, russiger Stein."""
+    im = new(16, 16, C["ink_1"])
+    noise(im.load(), 16, 16, [C["ink_1"], C["ink_0"], C["k0"]], random.Random(24), [0.55, 0.3, 0.15])
+    return im
+
+
+def coals():
+    """Glut auf dem Boden des Ofens."""
+    im = new(16, 16, C["ink_0"])
     px = im.load()
-    rect(px, 1, 3, 8, 9, C["krim"])                    # Rahmen des Maules
-    rect(px, 2, 4, 7, 9, C["ink_0"])
-    for x in range(3, 7):                              # Glut am Boden
-        px[x, 8] = C["flame_2"]
-        px[x, 9] = C["flame_1"] if x % 2 else C["flame_0"]
-    px[2, 9] = C["flame_2"]
-    px[7, 9] = C["flame_2"]
-    for x in range(1, 9):                              # Sturz aus hellerem Stein
-        px[x, 3] = C["k3"]
-    for y in (3, 6):                                   # Lueftungsschlitze rechts
-        for x in range(10, 14):
-            px[x, y] = C["k0"]
-    rim(im, C["krim"])
+    rng = random.Random(25)
+    for _ in range(90):
+        px[rng.randrange(16), rng.randrange(16)] = rng.choice([C["flame_2"], C["flame_2"], C["flame_1"], C["ink_1"], C["flame_0"]])
     return im
 
 
@@ -331,7 +327,7 @@ MATERIALS = {
     "archive_front": archive_front, "archive_side": oak_side(16, 46), "archive_top": archive_top,
     "bookshelf_front": bookshelf_front, "bookshelf_side": bookshelf_front, "bookshelf_top": bookshelf_top,
     "press_front": press_front, "press_top": press_top, "press_side": oak_side(10, 19),
-    "mint_front": mint_front, "mint_side": mint_side, "mint_top": mint_top,
+    "mint_side": mint_side, "mint_top": mint_top, "mint_inner": mint_inner, "coals": coals,
 }
 # Vanilla-Texturen: Name im Modell -> (Resource-Pfad, Datei fuer die Vorschau)
 VANILLA_TEXTURES = {"candle": ("minecraft:block/candle_lit", "candle_lit.png"), "fire": ("minecraft:block/campfire_fire", "campfire_fire.png")}
@@ -379,6 +375,20 @@ def body(pre, h):
                **FRONT_SIDES(pre, h))
 
 
+def stone_wall(a, b, h=10, inner=(), **extra):
+    """Quader des Ofenkoerpers: Aussenseiten aus mint_side (Rand an den Blockkanten, Hoehe h), oben mint_top,
+    Seiten in 'inner' (z. B. 'east') zeigen die dunkle Innenseite des Maules."""
+    (x1, y1, z1), (x2, y2, z2) = a, b
+    uvs = {"north": [16 - x2, h - y2, 16 - x1, h - y1], "south": [x1, h - y2, x2, h - y1],
+           "west": [z1, h - y2, z2, h - y1], "east": [16 - z2, h - y2, 16 - z1, h - y1]}
+    sp = {f: ("mint_side", uv) for f, uv in uvs.items()}
+    for f in inner:
+        sp[f] = ("mint_inner", None)
+    sp["up"] = ("mint_top", None)
+    sp.update(extra)
+    return box(a, b, "mint_side", **sp)
+
+
 def candle(x, y, z, hgt=5):
     """Vanilla-Kerze (Aufbau wie block/template_candle): Koerper 2x2, zwei gekreuzte Dochtflaechen."""
     uv = [0, 8, 2, 8 + hgt]
@@ -404,7 +414,7 @@ MODELS["scribe_lectern"] = [
     box((5, 9, 5), (11, 10, 11), "dark"),
     box((1, 11, 1), (15, 13, 15), "oak"),
     box((1, 13, 13), (15, 16, 15), "dark"),
-] + candle(12, 16, 13)
+] + candle(12, 16, 13) + fire(13, 21, 14, 2, 2.5)
 SHAPES["scribe_lectern"] = [(3, 0, 3, 13, 3, 13), (6, 3, 6, 10, 11, 10), (1, 11, 1, 15, 13, 15), (1, 13, 13, 15, 16, 15)]
 
 # Uebersetzungstisch: Schreibtisch-Block mit Schubladen, Schreibunterlage, Tintenfass und Papier hinten
@@ -440,10 +450,16 @@ MODELS["letter_cabinet"] = [
 SHAPES["letter_cabinet"] = [(0, 9, 0, 16, 12, 16), (0.5, 0, 0.5, 3, 9, 3), (13, 0, 0.5, 15.5, 9, 3), (0.5, 0, 13, 3, 9, 15.5),
                             (13, 0, 13, 15.5, 9, 15.5), (10, 12, 9, 15, 16, 14)]
 
-# Minting Table: Steinblock mit offenem Ofenmaul vorn links, die Flamme schlaegt aus dem Maul; oben der Tiegel ueber dem Ofen,
-# eine kleine Gussform und ein kleiner Amboss
+# Minting Table: Steinblock wie ein Ofen mit echter, nach hinten gehender Oeffnung vorn links (oben abgerundet), darin Glut und
+# Flamme; oben der Tiegel ueber dem Ofen, eine kleine Gussform und ein kleiner Amboss
 MODELS["minting_table"] = [
-    body("mint", 10),
+    stone_wall((0, 0, 6), (16, 10, 16), inner=()),                                     # Rueckteil; Vorderseite bei z=6 ist die Rueckwand des Maules
+    stone_wall((0, 0, 0), (16, 2, 6), up=("coals", None)),                             # Boden unter dem Maul
+    stone_wall((0, 8, 0), (16, 10, 6), down=("mint_inner", None)),                     # Sturz
+    stone_wall((0, 2, 0), (9, 8, 6), inner=("east",)),                                 # links vom Maul (aus Sicht des Spielers: x klein = rechts)
+    stone_wall((15, 2, 0), (16, 8, 6), inner=("west",)),
+    stone_wall((9, 7, 0), (10, 8, 6), inner=("east",), down=("mint_inner", None)),     # Rundung oben
+    stone_wall((14, 7, 0), (15, 8, 6), inner=("west",), down=("mint_inner", None)),
     box((9.5, 10, 2.5), (14.5, 11.5, 7.5), "stone"),
     box((10, 11.5, 3), (14, 14, 7), "iron", up=("molten", None)),
     box((14, 12.5, 4.5), (16, 13.5, 5.5), "irond"),
@@ -452,8 +468,14 @@ MODELS["minting_table"] = [
     box((3.5, 11, 10), (5.5, 13, 13), "irond"),
     box((1, 13, 9), (7, 15, 14), "irond"),
     box((0, 13.5, 10), (1, 14.5, 13), "irond"),
-] + fire(11.5, 1.5, -1.0, 5, 4.5)
+] + fire(12, 2, 3.5, 5, 4.5)
 SHAPES["minting_table"] = [(0, 0, 0, 16, 10, 16), (9.5, 10, 2.5, 16, 14, 7.5), (4, 10, 3, 9, 11.5, 8), (0, 10, 9, 7, 15, 14)]
+
+# Nur fuer die Vorschau: Archiv und Buecherregal sind volle Wuerfel (Modell: orientable, siehe write_models)
+CUBES = {
+    "manuscript_archive": [box((0, 0, 0), (16, 16, 16), "archive_side", north=("archive_front", None), up=("archive_top", None))],
+    "bookshelf": [box((0, 0, 0), (16, 16, 16), "bookshelf_side", north=("bookshelf_front", None), up=("bookshelf_top", None))],
+}
 
 FACES = ["north", "south", "east", "west", "up", "down"]
 
@@ -589,14 +611,14 @@ def render(elems, tex, yaw, pitch=32, scale=14, size=(300, 330)):
 
 
 def preview(tex):
-    names = list(MODELS)
+    names = list(MODELS) + list(CUBES)
     views = [(-38, "vorn links"), (38, "vorn rechts"), (180 - 38, "hinten")]
     cw, ch = 300, 330
     sheet = Image.new("RGB", (cw * len(views), (ch + 22) * len(names)), (38, 38, 44))
     d = ImageDraw.Draw(sheet)
     for r, n in enumerate(names):
         for c, (yaw, label) in enumerate(views):
-            sheet.paste(render(MODELS[n], tex, yaw), (c * cw, r * (ch + 22) + 22))
+            sheet.paste(render((MODELS.get(n) or CUBES[n]), tex, yaw), (c * cw, r * (ch + 22) + 22))
             d.text((c * cw + 6, r * (ch + 22) + 6), f"{n} - {label}", fill=(230, 230, 230))
     sheet.save(os.path.join(OUT, "stations-preview.png"))
 
