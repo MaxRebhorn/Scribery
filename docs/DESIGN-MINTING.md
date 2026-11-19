@@ -1,6 +1,6 @@
 # Design: Minting Table mit Befeuerung
 
-**Entscheidung 19.11.2026:** Es wird nichts geschmolzen. Der Ofen muss brennen, damit man den Tisch benutzen kann; sonst bleibt alles wie im bisherigen Menü (Nuggets rein, Letter Types raus). Gebaut: Zustand `lit`, `MintBlockEntity` mit Restbrenndauer, Brennstoff per Rechtsklick (normale Ofen-Brennwerte, Papyrusfetzen 100 Ticks über `data/neoforge/data_maps/item/furnace_fuels.json`), Modell `minting_table_off` ohne Flamme, Licht 7 nur bei `lit`. Noch offen: Töne beim Gießen (Blubbern, Bing-Bing). Der Rest dieser Datei ist der frühere Entwurf mit Schmelzen und gilt nicht mehr.
+**Entscheidung 19.11.2026:** Es wird nichts geschmolzen. Der Ofen muss brennen, damit man den Tisch benutzen kann; sonst bleibt alles wie im bisherigen Menü (Nuggets rein, Letter Types raus). Gebaut: Zustand `lit`, `MintBlockEntity` mit Restbrenndauer, Brennstoff per Rechtsklick (normale Ofen-Brennwerte, Papyrusfetzen 100 Ticks über `data/neoforge/data_maps/item/furnace_fuels.json`), Modell `minting_table_off` ohne Flamme, Licht 7 nur bei `lit`. Brennstoffplatz im Menü (Brennstoff wird erst verbraucht, wenn man Letter Types entnimmt und der Tisch kalt ist; Rechtsklick mit Brennstoff zündet ihn weiterhin direkt an). Töne beim Entnehmen: Blubbern, dann zweimal Amboss hoch (Werte nach Gehör im Spiel anpassen). Der Rest dieser Datei ist der frühere Entwurf mit Schmelzen und gilt nicht mehr.
 
 # (Früherer Entwurf) Minting Table mit Befeuerung und Schmelzen
 

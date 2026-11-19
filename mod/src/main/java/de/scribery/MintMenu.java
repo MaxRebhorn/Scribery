@@ -20,7 +20,7 @@ import net.minecraft.world.item.Items;
 public class MintMenu extends AbstractContainerMenu {
     /** So viele Letter Types ergibt ein Eisennugget. */
     public static final int YIELD = 2;
-    public static final int INPUT_SLOT = 0, RESULT_SLOT = 1, INV_START = 2, INV_END = 29, HOTBAR_END = 38;
+    public static final int INPUT_SLOT = 0, RESULT_SLOT = 1, FUEL_SLOT = 2, INV_START = 3, INV_END = 30, HOTBAR_END = 39;
 
     private final ContainerLevelAccess access;
     private final DataSlot selected = DataSlot.standalone();
@@ -32,6 +32,9 @@ public class MintMenu extends AbstractContainerMenu {
         }
     };
     private final Container result = new SimpleContainer(1);
+    private final Container fuel;
+    /** 1, wenn der Tisch brennt (zum Client gespiegelt, fuer Anzeige und Entnahme-Pruefung). */
+    private final DataSlot lit = DataSlot.standalone();
 
     public MintMenu(int id, Inventory inv) {
         this(id, inv, ContainerLevelAccess.NULL);
@@ -40,6 +43,8 @@ public class MintMenu extends AbstractContainerMenu {
     public MintMenu(int id, Inventory inv, ContainerLevelAccess access) {
         super(ModMenus.MINT.get(), id);
         this.access = access;
+        this.fuel = access.evaluate((lv, p) -> lv.getBlockEntity(p) instanceof MintBlockEntity be ? (Container) be.fuel() : null)
+                .orElseGet(() -> new SimpleContainer(1));
         selected.set(-1);
         addSlot(new Slot(input, 0, 20, 33) {
             @Override
@@ -53,17 +58,55 @@ public class MintMenu extends AbstractContainerMenu {
                 return false;
             }
 
+            /** Letter Types gibt es nur, solange der Ofen brennt oder aus dem Brennstoffplatz angezuendet werden kann. */
+            @Override
+            public boolean mayPickup(Player player) {
+                return lit.get() == 1 || MintBlockEntity.isFuel(fuel.getItem(0));
+            }
+
             @Override
             public void onTake(Player player, ItemStack stack) {
+                access.execute((level, pos) -> {
+                    if (level.getBlockEntity(pos) instanceof MintBlockEntity be) be.ensureLit();
+                });
                 input.removeItem(0, 1);
                 updateResult();
-                access.execute((level, pos) -> level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.5f, 1.5f));
+                access.execute(MintMenu::castSounds);
                 super.onTake(player, stack);
+            }
+        });
+        addSlot(new Slot(fuel, 0, 20, 58) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return MintBlockEntity.isFuel(stack);
             }
         });
         for (int r = 0; r < 3; r++) for (int c = 0; c < 9; c++) addSlot(new Slot(inv, c + r * 9 + 9, 8 + c * 18, 84 + r * 18));
         for (int c = 0; c < 9; c++) addSlot(new Slot(inv, c, 8 + c * 18, 142));
         addDataSlot(selected);
+        addDataSlot(lit);
+    }
+
+    /** Gussgeraeusche: erst Blubbern der Schmelze, dann zwei kurze Hammerschlaege ("Bing-Bing"). */
+    private static void castSounds(net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos) {
+        level.playSound(null, pos, SoundEvents.LAVA_POP, SoundSource.BLOCKS, 0.7f, 0.7f);
+        level.playSound(null, pos, SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.BLOCKS, 0.25f, 1.3f);
+        if (level.getServer() == null) return;
+        var server = level.getServer();
+        for (int delay : new int[] {8, 14}) {
+            server.tell(new net.minecraft.server.TickTask(server.getTickCount() + delay,
+                    () -> level.playSound(null, pos, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.35f, 2.0f)));
+        }
+    }
+
+    public boolean isLit() {
+        return lit.get() == 1;
+    }
+
+    @Override
+    public void broadcastChanges() {
+        access.execute((level, pos) -> lit.set(level.getBlockState(pos).getValue(MintBlock.LIT) ? 1 : 0));
+        super.broadcastChanges();
     }
 
     public int selected() {
@@ -109,8 +152,12 @@ public class MintMenu extends AbstractContainerMenu {
                 slot.onQuickCraft(stack, copy);
             } else if (index == INPUT_SLOT) {
                 if (!moveItemStackTo(stack, INV_START, HOTBAR_END, false)) return ItemStack.EMPTY;
+            } else if (index == FUEL_SLOT) {
+                if (!moveItemStackTo(stack, INV_START, HOTBAR_END, false)) return ItemStack.EMPTY;
             } else if (stack.is(Items.IRON_NUGGET)) {
                 if (!moveItemStackTo(stack, INPUT_SLOT, INPUT_SLOT + 1, false)) return ItemStack.EMPTY;
+            } else if (MintBlockEntity.isFuel(stack)) {
+                if (!moveItemStackTo(stack, FUEL_SLOT, FUEL_SLOT + 1, false)) return ItemStack.EMPTY;
             } else if (index >= INV_START && index < INV_END) {
                 if (!moveItemStackTo(stack, INV_END, HOTBAR_END, false)) return ItemStack.EMPTY;
             } else if (index >= INV_END && index < HOTBAR_END && !moveItemStackTo(stack, INV_START, INV_END, false)) {

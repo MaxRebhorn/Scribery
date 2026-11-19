@@ -20,6 +20,8 @@ public final class MintScreen extends AbstractContainerScreen<MintMenu> {
     private static final ResourceLocation RECIPE = ResourceLocation.withDefaultNamespace("container/stonecutter/recipe");
     private static final ResourceLocation RECIPE_SELECTED = ResourceLocation.withDefaultNamespace("container/stonecutter/recipe_selected");
     private static final ResourceLocation RECIPE_HOVER = ResourceLocation.withDefaultNamespace("container/stonecutter/recipe_highlighted");
+    private static final ResourceLocation SLOT = ResourceLocation.withDefaultNamespace("container/slot");
+    private static final ResourceLocation FLAME = ResourceLocation.withDefaultNamespace("container/furnace/lit_progress");
     private static final int COLS = 4, ROWS = 3, CELL_W = 16, CELL_H = 18, LIST_X = 52, LIST_Y = 14;
 
     private float scrollOffs;
@@ -61,6 +63,8 @@ public final class MintScreen extends AbstractContainerScreen<MintMenu> {
     @Override
     protected void renderBg(GuiGraphics g, float partialTick, int mouseX, int mouseY) {
         g.blit(BG, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+        g.blitSprite(SLOT, leftPos + 19, topPos + 57, 18, 18);
+        if (menu.isLit()) g.blitSprite(FLAME, 14, 14, 0, 0, leftPos + 21, topPos + 51, 14, 14);   // Flamme ueber dem Brennstoffplatz
         int k = (int) (41.0F * scrollOffs);
         g.blitSprite(scrollActive() ? SCROLLER : SCROLLER_OFF, leftPos + 119, topPos + 15 + k, 12, 15);
         if (!menu.hasInput()) return;

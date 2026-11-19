@@ -30,7 +30,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * Minting Table. Der Ofen muss brennen, damit man ihn benutzen kann: Brennstoff (alles, was ein Ofen verbrennt, auch
- * Papyrusfetzen kurz) per Rechtsklick nachlegen. Solange er brennt, oeffnet Rechtsklick die Giess-Oberflaeche.
+ * Papyrusfetzen kurz) per Rechtsklick nachlegen. Rechtsklick ohne Item oeffnet die Giess-Oberflaeche mit Brennstoffplatz; Letter Types gibt es nur, solange er brennt.
  */
 public class MintBlock extends FacingBlock implements EntityBlock {
     public static final MapCodec<MintBlock> CODEC = simpleCodec(MintBlock::new);
@@ -114,11 +114,15 @@ public class MintBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        if (!state.getValue(LIT)) {
-            if (!level.isClientSide) player.displayClientMessage(Component.translatable("block.scribery.minting_table.cold"), true);
-            return InteractionResult.sidedSuccess(level.isClientSide);
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moving) {
+        if (!state.is(newState.getBlock()) && level.getBlockEntity(pos) instanceof MintBlockEntity be) {
+            net.minecraft.world.Containers.dropContents(level, pos, be.fuel());
         }
+        super.onRemove(state, level, pos, newState, moving);
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (!level.isClientSide) player.openMenu(state.getMenuProvider(level, pos));
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
