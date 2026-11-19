@@ -29,15 +29,15 @@ def mc(*names):
 # kind: (Biome, Schritt, Abstand, Mindestabstand, Salz)
 STRUCTURES = {
     "wreck": (mc("ocean", "deep_ocean", "lukewarm_ocean", "deep_lukewarm_ocean", "warm_ocean", "cold_ocean", "deep_cold_ocean"),
-              "surface_structures", 24, 10, 1743001),
-    "caravan": (mc("snowy_plains", "ice_spikes", "snowy_taiga"), "surface_structures", 28, 12, 1743002),
-    "wanderer": (mc("snowy_plains", "ice_spikes", "snowy_taiga", "snowy_slopes"), "surface_structures", 18, 7, 1743003),
+              "surface_structures", 14, 5, 1743001),
+    "caravan": (mc("snowy_plains", "ice_spikes", "snowy_taiga"), "surface_structures", 16, 6, 1743002),
+    "wanderer": (mc("snowy_plains", "ice_spikes", "snowy_taiga", "snowy_slopes"), "surface_structures", 10, 4, 1743003),
     "grave": (mc("swamp", "mangrove_swamp"), "surface_structures", 16, 6, 1743004),
     "catacomb": (mc("plains", "sunflower_plains", "meadow", "forest", "flower_forest", "birch_forest", "old_growth_birch_forest",
                     "taiga", "savanna", "savanna_plateau"), "underground_structures", 36, 14, 1743005),
     "catacomb_desert": (mc("desert"), "underground_structures", 30, 12, 1743006),
-    "house_sand": (mc("desert"), "underground_structures", 14, 6, 1743007),
-    "house_mud": (mc("swamp", "mangrove_swamp", "river"), "underground_structures", 14, 6, 1743008),
+    "house_sand": (mc("desert"), "underground_structures", 8, 3, 1743007),
+    "house_mud": (mc("swamp", "mangrove_swamp", "river"), "underground_structures", 8, 3, 1743008),
 }
 
 for kind, (biomes, step, spacing, sep, salt) in STRUCTURES.items():
