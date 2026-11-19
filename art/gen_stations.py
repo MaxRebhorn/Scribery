@@ -178,19 +178,6 @@ def desk_top():
     return im
 
 
-def cab_front():
-    im = face_oak(13, 12)
-    px = im.load()
-    for r in range(2):                                 # 4 x 2 kleine Faecher mit Schildchen
-        for c in range(4):
-            x0, y0 = 1 + c * 3, 1 + r * 5
-            rect(px, x0, y0, x0 + 2, y0 + 3, C["o0"])
-            rect(px, x0 + 1, y0 + 1, x0 + 1, y0 + 2, C["ink_1"])
-            px[x0 + 1, y0] = C["parchment_2"]
-            px[x0 + 1, y0 + 3] = C["m2"]
-    return im
-
-
 def cab_top():
     im = face_oak(14, 16)
     px = im.load()
@@ -229,18 +216,23 @@ def press_top():
 
 
 def mint_front():
+    """Steinblock mit offenem Ofenmaul links (aus Sicht des Spielers); davor schlaegt die Flamme heraus (Modell)."""
     im = new(16, 10, C["k1"])
     noise(im.load(), 16, 10, [C["k1"], C["k2"], C["k0"]], random.Random(21), [0.6, 0.25, 0.15])
     px = im.load()
-    rect(px, 3, 2, 12, 7, C["ink_0"])                  # Ofenfenster wie bei der Blast Furnace
-    for x in range(3, 13):
-        px[x, 7] = C["flame_2"] if x % 2 else C["flame_1"]
-        px[x, 6] = C["flame_1"] if x % 3 else C["flame_0"]
-    for x in (5, 7, 9, 11):
-        px[x, 4] = C["m0"]
-        px[x, 5] = C["m0"]
+    rect(px, 1, 3, 8, 9, C["krim"])                    # Rahmen des Maules
+    rect(px, 2, 4, 7, 9, C["ink_0"])
+    for x in range(3, 7):                              # Glut am Boden
+        px[x, 8] = C["flame_2"]
+        px[x, 9] = C["flame_1"] if x % 2 else C["flame_0"]
+    px[2, 9] = C["flame_2"]
+    px[7, 9] = C["flame_2"]
+    for x in range(1, 9):                              # Sturz aus hellerem Stein
+        px[x, 3] = C["k3"]
+    for y in (3, 6):                                   # Lueftungsschlitze rechts
+        for x in range(10, 14):
+            px[x, y] = C["k0"]
     rim(im, C["krim"])
-    rim(im, C["m1"], (2, 1, 13, 8))
     return im
 
 
@@ -259,6 +251,73 @@ def mint_top():
     return rim(im, C["krim"])
 
 
+def mold_top():
+    """Gussform: Eisenplatte mit zwei Lettern-Vertiefungen, eine mit fluessigem Blei gefuellt (Bereich 5x5 links oben)."""
+    im = flat_metal([C["m0"], C["k1"], C["k0"]], random.Random(31))
+    px = im.load()
+    rect(px, 1, 1, 1, 3, C["ink_0"])
+    rect(px, 3, 1, 3, 3, C["lead_3"])
+    px[3, 1] = C["lead_4"]
+    for k in (0, 4):
+        for t in range(5):
+            px[k, t] = C["k0"]
+            px[t, k] = C["k0"]
+    return im
+
+
+def archive_front():
+    """Archivschrank: 3 x 3 Faecher, in jedem eine Schriftrolle (Papyrus-Ende)."""
+    im = face_oak(41, 16)
+    px = im.load()
+    for r in range(3):
+        for c in range(3):
+            x0, y0 = 1 + c * 5, 1 + r * 5
+            rect(px, x0, y0, x0 + 3, y0 + 3, C["o0"])
+            rect(px, x0 + 1, y0 + 1, x0 + 2, y0 + 2, C["ink_1"])
+            px[x0 + 1, y0 + 1] = C["parchment_3"]
+            px[x0 + 2, y0 + 1] = C["parchment_2"]
+            px[x0 + 1, y0 + 2] = C["parchment_2"]
+            px[x0 + 2, y0 + 2] = C["parchment_1"]
+    return im
+
+
+def archive_top():
+    im = spruce(42)
+    px = im.load()
+    rect(px, 3, 3, 12, 12, C["leather"])
+    for x in range(3, 13):
+        px[x, 3] = C["leather_hi"]
+    rect(px, 5, 5, 10, 10, C["parchment_3"])
+    return rim(im, C["srim"])
+
+
+def bookshelf_front():
+    """Buecherregal: drei Boeden mit Buechern und Rollen (Farben aus der Palette plus drei gedaempfte Buchfarben)."""
+    im = face_oak(43, 16)
+    px = im.load()
+    rng = random.Random(44)
+    cols = [C["rubric"], (60, 88, 120), (72, 108, 72), C["parchment_1"], (98, 70, 116), C["lead_1"], C["wood_3"]]
+    for shelf in range(3):
+        y1 = 1 + shelf * 5
+        rect(px, 1, y1, 14, y1 + 3, C["ink_0"])
+        x = 1
+        while x < 14:
+            w = rng.choice([1, 2, 2, 3])
+            w = min(w, 14 - x)
+            h = rng.choice([3, 4, 4])
+            col = rng.choice(cols)
+            rect(px, x, y1 + 4 - h, x + w - 1, y1 + 3, col)
+            if w > 1:
+                px[x, y1 + 4 - h] = tuple(min(255, v + 30) for v in col)
+            x += w
+    return im
+
+
+def bookshelf_top():
+    im = oak(45)
+    return rim(im, C["orim"])
+
+
 def oak_side(h, seed):
     return lambda: face_oak(seed, h)
 
@@ -267,7 +326,10 @@ MATERIALS = {
     "oak": mat_oak, "dark": mat_dark, "iron": mat_iron, "irond": mat_irond, "stone": mat_stone,
     "paper": mat_paper, "ink": mat_ink, "molten": mat_molten,
     "desk_front": desk_front, "desk_top": desk_top, "desk_side": oak_side(12, 17),
-    "cab_front": cab_front, "cab_top": cab_top, "cab_side": oak_side(12, 18),
+    "cab_top": cab_top,
+    "mold_top": mold_top,
+    "archive_front": archive_front, "archive_side": oak_side(16, 46), "archive_top": archive_top,
+    "bookshelf_front": bookshelf_front, "bookshelf_side": bookshelf_front, "bookshelf_top": bookshelf_top,
     "press_front": press_front, "press_top": press_top, "press_side": oak_side(10, 19),
     "mint_front": mint_front, "mint_side": mint_side, "mint_top": mint_top,
 }
@@ -342,18 +404,16 @@ MODELS["scribe_lectern"] = [
     box((5, 9, 5), (11, 10, 11), "dark"),
     box((1, 11, 1), (15, 13, 15), "oak"),
     box((1, 13, 13), (15, 16, 15), "dark"),
-    box((1, 13, 1), (2, 14, 2), "dark"),
-    box((14, 13, 1), (15, 14, 2), "dark"),
 ] + candle(12, 16, 13)
 SHAPES["scribe_lectern"] = [(3, 0, 3, 13, 3, 13), (6, 3, 6, 10, 11, 10), (1, 11, 1, 15, 13, 15), (1, 13, 13, 15, 16, 15)]
 
 # Uebersetzungstisch: Schreibtisch-Block mit Schubladen, Schreibunterlage, Tintenfass und Papier hinten
 MODELS["translator_desk"] = [
     body("desk", 12),
-    box((12.5, 12, 13), (14.5, 14.5, 15), "ink"),
-    box((2, 12, 13), (6.5, 13, 15), "paper"),
+    box((11, 12, 13), (14.5, 15, 16), "ink"),
+    box((1.5, 12, 13), (8.5, 14, 16), "paper"),
 ]
-SHAPES["translator_desk"] = [(0, 0, 0, 16, 12, 16), (12.5, 12, 13, 14.5, 14.5, 15)]
+SHAPES["translator_desk"] = [(0, 0, 0, 16, 12, 16), (1.5, 12, 13, 14.5, 15, 16)]
 
 # Presse: Block mit Symbol, Setzform und Papierablage oben (gemalt), darueber Rahmen mit Tiegel-Platte, Kurbel und Hebel
 MODELS["printing_press"] = [
@@ -366,31 +426,34 @@ MODELS["printing_press"] = [
 ]
 SHAPES["printing_press"] = [(0, 0, 0, 16, 10, 16), (1, 10, 5, 15, 16, 11)]
 
-# Lettern-Schrank: Block mit Faechern, Buchstabenbox und Papier oben gemalt, Fass (Tinte) und Walze als 3D
+# Lettern-Schrank: richtiger Tisch (Beine, Platte) mit Buchstabenbox und Papier oben gemalt, Fass (Tinte) und Walze als 3D
 MODELS["letter_cabinet"] = [
-    body("cab", 12),
+    box((0, 9, 0), (16, 12, 16), "oak", up=("cab_top", None)),
+    box((0.5, 0, 0.5), (3, 9, 3), "dark"), box((13, 0, 0.5), (15.5, 9, 3), "dark"),
+    box((0.5, 0, 13), (3, 9, 15.5), "dark"), box((13, 0, 13), (15.5, 9, 15.5), "dark"),
+    box((3, 3, 1.5), (13, 4.5, 14.5), "dark"),
     box((10, 12, 9), (15, 16, 14), "dark", up=("ink", None)),
     box((9.7, 13, 8.7), (15.3, 14, 14.3), "iron"),
     box((10.5, 12, 2.5), (14.5, 13.5, 5.5), "dark"),
     box((10, 12.2, 3), (10.5, 13.3, 5), "iron"), box((14.5, 12.2, 3), (15, 13.3, 5), "iron"),
 ]
-SHAPES["letter_cabinet"] = [(0, 0, 0, 16, 12, 16), (10, 12, 9, 15, 16, 14)]
+SHAPES["letter_cabinet"] = [(0, 9, 0, 16, 12, 16), (0.5, 0, 0.5, 3, 9, 3), (13, 0, 0.5, 15.5, 9, 3), (0.5, 0, 13, 3, 9, 15.5),
+                            (13, 0, 13, 15.5, 9, 15.5), (10, 12, 9, 15, 16, 14)]
 
-# Minting Table: Steinblock wie die Blast Furnace, darauf Tiegel auf Dreibein ueber offener Flamme und kleiner Amboss
+# Minting Table: Steinblock mit offenem Ofenmaul vorn links, die Flamme schlaegt aus dem Maul; oben der Tiegel ueber dem Ofen,
+# eine kleine Gussform und ein kleiner Amboss
 MODELS["minting_table"] = [
     body("mint", 10),
-    box((1.5, 10, 1.5), (8.5, 11, 8.5), "stone"),
-    box((2, 11, 2), (3, 14, 3), "irond"), box((7, 11, 2), (8, 14, 3), "irond"),
-    box((2, 11, 7), (3, 14, 8), "irond"), box((7, 11, 7), (8, 14, 8), "irond"),
-    box((2, 14, 2), (8, 15, 8), "irond"),
-    box((3, 15, 3), (7, 17, 7), "iron", up=("molten", None)),
-    box((7, 15.5, 4.5), (10, 16.5, 5.5), "irond"),
-    box((10, 10, 9), (15, 11, 14), "irond"),
-    box((11.5, 11, 10), (13.5, 13, 13), "irond"),
-    box((9, 13, 9), (15, 15, 14), "irond"),
-    box((15, 13.5, 10), (16, 14.5, 13), "iron"),
-] + fire(5, 11, 5, 5.5, 4)
-SHAPES["minting_table"] = [(0, 0, 0, 16, 10, 16), (2, 10, 2, 8, 16, 8), (9, 10, 9, 16, 15, 14)]
+    box((9.5, 10, 2.5), (14.5, 11.5, 7.5), "stone"),
+    box((10, 11.5, 3), (14, 14, 7), "iron", up=("molten", None)),
+    box((14, 12.5, 4.5), (16, 13.5, 5.5), "irond"),
+    box((4, 10, 3), (9, 11.5, 8), "irond", up=("mold_top", [0, 0, 5, 5])),
+    box((2, 10, 9), (7, 11, 14), "irond"),
+    box((3.5, 11, 10), (5.5, 13, 13), "irond"),
+    box((1, 13, 9), (7, 15, 14), "irond"),
+    box((0, 13.5, 10), (1, 14.5, 13), "irond"),
+] + fire(11.5, 1.5, -1.0, 5, 4.5)
+SHAPES["minting_table"] = [(0, 0, 0, 16, 10, 16), (9.5, 10, 2.5, 16, 14, 7.5), (4, 10, 3, 9, 11.5, 8), (0, 10, 9, 7, 15, 14)]
 
 FACES = ["north", "south", "east", "west", "up", "down"]
 
@@ -447,6 +510,13 @@ def write_java():
 
 
 def write_models():
+    for name in ("archive", "bookshelf"):                     # volle Wuerfel, Vorderseite nach vorn (Blockstate dreht)
+        target = {"archive": "manuscript_archive", "bookshelf": "bookshelf"}[name]
+        with open(os.path.join(RES, "models/block", target + ".json"), "w", encoding="utf-8", newline="\n") as f:
+            json.dump({"parent": "minecraft:block/orientable", "textures": {
+                "top": f"scribery:block/ws_{name}_top", "front": f"scribery:block/ws_{name}_front",
+                "side": f"scribery:block/ws_{name}_side"}}, f, indent=2)
+            f.write("\n")
     for name, elems in MODELS.items():
         with open(os.path.join(RES, "models/block", name + ".json"), "w", encoding="utf-8", newline="\n") as f:
             json.dump(model_json(name, elems), f, indent=2)

@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "top": "scribery:block/manuscript_archive_top",
-    "front": "scribery:block/manuscript_archive_front",
-    "side": "scribery:block/manuscript_archive_side"
+    "top": "scribery:block/ws_archive_top",
+    "front": "scribery:block/ws_archive_front",
+    "side": "scribery:block/ws_archive_side"
   }
 }
