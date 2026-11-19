@@ -135,6 +135,9 @@ public final class ModItems {
         ALL.add(ITEMS.registerSimpleItem("papyrus_scrap"));
         // Scherbe: Beifund aus Amphoren und Scherbenhaufen
         ALL.add(ITEMS.registerSimpleItem("amphora_shard"));
+        // Bauteile des Minting Table (Rezepte siehe docs/DESIGN-RECIPES, Funktion im Block)
+        ALL.add(ITEMS.registerSimpleItem("mini_anvil"));
+        ALL.add(ITEMS.registerSimpleItem("casting_mold"));
     }
 
     public static void register(IEventBus bus) {
