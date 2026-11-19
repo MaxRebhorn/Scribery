@@ -75,3 +75,5 @@ Ein Vanilla-Handel hat ein festes Ergebnis, kein Zufalls- oder Auswahlergebnis.
 **Aenderung 19.11.2026:** Grammar Book jetzt schon auf Stufe 1 (neben dem Alphabet Primer); Stufe 3 verkauft die Lexika A-C, D-F und das Forms-Grammar-Lexikon; thematisches Lexikon Stufe 4; das Complete Greek Lexicon bleibt Stufe 5, bis das Buch fertig ueberarbeitet ist.
 
 **Stand Buecher 19.11.2026:** Lexikon A-C, D-F, Thematic und Complete sind geschrieben (`tools/gen_lexicon.py`, Vorworte in `tools/data/lexicon-texts.json`, Sachgebiete in `tools/lexicon_themes.py`). Das Forms & Grammar Lexicon ist noch leer und steht deshalb nicht im Handel; es kommt auf Stufe 3 zurueck, sobald der Text steht.
+
+**Nachtrag:** Das Forms & Grammar Lexicon ist jetzt geschrieben (`tools/gen_forms_lexicon.py`, Daten: Wortformen mit Robinson-Code aus den Manuskriptdaten) und steht wieder auf Stufe 3. Das Complete Greek Lexicon enthaelt es als Teil 3.

@@ -50,7 +50,7 @@ def pos_of(tag, gloss):
             "C": "conj.", "X": "part.", "R": "pron.", "I": "interj.", "N": "noun"}.get(t.split("-")[0], t.lower())
 
 
-def load_entries():
+def load_entries(with_key=False):
     """Alle Eintraege: {buchstabe: [(sortierschluessel, grundform, umschrift, wortart, bedeutung, anzahl)]}."""
     cnt = collections.Counter()
     for f in ("manuscripts.john1.json", "manuscripts.john-rest.json"):
@@ -80,7 +80,8 @@ def load_entries():
         first = norm(lemma)[:1]
         letter = next((k for k, _, g in LETTERS if g == first), None)
         assert letter, (lemma, first)
-        entries[letter].append((norm(lemma), lemma, tr, pos_of(tag, gloss), gloss, n))
+        row = (norm(lemma), lemma, tr, pos_of(tag, gloss), gloss, n)
+        entries[letter].append(row + (key,) if with_key else row)
     assert not missing, missing
     return entries
 
@@ -166,7 +167,8 @@ def main():
     themes = [(s, title, intro) for s, title, intro, _w in TH.THEMES]
     others = {
         "greek_lexicon_a_c": "Greek Lexicon A\u2013C", "greek_lexicon_d_f": "Greek Lexicon D\u2013F",
-        "thematic_greek_lexicon": "Thematic Greek Lexicon", "complete_greek_lexicon": "Complete Greek Lexicon",
+        "thematic_greek_lexicon": "Thematic Greek Lexicon", "greek_forms_grammar_lexicon": "Greek Forms & Grammar Lexicon",
+        "complete_greek_lexicon": "Complete Greek Lexicon",
     }
 
     def next_links(skip):
@@ -214,7 +216,8 @@ def main():
     # ---------------------------------------------------------------- Complete
     b = Book()
     cont = [("A few words (the long version)", "preface"), ("Entry key", "entry-key")]
-    cont += [("Part One: The words from alpha to omega", "alpha"), ("Part Two: The words by theme", "theme-" + themes[0][0])]
+    cont += [("Part One: The words from alpha to omega", "alpha"), ("Part Two: The words by theme", "theme-" + themes[0][0]),
+             ("Part Three: All the forms", "part-three")]
     front(b, T, "complete", cont, letters_line({k for k, _, _ in LETTERS}))
     b.page(T["complete"]["preface_title"], "preface")
     paragraphs(b, T["complete"]["preface"].replace("{n}", str(total)))
@@ -233,6 +236,16 @@ def main():
     b.page("Part Two", "part-two")
     paragraphs(b, T["complete"]["part_two"])
     theme_pages(b, "theme-")
+    import gen_forms_lexicon as GF
+    b.page("Part Three", "part-three")
+    paragraphs(b, T["complete"]["part_three"])
+    cur = None
+    for sk, e, fm in GF.collect_rows():
+        k = GF.letter_key(sk)
+        if k != cur:
+            cur = k
+            b.page("Forms: " + {kk: gg for kk, gg, _ in LETTERS}[k], "cforms-" + k)
+        b.para(GF.entry_paragraph(e, fm))
     b.page("One Last Word")
     paragraphs(b, T["complete"]["outro"])
     b.para(T["complete"]["signoff"])

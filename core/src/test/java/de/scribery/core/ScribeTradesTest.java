@@ -55,7 +55,7 @@ class ScribeTradesTest {
     @Test
     void allWrittenBooksAreSoldExactlyOnce() {
         List<String> books = List.of("greek_alphabet_primer", "greek_grammar_book", "greek_lexicon_a_c", "greek_lexicon_d_f",
-                "thematic_greek_lexicon", "complete_greek_lexicon");
+                "greek_forms_grammar_lexicon", "thematic_greek_lexicon", "complete_greek_lexicon");
         for (String b : books) {
             assertEquals(1, ScribeTrades.ALL.stream().filter(o -> o.get().equals("scribery:" + b)).count(), b);
         }
@@ -66,7 +66,8 @@ class ScribeTradesTest {
         assertEquals(1, level("greek_alphabet_primer"));
         assertEquals(1, level("greek_grammar_book"));                      // Grammatik gleich am Anfang
         assertEquals(3, level("greek_lexicon_a_c"));
-        assertEquals(3, level("greek_lexicon_d_f"));                      // mittlere Stufe: A-C und D-F
+        assertEquals(3, level("greek_lexicon_d_f"));                      // mittlere Stufe: A-C, D-F und Formen
+        assertEquals(3, level("greek_forms_grammar_lexicon"));
         assertTrue(level("thematic_greek_lexicon") > level("greek_lexicon_a_c"));
         assertEquals(5, level("complete_greek_lexicon"));
     }

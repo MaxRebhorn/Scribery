@@ -34,6 +34,7 @@
 
 - [Greek Lexicon A–C](book:greek_lexicon_a_c#contents)
 - [Greek Lexicon D–F](book:greek_lexicon_d_f#contents)
+- [Greek Forms & Grammar Lexicon](book:greek_forms_grammar_lexicon#contents)
 - [Complete Greek Lexicon](book:complete_greek_lexicon#contents)
 
 ---
@@ -2190,6 +2191,7 @@ See for yourself:
 
 - [Greek Lexicon A–C](book:greek_lexicon_a_c#contents)
 - [Greek Lexicon D–F](book:greek_lexicon_d_f#contents)
+- [Greek Forms & Grammar Lexicon](book:greek_forms_grammar_lexicon#contents)
 - [Complete Greek Lexicon](book:complete_greek_lexicon#contents)
 
 **— John Koine**

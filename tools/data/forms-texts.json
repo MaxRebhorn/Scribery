@@ -1,0 +1,61 @@
+{
+  "title": "THE GREEK FORMS & GRAMMAR LEXICON",
+  "subtitle": "Every Form in John, and What It Is Doing",
+  "tagline": "*For when you've found a word, but it has put on a disguise.*",
+  "preface_title": "A Few Words Before the Words",
+  "preface": "You've learned the alphabet. You've survived the grammar. You've bought a lexicon, probably several. And yet.\n\nYou open the Gospel of John, find a word, look it up in your lexicon, and it isn't there.\n\nThat's because it's wearing a disguise. Greek words change their endings, and sometimes the front of the word as well. It's nothing personal. It's just Greek.\n\nThis book tells you which word is hiding under which ending, and what that ending is doing.\n\n{lemmas} words turn up in more than one form in the Gospel of John. Together they come to {forms} different forms. I've listed every single one. Yes, I counted.\n\nFor each word you get the dictionary form, its sounds in Latin letters, what kind of word it is and what it means. After that come all its forms from John, each with a little label.\n\nThe labels are explained on the next page. Learn them. They aren't difficult. Mostly.\n\nWords that only ever appear in one form aren't listed here. If a word never changes, it doesn't need my help.\n\nFor more on what cases and tenses actually do, my Grammar Book is still available. You really should read it first. Honestly.\n\nDon't panic. We'll take it one ending at a time.\n\n— John Koine",
+  "codes_intro": "Each form in this book carries a short label. It tells you what the form is doing in its sentence.\n\nFor nouns, adjectives and pronouns, the label gives the case, the number and, where it matters, the gender.\n\nFor verbs it gives the tense, the voice and the mood. Then comes the person and number or, for participles, the case, number and gender.\n\nHere's how to read the marks:",
+  "codes_table": [
+    [
+      "nom / gen / dat / acc / voc",
+      "Case: nominative, genitive, dative, accusative, vocative"
+    ],
+    [
+      "sg / pl",
+      "Singular / plural"
+    ],
+    [
+      "m / f / n",
+      "Masculine / feminine / neuter"
+    ],
+    [
+      "1 / 2 / 3",
+      "First (I, we), second (you), third person (he, she, it, they). 3sg = he, she or it"
+    ],
+    [
+      "pres / impf / fut",
+      "Present / imperfect / future"
+    ],
+    [
+      "aor / perf / plup",
+      "Aorist / perfect / pluperfect"
+    ],
+    [
+      "2aor / 2perf",
+      "Second aorist or perfect: a different stem, same job"
+    ],
+    [
+      "act / mid / pass",
+      "Active / middle / passive"
+    ],
+    [
+      "dep / p-dep",
+      "Deponent: passive or middle form, active meaning"
+    ],
+    [
+      "m/p",
+      "Middle or passive (the form is the same)"
+    ],
+    [
+      "ind / subj / imp / opt",
+      "Indicative / subjunctive / imperative / optative"
+    ],
+    [
+      "inf / ptc",
+      "Infinitive / participle"
+    ]
+  ],
+  "codes_outro": "An example: **pres act ind 3sg** is a present active indicative, third person singular. In plain English: he, she or it does something, right now.\n\nAnd **aor act ptc nom sg m** is an aorist active participle, nominative singular masculine. A man who did something.\n\nYes, really. It's easier than it looks.\n\nMostly.",
+  "outro": "And that's every form in the Gospel of John. Or at least the ones wearing a disguise.\n\nYou now know which word is hiding under which ending. The rest is practice.\n\nLots of practice.\n\nCome back whenever a word fails to turn up in your lexicon. It happens to the best of us. Even to me. Occasionally. Rarely. Never.",
+  "signoff": "**— John Koine**\n\n*P.S. Yes, \"aorist\" is a real word. No, nobody knows why either.*"
+}
