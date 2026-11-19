@@ -143,6 +143,15 @@ final class DebugVillageHouse {
         jigsaw(4, 1, 6, FrontAndTop.UP_NORTH, "minecraft:bottom", "minecraft:bottom", st.villagersPool,
                 BuiltInName.of(st.planks), JigsawBlockEntity.JointType.ROLLABLE);
 
+        // Glasscheiben und Zaeune erst jetzt an ihre Nachbarn anpassen: sonst werden sie als "Strich" ohne Verbindung gespeichert
+        for (int x = 0; x < SIZE.getX(); x++) for (int y = 0; y < SIZE.getY(); y++) for (int z = 0; z < SIZE.getZ(); z++) {
+            BlockPos at = o.offset(x, y, z);
+            BlockState bs = level.getBlockState(at);
+            if (bs.getBlock() instanceof net.minecraft.world.level.block.IronBarsBlock || bs.getBlock() instanceof net.minecraft.world.level.block.FenceBlock) {
+                level.setBlock(at, Block.updateFromNeighbourShapes(bs, level, at), 2);
+            }
+        }
+
         // 9. Speichern
         StructureTemplate t = new StructureTemplate();
         t.fillFromWorld(level, origin, SIZE, false, Blocks.STRUCTURE_VOID);
