@@ -43,6 +43,19 @@ public final class WorldgenTest {
                 }
             }
             int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+            if (id.trim().startsWith("cave:")) {   // Wracks in gefluteten Hoehlen zaehlen (braucht eine normale Welt, siehe run/server.properties)
+                int radius = Integer.parseInt(id.trim().substring(5));
+                int before = CaveWreckFeature.PLACED.get(), chunks = 0;
+                int cx0 = (x >> 4) + i * 40, cz0 = z >> 4;
+                for (int cx = cx0 - radius; cx <= cx0 + radius; cx++) for (int cz = cz0 - radius; cz <= cz0 + radius; cz++) {
+                    level.getChunk(cx, cz, net.minecraft.world.level.chunk.status.ChunkStatus.FULL, true);
+                    chunks++;
+                }
+                LOG.info("[wgtest] Welt: Generator {}, Hoehe bei Mitte {}, Biom {}", level.getChunkSource().getGenerator().getClass().getSimpleName(),
+                        level.getHeight(Heightmap.Types.WORLD_SURFACE, cx0 * 16, cz0 * 16), level.getBiome(new BlockPos(cx0 * 16, 64, cz0 * 16)).unwrapKey().map(k -> k.location().toString()).orElse("?"));
+                LOG.info("[wgtest] Hoehlen-Wracks: {} in {} Chunks (Mitte {},{}); Feature-Aufrufe {}, Hoehlenboeden {}, mit Platz {}", CaveWreckFeature.PLACED.get() - before, chunks, cx0 * 16, cz0 * 16, CaveWreckFeature.CALLS.get(), CaveWreckFeature.FLOORS.get(), CaveWreckFeature.ROOMS.get());
+                continue;
+            }
             if (id.trim().startsWith("villages:")) {   // echte Doerfer setzen und zaehlen, in wie vielen das Schreiberhaus steht
                 String type = id.trim().substring(9);
                 int withHouse = 0, placed = 0, total = 4;

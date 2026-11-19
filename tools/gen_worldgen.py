@@ -28,7 +28,7 @@ def mc(*names):
 # ---------------------------------------------------------------- Strukturen
 # kind: (Biome, Schritt, Abstand, Mindestabstand, Salz)
 STRUCTURES = {
-    "wreck": (mc("ocean", "deep_ocean", "lukewarm_ocean", "deep_lukewarm_ocean", "warm_ocean", "cold_ocean", "deep_cold_ocean"),
+    "wreck": (["#minecraft:is_overworld"],     # ueberall; ob Wasser da ist, prueft ScriberyStructure (Wassertiefe)
               "surface_structures", 14, 5, 1743001),
     "caravan": (mc("snowy_plains", "ice_spikes", "snowy_taiga"), "surface_structures", 16, 6, 1743002),
     "wanderer": (mc("snowy_plains", "ice_spikes", "snowy_taiga", "snowy_slopes"), "surface_structures", 10, 4, 1743003),
@@ -109,4 +109,12 @@ ore("frozen_fragment", mc("ice", "packed_ice", "blue_ice"), {"Name": "scribery:f
 placed("frozen_fragment", 3, 4, "WORLD_SURFACE_WG")
 modifier("frozen_fragment", mc("ice_spikes", "frozen_ocean", "deep_frozen_ocean", "frozen_river", "snowy_plains", "snowy_taiga",
                                "frozen_peaks", "jagged_peaks", "snowy_slopes"))
+# Wracks in ueberfluteten Hoehlen: ein Feature sucht in jedem Chunk einige Male nach einem Hohlraum unter Wasser
+w("worldgen/configured_feature/cave_wreck.json", {"type": "scribery:cave_wreck", "config": {}})
+w("worldgen/placed_feature/cave_wreck.json", {
+    "feature": "scribery:cave_wreck",
+    "placement": [{"type": "minecraft:rarity_filter", "chance": 10}, {"type": "minecraft:in_square"}, {"type": "minecraft:biome"}]})
+w("neoforge/biome_modifier/cave_wreck.json", {
+    "type": "neoforge:add_features", "biomes": "#minecraft:is_overworld", "features": "scribery:cave_wreck",
+    "step": "underground_decoration"})
 print("ok")

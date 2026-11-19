@@ -98,3 +98,6 @@ Das lässt sich mit der **eingefrorenen Karawane** verbinden: die Karawane ist d
 
 
 **Nur unter der Erde (19.11.2026):** Katakomben und die unterirdischen Haeuser (Sand, Schlamm) werden nur gesetzt, wenn das Gelaende ueber der ganzen Grundflaeche (Katakombe 46 Bloecke tief und 16 breit, Haus 22 und 12) nirgends mehr als 1 Block unter dem Eingang liegt und kein Wasser darueber steht. Vorher ragte die Decke an Haengen aus dem Boden.
+
+
+**Wracks in mehr Gewaessern und Hoehlen (19.11.2026):** Wracks entstehen jetzt in jedem Biom, in dem mindestens 4 Bloecke Wasser auf Meereshoehe stehen, also auch in Fluessen und Sumpfwasser (nicht in Seen, die als Feature erst nach dem Strukturstart entstehen). Dazu kommt das Feature `scribery:cave_wreck` (`CaveWreckFeature`): In jedem Chunk wird mit 1 zu 10 gesucht, ob eine ueberflutete Hoehle mit festem Boden und Decke da ist; dann wird eine ovale Wasserkammer ausgeraeumt und das Schiff hineingesetzt. In einer Test-Normalwelt (Seed 4242, kalter Ozean) kam dabei etwa ein Wrack auf 40 Chunks, rund das Fuenffache der Wracks im offenen Wasser (etwa eines auf 200 Chunks). In Gegenden mit wenig Hoehlen unter Meereshoehe sind es weniger. Test: `-Pwgtest=cave:6` (braucht eine Normalwelt in run/server.properties).

@@ -59,7 +59,7 @@ public class ScriberyStructure extends Structure {
         int floor = ctx.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.OCEAN_FLOOR_WG, ctx.heightAccessor(), ctx.randomState());
         int sea = ctx.chunkGenerator().getSeaLevel();
         if (kind == Kind.WRECK) {
-            if (surface - floor < 6 || floor > sea - 4) return Optional.empty();   // nur im tiefen Wasser
+            if (surface - floor < 4 || surface > sea + 1) return Optional.empty();   // Meer, Fluss oder Sumpf: mindestens 4 Bloecke Wasser, Wasserspiegel auf Meereshoehe
         } else if (surface != floor || floor < sea) {
             return Optional.empty();                                               // nur an Land, nicht im Wasser
         }
