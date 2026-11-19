@@ -32,6 +32,11 @@ public class DeskBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
+    protected double[][] boxes() {
+        return StationShapes.TRANSLATOR_DESK;
+    }
+
+    @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }

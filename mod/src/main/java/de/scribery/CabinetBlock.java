@@ -30,6 +30,11 @@ public class CabinetBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
+    protected double[][] boxes() {
+        return StationShapes.LETTER_CABINET;
+    }
+
+    @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }

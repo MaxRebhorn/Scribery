@@ -29,6 +29,17 @@ public class ScribeLecternBlock extends FacingBlock implements EntityBlock {
         super(props);
     }
 
+    /** Kerze auf der Rueckwand (Modell: Kerze bei x 12 bis 14, z 13 bis 15, Flamme darueber bei y 22). */
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, net.minecraft.util.RandomSource random) {
+        StationShapes.flame(level, pos, state.getValue(FACING), 13.0, 22.0, 14.0, random);
+    }
+
+    @Override
+    protected double[][] boxes() {
+        return StationShapes.SCRIBE_LECTERN;
+    }
+
     @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;

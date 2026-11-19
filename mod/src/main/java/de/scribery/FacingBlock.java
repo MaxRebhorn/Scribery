@@ -2,7 +2,13 @@ package de.scribery;
 
 import com.mojang.serialization.MapCodec;
 
+import java.util.Map;
+
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,6 +26,21 @@ public class FacingBlock extends HorizontalDirectionalBlock {
     @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
+    }
+
+    private Map<Direction, VoxelShape> shapes;
+
+    /** Quader der Form fuer Blickrichtung Norden (siehe {@link StationShapes}); null = voller Wuerfel. */
+    protected double[][] boxes() {
+        return null;
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
+        double[][] b = boxes();
+        if (b == null) return super.getShape(state, level, pos, ctx);
+        if (shapes == null) shapes = StationShapes.build(b);
+        return shapes.get(state.getValue(FACING));
     }
 
     @Override

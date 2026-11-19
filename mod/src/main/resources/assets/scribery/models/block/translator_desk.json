@@ -1,8 +1,130 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/block",
   "textures": {
-    "top": "scribery:block/translator_desk_top",
-    "front": "scribery:block/translator_desk_front",
-    "side": "scribery:block/translator_desk_side"
-  }
+    "desk_front": "scribery:block/ws_desk_front",
+    "desk_side": "scribery:block/ws_desk_side",
+    "desk_top": "scribery:block/ws_desk_top",
+    "ink": "scribery:block/ws_ink",
+    "paper": "scribery:block/ws_paper",
+    "particle": "scribery:block/ws_desk_front"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        12,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#desk_front",
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#desk_side",
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#desk_side",
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#desk_side",
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ]
+        },
+        "up": {
+          "texture": "#desk_top"
+        }
+      }
+    },
+    {
+      "from": [
+        11,
+        12,
+        13
+      ],
+      "to": [
+        14.5,
+        15,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#ink"
+        },
+        "south": {
+          "texture": "#ink"
+        },
+        "east": {
+          "texture": "#ink"
+        },
+        "west": {
+          "texture": "#ink"
+        },
+        "up": {
+          "texture": "#ink"
+        },
+        "down": {
+          "texture": "#ink"
+        }
+      }
+    },
+    {
+      "from": [
+        1.5,
+        12,
+        13
+      ],
+      "to": [
+        8.5,
+        14,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#paper"
+        },
+        "south": {
+          "texture": "#paper"
+        },
+        "east": {
+          "texture": "#paper"
+        },
+        "west": {
+          "texture": "#paper"
+        },
+        "up": {
+          "texture": "#paper"
+        },
+        "down": {
+          "texture": "#paper"
+        }
+      }
+    }
+  ]
 }

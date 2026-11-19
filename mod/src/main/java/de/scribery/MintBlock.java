@@ -22,6 +22,21 @@ public class MintBlock extends FacingBlock {
         super(props);
     }
 
+    /** Flamme im Ofenmaul vorn (Modell: bei x 12, y 4, z 2, im Maul) und Rauch ueber dem Tiegel (x 12, z 5). */
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, net.minecraft.util.RandomSource random) {
+        StationShapes.flame(level, pos, state.getValue(FACING), 12.0, 4.0, 2.0, random);
+        if (random.nextFloat() < 0.15F) {
+            double[] c = StationShapes.rotate(12.0, 5.0, state.getValue(FACING));
+            level.addParticle(net.minecraft.core.particles.ParticleTypes.SMOKE, pos.getX() + c[0], pos.getY() + 1.1, pos.getZ() + c[1], 0, 0.01, 0);
+        }
+    }
+
+    @Override
+    protected double[][] boxes() {
+        return StationShapes.MINTING_TABLE;
+    }
+
     @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
