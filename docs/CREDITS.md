@@ -44,3 +44,8 @@ Stand: 18.11.2026. Ich bin kein Anwalt; das hier ist die Auswertung der Lizenzte
 - **μεθερμηνευόμενον** (Joh 1,38 und 1,41; P54 und P60): 17 Buchstaben, die Setzform hat 16 Plätze. Entscheidung offen: Zeile verbreitern, Wort vordrucken oder Wort aus dem Setzen nehmen.
 - Falsche Antworten sind automatisch erzeugt; bei Funktionswörtern (Relativpronomen, Konjunktionen) sind sie oft schwach oder einfach unpassend. **Prüfen vor dem Spielen.**
 - Einzelne Manuskripte sind sehr kurz (2–3 Wörter, an Kapitelgrenzen und Satzenden) oder lang (bis 37 Wörter, ohne Satzzeichen). Die Obergrenze aus dem Plan (ca. 40) wird eingehalten.
+
+## Philogelos (Ostraka)
+
+- Griechischer Text der Witze auf den Ostraka: Philogelos (Hierokles und Philagrios), aus dem Eulogikon Open Corpus (https://eulogikon.org/works/anthology-anon-philogelos-jokes-tpg-aa), Public Domain Mark 1.0, Zaehlung nach Thierfelder (1968). Abgelegt als `tools/data/src/philogelos-greek.json`, abgerufen am 19.11.2026. Die zugrunde liegende Ausgabe nennt die Seite nicht ausdruecklich; vor einer Veroeffentlichung klaeren.
+- Die englischen Fassungen (`tools/build_ostraka.py`) sind eigene Uebersetzungen fuer das Spiel.

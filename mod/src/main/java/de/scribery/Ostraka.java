@@ -16,23 +16,26 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 
 /**
- * Die Witze auf den Ostraka (nacherzaehlt nach dem Philogelos, Quelle tools/data/ostraka-jokes.json, beim Bauen nach
+ * Die Witze auf den Ostraka (Philogelos: griechischer Text, englische Loesung; Quelle tools/data/ostraka-jokes.json, beim Bauen nach
  * assets/scribery/data/ kopiert). Ein Ostrakon traegt die Witz-ID im Datenfeld {@link ModComponents#JOKE}.
  */
 public final class Ostraka {
-    private static Map<String, String> jokes;
+    /** Ein Witz: griechischer Text (auf dem Scherben) und englische Loesung. */
+    public record Joke(String greek, String en) {}
+
+    private static Map<String, Joke> jokes;
 
     private Ostraka() {}
 
-    private static synchronized Map<String, String> jokes() {
+    private static synchronized Map<String, Joke> jokes() {
         if (jokes != null) return jokes;
         var in = Ostraka.class.getResourceAsStream("/assets/scribery/data/ostraka-jokes.json");
         if (in == null) throw new IllegalStateException("ostraka-jokes.json fehlt im Mod");
-        Map<String, String> out = new LinkedHashMap<>();
+        Map<String, Joke> out = new LinkedHashMap<>();
         try (Reader r = new InputStreamReader(in, StandardCharsets.UTF_8)) {
             for (JsonElement e : JsonParser.parseReader(r).getAsJsonObject().getAsJsonArray("jokes")) {
                 var o = e.getAsJsonObject();
-                out.put(o.get("id").getAsString(), o.get("en").getAsString());
+                out.put(o.get("id").getAsString(), new Joke(o.get("greek").getAsString(), o.get("en").getAsString()));
             }
         } catch (IOException e) {
             throw new IllegalStateException(e);
@@ -45,8 +48,8 @@ public final class Ostraka {
         return new ArrayList<>(jokes().keySet());
     }
 
-    /** Der Text eines Witzes (Zeilen durch \n getrennt) oder null. */
-    public static String text(String id) {
+    /** Der Witz oder null. */
+    public static Joke joke(String id) {
         return jokes().get(id);
     }
 

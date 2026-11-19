@@ -1,107 +1,282 @@
 {
-  "schema": "scribery.ostraka-jokes/1",
-  "source": "Nacherzaehlt nach dem Philogelos (\"Der Lachfreund\", Hierokles und Philagrios, vermutlich 4./5. Jh. n. Chr.; Zaehlung nach Thierfelder 1968, Nr. 1-265). Nur die Witze mit einer Nummer im Feld \"philogelos\" sind dort belegt (Stand 19.11.2026, geprueft gegen den griechischen Text bei eulogikon.org, Nr. 1-191). Die uebrigen Witze sind freie Erfindungen im Stil des Philogelos und duerfen nicht als antik ausgegeben werden. Der griechische Text liegt noch nicht im Repo.",
-  "note": "Die Hauptfigur vieler Witze ist der Scholastikos (Gelehrter, Pedant, Student). Kurz halten: Ein Scherben bietet Platz fuer etwa 3 Zeilen zu je 20 Zeichen.",
+  "schema": "scribery.ostraka-jokes/2",
+  "source": "Philogelos (Hierokles und Philagrios, vermutlich 4./5. Jh. n. Chr.), Zaehlung nach Thierfelder 1968. Griechischer Text: tools/data/src/philogelos-greek.json (Eulogikon, Public Domain Mark). Die englischen Texte sind eigene Uebersetzungen.",
   "jokes": [
     {
-      "id": "swim",
-      "en": "A scholar nearly drowned.\nHe swore never to touch water again until he had learned to swim.",
-      "philogelos": "2"
+      "id": "p1",
+      "philogelos": 1,
+      "greek": "Σχολαστικὸς ἀργυροκόπῳ ἐπέταξε λύχνον ποιῆσαι. τοῦ δὲ ἐξετάσαντος, πηλίκον ποιήσει, ἀπεκρίνατο· Ὡς πρὸς ὀκτὼ ἀνθρώπους.",
+      "en": "A scholar ordered a lamp from a silversmith. When asked how big it should be, he said: \"Big enough for eight people.\""
     },
     {
-      "id": "dead_friend",
-      "en": "\"I heard you were dead!\"\n\"As you see, I am alive.\"\n\"But the man who told me is more reliable than you.\"",
-      "philogelos": "22"
+      "id": "p2",
+      "philogelos": 2,
+      "greek": "Σχολαστικὸς κολυμβῶν παρὰ μικρὸν ἐπνίγη· ὤμοσε δὲ εἰς ὕδωρ μὴ εἰσελθεῖν, ἐὰν μὴ μάθῃ πρῶτον καλῶς κολυμβᾶν.",
+      "en": "A scholar nearly drowned while swimming. He swore not to go into the water until he had first learned to swim properly."
     },
     {
-      "id": "dizzy",
-      "en": "Patient: \"Doctor, when I wake I'm dizzy for half an hour.\"\nDoctor: \"Then wake up half an hour later.\"",
-      "philogelos": "3"
+      "id": "p3",
+      "philogelos": 3,
+      "greek": "Σχολαστικῷ τις ἰατρῷ προσελθὼν εἶπεν· Ἰατρέ, ὅταν ἀναστῶ ἐκ τοῦ ὕπνου, ἡμιώριον ἐσκότωμαι καὶ εἶθ᾽ οὕτως ἀποκαθίσταμαι. καὶ ὁ ἰατρός· Μετὰ τὸ ἡμιώριον ἐγείρου.",
+      "en": "A man said to a scholar's doctor: \"Doctor, when I get up from sleep I'm dazed for half an hour, and then I'm fine.\" The doctor said: \"Then get up half an hour later.\""
     },
     {
-      "id": "brick",
-      "en": "A scholar wanted to sell his house.\nHe carried a single brick around town as a sample.",
-      "philogelos": "41"
+      "id": "p4",
+      "philogelos": 4,
+      "greek": "Σχολαστικοῦ ἵππον πιπράσκοντος ἠρώτησέ τις, εἰ πρωτοβόλος ἐστίν. τοῦ δὲ εἰπόντος δευτεροβόλον εἶναι, εἶπε· Πῶς οἶδας; ὁ δὲ ἀπεκρίνατο· Ὅτι ἅπαξ ἐμὲ ἔβαλε κάτω καὶ ἅπαξ τὸν πατέρα μου.",
+      "en": "A scholar was selling a horse. Someone asked if it was a first-time thrower. \"No, a second-time thrower.\" \"How do you know?\" \"It threw me once and my father once.\""
     },
     {
-      "id": "barber",
-      "en": "Barber: \"How shall I cut your hair?\"\nCustomer: \"In silence.\"",
-      "philogelos": "148 (Eutrapelos)"
+      "id": "p5",
+      "philogelos": 5,
+      "greek": "Σχολαστικῷ τις ἀπαντήσας ἔφη· Κύριε σχολαστικέ, καθ᾽ ὕπνους σε εἶδον. ὁ δέ· Μὰ τοὺς θεούς, εἶπεν, ἀσχολῶν οὐ προσέσχον.",
+      "en": "Someone met a scholar and said: \"Sir, I saw you in my dream.\" \"I swear, I was busy and didn't notice you.\""
     },
     {
-      "id": "debt",
-      "en": "\"Why do you never answer my letters?\"\n\"I'd rather you didn't ask a man who is not at home.\"",
-      "philogelos": null
+      "id": "p8",
+      "philogelos": 8,
+      "greek": "Σχολαστικὸς θέλων πιάσαι μῦν συνεχῶς τὰ βιβλία αὐτοῦ τρώγοντα κρέας δακὼν ἐν τῇ σκοτίᾳ ἐκάθισεν.",
+      "en": "A scholar wanted to catch a mouse that kept eating his books. So he took a bite of meat and sat in the dark."
     },
     {
-      "id": "sleep",
-      "en": "A scholar dreamed he was at sea.\nHe slept with his feet out of the bed, so as not to get them wet.",
-      "philogelos": null
+      "id": "p9",
+      "philogelos": 9,
+      "greek": "Σχολαστικὸς θέλων αὐτοῦ τὸν ὄνον διδάξαι μὴ τρώγειν οὐ παρέβαλεν αὐτῷ τροφάς. ἀποθανόντος δὲ τοῦ ὄνου ἀπὸ λιμοῦ ἔλεγε· Μεγάλα ἐζημιώθην· ὅτε γὰρ ἔμαθε μὴ τρώγειν, τότε ἀπέθανεν.",
+      "en": "A scholar wanted to teach his donkey not to eat, so he gave it no food. When the donkey starved to death, he said: \"What a loss! Just when it had learned not to eat, it died.\""
     },
     {
-      "id": "sundial",
-      "en": "A scholar was asked the hour.\n\"Come back when the sun is out,\" he said.",
-      "philogelos": null
+      "id": "p10",
+      "philogelos": 10,
+      "greek": "Σχολαστικὸς ἵππον πιπράσκων ἠρωτήθη, μὴ δειλὸς εἴη. ὁ δὲ εἶπεν· Οὐ μὰ τὴν τοῦ πατρός μου σωτηρίαν· ἐν τῷ σταύλῳ γὰρ μόνος ἔστηκεν.",
+      "en": "A scholar selling a horse was asked whether it was timid. \"By my father's life, no! It stands alone in the stable.\""
     },
     {
-      "id": "cough",
-      "en": "A scholar's friend coughed in the night.\n\"Stop it!\" he said. \"You'll wake the thief.\"",
-      "philogelos": null
+      "id": "p11",
+      "philogelos": 11,
+      "greek": "Σχολαστικὸς θέλων ἰδεῖν, εἰ πρέποι αὐτῷ κοιμᾶσθαι, καμμύσας ἐνωπτρίζετο.",
+      "en": "A scholar wanted to see whether he looked good asleep, so he shut his eyes and looked in the mirror."
     },
     {
-      "id": "twin",
-      "en": "\"Is that your brother or the one who looks like him?\"\n\"Both,\" said the twin.",
-      "philogelos": null
+      "id": "p12",
+      "philogelos": 12,
+      "greek": "Σχολαστικῷ ἀποδημοῦντι φίλος αὐτοῦ ἔλεγεν· Ἀξιῶ σε δύο παῖδας ἀγοράσαι μοι, ἑκάτερον πεντεκαίδεκα ἐτῶν. ὁ δὲ εἶπεν· Ἐὰν τοιούτους μὴ εὕρω, ἀγοράσω σοι ἕνα τριάκοντα ἐτῶν.",
+      "en": "A friend asked a scholar who was going abroad to buy him two boys, each fifteen years old. The scholar said: \"If I can't find such boys, I'll buy you one who is thirty.\""
     },
     {
-      "id": "bald",
-      "en": "A bald man was given a comb as a gift.\n\"Thank you,\" he said. \"I will keep it for my memories.\"",
-      "philogelos": null
+      "id": "p14",
+      "philogelos": 14,
+      "greek": "Σχολαστικὸς οἰκίαν πριάμενος, εἶτα διὰ τῆς θυρίδος. παρακύψας ἠρώτα τοὺς παρερχομένους, εἰ πρέπει αὐτῷ.",
+      "en": "A scholar bought a house, then leaned out of the window and asked the passers-by whether it suited him."
     },
     {
-      "id": "miser",
-      "en": "A miser heard that grain was cheap this year.\nHe hanged himself, because he had kept so much of his own.",
-      "philogelos": null
+      "id": "p17",
+      "philogelos": 17,
+      "greek": "Σχολαστικῷ ἑταῖρος ἀποδημῶν ἔγραψεν, ἵνα αὐτῷ βιβλία ἀγοράσῃ. ὁ δὲ ἀμελήσας, ἐπανελθόντι αὐτῷ ἀπαντήσας· Τὴν ἐπιστολήν, εἶπεν, ἣν περὶ τῶν βιβλίων ἀπέστειλας, οὐκ ἐδεξάμην.",
+      "en": "A friend abroad wrote to a scholar, asking him to buy books. The scholar didn't bother. When his friend came back, he said: \"I never received the letter you sent about the books.\""
     },
     {
-      "id": "lamp",
-      "en": "\"Why do you carry a lamp in broad daylight?\"\n\"I'm looking for an honest man. And some oil.\"",
-      "philogelos": null
+      "id": "p18",
+      "philogelos": 18,
+      "greek": "Σχολαστικῷ τις ἀπαντήσας εἶπεν· Ὁ δοῦλος, ὃν ἐπώλησάς μοι, ἀπέθανε. —Μὰ τοὺς θεούς, ἔφη, παρ᾽ ἐμοὶ ὅτε ἦν, τοιοῦτον οὐδὲν ἐποίησεν.",
+      "en": "Someone told a scholar: \"The slave you sold me has died.\" \"By the gods,\" he said, \"he never did anything like that when he was with me.\""
     },
     {
-      "id": "wine",
-      "en": "\"This wine has turned to vinegar.\"\n\"Good. Then it will last longer.\"",
-      "philogelos": null
+      "id": "p19",
+      "philogelos": 19,
+      "greek": "Σχολαστικὸς ἰδὼν πολλοὺς στρουθοὺς ἐπὶ δένδρου ἑστῶτας, ἁπλώσας τὸν κόλπον ἔσειε τὸ δένδρον ὡς ὑποδεξόμενος τοὺς στρουθούς.",
+      "en": "A scholar saw many sparrows in a tree. He spread out his coat and shook the tree, hoping to catch them."
     },
     {
-      "id": "ship",
-      "en": "A scholar was warned the ship was leaking.\n\"Then I'll wait on the shore,\" he said, \"and take the next one that's dry.\"",
-      "philogelos": null
+      "id": "p21",
+      "philogelos": 21,
+      "greek": "Σχολαστικὸς καθευδῆσαι βουλόμενος, μὴ ἔχων προσκεφάλαιον ἐκέλευσε τῷ δούλῳ κεράμιον ὑποθεῖναι. τοῦ δὲ εἰπόντος, ὅτι σκληρόν ἐστι, πτερῶν αὐτὸ γεμισθῆναι ἐκέλευσεν.",
+      "en": "A scholar who wanted to sleep had no pillow, so he told his slave to put a jar under his head. The slave said it was hard, so he ordered it filled with feathers."
     },
     {
-      "id": "echo",
-      "en": "A scholar shouted into a well and heard his own voice.\n\"So there is someone down there,\" he said, \"and he is rude.\"",
-      "philogelos": null
+      "id": "p22",
+      "philogelos": 22,
+      "greek": "Σχολαστικὸς ἀπαντήσας τινὶ φίλῳ αὐτοῦ εἶπεν· Ἤκουσα, ὅτι ἀπέθανες. ὁ δὲ ἀπεκρίνατο· Ἀλλ᾽ ὁρᾷς με ζῶντα. καὶ ὁ σχολαστικός· Καὶ μὴν ὁ εἰπών μοι κατὰ πολὺ σοῦ ἀξιοπιστότερος ἦν.",
+      "en": "A scholar met a friend and said: \"I heard that you died.\" \"But you see me alive.\" \"Yes, but the man who told me is far more trustworthy than you.\""
     },
     {
-      "id": "lesson",
-      "en": "Father: \"What did you learn today?\"\nSon: \"That you owe the teacher money.\"",
-      "philogelos": null
+      "id": "p24",
+      "philogelos": 24,
+      "greek": "Σχολαστικὸς μαχόμενος τῷ πατρὶ λέγει πρὸς αὐτόν· Κακὲ δοῦλε, οὐχ ὁρᾷς, οἶά με ἐζημίωσας; εἰ γὰρ σὺ μὴ ἐγεννήθης, ἐγὼ ἂν τὸν πάππον μου ἐκληρονόμησα.",
+      "en": "A scholar quarrelled with his father: \"You wretched slave, can't you see what you've cost me? If you hadn't been born, I would have inherited from my grandfather.\""
     },
     {
-      "id": "donkey",
-      "en": "A scholar bought a donkey that would not eat.\n\"It's a bargain,\" he said. \"Think of the saving.\"",
-      "philogelos": "9 (nur der Anfang, andere Pointe)"
+      "id": "p25",
+      "philogelos": 25,
+      "greek": "Σχολαστικὸς ἐν τῷ πλέειν χειμῶνος ὄντος σφοδροῦ καὶ τῶν οἰκετῶν κλαιόντων· Μὴ κλαίετε, ἔφη· πάντας γὰρ ὑμᾶς ἐν διαθήκαις ἐλευθέρους ἀφῆκα.",
+      "en": "A scholar was sailing in a fierce storm while his slaves wept. \"Don't cry,\" he said, \"I've freed you all in my will.\""
     },
     {
-      "id": "memory",
-      "en": "\"I have an excellent memory.\"\n\"Then pay me what you owe.\"\n\"On second thought, I have forgotten that.\"",
-      "philogelos": null
+      "id": "p28",
+      "philogelos": 28,
+      "greek": "Σχολαστικοῦ τὸν ἀντίχειρον κύων ἔδακεν. ὁ δὲ εἶπεν· Εἰ τὸ ἱμάτιον ἐπίασεν, ἐσχισμένον ἂν εἴη.",
+      "en": "A dog bit a scholar's thumb. He said: \"If it had caught my cloak, it would be torn.\""
     },
     {
-      "id": "cart",
-      "en": "A scholar left his house on a cart to get fitter.\nThe horse did all the walking.",
-      "philogelos": null
+      "id": "p29",
+      "philogelos": 29,
+      "greek": "Διδύμων ἀδελφῶν ὁ ἕτερος ἐτελεύτησεν. σχολαστικὸς οὖν ἀπαντήσας τῷ ζῶντι ἠρώτα· Σὺ ἀπέθανες ἢ ὁ ἀδελφός σου;",
+      "en": "One of two twin brothers died. A scholar met the living one and asked: \"Are you the one who died, or your brother?\""
+    },
+    {
+      "id": "p31",
+      "philogelos": 31,
+      "greek": "Σχολαστικὸς διαπερᾶσαι ποταμὸν βουλόμενος ἀνέβη εἰς τὸ πλοῖον μετὰ τοῦ ἵππου ἐποχούμενος. πυθομένου δέ τινος, διὰ τί οὐ κάτεισι· Σπουδάζω, ἔφη.",
+      "en": "A scholar wanted to cross a river, so he boarded the boat riding his horse. Asked why he didn't get off, he said: \"I'm in a hurry.\""
+    },
+    {
+      "id": "p32",
+      "philogelos": 32,
+      "greek": "Σχολαστικὸς ἐπὶ δεῖπνον κληθεὶς οὐκ ἤσθιεν. ἐρωτήσαντος δέ τινος τῶν κεκλημένων· Διὰ τί οὐκ ἐσθίεις; ἔφη· Ἵνα μὴ τοῦ φαγεῖν ἕνεκα δόξω παρεῖναι.",
+      "en": "A scholar invited to dinner did not eat. When someone asked why, he said: \"So that I won't seem to have come only for the food.\""
+    },
+    {
+      "id": "p41",
+      "philogelos": 41,
+      "greek": "Σχολαστικὸς οἰκίαν πωλῶν λίθον ἀπ᾽ αὐτῆς εἰς δεῖγμα περιέφερεν.",
+      "en": "A scholar who was selling his house carried a stone from it around as a sample."
+    },
+    {
+      "id": "p61",
+      "philogelos": 61,
+      "greek": "Σχολαστικὸς χαμαιδιδάσκαλος ἄφνω ἀποβλέψας εἰς τὴν γωνίαν ἐβόησε· Διονύσιος ἐν τῇ γωνίᾳ ἀτακτεῖ. εἰπόντος δέ τινος, ὅτι οὔπω πάρεστιν, ὁ δὲ ἔφη· Ὅταν ἔλθῃ.",
+      "en": "A scholar teaching small children suddenly shouted at the corner: \"Dionysius is misbehaving over there!\" Someone said that he wasn't even here yet. \"Then when he comes.\""
+    },
+    {
+      "id": "p62",
+      "philogelos": 62,
+      "greek": "Σχολαστικὸς τῇ ἐτηρίδι, ἣ διὰ χιλίων ἐτῶν ἄγεται ἐν Ῥώμῃ, ἡττηθέντα ἀθλητὴν καὶ δακρύοντα ἰδών, παραμυθούμενος· Μὴ λυποῦ, ἔφη, τὴν γὰρ ἄλλην χιλιετηρίδα σὺ νικήσεις.",
+      "en": "At the games held in Rome once in a thousand years, a scholar comforted a weeping athlete who had lost: \"Don't be sad. You'll win the next one.\""
+    },
+    {
+      "id": "p66",
+      "philogelos": 66,
+      "greek": "Σχολαστικὸς ἐν ποταμῷ θεασάμενος ἁλιάδα σίτου μεστὴν καὶ βεβαρημένην· Ἐὰν μικρόν, εἶπεν, ὁ ποταμὸς αὐξήσῃ, βυθισθήσεται.",
+      "en": "A scholar saw a barge on the river, heavily loaded with grain. \"If the river rises a little,\" he said, \"it will sink.\""
+    },
+    {
+      "id": "p74",
+      "philogelos": 74,
+      "greek": "Σχολαστικῷ λεπτὸν ἵππον ἔχοντι προσελθών τις· Ὁ ἵππος σου, ἔφη, εἰς ᾍδου ὁρᾷ. καὶ ὁ σχολαστικός· Κἀγὼ βλέπω.",
+      "en": "Someone told a scholar with a skinny horse: \"Your horse is looking toward Hades.\" The scholar said: \"I can see that too.\""
+    },
+    {
+      "id": "p75",
+      "philogelos": 75,
+      "greek": "Σχολαστικὸς νοσῶν, εἶτα πεινῶν, ὡς οὐδέπω τετάρτην ὥραν ἀπηγγέλη, ἀπιστῶν πρὸς ἑαυτὸν τὸ ὡρολόγιον ἐκέλευσε κομισθῆναι.",
+      "en": "A scholar who was ill and hungry was told that it wasn't yet the fourth hour. Not believing it, he ordered the clock to be brought to him."
+    },
+    {
+      "id": "p77",
+      "philogelos": 77,
+      "greek": "Σχολαστικὸς ἐκκομίσας τὸν υἱόν, ἀπαντήσας τῷ διδασκάλῳ αὐτοῦ· Σύγγνωθι, ἔφη, ὅτι οὐκ ἦλθεν ὁ υἱός μου εἰς τὴν σχολήν· ἀπέθανε γάρ.",
+      "en": "A scholar carried out his son's body and met the boy's teacher. \"Forgive me,\" he said, \"that my son did not come to school. He has died.\""
+    },
+    {
+      "id": "p88",
+      "philogelos": 88,
+      "greek": "Σχολαστικὸς ἐπανερχόμενος, ὅθεν ἀπεδήμησεν, καὶ ἀναβαίνων ὑψηλὴν ἀνάβασιν ἐθαύμαζε λέγων· Ἐνταῦθα ὅτε πρῶτον παρῄειν ὁδεύων, κατάβασις ἦν· καὶ πῶς νῦν ταχέως ἠλλάγη καὶ ἀνάβασις γέγονε;",
+      "en": "A scholar was walking home and climbing a steep hill. \"When I came this way before,\" he wondered, \"it was downhill. How has it changed so fast into uphill?\""
+    },
+    {
+      "id": "p93",
+      "philogelos": 93,
+      "greek": "Σχολαστικὸς μαθὼν περὶ κλίμακός τινος, ὅτι ἀναβαινόντων ἔχει βαθμοὺς εἴκοσιν, ἐπύθετο, εἰ καὶ καταβαινόντων τοσοῦτοί εἰσιν.",
+      "en": "A scholar learned that a ladder has twenty steps going up, and asked whether it has as many going down."
+    },
+    {
+      "id": "p101",
+      "philogelos": 101,
+      "greek": "Σχολαστικὸς ἀδελφοὺς διδύμους ἰδὼν θαυμαζόντων τινῶν τὴν ὁμοιότητα αὐτῶν· Οὐχ οὕτως, φησίν, ὅμοιός ἐστιν οὗτος ἐκείνῳ, ὡς ἐκεῖνος τούτῳ.",
+      "en": "A scholar saw twin brothers and heard people marvelling at how alike they were. \"This one isn't as much like that one,\" he said, \"as that one is like this one.\""
+    },
+    {
+      "id": "p104",
+      "philogelos": 104,
+      "greek": "Φιλάργυρος διαθήκας γράφων ἑαυτὸν κληρονόμον ἔταξεν.",
+      "en": "A miser writing his will named himself as his heir."
+    },
+    {
+      "id": "p122",
+      "philogelos": 122,
+      "greek": "Ἀβδηρίτης λεκάνην ἐπώλει μὴ ἔχουσαν ὠτία. τινὸς δὲ ἐρωτήσαντος, διὰ τί ἦρεν αὐτῆς τὰ ὠτία, ἀπεκρίνατο· Ἵνα μὴ ἀκούσασα, ὅτι πωλεῖται, φύγῃ.",
+      "en": "An Abderite was selling a basin that had no handles (\"ears\"). When someone asked why he had taken them off, he said: \"So that it won't hear it is being sold and run away.\""
+    },
+    {
+      "id": "p125",
+      "philogelos": 125,
+      "greek": "Ἀβδηρίτου στρουθίον ἀπέθανε. μετὰ οὖν χρόνον ἰδὼν στρουθοκάμηλον εἶπεν· Ἐὰν ἔζη τὸ στρουθίον μου, ἤδη ἂν τηλικοῦτον ὑπῆρχεν.",
+      "en": "An Abderite's sparrow died. Some time later he saw an ostrich and said: \"If my sparrow had lived, it would be that big by now.\""
+    },
+    {
+      "id": "p148",
+      "philogelos": 148,
+      "greek": "Εὐτράπελος φλυάρου κουρέως ἐρωτήσαντος· Πῶς σε κείρω; —Σιωπῶν, ἔφη.",
+      "en": "A chatty barber asked a witty man: \"How shall I cut your hair?\" \"In silence,\" he said."
+    },
+    {
+      "id": "p173",
+      "philogelos": 173,
+      "greek": "Κυμαῖος μέλι ἐπίπρασκεν. ἐλθόντος δέ τινος καὶ γευσαμένου καὶ εἰπόντος, ὅτι πάνυ καλόν, ἔφη· Εἰ μὴ γὰρ μῦς ἐνέπεσεν εἰς αὐτό, οὐκ ἂν ἐπώλουν.",
+      "en": "A man from Kyme was selling honey. A customer tasted it and said it was excellent. \"If a mouse hadn't fallen into it,\" the seller said, \"I wouldn't be selling it.\""
+    },
+    {
+      "id": "p174",
+      "philogelos": 174,
+      "greek": "Κυμαῖον νοσοῦντα ἀπήλπισεν ἰατρός. ὁ δὲ ὑγιάνας περιέκαμπτε τὸν ἰατρόν. ἐρωτηθεὶς οὖν τὴν αἰτίαν ἀπεκρίνατο· Εἰπόντος σου, ὅτι ἀποθνῄσκω, αἰσχύνομαι ζήσας.",
+      "en": "A doctor had given up on a sick man. When the man recovered, he walked a big circle around the doctor. Asked why, he said: \"You told me I was dying, and I am ashamed to be alive.\""
+    },
+    {
+      "id": "p183",
+      "philogelos": 183,
+      "greek": "Δυσκόλῳ ἰατρῷ προσελθών τις εἶπε· Σοφιστά, ἀνακεῖσθαι οὐ δύναμαι οὔτε ἑστάναι, ἀλλ᾽ οὐδὲ καθῆσθαι. καὶ ὁ ἰατρὸς εἶπεν· Οὐδέν σοι λείπει ἢ κρεμασθῆναι.",
+      "en": "A man went to a grumpy doctor: \"Doctor, I can't lie down, I can't stand, and I can't sit.\" The doctor said: \"All you're missing is hanging.\""
+    },
+    {
+      "id": "p223",
+      "philogelos": 223,
+      "greek": "Λιμόξηρος ἰδὼν ἄρτον ἐν ὑπερθύρῳ κείμενον εἶπε· Θεέ, ἢ ἐμὲ ὕψωσον ἢ ἐκεῖνον ταπείνωσον.",
+      "en": "A starving man saw a loaf of bread lying on a lintel. He said: \"God, either lift me up, or bring that down.\""
+    },
+    {
+      "id": "p228",
+      "philogelos": 228,
+      "greek": "Μέθυσος ὀνειδιζόμενος ὑπό τινος, ὅτι πολλὰ πίνων οὐ φρονεῖ, ὁ δὲ ἀπὸ τοῦ οἴνου καλῶς βλέπειν μὴ δυνάμενος ἀπεκρίνατο· Ἐγὼ μεθύω ἢ σὺ ὁ δύο ἔχων ὄψεις;",
+      "en": "A drunk was scolded for drinking too much and not thinking straight. Hardly able to see for the wine, he answered: \"Am I the drunk, or are you, with your two faces?\""
+    },
+    {
+      "id": "p253",
+      "philogelos": 253,
+      "greek": "Σχολαστικὸς ἰατρῷ συναντήσας· Συγχώρησόν μοι, εἷπε, καὶ μή μοι μέμψῃ, ὅτι οὐκ ἐνόσησα.",
+      "en": "A scholar met a doctor and said: \"Forgive me, and don't blame me, that I haven't been ill.\""
+    },
+    {
+      "id": "p255",
+      "philogelos": 255,
+      "greek": "Σχολαστικὸς μαθών, ὅτι ὁ κόραξ ὑπὲρ τὰ διακόσια ἔτη ζῇ, ἀγοράσας κόρακα εἰς ἀπόπειραν ἔτρεφεν.",
+      "en": "A scholar learned that a raven lives for more than two hundred years, so he bought one to try it out."
+    },
+    {
+      "id": "p257",
+      "philogelos": 257,
+      "greek": "Σχολαστικὸς υἱὸν θάψας καὶ συναντήσας τῷ διδασκάλῳ αὐτοῦ εἶπεν· Προσῆλθεν ὁ παῖς; ὁ δέ φησιν· Οὔ. καὶ ὁ σχολαστικός· Λοιπὸν οὖν, καθηγητά, τέθνηκεν.",
+      "en": "A scholar buried his son and met the boy's teacher. \"Did the boy come?\" \"No.\" \"Then, teacher, he is dead.\""
+    },
+    {
+      "id": "p264",
+      "philogelos": 264,
+      "greek": "Εὐτράπελος ἐπὶ ἡγεμόνος ἐδικάζετο. τοῦ δὲ νυστάζοντος ἐβόησεν· Ἐκκαλοῦμαι. ὁ δὲ ἔφη· Ἐπὶ τίνα; κἀκεῖνος· Ἐπὶ σὲ γρηγοροῦντα.",
+      "en": "A witty man was in court before a governor, who dozed off. He shouted: \"I appeal!\" \"To whom?\" \"To you, awake.\""
+    },
+    {
+      "id": "p265",
+      "philogelos": 265,
+      "greek": "Σχολαστικοῦ ἐρωτηθέντος, πόσους ξέστας ὁ ἀμφορεὺς ἔχει, ἀπεκρίνατο· Οἴνου λέγεις ἢ ὕδατος;",
+      "en": "Asked how many measures an amphora holds, a scholar answered: \"Of wine or of water?\""
     }
   ]
 }

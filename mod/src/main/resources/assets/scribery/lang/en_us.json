@@ -77,6 +77,8 @@
   "block.scribery.roman_floor_cracked": "Cracked Roman Stone Floor",
   "block.scribery.roman_floor_broken": "Broken Roman Stone Floor",
   "tooltip.scribery.ostrakon_blank": "A blank shard. Nothing scribbled on it yet.",
+  "tooltip.scribery.ostrakon_hint": "Translate it. Sneak + right-click: the answer",
+  "tooltip.scribery.ostrakon_solution": "Translation:",
   "tooltip.scribery.find_pouch": "Right-click to open",
   "item.scribery.find_pouch_sand": "Sand Find Pouch",
   "item.scribery.find_pouch_mud": "Mud Find Pouch",

@@ -14,20 +14,23 @@ import org.junit.jupiter.api.Test;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-/** Die Witze auf den Ostraka (tools/data/ostraka-jokes.json): eindeutige IDs, kurze Texte. */
+/** Die Witze auf den Ostraka (tools/data/ostraka-jokes.json): eindeutige IDs, Griechisch und Englisch, kurz genug fuer einen Scherben. */
 class OstrakaJokesTest {
     @Test
-    void jokesAreUniqueAndShortEnoughForAShard() throws IOException {
+    void jokesAreUniqueGreekWithEnglishSolutions() throws IOException {
         var root = JsonParser.parseString(Files.readString(Path.of("..", "tools", "data", "ostraka-jokes.json"), StandardCharsets.UTF_8)).getAsJsonObject();
-        Set<String> ids = new HashSet<>();
+        Set<String> ids = new HashSet<>(), numbers = new HashSet<>();
         for (JsonElement e : root.getAsJsonArray("jokes")) {
             var o = e.getAsJsonObject();
-            String id = o.get("id").getAsString(), text = o.get("en").getAsString();
+            String id = o.get("id").getAsString(), greek = o.get("greek").getAsString(), en = o.get("en").getAsString();
             assertTrue(ids.add(id), "doppelte ID " + id);
-            assertFalse(text.isBlank(), id);
-            assertTrue(text.split("\n").length <= 3, "mehr als 3 Zeilen: " + id);
-            assertTrue(text.length() <= 160, "zu lang fuer einen Scherben: " + id);
+            assertTrue(numbers.add(o.get("philogelos").getAsString()), "doppelte Nummer " + id);
+            assertTrue(greek.length() >= 30 && greek.length() <= 200, "Griechisch zu kurz oder zu lang: " + id);
+            assertTrue(en.length() >= 30 && en.length() <= 220, "Englisch zu kurz oder zu lang: " + id);
+            assertTrue(greek.chars().anyMatch(c -> c >= 0x370 && c <= 0x3ff || c >= 0x1f00 && c <= 0x1fff), "kein Griechisch: " + id);
+            assertFalse(greek.contains("ʼ"), "Apostroph U+02BC hat die Schrift nicht: " + id);
+            assertFalse(greek.contains("…"), "Textluecke im Witz: " + id);
         }
-        assertTrue(ids.size() >= 10);
+        assertTrue(ids.size() >= 30);
     }
 }
