@@ -45,11 +45,10 @@ final class Workbench {
     }
 
     Workbench(int index, Stations stations) {
-        List<Manuscripts.Fragment> all = Manuscripts.load();
         UiLayout ui = UiLayout.get();
         this.stations = stations;
-        this.fragmentIndex = Math.floorMod(index, all.size());
-        this.fragment = all.get(fragmentIndex);
+        this.fragmentIndex = index >= Manuscripts.OSTRAKA_BASE ? index : Math.floorMod(index, Manuscripts.load().size());
+        this.fragment = Manuscripts.at(index);
         this.press = new PressSession(fragment.words(), ui.lineSlots, ui.rows, ui.maxWordsPerLine,
                 START_STOCK, START_INK, START_IRON, new Random());
     }

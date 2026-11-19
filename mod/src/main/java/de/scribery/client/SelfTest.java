@@ -203,6 +203,15 @@ final class SelfTest {
                 if (bad > 0) LOG.warn("[selftest] Buch {}: {} Zeilen ausserhalb der Seite", id, bad);
             }
         });
+        // Ostraka: jede Witz-Scherbe laesst sich wie ein Manuskript an Pult, Presse und Uebersetzungstisch bearbeiten
+        then(0, () -> {
+            int sheets = 0;
+            for (int i = 0; i < de.scribery.Manuscripts.ostraka().size(); i++) {
+                Workbench w = new Workbench(de.scribery.Manuscripts.OSTRAKA_BASE + i);
+                sheets += w.press.sheets().size();
+            }
+            LOG.info("[selftest] Ostraka: {} Scherben, {} Boegen", de.scribery.Manuscripts.ostraka().size(), sheets);
+        });
         then(0, () -> mc.setScreen(new BookScreen("greek_grammar_book", BookText.read("greek_grammar_book"))));
         then(0, () -> ((BookScreen) mc.screen).goTo(8));
         shot(mc, "33-grammar-page-9");

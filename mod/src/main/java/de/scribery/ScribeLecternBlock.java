@@ -53,7 +53,7 @@ public class ScribeLecternBlock extends FacingBlock implements EntityBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack held, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!(held.getItem() instanceof ManuscriptFragmentItem) || ManuscriptFragmentItem.indexOf(held) < 0) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (LecternBlockEntity.indexOfItem(held) < 0) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (!(level.getBlockEntity(pos) instanceof LecternBlockEntity be) || !be.fragment().isEmpty()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }

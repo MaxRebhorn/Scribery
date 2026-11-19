@@ -25,6 +25,11 @@ public final class Manuscripts {
             "/assets/scribery/data/manuscripts.john1.json",
             "/assets/scribery/data/manuscripts.john-rest.json");
 
+    /** Ab diesem Index liegen die Ostraka (Witze auf Scherben); darunter die Johannes-Manuskripte. */
+    public static final int OSTRAKA_BASE = 100_000;
+    private static final String OSTRAKA_FILE = "/assets/scribery/data/ostraka.json";
+    private static List<Fragment> ostrakaCache;
+
     public record Fragment(String id, String ref, int chapter, List<PressWord> words, List<TileSession.Word> tileWords) {
         public String greekText() {
             StringBuilder sb = new StringBuilder();
@@ -51,6 +56,31 @@ public final class Manuscripts {
         if (morph.startsWith("V")) return 0;
         if (morph.startsWith("N") || morph.startsWith("A-")) return 1;
         return 2;
+    }
+
+    /** Die Ostraka mit Wort-Glossen (siehe tools/build_ostraka.py), in der Reihenfolge der Datei. */
+    public static synchronized List<Fragment> ostraka() {
+        if (ostrakaCache == null) ostrakaCache = java.util.Collections.unmodifiableList(read(OSTRAKA_FILE));
+        return ostrakaCache;
+    }
+
+    /** Index des Ostrakons mit dieser Witz-ID (ab {@link #OSTRAKA_BASE}), oder -1. */
+    public static int ostrakonIndex(String id) {
+        List<Fragment> all = ostraka();
+        for (int i = 0; i < all.size(); i++) if (all.get(i).id().equals(id)) return OSTRAKA_BASE + i;
+        return -1;
+    }
+
+    /** Gibt es ein Fragment (Manuskript oder Ostrakon) mit diesem Index? */
+    public static boolean has(int index) {
+        return index >= OSTRAKA_BASE ? index - OSTRAKA_BASE < ostraka().size() : index >= 0 && index < load().size();
+    }
+
+    /** Das Fragment zu einem Index: ab {@link #OSTRAKA_BASE} ein Ostrakon, sonst ein Manuskript (zyklisch, wie im Debug). */
+    public static Fragment at(int index) {
+        if (index >= OSTRAKA_BASE) return ostraka().get(index - OSTRAKA_BASE);
+        List<Fragment> all = load();
+        return all.get(Math.floorMod(index, all.size()));
     }
 
     /** Index des Manuskripts mit dieser ID, oder -1. */

@@ -97,6 +97,16 @@ public final class WorldgenTest {
     }
 
     private static void villagerCheck(ServerLevel level, BlockPos pos) {
+        // Ostrakon an der Uebersetzung: richtige Glossen gelten, falsche nicht
+        {
+            int idx = Manuscripts.OSTRAKA_BASE;
+            var frag = Manuscripts.at(idx);
+            var first = frag.tileWords().subList(0, 3);
+            var sheet = new SheetData(idx, 0, java.util.List.of(first.stream().map(w -> w.latin()).collect(java.util.stream.Collectors.joining(" "))), java.util.List.of());
+            boolean good = Translation.isCorrect(sheet, first.stream().map(w -> w.ok().get(0)).toList());
+            boolean bad = Translation.isCorrect(sheet, first.stream().map(w -> w.wrong().get(0)).toList());
+            LOG.info("[wgtest] Ostrakon-Uebersetzung: richtig akzeptiert={}, falsch akzeptiert={}", good, bad);
+        }
         var joke = Ostraka.random(level.random);
         LOG.info("[wgtest] Ostraka: {} Witze, Beispiel {} = {}", Ostraka.ids().size(), joke.get(ModComponents.JOKE.get()), Ostraka.joke(joke.get(ModComponents.JOKE.get())).greek());
         for (int lvl = 1; lvl <= 5; lvl++) {

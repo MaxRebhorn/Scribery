@@ -60,6 +60,12 @@ public final class Ostraka {
         return s;
     }
 
+    /** Index des Ostrakons am Pult und Uebersetzungstisch (ab {@link Manuscripts#OSTRAKA_BASE}), oder -1 ohne Witz. */
+    public static int fragmentIndex(ItemStack stack) {
+        String id = stack.get(ModComponents.JOKE.get());
+        return id == null ? -1 : Manuscripts.ostrakonIndex(id);
+    }
+
     public static ItemStack random(RandomSource random) {
         List<String> ids = ids();
         return of(ids.get(random.nextInt(ids.size())));

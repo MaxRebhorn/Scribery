@@ -28,9 +28,16 @@ public class LecternBlockEntity extends BlockEntity {
         if (level != null) level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
 
-    /** Index des Platzhalter-Textes, oder -1 wenn nichts auf dem Pult liegt. */
+    /** Index des Textes, den dieser Gegenstand traegt (Manuskript oder Ostrakon), oder -1, wenn es keinen gibt. */
+    public static int indexOfItem(ItemStack stack) {
+        if (stack.getItem() instanceof ManuscriptFragmentItem) return ManuscriptFragmentItem.indexOf(stack);
+        if (stack.getItem() instanceof OstrakonItem) return Ostraka.fragmentIndex(stack);
+        return -1;
+    }
+
+    /** Index des Textes auf dem Pult, oder -1 wenn nichts Lesbares darauf liegt. */
     public int debugFragmentIndex() {
-        return fragment.getItem() instanceof ManuscriptFragmentItem ? ManuscriptFragmentItem.indexOf(fragment) : -1;
+        return indexOfItem(fragment);
     }
 
     /** Zustand des aufgelegten Fragments (0 normal, sonst eine Variante), 0 wenn nichts darauf liegt. */

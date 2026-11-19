@@ -1,0 +1,9163 @@
+{
+ "schema": 1,
+ "placeholder": false,
+ "source": "Philogelos (Hierokles und Philagrios, vermutlich 4./5. Jh. n. Chr.), Zaehlung nach Thierfelder 1968. Griechischer Text: tools/data/src/philogelos-greek.json (Eulogikon, Public Domain Mark). Die englischen Texte sind eigene Uebersetzungen.",
+ "fragments": [
+  {
+   "id": "p1",
+   "ref": "Philogelos 1",
+   "chapter": 0,
+   "order": 1,
+   "tier": 1,
+   "reference_en": "A scholar ordered a lamp from a silversmith. When asked how big it should be, he said: \"Big enough for eight people.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἀργυροκόπῳ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "to a silversmith",
+       "to silversmith",
+       "silversmith"
+      ],
+      "wrong": [
+       "a silversmith",
+       "of a silversmith",
+       "a silversmiths"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἐπέταξε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "ordered",
+       "he ordered",
+       "commanded"
+      ],
+      "wrong": [
+       "is glorified",
+       "they may be",
+       "sets out"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "λύχνον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "lamp",
+       "a lamp"
+      ],
+      "wrong": [
+       "of lamp",
+       "to lamp",
+       "lamps"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ποιῆσαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to make"
+      ],
+      "wrong": [
+       "take courage",
+       "having looked at",
+       "i washed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "τοῦ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "of the"
+      ],
+      "wrong": [
+       "what",
+       "that",
+       "than the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "δὲ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "yet",
+       "if",
+       "or"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἐξετάσαντος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asking",
+       "having asked",
+       "when asked"
+      ],
+      "wrong": [
+       "he gave",
+       "i lost",
+       "you do believe"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "πηλίκον",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "how big",
+       "how large"
+      ],
+      "wrong": [
+       "well",
+       "at any time",
+       "rightly"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ποιήσει",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "he will make",
+       "will make"
+      ],
+      "wrong": [
+       "do you know",
+       "giving life",
+       "has"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἀπεκρίνατο",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "answered",
+       "he answered",
+       "replied"
+      ],
+      "wrong": [
+       "i will heal",
+       "he will take",
+       "i received sight"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "Ὡς",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "as",
+       "like",
+       "enough for"
+      ],
+      "wrong": [
+       "also",
+       "because",
+       "then"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "πρὸς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "to",
+       "toward",
+       "for"
+      ],
+      "wrong": [
+       "because of",
+       "beyond",
+       "away"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ὀκτὼ",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "eight"
+      ],
+      "wrong": [
+       "purple",
+       "alone",
+       "pleasing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἀνθρώπους",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "people",
+       "men"
+      ],
+      "wrong": [
+       "of people",
+       "to people",
+       "peoples"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "ref": "Philogelos 2",
+   "chapter": 0,
+   "order": 2,
+   "tier": 1,
+   "reference_en": "A scholar nearly drowned while swimming. He swore not to go into the water until he had first learned to swim properly.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "κολυμβῶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "swimming"
+      ],
+      "wrong": [
+       "is he",
+       "questioned",
+       "has fallen asleep"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "παρὰ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "by",
+       "beside",
+       "near"
+      ],
+      "wrong": [
+       "outside",
+       "out from",
+       "below"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "μικρὸν",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "little",
+       "a little"
+      ],
+      "wrong": [
+       "quickly",
+       "rather",
+       "there"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἐπνίγη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "was drowned",
+       "drowned",
+       "nearly drowned"
+      ],
+      "wrong": [
+       "done",
+       "do wash",
+       "may ask"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὤμοσε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "swore",
+       "he swore"
+      ],
+      "wrong": [
+       "may be",
+       "say you",
+       "to betray"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "δὲ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "while",
+       "nothing",
+       "now"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "εἰς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "into",
+       "to",
+       "for"
+      ],
+      "wrong": [
+       "without",
+       "as",
+       "near"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ὕδωρ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "water"
+      ],
+      "wrong": [
+       "of water",
+       "to water",
+       "waters"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "μὴ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "never",
+       "no longer",
+       "hosanna"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "εἰσελθεῖν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to enter",
+       "to go in"
+      ],
+      "wrong": [
+       "may drink",
+       "will i do",
+       "he was writing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἐὰν",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "if"
+      ],
+      "wrong": [
+       "not even",
+       "and not",
+       "nevertheless"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "μὴ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "except",
+       "how",
+       "certainly"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "μάθῃ",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "he learns",
+       "he should learn",
+       "learn"
+      ],
+      "wrong": [
+       "stood",
+       "i understand",
+       "rejoiced"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "πρῶτον",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "first"
+      ],
+      "wrong": [
+       "quickly",
+       "far",
+       "now"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "καλῶς",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "well",
+       "properly"
+      ],
+      "wrong": [
+       "so",
+       "secretly",
+       "where"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "κολυμβᾶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to swim"
+      ],
+      "wrong": [
+       "he entered",
+       "he has stood",
+       "forgive"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p3",
+   "ref": "Philogelos 3",
+   "chapter": 0,
+   "order": 3,
+   "tier": 1,
+   "reference_en": "A man said to a scholar's doctor: \"Doctor, when I get up from sleep I'm dazed for half an hour, and then I'm fine.\" The doctor said: \"Then get up half an hour later.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικῷ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "to a scholar",
+       "to scholar"
+      ],
+      "wrong": [
+       "a scholar",
+       "of a scholar",
+       "a scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τις",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "someone",
+       "a certain man",
+       "a man"
+      ],
+      "wrong": [
+       "of me",
+       "to us",
+       "among you"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἰατρῷ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "to a doctor",
+       "to doctor",
+       "doctor"
+      ],
+      "wrong": [
+       "a doctor",
+       "of a doctor",
+       "a doctors"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "προσελθὼν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "approaching",
+       "coming up",
+       "having approached"
+      ],
+      "wrong": [
+       "to release",
+       "it shall be",
+       "will rejoice"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "εἶπεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "have toiled for",
+       "having taken",
+       "he will go in"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "Ἰατρέ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "doctor",
+       "O doctor"
+      ],
+      "wrong": [
+       "of doctor",
+       "to doctor",
+       "doctors"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ὅταν",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "when",
+       "whenever"
+      ],
+      "wrong": [
+       "also",
+       "where",
+       "since"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἀναστῶ",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I get up",
+       "I rise",
+       "I arise"
+      ],
+      "wrong": [
+       "to walk",
+       "he will live",
+       "had"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἐκ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "from",
+       "out of"
+      ],
+      "wrong": [
+       "on the other side",
+       "from among",
+       "away"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "τοῦ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "of the"
+      ],
+      "wrong": [
+       "the one",
+       "when the",
+       "for the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ὕπνου",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "sleep",
+       "of sleep"
+      ],
+      "wrong": [
+       "to sleep",
+       "sleeps",
+       "of sleeps"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἡμιώριον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "half hour",
+       "half an hour"
+      ],
+      "wrong": [
+       "of half hour",
+       "to half hour",
+       "half hours"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ἐσκότωμαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I am dazed",
+       "I am dizzy",
+       "dizzy"
+      ],
+      "wrong": [
+       "has known",
+       "do carry",
+       "i will see"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "καὶ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "also"
+      ],
+      "wrong": [
+       "when",
+       "neither",
+       "now"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "εἶθ᾽",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "then",
+       "and then"
+      ],
+      "wrong": [
+       "whether",
+       "from here",
+       "in this way"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "οὕτως",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "thus",
+       "so",
+       "in this way"
+      ],
+      "wrong": [
+       "how",
+       "likewise",
+       "already"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "ἀποκαθίσταμαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I am restored",
+       "I recover",
+       "I am fine"
+      ],
+      "wrong": [
+       "seized",
+       "you are",
+       "beholding"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "καὶ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "also"
+      ],
+      "wrong": [
+       "when",
+       "and not",
+       "for"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "among the",
+       "some",
+       "at the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 19,
+     "greek": "ἰατρός",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "doctor",
+       "the doctor"
+      ],
+      "wrong": [
+       "of doctor",
+       "to doctor",
+       "doctors"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 20,
+     "greek": "Μετὰ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "after",
+       "with"
+      ],
+      "wrong": [
+       "within",
+       "when",
+       "at"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 21,
+     "greek": "τὸ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "at the",
+       "on the",
+       "that which"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 22,
+     "greek": "ἡμιώριον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "half hour",
+       "half an hour"
+      ],
+      "wrong": [
+       "of half hour",
+       "to half hour",
+       "half hours"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 23,
+     "greek": "ἐγείρου",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "get up",
+       "rise",
+       "wake up"
+      ],
+      "wrong": [
+       "they may seize",
+       "did believe",
+       "they may see"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p5",
+   "ref": "Philogelos 5",
+   "chapter": 0,
+   "order": 5,
+   "tier": 1,
+   "reference_en": "Someone met a scholar and said: \"Sir, I saw you in my dream.\" \"I swear, I was busy and didn't notice you.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικῷ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "to a scholar",
+       "to scholar"
+      ],
+      "wrong": [
+       "a scholar",
+       "of a scholar",
+       "a scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τις",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "someone",
+       "a certain man",
+       "a man"
+      ],
+      "wrong": [
+       "this one",
+       "himself",
+       "for me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἀπαντήσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "meeting",
+       "having met",
+       "met"
+      ],
+      "wrong": [
+       "writing",
+       "wiped",
+       "will make known"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "you will abide",
+       "he sent",
+       "receive"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "Κύριε",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "sir",
+       "lord"
+      ],
+      "wrong": [
+       "of sir",
+       "to sir",
+       "sirs"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "σχολαστικέ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "O scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "καθ᾽",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "during",
+       "according to"
+      ],
+      "wrong": [
+       "down",
+       "upon",
+       "meantime"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ὕπνους",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "dreams",
+       "sleep"
+      ],
+      "wrong": [
+       "dream",
+       "of dream",
+       "to dream"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "σε",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "you"
+      ],
+      "wrong": [
+       "in me myself",
+       "to you",
+       "of him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "εἶδον",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I saw",
+       "saw"
+      ],
+      "wrong": [
+       "you came forth",
+       "made",
+       "receives"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "to the",
+       "one",
+       "who was"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "δέ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "for",
+       "both",
+       "if"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "Μὰ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "by",
+       "I swear by"
+      ],
+      "wrong": [
+       "never",
+       "if",
+       "hosanna"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "τοὺς",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "from the",
+       "when the",
+       "one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "θεούς",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "gods"
+      ],
+      "wrong": [
+       "god",
+       "of god",
+       "to god"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "εἶπεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "i rejoice",
+       "you shall abide",
+       "will hear"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "ἀσχολῶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "being busy",
+       "busy"
+      ],
+      "wrong": [
+       "granted",
+       "having deceased",
+       "became"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "οὐ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "never",
+       "would",
+       "like"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "προσέσχον",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I noticed",
+       "I paid attention",
+       "noticed"
+      ],
+      "wrong": [
+       "cut off",
+       "has been revealed",
+       "he has left"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p8",
+   "ref": "Philogelos 8",
+   "chapter": 0,
+   "order": 8,
+   "tier": 1,
+   "reference_en": "A scholar wanted to catch a mouse that kept eating his books. So he took a bite of meat and sat in the dark.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "θέλων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "wanting",
+       "wishing"
+      ],
+      "wrong": [
+       "did he",
+       "you do",
+       "it will be"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "πιάσαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to catch",
+       "to seize"
+      ],
+      "wrong": [
+       "anointed",
+       "has set his seal",
+       "i will raise up"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "μῦν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "mouse",
+       "a mouse"
+      ],
+      "wrong": [
+       "of mouse",
+       "to mouse",
+       "mouses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "συνεχῶς",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "continually",
+       "constantly",
+       "always"
+      ],
+      "wrong": [
+       "early",
+       "in Latin",
+       "not yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "τὰ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "some",
+       "what",
+       "the who"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "βιβλία",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "books"
+      ],
+      "wrong": [
+       "book",
+       "of book",
+       "to book"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "αὐτοῦ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "his",
+       "of him"
+      ],
+      "wrong": [
+       "this one",
+       "me",
+       "to me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "τρώγοντα",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "eating",
+       "gnawing"
+      ],
+      "wrong": [
+       "he prunes",
+       "gathered",
+       "may go"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "κρέας",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "meat",
+       "flesh"
+      ],
+      "wrong": [
+       "of meat",
+       "to meat",
+       "meats"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "δακὼν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "biting",
+       "having bitten",
+       "bit"
+      ],
+      "wrong": [
+       "begging",
+       "were asking",
+       "they were saying"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἐν",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "on"
+      ],
+      "wrong": [
+       "by itself",
+       "according to",
+       "across"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "τῇ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "in the"
+      ],
+      "wrong": [
+       "who was",
+       "for the",
+       "when the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "σκοτίᾳ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "darkness",
+       "the dark",
+       "dark"
+      ],
+      "wrong": [
+       "of darkness",
+       "to darkness",
+       "bethzatha"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἐκάθισεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "sat",
+       "sat down",
+       "he sat"
+      ],
+      "wrong": [
+       "i understand",
+       "he girded",
+       "do draw out"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p11",
+   "ref": "Philogelos 11",
+   "chapter": 0,
+   "order": 11,
+   "tier": 1,
+   "reference_en": "A scholar wanted to see whether he looked good asleep, so he shut his eyes and looked in the mirror.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "θέλων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "wanting",
+       "wishing"
+      ],
+      "wrong": [
+       "has done",
+       "having supposed",
+       "sat"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἰδεῖν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to see"
+      ],
+      "wrong": [
+       "they may stone",
+       "are able",
+       "they will be"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "εἰ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "if",
+       "whether"
+      ],
+      "wrong": [
+       "to the place",
+       "for",
+       "not even"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "πρέποι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "it suits",
+       "it might suit",
+       "it is fitting"
+      ],
+      "wrong": [
+       "do yourself touch",
+       "have borne witness",
+       "they will persecute"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "αὐτῷ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "him",
+       "to him"
+      ],
+      "wrong": [
+       "of my",
+       "of her",
+       "i myself also"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "κοιμᾶσθαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to sleep"
+      ],
+      "wrong": [
+       "i have said",
+       "are able",
+       "is working"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "καμμύσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "closing his eyes",
+       "shutting his eyes",
+       "having shut his eyes"
+      ],
+      "wrong": [
+       "he was deeply moved",
+       "he poured out",
+       "he questioned"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἐνωπτρίζετο",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "looked in a mirror",
+       "looked in the mirror",
+       "was looking in a mirror"
+      ],
+      "wrong": [
+       "they drew",
+       "you ate",
+       "judge"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p14",
+   "ref": "Philogelos 14",
+   "chapter": 0,
+   "order": 14,
+   "tier": 1,
+   "reference_en": "A scholar bought a house, then leaned out of the window and asked the passers-by whether it suited him.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "οἰκίαν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "house",
+       "a house"
+      ],
+      "wrong": [
+       "of house",
+       "to house",
+       "houses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "πριάμενος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "buying",
+       "having bought",
+       "bought"
+      ],
+      "wrong": [
+       "she turned",
+       "he was raised up",
+       "shall i believe"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "εἶτα",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "then",
+       "next",
+       "afterwards"
+      ],
+      "wrong": [
+       "often",
+       "secretly",
+       "upwards"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "διὰ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "through",
+       "by"
+      ],
+      "wrong": [
+       "toward",
+       "before",
+       "but in"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "τῆς",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "of the"
+      ],
+      "wrong": [
+       "who",
+       "what",
+       "the one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "θυρίδος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "window",
+       "a window"
+      ],
+      "wrong": [
+       "of window",
+       "to window",
+       "windows"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "παρακύψας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "leaning out",
+       "peeping",
+       "having leaned out"
+      ],
+      "wrong": [
+       "is living",
+       "did listen",
+       "do draw out"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἠρώτα",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asked",
+       "was asking",
+       "he asked"
+      ],
+      "wrong": [
+       "will hear",
+       "they may worship",
+       "he was being"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "τοὺς",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "the who",
+       "with the",
+       "o"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "παρερχομένους",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "passing",
+       "passers-by",
+       "those passing"
+      ],
+      "wrong": [
+       "they were saying",
+       "you had known",
+       "to follow"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "εἰ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "if",
+       "whether"
+      ],
+      "wrong": [
+       "while",
+       "not",
+       "and yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "πρέπει",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "it suits",
+       "suits",
+       "it is fitting"
+      ],
+      "wrong": [
+       "he may be",
+       "they kept",
+       "will have"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "αὐτῷ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "him",
+       "to him"
+      ],
+      "wrong": [
+       "to me",
+       "for him",
+       "i"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p18",
+   "ref": "Philogelos 18",
+   "chapter": 0,
+   "order": 18,
+   "tier": 1,
+   "reference_en": "Someone told a scholar: \"The slave you sold me has died.\" \"By the gods,\" he said, \"he never did anything like that when he was with me.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικῷ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "to a scholar",
+       "to scholar"
+      ],
+      "wrong": [
+       "a scholar",
+       "of a scholar",
+       "a scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τις",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "someone",
+       "a certain man",
+       "a man"
+      ],
+      "wrong": [
+       "my",
+       "yours",
+       "them"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἀπαντήσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "meeting",
+       "having met",
+       "met"
+      ],
+      "wrong": [
+       "rejecting",
+       "you were believing",
+       "bring you"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "εἶπεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "they plotted",
+       "consoling",
+       "i understand"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "Ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "he who",
+       "on the",
+       "of those"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "δοῦλος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "slave",
+       "the slave"
+      ],
+      "wrong": [
+       "of slave",
+       "to slave",
+       "slaves"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ὃν",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "whom",
+       "which"
+      ],
+      "wrong": [
+       "to her",
+       "over me",
+       "of me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἐπώλησάς",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "you sold"
+      ],
+      "wrong": [
+       "do grumble",
+       "he takes",
+       "has been grasped"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "μοι",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "to me",
+       "me"
+      ],
+      "wrong": [
+       "himself",
+       "for them",
+       "of me myself"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἀπέθανε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "died",
+       "has died"
+      ],
+      "wrong": [
+       "they will keep",
+       "it has been heard",
+       "to go forth"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "Μὰ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "by",
+       "I swear by"
+      ],
+      "wrong": [
+       "unless",
+       "never",
+       "as"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "τοὺς",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "for the",
+       "who",
+       "which"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "θεούς",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "gods"
+      ],
+      "wrong": [
+       "god",
+       "of god",
+       "to god"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "may think",
+       "dozing",
+       "to be filled"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "παρ᾽",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "with",
+       "beside",
+       "by"
+      ],
+      "wrong": [
+       "when",
+       "about",
+       "after"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "ἐμοὶ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "me",
+       "to me"
+      ],
+      "wrong": [
+       "to us",
+       "of them",
+       "their"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "ὅτε",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "when"
+      ],
+      "wrong": [
+       "or",
+       "and",
+       "while"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "ἦν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "was",
+       "he was"
+      ],
+      "wrong": [
+       "is called",
+       "is to say",
+       "i speak"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "τοιοῦτον",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "such",
+       "such a thing"
+      ],
+      "wrong": [
+       "they themselves",
+       "and i myself",
+       "with him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 19,
+     "greek": "οὐδὲν",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "nothing"
+      ],
+      "wrong": [
+       "her",
+       "to her",
+       "yours"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 20,
+     "greek": "ἐποίησεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "did",
+       "he did",
+       "made"
+      ],
+      "wrong": [
+       "having received sight",
+       "fulfilled",
+       "he may be crucified"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p19",
+   "ref": "Philogelos 19",
+   "chapter": 0,
+   "order": 19,
+   "tier": 1,
+   "reference_en": "A scholar saw many sparrows in a tree. He spread out his coat and shook the tree, hoping to catch them.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἰδὼν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "seeing",
+       "having seen",
+       "saw"
+      ],
+      "wrong": [
+       "to seize",
+       "he shall steal",
+       "have been born"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "πολλοὺς",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "many"
+      ],
+      "wrong": [
+       "seamless",
+       "twelve",
+       "very act"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "στρουθοὺς",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "sparrows"
+      ],
+      "wrong": [
+       "sparrow",
+       "of sparrow",
+       "to sparrow"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἐπὶ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "on",
+       "upon"
+      ],
+      "wrong": [
+       "against",
+       "forth",
+       "but in"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "δένδρου",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "tree",
+       "of a tree"
+      ],
+      "wrong": [
+       "of tree",
+       "to tree",
+       "trees"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἑστῶτας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "standing"
+      ],
+      "wrong": [
+       "drinking",
+       "we speak",
+       "he may witness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἁπλώσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "spreading",
+       "having spread",
+       "spread out"
+      ],
+      "wrong": [
+       "having set",
+       "do sanctify",
+       "written"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "τὸν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "among the",
+       "when the",
+       "in the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "κόλπον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "fold",
+       "lap",
+       "bosom"
+      ],
+      "wrong": [
+       "of fold",
+       "to fold",
+       "folds"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἔσειε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "shook",
+       "was shaking",
+       "he shook"
+      ],
+      "wrong": [
+       "they were desiring",
+       "to have space",
+       "they may make"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "τὸ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "some",
+       "the who",
+       "to the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "δένδρον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "tree"
+      ],
+      "wrong": [
+       "of tree",
+       "to tree",
+       "trees"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ὡς",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "as",
+       "that",
+       "like"
+      ],
+      "wrong": [
+       "and",
+       "also",
+       "to where"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ὑποδεξόμενος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to catch",
+       "to receive",
+       "about to catch"
+      ],
+      "wrong": [
+       "spoke",
+       "do buy",
+       "work do you perform"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "τοὺς",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "to the",
+       "from the",
+       "the who"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "στρουθούς",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "sparrows"
+      ],
+      "wrong": [
+       "sparrow",
+       "of sparrow",
+       "to sparrow"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p21",
+   "ref": "Philogelos 21",
+   "chapter": 0,
+   "order": 21,
+   "tier": 1,
+   "reference_en": "A scholar who wanted to sleep had no pillow, so he told his slave to put a jar under his head. The slave said it was hard, so he ordered it filled with feathers.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "καθευδῆσαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to sleep",
+       "to go to sleep"
+      ],
+      "wrong": [
+       "you marvel",
+       "you say",
+       "having stooped"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "βουλόμενος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "wishing",
+       "wanting"
+      ],
+      "wrong": [
+       "he testifies",
+       "they may have",
+       "you may keep"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "μὴ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "none",
+       "nothing",
+       "indeed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἔχων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "having"
+      ],
+      "wrong": [
+       "do i ask",
+       "consider you",
+       "do make straight"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "προσκεφάλαιον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "pillow",
+       "a pillow"
+      ],
+      "wrong": [
+       "of pillow",
+       "to pillow",
+       "pillows"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἐκέλευσε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "ordered",
+       "commanded",
+       "told"
+      ],
+      "wrong": [
+       "they may be defiled",
+       "you gain",
+       "i take"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "τῷ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "to the"
+      ],
+      "wrong": [
+       "one",
+       "of the",
+       "to those"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "δούλῳ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "slave",
+       "to the slave",
+       "to slave"
+      ],
+      "wrong": [
+       "of slave",
+       "slaves",
+       "of slaves"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "κεράμιον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "jar",
+       "a jar"
+      ],
+      "wrong": [
+       "of jar",
+       "to jar",
+       "jars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ὑποθεῖναι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to put under",
+       "to place under"
+      ],
+      "wrong": [
+       "shall abide",
+       "they came",
+       "will find"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "τοῦ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "of the"
+      ],
+      "wrong": [
+       "that",
+       "the one",
+       "for the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "δὲ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "however",
+       "and also",
+       "since"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "εἰπόντος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "saying",
+       "having said",
+       "said"
+      ],
+      "wrong": [
+       "may be displayed",
+       "was keeping",
+       "having space"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ὅτι",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that",
+       "because"
+      ],
+      "wrong": [
+       "in that",
+       "so that",
+       "not even"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "σκληρόν",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "hard"
+      ],
+      "wrong": [
+       "sinless",
+       "worse",
+       "thin"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "ἐστι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "is",
+       "it is"
+      ],
+      "wrong": [
+       "hold you in suspense",
+       "they understood",
+       "i may release"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "πτερῶν",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "feathers",
+       "of feathers",
+       "with feathers"
+      ],
+      "wrong": [
+       "feather",
+       "of feather",
+       "to feather"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "αὐτὸ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "it"
+      ],
+      "wrong": [
+       "for you",
+       "her",
+       "he himself"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 19,
+     "greek": "γεμισθῆναι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to be filled",
+       "to be filled up"
+      ],
+      "wrong": [
+       "he will be loved",
+       "were persecuting",
+       "accusing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 20,
+     "greek": "ἐκέλευσεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "ordered",
+       "commanded",
+       "told"
+      ],
+      "wrong": [
+       "is being called",
+       "carrying out",
+       "drank"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p25",
+   "ref": "Philogelos 25",
+   "chapter": 0,
+   "order": 25,
+   "tier": 1,
+   "reference_en": "A scholar was sailing in a fierce storm while his slaves wept. \"Don't cry,\" he said, \"I've freed you all in my will.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἐν",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "on"
+      ],
+      "wrong": [
+       "before",
+       "meantime",
+       "from with"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "τῷ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "to the"
+      ],
+      "wrong": [
+       "of those",
+       "with the",
+       "that"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "πλέειν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "sailing",
+       "to sail"
+      ],
+      "wrong": [
+       "they know",
+       "may believe",
+       "it was"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "χειμῶνος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "storm",
+       "winter",
+       "of storm"
+      ],
+      "wrong": [
+       "to storm",
+       "storms",
+       "of storms"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὄντος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "being",
+       "was"
+      ],
+      "wrong": [
+       "i received sight",
+       "will be grieved",
+       "i washed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "σφοδροῦ",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "violent",
+       "fierce",
+       "severe"
+      ],
+      "wrong": [
+       "some",
+       "two hundred",
+       "four months"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "καὶ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "also"
+      ],
+      "wrong": [
+       "where",
+       "to where",
+       "when"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "τῶν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "of the"
+      ],
+      "wrong": [
+       "one",
+       "of those",
+       "o"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "οἰκετῶν",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "slaves",
+       "servants",
+       "household slaves"
+      ],
+      "wrong": [
+       "slave",
+       "of slave",
+       "to slave"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "κλαιόντων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "weeping",
+       "crying"
+      ],
+      "wrong": [
+       "will glorify",
+       "will make known",
+       "to accuse"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "Μὴ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not",
+       "don't"
+      ],
+      "wrong": [
+       "surely not ever",
+       "surely",
+       "no longer"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "κλαίετε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "weep",
+       "cry"
+      ],
+      "wrong": [
+       "he took away",
+       "he may bring out",
+       "do save"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "were amazed",
+       "having looked at",
+       "forgive"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "πάντας",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "all"
+      ],
+      "wrong": [
+       "heavenly",
+       "second",
+       "much"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "γὰρ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "for",
+       "because"
+      ],
+      "wrong": [
+       "so that",
+       "now",
+       "neither"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "ὑμᾶς",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "you"
+      ],
+      "wrong": [
+       "we ourselves",
+       "over me",
+       "me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "ἐν",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "on"
+      ],
+      "wrong": [
+       "out of",
+       "up to",
+       "among"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "διαθήκαις",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "will",
+       "testament",
+       "wills"
+      ],
+      "wrong": [
+       "of will",
+       "to will",
+       "door"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 19,
+     "greek": "ἐλευθέρους",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "free"
+      ],
+      "wrong": [
+       "truly",
+       "another",
+       "a second time"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 20,
+     "greek": "ἀφῆκα",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I freed",
+       "I have freed",
+       "I released"
+      ],
+      "wrong": [
+       "they divided",
+       "have heard",
+       "brought"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p28",
+   "ref": "Philogelos 28",
+   "chapter": 0,
+   "order": 28,
+   "tier": 1,
+   "reference_en": "A dog bit a scholar's thumb. He said: \"If it had caught my cloak, it would be torn.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικοῦ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "of a scholar",
+       "scholar's",
+       "of scholar"
+      ],
+      "wrong": [
+       "a scholar",
+       "to a scholar",
+       "a scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "τὸν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "than the",
+       "that",
+       "one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἀντίχειρον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "thumb"
+      ],
+      "wrong": [
+       "of thumb",
+       "to thumb",
+       "thumbs"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "κύων",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "dog",
+       "a dog"
+      ],
+      "wrong": [
+       "of dog",
+       "to dog",
+       "dogs"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἔδακεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "bit"
+      ],
+      "wrong": [
+       "they will keep",
+       "may go away",
+       "shall set free"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "o",
+       "of the",
+       "what"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "δὲ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "although",
+       "since",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "εἶπεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "will rise again",
+       "looked in a mirror",
+       "you were dressing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "Εἰ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "if"
+      ],
+      "wrong": [
+       "while",
+       "in order that",
+       "whenever"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "τὸ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "among the",
+       "he who",
+       "to the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἱμάτιον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "cloak",
+       "garment",
+       "coat"
+      ],
+      "wrong": [
+       "of cloak",
+       "to cloak",
+       "cloaks"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἐπίασεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "seized",
+       "caught",
+       "grabbed"
+      ],
+      "wrong": [
+       "opened",
+       "has made known",
+       "sanctify"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ἐσχισμένον",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "torn",
+       "ripped"
+      ],
+      "wrong": [
+       "had given",
+       "is working",
+       "delivered"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ἂν",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "would",
+       "perhaps"
+      ],
+      "wrong": [
+       "maybe",
+       "surely not",
+       "surely"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "εἴη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "it would be",
+       "would be",
+       "might be"
+      ],
+      "wrong": [
+       "to go",
+       "we may be doing",
+       "he goes"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p29",
+   "ref": "Philogelos 29",
+   "chapter": 0,
+   "order": 29,
+   "tier": 1,
+   "reference_en": "One of two twin brothers died. A scholar met the living one and asked: \"Are you the one who died, or your brother?\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Διδύμων",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "twin",
+       "of twins",
+       "twins'"
+      ],
+      "wrong": [
+       "of twin",
+       "to twin",
+       "twins"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἀδελφῶν",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "brothers",
+       "of brothers"
+      ],
+      "wrong": [
+       "brother",
+       "of brother",
+       "to brother"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "with the",
+       "one",
+       "among the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἕτερος",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "other",
+       "one",
+       "the other"
+      ],
+      "wrong": [
+       "great",
+       "thin",
+       "right"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἐτελεύτησεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "died",
+       "he died"
+      ],
+      "wrong": [
+       "they may have",
+       "may see",
+       "to drink"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "οὖν",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "therefore",
+       "so",
+       "then"
+      ],
+      "wrong": [
+       "to where",
+       "since",
+       "whenever"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἀπαντήσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "meeting",
+       "having met",
+       "met"
+      ],
+      "wrong": [
+       "do question",
+       "he was deeply moved",
+       "they may ask"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "τῷ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "to the"
+      ],
+      "wrong": [
+       "who",
+       "with the",
+       "the who"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ζῶντι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "living",
+       "to the living"
+      ],
+      "wrong": [
+       "to bear them",
+       "he came",
+       "to kill"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἠρώτα",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asked",
+       "was asking",
+       "he asked"
+      ],
+      "wrong": [
+       "said",
+       "does judge",
+       "it is necessary"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "Σὺ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "you"
+      ],
+      "wrong": [
+       "among you",
+       "such",
+       "some"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ἀπέθανες",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "you died",
+       "died"
+      ],
+      "wrong": [
+       "having believed",
+       "was following",
+       "it is lawful"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ἢ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "or",
+       "either"
+      ],
+      "wrong": [
+       "and not",
+       "because",
+       "instead"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "those",
+       "than the",
+       "that which"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "ἀδελφός",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "brother"
+      ],
+      "wrong": [
+       "of brother",
+       "to brother",
+       "brothers"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "σου",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "your",
+       "of you"
+      ],
+      "wrong": [
+       "you",
+       "but you yourselves",
+       "and he"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p31",
+   "ref": "Philogelos 31",
+   "chapter": 0,
+   "order": 31,
+   "tier": 1,
+   "reference_en": "A scholar wanted to cross a river, so he boarded the boat riding his horse. Asked why he didn't get off, he said: \"I'm in a hurry.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "διαπερᾶσαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to cross",
+       "to cross over"
+      ],
+      "wrong": [
+       "do ask",
+       "there came",
+       "they may console"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ποταμὸν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "river",
+       "a river"
+      ],
+      "wrong": [
+       "of river",
+       "to river",
+       "rivers"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "βουλόμενος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "wishing",
+       "wanting"
+      ],
+      "wrong": [
+       "reclining",
+       "brought",
+       "will teach"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἀνέβη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "went up",
+       "boarded",
+       "got in"
+      ],
+      "wrong": [
+       "they understood",
+       "i may do",
+       "to release"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "εἰς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "into",
+       "to",
+       "for"
+      ],
+      "wrong": [
+       "on the other side",
+       "unto",
+       "because of"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "τὸ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "they",
+       "of the",
+       "one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "πλοῖον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "boat",
+       "ship"
+      ],
+      "wrong": [
+       "of boat",
+       "to boat",
+       "boats"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "μετὰ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "after",
+       "with"
+      ],
+      "wrong": [
+       "onto",
+       "in",
+       "in the presence"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "τοῦ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "of the"
+      ],
+      "wrong": [
+       "when the",
+       "than the",
+       "who was"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἵππου",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "horse",
+       "of a horse",
+       "his horse"
+      ],
+      "wrong": [
+       "of horse",
+       "to horse",
+       "horses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἐποχούμενος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "riding",
+       "mounted"
+      ],
+      "wrong": [
+       "he loved",
+       "is going down",
+       "it does see"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "πυθομένου",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asking",
+       "inquiring",
+       "when asked"
+      ],
+      "wrong": [
+       "biting",
+       "will dress",
+       "has said"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "δέ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "as",
+       "or",
+       "indeed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "τινος",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "someone",
+       "a certain man",
+       "of a certain"
+      ],
+      "wrong": [
+       "her",
+       "of me myself",
+       "after him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "διὰ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "through",
+       "by"
+      ],
+      "wrong": [
+       "but in",
+       "for",
+       "from among"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "τί",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "why",
+       "what"
+      ],
+      "wrong": [
+       "three times",
+       "more",
+       "likewise"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "οὐ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "nothing",
+       "except",
+       "like"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "κάτεισι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "he comes down",
+       "comes down",
+       "he gets off"
+      ],
+      "wrong": [
+       "i desire",
+       "blame",
+       "they hated"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 19,
+     "greek": "Σπουδάζω",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I am in a hurry",
+       "I hurry",
+       "I am hurrying"
+      ],
+      "wrong": [
+       "work do you perform",
+       "when was giving thanks",
+       "it bears"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 20,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "are wishing",
+       "we may be doing",
+       "he testifies"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p41",
+   "ref": "Philogelos 41",
+   "chapter": 0,
+   "order": 41,
+   "tier": 1,
+   "reference_en": "A scholar who was selling his house carried a stone from it around as a sample.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "οἰκίαν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "house",
+       "a house"
+      ],
+      "wrong": [
+       "of house",
+       "to house",
+       "houses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "πωλῶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "selling"
+      ],
+      "wrong": [
+       "he knew",
+       "gathered",
+       "asking"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "λίθον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "stone",
+       "a stone"
+      ],
+      "wrong": [
+       "of stone",
+       "to stone",
+       "stones"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἀπ᾽",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "from"
+      ],
+      "wrong": [
+       "away",
+       "across",
+       "with"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "αὐτῆς",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "it",
+       "of it",
+       "her"
+      ],
+      "wrong": [
+       "for me",
+       "with him",
+       "itself"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "εἰς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "into",
+       "to",
+       "for"
+      ],
+      "wrong": [
+       "when",
+       "above",
+       "with"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "δεῖγμα",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "sample",
+       "a sample"
+      ],
+      "wrong": [
+       "of sample",
+       "to sample",
+       "samples"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "περιέφερεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "carried around",
+       "carried about",
+       "was carrying around"
+      ],
+      "wrong": [
+       "have hoped",
+       "he was able",
+       "do bear witness"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p66",
+   "ref": "Philogelos 66",
+   "chapter": 0,
+   "order": 66,
+   "tier": 1,
+   "reference_en": "A scholar saw a barge on the river, heavily loaded with grain. \"If the river rises a little,\" he said, \"it will sink.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἐν",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "on"
+      ],
+      "wrong": [
+       "where",
+       "because of",
+       "precedence"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ποταμῷ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "river",
+       "in river"
+      ],
+      "wrong": [
+       "of river",
+       "to river",
+       "rivers"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "θεασάμενος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "seeing",
+       "having seen",
+       "noticing"
+      ],
+      "wrong": [
+       "they were",
+       "shall we do",
+       "lived"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἁλιάδα",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "barge",
+       "boat",
+       "a barge"
+      ],
+      "wrong": [
+       "of barge",
+       "to barge",
+       "barges"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "σίτου",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "grain",
+       "of grain",
+       "wheat"
+      ],
+      "wrong": [
+       "to grain",
+       "grains",
+       "of grains"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "μεστὴν",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "full",
+       "filled"
+      ],
+      "wrong": [
+       "seamless",
+       "large",
+       "own"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "καὶ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "also"
+      ],
+      "wrong": [
+       "yet",
+       "nevertheless",
+       "nothing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "βεβαρημένην",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "loaded",
+       "weighed down",
+       "heavily loaded"
+      ],
+      "wrong": [
+       "i gave",
+       "she called",
+       "to recline"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "Ἐὰν",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "if"
+      ],
+      "wrong": [
+       "and also",
+       "nevertheless",
+       "that"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "μικρόν",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "a little",
+       "little"
+      ],
+      "wrong": [
+       "from where",
+       "in Hebrew",
+       "from here"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "εἶπεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "was following",
+       "may do",
+       "does listen"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "some",
+       "to those",
+       "one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ποταμὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "river"
+      ],
+      "wrong": [
+       "of river",
+       "to river",
+       "rivers"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "αὐξήσῃ",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "it rises",
+       "rises",
+       "it grows"
+      ],
+      "wrong": [
+       "you have seen",
+       "is saying",
+       "he was crucified"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "βυθισθήσεται",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "it will sink",
+       "will sink",
+       "will be sunk"
+      ],
+      "wrong": [
+       "will have",
+       "he bears witness",
+       "will he do"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p74",
+   "ref": "Philogelos 74",
+   "chapter": 0,
+   "order": 74,
+   "tier": 1,
+   "reference_en": "Someone told a scholar with a skinny horse: \"Your horse is looking toward Hades.\" The scholar said: \"I can see that too.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικῷ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "to a scholar",
+       "to scholar"
+      ],
+      "wrong": [
+       "a scholar",
+       "of a scholar",
+       "a scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "λεπτὸν",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "thin",
+       "skinny",
+       "lean"
+      ],
+      "wrong": [
+       "seventh",
+       "secret",
+       "inferior"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἵππον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "horse",
+       "a horse"
+      ],
+      "wrong": [
+       "of horse",
+       "to horse",
+       "horses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἔχοντι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "having",
+       "who has",
+       "to one having"
+      ],
+      "wrong": [
+       "was he",
+       "do have breakfast",
+       "being translated"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "προσελθών",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "approaching",
+       "coming up",
+       "having approached"
+      ],
+      "wrong": [
+       "is dried up",
+       "it rises",
+       "they have known"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "τις",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "someone",
+       "a certain man",
+       "a man"
+      ],
+      "wrong": [
+       "of mine",
+       "them",
+       "same"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "Ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "at the",
+       "from the",
+       "which"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἵππος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "horse",
+       "the horse"
+      ],
+      "wrong": [
+       "of horse",
+       "to horse",
+       "horses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "σου",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "your",
+       "of you"
+      ],
+      "wrong": [
+       "after him",
+       "when he",
+       "for him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "was sitting",
+       "have toiled for",
+       "i have been glorified"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "εἰς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "into",
+       "to",
+       "for"
+      ],
+      "wrong": [
+       "through",
+       "before",
+       "within"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ᾍδου",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "Hades",
+       "of Hades"
+      ],
+      "wrong": [
+       "to Hades",
+       "Hadeses",
+       "of Hadeses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ὁρᾷ",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "looks",
+       "sees",
+       "is looking"
+      ],
+      "wrong": [
+       "will have",
+       "he comes",
+       "says he"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "καὶ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "also"
+      ],
+      "wrong": [
+       "than",
+       "therefore",
+       "both"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "from the",
+       "when the",
+       "that which"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "σχολαστικός",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "the scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "Κἀγὼ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "I too",
+       "I also",
+       "and I"
+      ],
+      "wrong": [
+       "but you yourselves",
+       "of his",
+       "him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "βλέπω",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I see",
+       "see"
+      ],
+      "wrong": [
+       "to bear",
+       "had reclined",
+       "may be displayed"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p75",
+   "ref": "Philogelos 75",
+   "chapter": 0,
+   "order": 75,
+   "tier": 1,
+   "reference_en": "A scholar who was ill and hungry was told that it wasn't yet the fourth hour. Not believing it, he ordered the clock to be brought to him.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "νοσῶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "being ill",
+       "sick",
+       "ill"
+      ],
+      "wrong": [
+       "do glorify",
+       "to judge",
+       "to wash"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "εἶτα",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "then",
+       "next",
+       "afterwards"
+      ],
+      "wrong": [
+       "on ground",
+       "in Latin",
+       "not yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "πεινῶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "hungry",
+       "being hungry",
+       "starving"
+      ],
+      "wrong": [
+       "having loved",
+       "i have told",
+       "consoling"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ὡς",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "as",
+       "that",
+       "like"
+      ],
+      "wrong": [
+       "in order that",
+       "nor",
+       "yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "οὐδέπω",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "not yet"
+      ],
+      "wrong": [
+       "together",
+       "correctly",
+       "since"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "τετάρτην",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "fourth"
+      ],
+      "wrong": [
+       "well",
+       "to each",
+       "for one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ὥραν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "hour"
+      ],
+      "wrong": [
+       "of hour",
+       "to hour",
+       "hours"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἀπηγγέλη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "was told",
+       "was announced",
+       "was reported"
+      ],
+      "wrong": [
+       "it comes",
+       "am able",
+       "believing"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἀπιστῶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "not believing",
+       "disbelieving",
+       "doubting"
+      ],
+      "wrong": [
+       "being deeply moved",
+       "abiding",
+       "I appeal"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "πρὸς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "to",
+       "toward",
+       "for"
+      ],
+      "wrong": [
+       "onto",
+       "away",
+       "across"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἑαυτὸν",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "himself"
+      ],
+      "wrong": [
+       "but you yourselves",
+       "to all of you",
+       "whom"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "τὸ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "to the",
+       "with the",
+       "one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ὡρολόγιον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "clock",
+       "water clock",
+       "sundial"
+      ],
+      "wrong": [
+       "of clock",
+       "to clock",
+       "clocks"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἐκέλευσε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "ordered",
+       "commanded",
+       "told"
+      ],
+      "wrong": [
+       "I was ill",
+       "reaping",
+       "having stood"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "κομισθῆναι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "to be brought",
+       "to be fetched"
+      ],
+      "wrong": [
+       "she said",
+       "he will know",
+       "do show"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p77",
+   "ref": "Philogelos 77",
+   "chapter": 0,
+   "order": 77,
+   "tier": 1,
+   "reference_en": "A scholar carried out his son's body and met the boy's teacher. \"Forgive me,\" he said, \"that my son did not come to school. He has died.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἐκκομίσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "carrying out",
+       "having carried out",
+       "bringing out"
+      ],
+      "wrong": [
+       "i have said",
+       "having begun",
+       "he will give"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "τὸν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "on the",
+       "some",
+       "those"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "υἱόν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "son"
+      ],
+      "wrong": [
+       "of son",
+       "to son",
+       "sons"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ἀπαντήσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "meeting",
+       "having met",
+       "met"
+      ],
+      "wrong": [
+       "he inquired",
+       "they listen",
+       "they were frightened"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "τῷ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "to the"
+      ],
+      "wrong": [
+       "with the",
+       "o",
+       "that which"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "διδασκάλῳ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "teacher",
+       "to the teacher",
+       "to teacher"
+      ],
+      "wrong": [
+       "of teacher",
+       "teachers",
+       "of teachers"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "αὐτοῦ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "his",
+       "of him"
+      ],
+      "wrong": [
+       "this one",
+       "of me myself",
+       "but you yourselves"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "Σύγγνωθι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "forgive",
+       "pardon",
+       "excuse"
+      ],
+      "wrong": [
+       "will know",
+       "shall desire",
+       "pierced"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "you will follow",
+       "to work",
+       "he was able"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ὅτι",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that",
+       "because"
+      ],
+      "wrong": [
+       "in order that",
+       "and yet",
+       "both"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "οὐκ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "would",
+       "maybe",
+       "by"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ἦλθεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "came",
+       "went"
+      ],
+      "wrong": [
+       "to manifest",
+       "lying on",
+       "to rise"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "they",
+       "among the",
+       "to the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "υἱός",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "son"
+      ],
+      "wrong": [
+       "of son",
+       "to son",
+       "sons"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "μου",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "my",
+       "of me"
+      ],
+      "wrong": [
+       "they themselves",
+       "himself",
+       "yours"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "εἰς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "into",
+       "to",
+       "for"
+      ],
+      "wrong": [
+       "of",
+       "precedence",
+       "by itself"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "τὴν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "who was",
+       "some",
+       "he who"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "σχολήν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "school",
+       "the school"
+      ],
+      "wrong": [
+       "of school",
+       "to school",
+       "schools"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 19,
+     "greek": "ἀπέθανε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "died",
+       "has died"
+      ],
+      "wrong": [
+       "i saw",
+       "work do you perform",
+       "shall i crucify"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 20,
+     "greek": "γάρ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "for",
+       "because"
+      ],
+      "wrong": [
+       "nevertheless",
+       "as",
+       "if"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p93",
+   "ref": "Philogelos 93",
+   "chapter": 0,
+   "order": 93,
+   "tier": 1,
+   "reference_en": "A scholar learned that a ladder has twenty steps going up, and asked whether it has as many going down.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "μαθὼν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "learning",
+       "having learned",
+       "learned"
+      ],
+      "wrong": [
+       "were they able",
+       "they honor",
+       "he shall be"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "περὶ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "about",
+       "concerning"
+      ],
+      "wrong": [
+       "for sake of",
+       "near",
+       "by itself"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "κλίμακός",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "ladder",
+       "of a ladder"
+      ],
+      "wrong": [
+       "of ladder",
+       "to ladder",
+       "ladders"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "τινος",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "someone",
+       "a certain man",
+       "of a certain"
+      ],
+      "wrong": [
+       "my",
+       "mine",
+       "and to me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὅτι",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that",
+       "because"
+      ],
+      "wrong": [
+       "not",
+       "and",
+       "indeed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἀναβαινόντων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "going up",
+       "ascending",
+       "of those going up"
+      ],
+      "wrong": [
+       "he may be born",
+       "were looking",
+       "he dies"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἔχει",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "has",
+       "holds",
+       "contains"
+      ],
+      "wrong": [
+       "he was staying",
+       "having followed",
+       "you will become"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "βαθμοὺς",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "steps"
+      ],
+      "wrong": [
+       "step",
+       "of step",
+       "to step"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "εἴκοσιν",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "twenty"
+      ],
+      "wrong": [
+       "inferior",
+       "like",
+       "woven"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἐπύθετο",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asked",
+       "inquired"
+      ],
+      "wrong": [
+       "sent",
+       "hated",
+       "shall serve"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "εἰ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "if",
+       "whether"
+      ],
+      "wrong": [
+       "since",
+       "then",
+       "that"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "καὶ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "also"
+      ],
+      "wrong": [
+       "neither",
+       "not",
+       "yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "καταβαινόντων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "going down",
+       "descending",
+       "of those going down"
+      ],
+      "wrong": [
+       "rejoices",
+       "having washed",
+       "you may believe"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "τοσοῦτοί",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "so many",
+       "as many"
+      ],
+      "wrong": [
+       "no more",
+       "in Hebrew",
+       "soon"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "εἰσιν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "are",
+       "there are"
+      ],
+      "wrong": [
+       "it is enough",
+       "you shall release",
+       "they persecuted"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p101",
+   "ref": "Philogelos 101",
+   "chapter": 0,
+   "order": 101,
+   "tier": 1,
+   "reference_en": "A scholar saw twin brothers and heard people marvelling at how alike they were. \"This one isn't as much like that one,\" he said, \"as that one is like this one.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἀδελφοὺς",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "brothers"
+      ],
+      "wrong": [
+       "brother",
+       "of brother",
+       "to brother"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "διδύμους",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "twin",
+       "twins"
+      ],
+      "wrong": [
+       "of stone",
+       "an amazing thing",
+       "three"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἰδὼν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "seeing",
+       "having seen",
+       "saw"
+      ],
+      "wrong": [
+       "to haul in",
+       "was betraying",
+       "descending"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "θαυμαζόντων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "marveling",
+       "wondering",
+       "amazed"
+      ],
+      "wrong": [
+       "you say",
+       "they did break",
+       "may go away"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "τινῶν",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "some",
+       "of some",
+       "certain people"
+      ],
+      "wrong": [
+       "to them",
+       "they themselves",
+       "you yourself"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "τὴν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "for the",
+       "when the",
+       "the one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ὁμοιότητα",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "likeness",
+       "similarity",
+       "resemblance"
+      ],
+      "wrong": [
+       "of likeness",
+       "to likeness",
+       "likenesses"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "αὐτῶν",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "their",
+       "of them"
+      ],
+      "wrong": [
+       "with you",
+       "of her",
+       "yourselves"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "Οὐχ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "like",
+       "no longer",
+       "as"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "οὕτως",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "thus",
+       "so",
+       "in this way"
+      ],
+      "wrong": [
+       "well",
+       "always",
+       "three times"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "φησίν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "says",
+       "he says",
+       "said"
+      ],
+      "wrong": [
+       "do bear witness",
+       "to abide",
+       "he may depart"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ὅμοιός",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "similar",
+       "like",
+       "alike"
+      ],
+      "wrong": [
+       "everyone",
+       "woven",
+       "new"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ἐστιν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "is",
+       "it is"
+      ],
+      "wrong": [
+       "answer you",
+       "standing",
+       "are bearing witness"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "οὗτος",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "this one",
+       "this",
+       "he"
+      ],
+      "wrong": [
+       "for me",
+       "nothing",
+       "and to me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "ἐκείνῳ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "that one",
+       "to that one",
+       "to that"
+      ],
+      "wrong": [
+       "for you",
+       "but you yourselves",
+       "and he"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "ὡς",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "as",
+       "that",
+       "like"
+      ],
+      "wrong": [
+       "to the place",
+       "instead",
+       "and not"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "ἐκεῖνος",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "that one",
+       "that"
+      ],
+      "wrong": [
+       "of them",
+       "his",
+       "of him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "τούτῳ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "this one",
+       "to this one",
+       "to this"
+      ],
+      "wrong": [
+       "to all of you",
+       "to him",
+       "yourselves"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p104",
+   "ref": "Philogelos 104",
+   "chapter": 0,
+   "order": 104,
+   "tier": 1,
+   "reference_en": "A miser writing his will named himself as his heir.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Φιλάργυρος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "miser",
+       "a miser"
+      ],
+      "wrong": [
+       "of miser",
+       "to miser",
+       "misers"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "διαθήκας",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "will",
+       "testament",
+       "a will"
+      ],
+      "wrong": [
+       "of will",
+       "to will",
+       "works"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "γράφων",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "writing"
+      ],
+      "wrong": [
+       "was coming",
+       "to kill",
+       "they may stone"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἑαυτὸν",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "himself"
+      ],
+      "wrong": [
+       "but you yourselves",
+       "on his part",
+       "over me"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "κληρονόμον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "heir",
+       "an heir"
+      ],
+      "wrong": [
+       "of heir",
+       "to heir",
+       "heirs"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ἔταξεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "appointed",
+       "named",
+       "designated"
+      ],
+      "wrong": [
+       "he was speaking",
+       "cried out",
+       "was set"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p125",
+   "ref": "Philogelos 125",
+   "chapter": 0,
+   "order": 125,
+   "tier": 1,
+   "reference_en": "An Abderite's sparrow died. Some time later he saw an ostrich and said: \"If my sparrow had lived, it would be that big by now.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Ἀβδηρίτου",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "of an Abderite",
+       "Abderite's",
+       "Abderite"
+      ],
+      "wrong": [
+       "an Abderite",
+       "to an Abderite",
+       "an Abderites"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "στρουθίον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "sparrow",
+       "little sparrow"
+      ],
+      "wrong": [
+       "of sparrow",
+       "to sparrow",
+       "sparrows"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἀπέθανε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "died",
+       "has died"
+      ],
+      "wrong": [
+       "written",
+       "to enter",
+       "he has been"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "μετὰ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "after",
+       "with"
+      ],
+      "wrong": [
+       "from among",
+       "out from",
+       "that"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "οὖν",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "therefore",
+       "so",
+       "then"
+      ],
+      "wrong": [
+       "but",
+       "not even",
+       "yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "χρόνον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "time",
+       "a time",
+       "some time"
+      ],
+      "wrong": [
+       "of time",
+       "to time",
+       "times"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἰδὼν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "seeing",
+       "having seen",
+       "saw"
+      ],
+      "wrong": [
+       "having stood",
+       "is dried up",
+       "do feed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "στρουθοκάμηλον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "ostrich",
+       "an ostrich"
+      ],
+      "wrong": [
+       "of ostrich",
+       "to ostrich",
+       "ostriches"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "εἶπεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "shall have eaten",
+       "has come",
+       "recovering"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "Ἐὰν",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "if"
+      ],
+      "wrong": [
+       "not even",
+       "nevertheless",
+       "and also"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἔζη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "lived",
+       "was alive",
+       "had lived"
+      ],
+      "wrong": [
+       "was sitting",
+       "already standing",
+       "was keeping"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "τὸ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "of the",
+       "who was",
+       "one"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "στρουθίον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "sparrow",
+       "little sparrow"
+      ],
+      "wrong": [
+       "of sparrow",
+       "to sparrow",
+       "sparrows"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "μου",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "my",
+       "of me"
+      ],
+      "wrong": [
+       "on him",
+       "this one",
+       "as him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἤδη",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "already",
+       "by now",
+       "now"
+      ],
+      "wrong": [
+       "continually",
+       "evil",
+       "together"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "ἂν",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "would",
+       "perhaps"
+      ],
+      "wrong": [
+       "about",
+       "then would",
+       "unless"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "τηλικοῦτον",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "so big",
+       "that big",
+       "so large"
+      ],
+      "wrong": [
+       "at the time",
+       "how many",
+       "ever yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "ὑπῆρχεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "would be",
+       "was",
+       "existed"
+      ],
+      "wrong": [
+       "being",
+       "being busy",
+       "judge"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p148",
+   "ref": "Philogelos 148",
+   "chapter": 0,
+   "order": 148,
+   "tier": 1,
+   "reference_en": "A chatty barber asked a witty man: \"How shall I cut your hair?\" \"In silence,\" he said.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Εὐτράπελος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "witty man",
+       "joker",
+       "wit"
+      ],
+      "wrong": [
+       "of witty man",
+       "to witty man",
+       "witty men"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "φλυάρου",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "chatty",
+       "chattering",
+       "talkative"
+      ],
+      "wrong": [
+       "devil",
+       "taught",
+       "fifty"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "κουρέως",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "barber",
+       "of a barber"
+      ],
+      "wrong": [
+       "of barber",
+       "to barber",
+       "barbers"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἐρωτήσαντος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asking",
+       "having asked",
+       "when asked"
+      ],
+      "wrong": [
+       "may marvel",
+       "do save",
+       "having sat down"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "Πῶς",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "how"
+      ],
+      "wrong": [
+       "here",
+       "how many",
+       "upwards"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "σε",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "you"
+      ],
+      "wrong": [
+       "and i myself",
+       "of him",
+       "after her"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "κείρω",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "shall I cut",
+       "I cut",
+       "do I cut"
+      ],
+      "wrong": [
+       "i have beheld",
+       "were satisfied",
+       "is coming"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "Σιωπῶν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "being silent",
+       "silently",
+       "in silence",
+       "silent"
+      ],
+      "wrong": [
+       "you shall release",
+       "having been crucified with",
+       "having received sight"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "having wiped",
+       "they are",
+       "seized"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p174",
+   "ref": "Philogelos 174",
+   "chapter": 0,
+   "order": 174,
+   "tier": 1,
+   "reference_en": "A doctor had given up on a sick man. When the man recovered, he walked a big circle around the doctor. Asked why, he said: \"You told me I was dying, and I am ashamed to be alive.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Κυμαῖον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "man from Kyme",
+       "Kymaean",
+       "a Kymaean"
+      ],
+      "wrong": [
+       "of man from Kyme",
+       "to man from Kyme",
+       "man from Kymes"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "νοσοῦντα",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "sick",
+       "ill",
+       "being ill"
+      ],
+      "wrong": [
+       "is being named",
+       "i am coming",
+       "have heard"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἀπήλπισεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "gave up on",
+       "despaired of",
+       "gave up"
+      ],
+      "wrong": [
+       "will set free",
+       "you have sent",
+       "you loved"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἰατρός",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "doctor",
+       "the doctor"
+      ],
+      "wrong": [
+       "of doctor",
+       "to doctor",
+       "doctors"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "to the",
+       "than the",
+       "he who"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "δὲ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "and yet",
+       "nevertheless",
+       "where"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ὑγιάνας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "recovering",
+       "having recovered",
+       "becoming healthy"
+      ],
+      "wrong": [
+       "to believe",
+       "was teaching",
+       "went out"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "περιέκαμπτε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "went around",
+       "avoided",
+       "walked around"
+      ],
+      "wrong": [
+       "they had dined",
+       "they brought",
+       "shall desire"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "τὸν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "at the",
+       "of those",
+       "what"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἰατρόν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "doctor",
+       "the doctor"
+      ],
+      "wrong": [
+       "of doctor",
+       "to doctor",
+       "doctors"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἐρωτηθεὶς",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asked",
+       "being asked",
+       "when asked"
+      ],
+      "wrong": [
+       "will thirst",
+       "find",
+       "let us go"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "οὖν",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "therefore",
+       "so",
+       "then"
+      ],
+      "wrong": [
+       "that",
+       "because",
+       "and yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "τὴν",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "to the",
+       "when the",
+       "those"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "αἰτίαν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "reason",
+       "cause"
+      ],
+      "wrong": [
+       "of reason",
+       "to reason",
+       "reasons"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἀπεκρίνατο",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "answered",
+       "he answered",
+       "replied"
+      ],
+      "wrong": [
+       "he gives",
+       "were looking",
+       "will hear"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "Εἰπόντος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "saying",
+       "having said",
+       "when you said"
+      ],
+      "wrong": [
+       "he was afraid",
+       "you marvel",
+       "to recline"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "σου",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "your",
+       "of you"
+      ],
+      "wrong": [
+       "of it",
+       "this one",
+       "him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "ὅτι",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that",
+       "because"
+      ],
+      "wrong": [
+       "and yet",
+       "while",
+       "both"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 18,
+     "greek": "ἀποθνῄσκω",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I am dying",
+       "I die"
+      ],
+      "wrong": [
+       "have been born",
+       "you may know",
+       "he drove out"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 19,
+     "greek": "αἰσχύνομαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I am ashamed",
+       "ashamed"
+      ],
+      "wrong": [
+       "carried",
+       "they have been forgiven",
+       "believed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 20,
+     "greek": "ζήσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "having lived",
+       "living",
+       "being alive"
+      ],
+      "wrong": [
+       "is going down",
+       "i speak",
+       "sanctify"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p223",
+   "ref": "Philogelos 223",
+   "chapter": 0,
+   "order": 223,
+   "tier": 1,
+   "reference_en": "A starving man saw a loaf of bread lying on a lintel. He said: \"God, either lift me up, or bring that down.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Λιμόξηρος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "starving man",
+       "hungry man",
+       "starving"
+      ],
+      "wrong": [
+       "of starving man",
+       "to starving man",
+       "starving men"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἰδὼν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "seeing",
+       "having seen",
+       "saw"
+      ],
+      "wrong": [
+       "you love",
+       "they may know",
+       "you will follow"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἄρτον",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "bread",
+       "loaf",
+       "a loaf"
+      ],
+      "wrong": [
+       "of bread",
+       "to bread",
+       "breads"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἐν",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "in",
+       "on"
+      ],
+      "wrong": [
+       "onto",
+       "at",
+       "every"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ὑπερθύρῳ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "lintel",
+       "doorway",
+       "over the door"
+      ],
+      "wrong": [
+       "of lintel",
+       "to lintel",
+       "lintels"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "κείμενον",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "lying",
+       "placed",
+       "lying there"
+      ],
+      "wrong": [
+       "shall keep",
+       "having given counsel",
+       "it shall abide"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "εἶπε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "had stood",
+       "may abide",
+       "do you ask"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "Θεέ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "God",
+       "O God"
+      ],
+      "wrong": [
+       "of God",
+       "to God",
+       "Gods"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἢ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "or",
+       "either"
+      ],
+      "wrong": [
+       "but",
+       "to where",
+       "however"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ἐμὲ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "me"
+      ],
+      "wrong": [
+       "you",
+       "and i",
+       "your"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ὕψωσον",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "raise",
+       "lift up",
+       "exalt"
+      ],
+      "wrong": [
+       "it will become",
+       "you may fall away",
+       "he has believed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἢ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "or",
+       "either"
+      ],
+      "wrong": [
+       "and also",
+       "whenever",
+       "where"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ἐκεῖνον",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "that one",
+       "that",
+       "him"
+      ],
+      "wrong": [
+       "nothing",
+       "for me",
+       "for us"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ταπείνωσον",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "lower",
+       "humble",
+       "bring down"
+      ],
+      "wrong": [
+       "shall have eaten",
+       "shall draw",
+       "drank"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p253",
+   "ref": "Philogelos 253",
+   "chapter": 0,
+   "order": 253,
+   "tier": 1,
+   "reference_en": "A scholar met a doctor and said: \"Forgive me, and don't blame me, that I haven't been ill.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἰατρῷ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "to a doctor",
+       "to doctor",
+       "doctor"
+      ],
+      "wrong": [
+       "a doctor",
+       "of a doctor",
+       "a doctors"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "συναντήσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "meeting",
+       "having met",
+       "met"
+      ],
+      "wrong": [
+       "have received",
+       "being deeply moved",
+       "he will live"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "Συγχώρησόν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "forgive",
+       "pardon"
+      ],
+      "wrong": [
+       "is dried up",
+       "shall know",
+       "has been born"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "μοι",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "to me",
+       "me"
+      ],
+      "wrong": [
+       "himself",
+       "over me",
+       "i"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "εἷπε",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "told",
+       "were",
+       "i find"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "καὶ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "also"
+      ],
+      "wrong": [
+       "to the place",
+       "then",
+       "neither"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "μή",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not",
+       "don't"
+      ],
+      "wrong": [
+       "hosanna",
+       "then would",
+       "surely"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "μοι",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "to me",
+       "me"
+      ],
+      "wrong": [
+       "of me myself",
+       "us",
+       "her"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "μέμψῃ",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "blame",
+       "you blame",
+       "find fault"
+      ],
+      "wrong": [
+       "seek",
+       "had gone up",
+       "they plotted"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ὅτι",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that",
+       "because"
+      ],
+      "wrong": [
+       "in order that",
+       "then",
+       "since"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "οὐκ",
+     "lemma": "",
+     "morph": "PRT",
+     "gloss": {
+      "ok": [
+       "not"
+      ],
+      "wrong": [
+       "surely not ever",
+       "if",
+       "maybe"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "ἐνόσησα",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I was ill",
+       "I fell ill",
+       "I became sick"
+      ],
+      "wrong": [
+       "he believed",
+       "having opened",
+       "is living"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p255",
+   "ref": "Philogelos 255",
+   "chapter": 0,
+   "order": 255,
+   "tier": 1,
+   "reference_en": "A scholar learned that a raven lives for more than two hundred years, so he bought one to try it out.",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικὸς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "scholar",
+       "a scholar"
+      ],
+      "wrong": [
+       "of scholar",
+       "to scholar",
+       "scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "μαθών",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "learning",
+       "having learned",
+       "learned"
+      ],
+      "wrong": [
+       "did listen",
+       "he dwelt",
+       "having given counsel"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ὅτι",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "that",
+       "because"
+      ],
+      "wrong": [
+       "to the place",
+       "and not",
+       "when"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "on the",
+       "the who",
+       "that which"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "κόραξ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "raven",
+       "crow"
+      ],
+      "wrong": [
+       "of raven",
+       "to raven",
+       "ravens"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ὑπὲρ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "over",
+       "more than",
+       "above"
+      ],
+      "wrong": [
+       "under",
+       "during",
+       "from with"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "τὰ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "of the",
+       "the one",
+       "to the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "διακόσια",
+     "lemma": "",
+     "morph": "A-NSM",
+     "gloss": {
+      "ok": [
+       "two hundred"
+      ],
+      "wrong": [
+       "barley",
+       "just",
+       "wholly"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "ἔτη",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "years"
+      ],
+      "wrong": [
+       "year",
+       "of year",
+       "to year"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ζῇ",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "lives",
+       "he lives",
+       "it lives"
+      ],
+      "wrong": [
+       "went away",
+       "will seize",
+       "to make"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἀγοράσας",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "buying",
+       "having bought",
+       "bought"
+      ],
+      "wrong": [
+       "will be",
+       "to bring",
+       "they were warming themselves"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "κόρακα",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "raven",
+       "a raven",
+       "crow"
+      ],
+      "wrong": [
+       "of raven",
+       "to raven",
+       "ravens"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "εἰς",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "into",
+       "to",
+       "for"
+      ],
+      "wrong": [
+       "meantime",
+       "every",
+       "within"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "ἀπόπειραν",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "trial",
+       "test",
+       "attempt"
+      ],
+      "wrong": [
+       "of trial",
+       "to trial",
+       "trials"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "ἔτρεφεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "fed",
+       "raised",
+       "was feeding",
+       "kept"
+      ],
+      "wrong": [
+       "you may fall away",
+       "will worship",
+       "to increase"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p264",
+   "ref": "Philogelos 264",
+   "chapter": 0,
+   "order": 264,
+   "tier": 1,
+   "reference_en": "A witty man was in court before a governor, who dozed off. He shouted: \"I appeal!\" \"To whom?\" \"To you, awake.\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Εὐτράπελος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "witty man",
+       "joker",
+       "wit"
+      ],
+      "wrong": [
+       "of witty man",
+       "to witty man",
+       "witty men"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἐπὶ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "on",
+       "upon"
+      ],
+      "wrong": [
+       "onto",
+       "in the presence",
+       "within"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "ἡγεμόνος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "governor",
+       "of a governor",
+       "leader"
+      ],
+      "wrong": [
+       "of governor",
+       "to governor",
+       "governors"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ἐδικάζετο",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "was in court",
+       "went to court",
+       "was being tried"
+      ],
+      "wrong": [
+       "exceeded",
+       "having stooped down",
+       "are being"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "τοῦ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the",
+       "of the"
+      ],
+      "wrong": [
+       "he who",
+       "which",
+       "who"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "δὲ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "also",
+       "or",
+       "yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "νυστάζοντος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "dozing",
+       "nodding off",
+       "being drowsy"
+      ],
+      "wrong": [
+       "sitting",
+       "do bring",
+       "reclined"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἐβόησεν",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "shouted",
+       "cried out"
+      ],
+      "wrong": [
+       "they will behold",
+       "he rubbed",
+       "is insane"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "Ἐκκαλοῦμαι",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "I appeal"
+      ],
+      "wrong": [
+       "are we to do",
+       "beholding",
+       "said"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "on the",
+       "among the",
+       "than the"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "δὲ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "and",
+       "but",
+       "then"
+      ],
+      "wrong": [
+       "now",
+       "not even",
+       "and also"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ἔφη",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "said",
+       "he said"
+      ],
+      "wrong": [
+       "they may ask",
+       "rejoiced",
+       "you have laid"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 12,
+     "greek": "Ἐπὶ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "to",
+       "against",
+       "before"
+      ],
+      "wrong": [
+       "up to",
+       "where",
+       "on account of"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 13,
+     "greek": "τίνα",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "whom",
+       "who"
+      ],
+      "wrong": [
+       "same",
+       "when he",
+       "of us"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 14,
+     "greek": "κἀκεῖνος",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "and he",
+       "and that one"
+      ],
+      "wrong": [
+       "some",
+       "to me",
+       "we ourselves"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 15,
+     "greek": "Ἐπὶ",
+     "lemma": "",
+     "morph": "PREP",
+     "gloss": {
+      "ok": [
+       "to",
+       "against",
+       "before"
+      ],
+      "wrong": [
+       "about",
+       "into",
+       "meantime"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 16,
+     "greek": "σὲ",
+     "lemma": "",
+     "morph": "P-NSM",
+     "gloss": {
+      "ok": [
+       "you"
+      ],
+      "wrong": [
+       "yourselves",
+       "I too",
+       "for him"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 17,
+     "greek": "γρηγοροῦντα",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "awake",
+       "being awake",
+       "waking"
+      ],
+      "wrong": [
+       "have loved",
+       "weep you",
+       "being in the middle"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p265",
+   "ref": "Philogelos 265",
+   "chapter": 0,
+   "order": 265,
+   "tier": 1,
+   "reference_en": "Asked how many measures an amphora holds, a scholar answered: \"Of wine or of water?\"",
+   "words": [
+    {
+     "i": 0,
+     "greek": "Σχολαστικοῦ",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "of a scholar",
+       "scholar's",
+       "of scholar"
+      ],
+      "wrong": [
+       "a scholar",
+       "to a scholar",
+       "a scholars"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 1,
+     "greek": "ἐρωτηθέντος",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "asked",
+       "being asked",
+       "when asked"
+      ],
+      "wrong": [
+       "you say",
+       "it is necessary for",
+       "i will show"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 2,
+     "greek": "πόσους",
+     "lemma": "",
+     "morph": "ADV",
+     "gloss": {
+      "ok": [
+       "how many"
+      ],
+      "wrong": [
+       "ever yet",
+       "since",
+       "yet"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 3,
+     "greek": "ξέστας",
+     "lemma": "",
+     "morph": "N-NPM",
+     "gloss": {
+      "ok": [
+       "measures",
+       "pints",
+       "jugs"
+      ],
+      "wrong": [
+       "measure",
+       "of measure",
+       "to measure"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 4,
+     "greek": "ὁ",
+     "lemma": "",
+     "morph": "T-NSM",
+     "gloss": {
+      "ok": [
+       "the"
+      ],
+      "wrong": [
+       "of those",
+       "when the",
+       "some"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 5,
+     "greek": "ἀμφορεὺς",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "amphora",
+       "jar",
+       "the amphora"
+      ],
+      "wrong": [
+       "of amphora",
+       "to amphora",
+       "amphoras"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 6,
+     "greek": "ἔχει",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "has",
+       "holds",
+       "contains"
+      ],
+      "wrong": [
+       "she heard",
+       "you enact",
+       "having followed"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 7,
+     "greek": "ἀπεκρίνατο",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "answered",
+       "he answered",
+       "replied"
+      ],
+      "wrong": [
+       "shall i crucify",
+       "appointed",
+       "to ask"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 8,
+     "greek": "Οἴνου",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "wine",
+       "of wine"
+      ],
+      "wrong": [
+       "to wine",
+       "wines",
+       "of wines"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 9,
+     "greek": "λέγεις",
+     "lemma": "",
+     "morph": "V-AAI-3S",
+     "gloss": {
+      "ok": [
+       "you say",
+       "you mean",
+       "do you mean"
+      ],
+      "wrong": [
+       "there are",
+       "live",
+       "torn"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 10,
+     "greek": "ἢ",
+     "lemma": "",
+     "morph": "CONJ",
+     "gloss": {
+      "ok": [
+       "or",
+       "either"
+      ],
+      "wrong": [
+       "even",
+       "even as",
+       "now"
+      ],
+      "status": "draft"
+     }
+    },
+    {
+     "i": 11,
+     "greek": "ὕδατος",
+     "lemma": "",
+     "morph": "N-NSM",
+     "gloss": {
+      "ok": [
+       "water",
+       "of water"
+      ],
+      "wrong": [
+       "to water",
+       "waters",
+       "of waters"
+      ],
+      "status": "draft"
+     }
+    }
+   ]
+  }
+ ]
+}

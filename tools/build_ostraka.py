@@ -9,8 +9,15 @@ Uebersetzungen fuer das Spiel (keine Uebernahme einer modernen Uebersetzung). Au
 """
 import json
 import os
+import random
+import re
+import sys
+from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import build_manuscripts as BM  # noqa: E402  (falsche Antworten wie bei den Johannes-Manuskripten)
+import ostraka_glosses as GL  # noqa: E402
 SRC = os.path.join(ROOT, "tools", "data", "src", "philogelos-greek.json")
 OUT = os.path.join(ROOT, "tools", "data", "ostraka-jokes.json")
 
@@ -64,10 +71,65 @@ EN = {
 }
 
 
+# Diese Witze haben Wort-Glossen und lassen sich am Uebersetzungstisch uebersetzen (alle echt, aus dem Philogelos).
+KEEP = [1, 2, 3, 5, 8, 11, 14, 18, 19, 21, 25, 28, 29, 31, 41, 66, 74, 75, 77, 93, 101, 104, 125, 148, 174, 223, 253, 255, 264, 265]
+
+
+def tokens(greek):
+    out = []
+    for t in greek.split():
+        t = re.sub(r"^[—]+|[·;.,?!]+$", "", t)
+        if t:
+            out.append(t)
+    return out
+
+
+def word_pool():
+    """Glossen der Johannes-Woerter je Wortart, als Auswahl fuer falsche Antworten."""
+    pool = defaultdict(list)
+    for name in ("manuscripts.john1.json", "manuscripts.john-rest.json"):
+        for f in json.load(open(os.path.join(ROOT, "tools", "data", name), encoding="utf-8"))["fragments"]:
+            for w in f["words"]:
+                g = w["gloss"]["ok"][0]
+                cls = BM.pcls(w["morph"])
+                if g not in pool[cls]:
+                    pool[cls].append(g)
+    return pool
+
+
+MORPH = {"V": "V-AAI-3S", "N": "N-NSM", "NP": "N-NPM", "A": "A-NSM", "T": "T-NSM", "PREP": "PREP", "CONJ": "CONJ",
+         "PRT": "PRT", "ADV": "ADV", "P": "P-NSM"}
+
+
+def build_fragments(jokes):
+    """Die Joke-Texte als Fragmente im Format der Manuskripte (Worte mit richtigen und falschen Antworten)."""
+    pool = word_pool()
+    rng = random.Random(20261119)
+    # Eigene richtige Antworten kommen auch in den Pool, damit die falschen Antworten zum Thema der Witze passen
+    for g in GL.G.values():
+        cls = BM.pcls(MORPH[g[0]])
+        if g[1][0] not in pool[cls]:
+            pool[cls].append(g[1][0])
+    frags, problems = [], []
+    for j in jokes:
+        words = []
+        for i, t in enumerate(tokens(j["greek"])):
+            kind, ok = GL.G[t]
+            morph = MORPH[kind]
+            wrong = BM.wrong_answers({"morph": morph}, ok, pool, rng, ())
+            if len(wrong) < 3:
+                problems.append(f"{j['id']} {t}: nur {len(wrong)} falsche Antworten")
+            words.append({"i": i, "greek": t, "lemma": "", "morph": morph, "gloss": {"ok": ok, "wrong": wrong, "status": "draft"}})
+        frags.append({"id": j["id"], "ref": f"Philogelos {j['philogelos']}", "chapter": 0, "order": j["philogelos"], "tier": 1,
+                      "reference_en": j["en"], "words": words})
+    assert not problems, problems
+    return frags
+
+
 def main():
     src = json.load(open(SRC, encoding="utf-8"))["jokes"]
     jokes = []
-    for n in sorted(EN):
+    for n in KEEP:
         greek = src[str(n)].split(" Σχολαστικὸς ὑπαντήσας")[0]       # Nr. 22 hat in der Quelle eine lueckenhafte Variante angehaengt
         greek = greek.replace("ʼ", "᾽")      # Apostroph: ᾽ wie in den Manuskripten (die Schrift hat kein ʼ)
         jokes.append({"id": f"p{n}", "philogelos": n, "greek": greek, "en": EN[n]})
@@ -80,7 +142,11 @@ def main():
     with open(OUT, "w", encoding="utf-8", newline="\n") as f:
         json.dump(doc, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    print(len(jokes), "Witze")
+    frags = build_fragments(jokes)
+    with open(os.path.join(ROOT, "tools", "data", "ostraka.json"), "w", encoding="utf-8", newline=chr(10)) as f:
+        json.dump({"schema": 1, "placeholder": False, "source": doc["source"], "fragments": frags}, f, ensure_ascii=False, indent=1)
+        f.write(chr(10))
+    print(len(jokes), "Witze,", sum(len(x["words"]) for x in frags), "Woerter")
 
 
 if __name__ == "__main__":

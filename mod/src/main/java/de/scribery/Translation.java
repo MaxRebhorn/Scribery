@@ -14,9 +14,8 @@ final class Translation {
      * ueber die lateinische Form im Platzhalter-Fragment.
      */
     static boolean isCorrect(SheetData sheet, List<String> english) {
-        List<Manuscripts.Fragment> all = Manuscripts.load();
-        if (sheet.fragment() < 0 || sheet.fragment() >= all.size()) return false;
-        List<TileSession.Word> words = all.get(sheet.fragment()).tileWords();
+        if (sheet.fragment() < 0 || !Manuscripts.has(sheet.fragment())) return false;
+        List<TileSession.Word> words = Manuscripts.at(sheet.fragment()).tileWords();
         List<String> latin = new ArrayList<>();
         for (String line : sheet.lines()) for (String w : line.split(" ")) if (!w.isBlank()) latin.add(w);
         if (latin.size() != english.size()) return false;
