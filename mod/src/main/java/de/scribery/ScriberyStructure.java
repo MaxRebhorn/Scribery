@@ -64,6 +64,21 @@ public class ScriberyStructure extends Structure {
             return Optional.empty();                                               // nur an Land, nicht im Wasser
         }
         Direction facing = Direction.Plane.HORIZONTAL.getRandomDirection(ctx.random());
+        if (kind == Kind.CATACOMB || kind == Kind.CATACOMB_DESERT || kind == Kind.HOUSE_SAND || kind == Kind.HOUSE_MUD) {
+            // Nur unter der Erde: Das Gelaende ueber den Raeumen darf nirgends tiefer liegen als am Eingang (hoechstens 1 Block),
+            // sonst ragt die Decke an einem Hang aus dem Boden. Geprueft wird ueber die ganze Grundflaeche, nicht nur am Eingang.
+            boolean catacomb = kind == Kind.CATACOMB || kind == Kind.CATACOMB_DESERT;
+            int reach = catacomb ? 46 : 22, side = catacomb ? 16 : 12;
+            Direction right = facing.getClockWise();
+            for (int u = 0; u <= reach; u += 6) {
+                for (int v = -side; v <= side; v += side / 2) {
+                    int sx = x + facing.getStepX() * u + right.getStepX() * v, sz = z + facing.getStepZ() * u + right.getStepZ() * v;
+                    int top = ctx.chunkGenerator().getFirstOccupiedHeight(sx, sz, Heightmap.Types.WORLD_SURFACE_WG, ctx.heightAccessor(), ctx.randomState());
+                    int bottom = ctx.chunkGenerator().getFirstOccupiedHeight(sx, sz, Heightmap.Types.OCEAN_FLOOR_WG, ctx.heightAccessor(), ctx.randomState());
+                    if (top != bottom || top < floor - 1) return Optional.empty();   // Wasser darueber oder Gelaende faellt ab
+                }
+            }
+        }
         BlockPos origin = new BlockPos(x, floor - 1, z);                           // der oberste feste Block
         int r = kind.radius;
         BoundingBox box = new BoundingBox(x - r, Math.max(ctx.heightAccessor().getMinBuildHeight(), floor - 34), z - r,

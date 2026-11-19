@@ -43,6 +43,38 @@ public final class WorldgenTest {
                 }
             }
             int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+            if (id.trim().startsWith("jigsaw:")) {   // Pool-Test: viele einzelne Haeuser aus einem Dorf-Pool setzen und zaehlen, wie oft unser Haus vorkommt
+                String pool = id.trim().substring(7);
+                int withHouse = 0, total = 40;
+                for (int n = 0; n < total; n++) {
+                    int px = 3000 + n * 48, pz = 3000 + i * 100;
+                    for (int cx = (px >> 4) - 2; cx <= (px >> 4) + 3; cx++) for (int cz = (pz >> 4) - 2; cz <= (pz >> 4) + 3; cz++) {
+                        level.getChunk(cx, cz, net.minecraft.world.level.chunk.status.ChunkStatus.FULL, true);
+                    }
+                    int py = level.getHeight(Heightmap.Types.WORLD_SURFACE, px, pz);
+                    try {
+                        server.getCommands().getDispatcher().execute("place jigsaw " + pool + " minecraft:building_entrance 1 " + px + " " + py + " " + pz, src);
+                    } catch (com.mojang.brigadier.exceptions.CommandSyntaxException ex) {
+                        continue;
+                    }
+                    boolean found = false;
+                    for (int dx = -12; dx <= 12 && !found; dx++) for (int dz = -12; dz <= 12 && !found; dz++) for (int dy = -2; dy <= 8 && !found; dy++) {
+                        if (level.getBlockState(new BlockPos(px + dx, py + dy, pz + dz)).is(ModBlocks.SCRIBE_LECTERN.get())) found = true;
+                    }
+                    if (found) withHouse++;
+                }
+                LOG.info("[wgtest] Pool {}: {} von {} Haeusern waren das Schreiberhaus", pool, withHouse, total);
+                continue;
+            }
+            if (id.trim().startsWith("house:")) {   // Schreiberhaus bauen und als Dorf-Vorlage speichern (siehe DebugVillageHouse)
+                try {
+                    DebugVillageHouse.buildAndSave(level, new BlockPos(x, y + 40, z), id.trim().substring(6));
+                    LOG.info("[wgtest] Schreiberhaus {} gespeichert", id.trim().substring(6));
+                } catch (java.io.IOException | RuntimeException ex) {
+                    LOG.error("[wgtest] Schreiberhaus fehlgeschlagen", ex);
+                }
+                continue;
+            }
             if (id.trim().startsWith("dump:")) {   // Vorlage in die Welt setzen und Schichten als Text ausgeben (nur zum Untersuchen)
                 var tpl = server.getStructureManager().get(net.minecraft.resources.ResourceLocation.parse(id.trim().substring(5)));
                 if (tpl.isEmpty()) { LOG.info("[wgtest] Vorlage fehlt"); continue; }

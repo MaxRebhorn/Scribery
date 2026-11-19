@@ -95,3 +95,6 @@ Für das Eisbiom keine Katakombe, sondern die Spur eines Wanderers, der unterweg
 - ein paar Ostraka oder Papyrusfetzen im Schnee, Fußspuren (Schneeschichten),
 - Steinhaufen (Cairn) als Wegmarke.
 Das lässt sich mit der **eingefrorenen Karawane** verbinden: die Karawane ist die große Version, der Wanderer die kleine, häufige.
+
+
+**Nur unter der Erde (19.11.2026):** Katakomben und die unterirdischen Haeuser (Sand, Schlamm) werden nur gesetzt, wenn das Gelaende ueber der ganzen Grundflaeche (Katakombe 46 Bloecke tief und 16 breit, Haus 22 und 12) nirgends mehr als 1 Block unter dem Eingang liegt und kein Wasser darueber steht. Vorher ragte die Decke an Haengen aus dem Boden.

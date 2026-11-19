@@ -26,7 +26,7 @@ final class RaggedPaper {
         {0xFF5A4630, 0xFF8E7A52, 0xFFB09A68, 0xFFCDB985, 0xFF3E3228, 0xFF7F917C},   // wasser: Sonder = Wasserrand
         {0xFF6B5638, 0xFFB89E6E, 0xFFDCCB9B, 0xFFEBDDB4, 0xFF8E7D66, 0xFF000000},   // verblasst: blasse Tinte
         {0xFF3C5F8E, 0xFF7FA6CE, 0xFFA8C8E4, 0xFFBFD9EE, 0xFF22395A, 0xFFEAF6FF},   // gefroren: Sonder = Frost
-        {0xFF54322A, 0xFF774837, 0xFFAD6C56, 0xFF98604A, 0xFF1E1410, 0xFF84503E},   // Scherbe (Ostrakon): Terrakotta wie auf Fotos echter Ostraka, Sonder = dunklere Koernung
+        {0xFF5A3A22, 0xFFA8886C, 0xFFE2CCAC, 0xFFC6A888, 0xFF2E2A2C, 0xFF9C7C60},   // Scherbe (Ostrakon): dieselben Tonfarben wie die Item-Textur (textures/item/ostrakon.png)
     };
 
     private static final int SHERD_PAD = 8;
