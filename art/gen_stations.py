@@ -1,15 +1,19 @@
-"""Erzeugt die Modelle und Texturen der Werkbloecke (Pult, Presse, Lettern-Schrank, Uebersetzungstisch, Minting Table).
+"""Erzeugt Modelle und Texturen der Werkbloecke (Pult, Presse, Lettern-Schrank, Uebersetzungstisch, Minting Table).
 
 Aufruf: python art/gen_stations.py
-Ausgabe: mod/.../textures/block/station_*.png   (Materialkacheln, 16x16, nur Farben aus art/palette.json)
+Ausgabe: mod/.../textures/block/ws_*.png        (Kacheln 16x16)
          mod/.../models/block/{scribe_lectern,printing_press,letter_cabinet,translator_desk,minting_table}.json
-         art/out/stations-preview.png            (Vorschau aus mehreren Winkeln, eigener Software-Renderer)
-         art/out/station_boxes.json              (Kollisionsformen, werden in StationShapes.java uebernommen)
+         mod/.../java/de/scribery/StationShapes.java (Konstanten; Kollisionsformen passend zu den Modellen)
+         art/out/stations-preview.png           (Vorschau aus mehreren Winkeln, eigener Software-Renderer)
 Das Manuscript Archive bleibt ein Wuerfel und wird nicht angefasst.
 
-Modelle: nur Quader ohne Drehung (damit nichts vom Vorzeichen der Modelldrehung abhaengt). Vorderseite = Norden (-z),
-das Blockstate dreht je nach Blickrichtung. Ohne uv nimmt Minecraft die Position (1 Pixel = 1 Einheit), so passen Pixeldichte
-und Material ueberall zusammen.
+Stil nach den Vanilla-Werkbloecken (Crafting, Smithing, Cartography, Loom, Lectern, Blast Furnace): weiche Toene mit wenig Kontrast,
+dunkler 1-Pixel-Rand an Blockflaechen, flaches Metall, Symbole auf der Vorderseite statt vieler Kleinteile. Mischform: Koerper als
+(fast) voller Block mit gemalten Flaechen, darauf ein paar kraeftige 3D-Teile. Kerze und Flamme nutzen Vanilla-Texturen
+(minecraft:block/candle_lit, minecraft:block/campfire_fire), die nicht ins Repo kopiert werden.
+Farben: Eiche, Fichte, Stein und Eisen sind vanilla-nahe Toene AUSSERHALB von art/palette.json (dokumentierte Ausnahme wie die Eisblau-Toene);
+Pergament, Tinte, Blei und Flamme kommen aus der Palette.
+Modelle: nur Quader, Drehung nur +-45 Grad um y bei den Flammenflaechen (symmetrisch, Vorzeichen egal). Vorderseite = Norden (-z).
 """
 import json
 import math
@@ -21,313 +25,372 @@ from PIL import Image, ImageDraw
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(ROOT, "mod/src/main/resources/assets/scribery")
 OUT = os.path.join(ROOT, "art/out")
+VANILLA = os.environ.get("VANILLA_TEX", "/tmp/vanilla")   # nur fuer die Vorschau; fehlt der Ordner, werden Platzhalter gezeichnet
 PAL = {k: tuple(int(v[i:i + 2], 16) for i in (1, 3, 5)) for k, v in json.load(open(os.path.join(ROOT, "art/palette.json")))
        .items() if k != "_comment"}
-C = PAL
+C = dict(PAL)
+C.update({
+    "o0": (120, 94, 52), "o1": (143, 114, 67), "o2": (162, 130, 78), "o3": (176, 143, 87), "orim": (82, 58, 30),     # Eiche
+    "s0": (62, 44, 26), "s1": (84, 60, 34), "s2": (100, 74, 42), "s3": (114, 86, 50), "srim": (40, 28, 16),          # Fichte
+    "k0": (70, 70, 72), "k1": (96, 96, 98), "k2": (112, 112, 114), "k3": (130, 130, 132), "krim": (44, 44, 46),      # Stein
+    "m0": (96, 96, 102), "m1": (120, 120, 126), "m2": (142, 142, 148), "m3": (168, 168, 174),                         # Eisen
+    "leather": (104, 44, 36), "leather_hi": (132, 62, 48),
+})
 
-# ---------------------------------------------------------------- Texturen (16x16 Kacheln)
 
-def tile(fn, seed):
-    rng = random.Random(seed)
-    im = Image.new("RGB", (16, 16))
+# ---------------------------------------------------------------- Texturen (16x16)
+
+def new(w=16, h=16, fill=None):
+    return Image.new("RGB", (w, h), fill or (0, 0, 0))
+
+
+def noise(px, w, h, tones, rng, weights):
+    for y in range(h):
+        for x in range(w):
+            px[x, y] = rng.choices(tones, weights)[0]
+
+
+def planks(tones, seam, rng, w=16, h=16):
+    """Weiche Bretter: vier Bretter je 4 Pixel, kaum Kontrast, Fugen nur eine Stufe dunkler, sparsame Maserung."""
+    im = new(w, h)
     px = im.load()
-    fn(px, rng)
+    board = [tones[1], tones[2], tones[1], tones[2]]
+    for y in range(h):
+        b = (y // 4) % 4
+        for x in range(w):
+            px[x, y] = rng.choices([board[b], tones[0], tones[3]], [0.8, 0.12, 0.08])[0]
+        if y % 4 == 0:
+            for x in range(w):
+                px[x, y] = seam
+    for _ in range(6):
+        x, y = rng.randrange(w), rng.randrange(h)
+        if y % 4:
+            px[x, y] = tones[0]
+            if x + 1 < w:
+                px[x + 1, y] = tones[0]
     return im
 
 
-def planks(base, seam, hi, grain):
-    def f(px, rng):
-        for y in range(16):
-            for x in range(16):
-                px[x, y] = base
-        for y in range(0, 16, 4):                       # Fugen zwischen den Brettern
-            for x in range(16):
-                px[x, y] = seam
-        for row in range(4):                            # Stossfugen versetzt je Brett
-            x = (row * 7 + 3) % 16
-            for y in range(row * 4 + 1, row * 4 + 4):
-                px[x, y] = seam
-        for _ in range(7):                              # Maserung (sparsam)
-            x, y = rng.randrange(16), rng.randrange(16)
-            if y % 4 == 0:
-                continue
-            for k in range(rng.randrange(2, 5)):
-                if x + k < 16:
-                    px[x + k, y] = grain if rng.random() < 0.55 else hi
-        for row in range(4):
-            y = row * 4 + 1
-            for x in range(16):
-                if px[x, y] == base and rng.random() < 0.22:
-                    px[x, y] = hi
-    return f
+def rim(im, color, box=None):
+    """Dunkler 1-Pixel-Rand um die Flaeche (wie bei Vanilla-Werkbloecken); box = (x1, y1, x2, y2) einschliesslich."""
+    px = im.load()
+    x1, y1, x2, y2 = box or (0, 0, im.width - 1, im.height - 1)
+    for x in range(x1, x2 + 1):
+        px[x, y1] = color
+        px[x, y2] = color
+    for y in range(y1, y2 + 1):
+        px[x1, y] = color
+        px[x2, y] = color
+    return im
 
 
-def metal(base, dark, light, seed_density=0.12):
-    def f(px, rng):
-        for y in range(16):
-            for x in range(16):
-                px[x, y] = base
-        for i in range(16):
-            px[i, 0] = light
-            px[i, 15] = dark
-            px[0, i] = light if i < 15 else dark
-            px[15, i] = dark
-        for _ in range(int(256 * seed_density)):
-            px[rng.randrange(1, 15), rng.randrange(1, 15)] = rng.choice([dark, light])
-    return f
+def flat_metal(tones, rng, w=16, h=16):
+    im = new(w, h)
+    noise(im.load(), w, h, tones, rng, [0.5, 0.3, 0.12, 0.08][:len(tones)])
+    return im
 
 
-def bricks(brick, mortar, hi):
-    def f(px, rng):
-        for y in range(16):
-            for x in range(16):
-                px[x, y] = brick
-        for y in range(0, 16, 4):
-            for x in range(16):
-                px[x, y] = mortar
-        for row in range(4):
-            off = 0 if row % 2 == 0 else 4
-            for x in range(off, 16, 8):
-                for y in range(row * 4, row * 4 + 4):
-                    px[x % 16, y] = mortar
-        for _ in range(26):
-            x, y = rng.randrange(16), rng.randrange(16)
-            if px[x, y] == brick:
-                px[x, y] = hi if rng.random() < 0.6 else C["lead_1"]
-    return f
+def rect(px, x1, y1, x2, y2, color):
+    for y in range(y1, y2 + 1):
+        for x in range(x1, x2 + 1):
+            px[x, y] = color
 
 
-def paper(px, rng):
-    for y in range(16):
-        for x in range(16):
-            px[x, y] = C["parchment_3"]
-    for _ in range(22):
+def oak(seed, h=16):
+    return planks([C["o0"], C["o1"], C["o2"], C["o3"]], C["o0"], random.Random(seed), 16, h)
+
+
+def spruce(seed):
+    return planks([C["s0"], C["s1"], C["s2"], C["s3"]], C["s0"], random.Random(seed))
+
+
+def mat_oak():
+    return oak(1)
+
+
+def mat_dark():
+    return spruce(2)
+
+
+def mat_iron():
+    return flat_metal([C["m1"], C["m2"], C["m0"], C["m3"]], random.Random(3))
+
+
+def mat_irond():
+    return flat_metal([C["m0"], C["k1"], C["k0"], C["m1"]], random.Random(4))
+
+
+def mat_stone():
+    return flat_metal([C["k1"], C["k2"], C["k0"], C["k3"]], random.Random(5))
+
+
+def mat_paper():
+    im = new(16, 16, C["parchment_3"])
+    px = im.load()
+    rng = random.Random(6)
+    for _ in range(18):
         px[rng.randrange(16), rng.randrange(16)] = C["parchment_2"]
-    for i in range(16):
-        px[i, 15] = C["parchment_2"]
-        px[15, i] = C["parchment_2"]
+    return im
 
 
-def inkwell(px, rng):
-    for y in range(16):
-        for x in range(16):
-            px[x, y] = C["ink_1"]
-    for _ in range(30):
+def mat_ink():
+    im = new(16, 16, C["ink_1"])
+    px = im.load()
+    rng = random.Random(7)
+    for _ in range(26):
         px[rng.randrange(16), rng.randrange(16)] = C["ink_0"]
-    for _ in range(6):
-        px[rng.randrange(16), rng.randrange(16)] = C["lead_1"]
+    return im
 
 
-def molten(px, rng):
-    for y in range(16):
-        for x in range(16):
-            px[x, y] = C["lead_3"]
+def mat_molten():
+    im = new(16, 16, C["lead_3"])
+    px = im.load()
+    rng = random.Random(8)
     for _ in range(60):
         px[rng.randrange(16), rng.randrange(16)] = rng.choice([C["lead_4"], C["lead_4"], C["lead_2"]])
+    return im
 
 
-def mouth(px, rng):
-    """Ofenmaul: Steinrahmen mit Glut."""
-    for y in range(16):
-        for x in range(16):
-            px[x, y] = C["lead_1"]
-    for y in range(3, 15):
-        for x in range(3, 13):
-            px[x, y] = C["ink_0"]
-    for y in range(9, 15):                              # Glut unten
-        for x in range(3, 13):
-            d = 14 - y
-            px[x, y] = C["flame_2"] if d < 2 else (C["flame_1"] if d < 4 and rng.random() < 0.6 else C["flame_2"] if d < 5 else C["ink_0"])
-    for x in range(5, 11):
-        if rng.random() < 0.6:
-            px[x, 14] = C["flame_0"]
-    for _ in range(14):
-        px[rng.randrange(16), rng.randrange(16)] = C["lead_2"] if px[0, 0] == C["lead_1"] else px[0, 0]
-    for x in range(16):
-        px[x, 0] = C["lead_2"]
-        px[x, 15] = C["lead_0"]
+# --- Flaechen mit Symbolen (Hoehe h: Block hat h Pixel Hoehe, der Rest der Kachel bleibt leer)
+
+def face_oak(seed, h, rimc=None):
+    im = oak(seed, h)
+    return rim(im, rimc or C["orim"])
 
 
-def cab_front(px, rng):
-    """Fachkasten des Setzkastens: 3x3 Faecher, kleine Schilder."""
-    for y in range(16):
-        for x in range(16):
-            px[x, y] = C["wood_1"]
-    for cy in range(3):
-        for cx in range(3):
-            x0, y0 = 1 + cx * 5, 1 + cy * 5
-            for y in range(y0, y0 + 4):
-                for x in range(x0, x0 + 4):
-                    px[x, y] = C["ink_1"] if y > y0 else C["ink_0"]
-            px[x0 + 1, y0 + 3] = C["parchment_1"]
-            px[x0 + 2, y0 + 3] = C["parchment_2"]
-    for i in range(16):
-        px[i, 0] = C["wood_2"]
-        px[0, i] = C["wood_2"]
+def desk_front():
+    im = face_oak(11, 12)
+    px = im.load()
+    for x0 in (2, 9):                                  # zwei Schubladen
+        rect(px, x0, 2, x0 + 5, 9, C["o0"])
+        rect(px, x0 + 1, 3, x0 + 4, 8, C["o1"])
+        rect(px, x0 + 2, 5, x0 + 3, 6, C["m2"])       # Griff
+    return im
 
 
-def form(px, rng):
-    """Setzform: 4 Zeilen Lettern (je 2x3 Pixel), manche Plaetze leer."""
-    for y in range(16):
-        for x in range(16):
-            px[x, y] = C["ink_1"]
-    for r in range(4):
-        for c in range(8):
-            if rng.random() < 0.2:
-                continue
-            for y in range(r * 4, r * 4 + 3):
-                for x in range(c * 2, c * 2 + 2):
-                    px[x, y] = C["lead_3"] if y == r * 4 else C["lead_2"]
-            px[c * 2 + rng.randrange(2), r * 4 + 1] = C["lead_4"]
+def desk_top():
+    im = face_oak(12, 16)
+    px = im.load()
+    rect(px, 2, 2, 13, 13, C["leather"])               # Schreibunterlage
+    for x in range(2, 14):
+        px[x, 2] = C["leather_hi"]
+    rim(im, C["orim"])
+    return im
 
 
-def letterbox(px, rng):
-    """Buchstabenbox: 4x4 Faecher mit Lettern."""
-    for y in range(16):
-        for x in range(16):
-            px[x, y] = C["wood_0"]
-    for r in range(4):
+def cab_front():
+    im = face_oak(13, 12)
+    px = im.load()
+    for r in range(2):                                 # 4 x 2 kleine Faecher mit Schildchen
         for c in range(4):
-            for y in range(r * 4, r * 4 + 3):
-                for x in range(c * 4, c * 4 + 3):
-                    px[x, y] = C["lead_2"]
-            px[c * 4 + 1, r * 4 + 1] = C["lead_4"] if rng.random() < 0.7 else C["lead_3"]
-            for k in range(3):
-                px[c * 4 + k, r * 4] = C["lead_3"]
+            x0, y0 = 1 + c * 3, 1 + r * 5
+            rect(px, x0, y0, x0 + 2, y0 + 3, C["o0"])
+            rect(px, x0 + 1, y0 + 1, x0 + 1, y0 + 2, C["ink_1"])
+            px[x0 + 1, y0] = C["parchment_2"]
+            px[x0 + 1, y0 + 3] = C["m2"]
+    return im
 
 
-def flame(px, rng):
-    for y in range(16):
-        for x in range(16):
-            d = abs(x - 7.5) / 8
-            px[x, y] = C["flame_2"] if (y > 9 or d > 0.55) else (C["flame_1"] if d > 0.25 or y > 4 else C["flame_0"])
-    for _ in range(30):
-        px[rng.randrange(16), rng.randrange(16)] = rng.choice([C["flame_0"], C["flame_1"], C["flame_2"]])
+def cab_top():
+    im = face_oak(14, 16)
+    px = im.load()
+    rect(px, 1, 1, 10, 14, C["ink_1"])                 # Buchstabenbox: Faecher mit Lettern
+    for r in range(4):
+        for c in range(3):
+            x0, y0 = 2 + c * 3, 2 + r * 3
+            rect(px, x0, y0, x0 + 1, y0 + 1, C["lead_2"])
+            px[x0, y0] = C["lead_4"]
+    rect(px, 11, 6, 14, 8, C["parchment_3"])           # Papierstapel
+    rect(px, 11, 8, 14, 8, C["parchment_2"])
+    return rim(im, C["orim"])
+
+
+def press_front():
+    im = face_oak(15, 10)
+    px = im.load()
+    rect(px, 2, 1, 13, 8, C["s0"])                    # Feld wie beim Smithing Table
+    rect(px, 5, 2, 10, 3, C["m2"])                     # Tiegel (Platte)
+    rect(px, 7, 4, 8, 5, C["m1"])                      # Spindel
+    for x in range(4, 12, 2):                          # Lettern in der Form
+        rect(px, x, 6, x + 1, 7, C["lead_3"])
+    return im
+
+
+def press_top():
+    im = face_oak(16, 16)
+    px = im.load()
+    rect(px, 3, 4, 12, 11, C["ink_1"])                 # Setzform
+    for r in range(2):
+        for c in range(5):
+            rect(px, 4 + c * 2, 5 + r * 3, 5 + c * 2, 6 + r * 3, C["lead_2"])
+            px[4 + c * 2, 5 + r * 3] = C["lead_4"]
+    rect(px, 3, 13, 12, 14, C["parchment_3"])          # Papierablage
+    return rim(im, C["orim"])
+
+
+def mint_front():
+    im = new(16, 10, C["k1"])
+    noise(im.load(), 16, 10, [C["k1"], C["k2"], C["k0"]], random.Random(21), [0.6, 0.25, 0.15])
+    px = im.load()
+    rect(px, 3, 2, 12, 7, C["ink_0"])                  # Ofenfenster wie bei der Blast Furnace
+    for x in range(3, 13):
+        px[x, 7] = C["flame_2"] if x % 2 else C["flame_1"]
+        px[x, 6] = C["flame_1"] if x % 3 else C["flame_0"]
+    for x in (5, 7, 9, 11):
+        px[x, 4] = C["m0"]
+        px[x, 5] = C["m0"]
+    rim(im, C["krim"])
+    rim(im, C["m1"], (2, 1, 13, 8))
+    return im
+
+
+def mint_side():
+    im = new(16, 10, C["k1"])
+    noise(im.load(), 16, 10, [C["k1"], C["k2"], C["k0"]], random.Random(22), [0.6, 0.25, 0.15])
+    return rim(im, C["krim"])
+
+
+def mint_top():
+    im = flat_metal([C["m0"], C["k1"], C["k0"]], random.Random(23))
+    px = im.load()
+    for r in (4, 11):
+        for x in range(2, 14):
+            px[x, r] = C["k0"]
+    return rim(im, C["krim"])
+
+
+def oak_side(h, seed):
+    return lambda: face_oak(seed, h)
 
 
 MATERIALS = {
-    "form": form,
-    "letterbox": letterbox,
-    "flame": flame,
-    "wood": planks(C["wood_2"], C["wood_1"], C["wood_3"], C["wood_1"]),
-    "dark": planks(C["wood_1"], C["wood_0"], C["wood_2"], C["wood_0"]),
-    "light": planks(C["wood_3"], C["wood_2"], C["wood_4"], C["wood_2"]),
-    "iron": metal(C["lead_2"], C["lead_1"], C["lead_3"]),
-    "irond": metal(C["lead_1"], C["lead_0"], C["lead_2"]),
-    "stone": bricks(C["lead_1"], C["lead_0"], C["lead_2"]),
-    "paper": paper,
-    "ink": inkwell,
-    "molten": molten,
-    "mouth": mouth,
-    "front": cab_front,
+    "oak": mat_oak, "dark": mat_dark, "iron": mat_iron, "irond": mat_irond, "stone": mat_stone,
+    "paper": mat_paper, "ink": mat_ink, "molten": mat_molten,
+    "desk_front": desk_front, "desk_top": desk_top, "desk_side": oak_side(12, 17),
+    "cab_front": cab_front, "cab_top": cab_top, "cab_side": oak_side(12, 18),
+    "press_front": press_front, "press_top": press_top, "press_side": oak_side(10, 19),
+    "mint_front": mint_front, "mint_side": mint_side, "mint_top": mint_top,
 }
-SEEDS = {k: 100 + i for i, k in enumerate(MATERIALS)}
+# Vanilla-Texturen: Name im Modell -> (Resource-Pfad, Datei fuer die Vorschau)
+VANILLA_TEXTURES = {"candle": ("minecraft:block/candle_lit", "candle_lit.png"), "fire": ("minecraft:block/campfire_fire", "campfire_fire.png")}
 
 
 def write_textures():
     tex = {}
+    d = os.path.join(RES, "textures/block")
+    for f in os.listdir(d):                           # alte Kacheln dieses Skripts entfernen
+        if f.startswith("station_") or f.startswith("ws_"):
+            os.remove(os.path.join(d, f))
     for name, fn in MATERIALS.items():
-        im = tile(fn, SEEDS[name])
-        if name == "flame":     # animierte Flamme: 4 Bilder untereinander (siehe station_flame.png.mcmeta)
-            strip = Image.new("RGB", (16, 64))
-            for k in range(4):
-                strip.paste(tile(fn, SEEDS[name] + 10 * k), (0, 16 * k))
-            strip.save(os.path.join(RES, "textures/block", "station_flame.png"))
-            with open(os.path.join(RES, "textures/block", "station_flame.png.mcmeta"), "w", newline="\n") as f:
-                f.write('{\n  "animation": {\n    "frametime": 3\n  }\n}\n')
-            tex[name] = tile(fn, SEEDS[name])
-            continue
-        im.save(os.path.join(RES, "textures/block", f"station_{name}.png"))
+        im = fn()
+        canvas = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+        canvas.paste(im.convert("RGBA"), (0, 0))
+        canvas.save(os.path.join(d, f"ws_{name}.png"))
+        tex[name] = canvas
+    for name, (_, fname) in VANILLA_TEXTURES.items():
+        path = os.path.join(VANILLA, fname)
+        if os.path.exists(path):
+            im = Image.open(path).convert("RGBA").crop((0, 0, 16, 16))
+        else:
+            im = Image.new("RGBA", (16, 16), (255, 160, 40, 255))
         tex[name] = im
     return tex
 
 
 # ---------------------------------------------------------------- Modelle
 
-def box(a, b, tex, **special):
-    """a, b = (x1,y1,z1), (x2,y2,z2); tex = Material fuer alle Seiten; special: Seite -> (Material, uv oder None)."""
-    return {"from": list(a), "to": list(b), "tex": tex, "special": special}
+def box(a, b, tex, only=None, rot=None, **special):
+    """a, b = (x1,y1,z1), (x2,y2,z2); tex = Material; special: Seite -> (Material, uv oder None); only: nur diese Seiten;
+    rot = (winkel, ursprung) Drehung um y."""
+    return {"from": list(a), "to": list(b), "tex": tex, "special": special, "only": only, "rot": rot}
 
 
 MODELS = {}
 SHAPES = {}
+CUTOUT = {"scribe_lectern", "minting_table"}
 
+FRONT_SIDES = lambda pre, h: dict(east=(pre + "_side", [0, 0, 16, h]), west=(pre + "_side", [0, 0, 16, h]), south=(pre + "_side", [0, 0, 16, h]))
+
+
+def body(pre, h):
+    return box((0, 0, 0), (16, h, 16), pre + "_side", north=(pre + "_front", [0, 0, 16, h]), up=(pre + "_top", None),
+               **FRONT_SIDES(pre, h))
+
+
+def candle(x, y, z, hgt=5):
+    """Vanilla-Kerze (Aufbau wie block/template_candle): Koerper 2x2, zwei gekreuzte Dochtflaechen."""
+    uv = [0, 8, 2, 8 + hgt]
+    return [box((x, y, z), (x + 2, y + hgt, z + 2), "candle", north=("candle", uv), east=("candle", uv), south=("candle", uv),
+                west=("candle", uv), up=("candle", [0, 6, 2, 8])),
+            box((x + 0.5, y + hgt, z + 1), (x + 1.5, y + hgt + 1, z + 1), "candle", only=("north", "south"),
+                rot=(45, (x + 1, y + hgt, z + 1)), north=("candle", [0, 5, 1, 6]), south=("candle", [0, 5, 1, 6])),
+            box((x + 0.5, y + hgt, z + 1), (x + 1.5, y + hgt + 1, z + 1), "candle", only=("north", "south"),
+                rot=(-45, (x + 1, y + hgt, z + 1)), north=("candle", [0, 5, 1, 6]), south=("candle", [0, 5, 1, 6]))]
+
+
+def fire(cx, y, cz, w, hgt):
+    """Flamme aus zwei gekreuzten Flaechen mit der animierten Vanilla-Lagerfeuer-Textur."""
+    return [box((cx - w / 2, y, cz), (cx + w / 2, y + hgt, cz), "fire", only=("north", "south"), rot=(a, (cx, y, cz)),
+                north=("fire", [0, 0, 16, 16]), south=("fire", [0, 0, 16, 16])) for a in (45, -45)]
+
+
+# Pult: Standfuss mit Saeule und Platte, Rueckwand, Kerze (Flamme als Teilchen, siehe ScribeLecternBlock)
 MODELS["scribe_lectern"] = [
     box((3, 0, 3), (13, 2, 13), "dark"),
-    box((4, 2, 4), (12, 3, 12), "wood"),
-    box((6, 3, 6), (10, 11, 10), "wood"),
+    box((4, 2, 4), (12, 3, 12), "oak"),
+    box((6, 3, 6), (10, 11, 10), "oak"),
     box((5, 9, 5), (11, 10, 11), "dark"),
-    box((1, 11, 1), (15, 13, 15), "wood", up=("light", None)),
-    box((1, 13, 13), (15, 16, 15), "dark", north=("wood", None)),
+    box((1, 11, 1), (15, 13, 15), "oak"),
+    box((1, 13, 13), (15, 16, 15), "dark"),
     box((1, 13, 1), (2, 14, 2), "dark"),
     box((14, 13, 1), (15, 14, 2), "dark"),
-    box((12.5, 16, 13.3), (14, 18, 14.8), "paper"), box((12.9, 18, 13.7), (13.6, 19.2, 14.4), "flame"),
-]
+] + candle(12, 16, 13)
 SHAPES["scribe_lectern"] = [(3, 0, 3, 13, 3, 13), (6, 3, 6, 10, 11, 10), (1, 11, 1, 15, 13, 15), (1, 13, 13, 15, 16, 15)]
 
+# Uebersetzungstisch: Schreibtisch-Block mit Schubladen, Schreibunterlage, Tintenfass und Papier hinten
 MODELS["translator_desk"] = [
-    box((0, 11, 1), (16, 13, 15), "wood", up=("light", None)),
-    box((1, 0, 2), (3, 11, 4), "dark"), box((13, 0, 2), (15, 11, 4), "dark"),
-    box((1, 0, 12), (3, 11, 14), "dark"), box((13, 0, 12), (15, 11, 14), "dark"),
-    box((1, 3, 4), (3, 4.5, 12), "dark"), box((13, 3, 4), (15, 4.5, 12), "dark"),
-    box((3, 6, 3), (13, 11, 13), "wood"),
-    box((7, 8, 2.5), (9, 9, 3), "iron"),
-    box((0, 13, 13), (16, 15, 15), "dark"),
-    box((12, 15, 13), (14, 16, 15), "ink"),
-    box((2, 15, 13), (7, 16, 15), "paper"),
+    body("desk", 12),
+    box((12.5, 12, 13), (14.5, 14.5, 15), "ink"),
+    box((2, 12, 13), (6.5, 13, 15), "paper"),
 ]
-SHAPES["translator_desk"] = [(0, 11, 1, 16, 13, 15), (1, 0, 2, 3, 11, 4), (13, 0, 2, 15, 11, 4), (1, 0, 12, 3, 11, 14),
-                             (13, 0, 12, 15, 11, 14), (3, 6, 3, 13, 11, 13), (0, 13, 13, 16, 16, 15)]
+SHAPES["translator_desk"] = [(0, 0, 0, 16, 12, 16), (12.5, 12, 13, 14.5, 14.5, 15)]
 
-LEGS = [box((0, 0, 1), (2, 8, 3), "dark"), box((14, 0, 1), (16, 8, 3), "dark"),
-        box((0, 0, 13), (2, 8, 15), "dark"), box((14, 0, 13), (16, 8, 15), "dark")]
-TABLE = LEGS + [box((0, 8, 1), (16, 10, 15), "wood", up=("light", None)), box((2, 3, 3), (14, 4, 13), "dark")]
-
-# Presse nach dem UI: Setzform in der Mitte, Papierablage davor, Tiegel (Platte) darueber, Kurbel links (aus Sicht des
-# Spielers, also x hoch), Hebel rechts (x niedrig), Kerze hinten links.
-MODELS["printing_press"] = TABLE + [
-    box((3, 10, 4), (13, 11, 12), "irond", up=("form", [3, 4, 13, 12])),
-    box((3, 10, 1.5), (13, 11, 3.5), "paper"),
-    box((3, 11, 12), (4, 15, 13), "dark"), box((12, 11, 12), (13, 15, 13), "dark"),
-    box((3, 15, 12), (13, 16, 13), "dark"),
-    box((4.5, 13.5, 5), (11.5, 14.5, 11), "iron"),
-    box((1.5, 10, 7.5), (2.5, 16, 8.5), "irond"), box((2.5, 13.5, 7.5), (4.5, 14.5, 8.5), "irond"),
-    box((1, 15, 7), (3, 16, 9), "light"),
-    box((13, 12.5, 7), (14, 13.5, 8), "irond"), box((14, 11.5, 6), (15, 14.5, 9), "iron"),
-    box((15, 12.5, 7.5), (16, 13.5, 8.5), "light"),
+# Presse: Block mit Symbol, Setzform und Papierablage oben (gemalt), darueber Rahmen mit Tiegel-Platte, Kurbel und Hebel
+MODELS["printing_press"] = [
+    body("press", 10),
+    box((1, 10, 6), (3, 14, 10), "dark"), box((13, 10, 6), (15, 14, 10), "dark"),
+    box((1, 14, 5), (15, 16, 11), "dark"),
+    box((5, 11.5, 6.5), (11, 13, 9.5), "iron"), box((7, 13, 7), (9, 14, 9), "irond"),
+    box((0, 14, 7), (1, 16, 9), "oak"),
+    box((15, 12, 7), (16, 14.5, 9.5), "iron"),
 ]
-SHAPES["printing_press"] = [(0, 0, 1, 16, 10, 15), (1, 10, 1, 16, 16, 13)]
+SHAPES["printing_press"] = [(0, 0, 0, 16, 10, 16), (1, 10, 5, 15, 16, 11)]
 
-# Lettern-Schrank: Tisch mit Buchstabenbox, Walze, Papiervorrat und dem Fass (Tinte) darauf.
-MODELS["letter_cabinet"] = TABLE + [
-    box((1, 10, 2), (9, 12, 14), "dark", up=("letterbox", [0, 0, 8, 12])),
-    box((10, 10, 9), (15, 14, 14), "dark", up=("ink", None)),
-    box((9.8, 10.5, 8.8), (15.2, 11.5, 14.2), "iron"), box((9.8, 12.5, 8.8), (15.2, 13.5, 14.2), "iron"),
-    box((10, 10, 6), (15, 11.5, 8.5), "paper"),
-    box((10.5, 10, 2.5), (14.5, 11.5, 5.5), "dark"),
-    box((10, 10.2, 3), (10.5, 11.3, 5), "iron"), box((14.5, 10.2, 3), (15, 11.3, 5), "iron"),
+# Lettern-Schrank: Block mit Faechern, Buchstabenbox und Papier oben gemalt, Fass (Tinte) und Walze als 3D
+MODELS["letter_cabinet"] = [
+    body("cab", 12),
+    box((10, 12, 9), (15, 16, 14), "dark", up=("ink", None)),
+    box((9.7, 13, 8.7), (15.3, 14, 14.3), "iron"),
+    box((10.5, 12, 2.5), (14.5, 13.5, 5.5), "dark"),
+    box((10, 12.2, 3), (10.5, 13.3, 5), "iron"), box((14.5, 12.2, 3), (15, 13.3, 5), "iron"),
 ]
-SHAPES["letter_cabinet"] = [(0, 0, 1, 16, 10, 15), (1, 10, 2, 9, 12, 14), (10, 10, 9, 15, 14, 14), (10, 10, 2.5, 15, 11.5, 8.5)]
+SHAPES["letter_cabinet"] = [(0, 0, 0, 16, 12, 16), (10, 12, 9, 15, 16, 14)]
 
-# Minting Table: Tiegel (Becher) auf einem Dreibein ueber offener Flamme, daneben ein kleiner Amboss.
+# Minting Table: Steinblock wie die Blast Furnace, darauf Tiegel auf Dreibein ueber offener Flamme und kleiner Amboss
 MODELS["minting_table"] = [
-    box((0, 0, 0), (16, 8, 16), "dark", north=("wood", None)),
-    box((0, 8, 0), (16, 9, 16), "irond", up=("irond", None)),
-    box((1.5, 9, 1.5), (8.5, 10, 8.5), "stone"),
-    box((3, 10, 3), (7, 11.5, 7), "flame"), box((3.5, 11.5, 3.5), (6.5, 13, 6.5), "flame"), box((4.2, 13, 4.2), (5.8, 14, 5.8), "flame"),   # Flammenwuerfel mit animierter Textur
-    box((2, 10, 2), (3, 14, 3), "irond"), box((7, 10, 2), (8, 14, 3), "irond"),
-    box((2, 10, 7), (3, 14, 8), "irond"), box((7, 10, 7), (8, 14, 8), "irond"),
-    box((2, 14, 2), (8, 14.8, 8), "irond"),
-    box((3, 14.8, 3), (7, 15.6, 7), "iron", up=("molten", None)),
-    box((3, 15.6, 3), (7, 16, 3.5), "iron"), box((3, 15.6, 6.5), (7, 16, 7), "iron"),
-    box((3, 15.6, 3.5), (3.5, 16, 6.5), "iron"), box((6.5, 15.6, 3.5), (7, 16, 6.5), "iron"),
-    box((8, 15, 4.5), (10.5, 15.6, 5.5), "irond"),
-    box((10, 9, 9), (15, 10, 14), "irond"),
-    box((11.5, 10, 10), (13.5, 12, 13), "irond"),
-    box((10, 12, 9), (16, 14, 14), "iron"),
-    box((16, 12.5, 10.5), (16.01, 13.5, 12.5), "iron"),
-]
-SHAPES["minting_table"] = [(0, 0, 0, 16, 10, 16), (2, 10, 2, 8, 16, 8), (10, 9, 9, 16, 14, 14)]
+    body("mint", 10),
+    box((1.5, 10, 1.5), (8.5, 11, 8.5), "stone"),
+    box((2, 11, 2), (3, 14, 3), "irond"), box((7, 11, 2), (8, 14, 3), "irond"),
+    box((2, 11, 7), (3, 14, 8), "irond"), box((7, 11, 7), (8, 14, 8), "irond"),
+    box((2, 14, 2), (8, 15, 8), "irond"),
+    box((3, 15, 3), (7, 17, 7), "iron", up=("molten", None)),
+    box((7, 15.5, 4.5), (10, 16.5, 5.5), "irond"),
+    box((10, 10, 9), (15, 11, 14), "irond"),
+    box((11.5, 11, 10), (13.5, 13, 13), "irond"),
+    box((9, 13, 9), (15, 15, 14), "irond"),
+    box((15, 13.5, 10), (16, 14.5, 13), "iron"),
+] + fire(5, 11, 5, 5.5, 4)
+SHAPES["minting_table"] = [(0, 0, 0, 16, 10, 16), (2, 10, 2, 8, 16, 8), (9, 10, 9, 16, 15, 14)]
 
 FACES = ["north", "south", "east", "west", "up", "down"]
 
@@ -338,12 +401,14 @@ def auto_uv(face, a, b):
             "south": [x1, 16 - y2, x2, 16 - y1], "west": [z1, 16 - y2, z2, 16 - y1], "east": [16 - z2, 16 - y2, 16 - z1, 16 - y1]}[face]
 
 
-def model_json(elems):
+def model_json(name, elems):
     used = []
     out = []
     for e in elems:
         faces = {}
         for f in FACES:
+            if e["only"] and f not in e["only"]:
+                continue
             if f == "down" and e["from"][1] == 0:
                 continue
             tex, uv = e["special"].get(f, (e["tex"], None))
@@ -353,10 +418,19 @@ def model_json(elems):
             if uv is not None:
                 face["uv"] = uv
             faces[f] = face
-        out.append({"from": e["from"], "to": e["to"], "faces": faces})
-    textures = {t: f"scribery:block/station_{t}" for t in used}
-    textures["particle"] = textures[used[0]]
-    return {"parent": "minecraft:block/block", "textures": textures, "elements": out}
+        el = {"from": e["from"], "to": e["to"]}
+        if e["rot"]:
+            el["rotation"] = {"angle": e["rot"][0], "axis": "y", "origin": list(e["rot"][1])}
+        el["faces"] = faces
+        out.append(el)
+    textures = {}
+    for t in used:
+        textures[t] = VANILLA_TEXTURES[t][0] if t in VANILLA_TEXTURES else f"scribery:block/ws_{t}"
+    textures["particle"] = textures.get("oak") or textures[used[0]]
+    d = {"parent": "minecraft:block/block", "textures": textures, "elements": out}
+    if name in CUTOUT:
+        d["render_type"] = "minecraft:cutout"
+    return d
 
 
 def write_java():
@@ -371,12 +445,12 @@ def write_java():
     open(path, "w", encoding="utf-8", newline="\n").write(head + consts + "\n" + tail)
 
 
+
 def write_models():
     for name, elems in MODELS.items():
         with open(os.path.join(RES, "models/block", name + ".json"), "w", encoding="utf-8", newline="\n") as f:
-            json.dump(model_json(elems), f, indent=2)
+            json.dump(model_json(name, elems), f, indent=2)
             f.write("\n")
-    json.dump({k: [list(b) for b in v] for k, v in SHAPES.items()}, open(os.path.join(OUT, "station_boxes.json"), "w"))
 
 
 # ---------------------------------------------------------------- Vorschau (Software-Renderer, ohne Minecraft)
@@ -384,12 +458,18 @@ def write_models():
 SHADE = {"up": 1.0, "north": 0.9, "east": 0.78, "west": 0.7, "south": 0.62, "down": 0.5}
 
 
-def corner(face, a, b, s, t):
+def corner(face, a, b, s, t, rot=None):
     (x1, y1, z1), (x2, y2, z2) = a, b
     dx, dy, dz = x2 - x1, y2 - y1, z2 - z1
-    return {"north": (x2 - s * dx, y2 - t * dy, z1), "south": (x1 + s * dx, y2 - t * dy, z2),
-            "west": (x1, y2 - t * dy, z1 + s * dz), "east": (x2, y2 - t * dy, z2 - s * dz),
-            "up": (x1 + s * dx, y2, z1 + t * dz), "down": (x1 + s * dx, y1, z2 - t * dz)}[face]
+    p = {"north": (x2 - s * dx, y2 - t * dy, z1), "south": (x1 + s * dx, y2 - t * dy, z2),
+         "west": (x1, y2 - t * dy, z1 + s * dz), "east": (x2, y2 - t * dy, z2 - s * dz),
+         "up": (x1 + s * dx, y2, z1 + t * dz), "down": (x1 + s * dx, y1, z2 - t * dz)}[face]
+    if rot:
+        ang, (ox, oy, oz) = rot
+        r = math.radians(ang)
+        x, z = p[0] - ox, p[2] - oz
+        p = (ox + x * math.cos(r) - z * math.sin(r), p[1], oz + x * math.sin(r) + z * math.cos(r))
+    return p
 
 
 def render(elems, tex, yaw, pitch=32, scale=14, size=(300, 330)):
@@ -401,6 +481,8 @@ def render(elems, tex, yaw, pitch=32, scale=14, size=(300, 330)):
     for e in elems:
         a, b = e["from"], e["to"]
         for f in FACES:
+            if e["only"] and f not in e["only"]:
+                continue
             m, uv = e["special"].get(f, (e["tex"], None))
             if uv is None:
                 uv = auto_uv(f, a, b)
@@ -416,7 +498,7 @@ def render(elems, tex, yaw, pitch=32, scale=14, size=(300, 330)):
                 s = i / n
                 for j in range(n + 1):
                     t = j / n
-                    x, y, z = corner(f, a, b, s, t)
+                    x, y, z = corner(f, a, b, s, t, e["rot"])
                     x, z = x - 8, z - 8
                     x2 = x * math.cos(ya) - z * math.sin(ya)
                     z2 = x * math.sin(ya) + z * math.cos(ya)
@@ -429,8 +511,10 @@ def render(elems, tex, yaw, pitch=32, scale=14, size=(300, 330)):
                         u = uv[0] + (uv[2] - uv[0]) * s
                         v = uv[1] + (uv[3] - uv[1]) * t
                         c = T[min(15, max(0, int(u))) % 16, min(15, max(0, int(v))) % 16]
+                        if c[3] < 128:
+                            continue
                         zbuf[Y][X] = depth
-                        px[X, Y] = tuple(int(k * sh) for k in c)
+                        px[X, Y] = tuple(int(k * sh) for k in c[:3])
     return img
 
 

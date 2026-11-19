@@ -1,12 +1,10 @@
 {
   "parent": "minecraft:block/block",
   "textures": {
-    "dark": "scribery:block/station_dark",
-    "wood": "scribery:block/station_wood",
-    "light": "scribery:block/station_light",
-    "paper": "scribery:block/station_paper",
-    "flame": "scribery:block/station_flame",
-    "particle": "scribery:block/station_dark"
+    "dark": "scribery:block/ws_dark",
+    "oak": "scribery:block/ws_oak",
+    "candle": "minecraft:block/candle_lit",
+    "particle": "scribery:block/ws_oak"
   },
   "elements": [
     {
@@ -51,22 +49,22 @@
       ],
       "faces": {
         "north": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "south": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "east": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "west": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "up": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "down": {
-          "texture": "#wood"
+          "texture": "#oak"
         }
       }
     },
@@ -83,22 +81,22 @@
       ],
       "faces": {
         "north": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "south": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "east": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "west": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "up": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "down": {
-          "texture": "#wood"
+          "texture": "#oak"
         }
       }
     },
@@ -147,22 +145,22 @@
       ],
       "faces": {
         "north": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "south": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "east": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "west": {
-          "texture": "#wood"
+          "texture": "#oak"
         },
         "up": {
-          "texture": "#light"
+          "texture": "#oak"
         },
         "down": {
-          "texture": "#wood"
+          "texture": "#oak"
         }
       }
     },
@@ -179,7 +177,7 @@
       ],
       "faces": {
         "north": {
-          "texture": "#wood"
+          "texture": "#dark"
         },
         "south": {
           "texture": "#dark"
@@ -264,67 +262,148 @@
     },
     {
       "from": [
-        12.5,
+        12,
         16,
-        13.3
+        13
       ],
       "to": [
         14,
-        18,
-        14.8
+        21,
+        15
       ],
       "faces": {
         "north": {
-          "texture": "#paper"
+          "texture": "#candle",
+          "uv": [
+            0,
+            8,
+            2,
+            13
+          ]
         },
         "south": {
-          "texture": "#paper"
+          "texture": "#candle",
+          "uv": [
+            0,
+            8,
+            2,
+            13
+          ]
         },
         "east": {
-          "texture": "#paper"
+          "texture": "#candle",
+          "uv": [
+            0,
+            8,
+            2,
+            13
+          ]
         },
         "west": {
-          "texture": "#paper"
+          "texture": "#candle",
+          "uv": [
+            0,
+            8,
+            2,
+            13
+          ]
         },
         "up": {
-          "texture": "#paper"
+          "texture": "#candle",
+          "uv": [
+            0,
+            6,
+            2,
+            8
+          ]
         },
         "down": {
-          "texture": "#paper"
+          "texture": "#candle"
         }
       }
     },
     {
       "from": [
-        12.9,
-        18,
-        13.7
+        12.5,
+        21,
+        14
       ],
       "to": [
-        13.6,
-        19.2,
-        14.4
+        13.5,
+        22,
+        14
       ],
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          13,
+          21,
+          14
+        ]
+      },
       "faces": {
         "north": {
-          "texture": "#flame"
+          "texture": "#candle",
+          "uv": [
+            0,
+            5,
+            1,
+            6
+          ]
         },
         "south": {
-          "texture": "#flame"
+          "texture": "#candle",
+          "uv": [
+            0,
+            5,
+            1,
+            6
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        12.5,
+        21,
+        14
+      ],
+      "to": [
+        13.5,
+        22,
+        14
+      ],
+      "rotation": {
+        "angle": -45,
+        "axis": "y",
+        "origin": [
+          13,
+          21,
+          14
+        ]
+      },
+      "faces": {
+        "north": {
+          "texture": "#candle",
+          "uv": [
+            0,
+            5,
+            1,
+            6
+          ]
         },
-        "east": {
-          "texture": "#flame"
-        },
-        "west": {
-          "texture": "#flame"
-        },
-        "up": {
-          "texture": "#flame"
-        },
-        "down": {
-          "texture": "#flame"
+        "south": {
+          "texture": "#candle",
+          "uv": [
+            0,
+            5,
+            1,
+            6
+          ]
         }
       }
     }
-  ]
+  ],
+  "render_type": "minecraft:cutout"
 }

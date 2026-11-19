@@ -23,31 +23,24 @@ public final class StationShapes {
 
     /** translator_desk: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] TRANSLATOR_DESK = new double[][] {
-            {0, 11, 1, 16, 13, 15},
-            {1, 0, 2, 3, 11, 4},
-            {13, 0, 2, 15, 11, 4},
-            {1, 0, 12, 3, 11, 14},
-            {13, 0, 12, 15, 11, 14},
-            {3, 6, 3, 13, 11, 13},
-            {0, 13, 13, 16, 16, 15} };
+            {0, 0, 0, 16, 12, 16},
+            {12.5, 12, 13, 14.5, 14.5, 15} };
 
     /** printing_press: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] PRINTING_PRESS = new double[][] {
-            {0, 0, 1, 16, 10, 15},
-            {1, 10, 1, 16, 16, 13} };
+            {0, 0, 0, 16, 10, 16},
+            {1, 10, 5, 15, 16, 11} };
 
     /** letter_cabinet: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] LETTER_CABINET = new double[][] {
-            {0, 0, 1, 16, 10, 15},
-            {1, 10, 2, 9, 12, 14},
-            {10, 10, 9, 15, 14, 14},
-            {10, 10, 2.5, 15, 11.5, 8.5} };
+            {0, 0, 0, 16, 12, 16},
+            {10, 12, 9, 15, 16, 14} };
 
     /** minting_table: x1, y1, z1, x2, y2, z2 fuer Blickrichtung Norden (Vorderseite = -z). */
     public static final double[][] MINTING_TABLE = new double[][] {
             {0, 0, 0, 16, 10, 16},
             {2, 10, 2, 8, 16, 8},
-            {10, 9, 9, 16, 14, 14} };
+            {9, 10, 9, 16, 15, 14} };
 
     /** Formen fuer alle vier Blickrichtungen. Drehung wie im Blockstate (y = 90 im Uhrzeigersinn von oben: Norden wird Osten). */
     public static Map<Direction, VoxelShape> build(double[][] boxes) {

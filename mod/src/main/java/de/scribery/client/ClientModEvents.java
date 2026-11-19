@@ -20,6 +20,6 @@ public final class ClientModEvents {
     @SubscribeEvent
     static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.LECTERN.get(), ctx -> new LecternRenderer<>(de.scribery.LecternBlockEntity::fragment, 13 / 16.0 + 0.01, 1 / 16.0));
-        event.registerBlockEntityRenderer(ModBlockEntities.DESK.get(), ctx -> new LecternRenderer<>(de.scribery.DeskBlockEntity::sheet, 13 / 16.0 + 0.01, 1 / 16.0));
+        event.registerBlockEntityRenderer(ModBlockEntities.DESK.get(), ctx -> new LecternRenderer<>(de.scribery.DeskBlockEntity::sheet, 12 / 16.0 + 0.01, 1 / 16.0));
     }
 }
