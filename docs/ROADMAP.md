@@ -49,6 +49,11 @@ Noch Platzhalter: Bookshelf, Manuscript Archive, die Bücher (nur Items), die me
 ### 4. Händler, die die Bücher verkaufen
 - Villager verkaufen die Bücher für Emeralds; ein günstiges Wörterbuch zu Beginn.
 - Offen: Ein **eigener Villager-Beruf** (mit Arbeitsblock, zum Beispiel dem Bookshelf oder dem Pult) oder ein bestehender Beruf (Bibliothekar) mit zusätzlichen Angeboten? Ein eigener Beruf ist sauberer, aber mehr Aufwand (Beruf, Arbeitsblock, Handelsliste, Texturen).
+- **Scribe Villager (Schreiber):** Der Händler für die Bücher bekommt einen Namen und eine Rolle: ein eigener Villager-Beruf „Scribe“.
+  - Arbeitsblock: das Pult (Scribe Lectern) oder der Bookshelf, noch zu entscheiden.
+  - Handel: verkauft Alphabet Primer, Grammar Book und die Lexika, kauft Manuskript-Dubletten, verkauft Fundkarten und später Restaurierungsaufträge (siehe unten und `docs/DESIGN-FINDS.md`).
+  - Vorkommen: lebt in normalen Dörfern; vielleicht ein eigenes kleines Schreibhaus im Dorf.
+  - Aufwand: Beruf, Arbeitsblock, Handelsliste, Texturen und Übersetzungen. Noch nicht begonnen.
 - Preise und die Reihenfolge, in der Bücher auftauchen, werden später balanciert.
 - Derselbe Händler (oder ein Gelehrter) kauft lose Manuskripte-Dubletten und verkauft Fundkarten, siehe `docs/DESIGN-FINDS.md`.
 
@@ -111,7 +116,7 @@ Orte und Blöcke, an denen man Fragmente und Hinweise findet. Das ist die Idee, 
 
 - Wie der Archiv-Screen mit den drei Spalten im UI funktioniert (drei offene Fragen in `docs/DESIGN-ARCHIVE.md`).
 - Wie genau Übersetzen direkt vom Manuskript (ohne Druck) belohnt oder bewertet wird.
-- Ob ein eigener Villager-Beruf entsteht.
+- Scribe Villager: Arbeitsblock (Pult oder Bookshelf) und ob es ein eigenes Schreibhaus im Dorf gibt.
 - Wo und wie Fragmente gefunden werden (Spawn-Arten, Strukturen, Amphoren und Scherben).
 - Wie viel Reibung das Nachschlagen in den Büchern haben soll, ohne dass es nervt.
 - Welche Bibelstellen welche sprachlichen Anforderungen haben.

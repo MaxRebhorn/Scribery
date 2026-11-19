@@ -245,8 +245,7 @@ final class DebugStructures {
                 for (int h : tierH) b.cells(cells, u, u + 1, 3 * side, 3 * side, h, h);
             }
         }
-        // Lichtschaechte von der Decke des Hauptgangs bis knapp unter die Oberflaeche
-        for (int u : new int[] { 14, 27 }) b.cells(cells, u, u, 0, 0, -5, -1);
+        // Keine Lichtschaechte: Die Katakombe ist ganz geschlossen und dunkel (frueher Schaechte mit Eisengitter)
         // Der Boden ist normaler Steinboden im Stil des Mosaiks; Mosaik liegt nur an zwei Stellen: das Bild mit Broten und
         // Fischen im Gedenkraum und das Chi-Rho in der Grabkammer, jeweils mit einem Rand aus schlichten Steinchen.
         // Waende: alte Ziegel, dazwischen verwitterte, rissige und bruechige
@@ -290,9 +289,8 @@ final class DebugStructures {
                 }
             }
         }
-        // Lichtschacht: oben ein Gitter, damit nichts hineinfaellt. Es brennt kein Licht in der Katakombe: Oellampen stehen
-        // ausgeschaltet am Boden des Gangs, der Spieler zuendet sie mit dem Feuerzeug an.
-        for (int u : new int[] { 14, 27 }) b.put(u, 0, 0, Blocks.IRON_BARS);
+        // Es brennt kein Licht in der Katakombe: Die Oellampen stehen ausgeschaltet in den Nischen, der Spieler zuendet sie
+        // mit dem Feuerzeug an.
         // Grabkammer: Grabplatten in den Bogennischen
         for (int v = 7; v <= 9; v++) {
             b.put(21, v, -8, smooth);
